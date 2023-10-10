@@ -47,7 +47,6 @@ public class CameraController : MonoBehaviour
         HandleCameraCollisions();
     }
     
-
     private void FollowTarget()
     {
         Vector3 targetPosition = Vector3.SmoothDamp
