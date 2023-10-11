@@ -23,15 +23,14 @@ public class PlayerController : MonoBehaviour
         inputManager = FindObjectOfType<InputManager>();
     }
 
-/*    private void Update()
+    private void Update()
     {
         HandleJump();
-        HandleSelect();
-        HandleAttack();
+/*        HandleSelect();
+        HandleAttack();*/
 
-    *Good to have these things in update when we get to implementing them*
-
-    }*/
+        ////*Good to have these things in update when we get to implementing them*
+    }
 
     void FixedUpdate()
     {
@@ -88,23 +87,23 @@ public class PlayerController : MonoBehaviour
         transform.Translate(CRM * runSpeed * Time.fixedDeltaTime);
     }
 
-   
+
     ////dont worry about anything below, legacy code and might use it later :)
 
-   /* private void HandleSelect()
-    {
-        if (inputManager.selectInput && buttonLogic.btnPressable)
-        {
-            CutsceneCam.SetActive(true);
-            buttonLogic.DoorOpen();
-            inputManager.selectInput = false;
-        }
+    /* private void HandleSelect()
+     {
+         if (inputManager.selectInput && buttonLogic.btnPressable)
+         {
+             CutsceneCam.SetActive(true);
+             buttonLogic.DoorOpen();
+             inputManager.selectInput = false;
+         }
 
-        else if (!buttonLogic.btnPressable)
-        {
-            CutsceneCam.SetActive(false);
-        }
-    }*/
+         else if (!buttonLogic.btnPressable)
+         {
+             CutsceneCam.SetActive(false);
+         }
+     }*/
 
     /*private void HandleAttack()
     {
@@ -114,16 +113,15 @@ public class PlayerController : MonoBehaviour
         }
     }*/
 
-    /*private void HandleJump()
+    private void HandleJump()
     {
         if (inputManager.jumpInput && onGround)
         {
             inputManager.jumpInput = false;
-            animator.Play("Base Layer.JumpFlip", 0, 0.25f);
             playerRB.AddForce(new Vector3(0, jump, 0), ForceMode.Impulse);
         }
 
-        if (powerup.aquired == true)
+/*        if (powerup.aquired == true)
         {
             if (inputManager.jumpInput && jumps == 1)
             {
@@ -131,23 +129,22 @@ public class PlayerController : MonoBehaviour
                 playerRB.AddForce(new Vector3(0, jump / 1.5f, 0), ForceMode.Impulse);
                 jumps++;
             }
-        }
-    }*/
+        }*/
+    }
 
-/*    private void OnCollisionStay(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
-            animator.SetBool("isJumping", false);
             onGround = true;
             jumps = 0;
         }
-    }*/
+    }
 
-/*    private void OnCollisionExit(Collision collision)
+    private void OnCollisionExit(Collision collision)
     {
         onGround = false;
         jumps++;
-    }*/
+    }
 }
 
