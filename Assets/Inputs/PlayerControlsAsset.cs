@@ -62,6 +62,24 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AbilityCast"",
+                    ""type"": ""Button"",
+                    ""id"": ""35f20932-47d3-4ed1-9952-867131b1971a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AbilitySwap"",
+                    ""type"": ""Button"",
+                    ""id"": ""6f6345cc-491b-4952-8d3f-1ea653f8b341"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -284,6 +302,116 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3c33da96-8ad5-4d40-89e2-33f32bce0f48"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AbilityCast"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e46f7991-eb00-4055-8b93-f41cf882a35a"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AbilityCast"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aadf3f45-f56c-440d-a0e7-2c8e674cd8ba"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AbilitySwap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""88ebe497-715f-42db-b3fc-933384f2609a"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AbilitySwap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""69aae870-1a8d-4daf-862b-4841e011fc55"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AbilitySwap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f17be2b0-cf52-44d0-a2f8-aa52ebc4d11d"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AbilitySwap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5310d1cf-66c6-44b3-9d4c-3a59d3501714"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AbilitySwap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e39db8a2-be3e-44cc-96eb-d8bf3d0c46e3"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AbilitySwap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7bf75c6d-b1e9-4979-ba78-02b767385895"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AbilitySwap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b01c6236-23eb-4a9c-b10d-028700f3d435"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AbilitySwap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -296,6 +424,8 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         m_Player_Camera = m_Player.FindAction("Camera", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+        m_Player_AbilityCast = m_Player.FindAction("AbilityCast", throwIfNotFound: true);
+        m_Player_AbilitySwap = m_Player.FindAction("AbilitySwap", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -361,6 +491,8 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Camera;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Sprint;
+    private readonly InputAction m_Player_AbilityCast;
+    private readonly InputAction m_Player_AbilitySwap;
     public struct PlayerActions
     {
         private @PlayerControlsAsset m_Wrapper;
@@ -369,6 +501,8 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         public InputAction @Camera => m_Wrapper.m_Player_Camera;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+        public InputAction @AbilityCast => m_Wrapper.m_Player_AbilityCast;
+        public InputAction @AbilitySwap => m_Wrapper.m_Player_AbilitySwap;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -390,6 +524,12 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
+            @AbilityCast.started += instance.OnAbilityCast;
+            @AbilityCast.performed += instance.OnAbilityCast;
+            @AbilityCast.canceled += instance.OnAbilityCast;
+            @AbilitySwap.started += instance.OnAbilitySwap;
+            @AbilitySwap.performed += instance.OnAbilitySwap;
+            @AbilitySwap.canceled += instance.OnAbilitySwap;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -406,6 +546,12 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
+            @AbilityCast.started -= instance.OnAbilityCast;
+            @AbilityCast.performed -= instance.OnAbilityCast;
+            @AbilityCast.canceled -= instance.OnAbilityCast;
+            @AbilitySwap.started -= instance.OnAbilitySwap;
+            @AbilitySwap.performed -= instance.OnAbilitySwap;
+            @AbilitySwap.canceled -= instance.OnAbilitySwap;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -429,5 +575,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         void OnCamera(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnAbilityCast(InputAction.CallbackContext context);
+        void OnAbilitySwap(InputAction.CallbackContext context);
     }
 }
