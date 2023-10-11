@@ -42,6 +42,10 @@ public class AbilityManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (ability_list[selected_ability] == null)
+        {
+            selected_ability = 1;
+        }
         switch(state)
         {
             case AbilityState.READY:

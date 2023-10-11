@@ -13,5 +13,7 @@ public class DashAbility : Ability
         Rigidbody rigidbody = parent.GetComponent<Rigidbody>();
 
         //DASH STUFF HERE
+        //CHANGING RUN SPEED JUST TO CHECK IF ABILITY ACTIVATES CORRECTLY
+        movement.runSpeed = 20;
     }
 }
