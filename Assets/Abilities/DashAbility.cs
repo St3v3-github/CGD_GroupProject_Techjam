@@ -12,6 +12,6 @@ public class DashAbility : Ability
         PlayerController movement = parent.GetComponent<PlayerController>();
         Rigidbody rigidbody = parent.GetComponent<Rigidbody>();
 
-        rigidbody.velocity = movement.moveDirection.normalized * dash_velocity;
+        //DASH STUFF HERE
     }
 }

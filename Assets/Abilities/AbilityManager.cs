@@ -6,6 +6,7 @@ using UnityEngine;
 public class AbilityManager : MonoBehaviour
 {
     //public Ability ability;
+    //Won't need these as we are working with potentially several abilities not just one.
     float cooldown_time;
     float active_time;
 
@@ -80,6 +81,7 @@ public class AbilityManager : MonoBehaviour
                 break;
         }
 
+        //ADD HANDLING SO PLAYER CANT SELECT NON EXISTENT ELEMENT
         if(player_controls.Player.Ability1.IsPressed())
         {
             selected_ability = 0;
