@@ -46,7 +46,8 @@ public class PlayerController : MonoBehaviour
 
     void HandlePlayerRotation()
     {
-        Vector3 targetDirection = Vector3.zero;
+        ////Camera Relative movement - 3rd person
+/*        Vector3 targetDirection = Vector3.zero;
 
         targetDirection = cameraTransform.forward * inputManager.movementInputY;
         targetDirection = targetDirection + cameraTransform.right * inputManager.movementInputX;
@@ -56,7 +57,11 @@ public class PlayerController : MonoBehaviour
         if (targetDirection == Vector3.zero)
         {
             targetDirection = transform.forward;
-        }
+        }*/
+
+        //// 1st person fix - player rotation always = camera rotation
+        Vector3 targetDirection = Vector3.zero;
+        targetDirection = cameraTransform.forward;
 
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
         Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
