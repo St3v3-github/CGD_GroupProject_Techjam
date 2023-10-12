@@ -115,9 +115,9 @@ public class PlayerController : MonoBehaviour
 
     private void HandleJump()
     {
-        if (inputManager.jumpInput && onGround)
+        if (inputManager.jumped && onGround)
         {
-            inputManager.jumpInput = false;
+            inputManager.jumped = false;
             playerRB.AddForce(new Vector3(0, jump, 0), ForceMode.Impulse);
         }
 

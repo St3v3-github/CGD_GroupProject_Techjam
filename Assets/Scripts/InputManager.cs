@@ -15,8 +15,8 @@ public class InputManager : MonoBehaviour
     public float cameraInputX;
     public float cameraInputY;
 
-    public bool jumpInput = false;
-    public bool sprintInput = false;
+    public bool jumped = false;
+    public bool sprint = false;
 
     //also legacy
 
@@ -74,11 +74,11 @@ public class InputManager : MonoBehaviour
             playerControlsAsset.Player.Movement.performed += ctx => leftStickInput = ctx.ReadValue<Vector2>();
             playerControlsAsset.Player.Camera.performed += ctx => rightStickInput = ctx.ReadValue<Vector2>();
 
-            playerControlsAsset.Player.Jump.performed += ctx => jumpInput = true;
-            playerControlsAsset.Player.Jump.canceled += ctx => jumpInput = false;
-
-            playerControlsAsset.Player.Sprint.started += ctx => sprintInput = true;
-            playerControlsAsset.Player.Sprint.canceled += ctx => sprintInput = false;
+            playerControlsAsset.Player.Jump.performed += ctx => jumped = true;
+            playerControlsAsset.Player.Jump.canceled += ctx => jumped = false;
+                
+            playerControlsAsset.Player.Sprint.started += ctx => sprint = true;
+            playerControlsAsset.Player.Sprint.canceled += ctx => sprint = false;
 
             //legacy
 
