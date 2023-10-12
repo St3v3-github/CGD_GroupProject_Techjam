@@ -18,7 +18,9 @@ public class InputManager : MonoBehaviour
     public bool jumpInput = false;
     public bool sprintInput = false;
 
-/*    public bool lockOnInput = false;
+    //also legacy
+
+/*     public bool lockOnInput = false;
     public bool selectInput = false;
     public bool attackInput = false;*/
 
@@ -42,6 +44,8 @@ public class InputManager : MonoBehaviour
     {
         movementInputX = leftStickInput.x;
         movementInputY = leftStickInput.y;
+
+        //old animation stuff
 
 /*        if (movementInputX != 0 || movementInputY != 0)
         {
@@ -76,7 +80,9 @@ public class InputManager : MonoBehaviour
             playerControlsAsset.Player.Sprint.started += ctx => sprintInput = true;
             playerControlsAsset.Player.Sprint.canceled += ctx => sprintInput = false;
 
-/*            playerControlsAsset.Player.Select.started += ctx => selectInput = true;
+            //legacy
+
+/*         playerControlsAsset.Player.Select.started += ctx => selectInput = true;
             playerControlsAsset.Player.Select.canceled += ctx => selectInput = false;
 
             playerControlsAsset.Player.Attack.started += ctx => attackInput = true;

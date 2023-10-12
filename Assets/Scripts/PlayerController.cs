@@ -5,11 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     InputManager inputManager;
-/*    ButtonLogic buttonLogic;
-    Animator animator;
-    Powerup powerup;*/
-
-/*    public GameObject CutsceneCam;*/
 
     public Vector3 moveDirection;
     public Transform cameraTransform;
@@ -26,15 +21,6 @@ public class PlayerController : MonoBehaviour
     public void Awake()
     {
         inputManager = FindObjectOfType<InputManager>();
-        /*
-                animator = GetComponent<Animator>();
-
-                buttonLogic = FindObjectOfType<ButtonLogic>();
-                CutsceneCam = GameObject.Find("CutsceneCam");
-                CutsceneCam.SetActive(false);
-
-                powerup = FindObjectOfType<Powerup>();
-            }*/
     }
 
 /*    private void Update()
@@ -42,6 +28,9 @@ public class PlayerController : MonoBehaviour
         HandleJump();
         HandleSelect();
         HandleAttack();
+
+    *Good to have these things in update when we get to implementing them*
+
     }*/
 
     void FixedUpdate()
@@ -94,27 +83,8 @@ public class PlayerController : MonoBehaviour
         transform.Translate(CRM * runSpeed * Time.fixedDeltaTime);
     }
 
-    /*        moveDirection = cameraTransform.forward * inputManager.movementInputY;
-            moveDirection = moveDirection + cameraTransform.right * inputManager.movementInputX;
-            moveDirection.Normalize();
-            moveDirection.y = 0f;
-
-            if (inputManager.sprintInput)
-            {
-                moveDirection = moveDirection * sprintSpeed;
-            }
-            else
-            {
-                moveDirection = moveDirection * runSpeed;
-            }
-
-            Vector3 movementVelocity = moveDirection;
-            playerRB.MovePosition(transform.position + new Vector3(moveDirection.x, moveDirection.y, moveDirection.z) * Time.deltaTime);
-        }*/
-    //transform.Translate(moveDirection + new Vector3(moveDirection.x, moveDirection.y, moveDirection.z).normalized * runSpeed * Time.deltaTime, Space.World);
-
-    //Kinda Works - is bad
-    //playerRB.AddForce(movementVelocity + new Vector3(moveDirection.x, moveDirection.y, moveDirection.z));
+   
+    ////dont worry about anything below, legacy code and might use it later :)
 
    /* private void HandleSelect()
     {
