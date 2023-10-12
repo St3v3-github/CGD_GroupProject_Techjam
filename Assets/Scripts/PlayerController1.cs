@@ -1,12 +1,11 @@
 using UnityEngine;
+
 [RequireComponent(typeof(CharacterController))]
 
 public class PlayerController1 : MonoBehaviour
 {
     InputManager inputManager;
     private CharacterController controller;
-
-    public Transform cameraTransform;
 
     private Vector3 playerVelocity;
     private bool groundedPlayer;
@@ -39,27 +38,13 @@ public class PlayerController1 : MonoBehaviour
 
     private void HandleMovement()
     {
-        Vector3 forward = transform.InverseTransformVector(cameraTransform.forward);
-        Vector3 right = transform.InverseTransformVector(cameraTransform.right);
+        Vector3 move = new Vector3(inputManager.movementInputX, 0, inputManager.movementInputY);
+        controller.Move(move * Time.deltaTime * playerSpeed);
 
-        forward.y = 0;
-        right.y = 0;
-
-        forward = forward.normalized;
-        right = right.normalized;
-
-        Vector3 FRVI = inputManager.movementInputY * forward;
-        Vector3 RRVI = inputManager.movementInputX * right;
-
-        Vector3 CRM = FRVI + RRVI;
-
-        controller.Move(CRM * Time.deltaTime * playerSpeed);
-
-        if (CRM != Vector3.zero)
+        if (move != Vector3.zero)
         {
-            gameObject.transform.forward = CRM;
+            gameObject.transform.forward = move;
         }
-
     }
 
     private void HandleJump()
