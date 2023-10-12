@@ -5,21 +5,9 @@ using UnityEngine;
 
 public class AbilityManager : MonoBehaviour
 {
-    //public Ability ability;
-    //Won't need these as we are working with potentially several abilities not just one.
-    float cooldown_time;
-    float active_time;
-
     private PlayerControlsAsset player_controls;
-    [SerializeField] public List<Ability> ability_list; //if abilities are to be picked up in the world and stored in some kind of inventory. FILO
+    [SerializeField] public List<BaseAbility> ability_list; //if abilities are to be picked up in the world and stored in some kind of inventory. FILO
     private int selected_ability = 0; //selected ability would go from, say, 1-4, if multiple abilities can be held at once.
-
-    enum AbilityState
-    {
-        READY,
-        ACTIVE,
-        COOLDOWN
-    }
 
     private void Awake()
     {
@@ -37,8 +25,6 @@ public class AbilityManager : MonoBehaviour
         player_controls.Disable();
     }
 
-    AbilityState state = AbilityState.READY;
-
     // Update is called once per frame
     void Update()
     {
@@ -46,14 +32,14 @@ public class AbilityManager : MonoBehaviour
         {
             selected_ability = 1;
         }
-        switch(state)
+        switch(ability_list[selected_ability].state)
         {
-            case AbilityState.READY:
+            case BaseAbility.AbilityState.READY:
                 if(player_controls.Player.AbilityCast.IsPressed() && ability_list[selected_ability] != null)
                 {
                     ability_list[selected_ability].Activate(gameObject);
-                    state = AbilityState.ACTIVE;
-                    active_time = ability_list[selected_ability].active_time;
+                    ability_list[selected_ability].SetAbilityState(BaseAbility.AbilityState.ACTIVE);
+                    Debug.Log("Ability Used");
                 }
                 if(player_controls.Player.AbilityCast.IsPressed() && ability_list[selected_ability] == null)
                 {
@@ -61,26 +47,28 @@ public class AbilityManager : MonoBehaviour
                 }
                 break;
 
-            case AbilityState.ACTIVE:
-                if(active_time > 0)
+            case BaseAbility.AbilityState.ACTIVE:
+                if(ability_list[selected_ability].GetAbilityActiveTime() > 0)
                 {
-                    active_time -= Time.deltaTime;
+                    ability_list[selected_ability].SetAbilityActiveTime(ability_list[selected_ability].GetAbilityActiveTime() - Time.deltaTime);
+                    Debug.Log("Ability Active");
                 }
                 else
                 {
-                    state = AbilityState.COOLDOWN;
-                    cooldown_time = ability_list[selected_ability].ability_cooldown;
+                    ability_list[selected_ability].BeginCooldown(gameObject);
+                    ability_list[selected_ability].SetAbilityState(BaseAbility.AbilityState.COOLDOWN);
                 }
                 break;
 
-            case AbilityState.COOLDOWN:
-                if (cooldown_time > 0)
+            case BaseAbility.AbilityState.COOLDOWN:
+                if (ability_list[selected_ability].GetAbilityCooldown() > 0)
                 {
-                    cooldown_time -= Time.deltaTime;
+                    ability_list[selected_ability].SetAbilityCooldown(ability_list[selected_ability].GetAbilityCooldown() - Time.deltaTime);
+                    Debug.Log("Ability CD");
                 }
                 else
                 {
-                    state = AbilityState.READY;
+                    ability_list[selected_ability].SetAbilityState(BaseAbility.AbilityState.READY);
                 }
                 break;
         }
