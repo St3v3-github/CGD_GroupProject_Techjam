@@ -68,6 +68,7 @@ public class AbilityManager : MonoBehaviour
                 }
                 else
                 {
+                    ability_list[selected_ability].ResetCooldown();
                     ability_list[selected_ability].SetAbilityState(BaseAbility.AbilityState.READY);
                 }
                 break;

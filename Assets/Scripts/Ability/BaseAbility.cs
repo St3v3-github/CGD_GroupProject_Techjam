@@ -17,12 +17,20 @@ public class BaseAbility : ScriptableObject
     }
 
     public AbilityState state = AbilityState.READY;
+    public virtual void Awake()
+    {
+
+    }
 
     public virtual void Activate(GameObject parent)
     {
 
     }
     public virtual void BeginCooldown(GameObject parent)
+    {
+
+    }
+    public virtual void ResetCooldown()
     {
 
     }

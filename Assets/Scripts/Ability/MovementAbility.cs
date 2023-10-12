@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
@@ -6,6 +7,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Movement Ability (TEST)", menuName = "Ability/Movement Ability(TEST)")]
 public class MovementAbility : BaseAbility
 {
+    public override void Awake()
+    {
+        ability_name = "TEST";
+        ability_cooldown = 2.0f;
+        active_time = 1.0f;
+        ability_cost = 10;
+    }
     //scuffed implementation for testing!!
     //public float dash_velocity;
     public override void Activate(GameObject parent)
@@ -24,5 +32,11 @@ public class MovementAbility : BaseAbility
     {
         PlayerController movement = parent.GetComponent<PlayerController>();
         movement.runSpeed -= 15;
+    }
+    public override void ResetCooldown()
+    {
+        ability_cooldown = 2.0f;
+        active_time = 1.0f;
+        ability_cost = 10;
     }
 }
