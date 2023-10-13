@@ -18,10 +18,26 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerVelocity;
     private bool groundedPlayer;
 
-    private Vector2 cameraInput = Vector2.zero;
     private Vector2 movementInput = Vector2.zero;
     private bool jumped = false;
 
+    private Vector2 cameraInput;
+    public Transform targetTransform;       //Object camera follows
+    public Transform cameraPivot;             //Object camera pivots on
+    public Transform cameraTransform;    //Transform of actual camera object
+
+    [SerializeField]
+    private float cameraLookSpeed = 0.5f;
+    [SerializeField]
+    private float cameraPivotSpeed = 0.5f;
+    [SerializeField]
+    private float lookAngle;     //up and down
+    [SerializeField]
+    private float pivotAngle;    //left and right
+    [SerializeField]
+    private float minPivotAngle = -80;
+    [SerializeField]
+    private float maxPivotAngle = 80;
 
     private void Start()
     {
@@ -56,22 +72,41 @@ public class PlayerController : MonoBehaviour
 
     private void HandleCamera() 
     {
-        Vector3 look = new Vector3(cameraInput.x, 0, cameraInput.y);
+        Vector3 rotation;
+        Quaternion targetRotation;
 
-        transform.localRotation = Quaternion.Euler(look.x,0,0);
+        lookAngle = lookAngle + (cameraInput.x * cameraLookSpeed);
+        pivotAngle = pivotAngle - (cameraInput.y * cameraPivotSpeed);
+        pivotAngle = Mathf.Clamp(pivotAngle, minPivotAngle, maxPivotAngle);
+
+        rotation = Vector3.zero;
+        rotation.y = lookAngle;
+        targetRotation = Quaternion.Euler(rotation);
+        transform.rotation = targetRotation;
+
+        rotation = Vector3.zero;
+        rotation.x = pivotAngle;
+        targetRotation = Quaternion.Euler(rotation);
+        cameraPivot.localRotation = targetRotation;
     }
 
     private void HandleMovement()
     {
-        Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
-        controller.Move(move * Time.deltaTime * playerSpeed);
+        Vector3 forward = transform.InverseTransformVector(cameraTransform.forward);
+        Vector3 right = transform.InverseTransformVector(cameraTransform.right);
 
-        if (move != Vector3.zero)
-        {
-            gameObject.transform.forward = move;
-        }
+        forward.y = 0;
+        right.y = 0;
 
-        controller.Move(playerVelocity * Time.deltaTime);
+        forward = forward.normalized;
+        right = right.normalized;
+
+        Vector3 FRVI = movementInput.y * forward;
+        Vector3 RRVI = movementInput.x * right;
+
+        Vector3 CRM = FRVI + RRVI;
+
+        controller.transform.Translate(CRM * playerSpeed * Time.fixedDeltaTime);
     }
 
     private void HandleJump()
