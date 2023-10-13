@@ -1,150 +1,105 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Transactions;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
+[RequireComponent(typeof(CharacterController))]
 
 public class PlayerController : MonoBehaviour
 {
-    InputManager inputManager;
+    [SerializeField]
+    private float playerSpeed = 2.0f;
+    [SerializeField]
+    private float jumpHeight = 1.0f;
+    [SerializeField]
+    private float gravityValue = -9.81f;
 
-    public Vector3 moveDirection;
-    public Transform cameraTransform;
-    public Rigidbody playerRB;
+    private CharacterController controller;
 
-    public float runSpeed = 5;
-    public float sprintSpeed = 10;
-    public float rotationSpeed = 10.0f;
+    private Vector3 playerVelocity;
+    private bool groundedPlayer;
 
-    public float jump = 10f;
-    public bool onGround = true;
-    public int jumps = 0;
+    private Vector2 movementInput = Vector2.zero;
+    private bool jumped = false;
 
-    public void Awake()
+
+    private void Start()
     {
-        inputManager = FindObjectOfType<InputManager>();
+        controller = gameObject.GetComponent<CharacterController>();
+    }
+
+    public void OnMove(InputAction.CallbackContext ctx)
+    {
+       movementInput = ctx.ReadValue<Vector2>();
+    }
+
+    public void OnJump(InputAction.CallbackContext ctx)
+    {
+        jumped = ctx.action.triggered;
     }
 
     private void Update()
     {
+        HandleMovement();
         HandleJump();
-/*        HandleSelect();
-        HandleAttack();*/
-
-        ////*Good to have these things in update when we get to implementing them*
     }
 
-    void FixedUpdate()
+    private void HandleMovement()
     {
-        HandleAllPlayerMovement();
-    }
+        Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
+        controller.Move(move * Time.deltaTime * playerSpeed);
 
-    void HandleAllPlayerMovement()
-    {
-        HandlePlayerRotation();
-        HandlePlayerMovement();
-    }
-
-    void HandlePlayerRotation()
-    {
-        ////Camera Relative movement - 3rd person
-/*        Vector3 targetDirection = Vector3.zero;
-
-        targetDirection = cameraTransform.forward * inputManager.movementInputY;
-        targetDirection = targetDirection + cameraTransform.right * inputManager.movementInputX;
-        targetDirection.Normalize();
-        targetDirection.y = 0;
-
-        if (targetDirection == Vector3.zero)
+        if (move != Vector3.zero)
         {
-            targetDirection = transform.forward;
-        }*/
-
-        //// 1st person fix - player rotation always = camera rotation
-        Vector3 targetDirection = Vector3.zero;
-        targetDirection = cameraTransform.forward;
-
-        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-        Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
-        transform.rotation = playerRotation;
-    }
-
-    void HandlePlayerMovement()
-    {
-        Vector3 forward = transform.InverseTransformVector(cameraTransform.forward);
-        Vector3 right = transform.InverseTransformVector(cameraTransform.right);
-
-        forward.y = 0;
-        right.y = 0;
-
-        forward = forward.normalized;
-        right = right.normalized;
-
-        Vector3 FRVI = inputManager.movementInputY * forward;
-        Vector3 RRVI = inputManager.movementInputX * right;
-
-        Vector3 CRM = FRVI + RRVI;
-
-        transform.Translate(CRM * runSpeed * Time.fixedDeltaTime);
-    }
-
-
-    ////dont worry about anything below, legacy code and might use it later :)
-
-    /* private void HandleSelect()
-     {
-         if (inputManager.selectInput && buttonLogic.btnPressable)
-         {
-             CutsceneCam.SetActive(true);
-             buttonLogic.DoorOpen();
-             inputManager.selectInput = false;
-         }
-
-         else if (!buttonLogic.btnPressable)
-         {
-             CutsceneCam.SetActive(false);
-         }
-     }*/
-
-    /*private void HandleAttack()
-    {
-        if (inputManager.attackInput)
-        {
-            animator.Play("Base Layer.MMAKick", 0, 0.25f);
+            gameObject.transform.forward = move;
         }
-    }*/
+
+        controller.Move(playerVelocity * Time.deltaTime);
+    }
 
     private void HandleJump()
     {
-        if (inputManager.jumped && onGround)
+        groundedPlayer = controller.isGrounded;
+        if (groundedPlayer && playerVelocity.y < 0)
         {
-            inputManager.jumped = false;
-            playerRB.AddForce(new Vector3(0, jump, 0), ForceMode.Impulse);
+            playerVelocity.y = 0f;
         }
 
-/*        if (powerup.aquired == true)
+        // Changes the height position of the player..
+        if (jumped && groundedPlayer)
         {
-            if (inputManager.jumpInput && jumps == 1)
-            {
-                animator.Play("Base Layer.JumpFlip", 0, 0.25f);
-                playerRB.AddForce(new Vector3(0, jump / 1.5f, 0), ForceMode.Impulse);
-                jumps++;
-            }
-        }*/
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            onGround = true;
-            jumps = 0;
+            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
         }
-    }
 
-    private void OnCollisionExit(Collision collision)
-    {
-        onGround = false;
-        jumps++;
+        playerVelocity.y += gravityValue * Time.deltaTime;
     }
 }
 
+
+
+
+////TEMPLATE - CAR CONTROLLER.MOVE
+/*    void Update()
+    {
+        groundedPlayer = controller.isGrounded;
+        if (groundedPlayer && playerVelocity.y < 0)
+        {
+            playerVelocity.y = 0f;
+        }
+
+        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        controller.Move(move * Time.deltaTime * playerSpeed);
+
+        if (move != Vector3.zero)
+        {
+            gameObject.transform.forward = move;
+        }
+
+        // Changes the height position of the player..
+        if (Input.GetButtonDown("Jump") && groundedPlayer)
+        {
+            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+        }
+
+        playerVelocity.y += gravityValue * Time.deltaTime;
+        controller.Move(playerVelocity * Time.deltaTime);
+    }*/

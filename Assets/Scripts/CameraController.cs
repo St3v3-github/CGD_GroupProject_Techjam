@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
-    InputManager inputManager;
-
     public Transform targetTransform;       //Object camera follows
     public Transform cameraPivot;             //Object camera pivots on
     public Transform cameraTransform;    //Transform of actual camera object
@@ -16,23 +13,39 @@ public class CameraController : MonoBehaviour
     private Vector3 cameraFollowVelocity = Vector3.zero;
     private Vector3 cameraVectorPosition;
 
-    public float cameraCollisionOffset = 0.2f;       //how much camera will jump off objects.
-    public float minimumCollisionOffset = 0.2f;
-    public float cameraCollisionRadius = 0.2f;
+    [SerializeField]
+    private float cameraCollisionOffset = 0.2f;       //how much camera will jump off objects.
+    [SerializeField]
+    private float minimumCollisionOffset = 0.2f;
+    [SerializeField]
+    private float cameraCollisionRadius = 0.2f;
+    
+    [SerializeField]
+    private float cameraFollowSpeed = 0.2f;
+    [SerializeField]
+    private float cameraLookSpeed = 5f;
+    [SerializeField] 
+    private float cameraPivotSpeed = 5f;
 
-    public float cameraFollowSpeed = 0.2f;
-    public float cameraLookSpeed = 5f;
-    public float cameraPivotSpeed = 5f;
+    [SerializeField]
+    private float lookAngle;     //up and down
+    [SerializeField]
+    private float pivotAngle;    //left and right
+    [SerializeField]
+    private float minPivotAngle = -80;
+    [SerializeField] 
+    private float maxPivotAngle = 80;
 
-    public float lookAngle;     //up and down
-    public float pivotAngle;    //left and right
-    public float minPivotAngle = -35;
-    public float maxPivotAngle = 35;
+    private Vector2 cameraInput;
 
     private void Awake()
     {
-        inputManager = FindObjectOfType<InputManager>();
         defaultPosition = cameraTransform.localPosition.z;
+    }
+
+    public void OnLook(InputAction.CallbackContext ctx)
+    {
+        cameraInput = ctx.ReadValue<Vector2>();
     }
 
     void LateUpdate()
@@ -46,7 +59,7 @@ public class CameraController : MonoBehaviour
         RotateCamera();
         HandleCameraCollisions();
     }
-    
+
     private void FollowTarget()
     {
         Vector3 targetPosition = Vector3.SmoothDamp
@@ -60,8 +73,8 @@ public class CameraController : MonoBehaviour
         Vector3 rotation;
         Quaternion targetRotation;
 
-        lookAngle = lookAngle + (inputManager.cameraInputX * cameraLookSpeed);
-        pivotAngle = pivotAngle - (inputManager.cameraInputY * cameraPivotSpeed);
+        lookAngle = lookAngle + (cameraInput.x * cameraLookSpeed);
+        pivotAngle = pivotAngle - (cameraInput.y * cameraPivotSpeed);
         pivotAngle = Mathf.Clamp(pivotAngle, minPivotAngle, maxPivotAngle);
 
         rotation = Vector3.zero;
