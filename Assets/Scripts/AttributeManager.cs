@@ -24,7 +24,8 @@ public class AttributeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //attribute manager would check players current status and update here
+        //example: player is on fire via fire status, HP reduced by 5 every 1 second?
     }
 
     public int GetPlayerHealth()
