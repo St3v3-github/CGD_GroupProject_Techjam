@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class AttributeManager : MonoBehaviour
 {
-    [SerializeField] private int health;
-    [SerializeField] private int mp;
+    //should be private for final (as we use getters and setters) but keep public for dev so we can eyeball inspector
+    [SerializeField] public int health;
+    [SerializeField] public int mp;
 
     //examples of other values we might eventually have. all values relating to the player would probably be held in this one manager
     //[SerializeField] private int move_speed;
