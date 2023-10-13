@@ -14,10 +14,9 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private float cameraFollowSpeed = 0f;
     [SerializeField]
-    private float cameraLookSpeed = 5f;
+    private float cameraLookSpeed = 0.5f;
     [SerializeField]
-    private float cameraPivotSpeed = 5f;
-
+    private float cameraPivotSpeed = 0.5f;
     [SerializeField]
     private float lookAngle;     //up and down
     [SerializeField]

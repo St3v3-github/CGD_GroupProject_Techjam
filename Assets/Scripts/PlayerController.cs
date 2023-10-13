@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerVelocity;
     private bool groundedPlayer;
 
+    private Vector2 cameraInput = Vector2.zero;
     private Vector2 movementInput = Vector2.zero;
     private bool jumped = false;
 
@@ -25,6 +26,11 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
+    }
+
+    public void OnLook(InputAction.CallbackContext ctx)
+    {
+        cameraInput = ctx.ReadValue<Vector2>();
     }
 
     public void OnMove(InputAction.CallbackContext ctx)
@@ -40,7 +46,19 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         HandleMovement();
+        HandleCamera();
+    }
+
+    private void FixedUpdate()
+    {
         HandleJump();
+    }
+
+    private void HandleCamera() 
+    {
+        Vector3 look = new Vector3(cameraInput.x, 0, cameraInput.y);
+
+        transform.localRotation = Quaternion.Euler(look.x,0,0);
     }
 
     private void HandleMovement()
@@ -64,7 +82,7 @@ public class PlayerController : MonoBehaviour
             playerVelocity.y = 0f;
         }
 
-        // Changes the height position of the player..
+        // Changes the height position of the player..S
         if (jumped && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
