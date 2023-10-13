@@ -12,7 +12,7 @@ public class MovementAbility : BaseAbility
         ability_name = "TEST";
         ability_cooldown = 2.0f;
         active_time = 1.0f;
-        ability_cost = 10;
+        ability_cost = 20;
     }
     //scuffed implementation for testing!!
     //public float dash_velocity;
