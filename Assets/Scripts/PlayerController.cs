@@ -1,11 +1,14 @@
 using System.Transactions;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
-[RequireComponent(typeof(CharacterController))]
+/*[RequireComponent(typeof(CharacterController))]*/
 
 public class PlayerController : MonoBehaviour
 {
+    InputManager inputManager;
+
     [SerializeField]
     private float playerSpeed = 2.0f;
     [SerializeField]
@@ -13,15 +16,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float gravityValue = -9.81f;
 
-    private CharacterController controller;
-
     private Vector3 playerVelocity;
     private bool groundedPlayer;
+    [SerializeField]
+    private float jumpForce = 5f;
 
-    private Vector2 movementInput = Vector2.zero;
-    private bool jumped = false;
+    [SerializeField]
+    private Rigidbody playerRB;
 
-    private Vector2 cameraInput;
     public Transform targetTransform;       //Object camera follows
     public Transform cameraPivot;             //Object camera pivots on
     public Transform cameraTransform;    //Transform of actual camera object
@@ -39,24 +41,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float maxPivotAngle = 80;
 
-    private void Start()
+    private void Awake()
     {
-        controller = gameObject.GetComponent<CharacterController>();
-    }
-
-    public void OnLook(InputAction.CallbackContext ctx)
-    {
-        cameraInput = ctx.ReadValue<Vector2>();
-    }
-
-    public void OnMove(InputAction.CallbackContext ctx)
-    {
-       movementInput = ctx.ReadValue<Vector2>();
-    }
-
-    public void OnJump(InputAction.CallbackContext ctx)
-    {
-        jumped = ctx.action.triggered;
+        inputManager = gameObject.GetComponent<InputManager>(); 
     }
 
     private void Update()
@@ -70,13 +57,32 @@ public class PlayerController : MonoBehaviour
         HandleJump();
     }
 
-    private void HandleCamera() 
+    private void HandleMovement()
+    {
+        Vector3 forward = transform.InverseTransformVector(cameraTransform.forward);
+        Vector3 right = transform.InverseTransformVector(cameraTransform.right);
+
+        forward.y = 0;
+        right.y = 0;
+
+        forward = forward.normalized;
+        right = right.normalized;
+
+        Vector3 FRVI = inputManager.movementInput.y * forward;
+        Vector3 RRVI = inputManager.movementInput.x * right;
+
+        Vector3 CRM = FRVI + RRVI;
+
+        transform.Translate(CRM * playerSpeed * Time.fixedDeltaTime);
+    }
+
+    private void HandleCamera()
     {
         Vector3 rotation;
         Quaternion targetRotation;
 
-        lookAngle = lookAngle + (cameraInput.x * cameraLookSpeed);
-        pivotAngle = pivotAngle - (cameraInput.y * cameraPivotSpeed);
+        lookAngle = lookAngle + (inputManager.cameraInput.x * cameraLookSpeed);
+        pivotAngle = pivotAngle - (inputManager.cameraInput.y * cameraPivotSpeed);
         pivotAngle = Mathf.Clamp(pivotAngle, minPivotAngle, maxPivotAngle);
 
         rotation = Vector3.zero;
@@ -90,42 +96,35 @@ public class PlayerController : MonoBehaviour
         cameraPivot.localRotation = targetRotation;
     }
 
-    private void HandleMovement()
-    {
-        Vector3 forward = transform.InverseTransformVector(cameraTransform.forward);
-        Vector3 right = transform.InverseTransformVector(cameraTransform.right);
-
-        forward.y = 0;
-        right.y = 0;
-
-        forward = forward.normalized;
-        right = right.normalized;
-
-        Vector3 FRVI = movementInput.y * forward;
-        Vector3 RRVI = movementInput.x * right;
-
-        Vector3 CRM = FRVI + RRVI;
-
-        controller.transform.Translate(CRM * playerSpeed * Time.fixedDeltaTime);
-    }
-
     private void HandleJump()
     {
-        groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
         }
 
         // Changes the height position of the player..S
-        if (jumped && groundedPlayer)
+        if (inputManager.jumped && groundedPlayer)
         {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            playerRB.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
         }
-
-        playerVelocity.y += gravityValue * Time.deltaTime;
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            groundedPlayer = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        groundedPlayer = false;
+    }
+
 }
+
 
 
 
