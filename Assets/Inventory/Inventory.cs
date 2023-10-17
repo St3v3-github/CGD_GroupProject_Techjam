@@ -31,6 +31,7 @@ public class Inventory : MonoBehaviour
             crafting_menu.Add(ItemData.CreateInstance<ItemData>());
         }
         //Probs needs init so spellcasting without a spell doesn't break due to null values
+        
         for(int i = 0; i < spell_slots; i++)
         {
             dd_spell_inventory.Add(new List<ItemData>());
@@ -38,6 +39,11 @@ public class Inventory : MonoBehaviour
             {
                 dd_spell_inventory[i].Add(ItemData.CreateInstance<ItemData>());
             }
+        }
+
+        for (int i = 0; i < inv_height * inv_width; i++)
+        {
+            inventory_items.Add(ItemData.CreateInstance<ItemData>());
         }
     }
 
@@ -57,7 +63,7 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < inv_height * inv_width; i++)
         {
-            if (inventory_items[i] == null)
+            if (inventory_items[i].ID == 0)
             {
                 inventory_items[i] = new_item;
                 return true;
@@ -80,5 +86,38 @@ public class Inventory : MonoBehaviour
             }
         }
         return true;
+    }
+
+    public void swapItems(bool first_inv, int first_id, bool second_inv, int second_id)
+    {
+        ItemData first_item;
+        if (first_inv)
+        {
+            first_item = inventory_items[first_id];
+            if(second_inv) 
+            {
+                inventory_items[first_id] = inventory_items[second_id];
+                inventory_items[second_id] = first_item;
+            }
+            else
+            {
+                inventory_items[first_id] = dd_spell_inventory[second_id / spell_slots][second_id % spell_slots];
+                dd_spell_inventory[second_id / spell_slots][second_id % spell_slots] = first_item;
+            }
+        }
+        else
+        {
+            first_item= dd_spell_inventory[first_id/spell_slots][first_id%spell_slots];
+            if (second_inv)
+            {
+                dd_spell_inventory[first_id / spell_slots][first_id % spell_slots] = inventory_items[second_id];
+                inventory_items[second_id] = first_item;
+            }
+            else
+            {
+                dd_spell_inventory[first_id / spell_slots][first_id % spell_slots] = dd_spell_inventory[second_id / spell_slots][second_id % spell_slots];
+                dd_spell_inventory[second_id / spell_slots][second_id % spell_slots] = first_item;
+            }
+        }
     }
 }
