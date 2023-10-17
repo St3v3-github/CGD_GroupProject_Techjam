@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BaseAbility : ScriptableObject
 {
+    //should be private for final (as we use getters and setters) but keep public for dev so we can eyeball inspector
     public string ability_name;
     public float ability_cooldown;
     public float active_time;
@@ -38,6 +39,10 @@ public class BaseAbility : ScriptableObject
     public string GetAbilityName()
     {
         return ability_name;
+    }
+    public void SetAbilityName(string _ability_name)
+    {
+        ability_name = _ability_name;
     }
 
     public float GetAbilityCooldown()

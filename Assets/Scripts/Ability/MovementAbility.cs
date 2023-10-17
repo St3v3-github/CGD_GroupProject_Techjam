@@ -9,10 +9,10 @@ public class MovementAbility : BaseAbility
 {
     public override void Awake()
     {
-        ability_name = "TEST";
-        ability_cooldown = 2.0f;
-        active_time = 1.0f;
-        ability_cost = 10;
+        SetAbilityName("TEST");
+        SetAbilityCooldown(1.5f);
+        SetAbilityActiveTime(1.0f);
+        SetAbilityCost(20);
     }
     //scuffed implementation for testing!!
     //public float dash_velocity;
@@ -25,7 +25,7 @@ public class MovementAbility : BaseAbility
         //CHANGING RUN SPEED JUST TO CHECK IF ABILITY ACTIVATES CORRECTLY
 
         movement.runSpeed = 20;
-        Debug.Log("Used " + ability_name);
+        Debug.Log("Used " + GetAbilityName());
     }
 
     public override void BeginCooldown(GameObject parent)
@@ -35,8 +35,8 @@ public class MovementAbility : BaseAbility
     }
     public override void ResetCooldown()
     {
-        ability_cooldown = 2.0f;
-        active_time = 1.0f;
-        ability_cost = 10;
+        SetAbilityCooldown(1.5f);
+        SetAbilityActiveTime(1.0f);
+        SetAbilityCost(20);
     }
 }
