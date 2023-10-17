@@ -11,12 +11,15 @@ public class PlayerController : MonoBehaviour
     public Rigidbody playerRB;
 
     public float runSpeed = 5;
+    public float health = 100;
     public float sprintSpeed = 10;
     public float rotationSpeed = 10.0f;
 
     public float jump = 10f;
     public bool onGround = true;
     public int jumps = 0;
+
+    public StatusEffect currentStatusEffect;
 
     public void Awake()
     {
@@ -82,23 +85,35 @@ public class PlayerController : MonoBehaviour
 
         transform.Translate(CRM * runSpeed * Time.fixedDeltaTime);
     }
-   
+
+    public void TakeDamage(float dmg)
+    {
+        health -= dmg;
+    }
+
+    public void Speedmodifier(float mod)
+    {
+        runSpeed *= mod;
+        sprintSpeed *= mod;
+    }
+
+
     ////dont worry about anything below, legacy code and might use it later :)
 
-   /* private void HandleSelect()
-    {
-        if (inputManager.selectInput && buttonLogic.btnPressable)
-        {
-            CutsceneCam.SetActive(true);
-            buttonLogic.DoorOpen();
-            inputManager.selectInput = false;
-        }
+    /* private void HandleSelect()
+     {
+         if (inputManager.selectInput && buttonLogic.btnPressable)
+         {
+             CutsceneCam.SetActive(true);
+             buttonLogic.DoorOpen();
+             inputManager.selectInput = false;
+         }
 
-        else if (!buttonLogic.btnPressable)
-        {
-            CutsceneCam.SetActive(false);
-        }
-    }*/
+         else if (!buttonLogic.btnPressable)
+         {
+             CutsceneCam.SetActive(false);
+         }
+     }*/
 
     /*private void HandleAttack()
     {
@@ -128,20 +143,20 @@ public class PlayerController : MonoBehaviour
         }
     }*/
 
-/*    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.tag == "Ground")
+    /*    private void OnCollisionStay(Collision collision)
         {
-            animator.SetBool("isJumping", false);
-            onGround = true;
-            jumps = 0;
-        }
-    }*/
+            if (collision.gameObject.tag == "Ground")
+            {
+                animator.SetBool("isJumping", false);
+                onGround = true;
+                jumps = 0;
+            }
+        }*/
 
-/*    private void OnCollisionExit(Collision collision)
-    {
-        onGround = false;
-        jumps++;
-    }*/
+    /*    private void OnCollisionExit(Collision collision)
+        {
+            onGround = false;
+            jumps++;
+        }*/
 }
 
