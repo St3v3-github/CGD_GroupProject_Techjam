@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        //HandleJump();
+
     }
 
     private void FixedUpdate()
@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour
         //Movement has to go in here
         HandleMovement();
         HandleGroundCheck();
+
+        HandleJump();
     }
 
     private void HandleMovement()
@@ -66,24 +68,10 @@ public class PlayerController : MonoBehaviour
 
     private void HandleGroundCheck()
     {
-        /*        Ray ray = new Ray(transform.position, Vector3.down * (playerHeight * 0.5f + 0.5f));
-                Debug.DrawRay(transform.position, Vector3.down);
-                if (Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.5f, groundLayer))
-                {
-                    isGrounded = true;
-                }
-
-                else
-                {
-                    isGrounded = false;
-                }*/
-
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 1f, groundLayer);
-
     }
-}
 
-   /* private void HandleJump()
+    private void HandleJump()
     {
         if (inputManager.jumpInput && isReadyToJump && isGrounded)
         {
@@ -96,10 +84,6 @@ public class PlayerController : MonoBehaviour
 
     private void ResetJump()
     {
-        if (isGrounded)
-        {
-            isReadyToJump = true;
-        }
+        isReadyToJump = true;
     }
 }
-*/
