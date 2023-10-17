@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/SpellData")]
 public class SpellData : ScriptableObject
 {
-    public int spell_components = 4;
+    public int spell_components = 3;
     public List<ItemData> components = new();
     public string spell_name = "Empty";
     public string description = "This is an empty spell slot.";
@@ -17,7 +17,6 @@ public class SpellData : ScriptableObject
     {
         ELEMENT = 0,
         TYPE = 1,
-        SHAPE = 2,
-        AUXILIARY = 3
+        AUXILIARY = 2
     }
 }
