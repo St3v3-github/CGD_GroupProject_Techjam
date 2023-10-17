@@ -24,14 +24,14 @@ public class MovementAbility : BaseAbility
         //DASH STUFF HERE
         //CHANGING RUN SPEED JUST TO CHECK IF ABILITY ACTIVATES CORRECTLY
 
-        movement.runSpeed = 20;
+        //movement.runSpeed = 20;       !!Caused an Error
         Debug.Log("Used " + GetAbilityName());
     }
 
     public override void BeginCooldown(GameObject parent)
     {
         PlayerController movement = parent.GetComponent<PlayerController>();
-        movement.runSpeed -= 15;
+        //movement.runSpeed -= 15;      !!Caused an Error
     }
     public override void ResetCooldown()
     {

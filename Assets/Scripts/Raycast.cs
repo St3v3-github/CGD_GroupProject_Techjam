@@ -19,7 +19,7 @@ public class Raycast : MonoBehaviour
 
     void Update()
     {
-        if(inputManager.interactInput)
+        //if(inputManager.interactInput)    !!Caused an Error
         {
             Vector3 direction = Vector3.forward;
             Ray ray = new Ray(transform.position, transform.TransformDirection(direction * range));
