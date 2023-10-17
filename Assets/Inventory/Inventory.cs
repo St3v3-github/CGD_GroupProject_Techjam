@@ -45,7 +45,7 @@ public class Inventory : MonoBehaviour
     {
         for(int i = 0; i<inv_height*inv_width;i++)
         {
-            if (inventory_items[i].ID == 0)
+            if (inventory_items[i] == null)
             {
                 return true;
             }
