@@ -8,10 +8,12 @@ public class AbilityManager : MonoBehaviour
     private PlayerControlsAsset player_controls;
     [SerializeField] public List<BaseAbility> ability_list; //if abilities are to be picked up in the world and stored in some kind of inventory. FILO
     private int selected_ability = 0; //selected ability would go from, say, 1-4, if multiple abilities can be held at once.
+    private AttributeManager attribute_manager;
 
     private void Awake()
     {
         player_controls = new PlayerControlsAsset();
+        attribute_manager = GetComponent<AttributeManager>();
         //ability_list.Add(ability); //just to test
     }
 
@@ -37,9 +39,17 @@ public class AbilityManager : MonoBehaviour
             case BaseAbility.AbilityState.READY:
                 if(player_controls.Player.AbilityCast.IsPressed() && ability_list[selected_ability] != null)
                 {
-                    ability_list[selected_ability].Activate(gameObject);
-                    ability_list[selected_ability].SetAbilityState(BaseAbility.AbilityState.ACTIVE);
-                    Debug.Log("Ability Used");
+                    if(ability_list[selected_ability].GetAbilityCost() <= attribute_manager.GetPlayerMP())
+                    {
+                        ability_list[selected_ability].Activate(gameObject);
+                        ability_list[selected_ability].SetAbilityState(BaseAbility.AbilityState.ACTIVE);
+                        attribute_manager.SetPlayerMP(attribute_manager.GetPlayerMP() - ability_list[selected_ability].GetAbilityCost());
+                        print("Ability Used");
+                    }
+                    else
+                    {
+                        print("Not enough MP for ability! MP: " + attribute_manager.GetPlayerMP());
+                    }
                 }
                 if(player_controls.Player.AbilityCast.IsPressed() && ability_list[selected_ability] == null)
                 {
