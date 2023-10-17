@@ -1,106 +1,25 @@
- using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    PlayerControlsAsset playerControlsAsset;
-
-    public Vector2 leftStickInput;
-    public Vector2 rightStickInput;
-
-    public float movementInputX;  // horizontalInput
-    public float movementInputY;  // verticalInput
-
-    public float cameraInputX;
-    public float cameraInputY;
-
+    public Vector2 cameraInput;
+    public Vector2 movementInput;
     public bool jumpInput = false;
-    public bool sprintInput = false;
-    public bool interactInput = false;
 
-    //also legacy
 
-/*     public bool lockOnInput = false;
-    public bool selectInput = false;
-    public bool attackInput = false;*/
-
-/*    private void Awake()
+    public void OnLook(InputAction.CallbackContext ctx)
     {
-        animator = GetComponent<Animator>();
-    }*/
-
-    private void Update()
-    {
-        HandleAllInputs();
+        cameraInput = ctx.ReadValue<Vector2>();
     }
 
-    public void HandleAllInputs()
+    public void OnMove(InputAction.CallbackContext ctx)
     {
-        HandleMovementInput();
-        HandleCameraInput();
+        movementInput = ctx.ReadValue<Vector2>();
     }
 
-    private void HandleMovementInput()
+    public void OnJump(InputAction.CallbackContext ctx)
     {
-        movementInputX = leftStickInput.x;
-        movementInputY = leftStickInput.y;
-
-        //old animation stuff
-
-/*        if (movementInputX != 0 || movementInputY != 0)
-        {
-            animator.SetBool("isRunning", true);
-        }
-
-        else
-        {
-            animator.SetBool("isRunning", false);
-        }*/
-
-    }
-
-    private void HandleCameraInput()
-    {
-        cameraInputX = rightStickInput.x;
-        cameraInputY = rightStickInput.y;
-    }
-
-    private void OnEnable()
-    {
-        if (playerControlsAsset == null)
-        {
-            playerControlsAsset = new PlayerControlsAsset();
-
-            playerControlsAsset.Player.Movement.performed += ctx => leftStickInput = ctx.ReadValue<Vector2>();
-            playerControlsAsset.Player.Camera.performed += ctx => rightStickInput = ctx.ReadValue<Vector2>();
-
-            playerControlsAsset.Player.Jump.performed += ctx => jumpInput = true;
-            playerControlsAsset.Player.Jump.canceled += ctx => jumpInput = false;
-
-            playerControlsAsset.Player.Sprint.started += ctx => sprintInput = true;
-            playerControlsAsset.Player.Sprint.canceled += ctx => sprintInput = false;
-            
-            playerControlsAsset.Player.Interact.started += ctx => interactInput = true;
-            playerControlsAsset.Player.Interact.canceled += ctx => interactInput = false;
-
-            //legacy
-
-/*         playerControlsAsset.Player.Select.started += ctx => selectInput = true;
-            playerControlsAsset.Player.Select.canceled += ctx => selectInput = false;
-
-            playerControlsAsset.Player.Attack.started += ctx => attackInput = true;
-            playerControlsAsset.Player.Attack.canceled += ctx => attackInput = false;
-
-            playerControlsAsset.Player.LockOn.started += ctx => lockOnInput = true;
-            playerControlsAsset.Player.LockOn.canceled += ctx => lockOnInput = false;*/
-        }
-
-        playerControlsAsset.Enable();
-    }
-
-    private void OnDisable()
-    {
-        playerControlsAsset.Disable();
+        jumpInput = ctx.action.triggered;
     }
 }

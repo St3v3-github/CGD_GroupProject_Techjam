@@ -1,147 +1,89 @@
-using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     InputManager inputManager;
 
-    public Vector3 moveDirection;
-    public Transform cameraTransform;
-    public Rigidbody playerRB;
+    [Header("Movement")]
+    public float playerSpeed;
 
-    public float runSpeed = 5;
-    public float sprintSpeed = 10;
-    public float rotationSpeed = 10.0f;
+    [Header("Jump")]
+    public float jumpForce;
+    public float jumpCooldown;
+    public bool isReadyToJump;
 
-    public float jump = 10f;
-    public bool onGround = true;
-    public int jumps = 0;
+    [Header("Ground Check")]
+    public float playerHeight;
+    public LayerMask groundLayer;
+    public bool isGrounded;
 
-    public void Awake()
+    [Header("Other")]
+    public Transform orientation;
+
+    float horizontalInput;
+    float verticalInput;
+
+    Vector3 moveDirection;
+
+    Rigidbody playerRigidbody;
+
+    private void Awake()
     {
         inputManager = FindObjectOfType<InputManager>();
     }
 
-   private void Update()
+    private void Start()
     {
-        /* HandleJump();
-        HandleSelect();
-        HandleAttack();
-
-    *Good to have these things in update when we get to implementing them*
-        */
+        playerRigidbody = GetComponent<Rigidbody>();
+        playerRigidbody.freezeRotation = true;
     }
 
-    void FixedUpdate()
+    private void Update()
     {
-        HandleAllPlayerMovement();
+
     }
 
-    void HandleAllPlayerMovement()
+    private void FixedUpdate()
     {
-        HandlePlayerRotation();
-        HandlePlayerMovement();
+        //Movement has to go in here
+        HandleMovement();
+        HandleGroundCheck();
+
+        HandleJump();
     }
 
-    void HandlePlayerRotation()
+    private void HandleMovement()
     {
-        Vector3 targetDirection = Vector3.zero;
+        horizontalInput = inputManager.movementInput.x;
+        verticalInput = inputManager.movementInput.y;
 
-        targetDirection = cameraTransform.forward * inputManager.movementInputY;
-        targetDirection = targetDirection + cameraTransform.right * inputManager.movementInputX;
-        targetDirection.Normalize();
-        targetDirection.y = 0;
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        if (targetDirection == Vector3.zero)
-        {
-            targetDirection = transform.forward;
-        }
+        gameObject.transform.Translate(moveDirection * Time.deltaTime * playerSpeed);
 
-        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-        Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
-        transform.rotation = playerRotation;
+        //trying out Force movement - momentum seemed fun but maybe not :(
+        //playerRigidbody.AddForce(moveDirection.normalized * playerSpeed, ForceMode.Force);
     }
 
-    void HandlePlayerMovement()
+    private void HandleGroundCheck()
     {
-        Vector3 forward = transform.InverseTransformVector(cameraTransform.forward);
-        Vector3 right = transform.InverseTransformVector(cameraTransform.right);
-
-        forward.y = 0;
-        right.y = 0;
-
-        forward = forward.normalized;
-        right = right.normalized;
-
-        Vector3 FRVI = inputManager.movementInputY * forward;
-        Vector3 RRVI = inputManager.movementInputX * right;
-
-        Vector3 CRM = FRVI + RRVI;
-
-        transform.Translate(CRM * runSpeed * Time.fixedDeltaTime);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.5f, groundLayer);
     }
-   
-    ////dont worry about anything below, legacy code and might use it later :)
 
-   /* private void HandleSelect()
+    private void HandleJump()
     {
-        if (inputManager.selectInput && buttonLogic.btnPressable)
+        if (inputManager.jumpInput && isReadyToJump && isGrounded)
         {
-            CutsceneCam.SetActive(true);
-            buttonLogic.DoorOpen();
-            inputManager.selectInput = false;
-        }
+            playerRigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+            isReadyToJump = false;
 
-        else if (!buttonLogic.btnPressable)
-        {
-            CutsceneCam.SetActive(false);
+            Invoke(nameof(ResetJump), jumpCooldown);
         }
-    }*/
+    }
 
-    /*private void HandleAttack()
+    private void ResetJump()
     {
-        if (inputManager.attackInput)
-        {
-            animator.Play("Base Layer.MMAKick", 0, 0.25f);
-        }
-    }*/
-
-    /*private void HandleJump()
-    {
-        if (inputManager.jumpInput && onGround)
-        {
-            inputManager.jumpInput = false;
-            animator.Play("Base Layer.JumpFlip", 0, 0.25f);
-            playerRB.AddForce(new Vector3(0, jump, 0), ForceMode.Impulse);
-        }
-
-        if (powerup.aquired == true)
-        {
-            if (inputManager.jumpInput && jumps == 1)
-            {
-                animator.Play("Base Layer.JumpFlip", 0, 0.25f);
-                playerRB.AddForce(new Vector3(0, jump / 1.5f, 0), ForceMode.Impulse);
-                jumps++;
-            }
-        }
-    }*/
-
-/*    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            animator.SetBool("isJumping", false);
-            onGround = true;
-            jumps = 0;
-        }
-    }*/
-
-/*    private void OnCollisionExit(Collision collision)
-    {
-        onGround = false;
-        jumps++;
-    }*/
+        isReadyToJump = true;
+    }
 }
-
