@@ -23,15 +23,15 @@ public class PlayerController : MonoBehaviour
         inputManager = FindObjectOfType<InputManager>();
     }
 
-/*    private void Update()
+   private void Update()
     {
-        HandleJump();
+        /* HandleJump();
         HandleSelect();
         HandleAttack();
 
     *Good to have these things in update when we get to implementing them*
-
-    }*/
+        */
+    }
 
     void FixedUpdate()
     {
@@ -82,7 +82,6 @@ public class PlayerController : MonoBehaviour
 
         transform.Translate(CRM * runSpeed * Time.fixedDeltaTime);
     }
-
    
     ////dont worry about anything below, legacy code and might use it later :)
 

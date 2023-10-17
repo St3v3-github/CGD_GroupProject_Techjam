@@ -17,6 +17,7 @@ public class InputManager : MonoBehaviour
 
     public bool jumpInput = false;
     public bool sprintInput = false;
+    public bool interactInput = false;
 
     //also legacy
 
@@ -79,6 +80,9 @@ public class InputManager : MonoBehaviour
 
             playerControlsAsset.Player.Sprint.started += ctx => sprintInput = true;
             playerControlsAsset.Player.Sprint.canceled += ctx => sprintInput = false;
+            
+            playerControlsAsset.Player.Interact.started += ctx => interactInput = true;
+            playerControlsAsset.Player.Interact.canceled += ctx => interactInput = false;
 
             //legacy
 
