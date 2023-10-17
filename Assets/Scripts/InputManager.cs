@@ -5,7 +5,7 @@ public class InputManager : MonoBehaviour
 {
     public Vector2 cameraInput;
     public Vector2 movementInput;
-    public bool jumped = false;
+    public bool jumpInput = false;
 
 
     public void OnLook(InputAction.CallbackContext ctx)
@@ -20,6 +20,6 @@ public class InputManager : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext ctx)
     {
-        jumped = ctx.action.triggered;
+        jumpInput = ctx.action.triggered;
     }
 }

@@ -1,54 +1,41 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
     InputManager inputManager;
 
-    public Transform targetTransform;       //Object camera follows
-    public Transform cameraPivot;             //Object camera pivots on
-    public Transform cameraTransform;    //Transform of actual camera object
+    public float sensitivityX;
+    public float sensitivityY;
 
-    [SerializeField]
-    private float cameraLookSpeed = 0.5f;
-    [SerializeField]
-    private float cameraPivotSpeed = 0.5f;
-    [SerializeField]
-    private float lookAngle;     //up and down
-    [SerializeField]
-    private float pivotAngle;    //left and right
-    [SerializeField]
-    private float minPivotAngle = -80;
-    [SerializeField]
-    private float maxPivotAngle = 80;
+    public Transform orientation;
+
+    float rotationX;
+    float rotationY;
 
     private void Awake()
     {
-        inputManager = gameObject.GetComponent<InputManager>();
+        inputManager = FindObjectOfType<InputManager>();
+    }
+
+    private void Start()
+    {
+/*        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;*/
     }
 
     private void Update()
     {
-        HandleCamera();
-    }
+        //Access inputs
+        float inputX = inputManager.cameraInput.normalized.x * Time.deltaTime * sensitivityX;
+        float inputY = inputManager.cameraInput.normalized.y * Time.deltaTime * sensitivityY;
 
-    private void HandleCamera()
-    {
-        Vector3 rotation;
-        Quaternion targetRotation;
+        rotationY += inputX;
+        rotationX -= inputY;
+        rotationX = Mathf.Clamp(rotationX, -80f, 80f);
 
-        lookAngle = lookAngle + (inputManager.cameraInput.x * cameraLookSpeed);
-        pivotAngle = pivotAngle - (inputManager.cameraInput.y * cameraPivotSpeed);
-        pivotAngle = Mathf.Clamp(pivotAngle, minPivotAngle, maxPivotAngle);
+        //Rotate Camera + orientation
+        transform.rotation = Quaternion.Euler(rotationX, rotationY, 0);
+        orientation.rotation = Quaternion.Euler(0, rotationY, 0);
 
-        rotation = Vector3.zero;
-        rotation.y = lookAngle;
-        targetRotation = Quaternion.Euler(rotation);
-        transform.rotation = targetRotation;
-
-        rotation = Vector3.zero;
-        rotation.x = pivotAngle;
-        targetRotation = Quaternion.Euler(rotation);
-        cameraPivot.localRotation = targetRotation;
     }
 }
