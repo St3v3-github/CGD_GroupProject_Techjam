@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -49,19 +50,70 @@ public class SpawnItem : MonoBehaviour
 
     private void SpawnElement() 
     {
-
+        int totalWeight = 0;
         int randomNumber = 0;
-        randomNumber = UnityEngine.Random.Range(0, elements.Count);
 
-        Instantiate(elements[randomNumber], this.transform);
+        for (int i  = 0; i < elements.Count; i++)
+        {
+            int itemWeight = 0;
+            itemWeight = elements[i].GetComponent<ItemInfo>().GetWeight();
+            totalWeight += itemWeight;
+        }
+        //UnityEngine.Debug.Log("Total Weight is: " +  totalWeight);
 
+        randomNumber = UnityEngine.Random.Range(1, totalWeight+1);
+        UnityEngine.Debug.Log("Elements Random number is: " + randomNumber);
+
+        for (int i = 0; i < elements.Count; i++)
+        {
+            int itemWeight = 0;
+            itemWeight = elements[i].GetComponent<ItemInfo>().GetWeight();
+
+            randomNumber -= itemWeight;
+            if (randomNumber < 1)
+            {
+                Instantiate(elements[i], this.transform);
+                i = elements.Count + 1;
+            }
         }
 
-    private void SpawnSpells() {
-        int randomNumber = 0;
-        randomNumber = UnityEngine.Random.Range(0, spells.Count);
 
-        Instantiate(spells[randomNumber], this.transform);
+
+
+    }
+
+    private void SpawnSpells() {
+
+        int totalWeight = 0;
+        int randomNumber = 0;
+
+        for (int i = 0; i < spells.Count; i++)
+        {
+            int itemWeight = 0;
+            itemWeight = spells[i].GetComponent<ItemInfo>().GetWeight();
+            totalWeight += itemWeight;
+        }
+        //UnityEngine.Debug.Log("Total Weight is: " + totalWeight);
+
+        randomNumber = UnityEngine.Random.Range(1, totalWeight + 1);
+        UnityEngine.Debug.Log("Spells Random number is: " + randomNumber);
+
+        for (int i = 0; i < elements.Count; i++)
+        {
+            int itemWeight = 0;
+            itemWeight = elements[i].GetComponent<ItemInfo>().GetWeight();
+
+            randomNumber -= itemWeight;
+            if (randomNumber < 1)
+            {
+                Instantiate(spells[i], this.transform);
+                i = spells.Count + 1;
+            }
+        }
+
+
+    
+
 
     }
 }
