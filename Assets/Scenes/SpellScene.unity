@@ -345,6 +345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 402787869}
   - component: {fileID: 402787868}
+  - component: {fileID: 402787870}
   m_Layer: 0
   m_Name: Directional Light (1)
   m_TagString: Untagged
@@ -429,6 +430,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &402787870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402787867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &507134066
 GameObject:
   m_ObjectHideFlags: 0
@@ -1375,6 +1399,7 @@ MonoBehaviour:
   cameraInputY: 0
   jumpInput: 0
   sprintInput: 0
+  interactInput: 0
 --- !u!114 &1927366307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1473,7 +1498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf93984522608a4b921626b9256d865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallPrefab: {fileID: 4138691137755610625, guid: 0a3cfad124e05f34e8ea711de70f733b, type: 3}
+  wallPrefab: {fileID: 4053034766384314058, guid: 2f0d4e6cf0148dd42b0aab740b4ad702, type: 3}
   holographicPrefab: {fileID: 5574004772051186745, guid: e3dd036b1082eae43979f9632eefd763, type: 3}
   holographic: {fileID: 0}
   isPlacingWall: 0
