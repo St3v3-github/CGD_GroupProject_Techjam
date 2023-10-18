@@ -7,6 +7,7 @@ public class ItemScript : MonoBehaviour, IInteractable
 {
     public void Interact()
     {
+
         Destroy(gameObject); 
     }
 }

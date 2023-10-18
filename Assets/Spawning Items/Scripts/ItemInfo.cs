@@ -24,5 +24,10 @@ public class ItemInfo : MonoBehaviour
         return item_data.spawn_weight;
         
     }
+    
+    public ItemData GetItemData() { 
+    
+        return item_data;
+    }
 
 }

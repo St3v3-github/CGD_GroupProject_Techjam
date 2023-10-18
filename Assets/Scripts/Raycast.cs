@@ -29,6 +29,10 @@ public class Raycast : MonoBehaviour
                 {
                     if (hit.collider.gameObject.TryGetComponent(out IInteractable interactObj))
                     {
+                        ItemData new_item_data = hit.collider.gameObject.GetComponent<ItemInfo>().GetItemData();
+                        gameObject.GetComponent<Inventory>().addItem(new_item_data);
+
+
                         interactObj.Interact();
                     }
                 }
