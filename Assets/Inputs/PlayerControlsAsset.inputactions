@@ -94,6 +94,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "AbilityIncrement",
+                    "type": "Button",
+                    "id": "6bb8a14d-9f0a-4f2b-9cfd-e87aa89c271f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "AbilityDecrement",
+                    "type": "Button",
+                    "id": "5fd37608-2e39-4f5b-b936-30d92583d9c5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -374,30 +392,8 @@
                 },
                 {
                     "name": "",
-                    "id": "5310d1cf-66c6-44b3-9d4c-3a59d3501714",
-                    "path": "<Gamepad>/dpad/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Ability1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "d93cee8c-d6d8-4b6d-877e-1c924f2df02b",
                     "path": "<Keyboard>/2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Ability2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "561b0072-158a-41e8-bc7b-4fa632670252",
-                    "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -418,17 +414,6 @@
                 },
                 {
                     "name": "",
-                    "id": "970de51b-3e1b-4070-9c57-63cd52d5a02c",
-                    "path": "<Gamepad>/dpad/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Ability3",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "00db4d92-c0a7-4756-8ae8-f443e554de68",
                     "path": "<Keyboard>/4",
                     "interactions": "",
@@ -440,12 +425,23 @@
                 },
                 {
                     "name": "",
-                    "id": "fc276426-567c-4829-b2bf-7a65b915bf9f",
-                    "path": "<Gamepad>/dpad/down",
+                    "id": "5878015d-92fd-4d43-85e6-0b244918dd71",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Ability4",
+                    "action": "AbilityIncrement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ba3a08f6-44c1-460e-8ba6-565415ccf0d0",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AbilityDecrement",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

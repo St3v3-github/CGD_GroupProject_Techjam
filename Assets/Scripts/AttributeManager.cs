@@ -13,7 +13,9 @@ public class AttributeManager : MonoBehaviour
     //[SerializeField] private int defensive_power;
     //[SerializeField] private int offensive_power;
 
-    // Start is called before the first frame update
+    //CURRENT STATUS HERE
+    //SOMETHING LIKE: public StatusEffect player_status, with getter and setter for abilities to interact with!
+
     void Start()
     {
         //set all values to whatever default value we want
@@ -21,10 +23,9 @@ public class AttributeManager : MonoBehaviour
         mp = 100;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //attribute manager would check players current status and update here
+        //attribute manager would check players current status and call status functions here!!
         //example: player is on fire via fire status, HP reduced by 5 every 1 second?
     }
 

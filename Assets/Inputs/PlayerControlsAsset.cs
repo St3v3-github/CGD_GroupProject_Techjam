@@ -116,6 +116,24 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AbilityIncrement"",
+                    ""type"": ""Button"",
+                    ""id"": ""6bb8a14d-9f0a-4f2b-9cfd-e87aa89c271f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AbilityDecrement"",
+                    ""type"": ""Button"",
+                    ""id"": ""5fd37608-2e39-4f5b-b936-30d92583d9c5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -396,30 +414,8 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""5310d1cf-66c6-44b3-9d4c-3a59d3501714"",
-                    ""path"": ""<Gamepad>/dpad/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Ability1"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""d93cee8c-d6d8-4b6d-877e-1c924f2df02b"",
                     ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Ability2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""561b0072-158a-41e8-bc7b-4fa632670252"",
-                    ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -440,17 +436,6 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""970de51b-3e1b-4070-9c57-63cd52d5a02c"",
-                    ""path"": ""<Gamepad>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Ability3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""00db4d92-c0a7-4756-8ae8-f443e554de68"",
                     ""path"": ""<Keyboard>/4"",
                     ""interactions"": """",
@@ -462,12 +447,23 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""fc276426-567c-4829-b2bf-7a65b915bf9f"",
-                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""id"": ""5878015d-92fd-4d43-85e6-0b244918dd71"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Ability4"",
+                    ""action"": ""AbilityIncrement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ba3a08f6-44c1-460e-8ba6-565415ccf0d0"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AbilityDecrement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -488,6 +484,8 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         m_Player_Ability2 = m_Player.FindAction("Ability2", throwIfNotFound: true);
         m_Player_Ability3 = m_Player.FindAction("Ability3", throwIfNotFound: true);
         m_Player_Ability4 = m_Player.FindAction("Ability4", throwIfNotFound: true);
+        m_Player_AbilityIncrement = m_Player.FindAction("AbilityIncrement", throwIfNotFound: true);
+        m_Player_AbilityDecrement = m_Player.FindAction("AbilityDecrement", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -559,6 +557,8 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Ability2;
     private readonly InputAction m_Player_Ability3;
     private readonly InputAction m_Player_Ability4;
+    private readonly InputAction m_Player_AbilityIncrement;
+    private readonly InputAction m_Player_AbilityDecrement;
     public struct PlayerActions
     {
         private @PlayerControlsAsset m_Wrapper;
@@ -573,6 +573,8 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         public InputAction @Ability2 => m_Wrapper.m_Player_Ability2;
         public InputAction @Ability3 => m_Wrapper.m_Player_Ability3;
         public InputAction @Ability4 => m_Wrapper.m_Player_Ability4;
+        public InputAction @AbilityIncrement => m_Wrapper.m_Player_AbilityIncrement;
+        public InputAction @AbilityDecrement => m_Wrapper.m_Player_AbilityDecrement;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -612,6 +614,12 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @Ability4.started += instance.OnAbility4;
             @Ability4.performed += instance.OnAbility4;
             @Ability4.canceled += instance.OnAbility4;
+            @AbilityIncrement.started += instance.OnAbilityIncrement;
+            @AbilityIncrement.performed += instance.OnAbilityIncrement;
+            @AbilityIncrement.canceled += instance.OnAbilityIncrement;
+            @AbilityDecrement.started += instance.OnAbilityDecrement;
+            @AbilityDecrement.performed += instance.OnAbilityDecrement;
+            @AbilityDecrement.canceled += instance.OnAbilityDecrement;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -646,6 +654,12 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @Ability4.started -= instance.OnAbility4;
             @Ability4.performed -= instance.OnAbility4;
             @Ability4.canceled -= instance.OnAbility4;
+            @AbilityIncrement.started -= instance.OnAbilityIncrement;
+            @AbilityIncrement.performed -= instance.OnAbilityIncrement;
+            @AbilityIncrement.canceled -= instance.OnAbilityIncrement;
+            @AbilityDecrement.started -= instance.OnAbilityDecrement;
+            @AbilityDecrement.performed -= instance.OnAbilityDecrement;
+            @AbilityDecrement.canceled -= instance.OnAbilityDecrement;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -675,5 +689,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         void OnAbility2(InputAction.CallbackContext context);
         void OnAbility3(InputAction.CallbackContext context);
         void OnAbility4(InputAction.CallbackContext context);
+        void OnAbilityIncrement(InputAction.CallbackContext context);
+        void OnAbilityDecrement(InputAction.CallbackContext context);
     }
 }
