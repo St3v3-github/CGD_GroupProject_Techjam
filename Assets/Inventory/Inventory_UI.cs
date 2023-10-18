@@ -86,6 +86,7 @@ public class Inventory_UI : MonoBehaviour
                 icon_transform.sizeDelta = new Vector2(0, 0);
                 icon_transform.anchorMin = new Vector2(0, 1);
                 icon_transform.anchorMax = new Vector2(0, 1);
+                icon_transform.pivot = new Vector2(0, 1);
                 Image icon_image = item_icons[object_number].AddComponent<Image>();
                 icon_image.sprite = null;
 
@@ -124,6 +125,7 @@ public class Inventory_UI : MonoBehaviour
                         icon_transform.sizeDelta = new Vector2(0, 0);
                         icon_transform.anchorMin = new Vector2(0, 1);
                         icon_transform.anchorMax = new Vector2(0, 1);
+                        icon_transform.pivot = new Vector2(0, 1);
                         Image icon_image = item_icons[icon_number].AddComponent<Image>();
                         icon_image.sprite = null;
                         Inv_ItemSlot click_handling = spell_displays[object_number].AddComponent<Inv_ItemSlot>();
