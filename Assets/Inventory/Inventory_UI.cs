@@ -177,7 +177,7 @@ public class Inventory_UI : MonoBehaviour
             default:
                 break;
         }
-        updateInvDisplay();
+        //updateInvDisplay();
     }
 
     public void toggleInventory()
