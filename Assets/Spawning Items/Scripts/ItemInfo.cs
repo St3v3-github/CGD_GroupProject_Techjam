@@ -6,7 +6,7 @@ public class ItemInfo : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    [SerializeField] public int spawnWeight;
+   public ItemData item_data;
 
     void Start()
     {
@@ -21,7 +21,7 @@ public class ItemInfo : MonoBehaviour
 
     public int GetWeight()
     {
-        return spawnWeight;
+        return item_data.spawn_weight;
         
     }
 
