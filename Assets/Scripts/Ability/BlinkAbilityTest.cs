@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Blink Ability (TEST)", menuName = "Ability/Blink Ability(TEST)")]
@@ -52,8 +53,9 @@ public class BlinkAbilityTest : BaseAbility
             Debug.DrawRay(camera.position, (camera.forward * distance) * dest_multiplier, Color.yellow, 2);
         }
         destination.y += camera_height;
+        blinking = true;
 
-        /*if(blinking)
+        if (blinking)
         {
             var distance = Vector3.Distance(parent.transform.position, destination);
             if (distance > 0.5f)
@@ -64,14 +66,14 @@ public class BlinkAbilityTest : BaseAbility
             {
                 blinking = false;
             }
-        }*/
+        }
 
         Debug.Log("Used " + GetAbilityName());
     }
 
     public override void BeginCooldown(GameObject parent)
     {
-       
+        Debug.Log("CRAZY EFFECT THAT WILL DESTROY THE GAME WORLD.");
     }
     public override void ResetCooldown()
     {
