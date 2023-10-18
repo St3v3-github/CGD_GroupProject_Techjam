@@ -538,11 +538,13 @@ MonoBehaviour:
   cameraTransform: {fileID: 560478703}
   playerRB: {fileID: 370513925}
   runSpeed: 5
+  health: 100
   sprintSpeed: 10
   rotationSpeed: 10
   jump: 10
   onGround: 1
   jumps: 0
+  currentStatusEffect: {fileID: 0}
 --- !u!114 &370513927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,6 +565,7 @@ MonoBehaviour:
   cameraInputY: 0
   jumpInput: 0
   sprintInput: 0
+  interactInput: 0
 --- !u!114 &370513928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,6 +580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ability_list:
   - {fileID: 11400000, guid: dba43a78329e90844a57961082a4fc62, type: 2}
+  - {fileID: 11400000, guid: bdcb0d23bb96d124cae7ac6d253bff9b, type: 2}
 --- !u!114 &370513929
 MonoBehaviour:
   m_ObjectHideFlags: 0
