@@ -12,15 +12,7 @@ public class Projectile : MonoBehaviour
         StartCoroutine(timerCoroutine());
     }
 
-    /*void Update()
-    {
-        timer += Time.deltaTime;
 
-        if (timer > 2)
-        {
-            Destroy(gameObject);
-        }
-    }*/
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.layer == 3)
