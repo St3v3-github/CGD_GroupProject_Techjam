@@ -5,14 +5,21 @@ using UnityEngine.UI;
 
 public class Inventory_UI : MonoBehaviour
 {
-    bool in_view = true;
+    public bool in_view = true;
     
+    public enum Directions
+    {
+        LEFT = 0,
+        RIGHT = 1,
+        UP = 2,
+        DOWN = 3
+    }
 
     public int player_nr = 0;
     public Inventory inventory;
     public Sprite display_box_image;
     public Sprite selection_indicator;
-
+    public Color selection_tint;
     
     public Vector2 offset = new Vector2(0, 0);
     public Vector2 rune_slot_size = new Vector2(40, 40);
@@ -52,9 +59,14 @@ public class Inventory_UI : MonoBehaviour
         selection_display.transform.parent = canvas_object.transform;
         RectTransform selection_transform = selection_display.AddComponent<RectTransform>();
         selection_transform.sizeDelta = new Vector2 (rune_slot_size.x+selection_offset.x*2,rune_slot_size.y+selection_offset.y*2);
+        selection_transform.anchorMin = new Vector2(0, 1);
+        selection_transform.anchorMax = new Vector2(0, 1);
+        selection_transform.pivot = new Vector2(0, 1);
+        selection_transform.localPosition = new Vector3 (inv_offset.x, -inv_offset.y,0);
         Image selector_image = selection_display.AddComponent<Image>();
-        selector_image.sprite = display_box_image;
-        selection_display.SetActive (false);
+        selector_image.sprite = selection_indicator;
+        //selector_image.color = selection_tint;
+        selection_display.SetActive (true);
 
         int max_items = inventory.inv_height*inventory.inv_width;
         int object_number = 0;
@@ -287,5 +299,60 @@ public class Inventory_UI : MonoBehaviour
             }
             selection_display.SetActive(true);
         }
+    }
+
+    public void equipRuneTo(int type, int slot)
+    {
+        SpellData data_guide = SpellData.CreateInstance<SpellData>();
+        if (inventory.inventory_items[interactive_target].type == type)
+        {
+            inventory.swapItems(true, interactive_target, false, slot * data_guide.spell_components + type);
+        }
+        else
+        {
+            //TODO: Add error message to inform player they are trying to equip a rune to the wrong slot, and that's not possible
+        }
+    }
+
+    public void moveSelector(Directions direction)
+    {
+        int max_items = inventory.inv_width * inventory.inv_height;
+        switch (direction)
+        {
+            case Directions.LEFT:
+                Debug.Log(interactive_target % inventory.inv_width);
+                if (--interactive_target % inventory.inv_width == inventory.inv_width-1 || interactive_target % inventory.inv_width == -1)
+                {
+                    interactive_target += inventory.inv_width;
+                    Debug.Log(interactive_target.ToString());
+                }
+                break;
+            case Directions.RIGHT:
+                if (++interactive_target % inventory.inv_width == 0)
+                {
+                    interactive_target -= inventory.inv_width;
+                }
+                break;
+            case Directions.UP:
+                interactive_target -= inventory.inv_width;
+                if (interactive_target < 0)
+                {
+                    interactive_target += max_items;
+                }
+                break;
+            case Directions.DOWN:
+                interactive_target += inventory.inv_width;
+                if (interactive_target >= max_items)
+                {
+                    interactive_target -= max_items;
+                }
+                break;
+        } 
+        RectTransform rect = selection_display.GetComponent<RectTransform>();
+        RectTransform target = inventory_displays[interactive_target].GetComponent<RectTransform>();
+        //minus and plus depend on which anchor it is
+        rect.localPosition = new Vector3(target.localPosition.x - selection_offset.x, target.localPosition.y + selection_offset.y, target.localPosition.z);
+        rect.anchorMin = target.anchorMin;
+        rect.anchorMax = target.anchorMax;
     }
 }

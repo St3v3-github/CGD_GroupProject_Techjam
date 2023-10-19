@@ -564,6 +564,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerAndCameraPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 2359136279907478249, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
+      propertyPath: timer
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2359136279907478249, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
+      propertyPath: inventory_display
+      value: 
+      objectReference: {fileID: 1443234450}
     - target: {fileID: 6840827388356321702, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.183983
@@ -834,10 +842,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97e590fef4c4974f86d8ebbb461a109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  in_view: 1
   player_nr: 0
   inventory: {fileID: 1443234451}
   display_box_image: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  selection_indicator: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  selection_indicator: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  selection_tint: {r: 1, g: 0, b: 0, a: 0}
   offset: {x: 0, y: 0}
   rune_slot_size: {x: 40, y: 40}
   spell_slot_size: {x: 60, y: 60}
@@ -846,7 +856,7 @@ MonoBehaviour:
   inv_offset: {x: 500, y: 50}
   spell_offset: {x: 50, y: 50}
   crafting_offset: {x: 500, y: 50}
-  selection_offset: {x: 10, y: 10}
+  selection_offset: {x: 20, y: 20}
   inventory_displays: []
   craft_displays: []
   spell_displays: []
