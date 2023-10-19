@@ -8,6 +8,11 @@ public class SummonedWolf : MonoBehaviour
     //public ParticleSystem deathParticle;
 
 
+    void Start()
+    {
+        StartCoroutine(timerCoroutine());
+    }
+
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("Collision detected with: " + other.gameObject.name);
@@ -23,6 +28,13 @@ public class SummonedWolf : MonoBehaviour
 
         yield return new WaitForSeconds(1.1f);
 
+        Destroy(transform.parent.gameObject);
+    }
+
+    private IEnumerator timerCoroutine()
+    {
+
+        yield return new WaitForSeconds(10f);
         Destroy(transform.parent.gameObject);
     }
 

@@ -7,7 +7,6 @@ public class FireProjectile : MonoBehaviour
     public GameObject projectilePrefab;
     public Transform firePoint;
     private Vector3 verticalOffset = new Vector3(0f, 0.5f, 0f);
-    private Vector3 horizontalOffset = new Vector3(1f, 0f, 1f);
     public float projectileForce = 100f;
 
     void Update()
@@ -23,7 +22,7 @@ public class FireProjectile : MonoBehaviour
         //Vector3 projectileSpawnPoint = firePoint.position;
         //projectileSpawnPoint.x += (firePoint.forward * 0.5f).x;
         //projectileSpawnPoint.z += (firePoint.forward * 0.5f).z;
-        GameObject projectile = Instantiate(projectilePrefab, firePoint.position - verticalOffset + Vector3.Scale(horizontalOffset, firePoint.forward), firePoint.rotation);
+        GameObject projectile = Instantiate(projectilePrefab, firePoint.position - verticalOffset + firePoint.forward, firePoint.rotation);
 
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
 
