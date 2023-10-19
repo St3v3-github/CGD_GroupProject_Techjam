@@ -11,6 +11,7 @@ public class Wall : MonoBehaviour
     public bool isPlacingWall;
     private Quaternion holographicInitialRotation;
     private float holographicDespawnTime = 5.0f;
+    public Camera playerCamera;
     void Start()
     {
 
@@ -56,7 +57,7 @@ public class Wall : MonoBehaviour
 
     Vector3 GetMouseWorldPosition()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             return hit.point;
@@ -78,19 +79,21 @@ public class Wall : MonoBehaviour
     {
         while (isPlacingWall)
         {
-            // Match the rotation of the player's camera around the Y-axis
-            Quaternion playerCameraRotation = Camera.main.transform.rotation;
-            Vector3 euler = playerCameraRotation.eulerAngles;
-            euler.x = 0; // Ensure no rotation around X-axis
-            euler.z = 0; // Ensure no rotation around Z-axis
-            Quaternion rotationAroundY = Quaternion.Euler(euler);
-            holographic.transform.rotation = rotationAroundY;
-
+            if (playerCamera != null)
+            {
+                // Match the rotation of the player's camera around the Y-axis
+                Quaternion playerCameraRotation = playerCamera.transform.rotation;
+                Vector3 euler = playerCameraRotation.eulerAngles;
+                euler.x = 0; // Ensure no rotation around X-axis
+                euler.z = 0; // Ensure no rotation around Z-axis
+                Quaternion rotationAroundY = Quaternion.Euler(euler);
+                holographic.transform.rotation = rotationAroundY;
+            }
             yield return null;
         }
     }
     private void DespawnHolographic()
-    {
+    { 
         Destroy(holographic);
         isPlacingWall = false;
     }
