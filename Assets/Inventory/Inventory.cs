@@ -10,8 +10,8 @@ public class Inventory : MonoBehaviour
         CRAFT=1
     }
     public InventoryModes inventory_mode;
-    public int inv_width = 3;
-    public int inv_height = 4;
+    public int inv_width = 0;
+    public int inv_height = 0;
     public int spell_slots = 4;
 
     public Inventory_UI inventory_ui;
