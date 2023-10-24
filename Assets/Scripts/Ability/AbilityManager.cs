@@ -134,14 +134,14 @@ public class AbilityManager : MonoBehaviour
             print("SELECTED ABILITY 4");
         }
 
-        /*if (player_controls.Player.AbilityIncrement.IsPressed())
+        if (player_controls.Player.AbilityIncrement.IsPressed())
         {
             selected_ability = selected_ability + 1;
         }
         if (player_controls.Player.AbilityDecrement.IsPressed())
         {
             selected_ability = selected_ability - 1;
-        }*/
+        }
 
         if (selected_ability < 0)
         {

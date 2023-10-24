@@ -116,6 +116,24 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AbilityIncrement"",
+                    ""type"": ""Button"",
+                    ""id"": ""e2234283-fddf-46f1-890c-5f141a53f5aa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AbilityDecrement"",
+                    ""type"": ""Button"",
+                    ""id"": ""95dbd1f4-301e-4a25-8ec6-9c1053d4db91"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -470,6 +488,28 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""action"": ""Ability4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aefc0095-e848-4c67-b629-fb8a4b5e2be5"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AbilityIncrement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8e0931ee-8ea3-4925-9644-8f47f12be654"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AbilityDecrement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -488,6 +528,8 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         m_Player_Ability2 = m_Player.FindAction("Ability2", throwIfNotFound: true);
         m_Player_Ability3 = m_Player.FindAction("Ability3", throwIfNotFound: true);
         m_Player_Ability4 = m_Player.FindAction("Ability4", throwIfNotFound: true);
+        m_Player_AbilityIncrement = m_Player.FindAction("AbilityIncrement", throwIfNotFound: true);
+        m_Player_AbilityDecrement = m_Player.FindAction("AbilityDecrement", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -559,6 +601,8 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Ability2;
     private readonly InputAction m_Player_Ability3;
     private readonly InputAction m_Player_Ability4;
+    private readonly InputAction m_Player_AbilityIncrement;
+    private readonly InputAction m_Player_AbilityDecrement;
     public struct PlayerActions
     {
         private @PlayerControlsAsset m_Wrapper;
@@ -573,6 +617,8 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         public InputAction @Ability2 => m_Wrapper.m_Player_Ability2;
         public InputAction @Ability3 => m_Wrapper.m_Player_Ability3;
         public InputAction @Ability4 => m_Wrapper.m_Player_Ability4;
+        public InputAction @AbilityIncrement => m_Wrapper.m_Player_AbilityIncrement;
+        public InputAction @AbilityDecrement => m_Wrapper.m_Player_AbilityDecrement;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -612,6 +658,12 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @Ability4.started += instance.OnAbility4;
             @Ability4.performed += instance.OnAbility4;
             @Ability4.canceled += instance.OnAbility4;
+            @AbilityIncrement.started += instance.OnAbilityIncrement;
+            @AbilityIncrement.performed += instance.OnAbilityIncrement;
+            @AbilityIncrement.canceled += instance.OnAbilityIncrement;
+            @AbilityDecrement.started += instance.OnAbilityDecrement;
+            @AbilityDecrement.performed += instance.OnAbilityDecrement;
+            @AbilityDecrement.canceled += instance.OnAbilityDecrement;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -646,6 +698,12 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @Ability4.started -= instance.OnAbility4;
             @Ability4.performed -= instance.OnAbility4;
             @Ability4.canceled -= instance.OnAbility4;
+            @AbilityIncrement.started -= instance.OnAbilityIncrement;
+            @AbilityIncrement.performed -= instance.OnAbilityIncrement;
+            @AbilityIncrement.canceled -= instance.OnAbilityIncrement;
+            @AbilityDecrement.started -= instance.OnAbilityDecrement;
+            @AbilityDecrement.performed -= instance.OnAbilityDecrement;
+            @AbilityDecrement.canceled -= instance.OnAbilityDecrement;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -675,5 +733,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         void OnAbility2(InputAction.CallbackContext context);
         void OnAbility3(InputAction.CallbackContext context);
         void OnAbility4(InputAction.CallbackContext context);
+        void OnAbilityIncrement(InputAction.CallbackContext context);
+        void OnAbilityDecrement(InputAction.CallbackContext context);
     }
 }
