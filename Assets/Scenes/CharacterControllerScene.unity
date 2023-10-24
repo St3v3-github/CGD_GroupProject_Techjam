@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.30504653, g: 0.291994, b: 0.24147415, a: 1}
+  m_IndirectSpecularColor: {r: 0.30504674, g: 0.29199407, b: 0.24147436, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -484,6 +484,35 @@ MonoBehaviour:
   holographic: {fileID: 0}
   isPlacingWall: 0
   playerCamera: {fileID: 826840231}
+--- !u!114 &711192593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711192586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2af02873e76f94f40a32486331f04495, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRadius: 10
+  particlePrefab: {fileID: 6702130015262811026, guid: 1e776409d28a8154681818e677548073, type: 3}
+  playerCamera: {fileID: 826840231}
+--- !u!114 &711192594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711192586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6177b688cc92211418fc772399bf5eef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  summonPrefab: {fileID: 3409078487432782248, guid: 58f080c3ab142184193172fdec19d8db, type: 3}
+  summonPoint: {fileID: 826840230}
 --- !u!4 &826840230 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3480188397436377435, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
@@ -942,6 +971,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2100296927309541032, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
       insertIndex: -1
       addedObject: {fileID: 711192590}
+    - targetCorrespondingSourceObject: {fileID: 2100296927309541032, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 711192594}
+    - targetCorrespondingSourceObject: {fileID: 2100296927309541032, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 711192593}
   m_SourcePrefab: {fileID: 100100000, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
