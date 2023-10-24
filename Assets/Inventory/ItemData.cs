@@ -12,5 +12,6 @@ public class ItemData : ScriptableObject
     //public bool degrading = false;
     //public int condition = 100;
     public uint value = 0;
+    public int spawn_weight = 0;
     public Sprite icon; 
 }
