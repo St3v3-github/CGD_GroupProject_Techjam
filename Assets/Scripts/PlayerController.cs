@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
     {
         horizontalInput = inputManager.movementInput.x;
         verticalInput = inputManager.movementInput.y;
-        if (ui_cooldown > 0)
+        /*if (ui_cooldown > 0)
         {
             ui_cooldown -= Time.deltaTime;
         }
@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
 
             //trying out Force movement - momentum seemed fun but maybe not :(
             //playerRigidbody.AddForce(moveDirection.normalized * playerSpeed, ForceMode.Force);
-        }
+        }*/
     }
 
     private void HandleGroundCheck()
