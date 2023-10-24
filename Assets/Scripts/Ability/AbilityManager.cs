@@ -33,6 +33,7 @@ public class AbilityManager : MonoBehaviour
         AbilityControls();
         AbilityHandling();
 
+        Debug.Log("Cast Time: " + ability_list[selected_ability].GetAbilityCastTime());
     }
 
     void AbilityHandling()
@@ -48,10 +49,27 @@ public class AbilityManager : MonoBehaviour
                 {
                     if (ability_list[selected_ability].GetAbilityCost() <= attribute_manager.GetPlayerMP())
                     {
-                        ability_list[selected_ability].Activate(gameObject);
-                        ability_list[selected_ability].SetAbilityState(BaseAbility.AbilityState.ACTIVE);
-                        attribute_manager.SetPlayerMP(attribute_manager.GetPlayerMP() - ability_list[selected_ability].GetAbilityCost());
-                        print("Ability Used");
+                        if(ability_list[selected_ability].GetAbilityControlType() == BaseAbility.AbilityControlType.INSTANT)
+                        {
+                            ability_list[selected_ability].Activate(gameObject);
+                            ability_list[selected_ability].SetAbilityState(BaseAbility.AbilityState.ACTIVE);
+                            attribute_manager.SetPlayerMP(attribute_manager.GetPlayerMP() - ability_list[selected_ability].GetAbilityCost());
+                            print("Ability Used");
+                        }
+                        if (ability_list[selected_ability].GetAbilityControlType() == BaseAbility.AbilityControlType.CASTING)
+                        {
+                            ability_list[selected_ability].SetAbilityCastTime(ability_list[selected_ability].GetAbilityCastTime() - Time.deltaTime);
+                            {
+                                if (ability_list[selected_ability].GetAbilityCastTime() <= 0)
+                                {
+                                    ability_list[selected_ability].Activate(gameObject);
+                                    ability_list[selected_ability].SetAbilityState(BaseAbility.AbilityState.ACTIVE);
+                                    attribute_manager.SetPlayerMP(attribute_manager.GetPlayerMP() - ability_list[selected_ability].GetAbilityCost());
+                                    print("Ability Used");
+                                    ability_list[selected_ability].ResetCastTime();
+                                }
+                            }
+                        }
                     }
                     else
                     {

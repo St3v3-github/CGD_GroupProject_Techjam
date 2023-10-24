@@ -9,6 +9,7 @@ public class BaseAbility : ScriptableObject
     public float ability_cooldown;
     public float active_time;
     public int ability_cost;
+    public float cast_time;
 
     //image and description for hotbar icon/pickup?
     //public Texture2D ability_icon;
@@ -21,7 +22,15 @@ public class BaseAbility : ScriptableObject
         COOLDOWN
     }
 
+    public enum AbilityControlType
+    {
+        INSTANT,
+        CASTING
+        //MULTIPRESS, etc.
+    }
+
     public AbilityState state = AbilityState.READY;
+    public AbilityControlType control_type;
     public virtual void Awake()
     {
 
@@ -39,6 +48,12 @@ public class BaseAbility : ScriptableObject
     {
 
     }
+
+    public virtual void ResetCastTime()
+    {
+
+    }
+
 
     public string GetAbilityName()
     {
@@ -99,4 +114,21 @@ public class BaseAbility : ScriptableObject
         ability_description = _ability_description;
     }*/
 
+    public float GetAbilityCastTime()
+    {
+        return cast_time;
+    }
+    public void SetAbilityCastTime(float _cast_time)
+    {
+        cast_time = _cast_time;
+    }
+
+    public AbilityControlType GetAbilityControlType()
+    {
+        return control_type;
+    }
+    public void SetAbilityControlType(AbilityControlType _control_type)
+    {
+        control_type = _control_type;
+    }
 }

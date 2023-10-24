@@ -8,6 +8,7 @@ public class ProjectileAbilityTest : BaseAbility
     float original_ability_cooldown;
     float original_ability_active_time;
     int original_ability_cost;
+    float original_ability_cast_time;
 
     //below are specific to this ability
     public GameObject projectilePrefab;
@@ -23,9 +24,13 @@ public class ProjectileAbilityTest : BaseAbility
         SetAbilityCooldown(2.0f);
         SetAbilityActiveTime(1.0f);
         SetAbilityCost(0);
+        SetAbilityCastTime(2.0f);
+
+        SetAbilityControlType(AbilityControlType.CASTING);
 
         original_ability_cooldown = GetAbilityCooldown();
         original_ability_active_time = GetAbilityActiveTime();
+        original_ability_cast_time = GetAbilityCastTime();
     }
 
     public override void Activate(GameObject parent)
@@ -51,5 +56,10 @@ public class ProjectileAbilityTest : BaseAbility
     {
         SetAbilityCooldown(original_ability_cooldown);
         SetAbilityActiveTime(original_ability_active_time);
+    }
+
+    public override void ResetCastTime()
+    {
+        SetAbilityCastTime(original_ability_cast_time);
     }
 }
