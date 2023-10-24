@@ -10,6 +10,10 @@ public class BaseAbility : ScriptableObject
     public float active_time;
     public int ability_cost;
 
+    //image and description for hotbar icon/pickup?
+    //public Texture2D ability_icon;
+    //public string ability_description;
+
     public enum AbilityState
     {
         READY,
@@ -80,5 +84,19 @@ public class BaseAbility : ScriptableObject
     {
         state = _state;
     }
+
+    /*public Texture2D GetAbilityIcon()
+    {
+        return ability_icon;
+    }
+
+    public string GetAbilityDesc()
+    {
+        return ability_description;
+    }
+    public void SetAbilityDescription(string _ability_description)
+    {
+        ability_description = _ability_description;
+    }*/
 
 }

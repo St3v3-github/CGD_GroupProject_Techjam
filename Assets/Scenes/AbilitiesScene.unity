@@ -166,57 +166,15 @@ GameObject:
   - component: {fileID: 1204801881}
   - component: {fileID: 1204801880}
   - component: {fileID: 1204801879}
-  - component: {fileID: 1204801878}
-  - component: {fileID: 1204801877}
   - component: {fileID: 1204801882}
+  - component: {fileID: 1204801883}
   m_Layer: 0
-  m_Name: Player (1)
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1204801877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1204801875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ba73010ca48ff34db66d2d25f20aaf6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftStickInput: {x: 0, y: 0}
-  rightStickInput: {x: 0, y: 0}
-  movementInputX: 0
-  movementInputY: 0
-  cameraInputX: 0
-  cameraInputY: 0
-  jumpInput: 0
-  sprintInput: 0
---- !u!114 &1204801878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1204801875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1807c4415e1824c4abe8f6c21978b2fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveDirection: {x: 0, y: 0, z: 0}
-  cameraTransform: {fileID: 1790827915}
-  playerRB: {fileID: 1204801880}
-  runSpeed: 5
-  sprintSpeed: 10
-  rotationSpeed: 10
-  jump: 10
-  onGround: 1
-  jumps: 0
 --- !u!136 &1204801879
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -291,13 +249,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 1204801875}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cf93984522608a4b921626b9256d865, type: 3}
+  m_Script: {fileID: 11500000, guid: 0fb6a7826ff48874f918bfe5ff8530c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallPrefab: {fileID: 4138691137755610625, guid: 0a3cfad124e05f34e8ea711de70f733b, type: 3}
-  holographicPrefab: {fileID: 5574004772051186745, guid: e3dd036b1082eae43979f9632eefd763, type: 3}
-  holographic: {fileID: 1837623050}
-  isPlacingWall: 0
+  ability_list:
+  - {fileID: 11400000, guid: dba43a78329e90844a57961082a4fc62, type: 2}
+  - {fileID: 11400000, guid: bdcb0d23bb96d124cae7ac6d253bff9b, type: 2}
+--- !u!114 &1204801883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204801875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f502b75b4caaac4c8eddc8ab0f18a48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpeed: 0
+  jumpForce: 0
+  jumpCooldown: 0
+  isReadyToJump: 0
+  playerHeight: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isGrounded: 0
+  orientation: {fileID: 0}
+  inventory_display: {fileID: 0}
+  timer: 1
 --- !u!1 &1301319368
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,6 +395,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1790827915}
   - component: {fileID: 1790827916}
+  - component: {fileID: 1790827917}
   m_Layer: 0
   m_Name: CameraManager
   m_TagString: Untagged
@@ -446,25 +428,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1790827914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 448a52e5349db284a88d8cf02a5703eb, type: 3}
+  m_Script: {fileID: 11500000, guid: c1ce4b493e991174eac4a13284d06ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTransform: {fileID: 1204801881}
-  cameraPivot: {fileID: 275751896}
-  cameraTransform: {fileID: 1806155464}
-  collisionLayers:
-    serializedVersion: 2
-    m_Bits: 1
-  cameraCollisionOffset: 0.2
-  minimumCollisionOffset: 0.2
-  cameraCollisionRadius: 0.2
-  cameraFollowSpeed: 0.2
-  cameraLookSpeed: 0.5
-  cameraPivotSpeed: 0.5
-  lookAngle: 0
-  pivotAngle: 0
-  minPivotAngle: -80
-  maxPivotAngle: 80
+  sensitivityX: 10
+  sensitivityY: 10
+  orientation: {fileID: 1204801881}
+--- !u!114 &1790827917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790827914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a38e278c0c4985f448a630b1e8449fe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTarget: {fileID: 1204801881}
 --- !u!1 &1806155463
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,6 +580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2103368625}
   - component: {fileID: 2103368624}
+  - component: {fileID: 2103368626}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -682,6 +665,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &2103368626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103368623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -30,16 +30,23 @@ public class AbilityManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        AbilityControls();
+        AbilityHandling();
+
+    }
+
+    void AbilityHandling()
+    {
         if (ability_list[selected_ability] == null)
         {
             selected_ability = 1;
         }
-        switch(ability_list[selected_ability].state)
+        switch (ability_list[selected_ability].state)
         {
             case BaseAbility.AbilityState.READY:
-                if(player_controls.Player.AbilityCast.IsPressed() && ability_list[selected_ability] != null)
+                if (player_controls.Player.AbilityCast.IsPressed() && ability_list[selected_ability] != null)
                 {
-                    if(ability_list[selected_ability].GetAbilityCost() <= attribute_manager.GetPlayerMP())
+                    if (ability_list[selected_ability].GetAbilityCost() <= attribute_manager.GetPlayerMP())
                     {
                         ability_list[selected_ability].Activate(gameObject);
                         ability_list[selected_ability].SetAbilityState(BaseAbility.AbilityState.ACTIVE);
@@ -51,14 +58,14 @@ public class AbilityManager : MonoBehaviour
                         print("Not enough MP for ability! MP: " + attribute_manager.GetPlayerMP());
                     }
                 }
-                if(player_controls.Player.AbilityCast.IsPressed() && ability_list[selected_ability] == null)
+                if (player_controls.Player.AbilityCast.IsPressed() && ability_list[selected_ability] == null)
                 {
                     print("Ability does not exist!");
                 }
                 break;
 
             case BaseAbility.AbilityState.ACTIVE:
-                if(ability_list[selected_ability].GetAbilityActiveTime() > 0)
+                if (ability_list[selected_ability].GetAbilityActiveTime() > 0)
                 {
                     ability_list[selected_ability].SetAbilityActiveTime(ability_list[selected_ability].GetAbilityActiveTime() - Time.deltaTime);
                     Debug.Log("Ability Active");
@@ -83,9 +90,12 @@ public class AbilityManager : MonoBehaviour
                 }
                 break;
         }
+    }
 
+    void AbilityControls()
+    {
         //ADD HANDLING SO PLAYER CANT SELECT NON EXISTENT ELEMENT
-        if(player_controls.Player.Ability1.IsPressed())
+        if (player_controls.Player.Ability1.IsPressed())
         {
             selected_ability = 0;
             print("SELECTED ABILITY 1");
@@ -105,5 +115,28 @@ public class AbilityManager : MonoBehaviour
             selected_ability = 3;
             print("SELECTED ABILITY 4");
         }
+
+        /*if (player_controls.Player.AbilityIncrement.IsPressed())
+        {
+            selected_ability = selected_ability + 1;
+        }
+        if (player_controls.Player.AbilityDecrement.IsPressed())
+        {
+            selected_ability = selected_ability - 1;
+        }*/
+
+        if (selected_ability < 0)
+        {
+            selected_ability = 0;
+        }
+        if (selected_ability > 3)
+        {
+            selected_ability = 3;
+        }
+    }
+
+    public List<BaseAbility> GetAbilityList()
+    {
+        return ability_list;
     }
 }
