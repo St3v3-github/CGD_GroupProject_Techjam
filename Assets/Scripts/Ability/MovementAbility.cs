@@ -12,16 +12,14 @@ public class MovementAbility : BaseAbility
         SetAbilityName("TEST");
         SetAbilityCooldown(1.5f);
         SetAbilityActiveTime(1.0f);
-        SetAbilityCost(20);
+        SetAbilityCost(0);
+
+        SetAbilityControlType(AbilityControlType.CASTING);
     }
     //scuffed implementation for testing!!
     //public float dash_velocity;
     public override void Activate(GameObject parent)
     {
-        Rigidbody rigidbody = parent.GetComponent<Rigidbody>();
-        PlayerController movement = parent.GetComponent<PlayerController>();
-
-        //DASH STUFF HERE
         //CHANGING RUN SPEED JUST TO CHECK IF ABILITY ACTIVATES CORRECTLY
 
         //movement.runSpeed = 20;       !!Caused an Error

@@ -27,17 +27,20 @@ public class BlinkAbilityTest : BaseAbility
         SetAbilityName("BLINK ABILITY TEST");
         SetAbilityCooldown(2.0f);
         SetAbilityActiveTime(0.5f);
-        SetAbilityCost(30);
+        SetAbilityCost(0);
+
+        SetAbilityControlType(AbilityControlType.INSTANT);
 
         original_ability_cooldown = GetAbilityCooldown();
         original_ability_active_time = GetAbilityActiveTime();
         original_ability_cost = GetAbilityCost();
+
+        //_camera = parent.GetComponent<Transform>();
+        _camera = GameObject.Find("PlayerCam").GetComponent<Camera>().transform;
     }
 
     public override void Activate(GameObject parent)
     {
-        //_camera = parent.GetComponent<Transform>();
-        _camera = GameObject.Find("PlayerCam").GetComponent<Camera>().transform;
         Rigidbody rigidbody = parent.GetComponent<Rigidbody>();
         PlayerController movement = parent.GetComponent<PlayerController>();
 

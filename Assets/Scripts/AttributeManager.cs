@@ -14,7 +14,7 @@ public class AttributeManager : MonoBehaviour
     //[SerializeField] private int offensive_power;
 
     //CURRENT STATUS HERE
-    //SOMETHING LIKE: public StatusEffect player_status, with getter and setter for abilities to interact with!
+    //SOMETHING LIKE: public StatusEffect player_status, with getter and setter for abilities manipulate!
 
     void Start()
     {
