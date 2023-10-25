@@ -80,6 +80,11 @@ public class AbilityManager : MonoBehaviour
                 {
                     print("Ability does not exist!");
                 }
+                if(!player_controls.Player.AbilityCast.IsPressed() && (ability_list[selected_ability].GetAbilityCastTime() > 0))
+                {
+                    ability_list[selected_ability].ResetCastTime();
+                }
+
                 break;
 
             case BaseAbility.AbilityState.ACTIVE:

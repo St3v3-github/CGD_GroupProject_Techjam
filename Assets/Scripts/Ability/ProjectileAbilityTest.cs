@@ -20,9 +20,9 @@ public class ProjectileAbilityTest : BaseAbility
     {
         SetAbilityName("PROJECTILE ABILITY TEST");
         verticalOffset = new Vector3(0f, 0.5f, 0f);
-        projectileForce = 100f;
+        projectileForce = 1f;
         SetAbilityCooldown(2.0f);
-        SetAbilityActiveTime(1.0f);
+        SetAbilityActiveTime(1.5f);
         SetAbilityCost(0);
         SetAbilityCastTime(2.0f);
 
