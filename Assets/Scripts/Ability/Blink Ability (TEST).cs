@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Unity.VisualScripting.FullSerializer;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Blink Ability (TEST)", menuName = "Ability/Blink Ability(TEST)")]
@@ -18,7 +19,7 @@ public class BlinkAbilityTest : BaseAbility
     public float camera_height;
     Vector3 destination;
     bool blinking = false;
-    public Transform camera;
+    public Transform _camera;
     public LayerMask layer_mask;
     public ParticleSystem blink_trail;
     public override void Awake()
@@ -35,7 +36,8 @@ public class BlinkAbilityTest : BaseAbility
 
     public override void Activate(GameObject parent)
     {
-        camera = parent.GetComponent<Transform>();
+        //_camera = parent.GetComponent<Transform>();
+        _camera = GameObject.Find("PlayerCam").GetComponent<Camera>().transform;
         Rigidbody rigidbody = parent.GetComponent<Rigidbody>();
         PlayerController movement = parent.GetComponent<PlayerController>();
 
@@ -44,16 +46,16 @@ public class BlinkAbilityTest : BaseAbility
             blink_trail.Play();
         }
         RaycastHit hit;
-        if (Physics.Raycast(camera.position, camera.forward, out hit, distance, layer_mask))
+        if (Physics.Raycast(_camera.position, _camera.forward, out hit, distance, layer_mask))
         {
             //if dest is 1, player ends on the target if there is an object. 0.9, very close next to it etc.
             destination = hit.point * dest_multiplier;
-            Debug.DrawLine(camera.position, hit.point * dest_multiplier, Color.green, 2);
+            Debug.DrawLine(_camera.position, hit.point * dest_multiplier, Color.green, 2);
         }
         else
         {
-            destination = (camera.position + camera.forward.normalized * distance) * dest_multiplier;
-            Debug.DrawRay(camera.position, (camera.forward * distance) * dest_multiplier, Color.yellow, 2);
+            destination = (_camera.position + _camera.forward.normalized * distance) * dest_multiplier;
+            Debug.DrawRay(_camera.position, (_camera.forward * distance) * dest_multiplier, Color.yellow, 2);
         }
         destination.y += camera_height;
         blinking = true;
