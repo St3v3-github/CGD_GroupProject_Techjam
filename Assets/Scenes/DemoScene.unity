@@ -531,7 +531,7 @@ PrefabInstance:
     - target: {fileID: 2359136279907478249, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
       propertyPath: inventory_display
       value: 
-      objectReference: {fileID: 842785733}
+      objectReference: {fileID: 0}
     - target: {fileID: 5173783261368167822, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
       propertyPath: ray
       value: 
@@ -539,7 +539,7 @@ PrefabInstance:
     - target: {fileID: 5173783261368167822, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
       propertyPath: inventory
       value: 
-      objectReference: {fileID: 842785734}
+      objectReference: {fileID: 842785742}
     - target: {fileID: 6840827388356321702, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.30840397
@@ -660,12 +660,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5128603217768367959, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 842785734}
-    - targetCorrespondingSourceObject: {fileID: 5128603217768367959, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 842785733}
     - targetCorrespondingSourceObject: {fileID: 690795960200770952, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
       insertIndex: -1
       addedObject: {fileID: 616065658}
@@ -675,57 +669,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5128603217768367959, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
   m_PrefabInstance: {fileID: 842785731}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &842785733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 842785732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c97e590fef4c4974f86d8ebbb461a109, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  in_view: 1
-  player_nr: 0
-  inventory: {fileID: 0}
-  display_box_image: {fileID: 0}
-  selection_indicator: {fileID: 0}
-  selection_tint: {r: 0, g: 0, b: 0, a: 0}
-  offset: {x: 0, y: 0}
-  rune_slot_size: {x: 40, y: 40}
-  spell_slot_size: {x: 60, y: 60}
-  inv_spacing: {x: 50, y: 50}
-  spell_spacing: {x: 80, y: 80}
-  inv_offset: {x: 500, y: 50}
-  spell_offset: {x: 50, y: 50}
-  crafting_offset: {x: 500, y: 50}
-  selection_offset: {x: 10, y: 10}
-  inventory_displays: []
-  craft_displays: []
-  spell_displays: []
-  item_icons: []
---- !u!114 &842785734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 842785732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54bd5eb3078c4464994aa52d8e1f6e13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory_mode: 0
-  inv_width: 0
-  inv_height: 0
-  spell_slots: 4
-  inventory_ui: {fileID: 0}
-  inventory_items: []
-  crafting_menu: []
-  c_spell_inventory: []
 --- !u!114 &842785737 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5173783261368167822, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
@@ -735,6 +678,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dbfbac96695bdac4da3c8575c80d2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &842785742 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1083823982077126115, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
+  m_PrefabInstance: {fileID: 842785731}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842785732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54bd5eb3078c4464994aa52d8e1f6e13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &881964578
