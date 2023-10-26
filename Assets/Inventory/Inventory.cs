@@ -8,18 +8,12 @@ public class Inventory : MonoBehaviour
     public int inv_height = 0;
     public int spell_slots = 4;
 
-    //public Inventory_UI inventory_ui;
-    
-    //public List<ItemData> inventory_items = new();
-
+    //2D array, spell slots x spell components
     public List<List<ItemData>> dd_spell_inventory = new();
-
-    public List<ItemData> crafting_menu = new();
-    public List<SpellData> c_spell_inventory = new();
-    SpellData c_new_spell;
 
     void Start()
     {
+        //Dynamic init to avoid out of bounds
         SpellData data_guide = SpellData.CreateInstance<SpellData>();
         for(int i = 0; i < spell_slots; i++)
         {
@@ -33,6 +27,7 @@ public class Inventory : MonoBehaviour
 
     public ItemData equipFromWorld(ItemData item_to_equip, int slot)
     {
+        //Temporary copy
         ItemData swapped_item = dd_spell_inventory[item_to_equip.type][slot];
         if (dd_spell_inventory[item_to_equip.type][slot].ID == item_to_equip.ID)
         {
@@ -47,7 +42,7 @@ public class Inventory : MonoBehaviour
             //Equip if different
             dd_spell_inventory[item_to_equip.type][slot] = item_to_equip;
         }
-        //updateInvDisplay();
+        //TODO: updateInvDisplay();
         return swapped_item;
         //return this in case the old item should be dropped
     }
