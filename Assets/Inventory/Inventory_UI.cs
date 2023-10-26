@@ -313,28 +313,6 @@ public class Inventory_UI : MonoBehaviour
             //TODO: Add error message to inform player they are trying to equip a rune to the wrong slot, and that's not possible
         }
     }
-
-    public ItemData equipFromWorld(ItemData item_to_equip, int slot)
-    {
-        ItemData swapped_item = inventory.dd_spell_inventory[item_to_equip.type][slot];
-        if(inventory.dd_spell_inventory[item_to_equip.type][slot].ID == item_to_equip.ID)
-        {
-            //Upgrade system ->
-            inventory.dd_spell_inventory[item_to_equip.type][slot].value += item_to_equip.value;
-            //Check if value is beyond certain thresholds?
-            swapped_item = ItemData.CreateInstance<ItemData>();
-            //return blank item data if upgrading to avoid duplication
-        }
-        else
-        {
-            //Equip if different
-            inventory.dd_spell_inventory[item_to_equip.type][slot] = item_to_equip;
-        }
-        updateInvDisplay();
-        return swapped_item;
-        //return this in case the old item should be dropped
-    }
-
     public void moveSelector(Directions direction)
     {
         int max_items = inventory.inv_width * inventory.inv_height;

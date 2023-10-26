@@ -6,7 +6,8 @@ public class InputManager : MonoBehaviour
     public Vector2 cameraInput;
     public Vector2 movementInput;
     public bool jumpInput = false;
-
+    public Raycast ray;
+    public Inventory inventory;
 
     public void OnLook(InputAction.CallbackContext ctx)
     {
@@ -25,6 +26,27 @@ public class InputManager : MonoBehaviour
 
     public void OnElement(InputAction.CallbackContext ctx)
     {
+        if(ray.target != null) 
+        {
+            //change based on which slot was pressed
+            inventory.equipFromWorld(ray.target.GetComponent<ItemData>(), 0/*change this*/);
+        }
+        else
+        {
+            //switch element on UI and maybe ability manager?
+        }
+    }
 
+    public void OnSpellRune(InputAction.CallbackContext ctx)
+    {
+        if(ray.target != null) 
+        {
+            //change based on which slot was pressed
+            inventory.equipFromWorld(ray.target.GetComponent<ItemData>(), 0/*change this*/);
+        }
+        else
+        {
+            //call for casting spell
+        }
     }
 }
