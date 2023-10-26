@@ -29,7 +29,11 @@ public class InputManager : MonoBehaviour
         if(ray.target != null) 
         {
             //change based on which slot was pressed
-            inventory.equipFromWorld(ray.target.GetComponent<ItemData>(), 0/*change this*/);
+            ItemData unequipped = inventory.equipFromWorld(ray.target.GetComponent<ItemData>(), 0/*change this*/);
+            if (unequipped.ID != 0)
+            {
+                //create a dropped item here
+            }
         }
         else
         {
@@ -42,7 +46,11 @@ public class InputManager : MonoBehaviour
         if(ray.target != null) 
         {
             //change based on which slot was pressed
-            inventory.equipFromWorld(ray.target.GetComponent<ItemData>(), 0/*change this*/);
+            ItemData unequipped = inventory.equipFromWorld(ray.target.GetComponent<ItemData>(), 0/*change this*/);
+            if(unequipped.ID!=0)
+            {
+                //create a dropped item here
+            }
         }
         else
         {
