@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 
 public class Inv_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    public Inventory_UI UI_callback;
     public int call_back_ID = 0;
     //Detect current clicks on the GameObject (the one with the script attached)
     public void OnPointerDown(PointerEventData pointerEventData)

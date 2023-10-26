@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public int inv_width = 0;
-    public int inv_height = 0;
     public int spell_slots = 4;
 
     //2D array, spell slots x spell components
