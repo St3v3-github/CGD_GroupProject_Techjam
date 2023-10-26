@@ -14,7 +14,7 @@ public class Inventory : MonoBehaviour
     public int inv_height = 0;
     public int spell_slots = 4;
 
-    public Inventory_UI inventory_ui;
+    //public Inventory_UI inventory_ui;
     
     public List<ItemData> inventory_items = new();
 
@@ -68,7 +68,7 @@ public class Inventory : MonoBehaviour
             if (inventory_items[i].ID == 0)
             {
                 inventory_items[i] = new_item;
-                inventory_ui.updateInvDisplay();
+                //inventory_ui.updateInvDisplay();
                 return true;
             }
         }
