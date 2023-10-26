@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3283469848480974278}
   - component: {fileID: 3844929106282675088}
   - component: {fileID: 4246859701650097867}
+  - component: {fileID: 2525954465203134002}
   m_Layer: 0
   m_Name: PlayerCam
   m_TagString: Untagged
@@ -153,6 +154,21 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &2525954465203134002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 690795960200770952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c97dcf84bc3b645a3d987c29a6d796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 100
+  player: {fileID: 5128603217768367959}
+  target: {fileID: 0}
 --- !u!1 &1626991691491454825
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,6 +399,7 @@ GameObject:
   - component: {fileID: 8773283362760385889}
   - component: {fileID: 5173783261368167822}
   - component: {fileID: 2359136279907478249}
+  - component: {fileID: 1083823982077126115}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -528,6 +545,8 @@ MonoBehaviour:
   cameraInput: {x: 0, y: 0}
   movementInput: {x: 0, y: 0}
   jumpInput: 0
+  ray: {fileID: 2525954465203134002}
+  inventory: {fileID: 1083823982077126115}
 --- !u!114 &2359136279907478249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,6 +569,25 @@ MonoBehaviour:
     m_Bits: 1024
   isGrounded: 1
   orientation: {fileID: 3865026189677680757}
+--- !u!114 &1083823982077126115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5128603217768367959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54bd5eb3078c4464994aa52d8e1f6e13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory_mode: 0
+  inv_width: 1
+  inv_height: 1
+  spell_slots: 4
+  inventory_items: []
+  crafting_menu: []
+  c_spell_inventory: []
 --- !u!1 &5685189085329067640
 GameObject:
   m_ObjectHideFlags: 0
