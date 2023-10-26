@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Inventory_UI : MonoBehaviour
 {
-    public bool in_view = true;
+    public bool in_view = false;
     
     public enum Directions
     {

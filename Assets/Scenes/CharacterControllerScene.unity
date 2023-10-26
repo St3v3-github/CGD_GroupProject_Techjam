@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.30504674, g: 0.29199407, b: 0.24147436, a: 1}
+  m_IndirectSpecularColor: {r: 0.30504653, g: 0.291994, b: 0.24147415, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -837,6 +837,62 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1510701649 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5128603217768367959, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
+  m_PrefabInstance: {fileID: 4971168926071112362}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1510701655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510701649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54bd5eb3078c4464994aa52d8e1f6e13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory_mode: 0
+  inv_width: 3
+  inv_height: 4
+  spell_slots: 4
+  inventory_ui: {fileID: 1510701656}
+  inventory_items: []
+  crafting_menu: []
+  c_spell_inventory: []
+--- !u!114 &1510701656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510701649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97e590fef4c4974f86d8ebbb461a109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  in_view: 0
+  player_nr: 0
+  inventory: {fileID: 1510701655}
+  display_box_image: {fileID: 0}
+  selection_indicator: {fileID: 0}
+  selection_tint: {r: 0, g: 0, b: 0, a: 0}
+  offset: {x: 0, y: 0}
+  rune_slot_size: {x: 40, y: 40}
+  spell_slot_size: {x: 60, y: 60}
+  inv_spacing: {x: 50, y: 50}
+  spell_spacing: {x: 80, y: 80}
+  inv_offset: {x: 500, y: 50}
+  spell_offset: {x: 50, y: 50}
+  crafting_offset: {x: 500, y: 50}
+  selection_offset: {x: 10, y: 10}
+  inventory_displays: []
+  craft_displays: []
+  spell_displays: []
+  item_icons: []
 --- !u!1001 &1523205487
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -911,6 +967,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2359136279907478249, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
+      propertyPath: inventory_display
+      value: 
+      objectReference: {fileID: 1510701656}
+    - target: {fileID: 2359136279907478249, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
       propertyPath: groundLayer.m_Bits
       value: 8
       objectReference: {fileID: 0}
@@ -977,6 +1037,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2100296927309541032, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
       insertIndex: -1
       addedObject: {fileID: 711192593}
+    - targetCorrespondingSourceObject: {fileID: 5128603217768367959, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1510701656}
+    - targetCorrespondingSourceObject: {fileID: 5128603217768367959, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1510701655}
   m_SourcePrefab: {fileID: 100100000, guid: 9797659787cb56b4192a61e77e5a7242, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
