@@ -22,4 +22,9 @@ public class InputManager : MonoBehaviour
     {
         jumpInput = ctx.action.triggered;
     }
+
+    public void OnElement(InputAction.CallbackContext ctx)
+    {
+
+    }
 }
