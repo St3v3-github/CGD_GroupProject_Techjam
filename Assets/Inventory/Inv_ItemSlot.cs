@@ -18,7 +18,6 @@ public class Inv_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     public void OnPointerUp(PointerEventData pointerEventData)
     {
         Debug.Log(name + "No longer being clicked");
-        UI_callback.interactionCall(call_back_ID);
     }
 
     //Detect if the Cursor starts to pass over the GameObject

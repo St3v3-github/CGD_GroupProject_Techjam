@@ -39,7 +39,6 @@ public class Inventory_UI : MonoBehaviour
 
     GameObject canvas_object;
 
-    bool interacting = false;
     int interactive_target = 0;
     GameObject selection_display;
 
@@ -58,29 +57,29 @@ public class Inventory_UI : MonoBehaviour
         selection_display.name = "Selection_" + player_nr.ToString();
         selection_display.transform.parent = canvas_object.transform;
         RectTransform selection_transform = selection_display.AddComponent<RectTransform>();
-        selection_transform.sizeDelta = new Vector2 (rune_slot_size.x+selection_offset.x*2,rune_slot_size.y+selection_offset.y*2);
+        selection_transform.sizeDelta = new Vector2(rune_slot_size.x + selection_offset.x * 2, rune_slot_size.y + selection_offset.y * 2);
         selection_transform.anchorMin = new Vector2(0, 1);
         selection_transform.anchorMax = new Vector2(0, 1);
         selection_transform.pivot = new Vector2(0, 1);
-        selection_transform.localPosition = new Vector3 (inv_offset.x, -inv_offset.y,0);
+        selection_transform.localPosition = new Vector3(inv_offset.x, -inv_offset.y, 0);
         Image selector_image = selection_display.AddComponent<Image>();
         selector_image.sprite = selection_indicator;
         //selector_image.color = selection_tint;
-        selection_display.SetActive (true);
+        selection_display.SetActive(true);
 
-        int max_items = inventory.inv_height*inventory.inv_width;
+        int max_items = inventory.inv_height * inventory.inv_width;
         int object_number = 0;
         // Create Inventory
-        for (int i = 0; i<inventory.inv_height; i++)
+        for (int i = 0; i < inventory.inv_height; i++)
         {
-            for(int j = 0; j<inventory.inv_width;j++)
+            for (int j = 0; j < inventory.inv_width; j++)
             {
                 //Init display
                 inventory_displays.Add(new GameObject());
-                inventory_displays[object_number].name = "InventoryDisplay_"+player_nr.ToString()+"_"+ object_number.ToString();
+                inventory_displays[object_number].name = "InventoryDisplay_" + player_nr.ToString() + "_" + object_number.ToString();
                 inventory_displays[object_number].transform.parent = canvas_object.transform;
                 RectTransform display_transform = inventory_displays[object_number].AddComponent<RectTransform>();
-                display_transform.localPosition = new Vector3(inv_offset.x+inv_spacing.x*j, -inv_offset.y-inv_spacing.y*i, 0);
+                display_transform.localPosition = new Vector3(inv_offset.x + inv_spacing.x * j, -inv_offset.y - inv_spacing.y * i, 0);
                 display_transform.sizeDelta = rune_slot_size;
                 display_transform.anchorMin = new Vector2(0, 1);
                 display_transform.anchorMax = new Vector2(0, 1);
@@ -109,87 +108,42 @@ public class Inventory_UI : MonoBehaviour
         object_number = 0;
         int icon_number = max_items;
         SpellData data_guide = SpellData.CreateInstance<SpellData>();
-        switch(inventory.inventory_mode)
+        //Create modular spell slots
+        for (int i = 0; i < inventory.spell_slots; i++)
         {
-            case Inventory.InventoryModes.DRAGDROP:
-                //Create modular spell slots
-                for (int i = 0; i < inventory.spell_slots; i++)
-                {
-                    for (int j = 0; j < data_guide.spell_components; j++)
-                    {
-                        //Init displays
-                        spell_displays.Add(new GameObject());
-                        spell_displays[object_number].name = "SpellDisplay_" + player_nr.ToString() + "_" + object_number.ToString();
-                        spell_displays[object_number].transform.parent = canvas_object.transform;
-                        RectTransform display_transform = spell_displays[object_number].AddComponent<RectTransform>();
-                        display_transform.localPosition = new Vector3(spell_offset.x + inv_spacing.x * j, -spell_offset.y - inv_spacing.y * i, 0);
-                        display_transform.sizeDelta = rune_slot_size;
-                        display_transform.anchorMin = new Vector2(0, 1);
-                        display_transform.anchorMax = new Vector2(0, 1);
-                        Image display_image = spell_displays[object_number].AddComponent<Image>();
-                        display_image.sprite = display_box_image;
-                        //Init Icons
-                        item_icons.Add(new GameObject());
-                        item_icons[icon_number].name = "InventoryIcon_" + player_nr.ToString() + "_" + icon_number.ToString();
-                        item_icons[icon_number].transform.parent = spell_displays[object_number].transform;
-                        RectTransform icon_transform = item_icons[icon_number].AddComponent<RectTransform>();
-                        icon_transform.localPosition = new Vector3(0, 0, 0);
-                        icon_transform.sizeDelta = new Vector2(0, 0);
-                        icon_transform.anchorMin = new Vector2(0, 1);
-                        icon_transform.anchorMax = new Vector2(0, 1);
-                        icon_transform.pivot = new Vector2(0, 1);
-                        Image icon_image = item_icons[icon_number].AddComponent<Image>();
-                        icon_image.sprite = null;
-                        Inv_ItemSlot click_handling = spell_displays[object_number].AddComponent<Inv_ItemSlot>();
-                        click_handling.call_back_ID = icon_number;
-                        click_handling.UI_callback = this;
+            for (int j = 0; j < data_guide.spell_components; j++)
+            {
+                //Init displays
+                spell_displays.Add(new GameObject());
+                spell_displays[object_number].name = "SpellDisplay_" + player_nr.ToString() + "_" + object_number.ToString();
+                spell_displays[object_number].transform.parent = canvas_object.transform;
+                RectTransform display_transform = spell_displays[object_number].AddComponent<RectTransform>();
+                display_transform.localPosition = new Vector3(spell_offset.x + inv_spacing.x * j, -spell_offset.y - inv_spacing.y * i, 0);
+                display_transform.sizeDelta = rune_slot_size;
+                display_transform.anchorMin = new Vector2(0, 1);
+                display_transform.anchorMax = new Vector2(0, 1);
+                Image display_image = spell_displays[object_number].AddComponent<Image>();
+                display_image.sprite = display_box_image;
+                //Init Icons
+                item_icons.Add(new GameObject());
+                item_icons[icon_number].name = "InventoryIcon_" + player_nr.ToString() + "_" + icon_number.ToString();
+                item_icons[icon_number].transform.parent = spell_displays[object_number].transform;
+                RectTransform icon_transform = item_icons[icon_number].AddComponent<RectTransform>();
+                icon_transform.localPosition = new Vector3(0, 0, 0);
+                icon_transform.sizeDelta = new Vector2(0, 0);
+                icon_transform.anchorMin = new Vector2(0, 1);
+                icon_transform.anchorMax = new Vector2(0, 1);
+                icon_transform.pivot = new Vector2(0, 1);
+                Image icon_image = item_icons[icon_number].AddComponent<Image>();
+                icon_image.sprite = null;
+                Inv_ItemSlot click_handling = spell_displays[object_number].AddComponent<Inv_ItemSlot>();
+                click_handling.call_back_ID = icon_number;
+                click_handling.UI_callback = this;
 
-                        object_number++;
-                        icon_number++;
-                    }
-                }
-                //TODO: Create spell displays
-                break;
-                ///Focus on DD
-                ///
-                /*
-            case Inventory.InventoryModes.CRAFT:
-                //Create spell slots
-                for (int i = 0; i < inventory.spell_slots; i++)
-                {
-                    spell_displays.Add(new GameObject());
-                    spell_displays[i].name = "SpellDisplay_" + player_nr.ToString() + "_" + i.ToString();
-                    spell_displays[i].transform.parent = canvas_object.transform;
-                    RectTransform display_transform = spell_displays[i].AddComponent<RectTransform>();
-                    display_transform.localPosition = new Vector3(spell_offset.x, -spell_offset.y - spell_spacing.y * i, 0);
-                    display_transform.sizeDelta = spell_slot_size;
-                    display_transform.anchorMin = new Vector2(0, 1);
-                    display_transform.anchorMax = new Vector2(0, 1);
-                    Image display_image = spell_displays[i].AddComponent<Image>();
-                    display_image.sprite = display_box_image;
-                }
-                //Create crafting slots
-                
-                for (int j = 0; j < data_guide.spell_components; j++)
-                {
-                    craft_displays.Add(new GameObject());
-                    craft_displays[j].name = "CraftDisplay_" + player_nr.ToString() + "_" + j.ToString();
-                    craft_displays[j].transform.parent = canvas_object.transform;
-                    RectTransform display_transform = craft_displays[j].AddComponent<RectTransform>();
-                    display_transform.localPosition = new Vector3(crafting_offset.x + inv_spacing.x * j, crafting_offset.y, 0);
-                    display_transform.sizeDelta = rune_slot_size;
-                    display_transform.anchorMin = new Vector2(0, 0);
-                    display_transform.anchorMax = new Vector2(0, 0);
-                    Image display_image = craft_displays[j].AddComponent<Image>();
-                    display_image.sprite = display_box_image;
-                }
-                //TODO: Create Crafting Button
-                //TODO: Create Crafted Spell Display
-                break;*/
-            default:
-                break;
+                object_number++;
+                icon_number++;
+            }
         }
-        //updateInvDisplay();
     }
 
     public void toggleInventory()
@@ -211,19 +165,6 @@ public class Inventory_UI : MonoBehaviour
     public void updateInvDisplay()
     {
         int max_items = inventory.inv_width * inventory.inv_height;
-
-        for (int i = 0; i < max_items; i++)
-        {
-            if (inventory.inventory_items[i].ID != 0)
-            {
-                item_icons[i].GetComponent<Image>().sprite = inventory.inventory_items[i].icon;
-                item_icons[i].GetComponent<RectTransform>().sizeDelta = rune_slot_size;
-            }
-            else
-            {
-                item_icons[i].GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
-            }
-        }
 
         SpellData data_guide = SpellData.CreateInstance<SpellData>();
         int target_rune_slot = 0;
@@ -247,72 +188,7 @@ public class Inventory_UI : MonoBehaviour
         }
     }
 
-    public void interactionCall(int caller_ID)
-    {
-        if (interacting)
-        {
-            interacting = false;
-            selection_display.SetActive(false);
-            if (caller_ID > inventory_displays.Count)
-            {
-                //Check if slot corresponds to type
-                if(interactive_target > inventory_displays.Count)
-                {
-                    //Check if this also corresponds to type
-                }
-                else
-                {
-
-                }
-            }
-            else
-            {
-                if (interactive_target > inventory_displays.Count)
-                {
-                    //Check this too
-                }
-                else 
-                {
-                    inventory.swapItems(true, interactive_target, true, caller_ID);
-                }
-            }
-            updateInvDisplay();
-        }
-        else
-        {
-            interactive_target = caller_ID;
-            interacting = true;
-            RectTransform rect = selection_display.GetComponent<RectTransform>();
-            if (caller_ID > inventory_displays.Count)
-            {
-                RectTransform target = spell_displays[caller_ID - inventory_displays.Count].GetComponent<RectTransform>();
-                rect.localPosition = new Vector3(target.localPosition.x - selection_offset.x, target.localPosition.y - selection_offset.y, target.localPosition.z);
-                rect.anchorMin = target.anchorMin;
-                rect.anchorMax = target.anchorMax;
-            }
-            else
-            {
-                RectTransform target = inventory_displays[caller_ID].GetComponent<RectTransform>();
-                rect.localPosition = new Vector3(target.localPosition.x - selection_offset.x, target.localPosition.y - selection_offset.y, target.localPosition.z);
-                rect.anchorMin = target.anchorMin;
-                rect.anchorMax = target.anchorMax;
-            }
-            selection_display.SetActive(true);
-        }
-    }
-
-    public void equipRuneTo(int type, int slot)
-    {
-        SpellData data_guide = SpellData.CreateInstance<SpellData>();
-        if (inventory.inventory_items[interactive_target].type == type)
-        {
-            inventory.swapItems(true, interactive_target, false, slot * data_guide.spell_components + type);
-        }
-        else
-        {
-            //TODO: Add error message to inform player they are trying to equip a rune to the wrong slot, and that's not possible
-        }
-    }
+    
     public void moveSelector(Directions direction)
     {
         int max_items = inventory.inv_width * inventory.inv_height;
