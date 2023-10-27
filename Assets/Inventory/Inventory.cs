@@ -42,6 +42,7 @@ public class Inventory : MonoBehaviour
             dd_spell_inventory[item_to_equip.type][slot] = item_to_equip;
         }
         //TODO: updateInvDisplay();
+        Debug.Log(dd_spell_inventory[item_to_equip.type][slot].ID.ToString());
         return swapped_item;
         //return this in case the old item should be dropped
     }
