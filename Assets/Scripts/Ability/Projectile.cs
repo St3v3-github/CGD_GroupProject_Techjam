@@ -21,7 +21,12 @@ public class Projectile : MonoBehaviour
         }
 
 
-        //Damage here
+        AttributeManager attributes = collision.gameObject.GetComponent<AttributeManager>();
+
+        if (attributes != null)
+        {
+            attributes.TakeDamage(damage);
+        }
 
         Destroy(gameObject);
     }
