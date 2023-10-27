@@ -20,10 +20,10 @@ public class PlayerController : MonoBehaviour
 
     [Header("Other")]
     public Transform orientation;
-    public Inventory_UI inventory_display;
+    /*public Inventory_UI inventory_display;
     //Fix this for me later, am lazy
     public float timer = 1.0f;
-    float ui_cooldown = 0.0f;
+    float ui_cooldown = 0.0f;*/
 
     float horizontalInput;
     float verticalInput;
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
     {
         horizontalInput = inputManager.movementInput.x;
         verticalInput = inputManager.movementInput.y;
-        if (ui_cooldown > 0)
+       /* if (ui_cooldown > 0)
         {
             ui_cooldown -= Time.deltaTime;
         }
@@ -90,14 +90,14 @@ public class PlayerController : MonoBehaviour
             }
         }
         else
-        {
+        {*/
            moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
            gameObject.transform.Translate(moveDirection * Time.deltaTime * playerSpeed);
 
             //trying out Force movement - momentum seemed fun but maybe not :(
             //playerRigidbody.AddForce(moveDirection.normalized * playerSpeed, ForceMode.Force);
-        }
+        //}
     }
 
     private void HandleGroundCheck()
