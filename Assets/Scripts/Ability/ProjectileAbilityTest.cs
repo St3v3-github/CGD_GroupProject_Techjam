@@ -37,7 +37,6 @@ public class ProjectileAbilityTest : BaseAbility
     {
         firePoint = parent.GetComponent<Transform>();
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position - verticalOffset + firePoint.forward, firePoint.rotation);
-
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
 
         if (rb != null)

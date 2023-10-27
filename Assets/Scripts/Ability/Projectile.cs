@@ -5,7 +5,9 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float damage = 10f;
+    public StatusEffect statusEffect;
     //private float timer = 0;
+
 
     void Start()
     {
@@ -25,7 +27,7 @@ public class Projectile : MonoBehaviour
 
         if (attributes != null)
         {
-            attributes.TakeDamage(damage);
+            attributes.TakeDamage(damage, statusEffect);
         }
 
         Destroy(gameObject);

@@ -7,6 +7,8 @@ public class AttributeManager : MonoBehaviour
     //should be private for final (as we use getters and setters) but keep public for dev so we can eyeball inspector
     [SerializeField] public float health;
     [SerializeField] public int mp;
+    [SerializeField] public float speed;
+
 
     //examples of other values we might eventually have. all values relating to the player would probably be held in this one manager
     //[SerializeField] private int move_speed;
@@ -14,7 +16,7 @@ public class AttributeManager : MonoBehaviour
     //[SerializeField] private int offensive_power;
 
     //CURRENT STATUS HERE
-    //SOMETHING LIKE: public StatusEffect player_status, with getter and setter for abilities manipulate!
+    public StatusEffect player_status;
 
     void Start()
     {
@@ -47,12 +49,33 @@ public class AttributeManager : MonoBehaviour
         mp = _mp;
     }
 
-    public float TakeDamage(float damage)
+    public float TakeDamage(float damage, StatusEffect newStatus)
     {
+
         health -= damage;
+
+        if (player_status != newStatus)
+        {
+            player_status.RemoveEffect();
+
+            player_status = newStatus;
+
+            player_status.ApplyEffect();
+
+        }
 
         //Particles and Shaders called here
 
+
+
+
+
         return health;
+    }
+
+    public void SpeedModifier(float speedMod)
+    {
+        speed *= speedMod;
+    
     }
 }
