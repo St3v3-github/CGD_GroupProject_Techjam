@@ -397,7 +397,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""5310d1cf-66c6-44b3-9d4c-3a59d3501714"",
-                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -419,7 +419,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""561b0072-158a-41e8-bc7b-4fa632670252"",
-                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""path"": ""<Gamepad>/dpad/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -441,7 +441,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""970de51b-3e1b-4070-9c57-63cd52d5a02c"",
-                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""path"": ""<Gamepad>/dpad/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -463,7 +463,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""fc276426-567c-4829-b2bf-7a65b915bf9f"",
-                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""path"": ""<Gamepad>/dpad/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
