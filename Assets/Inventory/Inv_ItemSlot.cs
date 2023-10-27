@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 
 public class Inv_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    public Inventory_UI UI_callback;
     public int call_back_ID = 0;
     //Detect current clicks on the GameObject (the one with the script attached)
     public void OnPointerDown(PointerEventData pointerEventData)
@@ -18,7 +17,6 @@ public class Inv_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     public void OnPointerUp(PointerEventData pointerEventData)
     {
         Debug.Log(name + "No longer being clicked");
-        UI_callback.interactionCall(call_back_ID);
     }
 
     //Detect if the Cursor starts to pass over the GameObject

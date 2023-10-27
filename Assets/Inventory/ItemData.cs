@@ -6,7 +6,7 @@ using UnityEngine;
 public class ItemData : ScriptableObject
 {
     public uint ID = 0;
-    public uint type = 0;
+    public int type = 0;
     public string item_name = "Empty";
     public string description = "This is an empty inventory slot.";
     //public bool degrading = false;

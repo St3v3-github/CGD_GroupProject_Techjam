@@ -4,123 +4,46 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public enum InventoryModes
-    {
-        DRAGDROP=0,
-        CRAFT=1
-    }
-    public InventoryModes inventory_mode;
-    public int inv_width = 3;
-    public int inv_height = 4;
     public int spell_slots = 4;
 
-    public Inventory_UI inventory_ui;
-    
-    public List<ItemData> inventory_items = new();
-
+    //2D array, spell slots x spell components
     public List<List<ItemData>> dd_spell_inventory = new();
-
-    public List<ItemData> crafting_menu = new();
-    public List<SpellData> c_spell_inventory = new();
-    SpellData c_new_spell;
 
     void Start()
     {
-        //Init so crafting doesn't break when encountering null
+        //Dynamic init to avoid out of bounds
         SpellData data_guide = SpellData.CreateInstance<SpellData>();
-        for (int j = 0; j < data_guide.spell_components; j++)
-        {
-            crafting_menu.Add(ItemData.CreateInstance<ItemData>());
-        }
-        //Probs needs init so spellcasting without a spell doesn't break due to null values
-        
-        for(int i = 0; i < spell_slots; i++)
+        for(int i = 0; i < data_guide.spell_components; i++)
         {
             dd_spell_inventory.Add(new List<ItemData>());
-            for(int j = 0; j<data_guide.spell_components;j++)
+            for(int j = 0; j< spell_slots; j++)
             {
                 dd_spell_inventory[i].Add(ItemData.CreateInstance<ItemData>());
             }
         }
-
-        for (int i = 0; i < inv_height * inv_width; i++)
-        {
-            inventory_items.Add(ItemData.CreateInstance<ItemData>());
-        }
     }
 
-    public bool hasSpace()
+    public ItemData equipFromWorld(ItemData item_to_equip, int slot)
     {
-        for(int i = 0; i<inv_height*inv_width;i++)
+        //Temporary copy
+        Debug.Log(slot.ToString());
+        ItemData swapped_item = dd_spell_inventory[item_to_equip.type][slot];
+        if (dd_spell_inventory[item_to_equip.type][slot].ID == item_to_equip.ID)
         {
-            if (inventory_items[i].ID == 0)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public bool addItem(ItemData new_item)
-    {
-        for (int i = 0; i < inv_height * inv_width; i++)
-        {
-            if (inventory_items[i].ID == 0)
-            {
-                inventory_items[i] = new_item;
-                inventory_ui.updateInvDisplay();
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public bool craftSpell()
-    {
-        for(int i = 0; i<c_new_spell.spell_components;i++)
-        {
-            if (crafting_menu[i].ID != 0)
-            {
-                c_new_spell.components[i] = crafting_menu[i];
-            }
-            else 
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public void swapItems(bool first_inv, int first_id, bool second_inv, int second_id)
-    {
-        ItemData first_item;
-        if (first_inv)
-        {
-            first_item = inventory_items[first_id];
-            if(second_inv) 
-            {
-                inventory_items[first_id] = inventory_items[second_id];
-                inventory_items[second_id] = first_item;
-            }
-            else
-            {
-                inventory_items[first_id] = dd_spell_inventory[second_id / spell_slots][second_id % spell_slots];
-                dd_spell_inventory[second_id / spell_slots][second_id % spell_slots] = first_item;
-            }
+            //Upgrade system ->
+            dd_spell_inventory[item_to_equip.type][slot].value += item_to_equip.value;
+            //Check if value is beyond certain thresholds?
+            swapped_item = ItemData.CreateInstance<ItemData>();
+            //return blank item data if upgrading to avoid duplication
         }
         else
         {
-            first_item= dd_spell_inventory[first_id/spell_slots][first_id%spell_slots];
-            if (second_inv)
-            {
-                dd_spell_inventory[first_id / spell_slots][first_id % spell_slots] = inventory_items[second_id];
-                inventory_items[second_id] = first_item;
-            }
-            else
-            {
-                dd_spell_inventory[first_id / spell_slots][first_id % spell_slots] = dd_spell_inventory[second_id / spell_slots][second_id % spell_slots];
-                dd_spell_inventory[second_id / spell_slots][second_id % spell_slots] = first_item;
-            }
+            //Equip if different
+            dd_spell_inventory[item_to_equip.type][slot] = item_to_equip;
         }
+        //TODO: updateInvDisplay();
+        Debug.Log(dd_spell_inventory[item_to_equip.type][slot].ID.ToString());
+        return swapped_item;
+        //return this in case the old item should be dropped
     }
 }
