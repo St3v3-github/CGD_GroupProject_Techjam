@@ -52,7 +52,7 @@ public class Fire : StatusEffect
         AttributeManager attributes = affectedObject.GetComponent<AttributeManager>();
         if (attributes.health > 0)
         {
-            attributes.TakeDamage(damagePerSecond);
+            //attributes.TakeDamage(damagePerSecond);
         }
     }
 }

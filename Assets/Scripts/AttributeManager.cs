@@ -49,10 +49,22 @@ public class AttributeManager : MonoBehaviour
         mp = _mp;
     }
 
-    public float TakeDamage(float damage, StatusEffect newStatus)
+    public float TakeDamage(float damage)
     {
 
         health -= damage;
+
+        //Particles and Shaders called here
+
+
+
+
+
+        return health;
+    }
+
+    public float ChangeStatus(StatusEffect newStatus)
+    {
 
         if (player_status != newStatus)
         {
@@ -63,12 +75,6 @@ public class AttributeManager : MonoBehaviour
             player_status.ApplyEffect();
 
         }
-
-        //Particles and Shaders called here
-
-
-
-
 
         return health;
     }
