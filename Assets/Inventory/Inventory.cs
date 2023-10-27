@@ -4,81 +4,45 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public enum InventoryModes
-    {
-        DRAGDROP=0,
-        CRAFT=1
-    }
-    public InventoryModes inventory_mode;
-    public int inv_width = 3;
-    public int inv_height = 4;
     public int spell_slots = 4;
-    
-    public List<ItemData> inventory_items = new();
 
+    //2D array, spell slots x spell components
     public List<List<ItemData>> dd_spell_inventory = new();
-
-    public List<ItemData> crafting_menu = new();
-    public List<SpellData> c_spell_inventory = new();
-    SpellData c_new_spell;
 
     void Start()
     {
-        //Init so crafting doesn't break when encountering null
+        //Dynamic init to avoid out of bounds
         SpellData data_guide = SpellData.CreateInstance<SpellData>();
-        for (int j = 0; j < data_guide.spell_components; j++)
-        {
-            crafting_menu.Add(ItemData.CreateInstance<ItemData>());
-        }
-        //Probs needs init so spellcasting without a spell doesn't break due to null values
-        for(int i = 0; i < spell_slots; i++)
+        for(int i = 0; i < data_guide.spell_components; i++)
         {
             dd_spell_inventory.Add(new List<ItemData>());
-            for(int j = 0; j<data_guide.spell_components;j++)
+            for(int j = 0; j< spell_slots; j++)
             {
                 dd_spell_inventory[i].Add(ItemData.CreateInstance<ItemData>());
             }
         }
     }
 
-    public bool hasSpace()
+    public ItemData equipFromWorld(ItemData item_to_equip, int slot)
     {
-        for(int i = 0; i<inv_height*inv_width;i++)
+        //Temporary copy
+        Debug.Log(slot.ToString());
+        ItemData swapped_item = dd_spell_inventory[item_to_equip.type][slot];
+        if (dd_spell_inventory[item_to_equip.type][slot].ID == item_to_equip.ID)
         {
-            if (inventory_items[i].ID == 0)
-            {
-                return true;
-            }
+            //Upgrade system ->
+            dd_spell_inventory[item_to_equip.type][slot].value += item_to_equip.value;
+            //Check if value is beyond certain thresholds?
+            swapped_item = ItemData.CreateInstance<ItemData>();
+            //return blank item data if upgrading to avoid duplication
         }
-        return false;
-    }
-
-    public bool addItem(ItemData new_item)
-    {
-        for (int i = 0; i < inv_height * inv_width; i++)
+        else
         {
-            if (inventory_items[i] == null)
-            {
-                inventory_items[i] = new_item;
-                return true;
-            }
+            //Equip if different
+            dd_spell_inventory[item_to_equip.type][slot] = item_to_equip;
         }
-        return false;
-    }
-
-    public bool craftSpell()
-    {
-        for(int i = 0; i<c_new_spell.spell_components;i++)
-        {
-            if (crafting_menu[i].ID != 0)
-            {
-                c_new_spell.components[i] = crafting_menu[i];
-            }
-            else 
-            {
-                return false;
-            }
-        }
-        return true;
+        //TODO: updateInvDisplay();
+        return swapped_item;
+        //return this in case the old item should be dropped
     }
 }

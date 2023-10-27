@@ -2,12 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemInfo : MonoBehaviour
+public class test : MonoBehaviour
 {
     // Start is called before the first frame update
-
-   public ItemData item_data;
-
     void Start()
     {
         
@@ -18,16 +15,4 @@ public class ItemInfo : MonoBehaviour
     {
         
     }
-
-    public int GetWeight()
-    {
-        return item_data.spawn_weight;
-        
-    }
-    
-    public ItemData GetItemData() { 
-    
-        return item_data;
-    }
-
 }
