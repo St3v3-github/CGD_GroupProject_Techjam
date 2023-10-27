@@ -49,7 +49,7 @@ public class AttributeManager : MonoBehaviour
         mp = _mp;
     }
 
-    public float TakeDamage(float damage)
+    public float TakeDamage(float damage, StatusEffect statusEffect)
     {
 
         health -= damage;
