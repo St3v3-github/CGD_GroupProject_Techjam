@@ -13,10 +13,10 @@ public class Inventory : MonoBehaviour
     {
         //Dynamic init to avoid out of bounds
         SpellData data_guide = SpellData.CreateInstance<SpellData>();
-        for(int i = 0; i < spell_slots; i++)
+        for(int i = 0; i < data_guide.spell_components; i++)
         {
             dd_spell_inventory.Add(new List<ItemData>());
-            for(int j = 0; j<data_guide.spell_components;j++)
+            for(int j = 0; j< spell_slots; j++)
             {
                 dd_spell_inventory[i].Add(ItemData.CreateInstance<ItemData>());
             }
@@ -26,6 +26,7 @@ public class Inventory : MonoBehaviour
     public ItemData equipFromWorld(ItemData item_to_equip, int slot)
     {
         //Temporary copy
+        Debug.Log(slot.ToString());
         ItemData swapped_item = dd_spell_inventory[item_to_equip.type][slot];
         if (dd_spell_inventory[item_to_equip.type][slot].ID == item_to_equip.ID)
         {
