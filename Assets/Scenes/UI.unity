@@ -11497,7 +11497,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1661691988}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1661691991
 Camera:
   m_ObjectHideFlags: 0
@@ -12794,6 +12794,7 @@ GameObject:
   - component: {fileID: 2021315159}
   - component: {fileID: 2021315158}
   - component: {fileID: 2021315161}
+  - component: {fileID: 2021315162}
   m_Layer: 5
   m_Name: FireButton
   m_TagString: Untagged
@@ -13023,6 +13024,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2021315162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021315156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c01f435f14afbb44a9c223610880ca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Fire: {fileID: 2021315158}
+  Ice: {fileID: 707711723}
+  Electric: {fileID: 525218224}
+  Wind: {fileID: 1101542985}
+  On: 0
+  Off: 0
+  fireEffects: {fileID: 209627529}
 --- !u!1 &2077239050
 GameObject:
   m_ObjectHideFlags: 0
