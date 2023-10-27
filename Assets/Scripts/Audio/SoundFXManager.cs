@@ -5,6 +5,13 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using Random = UnityEngine.Random;
 
+
+// Add one of these scripts to each scene. It will manage all the audio in that scene.
+// HOW TO USE:
+// on your object script, add public SoundFXManager soundManager;
+// add [SerializeField] private AudioClip(s) nameOfSound;
+// when you want to trigger the sound, if soundManager != null, SoundFXManager.instance.PlaySoundFXClip(nameOfSound, transform, volume(1f for default)); OR for random sounds from a selection, call PlayRandomSoundFXClip instead. 
+
 public class SoundFXManager : MonoBehaviour
 {
     public static SoundFXManager instance;
