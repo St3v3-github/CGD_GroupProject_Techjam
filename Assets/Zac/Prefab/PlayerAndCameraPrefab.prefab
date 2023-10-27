@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3480188397436377435}
   - component: {fileID: 2600148842056434279}
   - component: {fileID: 3283469848480974278}
-  - component: {fileID: 3844929106282675088}
   - component: {fileID: 4246859701650097867}
   - component: {fileID: 2525954465203134002}
   m_Layer: 0
@@ -95,21 +94,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 690795960200770952}
   m_Enabled: 1
---- !u!114 &3844929106282675088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690795960200770952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1ce4b493e991174eac4a13284d06ea3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensitivityX: 250
-  sensitivityY: 250
-  orientation: {fileID: 3865026189677680757}
 --- !u!114 &4246859701650097867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,13 +565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54bd5eb3078c4464994aa52d8e1f6e13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory_mode: 0
-  inv_width: 1
-  inv_height: 1
   spell_slots: 4
-  inventory_items: []
-  crafting_menu: []
-  c_spell_inventory: []
 --- !u!1 &5685189085329067640
 GameObject:
   m_ObjectHideFlags: 0

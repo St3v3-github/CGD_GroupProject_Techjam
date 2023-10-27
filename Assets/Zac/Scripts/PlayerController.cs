@@ -1,9 +1,9 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerControllerZac : MonoBehaviour
 {
-    InputManager inputManager;
+    InputManagerZac inputManager;
 
     [Header("Movement")]
     public float playerSpeed;
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        inputManager = FindObjectOfType<InputManager>();
+        inputManager = FindObjectOfType<InputManagerZac>();
     }
 
     private void Start()

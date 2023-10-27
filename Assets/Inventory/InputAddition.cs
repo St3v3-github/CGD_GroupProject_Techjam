@@ -9,7 +9,7 @@ public class InputAddition : MonoBehaviour
     public int spell_count = 4;
     public InputActionMap target_map;
     public List<string> action_bindings;
-    public InputManager target_manager;
+    public InputManagerZac target_manager;
 
     // https://docs.unity3d.com/Packages/com.unity.inputsystem@1.8/manual/Actions.html#using-actions
     void Start()

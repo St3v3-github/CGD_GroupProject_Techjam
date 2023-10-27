@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputManager : MonoBehaviour
+public class InputManagerZac : MonoBehaviour
 {
     public Vector2 cameraInput;
     public Vector2 movementInput;
