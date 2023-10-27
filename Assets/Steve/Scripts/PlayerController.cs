@@ -116,6 +116,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void HandleSprint()
+    {
+        if (inputManager.sprintInput && isGrounded)
+        {
+            playerSpeed = playerSpeed = 6f;
+        }
+
+        else
+        {
+            playerSpeed = playerSpeed = 12f; 
+        }
+    }
+
+    private void HandleInteract()
+    {
+
+    }
+
     private void ResetJump()
     {
         isReadyToJump = true;

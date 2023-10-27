@@ -37,7 +37,7 @@ public class InputManager : MonoBehaviour
 
     public void OnSprint(InputAction.CallbackContext ctx)
     {
-        jumpInput = ctx.action.triggered;
+        sprintInput = ctx.action.triggered;
     }
 
     public void OnAbilityCast(InputAction.CallbackContext ctx)
