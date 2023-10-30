@@ -60,10 +60,10 @@ public class Wall : MonoBehaviour
     {
         StopCoroutine(UpdateHolographicRotation());
         // Output the initial rotation of the holographic
-        Debug.Log("Initial Rotation of Holographic: " + holographicInitialRotation.eulerAngles);
+      //  Debug.Log("Initial Rotation of Holographic: " + holographicInitialRotation.eulerAngles);
 
 
-        Debug.Log("Rotation of Spawned Wall: " + wallPrefab.transform.rotation.eulerAngles);
+     //   Debug.Log("Rotation of Spawned Wall: " + wallPrefab.transform.rotation.eulerAngles);
         Quaternion holographicRotation = holographic.transform.rotation;
         WallManager.Instance.SpawnWall(holographic.transform.position, holographicRotation);
         Destroy(holographic);

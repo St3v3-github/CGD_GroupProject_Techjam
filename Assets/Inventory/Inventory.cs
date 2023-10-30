@@ -27,7 +27,7 @@ public class Inventory : MonoBehaviour
     public ItemData equipFromWorld(ItemData item_to_equip, int slot)
     {
         //Temporary copy
-        Debug.Log(slot.ToString());
+//        Debug.Log(slot.ToString());
         ItemData swapped_item = dd_spell_inventory[item_to_equip.type][slot];
         if (dd_spell_inventory[item_to_equip.type][slot].ID == item_to_equip.ID)
         {
@@ -43,7 +43,7 @@ public class Inventory : MonoBehaviour
             dd_spell_inventory[item_to_equip.type][slot] = item_to_equip;
         }
         //TODO: updateInvDisplay();
-        Debug.Log(dd_spell_inventory[item_to_equip.type][slot].ID.ToString());
+//        Debug.Log(dd_spell_inventory[item_to_equip.type][slot].ID.ToString());
         for (int i = 0; i < 2; i++)
         {
             dd_spell_inventory.Add(new List<ItemData>());
@@ -51,7 +51,9 @@ public class Inventory : MonoBehaviour
             {
                 if(dd_spell_inventory[i][j].ID!=0)
                 {
+                    Debug.Log("INVENTORY LOG STARTS HERE");
                     Debug.Log("Slot "+i.ToString()+";"+j.ToString()+": "+dd_spell_inventory[i][j].ID.ToString());
+                    Debug.Log("INVENTORY LOG ENDS HERE");
                 }
             }
         }

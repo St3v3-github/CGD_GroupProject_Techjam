@@ -132,7 +132,7 @@ public class InputManager : MonoBehaviour
                 ItemData unequipped = inventory.equipFromWorld(ray.target.GetComponent<ItemInfo>().GetItemData(), slotTarget);
                 ray.target.GetComponent<ItemScript>().Interact();
 
-                Debug.Log("WE ARE HERE");
+               
                 switch (ray.target.GetComponent<ItemInfo>().GetItemData().ID)
                 {
                     case 1:
@@ -181,7 +181,6 @@ public class InputManager : MonoBehaviour
             InputControl actionInput = ctx.control;
             string actionButton = actionInput.name;
             int slotTarget = 0;
-            Debug.Log(actionButton);
             switch (actionButton)
             {
                 case "5":
@@ -197,7 +196,6 @@ public class InputManager : MonoBehaviour
                     slotTarget = 3;
                     break;
                 case "leftTrigger":
-                    Debug.Log("LEFT TRIGGER");
                     slotTarget = 0;
                     break;
                 case "leftBumper":
@@ -226,7 +224,7 @@ public class InputManager : MonoBehaviour
                 ItemData unequipped = inventory.equipFromWorld(ray.target.GetComponent<ItemInfo>().GetItemData(), slotTarget);
                 ray.target.GetComponent<ItemScript>().Interact();
 
-                Debug.Log("WE ARE ALSO HERE");
+              
                 switch (ray.target.GetComponent<ItemInfo>().GetItemData().ID)
                 {
                     case 1:

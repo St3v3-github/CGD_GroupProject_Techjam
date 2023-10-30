@@ -62,7 +62,7 @@ public class SpawnItem : MonoBehaviour
         //UnityEngine.Debug.Log("Total Weight is: " +  totalWeight);
 
         randomNumber = UnityEngine.Random.Range(1, totalWeight+1);
-        UnityEngine.Debug.Log("Elements Random number is: " + randomNumber);
+//        UnityEngine.Debug.Log("Elements Random number is: " + randomNumber);
 
         for (int i = 0; i < elements.Count; i++)
         {
@@ -96,7 +96,7 @@ public class SpawnItem : MonoBehaviour
         //UnityEngine.Debug.Log("Total Weight is: " + totalWeight);
 
         randomNumber = UnityEngine.Random.Range(1, totalWeight + 1);
-        UnityEngine.Debug.Log("Spells Random number is: " + randomNumber);
+     //   UnityEngine.Debug.Log("Spells Random number is: " + randomNumber);
 
         for (int i = 0; i < elements.Count; i++)
         {

@@ -53,7 +53,7 @@ public class CastableAOEStrike : MonoBehaviour
 
         foreach (var player in players)
         {
-            Debug.Log("Detected player: " + player.name);
+//            Debug.Log("Detected player: " + player.name);
 
             //damage here
         }

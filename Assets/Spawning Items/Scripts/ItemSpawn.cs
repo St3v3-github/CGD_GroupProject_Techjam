@@ -48,7 +48,7 @@ public class ItemSpawn : MonoBehaviour
         {
             int randomNumber = 0;
            randomNumber = UnityEngine.Random.Range(1, listsize+1);
-            Debug.Log("New random number is: " +  randomNumber);
+//            Debug.Log("New random number is: " +  randomNumber);
 
 
             for(int j = 0; j < chosenNumbers.Length; j++)
@@ -69,11 +69,11 @@ public class ItemSpawn : MonoBehaviour
 
 
         }
-        Debug.Log("The full array list is:");
+      //  Debug.Log("The full array list is:");
 
         for(int i = 0;i < chosenNumbers.Length;i++) 
         {
-             Debug.Log(chosenNumbers[i] + ", ");
+//             Debug.Log(chosenNumbers[i] + ", ");
 
         }
 
@@ -108,19 +108,19 @@ public class ItemSpawn : MonoBehaviour
 
                 int randomNumber = 0;
                 randomNumber = UnityEngine.Random.Range(0, 2);
-                Debug.Log("The randomly generated value is: " + randomNumber);
+            //    Debug.Log("The randomly generated value is: " + randomNumber);
               
                 if(randomNumber == 0 )
                 {
                     SpawnPoints[chosenNumbers[i] - 1].GetComponent<SpawnItem>().SpawnObject(SpawnItem.Type.Element);
                     availableSpawns--;
-                    Debug.Log("Randomly chosen an element.");
+//                    Debug.Log("Randomly chosen an element.");
                 }
                 else if( randomNumber == 1 )
                 {
                     SpawnPoints[chosenNumbers[i] - 1].GetComponent<SpawnItem>().SpawnObject(SpawnItem.Type.Spell);
                     availableSpawns--;
-                    Debug.Log("Randomly chosen a spell.");
+                //    Debug.Log("Randomly chosen a spell.");
 
                 }
             }

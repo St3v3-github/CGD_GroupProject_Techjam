@@ -12,19 +12,21 @@ public class DemoUI : MonoBehaviour
     public GameObject wallIcon;
     public GameObject areaIcon;
     public GameObject summonIcon;
+    
 
     
 
     // Start is called before the first frame update
     void Start()
     {
-        fireUIIcon.gameObject.active = false;
-        iceUIIcon.gameObject.active = false;
-        electricUIIcon.gameObject.active = false;
-        projectileIcon.gameObject.active = false;
-        wallIcon.gameObject.active = false;
-        areaIcon.gameObject.active = false;
-        summonIcon.gameObject.active = false;
+        fireUIIcon.gameObject.SetActive(false);
+        iceUIIcon.gameObject.SetActive(false);
+        electricUIIcon.gameObject.SetActive(false);
+        projectileIcon.gameObject.SetActive(false);
+        wallIcon.gameObject.SetActive(false);
+        areaIcon.gameObject.SetActive(false);
+        summonIcon.gameObject.SetActive(false);
+        
 
         
         
@@ -38,32 +40,34 @@ public class DemoUI : MonoBehaviour
 
     public void EnableFire()
     {
-        fireUIIcon.gameObject.active = true;
+        fireUIIcon.gameObject.SetActive(true);
+       
     }
 
     public void EnableIce()
     {
-        iceUIIcon.gameObject.active = true;
+        iceUIIcon.gameObject.SetActive(true);
+       
     }
 
     public void EnableElectric()
     {
-        electricUIIcon.gameObject.active = true;
+        electricUIIcon.gameObject.SetActive(true);
     }public void EnableProjectile()
     {
-        projectileIcon.gameObject.active = true;
+        projectileIcon.gameObject.SetActive(true);
     }
 
     public void EnableWall()
     {
-        wallIcon.gameObject.active = true;
+        wallIcon.gameObject.SetActive(true);
     }
 
     public void EnableArea()
     {
-        areaIcon.gameObject.active = true;
+        areaIcon.gameObject.SetActive(true);
     } public void EnableSummon()
     {
-        summonIcon.gameObject.active = true;
+        summonIcon.gameObject.SetActive(true);
     }
 }

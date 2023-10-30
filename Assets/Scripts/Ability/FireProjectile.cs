@@ -29,7 +29,7 @@ public class FireProjectile : MonoBehaviour
         if (rb != null)
         {
             rb.AddForce(firePoint.forward * projectileForce, ForceMode.Impulse);
-            Debug.Log("used");
+            
         }
     }
 }
