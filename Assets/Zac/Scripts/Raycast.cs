@@ -21,8 +21,8 @@ public class Raycast : MonoBehaviour
 
     void Update()
     {
-        if (inputManager.interactInput)   // !!Caused an Error
-        {
+       // if (inputManager.interactInput)   // !!Caused an Error
+        //{
 
 
             target = null;
@@ -47,6 +47,6 @@ public class Raycast : MonoBehaviour
                     target = hit.collider.gameObject;
                 }
             }
-        }
+        //}
     }
 }

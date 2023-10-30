@@ -32,7 +32,7 @@ public class MeleeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (inputManager.interactInput == true)
+        if (inputManager.meleeInput == true)
         {
             
             HandleMelee();
