@@ -19,26 +19,26 @@ public class CastableAOEStrike : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 centre = GetMouseWorldPosition();
+        //Vector3 centre = GetMouseWorldPosition();
 
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            Strike(centre);
+           // Strike(centre);
 
-            DetectCharacters(centre);
+           // DetectCharacters(centre);
 
             
         }
     }
 
-    private void Strike(Vector3 centre)
+    public void Strike(Vector3 centre)
     {
         GameObject strike = Instantiate(particlePrefab, centre, Quaternion.identity);
 
         StartCoroutine(timerCoroutine(strike));
     }
 
-    private void DetectCharacters(Vector3 centre)
+    public void DetectCharacters(Vector3 centre)
     {
         Collider[] colliders = Physics.OverlapSphere(centre, attackRadius);
         List<GameObject> players = new List<GameObject>();
@@ -59,7 +59,7 @@ public class CastableAOEStrike : MonoBehaviour
         }
     }
 
-    Vector3 GetMouseWorldPosition()
+    public Vector3 GetMouseWorldPosition()
     {
         Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit))

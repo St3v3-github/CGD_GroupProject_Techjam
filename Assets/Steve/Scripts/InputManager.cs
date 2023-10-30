@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class InputManager : MonoBehaviour
 {
@@ -134,13 +135,13 @@ public class InputManager : MonoBehaviour
                 Debug.Log("WE ARE HERE");
                 switch (ray.target.GetComponent<ItemInfo>().GetItemData().ID)
                 {
-                    case 0:
+                    case 1:
                         uiHandler.GetComponent<DemoUI>().EnableFire();
                         break;
-                    case 1:
+                    case 2:
                         uiHandler.GetComponent<DemoUI>().EnableIce();
                         break;
-                    case 2:
+                    case 3:
                         uiHandler.GetComponent<DemoUI>().EnableElectric();
                         break;
 
@@ -180,6 +181,7 @@ public class InputManager : MonoBehaviour
             InputControl actionInput = ctx.control;
             string actionButton = actionInput.name;
             int slotTarget = 0;
+            Debug.Log(actionButton);
             switch (actionButton)
             {
                 case "5":
@@ -195,15 +197,27 @@ public class InputManager : MonoBehaviour
                     slotTarget = 3;
                     break;
                 case "leftTrigger":
+                    Debug.Log("LEFT TRIGGER");
                     slotTarget = 0;
                     break;
                 case "leftBumper":
+                  
+                    slotTarget = 1;
+                    break;
+                case "leftShoulder":
+                  
                     slotTarget = 1;
                     break;
                 case "rightTrigger":
+                  
                     slotTarget = 2;
                     break;
                 case "rightBumper":
+                    
+                    slotTarget = 3;
+                    break;
+                case "rightShoulder":
+                   
                     slotTarget = 3;
                     break;
             }
@@ -215,16 +229,16 @@ public class InputManager : MonoBehaviour
                 Debug.Log("WE ARE ALSO HERE");
                 switch (ray.target.GetComponent<ItemInfo>().GetItemData().ID)
                 {
-                    case 0:
+                    case 1:
                         uiHandler.GetComponent<DemoUI>().EnableProjectile();
                         break;
-                    case 1:
+                    case 2:
                         uiHandler.GetComponent<DemoUI>().EnableArea();
                         break;
-                    case 2:
+                    case 3:
                         uiHandler.GetComponent<DemoUI>().EnableSummon();
                         break;
-                    case 3:
+                    case 4:
                         uiHandler.GetComponent<DemoUI>().EnableWall();
                         break;
                 }
@@ -238,16 +252,76 @@ public class InputManager : MonoBehaviour
             else
             {
                 //call for casting spell
-                inventory.getSelectedElement(); //-> Gives Element ID
-                inventory.getSpellType(slotTarget); //-> Gives Spell Type ID
+                //inventory.getSelectedElement(); //-> Gives Element ID
+                //inventory.getSpellType(slotTarget); //-> Gives Spell Type ID
                 switch(inventory.getSelectedElement())
                 {
-                    case 1:
+                    case 1: // Fire Element
                         switch(inventory.getSpellType(slotTarget))
                         {
-                            case 1:
+                            case 1: //Fire Projectile Type
                                 player_prefab.GetComponent<FireProjectile>().Fire();
                                 break;
+                            case 2: // Fire Areaw type
+                                break;
+                            case 3: // Fire summon type
+                                player_prefab.GetComponent<Summon>().Spawn();
+                                break;
+                            case 4: //Fire wall type
+                                break;    
+                        }
+                        break;
+                    case 2: // Ice Element
+                        switch(inventory.getSpellType(slotTarget))
+                        {
+                            case 1: //Ice Projectile Type
+                                break;
+                            case 2: // Ice Areaw type
+                                break;
+                            case 3: // Ice summon type
+                                break;
+                            case 4: //Ice wall type
+                                if (player_prefab.GetComponent<Wall>().isPlacingWall)
+                                {
+                                    player_prefab.GetComponent<Wall>().PlaceWall();
+                                }
+                                else
+                                {
+                                    player_prefab.GetComponent<Wall>().StartPlacingWall();
+                                }
+                              
+                                break;    
+                        }
+                        break;
+                    case 3: // Electric Element
+                        switch(inventory.getSpellType(slotTarget))
+                        {
+                            case 1: //Electric Projectile Type
+                                break;
+                            case 2: // Electric Areaw type
+                                Vector3 centre = player_prefab.GetComponent<CastableAOEStrike>().GetMouseWorldPosition();
+                                player_prefab.GetComponent<CastableAOEStrike>().Strike(centre);
+                                player_prefab.GetComponent<CastableAOEStrike>().DetectCharacters(centre);
+                                break;
+                            case 3: // Electric summon type
+                                break;
+                            case 4: //Elecetric wall type
+                                
+                                break;    
+                        }
+                        break;
+                    case 4: // Wind Element
+                        switch(inventory.getSpellType(slotTarget))
+                        {
+                            case 1: //Wind Projectile Type
+                                break;
+                            case 2: // Wind Areaw type
+                                  break;
+                            case 3: // Wind summon type
+                                break;
+                            case 4: //Wind wall type
+                                
+                                break;    
                         }
                         break;
                 }

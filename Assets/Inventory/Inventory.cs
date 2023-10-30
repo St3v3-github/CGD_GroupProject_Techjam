@@ -44,6 +44,17 @@ public class Inventory : MonoBehaviour
         }
         //TODO: updateInvDisplay();
         Debug.Log(dd_spell_inventory[item_to_equip.type][slot].ID.ToString());
+        for (int i = 0; i < 2; i++)
+        {
+            dd_spell_inventory.Add(new List<ItemData>());
+            for (int j = 0; j < spell_slots; j++)
+            {
+                if(dd_spell_inventory[i][j].ID!=0)
+                {
+                    Debug.Log("Slot "+i.ToString()+";"+j.ToString()+": "+dd_spell_inventory[i][j].ID.ToString());
+                }
+            }
+        }
         return swapped_item;
         //return this in case the old item should be dropped
     }

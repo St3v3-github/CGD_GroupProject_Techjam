@@ -21,11 +21,11 @@ public class Summon : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Spawn();
+            //Spawn();
         }
     }
 
-    private void Spawn()
+    public void Spawn()
     {
         Quaternion summonRoation = summonPoint.rotation;
         summonRoation.x = 0f;

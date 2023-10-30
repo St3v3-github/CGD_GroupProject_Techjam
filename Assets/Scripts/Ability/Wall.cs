@@ -29,8 +29,8 @@ public class Wall : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            StartPlacingWall();
-            Invoke("DespawnHolographic", holographicDespawnTime);
+            //StartPlacingWall();
+           
         }
 
             if (isPlacingWall)
@@ -41,16 +41,7 @@ public class Wall : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                StopCoroutine(UpdateHolographicRotation());
-                // Output the initial rotation of the holographic
-                Debug.Log("Initial Rotation of Holographic: " + holographicInitialRotation.eulerAngles);
-
-                
-                Debug.Log("Rotation of Spawned Wall: " + wallPrefab.transform.rotation.eulerAngles);
-                Quaternion holographicRotation = holographic.transform.rotation;
-                WallManager.Instance.SpawnWall(holographic.transform.position, holographicRotation);
-                Destroy(holographic);
-                isPlacingWall = false;
+               
             }
         }
     }
@@ -65,13 +56,28 @@ public class Wall : MonoBehaviour
         return Vector3.zero;
     }
 
+    public void PlaceWall()
+    {
+        StopCoroutine(UpdateHolographicRotation());
+        // Output the initial rotation of the holographic
+        Debug.Log("Initial Rotation of Holographic: " + holographicInitialRotation.eulerAngles);
+
+
+        Debug.Log("Rotation of Spawned Wall: " + wallPrefab.transform.rotation.eulerAngles);
+        Quaternion holographicRotation = holographic.transform.rotation;
+        WallManager.Instance.SpawnWall(holographic.transform.position, holographicRotation);
+        Destroy(holographic);
+        isPlacingWall = false;
+    }
     public void StartPlacingWall()
     {
+         
         // Initialize the holographic preview
         holographic = Instantiate(holographicPrefab, Vector3.zero, Quaternion.identity);
         holographicInitialRotation = holographic.transform.rotation;
         isPlacingWall = true;
         StartCoroutine(UpdateHolographicRotation());
+        Invoke("DespawnHolographic", holographicDespawnTime);
 
     }
 
