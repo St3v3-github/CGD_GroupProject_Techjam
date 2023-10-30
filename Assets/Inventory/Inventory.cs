@@ -62,4 +62,9 @@ public class Inventory : MonoBehaviour
     {
         return dd_spell_inventory[0][element_selection].ID;
     }
+
+    public int getSpellType(int slot)
+    {
+        return dd_spell_inventory[1][slot].ID;
+    }
 }
