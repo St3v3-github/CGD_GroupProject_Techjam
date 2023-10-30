@@ -13,11 +13,11 @@ public class FireProjectile : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Fire();
+            //Fire();
         }
     }
 
-    void Fire()
+    public void Fire()
     {
         //Vector3 projectileSpawnPoint = firePoint.position;
         //projectileSpawnPoint.x += (firePoint.forward * 0.5f).x;
