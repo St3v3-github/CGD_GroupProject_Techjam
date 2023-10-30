@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,7 +23,11 @@ public class InputManager : MonoBehaviour
     public bool interactInput = false;
     public bool meleeInput = false;
 
+    [Header("DEMO_DELETE_LATER")]
+    public GameObject uiHandler;
 
+
+   
     public void OnLook(InputAction.CallbackContext ctx)
     {
         cameraInput = ctx.ReadValue<Vector2>();
@@ -123,10 +128,28 @@ public class InputManager : MonoBehaviour
                         break;
                 }
 
+
                 ItemData unequipped = inventory.equipFromWorld(ray.target.GetComponent<ItemInfo>().GetItemData(), slotTarget);
                 ray.target.GetComponent<ItemScript>().Interact();
+
+                Debug.Log("WE ARE HERE");
+                switch (ray.target.GetComponent<ItemInfo>().GetItemData().ID)
+                {
+                    case 0:
+                        uiHandler.GetComponent<DemoUI>().EnableFire();
+                        break;
+                    case 1:
+                        uiHandler.GetComponent<DemoUI>().EnableIce();
+                        break;
+                    case 2:
+                        uiHandler.GetComponent<DemoUI>().EnableElectric();
+                        break;
+
+
+                }
                 if (unequipped.ID != 0)
                 {
+                   
                     //create a dropped item here
                 }
 
@@ -134,6 +157,7 @@ public class InputManager : MonoBehaviour
 
             else
             {
+
                 //switch element on UI and maybe ability manager?
             }
 
@@ -183,7 +207,26 @@ public class InputManager : MonoBehaviour
 
                 ItemData unequipped = inventory.equipFromWorld(ray.target.GetComponent<ItemInfo>().GetItemData(), slotTarget);
                 ray.target.GetComponent<ItemScript>().Interact();
-                if (unequipped.ID != 0)
+
+                Debug.Log("WE ARE ALSO HERE");
+                switch (ray.target.GetComponent<ItemInfo>().GetItemData().ID)
+                {
+                    case 0:
+                        uiHandler.GetComponent<DemoUI>().EnableProjectile();
+                        break;
+                    case 1:
+                        uiHandler.GetComponent<DemoUI>().EnableArea();
+                        break;
+                    case 2:
+                        uiHandler.GetComponent<DemoUI>().EnableSummon();
+                        break;
+                    case 3:
+                        uiHandler.GetComponent<DemoUI>().EnableWall();
+                        break;
+                }
+
+
+                        if (unequipped.ID != 0)
                 {
                     //create a dropped item here
                 }
