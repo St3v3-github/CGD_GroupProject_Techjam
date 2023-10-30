@@ -134,6 +134,15 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Melee"",
+                    ""type"": ""Button"",
+                    ""id"": ""03861f45-172b-4b5c-a41d-a0860f14af4b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -664,6 +673,28 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""action"": ""SpellTypes"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""196eaf22-f4a6-4084-97e3-d2a20eab4623"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Melee"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""83816187-947e-4680-b01c-cabcbfa15176"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Melee"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -684,6 +715,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         m_Player_Ability4 = m_Player.FindAction("Ability4", throwIfNotFound: true);
         m_Player_Elements = m_Player.FindAction("Elements", throwIfNotFound: true);
         m_Player_SpellTypes = m_Player.FindAction("SpellTypes", throwIfNotFound: true);
+        m_Player_Melee = m_Player.FindAction("Melee", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -757,6 +789,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Ability4;
     private readonly InputAction m_Player_Elements;
     private readonly InputAction m_Player_SpellTypes;
+    private readonly InputAction m_Player_Melee;
     public struct PlayerActions
     {
         private @PlayerControlsAsset m_Wrapper;
@@ -773,6 +806,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         public InputAction @Ability4 => m_Wrapper.m_Player_Ability4;
         public InputAction @Elements => m_Wrapper.m_Player_Elements;
         public InputAction @SpellTypes => m_Wrapper.m_Player_SpellTypes;
+        public InputAction @Melee => m_Wrapper.m_Player_Melee;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -818,6 +852,9 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @SpellTypes.started += instance.OnSpellTypes;
             @SpellTypes.performed += instance.OnSpellTypes;
             @SpellTypes.canceled += instance.OnSpellTypes;
+            @Melee.started += instance.OnMelee;
+            @Melee.performed += instance.OnMelee;
+            @Melee.canceled += instance.OnMelee;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -858,6 +895,9 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @SpellTypes.started -= instance.OnSpellTypes;
             @SpellTypes.performed -= instance.OnSpellTypes;
             @SpellTypes.canceled -= instance.OnSpellTypes;
+            @Melee.started -= instance.OnMelee;
+            @Melee.performed -= instance.OnMelee;
+            @Melee.canceled -= instance.OnMelee;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -889,5 +929,6 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         void OnAbility4(InputAction.CallbackContext context);
         void OnElements(InputAction.CallbackContext context);
         void OnSpellTypes(InputAction.CallbackContext context);
+        void OnMelee(InputAction.CallbackContext context);
     }
 }

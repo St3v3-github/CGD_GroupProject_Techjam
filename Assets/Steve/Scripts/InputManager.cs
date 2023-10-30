@@ -20,6 +20,7 @@ public class InputManager : MonoBehaviour
 
     [Header("Other")]
     public bool interactInput = false;
+    public bool meleeInput = false;
 
 
     public void OnLook(InputAction.CallbackContext ctx)
@@ -70,6 +71,11 @@ public class InputManager : MonoBehaviour
     public void OnInteract(InputAction.CallbackContext ctx)
     {
         interactInput = ctx.action.triggered;
+    }
+
+    public void OnMelee(InputAction.CallbackContext ctx)
+    {
+        meleeInput = ctx.action.triggered;
     }
 
     public void OnElement(InputAction.CallbackContext ctx)
