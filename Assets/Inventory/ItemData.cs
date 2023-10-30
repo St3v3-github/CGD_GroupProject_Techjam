@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/ItemData")]
 public class ItemData : ScriptableObject
 {
-    public uint ID = 0;
+    public int ID = 0;
     public int type = 0;
     public string item_name = "Empty";
     public string description = "This is an empty inventory slot.";

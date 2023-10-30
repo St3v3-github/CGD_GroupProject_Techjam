@@ -5,6 +5,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public int spell_slots = 4;
+    public int element_selection = 0;
 
     //2D array, spell slots x spell components
     public List<List<ItemData>> dd_spell_inventory = new();
@@ -45,5 +46,25 @@ public class Inventory : MonoBehaviour
         Debug.Log(dd_spell_inventory[item_to_equip.type][slot].ID.ToString());
         return swapped_item;
         //return this in case the old item should be dropped
+    }
+
+    public bool setElementSelection(int slot)
+    {
+        if (dd_spell_inventory[0][slot].ID != 0)
+        {
+            element_selection = slot;
+            return true;
+        }
+        return false;
+    }
+
+    public int getSelectedElement()
+    {
+        return dd_spell_inventory[0][element_selection].ID;
+    }
+
+    public int getSpellType(int slot)
+    {
+        return dd_spell_inventory[1][slot].ID;
     }
 }

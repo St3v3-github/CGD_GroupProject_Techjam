@@ -22,6 +22,7 @@ public class InputManager : MonoBehaviour
     [Header("Other")]
     public bool interactInput = false;
     public bool meleeInput = false;
+    public GameObject player_prefab;
 
     [Header("DEMO_DELETE_LATER")]
     public GameObject uiHandler;
@@ -88,47 +89,45 @@ public class InputManager : MonoBehaviour
         if (ctx.action.WasReleasedThisFrame())
         {
             InputControl actionInput = ctx.control;
+            int slotTarget = 0;
+            switch (actionInput.name)
+            {
+                case "1":
+                    slotTarget = 0;
+                    Debug.Log("Button 1 was pressed, setting slot 0.");
+                    break;
+                case "2":
+                    slotTarget = 1;
+                    Debug.Log("Button 2 was pressed, setting slot 1.");
+                    break;
+                case "3":
+                    slotTarget = 2;
+                    Debug.Log("Button 3 was pressed, setting slot 2.");
+                    break;
+                case "4":
+                    slotTarget = 3;
+                    Debug.Log("Button 4 was pressed, setting slot 3.");
+                    break;
+                case "left":
+                    slotTarget = 0;
+                    Debug.Log("Button left was pressed, setting slot 0.");
+                    break;
+                case "up":
+                    slotTarget = 1;
+                    Debug.Log("Button up was pressed, setting slot 1.");
+                    break;
+                case "right":
+                    slotTarget = 2;
+                    Debug.Log("Button right was pressed, setting slot 2.");
+                    break;
+                case "down":
+                    slotTarget = 3;
+                    Debug.Log("Button down was pressed, setting slot 3.");
+                    break;
+            }
 
             if (ray.target != null && ray.target.GetComponent<ItemInfo>().GetItemData().type == 0)
             {
-                int slotTarget = 0;
-                switch (actionInput.name)
-                {
-                    case "1":
-                        slotTarget = 0;
-                        Debug.Log("Button 1 was pressed, setting slot 0.");
-                        break;
-                    case "2":
-                        slotTarget = 1;
-                        Debug.Log("Button 2 was pressed, setting slot 1.");
-                        break;
-                    case "3":
-                        slotTarget = 2;
-                        Debug.Log("Button 3 was pressed, setting slot 2.");
-                        break;
-                    case "4":
-                        slotTarget = 3;
-                        Debug.Log("Button 4 was pressed, setting slot 3.");
-                        break;
-                    case "left":
-                        slotTarget = 0;
-                        Debug.Log("Button left was pressed, setting slot 0.");
-                        break;
-                    case "up":
-                        slotTarget = 1;
-                        Debug.Log("Button up was pressed, setting slot 1.");
-                        break;
-                    case "right":
-                        slotTarget = 2;
-                        Debug.Log("Button right was pressed, setting slot 2.");
-                        break;
-                    case "down":
-                        slotTarget = 3;
-                        Debug.Log("Button down was pressed, setting slot 3.");
-                        break;
-                }
-
-
                 ItemData unequipped = inventory.equipFromWorld(ray.target.GetComponent<ItemInfo>().GetItemData(), slotTarget);
                 ray.target.GetComponent<ItemScript>().Interact();
 
@@ -159,6 +158,14 @@ public class InputManager : MonoBehaviour
             {
 
                 //switch element on UI and maybe ability manager?
+                if (inventory.setElementSelection(slotTarget))
+                {
+                    //update UI
+                }
+                else
+                {
+                    //You tried to select an empty slot you dimwit
+                }
             }
 
 
@@ -172,39 +179,36 @@ public class InputManager : MonoBehaviour
         {
             InputControl actionInput = ctx.control;
             string actionButton = actionInput.name;
-
+            int slotTarget = 0;
+            switch (actionButton)
+            {
+                case "5":
+                    slotTarget = 0;
+                    break;
+                case "6":
+                    slotTarget = 1;
+                    break;
+                case "7":
+                    slotTarget = 2;
+                    break;
+                case "8":
+                    slotTarget = 3;
+                    break;
+                case "leftTrigger":
+                    slotTarget = 0;
+                    break;
+                case "leftBumper":
+                    slotTarget = 1;
+                    break;
+                case "rightTrigger":
+                    slotTarget = 2;
+                    break;
+                case "rightBumper":
+                    slotTarget = 3;
+                    break;
+            }
             if (ray.target != null && ray.target.GetComponent<ItemInfo>().GetItemData().type == 1)
             {
-                int slotTarget = 0;
-                switch (actionButton)
-                {
-                    case "5":
-                        slotTarget = 0;
-                        break;
-                    case "6":
-                        slotTarget = 1;
-                        break;
-                    case "7":
-                        slotTarget = 2;
-                        break;
-                    case "8":
-                        slotTarget = 3;
-                        break;
-                    case "leftTrigger":
-                        slotTarget = 0;
-                        break;
-                    case "leftBumper":
-                        slotTarget = 1;
-                        break;
-                    case "rightTrigger":
-                        slotTarget = 2;
-                        break;
-                    case "rightBumper":
-                        slotTarget = 3;
-                        break;
-                }
-
-
                 ItemData unequipped = inventory.equipFromWorld(ray.target.GetComponent<ItemInfo>().GetItemData(), slotTarget);
                 ray.target.GetComponent<ItemScript>().Interact();
 
@@ -234,6 +238,19 @@ public class InputManager : MonoBehaviour
             else
             {
                 //call for casting spell
+                inventory.getSelectedElement(); //-> Gives Element ID
+                inventory.getSpellType(slotTarget); //-> Gives Spell Type ID
+                switch(inventory.getSelectedElement())
+                {
+                    case 1:
+                        switch(inventory.getSpellType(slotTarget))
+                        {
+                            case 1:
+                                player_prefab.GetComponent<FireProjectile>().Fire();
+                                break;
+                        }
+                        break;
+                }
             }
         }
 
