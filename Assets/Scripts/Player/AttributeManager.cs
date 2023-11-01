@@ -53,11 +53,24 @@ public class AttributeManager : MonoBehaviour
     {
 
         health -= damage;
+        ChangeStatus(statusEffect);
 
         //Particles and Shaders called here
 
 
 
+
+
+
+        return health;
+    }
+
+    public float Heal(float heal)
+    {
+
+        health += heal;
+
+        //Particles and Shaders called here
 
 
         return health;
