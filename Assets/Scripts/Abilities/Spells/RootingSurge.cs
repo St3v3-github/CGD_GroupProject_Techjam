@@ -7,24 +7,28 @@ using static UnityEngine.EventSystems.EventTrigger;
 public class RootingSurge : MonoBehaviour
 {
 
-    public float range = 5f; // Range
+    public float range = 8f; // Range
     public float angle = 30f; // Angle of the cone
     public float damage = 10f; // Damage
     public StatusEffect statusEffect = new Fire();
     public GameObject particlePrefab;
     public Transform playerCam;
+    private PlayerController playerCon;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerCon = GetComponent<PlayerController>();
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && playerCon.isGrounded)
         {
+
             Surge();
 
 
@@ -37,27 +41,50 @@ public class RootingSurge : MonoBehaviour
         Vector3 spawnLocation = transform.position;
         spawnLocation.y = 0;
 
-        //remove y component of angle
+        // Finds ground beneath you
 
-        //Quaternion.EulerRotation rootAngle = playerCam.rotation;
-        //rootAngle.eulerAngles.y = 0;
-        GameObject roots = Instantiate(particlePrefab, spawnLocation, playerCam.rotation);
+        GameObject test;
+        //test = Physics.Raycast(transform.position, Vector3.down, playerCon.playerHeight * 0.5f + 0.5f, playerCon.groundLayer);
 
-        Collider2D[] players = Physics2D.OverlapCircleAll(transform.position, range);
 
-        foreach (Collider2D player in players)
+        // remove up component of angle
+
+        Quaternion originalQuaternion = playerCam.rotation; // Replace this with your quaternion
+        Vector3 eulerAngles = originalQuaternion.eulerAngles;
+        eulerAngles.x = 0f;
+        eulerAngles.z = 0f;
+        Quaternion rootRotation = Quaternion.Euler(eulerAngles);
+
+        // Create Particle prefab
+
+        GameObject roots = Instantiate(particlePrefab, spawnLocation, rootRotation);
+
+
+        Collider[] players = Physics.OverlapSphere(transform.position, range);
+
+        foreach (Collider player in players)
         {
-            Vector2 directionToPlayer = player.transform.position - transform.position;
-            float angleToPlayer = Vector2.Angle(transform.forward, directionToPlayer);
+            Vector3 directionToPlayer = player.transform.position - transform.position;
+            float angleToPlayer = Vector3.Angle(playerCam.forward, directionToPlayer);
 
-            if (angleToPlayer <= angle)
+            // Calculate the angle difference between the camera forward direction and to the player
+            Vector3 eulerRotation = playerCam.rotation.eulerAngles;
+            float angleDifference = Mathf.Abs(Mathf.DeltaAngle(eulerRotation.y, Mathf.Atan2(directionToPlayer.x, directionToPlayer.z) * Mathf.Rad2Deg));
+
+            if (angleToPlayer < angle / 2f && angleDifference < angle / 2f)
             {
-                AttributeManager attributes = player.gameObject.GetComponent<AttributeManager>();
-
-                if (attributes != null)
+                if (player.tag == "Player")
                 {
-                    attributes.TakeDamage(damage, statusEffect);
+                    Debug.Log("hit object: " + player.gameObject.name);
+                    AttributeManager attributes = player.gameObject.GetComponent<AttributeManager>();
+
+                    if (attributes != null)
+                    {
+                        attributes.TakeDamage(damage, statusEffect);
+                    }
                 }
+
+                
 
             }
         }
