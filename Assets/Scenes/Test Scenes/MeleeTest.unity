@@ -3180,6 +3180,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8848718441287511737, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: projectileForce
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8848718441287511737, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 2549314221037139667, guid: a0841cc0bab753a4cb5e13816d170ab5, type: 3}
     - target: {fileID: 9072694853740856930, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -3188,6 +3196,12 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3859704533913907210, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 991526229}
+    - targetCorrespondingSourceObject: {fileID: 3859704533913907210, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 991526228}
     - targetCorrespondingSourceObject: {fileID: 2618948000053937510, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 673463402}
@@ -3491,6 +3505,45 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4692323890234064377, guid: 514995280cb39564e86dae2bb847c37c, type: 3}
   m_PrefabInstance: {fileID: 1534778502}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &991526221 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3859704533913907210, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+  m_PrefabInstance: {fileID: 898750591}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &991526228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991526221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee80f7b3822f2684c97c17f28d0c6c4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blizzardPrefab: {fileID: 6001374758848628779, guid: c1e640d90191bcc4f83895d4ecf4c138, type: 3}
+  blizzardHeight: 3
+  blizzardSpawnTime: 1
+  blizzardDespawnTime: 6
+--- !u!114 &991526229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991526221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae63b99e62fab64439fb7a76d0009acb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blizzardPrefab: {fileID: 6001374758848628779, guid: c1e640d90191bcc4f83895d4ecf4c138, type: 3}
+  holoPrefab: {fileID: 4036401234396823072, guid: 16151aaf02d30594aa97845f19f76d85, type: 3}
+  holographic: {fileID: 0}
+  isCastingBlizzard: 0
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  playerCamera: {fileID: 1922046195}
 --- !u!1 &1001184222 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5372222664944572859, guid: 514995280cb39564e86dae2bb847c37c, type: 3}
