@@ -13,7 +13,7 @@ public class FireProjectile : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            //Fire();
+            Fire();
         }
     }
 
