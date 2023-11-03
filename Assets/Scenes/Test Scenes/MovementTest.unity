@@ -615,19 +615,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1350982752359212325, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7099424
       objectReference: {fileID: 0}
     - target: {fileID: 1350982752359212325, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1350982752359212325, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.70425975
       objectReference: {fileID: 0}
     - target: {fileID: 1350982752359212325, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1350982752359212325, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -635,7 +635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1350982752359212325, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 89.54
       objectReference: {fileID: 0}
     - target: {fileID: 1350982752359212325, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -651,11 +651,11 @@ PrefabInstance:
       objectReference: {fileID: 1511450109}
     - target: {fileID: 3959846436250863330, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: gravity
-      value: 19
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3959846436250863330, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: friction
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3959846436250863330, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: character
@@ -667,7 +667,7 @@ PrefabInstance:
       objectReference: {fileID: 1222133404}
     - target: {fileID: 3959846436250863330, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: jump_force
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3959846436250863330, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: air_control
@@ -709,11 +709,18 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[12].m_ActionName
       value: Player/Melee[/Keyboard/f]
       objectReference: {fileID: 0}
+    - target: {fileID: 5961008956634690483, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: smooth
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4820713174134469720, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2618948000053937510, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1222133414}
     - targetCorrespondingSourceObject: {fileID: 2618948000053937510, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1222133411}
@@ -870,6 +877,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0c7f554672de8c46bc614a309ef7b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1222133414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222133403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c7e9e60bf2a9db409acd4b1655dcc0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  refresh_rate: 2
 --- !u!4 &1511450104 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4173836432881129615, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}

@@ -65,13 +65,15 @@ public class PlayerController : MonoBehaviour
         player_transform = transform;
         character = GetComponent<CharacterController>();
 
-        //camera_controller = _camera.GetComponent<CameraController>();
-        //camera_controller.Init(player_transform);
+        camera_controller = _camera.GetComponent<CameraController>();
+        camera_transform = _camera.transform;
+        camera_controller.Init(player_transform, camera_transform);
     }
 
     public void Update()
     {
         move_input = new Vector3(input_manager.movementInput.y, 0, input_manager.movementInput.x);
+        camera_controller.CursorLock();
 
         QueueJump();
         // Sets the player movement state.
@@ -91,6 +93,9 @@ public class PlayerController : MonoBehaviour
 
         // Move the character.
         character.Move(player_velocity * Time.deltaTime);
+
+        //Move/rotate camera
+        camera_controller.LookRotation(player_transform, camera_transform);
     }
 
     // Queues the next jump.

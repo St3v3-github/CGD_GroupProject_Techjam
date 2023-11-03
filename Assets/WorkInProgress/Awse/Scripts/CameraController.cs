@@ -1,56 +1,92 @@
+using System;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    InputManager inputManager;
+    InputManager input_manager;
 
-    public float sensitivityX;
-    public float sensitivityY;
+    [SerializeField] private float sensitivity_x = 2f;
+    [SerializeField] private float sensitivity_y = 2f;
+    [SerializeField] private bool clamp_vertical_rot = true;
+    [SerializeField] private float minimum_x = -90F;
+    [SerializeField] private float maximum_x = 90F;
+    [SerializeField] private bool smooth = false;
+    [SerializeField] private float smooth_time = 5f;
+    [SerializeField] private bool cursor_lock = true;
 
-    public Transform orientation;
+    private Quaternion character_rotation;
+    private Quaternion camera_rotation;
 
-    float rotationX;
-    float rotationY;
-
-    //private Quaternion character_target_rotation;
-    //private Transform character_transform;
-   
-
-    /*public void Init(Transform _character)
+    public void Init(Transform _character, Transform _camera)
     {
-        character_target_rotation = _character.localRotation;
-        character_transform = _character;
-    }*/
+        character_rotation = _character.localRotation;
+        camera_rotation = _camera.localRotation;
+    }
 
     private void Awake()
     {
-        inputManager = FindObjectOfType<InputManager>();
+        input_manager = FindObjectOfType<InputManager>();
     }
 
     private void Start()
     {
-/*        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;*/
+        /*      Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;*/
     }
 
-    private void Update()
+    public void LookRotation(Transform _character, Transform _camera)
     {
         //Access inputs
-        float inputX = inputManager.cameraInput.normalized.x * Time.deltaTime * sensitivityX;
-        float inputY = inputManager.cameraInput.normalized.y * Time.deltaTime * sensitivityY;
+        //float inputX = inputManager.cameraInput.normalized.x * Time.deltaTime * sensitivityX;
+        //float inputY = inputManager.cameraInput.normalized.y * Time.deltaTime * sensitivityY;
 
-        rotationY += inputX;
-        rotationX -= inputY;
-        rotationX = Mathf.Clamp(rotationX, -80f, 80f);
+        float rotation_y = input_manager.cameraInput.x * sensitivity_x;
+        float rotation_x = input_manager.cameraInput.y * sensitivity_y;
 
-        //Rotate Camera + orientation
-        transform.rotation = Quaternion.Euler(rotationX, rotationY, 0);
-        orientation.rotation = Quaternion.Euler(0, rotationY, 0);
+        character_rotation *= Quaternion.Euler(0f, rotation_y, 0f);
+        camera_rotation *= Quaternion.Euler(-rotation_x, 0f, 0f);
 
-        //rotate player
-       // character_target_rotation *= Quaternion.Euler(0f, rotationY, 0f);
+        if(clamp_vertical_rot)
+        {
+            camera_rotation = ClampRotationAroundXAxis(camera_rotation);
+        }
 
-        //character_transform.localRotation = character_target_rotation;
+        if(smooth)
+        {
+            _character.localRotation = Quaternion.Slerp(_character.localRotation, character_rotation, smooth_time * Time.deltaTime);
+            _camera.localRotation = Quaternion.Slerp(_camera.localRotation, camera_rotation, smooth_time * Time.deltaTime);
+        }
+        else
+        {
+            _character.localRotation = character_rotation;
+            _camera.localRotation = camera_rotation;
+        }
 
+        CursorLock();
+    }
+
+    public void CursorLock()
+    {
+        if(cursor_lock)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+
+    private Quaternion ClampRotationAroundXAxis(Quaternion q)
+    {
+        q.x /= q.w;
+        q.y /= q.w;
+        q.z /= q.w;
+        q.w = 1.0f;
+
+        float angle_x = 2.0f * Mathf.Rad2Deg * Mathf.Atan(q.x);
+
+        angle_x = Mathf.Clamp(angle_x, minimum_x, maximum_x);
+
+        q.x = Mathf.Tan(0.5f * Mathf.Deg2Rad * angle_x);
+
+        return q;
     }
 }
