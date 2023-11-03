@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [System.Serializable]
     public class MovementSettings
     {
         public float max_speed;
@@ -18,6 +19,9 @@ public class PlayerController : MonoBehaviour
     }
 
     InputManager inputManager;
+    [Header("Aiming")]
+    [SerializeField] public Camera _camera;
+    [SerializeField] public CameraController camera_controller;
 
     [Header("Movement")]
     //public float playerSpeed;
@@ -27,7 +31,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Auto jump when holding down the jump button")]
     [SerializeField] public bool auto_jump = false;
     [Tooltip("Precision of air control")]
-    [SerializeField] public float air_control;
+    [SerializeField] public float air_control = 0.3f;
     [SerializeField] public MovementSettings ground_settings = new MovementSettings(7, 14, 10);
     [SerializeField] public MovementSettings air_settings = new MovementSettings(7, 2, 2);
     [SerializeField] public MovementSettings strafe_settings = new MovementSettings(1, 50, 50);
@@ -40,7 +44,7 @@ public class PlayerController : MonoBehaviour
     //queues next jump
     public bool jump_queued = false;
     //real time fricton value
-    public float player_friction;
+    public float player_friction = 0;
 
     public Vector3 move_input;
     public Transform _transform;
@@ -80,19 +84,20 @@ public class PlayerController : MonoBehaviour
     {
         _transform = transform;
         character = GetComponent<CharacterController>();
+        camera_controller = _camera.GetComponent<CameraController>();
+        camera_controller.Init(_transform);
         //playerRigidbody = GetComponent<Rigidbody>();
         //playerRigidbody.freezeRotation = true;
     }
 
     private void Update()
     {
-
+        move_input = new Vector3(inputManager.movementInput.x, 0, inputManager.movementInput.y);
     }
 
     private void FixedUpdate()
     {
         //Movement has to go in here
-        move_input = new Vector3(inputManager.movementInput.x, 0, inputManager.movementInput.y);
         QueueJump();
 
         if(character.isGrounded)
@@ -135,7 +140,7 @@ public class PlayerController : MonoBehaviour
         float _acceleration;
 
         var w_direction = new Vector3(move_input.x, 0, move_input.z);
-        w_direction = transform.TransformDirection(w_direction);
+        w_direction = _transform.TransformDirection(w_direction);
 
         float w_speed = w_direction.magnitude;
         w_speed *= air_settings.max_speed;
@@ -185,9 +190,10 @@ public class PlayerController : MonoBehaviour
         float z_speed = player_velocity.y;
         player_velocity.y = 0;
 
-        //apparently below is equal to VectorNormalize() used by idtech, prayge
+        //next 2 lines below are equal to VectorNormalize() used by idtech, prayge
         float speed = player_velocity.magnitude;
         player_velocity.Normalize();
+
         float dot = Vector3.Dot(player_velocity, target_direction);
         float i = 32;
         i *= air_control * dot * dot * Time.deltaTime;
@@ -256,6 +262,7 @@ public class PlayerController : MonoBehaviour
 
         float new_speed = speed - drop;
         player_friction = new_speed;
+
         if(new_speed < 0)
         {
             new_speed = 0;

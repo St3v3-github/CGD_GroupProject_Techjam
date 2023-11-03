@@ -12,6 +12,16 @@ public class CameraController : MonoBehaviour
     float rotationX;
     float rotationY;
 
+    private Quaternion character_target_rotation;
+    private Transform character_transform;
+   
+
+    public void Init(Transform _character)
+    {
+        character_target_rotation = _character.localRotation;
+        character_transform = _character;
+    }
+
     private void Awake()
     {
         inputManager = FindObjectOfType<InputManager>();
@@ -36,6 +46,11 @@ public class CameraController : MonoBehaviour
         //Rotate Camera + orientation
         transform.rotation = Quaternion.Euler(rotationX, rotationY, 0);
         orientation.rotation = Quaternion.Euler(0, rotationY, 0);
+
+        //rotate player
+        character_target_rotation *= Quaternion.Euler(0f, rotationY, 0f);
+
+        character_transform.localRotation = character_target_rotation;
 
     }
 }
