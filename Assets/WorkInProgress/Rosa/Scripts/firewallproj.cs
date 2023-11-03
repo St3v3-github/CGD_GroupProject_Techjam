@@ -1,0 +1,37 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class firewallproj : MonoBehaviour
+{
+    public GameObject projectilePrefab;
+    public Transform firePoint;
+    private Vector3 verticalOffset = new Vector3(0f, 0.5f, 0f);
+    public float projectileForce = 100f;
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log("p pressed");
+            Fire();
+        }
+    }
+
+    public void Fire()
+    {
+        //Vector3 projectileSpawnPoint = firePoint.position;
+        //projectileSpawnPoint.x += (firePoint.forward * 0.5f).x;
+        //projectileSpawnPoint.z += (firePoint.forward * 0.5f).z;
+        Debug.Log("fire called");
+        GameObject projectile = Instantiate(projectilePrefab, firePoint.position - verticalOffset + firePoint.forward, firePoint.rotation);
+
+        Rigidbody rb = projectile.GetComponent<Rigidbody>();
+
+        if (rb != null)
+        {
+            rb.AddForce(firePoint.forward * projectileForce, ForceMode.Impulse);
+            
+        }
+    }
+}
