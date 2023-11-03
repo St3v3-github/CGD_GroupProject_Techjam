@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
     public void Update()
     {
-        move_input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        move_input = new Vector3(input_manager.movementInput.y, 0, input_manager.movementInput.x);
 
         QueueJump();
         // Sets the player movement state.
