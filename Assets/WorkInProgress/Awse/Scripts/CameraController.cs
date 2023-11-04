@@ -5,8 +5,8 @@ public class CameraController : MonoBehaviour
 {
     InputManager input_manager;
 
-    [SerializeField] private float sensitivity_x = 2f;
-    [SerializeField] private float sensitivity_y = 2f;
+    [SerializeField] private float sensitivity_x = 1f;
+    [SerializeField] private float sensitivity_y = 1f;
     [SerializeField] private bool clamp_vertical_rot = true;
     [SerializeField] private float minimum_x = -90F;
     [SerializeField] private float maximum_x = 90F;
@@ -40,6 +40,8 @@ public class CameraController : MonoBehaviour
         //float inputX = inputManager.cameraInput.normalized.x * Time.deltaTime * sensitivityX;
         //float inputY = inputManager.cameraInput.normalized.y * Time.deltaTime * sensitivityY;
 
+        //i dont know why this has to be set up like this, but any other way and the camera rotation is even more fucked
+        //this is the only thing ive tried that seems to be fine
         float rotation_y = input_manager.cameraInput.x * sensitivity_x;
         float rotation_x = input_manager.cameraInput.y * sensitivity_y;
 

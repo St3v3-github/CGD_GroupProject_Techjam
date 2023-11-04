@@ -75,6 +75,9 @@ public class PlayerController : MonoBehaviour
         move_input = new Vector3(input_manager.movementInput.y, 0, input_manager.movementInput.x);
         camera_controller.CursorLock();
 
+        //Move/rotate camera
+        camera_controller.LookRotation(player_transform, camera_transform);
+
         QueueJump();
         // Sets the player movement state.
         if (character.isGrounded)
@@ -93,9 +96,6 @@ public class PlayerController : MonoBehaviour
 
         // Move the character.
         character.Move(player_velocity * Time.deltaTime);
-
-        //Move/rotate camera
-        camera_controller.LookRotation(player_transform, camera_transform);
     }
 
     // Queues the next jump.
