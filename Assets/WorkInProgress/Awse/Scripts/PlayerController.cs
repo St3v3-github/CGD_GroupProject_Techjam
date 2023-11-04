@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float jump_force = 8;
     [Tooltip("Automatically jump when holding jump button")]
     [SerializeField] public bool auto_jump = false;
-    [Tooltip("How precise the player's air control is")]
+    [Tooltip("How precise the player's air control is, ranges from 0 to 1")]
     [SerializeField] public float air_control = 0.3f;
     [SerializeField] public MovementSettings ground_settings = new MovementSettings(7, 14, 10);
     [SerializeField] public MovementSettings air_settings = new MovementSettings(7, 2, 2);
