@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Beam : MonoBehaviour
@@ -9,17 +10,33 @@ public class Beam : MonoBehaviour
     public float beamRange = 50f;
     public float abilityDuration = 5f;  // Duration of the beam ability in seconds
     public LayerMask targetLayer;
+    public GameObject particlePrefab;
+    private GameObject beam;
+    public bool active = false;
+    public Transform playerCam;
 
     private float lastTickTime;
     private float abilityEndTime;
 
     void Start()
     {
-        abilityEndTime = Time.time + abilityDuration; // Set the end time of the ability
+        
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.B) && !active)
+        {
+            Vector3 spawnPosition = playerCam.position;
+            spawnPosition.y -= 0.4f;
+            active = true;
+            abilityEndTime = Time.time + abilityDuration; // Set the end time of the ability
+            beam = Instantiate(particlePrefab, spawnPosition + (playerCam.forward), playerCam.rotation);
+            beam.transform.SetParent(playerCam.transform, true);
+
+
+        }
+
         // Check if the ability is still active based on the duration
         if (Time.time < abilityEndTime)
         {
@@ -41,5 +58,12 @@ public class Beam : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            // Disable the beam ability when the duration is over
+            active = false;
+            Destroy(beam);
+        }
     }
 }
+
