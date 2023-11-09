@@ -30,7 +30,7 @@ public class Summon : MonoBehaviour
         Quaternion summonRoation = summonPoint.rotation;
         summonRoation.x = 0f;
         summonRoation.z = 0f;
-        GameObject summon = Instantiate(summonPrefab, summonPoint.position - verticalOffset + Vector3.Scale(horizontalOffset, summonPoint.forward) * 5, summonRoation);
+        GameObject summon = Instantiate(summonPrefab, summonPoint.position - verticalOffset + Vector3.Scale(horizontalOffset, summonPoint.forward), summonRoation);
         summon.tag = this.tag + "Spell";
     }
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7390758391524146724}
   - component: {fileID: 5878998437087627801}
   - component: {fileID: 1276767973959915904}
+  - component: {fileID: 3494166498029651919}
   m_Layer: 0
   m_Name: SummonedStag
   m_TagString: Untagged
@@ -51,7 +52,10 @@ MonoBehaviour:
   deathParticle: {fileID: 2978121533964236345}
   statusEffect: {fileID: 0}
   damage: 30
-  moveSpeed: 5
+  moveSpeed: 10
+  rotationSpeed: 5
+  visionAngle: 90
+  hasTarget: 0
 --- !u!65 &1276767973959915904
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -67,12 +71,39 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1.5, y: 2, z: 2}
   m_Center: {x: 0, y: 1, z: 0.7}
+--- !u!54 &3494166498029651919
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3409078487432782248}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!1001 &431458801307237570
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -514,6 +545,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3982802121827297922}
     m_Modifications:
+    - target: {fileID: 198723151463817030, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198723151463817030, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198723151463817030, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198955094679354124, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199716733195319564, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199925524669934206, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1345027383935582, guid: 6f0890880019da2458189cb3e81d44da, type: 3}
       propertyPath: m_Name
       value: FX_Fire_Big_02
@@ -575,30 +630,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 199925524669934206, guid: 6f0890880019da2458189cb3e81d44da, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198723151463817030, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
-      propertyPath: playOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198723151463817030, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
-      propertyPath: moveWithTransform
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198723151463817030, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
-      propertyPath: InitialModule.startSpeed.minScalar
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 198955094679354124, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
-      propertyPath: playOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 199716733195319564, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 199925524669934206, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}

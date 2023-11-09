@@ -9,8 +9,12 @@ public class SummonedAnimal : MonoBehaviour
     public StatusEffect statusEffect;
     public float damage = 30f;
     public float moveSpeed = 5f;
-    public float rotationSpeed = 10f;
-    private GameObject Target;
+    public float rotationSpeed = 1f;
+    public float visionAngle = 60f;
+
+    private GameObject target;
+    private string attackTag;
+    public bool hasTarget = false;
 
 
     void Start()
@@ -18,45 +22,60 @@ public class SummonedAnimal : MonoBehaviour
         StartCoroutine(timerCoroutine());
         if (this.tag == "Player1Spell")
         {
-            Target = FindTarget("Player2");
+            attackTag = "Player2";
+            if (target = FindTarget("Player2"))
+            {
+                hasTarget = true;
+            }
         }
         else if (this.tag == "Player2Spell")
         {
-           Target = FindTarget("Player1");
+            attackTag = "Player1";
+            if (target = FindTarget("Player1"))
+            {
+                hasTarget = true;
+            }
         }
     }
 
     void Update()
     {
-        if (Target != null)
+        if (target != null && hasTarget)
         {
-            MoveTowardsTarget(Target.transform.position);
+            MoveTowardsTarget(target.transform.position);
         }
         else
         {
-            transform.Translate(transform.forward * moveSpeed * Time.deltaTime);
+            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
 
             if (this.tag == "Player1Spell")
             {
-                Target = FindTarget("Player2");
+                if (target = FindTarget("Player2"))
+                {
+                    hasTarget = true;
+                }
             }
             else if (this.tag == "Player2Spell")
             {
-                Target = FindTarget("Player1");
+                if (target = FindTarget("Player1"))
+                {
+                    hasTarget = true;
+                }
             }
 
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision detected with: " + other.gameObject.name);
-        animator.SetTrigger("Attack");
-
+        
         // Code to damage player
-        if (other.tag == this.tag)
+        if (collision.gameObject.tag == attackTag)
         {
-            AttributeManager attributes = other.gameObject.GetComponent<AttributeManager>();
+            animator.SetTrigger("Attack");
+            Debug.Log("Collision detected with: " + collision.gameObject.name);
+
+            AttributeManager attributes = collision.gameObject.GetComponent<AttributeManager>();
 
             if (attributes != null)
             {
@@ -67,44 +86,58 @@ public class SummonedAnimal : MonoBehaviour
             deathParticle.Play(true);
             StartCoroutine(DeathCoroutine());
         }
+
+        // Die if hit wall
+        if (collision.gameObject.layer == 8)
+        {
+            animator.SetTrigger("Attack");
+            deathParticle.Play(true);
+            StartCoroutine(DeathCoroutine());
+        }
     }
 
     GameObject FindTarget(string tag)
-    { 
+    {
         GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag(tag);
         GameObject closestObject = null;
         float closestDistance = Mathf.Infinity;
         Vector3 currentPosition = transform.position;
+        Vector3 forwardDirection = transform.forward;
 
         foreach (GameObject obj in objectsWithTag)
         {
-            float distance = Vector3.Distance(obj.transform.position, currentPosition);
-            if (distance < closestDistance)
+            Vector3 directionToObject = obj.transform.position - currentPosition;
+            float angle = Vector3.Angle(forwardDirection, directionToObject);
+
+            // Check if the object is within the field of view angle
+            if (angle <= visionAngle * 0.5f)
             {
-                closestDistance = distance;
-                closestObject = obj;
+                float distance = directionToObject.magnitude;
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestObject = obj;
+                }
             }
         }
-
-        // Add code to only work when within line o site
-
-        Debug.Log(closestObject.name);
+        
         return closestObject;
     }
 
     void MoveTowardsTarget(Vector3 targetPosition)
     {
-        // Calculate the direction from the current position to the target position
-        Vector3 direction = targetPosition - transform.position;
 
-        // Calculate the rotation towards the target
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        // Calculate the direction from the current position to the target
+        Vector3 directionToTarget = targetPosition - transform.position;
 
-        // Smoothly rotate towards the target using Quaternion.Slerp
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        // Calculate the rotation required to look at the target
+        Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
 
-        // Move towards the target position using Vector3.MoveTowards
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+        // Smoothly rotate towards the target using Quaternion.Lerp
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        // Move towards the target position
+        transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
     }
 
 
@@ -113,14 +146,14 @@ public class SummonedAnimal : MonoBehaviour
 
         yield return new WaitForSeconds(1.1f);
 
-        Destroy(transform.parent.gameObject);
+        Destroy(transform.gameObject);
     }
 
     private IEnumerator timerCoroutine()
     {
 
         yield return new WaitForSeconds(10f);
-        Destroy(transform.parent.gameObject);
+        Destroy(transform.gameObject);
     }
 
 

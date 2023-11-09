@@ -19,13 +19,13 @@ public class CastableAOEStrike : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Vector3 centre = GetMouseWorldPosition();
+        Vector3 centre = GetMouseWorldPosition();
 
-        if (Input.GetKeyDown(KeyCode.Alpha4))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-           // Strike(centre);
+           Strike(centre);
 
-           // DetectCharacters(centre);
+           DetectCharacters(centre);
 
             
         }

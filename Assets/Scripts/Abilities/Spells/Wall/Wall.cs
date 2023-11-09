@@ -29,7 +29,7 @@ public class Wall : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            //StartPlacingWall();
+            StartPlacingWall();
            
         }
 
