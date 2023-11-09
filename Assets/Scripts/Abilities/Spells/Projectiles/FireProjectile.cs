@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 
 public class FireProjectile : MonoBehaviour
@@ -23,6 +24,7 @@ public class FireProjectile : MonoBehaviour
         //projectileSpawnPoint.x += (firePoint.forward * 0.5f).x;
         //projectileSpawnPoint.z += (firePoint.forward * 0.5f).z;
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position - verticalOffset + firePoint.forward, firePoint.rotation);
+        projectile.tag = this.tag + "Spell";
 
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
 

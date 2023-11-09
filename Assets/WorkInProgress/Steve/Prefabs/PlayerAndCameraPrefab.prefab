@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5961008956634690483}
   - component: {fileID: 4595053559896799792}
   - component: {fileID: 6662495801874779436}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,9 +184,10 @@ GameObject:
   - component: {fileID: 7050404239130842567}
   - component: {fileID: 5851204636203729220}
   - component: {fileID: 3959846436250863330}
-  m_Layer: 0
+  - component: {fileID: 3236474580219875079}
+  m_Layer: 7
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -416,6 +417,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 989449cd-f2f9-443a-9e03-4454d2327598
     m_ActionName: Player/SpellTypes[/Keyboard/5,/Keyboard/6,/Keyboard/7,/Keyboard/8]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5851204636203729220}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnMelee
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 03861f45-172b-4b5c-a41d-a0860f14af4b
+    m_ActionName: Player/Melee[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -461,7 +478,9 @@ MonoBehaviour:
   ray: {fileID: 6662495801874779436}
   inventory: {fileID: 2623159539854083677}
   interactInput: 0
+  meleeInput: 0
   player_prefab: {fileID: 3859704533913907210}
+  uiHandler: {fileID: 0}
 --- !u!114 &3959846436250863330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,15 +494,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 6
-  jumpForce: 10
+  jumpForce: 5
   jumpCooldown: 1
-  isReadyToJump: 0
+  isReadyToJump: 1
   playerHeight: 2
   groundLayer:
     serializedVersion: 2
     m_Bits: 1032
   isGrounded: 0
   orientation: {fileID: 8749728419835123434}
+--- !u!114 &3236474580219875079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2618948000053937510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88bef221561a81d428288a281659efe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeDistance: 3
+  meleeDamage: 1
+  meleeSpeed: 0.001
+  meleeDelay: 1
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  cam: {fileID: 6496737443023970982}
 --- !u!1 &3674522211295217223
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,7 +533,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4154839666396091794}
   - component: {fileID: 591765339400379087}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CameraHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -544,7 +583,7 @@ GameObject:
   - component: {fileID: 7738827348918598539}
   - component: {fileID: 7806108214886809912}
   - component: {fileID: 6883050563193714908}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerAndCameraPrefab
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -577,7 +616,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3859704533913907210}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfc573c461106d941a8975549f469eda, type: 3}
   m_Name: 
@@ -625,7 +664,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3859704533913907210}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6177b688cc92211418fc772399bf5eef, type: 3}
   m_Name: 
@@ -686,7 +725,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4510824805268255900}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54bd5eb3078c4464994aa52d8e1f6e13, type: 3}
   m_Name: 
@@ -751,7 +790,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8258196772527019082}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CameraTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -784,7 +823,7 @@ GameObject:
   - component: {fileID: 4775377866700711596}
   - component: {fileID: 7768944799555948239}
   - component: {fileID: 6875825967066257934}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player_Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -865,7 +904,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8749728419835123434}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
