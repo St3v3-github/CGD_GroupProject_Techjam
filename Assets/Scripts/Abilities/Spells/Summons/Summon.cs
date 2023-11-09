@@ -19,9 +19,9 @@ public class Summon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.T))
         {
-            //Spawn();
+            Spawn();
         }
     }
 
