@@ -31,5 +31,6 @@ public class Summon : MonoBehaviour
         summonRoation.x = 0f;
         summonRoation.z = 0f;
         GameObject summon = Instantiate(summonPrefab, summonPoint.position - verticalOffset + Vector3.Scale(horizontalOffset, summonPoint.forward) * 5, summonRoation);
+        summon.tag = this.tag + "Spell";
     }
 }

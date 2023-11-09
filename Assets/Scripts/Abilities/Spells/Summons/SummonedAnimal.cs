@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SummonedStag : MonoBehaviour
+public class SummonedAnimal : MonoBehaviour
 {
     public Animator animator;
     public ParticleSystem deathParticle;
+    public StatusEffect statusEffect;
+    public float damage = 30f;
 
 
     void Start()
@@ -19,9 +21,21 @@ public class SummonedStag : MonoBehaviour
         animator.SetTrigger("Attack");
 
         // Code to damage player
+        if (other.tag == "player1")
+        {
+            AttributeManager attributes = other.gameObject.GetComponent<AttributeManager>();
 
-        deathParticle.Play(true);
-        StartCoroutine(DeathCoroutine());
+            if (attributes != null)
+            {
+                attributes.TakeDamage(damage, statusEffect);
+            }
+
+
+            deathParticle.Play(true);
+            StartCoroutine(DeathCoroutine());
+        }
+
+        
     }
     private IEnumerator DeathCoroutine()
     {
