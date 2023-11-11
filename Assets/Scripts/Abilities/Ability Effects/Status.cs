@@ -4,14 +4,13 @@ using UnityEngine;
 
 public abstract class StatusEffect : MonoBehaviour
 {
-    protected float duration;
+    protected float duration = 5f;
     protected GameObject affectedObject;
+    public bool active = false;
 
 
-    public StatusEffect(float duration, GameObject affectedObject)
+    public StatusEffect()
     {
-        this.duration = duration;
-        this.affectedObject = affectedObject;
     }
 
     public abstract void ApplyEffect();
@@ -22,19 +21,26 @@ public class Fire : StatusEffect
 {
     private float damagePerSecond = 4;
 
-    public Fire(float duration, float damagePerSecond, GameObject affectedObject) : base(duration, affectedObject)
+    public Fire() : base()
     {
-        this.damagePerSecond = damagePerSecond;
-        ApplyEffect();
     }
 
     public override void ApplyEffect()
     {
+        active = true;
+        StartCoroutine(FireCoroutine());
+    }
+
+    public void ApplyEffect(float duration)
+    {
+        active = true; 
+        this.duration = duration;
         StartCoroutine(FireCoroutine());
     }
 
     public override void RemoveEffect()
     {
+        active = false;
         CancelInvoke("DealDamage");
     }
 
@@ -61,14 +67,13 @@ public class Ice : StatusEffect
 {
     private float speedMultiplier = 0.7f;
 
-    public Ice(float duration, float speedMultiplier, GameObject affectedObject) : base(duration, affectedObject)
+    public Ice() : base()
     {
-        this.speedMultiplier = speedMultiplier;
-        ApplyEffect();
     }
 
     public override void ApplyEffect()
     {
+        active = true;
         AttributeManager attributes = affectedObject.GetComponent<AttributeManager>();
         if (attributes.health > 0)
         {
@@ -76,12 +81,24 @@ public class Ice : StatusEffect
         }
 
         StartCoroutine(IceCoroutine());
+    }
 
+    public void ApplyEffect(float duration)
+    {
+        active = true;
+        this.duration = duration;
+        AttributeManager attributes = affectedObject.GetComponent<AttributeManager>();
+        if (attributes.health > 0)
+        {
+            attributes.SpeedModifier(speedMultiplier);
+        }
 
+        StartCoroutine(IceCoroutine());
     }
 
     public override void RemoveEffect()
     {
+        active = false;
         AttributeManager attributes = affectedObject.GetComponent<AttributeManager>();
         if (attributes.health > 0)
         {
