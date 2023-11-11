@@ -3,7 +3,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //player animator 
+    private Animator playerAnim;
+    private AnimationController Controller;
+
+   
+
     [System.Serializable]
+
+    
     public class MovementSettings
     {
         public float max_speed;
@@ -59,6 +67,10 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         input_manager = FindObjectOfType<InputManager>();
+
+        //set Animator for player
+        playerAnim = GetComponent<Animator>();
+        
     }
 
     public void Start()
@@ -96,6 +108,10 @@ public class PlayerController : MonoBehaviour
 
         // Move the character.
         character.Move(player_velocity * Time.deltaTime);
+
+        //walk animation bool set to true 
+        playerAnim.SetBool("isWalking", true);
+        
     }
 
     //Queue base jump
