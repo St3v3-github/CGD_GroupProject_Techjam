@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float air_control = 0.3f;
     [SerializeField] public MovementSettings ground_settings = new MovementSettings(7, 14, 10);
     [SerializeField] public MovementSettings air_settings = new MovementSettings(7, 2, 2);
-    [SerializeField] public MovementSettings strafe_settings = new MovementSettings(1, 50, 50);
+    [SerializeField] public MovementSettings strafe_settings = new MovementSettings(3, 50, 50);
 
     /// <summary>
     /// Returns player's current speed.
@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
 
     // Used to queue the next jump just before hitting the ground.
     public bool jump_queued = false;
+    public bool double_jump_used = false;
 
     // Used to display real time friction values.
     public float player_friction = 0;
@@ -73,6 +74,8 @@ public class PlayerController : MonoBehaviour
     public void Update()
     {
         move_input = new Vector3(input_manager.movementInput.x, 0, input_manager.movementInput.y);
+        //Move/rotate camera
+        camera_controller.LookRotation(player_transform, camera_transform);
         camera_controller.CursorLock();
 
         QueueJump();
@@ -93,12 +96,9 @@ public class PlayerController : MonoBehaviour
 
         // Move the character.
         character.Move(player_velocity * Time.deltaTime);
-
-        //Move/rotate camera
-        camera_controller.LookRotation(player_transform, camera_transform);
     }
 
-    // Queues the next jump.
+    //Queue base jump
     public void QueueJump()
     {
         if (auto_jump)
@@ -116,7 +116,19 @@ public class PlayerController : MonoBehaviour
         {
             jump_queued = false;
         }
+
+        if (character.isGrounded)
+        {
+            double_jump_used = false;
+        }
     }
+
+    //Kind of scuffed, using coroutine to call this method to allow player to gain some y velocity
+    //before setting double_jump_used to true. works for now
+    /*public void DoubleJumpToggle()
+    {
+        double_jump_used = true;
+    }*/
 
     // Handles the player's air movement.
     public void AirMovement()
@@ -161,6 +173,12 @@ public class PlayerController : MonoBehaviour
 
         // Applies gravity to the player
         player_velocity.y -= gravity * Time.deltaTime;
+
+        /*if(input_manager.jumpInput && !double_jump_used)
+        {
+            player_velocity.y = jump_force;
+            Invoke("DoubleJumpToggle", 0.5f);
+        }*/
     }
 
     //Air control occurs when player is airborne, allowed the player to move horizontally more freely than when grounded.
