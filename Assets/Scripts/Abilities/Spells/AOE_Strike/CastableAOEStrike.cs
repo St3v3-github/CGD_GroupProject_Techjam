@@ -61,7 +61,7 @@ public class CastableAOEStrike : MonoBehaviour
                 
                 Strike(projection.transform.position);
 
-                DetectCharacters(centre);
+                DetectCharacters(projection.transform.position);
 
                 Destroy(projection);
             }

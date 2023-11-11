@@ -6,6 +6,7 @@ public class AttributeManager : MonoBehaviour
 {
     //should be private for final (as we use getters and setters) but keep public for dev so we can eyeball inspector
     [SerializeField] public float health;
+    [SerializeField] public float maxHealth;
     [SerializeField] public int mp;
     [SerializeField] public float speed;
 
@@ -22,6 +23,7 @@ public class AttributeManager : MonoBehaviour
     {
         //set all values to whatever default value we want
         health = 100;
+        maxHealth = 100;
         mp = 100;
     }
 
@@ -49,6 +51,21 @@ public class AttributeManager : MonoBehaviour
         mp = _mp;
     }
 
+    public float TakeDamage(float damage)
+    {
+
+        health -= damage;
+
+        //Particles and Shaders called here
+
+
+
+
+
+
+        return health;
+    }
+
     public float TakeDamage(float damage, StatusEffect statusEffect)
     {
 
@@ -67,8 +84,26 @@ public class AttributeManager : MonoBehaviour
 
     public float Heal(float heal)
     {
+        if (health < maxHealth)
+        {
+            health += heal;
+            if (health > maxHealth)
+            {
+                health = maxHealth;
+            }
+        }
+        
 
+        //Particles and Shaders called here
+
+
+        return health;
+    }
+
+    public float OverHeal(float heal)
+    {
         health += heal;
+
 
         //Particles and Shaders called here
 
