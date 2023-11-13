@@ -299,7 +299,17 @@ public class InputManager : MonoBehaviour
                             case 2: // Electric Areaw type
                                 Vector3 centre = player_prefab.GetComponent<CastableAOEStrike>().GetMouseWorldPosition();
                                 player_prefab.GetComponent<CastableAOEStrike>().Strike(centre);
-                                player_prefab.GetComponent<CastableAOEStrike>().DetectCharacters(centre);
+                                string targetTag = "Player1";
+
+                                if (this.tag == "Player1")
+                                {
+                                    targetTag = "Player2";
+                                }
+                                else if (this.tag == "Player2")
+                                {
+                                    targetTag = "Player1";
+                                }
+                                player_prefab.GetComponent<CastableAOEStrike>().DetectCharacters(centre, targetTag);
                                 break;
                             case 3: // Electric summon type
                                 break;

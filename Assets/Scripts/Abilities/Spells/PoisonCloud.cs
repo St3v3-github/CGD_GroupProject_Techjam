@@ -20,6 +20,7 @@ public class PoisonCloud : MonoBehaviour
     {
         // Get the reference to the SphereCollider component
         poisonCollider = GetComponent<SphereCollider>();
+        StartCoroutine(timerCoroutine());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -83,6 +84,14 @@ public class PoisonCloud : MonoBehaviour
         {
             attributes.TakeDamage(damage);
         }
+    }
+
+
+    private IEnumerator timerCoroutine()
+    {
+
+        yield return new WaitForSeconds(10f);
+        Destroy(transform.gameObject);
     }
 }
 

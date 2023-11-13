@@ -6,11 +6,12 @@ using UnityEngine;
 public class CastableAOEStrike : MonoBehaviour
 {
     public float attackRadius = 10f;
+    public float damage = 60f;
     public GameObject projectionPrefab;
     public GameObject particlePrefab;
     public GameObject projection;
     public Camera playerCamera;
-    public int state = 0;
+    private bool projectionOn = false;
 
 
     // Start is called before the first frame update
@@ -22,77 +23,100 @@ public class CastableAOEStrike : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 centre = GetMouseWorldPosition();
-
-        if (state == 0)
+        if (!projectionOn)
         {
-
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 projection = Instantiate(projectionPrefab, Vector3.zero, Quaternion.identity);
-                state = 1;
+                projectionOn = true;
 
             }
         }
-        else if (state == 1)
+        else if (projectionOn)
         {
-            // Get the camera's position and forward direction
-            Vector3 cameraPosition = playerCamera.transform.position;
-            Vector3 cameraForward = playerCamera.transform.forward;
 
-            // Create a ray from the camera's position in the forward direction
-            Ray ray = new Ray(cameraPosition, cameraForward);
-            RaycastHit hit;
-
-
-
-            // Check if the ray hits something on the specified layer
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            if (Input.GetKeyDown(KeyCode.Q) || Input.GetMouseButtonDown(1))
             {
-
-
-                // Move the specified object to the point where the ray hits the ground
-                UpdateProjection(projection, hit.point);
+                projectionOn = false;
+                Destroy(projection);
             }
 
-            if (Input.GetKeyDown(KeyCode.P))
+            UpdateProjection();
+
+            if (Input.GetMouseButtonDown(0))
             {
-                state = 0;
-                
                 Strike(projection.transform.position);
-
-                DetectCharacters(projection.transform.position);
-
-                Destroy(projection);
             }
         }
 
     }
 
-    void UpdateProjection(GameObject obj, Vector3 targetPosition)
+    void UpdateProjection()
     {
-        // Ensure the object stays on the ground by setting its y-coordinate to the hit point's y-coordinate
-        targetPosition.y += 0.2f;
 
-        // Set the object's position to the hit point
-        obj.transform.position = targetPosition;
+
+        // Get the camera's position and forward direction
+        Vector3 cameraPosition = playerCamera.transform.position;
+        Vector3 cameraForward = playerCamera.transform.forward;
+
+        // Create a ray from the camera's position in the forward direction
+        Ray ray = new Ray(cameraPosition, cameraForward);
+        RaycastHit hit;
+
+        // Check if the ray hits something on the specified layer
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+
+            Vector3 targetPosition = hit.point;
+            // Ensure the object stays on the ground by setting its y-coordinate to the hit point's y-coordinate
+            targetPosition.y += 0.2f;
+
+            // Set the object's position to the hit point
+            projection.transform.position = targetPosition;
+        }
+
+        
     }
 
     public void Strike(Vector3 centre)
+    {
+        projectionOn = false;
+
+        // Creates Visual Prefab
+        InstantiateStrike(projection.transform.position);
+
+        string targetTag = "Player1";
+
+        if (this.tag == "Player1")
+        {
+            targetTag = "Player2";
+        }
+        else if (this.tag == "Player2")
+        {
+            targetTag = "Player1";
+        }
+
+
+        DetectCharacters(projection.transform.position, targetTag);
+
+        Destroy(projection);
+    }
+
+    public void InstantiateStrike(Vector3 centre)
     {
         GameObject strike = Instantiate(particlePrefab, centre, Quaternion.identity);
 
         StartCoroutine(timerCoroutine(strike));
     }
 
-    public void DetectCharacters(Vector3 centre)
+    public void DetectCharacters(Vector3 centre, string targetTag)
     {
         Collider[] colliders = Physics.OverlapSphere(centre, attackRadius);
         List<GameObject> players = new List<GameObject>();
 
         foreach (var collider in colliders)
         {
-            if (collider.CompareTag("Player"))
+            if (collider.CompareTag(targetTag))
             {
                 players.Add(collider.gameObject);
             }
@@ -100,9 +124,24 @@ public class CastableAOEStrike : MonoBehaviour
 
         foreach (var player in players)
         {
-//            Debug.Log("Detected player: " + player.name);
+            AttributeManager attributes = player.GetComponent<AttributeManager>();
 
-            //damage here
+            if (attributes != null)
+            {
+                // Calculate the distance between the center and the player
+                float distance = Vector3.Distance(centre, player.transform.position);
+
+                float damageMultiplier = damage / attackRadius;
+
+                // Adjust the damage based on distance (you can use any formula here)
+                float adjustedDamage = damage - distance * damageMultiplier;
+
+                // Make sure the adjusted damage is not negative
+                adjustedDamage = Mathf.Max(0, adjustedDamage);
+
+                // Apply the adjusted damage to the player
+                attributes.TakeDamage(adjustedDamage);
+            }
         }
     }
 
