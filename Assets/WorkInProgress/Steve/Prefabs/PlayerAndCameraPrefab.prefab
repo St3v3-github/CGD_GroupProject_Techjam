@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4173836432881129615}
   - component: {fileID: 6496737443023970982}
-  - component: {fileID: 6362043101395078424}
   - component: {fileID: 5961008956634690483}
   - component: {fileID: 4595053559896799792}
   - component: {fileID: 6662495801874779436}
+  - component: {fileID: 3055883047304732204}
   m_Layer: 7
   m_Name: PlayerCam
   m_TagString: Untagged
@@ -87,14 +87,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &6362043101395078424
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2534031741935120579}
-  m_Enabled: 1
 --- !u!114 &5961008956634690483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +161,19 @@ MonoBehaviour:
   range: 5
   player: {fileID: 2618948000053937510}
   target: {fileID: 0}
+--- !u!114 &3055883047304732204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2534031741935120579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &2618948000053937510
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,6 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  maxHealth: 0
   mp: 0
   speed: 0
   player_status: {fileID: 0}
@@ -684,8 +690,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRadius: 10
+  projectionPrefab: {fileID: 0}
   particlePrefab: {fileID: 6702130015262811026, guid: 1e776409d28a8154681818e677548073, type: 3}
+  projection: {fileID: 0}
   playerCamera: {fileID: 6496737443023970982}
+  state: 0
 --- !u!1 &4510824805268255900
 GameObject:
   m_ObjectHideFlags: 0
