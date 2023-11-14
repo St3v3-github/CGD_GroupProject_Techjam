@@ -47,7 +47,7 @@ public class Wall : ElementalSpell
                 Debug.Log("Initial Rotation of Holographic: " + holographicInitialRotation.eulerAngles);
 
 
-                Debug.Log("Rotation of Spawned Wall: " + spellPrefab.transform.rotation.eulerAngles);
+                Debug.Log("Rotation of Spawned Wall: " + wallPrefab.transform.rotation.eulerAngles);
                 Quaternion holographicRotation = holographic.transform.rotation;
                 WallManager.Instance.SpawnWall(holographic.transform.position, holographicRotation);
                 Destroy(holographic);
@@ -99,5 +99,6 @@ public class Wall : ElementalSpell
         isPlacingWall = false;
     }
 }
+
 
 
