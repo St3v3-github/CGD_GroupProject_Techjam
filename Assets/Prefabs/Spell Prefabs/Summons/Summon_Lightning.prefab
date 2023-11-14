@@ -1208,7 +1208,7 @@ Animator:
   m_GameObject: {fileID: 850536177005835634}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 42b16888dccfed94fb39302aa553204d, type: 3}
-  m_Controller: {fileID: 9100000, guid: eb0403cf7de44ff4684f68e6b3b08ee6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 73c63299cee562d42b8064e3b07e7226, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2031,6 +2031,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5755663022803772200}
+  - component: {fileID: 1945635317637197335}
+  - component: {fileID: 7497901385062143057}
   m_Layer: 0
   m_Name: Summon_Lightning
   m_TagString: Untagged
@@ -2054,6 +2056,46 @@ Transform:
   - {fileID: 850536177005668688}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1945635317637197335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2399692254192317516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d97063a39d0bc48a365a695cfbafd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 850536177015211940}
+  deathParticle: {fileID: 0}
+  currentStatus: {fileID: 0}
+  moveSpeed: 5
+  rotationSpeed: 1
+  visionAngle: 60
+  hasTarget: 0
+--- !u!65 &7497901385062143057
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2399692254192317516}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.2, z: 2}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &5003200138290061040
 GameObject:
   m_ObjectHideFlags: 0

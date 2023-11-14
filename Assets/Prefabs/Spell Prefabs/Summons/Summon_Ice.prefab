@@ -4844,7 +4844,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e66cff9770aa63e45ad55db2f3487ee0, type: 2}
+  - {fileID: 2100000, guid: 110e8ef5ba5275f4c864c6b5190c7891, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9654,6 +9654,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2529176595792612400}
+  - component: {fileID: 8059746958423110597}
+  - component: {fileID: 8261224794458025433}
   m_Layer: 0
   m_Name: Summon_Ice
   m_TagString: Untagged
@@ -9677,6 +9679,46 @@ Transform:
   - {fileID: 1778809852517211205}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8059746958423110597
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345567636870007082}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 2, z: 2}
+  m_Center: {x: 0, y: 1, z: 0.7}
+--- !u!114 &8261224794458025433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345567636870007082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d97063a39d0bc48a365a695cfbafd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1778809852526998433}
+  deathParticle: {fileID: 0}
+  currentStatus: {fileID: 0}
+  moveSpeed: 5
+  rotationSpeed: 1
+  visionAngle: 60
+  hasTarget: 0
 --- !u!1 &1778809852517629953
 GameObject:
   m_ObjectHideFlags: 0
@@ -10481,7 +10523,7 @@ Animator:
   m_GameObject: {fileID: 1778809852517630053}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 95788e7260b93224e9cfd19cc653a6bc, type: 3}
-  m_Controller: {fileID: 9100000, guid: e42beb13ae4e9664e80a138f9d0d146f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2ea60771c15deb64abf49fd9829ced1f, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
