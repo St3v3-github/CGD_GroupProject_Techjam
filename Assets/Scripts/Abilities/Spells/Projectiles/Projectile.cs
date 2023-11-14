@@ -1,23 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile : Spell
 {
-    public float damage = 10f;
-    public StatusEffect statusEffect = new Fire();
+    public StatusEffect statusEffect;
     //private float timer = 0;
 
 
     void Start()
     {
         StartCoroutine(timerCoroutine());
+        setTargetTag();
     }
 
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.layer == 3)
+        if (!collision.gameObject.CompareTag(targetTag) || collision.gameObject.layer == 3)
         {
             return;
         }

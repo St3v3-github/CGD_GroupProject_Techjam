@@ -5,21 +5,16 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Spell : MonoBehaviour
 {
-
-    
-
-
-    public string targetTag;
-
-
+    protected float damage;
+    protected string targetTag;
 
     public void setTargetTag()
     {
-        if (this.tag == "Player1Spell")
+        if (this.tag == "Player1Spell" || this.tag == "Player1")
         {
             targetTag = "Player2";
         }
-        else if (this.tag == "Player2Spell")
+        else if (this.tag == "Player2Spell" || this.tag == "Player2")
         {
             targetTag = "Player1";
         }
@@ -36,7 +31,7 @@ public class ElementalSpell : Spell
     public float lightDamage;
     public float iceDamage;
     public float windDamage;
-    protected float damage;
+
 
     public GameObject firePrefab;
     public GameObject lightningPrefab;
@@ -50,18 +45,18 @@ public class ElementalSpell : Spell
         switch (spellType)
         {
             case spellEnum.fire:
-                currentStatus = new Fire();
+                currentStatus = GetComponent<Fire>();
                 break;
             case spellEnum.lightning:
                 // Change Later
-                currentStatus = new Fire();
+                currentStatus = GetComponent<Fire>();
                 break;
             case spellEnum.ice:
-                currentStatus = new Ice();
+                currentStatus = GetComponent<Ice>();
                 break;
             case spellEnum.wind:
                 // Change Later
-                currentStatus = new Fire();
+                currentStatus = GetComponent<Fire>();
                 break;
             default:
                 currentStatus = null;
@@ -74,18 +69,18 @@ public class ElementalSpell : Spell
         switch (statusInput)
         {
             case spellEnum.fire:
-                currentStatus = new Fire();
+                currentStatus = GetComponent<Fire>();
                 break;
             case spellEnum.lightning:
                 // Change Later
-                currentStatus = new Fire();
+                currentStatus = GetComponent<Fire>();
                 break;
             case spellEnum.ice:
-                currentStatus = new Ice();
+                currentStatus = GetComponent<Ice>();
                 break;
             case spellEnum.wind:
                 // Change Later
-                currentStatus = new Fire();
+                currentStatus = GetComponent<Fire>();
                 break;
             default:
                 currentStatus = null;
@@ -94,24 +89,24 @@ public class ElementalSpell : Spell
     }
 
 
-    public virtual void setPrefab(StatusEffect status)
+    public virtual void setPrefab(spellEnum statusInput)
     {
        
-        switch (status.GetStatusType())
+        switch (statusInput)
         {
-            case "fire":
+            case spellEnum.fire:
                 spellPrefab = firePrefab;
                 damage = fireDamage;
                 break;
-            case "ice":
+            case spellEnum.ice:
                 spellPrefab = icePrefab;
                 damage = iceDamage;
                 break;
-            case "lightning":
+            case spellEnum.lightning:
                 spellPrefab = lightningPrefab;
                 damage = lightDamage;
                 break;
-            case "wind":
+            case spellEnum.wind:
                 spellPrefab = windPrefab;
                 damage = windDamage;
                 break;

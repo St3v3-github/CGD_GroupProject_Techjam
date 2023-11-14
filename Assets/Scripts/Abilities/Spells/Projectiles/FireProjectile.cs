@@ -16,30 +16,31 @@ public class FireProjectile : ElementalSpell
     private void Start()
     {
         setStatus();
-        setPrefab(currentStatus);
+        setPrefab(spellType);
+        setTargetTag();
     }
 
-    public override void setPrefab(StatusEffect status)
+    public override void setPrefab(spellEnum statusInput)
     {
 
-        switch (status.GetStatusType())
+        switch (statusInput)
         {
-            case "fire":
+            case spellEnum.fire:
                 spellPrefab = firePrefab;
                 damage = fireDamage;
                 projectileForce = fireForce;
                 break;
-            case "ice":
+            case spellEnum.ice:
                 spellPrefab = icePrefab;
                 damage = iceDamage;
                 projectileForce = iceForce;
                 break;
-            case "lightning":
+            case spellEnum.lightning:
                 spellPrefab = lightningPrefab;
                 damage = lightDamage;
                 projectileForce = lightForce;
                 break;
-            case "wind":
+            case spellEnum.wind:
                 spellPrefab = windPrefab;
                 damage = windDamage;
                 projectileForce = windForce;
@@ -54,6 +55,8 @@ public class FireProjectile : ElementalSpell
 
     void Update()
     {
+        setStatus();
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Fire();

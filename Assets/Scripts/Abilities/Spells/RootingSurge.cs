@@ -10,7 +10,7 @@ public class RootingSurge : MonoBehaviour
     public float range = 8f; // Range
     public float angle = 30f; // Angle of the cone
     public float damage = 10f; // Damage
-    public StatusEffect statusEffect = new Fire();
+    public StatusEffect statusEffect;
     public GameObject particlePrefab;
     public Transform playerCam;
     private PlayerController playerCon;

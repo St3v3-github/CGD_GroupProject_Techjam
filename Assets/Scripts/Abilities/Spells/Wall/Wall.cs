@@ -14,7 +14,7 @@ public class Wall : ElementalSpell
     void Start()
     {
         setStatus();
-        setPrefab(currentStatus);
+        setPrefab(spellType);
 
         if (spellPrefab == null)
         {
@@ -28,6 +28,8 @@ public class Wall : ElementalSpell
 
     void Update()
     {
+
+        setStatus();
         if (Input.GetKeyDown(KeyCode.Z))
         {
             StartPlacingWall();

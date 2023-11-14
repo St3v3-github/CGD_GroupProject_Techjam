@@ -13,13 +13,15 @@ public class Summon : ElementalSpell
     void Start()
     {
         setStatus();
-        setPrefab(currentStatus);
+        setPrefab(spellType);
 
+        setTargetTag();
     }
 
     // Update is called once per frame
     void Update()
     {
+        setStatus();
         if (Input.GetKeyDown(KeyCode.T))
         {
             Spawn();

@@ -18,7 +18,9 @@ public class CastableAOEStrike : ElementalSpell
     void Start()
     {
         setStatus();
-        setPrefab(currentStatus);
+        setPrefab(spellType);
+
+        setTargetTag();
     }
 
 

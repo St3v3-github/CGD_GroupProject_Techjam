@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3415,10 +3415,34 @@ PrefabInstance:
       propertyPath: uiHandler
       value: 
       objectReference: {fileID: 54244838}
+    - target: {fileID: 6705567158006449796, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: icePrefab
+      value: 
+      objectReference: {fileID: 4138691137755610625, guid: 0a3cfad124e05f34e8ea711de70f733b, type: 3}
+    - target: {fileID: 6705567158006449796, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: spellType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6705567158006449796, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: firePrefab
+      value: 
+      objectReference: {fileID: 3806654643164322852, guid: 775cf54861f138d49bad170958972051, type: 3}
+    - target: {fileID: 6705567158006449796, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: windPrefab
+      value: 
+      objectReference: {fileID: 8351701173934327191, guid: 6d07d9ee77153f9469ae4b2c82a3d182, type: 3}
+    - target: {fileID: 6705567158006449796, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: lightningPrefab
+      value: 
+      objectReference: {fileID: 7616955213321149743, guid: e9cfbc2aadb51cd4aac5df7ff1e8ed7a, type: 3}
     - target: {fileID: 6883050563193714908, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: icePrefab
       value: 
       objectReference: {fileID: 2411946523980864128, guid: d23bc64354c8a5f4f979df59713e1337, type: 3}
+    - target: {fileID: 6883050563193714908, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: spellType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6883050563193714908, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: firePrefab
       value: 
@@ -3447,17 +3471,77 @@ PrefabInstance:
       propertyPath: list.Array.data[2]
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7738827348918598539, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: icePrefab
+      value: 
+      objectReference: {fileID: 4138691137755610625, guid: 0a3cfad124e05f34e8ea711de70f733b, type: 3}
+    - target: {fileID: 7738827348918598539, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: spellType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7738827348918598539, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: firePrefab
+      value: 
+      objectReference: {fileID: 3806654643164322852, guid: 775cf54861f138d49bad170958972051, type: 3}
+    - target: {fileID: 7738827348918598539, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: windPrefab
+      value: 
+      objectReference: {fileID: 8351701173934327191, guid: 6d07d9ee77153f9469ae4b2c82a3d182, type: 3}
+    - target: {fileID: 7738827348918598539, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: lightningPrefab
+      value: 
+      objectReference: {fileID: 7616955213321149743, guid: e9cfbc2aadb51cd4aac5df7ff1e8ed7a, type: 3}
+    - target: {fileID: 7806108214886809912, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: iceDamage
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 7806108214886809912, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: icePrefab
+      value: 
+      objectReference: {fileID: 1345567636870007082, guid: 612ad9b9f576d3446a7e7e4fb5559e06, type: 3}
     - target: {fileID: 7806108214886809912, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7806108214886809912, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: spellType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7806108214886809912, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: fireDamage
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7806108214886809912, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: firePrefab
       value: 
       objectReference: {fileID: 3409078487432782248, guid: 58f080c3ab142184193172fdec19d8db, type: 3}
+    - target: {fileID: 7806108214886809912, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: windDamage
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7806108214886809912, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: windPrefab
+      value: 
+      objectReference: {fileID: 816667416363979069, guid: d5e265920c666da4ead575fb64549ce5, type: 3}
+    - target: {fileID: 7806108214886809912, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: lightDamage
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7806108214886809912, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: lightningPrefab
+      value: 
+      objectReference: {fileID: 2399692254192317516, guid: bbd6e25fa096b1c43933620455b7f2e5, type: 3}
     - target: {fileID: 8848718441287511737, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: iceDamage
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8848718441287511737, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: icePrefab
+      value: 
+      objectReference: {fileID: 2048872550747324139, guid: 5a919bd5d926b964b8203875da57d9db, type: 3}
+    - target: {fileID: 8848718441287511737, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: spellType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8848718441287511737, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: fireDamage
@@ -3472,9 +3556,17 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8848718441287511737, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: windPrefab
+      value: 
+      objectReference: {fileID: 2549314221037139667, guid: ec5c63368d40a2843bcb9697745788c5, type: 3}
+    - target: {fileID: 8848718441287511737, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: lightDamage
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8848718441287511737, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      propertyPath: lightningPrefab
+      value: 
+      objectReference: {fileID: 2549314221037139667, guid: 3155dd18da0d033468607216acea8454, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

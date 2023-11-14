@@ -2,25 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SummonedAnimal : ElementalSpell
+public class SummonedAnimal : Spell
 {
     public Animator animator;
     public ParticleSystem deathParticle;
-    public StatusEffect statusEffect;
+    public StatusEffect currentStatus;
     public float moveSpeed = 5f;
     public float rotationSpeed = 1f;
     public float visionAngle = 60f;
 
 
     private GameObject target;
-    private string attackTag;
     public bool hasTarget = false;
 
 
     void Start()
     {
-        setStatus();
-
         setTargetTag();
 
 
@@ -64,7 +61,7 @@ public class SummonedAnimal : ElementalSpell
     {
         
         // Code to damage player
-        if (collision.gameObject.tag == attackTag)
+        if (collision.gameObject.tag == targetTag)
         {
             animator.SetTrigger("Attack");
             Debug.Log("Collision detected with: " + collision.gameObject.name);
@@ -73,7 +70,7 @@ public class SummonedAnimal : ElementalSpell
 
             if (attributes != null)
             {
-                attributes.TakeDamage(damage, statusEffect);
+                attributes.TakeDamage(damage, currentStatus);
             }
 
 
