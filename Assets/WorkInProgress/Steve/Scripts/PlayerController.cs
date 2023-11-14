@@ -1,4 +1,4 @@
-using JetBrains.Annotations;
+/*using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -25,9 +25,9 @@ public class PlayerController : MonoBehaviour
     //Fix this for me later, am lazy
     public float timer = 1.0f;
     float ui_cooldown = 0.0f;
-/*
+*//*
     float horizontalInput;
-    float verticalInput;*/
+    float verticalInput;*//*
 
     Vector3 moveDirection;
 
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         //Movement has to go in here
-        /*HandleMovement(Vector2 MovementInput);*/
+        *//*HandleMovement(Vector2 MovementInput);*//*
         //HandleGroundCheck();
 
         //HandleJump();
@@ -91,4 +91,4 @@ public class PlayerController : MonoBehaviour
     }
 
 
-}
+}*/

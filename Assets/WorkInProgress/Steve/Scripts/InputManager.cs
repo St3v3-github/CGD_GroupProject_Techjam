@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+/*using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.EventSystems.EventTrigger;
@@ -12,7 +12,7 @@ public class InputManager : MonoBehaviour
     public Vector2 cameraInput;
     public Vector2 movementInput;
    
-/*
+*//*
     [Header("Abilities")]
     public bool abilityCastInput = false;
     public bool abilityInput1 = false;
@@ -29,7 +29,7 @@ public class InputManager : MonoBehaviour
 
     [Header("DEMO_DELETE_LATER")]
     public GameObject uiHandler;
-*/
+*//*
     private void Awake()
     {
         playerController = FindObjectOfType<PlayerController>();
@@ -69,7 +69,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
-   /* public void OnAbilityCast(InputAction.CallbackContext ctx)
+   *//* public void OnAbilityCast(InputAction.CallbackContext ctx)
     {
         abilityCastInput = ctx.action.triggered;
     }
@@ -227,8 +227,9 @@ public class InputManager : MonoBehaviour
 
             }
         }
-    }*/
+    }*//*
 
 }
 
 
+*/
