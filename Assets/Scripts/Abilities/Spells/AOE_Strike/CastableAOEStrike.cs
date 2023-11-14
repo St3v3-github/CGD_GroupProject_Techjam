@@ -3,16 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CastableAOEStrike : Spell
+public class CastableAOEStrike : ElementalSpell
 {
     public float attackRadius = 10f;
-    public float damage = 60f;
     public GameObject projectionPrefab;
-    private GameObject particlePrefab;
-    public GameObject firePrefab;
-    public GameObject lightningPrefab;
-    public GameObject icePrefab;
-    public GameObject windPrefab;
+
+    
     private GameObject projection;
     public Camera playerCamera;
     private bool projectionOn = false;
@@ -22,34 +18,15 @@ public class CastableAOEStrike : Spell
     void Start()
     {
         setStatus();
-        switchType(currentStatus);
+        setPrefab(currentStatus);
     }
 
-    void switchType(StatusEffect status)
-    {
-        switch (status.GetStatusType())
-        {
-            case "fire":
-                particlePrefab = firePrefab;
-                break;
-            case "lightning":
-                particlePrefab = lightningPrefab;
-                break;
-            case "ice":
-                particlePrefab = icePrefab;
-                break;
-            case "wind":
-                particlePrefab = windPrefab;
-                break;
-            default:
-                particlePrefab = lightningPrefab;
-                break;
-        }
-    }
 
     // Update is called once per frame
     void Update()
     {
+        setStatus();
+
         if (!projectionOn)
         {
             if (Input.GetKeyDown(KeyCode.Q))
@@ -128,7 +105,7 @@ public class CastableAOEStrike : Spell
 
     public void InstantiateStrike(Vector3 centre)
     {
-        GameObject strike = Instantiate(particlePrefab, centre, Quaternion.identity);
+        GameObject strike = Instantiate(spellPrefab, centre, Quaternion.identity);
 
         StartCoroutine(timerCoroutine(strike));
     }

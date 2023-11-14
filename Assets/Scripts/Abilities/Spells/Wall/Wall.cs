@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class Wall : MonoBehaviour
+public class Wall : ElementalSpell
 {
-    public GameObject wallPrefab;
     public GameObject holographicPrefab;
     public GameObject holographic;
     public bool isPlacingWall;
@@ -14,8 +13,10 @@ public class Wall : MonoBehaviour
     public Camera playerCamera;
     void Start()
     {
+        setStatus();
+        setPrefab(currentStatus);
 
-        if (wallPrefab == null)
+        if (spellPrefab == null)
         {
             Debug.LogError("wallPrefab is not assigned!");
         }
@@ -30,10 +31,10 @@ public class Wall : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             StartPlacingWall();
-           
+            Invoke("DespawnHolographic", holographicDespawnTime);
         }
 
-            if (isPlacingWall)
+        if (isPlacingWall)
         {
             // Update the position of the holographic preview to follow the mouse cursor
             Vector3 mousePosition = GetMouseWorldPosition();
@@ -41,7 +42,16 @@ public class Wall : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-               
+                StopCoroutine(UpdateHolographicRotation());
+                // Output the initial rotation of the holographic
+                Debug.Log("Initial Rotation of Holographic: " + holographicInitialRotation.eulerAngles);
+
+
+                Debug.Log("Rotation of Spawned Wall: " + spellPrefab.transform.rotation.eulerAngles);
+                Quaternion holographicRotation = holographic.transform.rotation;
+                WallManager.Instance.SpawnWall(holographic.transform.position, holographicRotation);
+                Destroy(holographic);
+                isPlacingWall = false;
             }
         }
     }
@@ -56,28 +66,13 @@ public class Wall : MonoBehaviour
         return Vector3.zero;
     }
 
-    public void PlaceWall()
-    {
-        StopCoroutine(UpdateHolographicRotation());
-        // Output the initial rotation of the holographic
-      //  Debug.Log("Initial Rotation of Holographic: " + holographicInitialRotation.eulerAngles);
-
-
-     //   Debug.Log("Rotation of Spawned Wall: " + wallPrefab.transform.rotation.eulerAngles);
-        Quaternion holographicRotation = holographic.transform.rotation;
-        WallManager.Instance.SpawnWall(holographic.transform.position, holographicRotation);
-        Destroy(holographic);
-        isPlacingWall = false;
-    }
     public void StartPlacingWall()
     {
-         
         // Initialize the holographic preview
         holographic = Instantiate(holographicPrefab, Vector3.zero, Quaternion.identity);
         holographicInitialRotation = holographic.transform.rotation;
         isPlacingWall = true;
         StartCoroutine(UpdateHolographicRotation());
-        Invoke("DespawnHolographic", holographicDespawnTime);
 
     }
 
@@ -99,10 +94,10 @@ public class Wall : MonoBehaviour
         }
     }
     private void DespawnHolographic()
-    { 
+    {
         Destroy(holographic);
         isPlacingWall = false;
     }
-}  
+}
 
 

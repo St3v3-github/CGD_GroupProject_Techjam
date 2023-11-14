@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SummonedAnimal : Spell
+public class SummonedAnimal : ElementalSpell
 {
     public Animator animator;
     public ParticleSystem deathParticle;
     public StatusEffect statusEffect;
-    public float damage = 30f;
     public float moveSpeed = 5f;
     public float rotationSpeed = 1f;
     public float visionAngle = 60f;
