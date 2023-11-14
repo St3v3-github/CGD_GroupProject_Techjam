@@ -281,7 +281,7 @@ public class InputManager : MonoBehaviour
                             case 4: //Ice wall type
                                 if (player_prefab.GetComponent<Wall>().isPlacingWall)
                                 {
-                                    player_prefab.GetComponent<Wall>().PlaceWall();
+                              //      player_prefab.GetComponent<Wall>().PlaceWall();
                                 }
                                 else
                                 {
