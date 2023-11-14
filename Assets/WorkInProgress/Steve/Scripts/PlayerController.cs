@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -20,13 +21,13 @@ public class PlayerController : MonoBehaviour
 
     [Header("Other")]
     public Transform orientation;
-    /*public Inventory_UI inventory_display;
+    //public Inventory_UI inventory_display;
     //Fix this for me later, am lazy
     public float timer = 1.0f;
-    float ui_cooldown = 0.0f;*/
-
+    float ui_cooldown = 0.0f;
+/*
     float horizontalInput;
-    float verticalInput;
+    float verticalInput;*/
 
     Vector3 moveDirection;
 
@@ -51,53 +52,16 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         //Movement has to go in here
-        HandleMovement();
-        HandleGroundCheck();
-        
-        HandleJump();
+        /*HandleMovement(Vector2 MovementInput);*/
+        //HandleGroundCheck();
+
+        //HandleJump();
     }
 
-    private void HandleMovement()
+    public void HandleMovement(Vector2 MovementInput)
     {
-        horizontalInput = inputManager.movementInput.x;
-        verticalInput = inputManager.movementInput.y;
-       /* if (ui_cooldown > 0)
-        {
-            ui_cooldown -= Time.deltaTime;
-        }
-        if(inventory_display.in_view)
-        {
-
-            if (ui_cooldown <= 0)
-            {
-                ui_cooldown = timer;
-                if (horizontalInput > 0)
-                {
-                    inventory_display.moveSelector(Inventory_UI.Directions.RIGHT);
-                }
-                if (horizontalInput < 0)
-                {
-                    inventory_display.moveSelector(Inventory_UI.Directions.LEFT);
-                }
-                if (verticalInput < 0)
-                {
-                    inventory_display.moveSelector(Inventory_UI.Directions.DOWN);
-                }
-                if (verticalInput > 0)
-                {
-                    inventory_display.moveSelector(Inventory_UI.Directions.UP);
-                }
-            }
-        }
-        else
-        {*/
-           moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-
-           gameObject.transform.Translate(moveDirection * Time.deltaTime * playerSpeed);
-
-            //trying out Force movement - momentum seemed fun but maybe not :(
-            //playerRigidbody.AddForce(moveDirection.normalized * playerSpeed, ForceMode.Force);
-        //}
+        moveDirection = orientation.forward * MovementInput.y + orientation.right * MovementInput.x;
+        gameObject.transform.Translate(moveDirection * Time.deltaTime * playerSpeed);
     }
 
     private void HandleGroundCheck()
@@ -105,9 +69,9 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.5f, groundLayer);
     }
 
-    private void HandleJump()
+    public void HandleJump()
     {
-        if (inputManager.jumpInput && isReadyToJump && isGrounded)
+        if (isReadyToJump && isGrounded)
         {
             playerRigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
             isReadyToJump = false;
@@ -120,4 +84,11 @@ public class PlayerController : MonoBehaviour
     {
         isReadyToJump = true;
     }
+
+    public void HandleSprint()
+    {
+
+    }
+
+
 }
