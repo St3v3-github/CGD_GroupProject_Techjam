@@ -28,8 +28,8 @@ public class InputManager : MonoBehaviour
     [Header("DEMO_DELETE_LATER")]
     public GameObject uiHandler;
 
+    public AnimationController AnimControl; //Animation Support (Do Not Touch)
 
-   
     public void OnLook(InputAction.CallbackContext ctx)
     {
         cameraInput = ctx.ReadValue<Vector2>();
@@ -38,6 +38,16 @@ public class InputManager : MonoBehaviour
     public void OnMove(InputAction.CallbackContext ctx)
     {
         movementInput = ctx.ReadValue<Vector2>();
+
+        //Animation Support (Do Not Touch) - Movement Animation
+        if (movementInput.x != 0 || movementInput.y != 0)
+        {
+            AnimControl.toggleWalkingBool(true);
+        }
+        else
+        {
+            AnimControl.toggleWalkingBool(false);
+        }
     }
 
     public void OnJump(InputAction.CallbackContext ctx)

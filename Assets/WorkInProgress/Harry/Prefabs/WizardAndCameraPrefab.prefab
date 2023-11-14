@@ -107,9 +107,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ce4b493e991174eac4a13284d06ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivityX: 250
-  sensitivityY: 250
-  orientation: {fileID: 1476447933429957639}
+  sensitivity_x: 1
+  sensitivity_y: 1
+  clamp_vertical_rot: 1
+  minimum_x: -90
+  maximum_x: 90
+  smooth: 0
+  smooth_time: 5
+  cursor_lock: 1
 --- !u!114 &6687908409557954695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,9 +528,6 @@ PrefabInstance:
       addedObject: {fileID: 1847100271978241103}
     - targetCorrespondingSourceObject: {fileID: 155190, guid: a3d63e24f853705488ac04e22173bc16, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4126434118767747442}
-    - targetCorrespondingSourceObject: {fileID: 155190, guid: a3d63e24f853705488ac04e22173bc16, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 6242367462435479197}
     - targetCorrespondingSourceObject: {fileID: 155190, guid: a3d63e24f853705488ac04e22173bc16, type: 3}
       insertIndex: -1
@@ -536,6 +538,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 155190, guid: a3d63e24f853705488ac04e22173bc16, type: 3}
       insertIndex: -1
       addedObject: {fileID: 395567525794715709}
+    - targetCorrespondingSourceObject: {fileID: 155190, guid: a3d63e24f853705488ac04e22173bc16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5083635668392401079}
+    - targetCorrespondingSourceObject: {fileID: 155190, guid: a3d63e24f853705488ac04e22173bc16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2647493369879163319}
+    - targetCorrespondingSourceObject: {fileID: 155190, guid: a3d63e24f853705488ac04e22173bc16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1240525886300567534}
   m_SourcePrefab: {fileID: 100100000, guid: a3d63e24f853705488ac04e22173bc16, type: 3}
 --- !u!4 &4992618266771882284 stripped
 Transform:
@@ -597,36 +608,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &4126434118767747442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4992618266772111692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 83e99c0039411e34fa28b22e8e700d83, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 5134814779370893533}
 --- !u!114 &6242367462435479197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -665,10 +646,10 @@ MonoBehaviour:
   abilityInput3: 0
   abilityInput4: 0
   ray: {fileID: 3875679551603244975}
-  inventory: {fileID: 0}
+  inventory: {fileID: 5083635668392401079}
   interactInput: 0
   meleeInput: 0
-  player_prefab: {fileID: 2732234963114371196}
+  spell_holder: {fileID: 0}
   uiHandler: {fileID: 0}
 --- !u!114 &649164755433157868
 MonoBehaviour:
@@ -682,16 +663,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ccd98b6a7a04f94ea49443573d8d9ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 6
-  jumpForce: 10
-  jumpCooldown: 1
-  isReadyToJump: 0
-  playerHeight: 2
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1032
-  isGrounded: 0
-  orientation: {fileID: 1476447933429957639}
+  _camera: {fileID: 5134814779370893533}
+  camera_controller: {fileID: 0}
+  friction: 6
+  gravity: 20
+  jump_force: 8
+  auto_jump: 0
+  air_control: 0.3
+  ground_settings:
+    max_speed: 7
+    acceleration: 14
+    deceleration: 10
+  air_settings:
+    max_speed: 7
+    acceleration: 2
+    deceleration: 2
+  strafe_settings:
+    max_speed: 3
+    acceleration: 50
+    deceleration: 50
+  character: {fileID: 2647493369879163319}
+  move_dir_norm: {x: 0, y: 0, z: 0}
+  player_velocity: {x: 0, y: 0, z: 0}
+  jump_queued: 0
+  double_jump_used: 0
+  player_friction: 0
+  move_input: {x: 0, y: 0, z: 0}
+  player_transform: {fileID: 0}
+  camera_transform: {fileID: 0}
 --- !u!114 &395567525794715709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -705,6 +704,200 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnim: {fileID: 4992618266779465154}
+--- !u!114 &5083635668392401079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4992618266772111692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3163220782114504ab90d8eb16337a17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell_slots: 4
+  dd_spell_inventory: []
+--- !u!143 &2647493369879163319
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4992618266772111692}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1240525886300567534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4992618266772111692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 83e99c0039411e34fa28b22e8e700d83, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3062134002828605738}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 703931eb-9788-4154-b9a3-f162928a99dd
+    m_ActionName: Player/Movement[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3062134002828605738}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnLook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: eaa52bff-51af-40d4-98eb-8791066b8adb
+    m_ActionName: Player/Camera[/XInputControllerWindows/rightStick/up,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/rightStick/right,/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3062134002828605738}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 939fbb7f-54e5-4b5e-ba29-168069f4cd1d
+    m_ActionName: Player/Jump[/XInputControllerWindows/buttonSouth,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3062134002828605738}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnSprint
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6ab0843b-6b51-4b2a-9081-54891663adb2
+    m_ActionName: Player/Sprint[/XInputControllerWindows/leftStickPress,/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3062134002828605738}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnInteract
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0079d2e0-899c-4675-af4e-a931c0e39610
+    m_ActionName: Player/Interact[/XInputControllerWindows/buttonWest,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 35f20932-47d3-4ed1-9952-867131b1971a
+    m_ActionName: Player/AbilityCast[/Mouse/leftButton,/XInputControllerWindows/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6f6345cc-491b-4952-8d3f-1ea653f8b341
+    m_ActionName: Player/Ability1[/Keyboard/1,/XInputControllerWindows/dpad/up]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a4fa6175-88a6-4314-847a-534b48f967f1
+    m_ActionName: Player/Ability2[/Keyboard/2,/XInputControllerWindows/dpad/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e94a143c-3f01-4e34-9060-271cc52ebac8
+    m_ActionName: Player/Ability3[/Keyboard/3,/XInputControllerWindows/dpad/down]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 75d4e658-3277-4ebc-9334-556326ccd989
+    m_ActionName: Player/Ability4[/Keyboard/4,/XInputControllerWindows/dpad/left]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1b2dcaeb-60eb-4a73-86d7-c62d00078c38
+    m_ActionName: Player/Elements[/Keyboard/1,/Keyboard/2,/Keyboard/3,/Keyboard/4]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3062134002828605738}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnSpellRune
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 989449cd-f2f9-443a-9e03-4454d2327598
+    m_ActionName: Player/SpellTypes[/Keyboard/5,/Keyboard/6,/Keyboard/7,/Keyboard/8]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 03861f45-172b-4b5c-a41d-a0860f14af4b
+    m_ActionName: Player/Melee[/Keyboard/f]
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 5134814779370893533}
 --- !u!95 &4992618266779465154 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 9595576, guid: a3d63e24f853705488ac04e22173bc16, type: 3}

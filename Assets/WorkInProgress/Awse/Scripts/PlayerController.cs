@@ -3,11 +3,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //player animator 
-    private Animator playerAnim;
-    private AnimationController Controller;
 
-   
+    public AnimationController animControl; //Animation Support (Do Not Touch)
 
     [System.Serializable]
 
@@ -68,15 +65,14 @@ public class PlayerController : MonoBehaviour
     {
         input_manager = FindObjectOfType<InputManager>();
 
-        //set Animator for player
-        playerAnim = GetComponent<Animator>();
+        
         
     }
 
     public void Start()
     {
         player_transform = transform;
-        character = GetComponent<CharacterController>();
+        //character = GetComponent<CharacterController>();
 
         camera_controller = _camera.GetComponent<CameraController>();
         camera_transform = _camera.transform;
@@ -94,10 +90,12 @@ public class PlayerController : MonoBehaviour
         // Sets the player movement state.
         if (character.isGrounded)
         {
+            animControl.toggleGroundedBool(true); //Animation Support (Do Not Touch) - toggles if the player is grounded or not for animations
             GroundMovement();
         }
         else
         {
+            animControl.toggleGroundedBool(false); //Animation Support (Do Not Touch) - toggles if player is grounded or not for animations
             AirMovement();
         }
     }
@@ -109,8 +107,7 @@ public class PlayerController : MonoBehaviour
         // Move the character.
         character.Move(player_velocity * Time.deltaTime);
 
-        //walk animation bool set to true 
-        playerAnim.SetBool("isWalking", true);
+        
         
     }
 
@@ -262,6 +259,11 @@ public class PlayerController : MonoBehaviour
         {
             player_velocity.y = jump_force;
             jump_queued = false;
+            animControl.toggleJumpingBool(true); //Animation Support (Do Not Touch) - Toggles Bool for jumping animation
+        }
+        else
+        {
+            animControl.toggleJumpingBool(false); //Animation Support (Do Not Touch) - Toggles Bool for jumping animation
         }
     }
 
