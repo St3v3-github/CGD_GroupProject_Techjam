@@ -94,8 +94,8 @@ GameObject:
   - component: {fileID: 7178734355288448390}
   - component: {fileID: 816319191806255751}
   - component: {fileID: 5086635569464351008}
-  - component: {fileID: 79800725541388008}
   - component: {fileID: 3944471798854551773}
+  - component: {fileID: 3652922745361636014}
   m_Layer: 0
   m_Name: PlayerCam
   m_TagString: Untagged
@@ -177,26 +177,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2279795450766442854}
   m_Enabled: 1
---- !u!114 &79800725541388008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2279795450766442854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1ce4b493e991174eac4a13284d06ea3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensitivity_x: 2
-  sensitivity_y: 2
-  clamp_vertical_rot: 1
-  minimum_x: -90
-  maximum_x: 90
-  smooth: 0
-  smooth_time: 5
-  cursor_lock: 1
 --- !u!114 &3944471798854551773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +221,26 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &3652922745361636014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2279795450766442854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1ce4b493e991174eac4a13284d06ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity_x: 1
+  sensitivity_y: 1
+  clamp_vertical_rot: 1
+  minimum_x: -90
+  maximum_x: 90
+  smooth: 0
+  smooth_time: 5
+  cursor_lock: 1
 --- !u!1 &2458800336198934795
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,10 +252,10 @@ GameObject:
   - component: {fileID: 1433699409713194845}
   - component: {fileID: 517162993365224215}
   - component: {fileID: 2443602355905265290}
-  - component: {fileID: 3558588479648553942}
-  - component: {fileID: 6766425443820566287}
-  - component: {fileID: 8573411432976249892}
   - component: {fileID: 6571139287054174907}
+  - component: {fileID: 8879325536257379172}
+  - component: {fileID: 4952044361154062580}
+  - component: {fileID: 1341336446719708966}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3558588479648553942}
+      - m_Target: {fileID: 8879325536257379172}
         m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
@@ -346,7 +346,7 @@ MonoBehaviour:
     m_ActionName: Player/Movement[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3558588479648553942}
+      - m_Target: {fileID: 8879325536257379172}
         m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: OnLook
         m_Mode: 0
@@ -362,7 +362,7 @@ MonoBehaviour:
     m_ActionName: Player/Camera[/XInputControllerWindows/rightStick/up,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/rightStick/right,/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3558588479648553942}
+      - m_Target: {fileID: 8879325536257379172}
         m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
@@ -378,7 +378,7 @@ MonoBehaviour:
     m_ActionName: Player/Jump[/XInputControllerWindows/buttonSouth,/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3558588479648553942}
+      - m_Target: {fileID: 8879325536257379172}
         m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: OnSprint
         m_Mode: 0
@@ -394,7 +394,7 @@ MonoBehaviour:
     m_ActionName: Player/Sprint[/XInputControllerWindows/leftStickPress,/Keyboard/shift]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3558588479648553942}
+      - m_Target: {fileID: 8879325536257379172}
         m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: OnInteract
         m_Mode: 0
@@ -430,7 +430,7 @@ MonoBehaviour:
     m_ActionName: Player/Ability4[/Keyboard/4,/XInputControllerWindows/dpad/left]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3558588479648553942}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: OnElement
         m_Mode: 0
@@ -446,7 +446,7 @@ MonoBehaviour:
     m_ActionName: Player/Elements[/Keyboard/1,/Keyboard/2,/Keyboard/3,/Keyboard/4]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3558588479648553942}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: OnSpellRune
         m_Mode: 0
@@ -469,85 +469,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 816319191806255751}
---- !u!114 &3558588479648553942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2458800336198934795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0c7f554672de8c46bc614a309ef7b9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraInput: {x: 0, y: 0}
-  movementInput: {x: 0, y: 0}
-  jumpInput: 0
-  sprintInput: 0
-  abilityCastInput: 0
-  abilityInput1: 0
-  abilityInput2: 0
-  abilityInput3: 0
-  abilityInput4: 0
-  ray: {fileID: 0}
-  inventory: {fileID: 0}
-  interactInput: 0
-  meleeInput: 0
-  player_prefab: {fileID: 6409451614830519714}
-  uiHandler: {fileID: 0}
---- !u!114 &6766425443820566287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2458800336198934795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ccd98b6a7a04f94ea49443573d8d9ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _camera: {fileID: 816319191806255751}
-  camera_controller: {fileID: 0}
-  friction: 6
-  gravity: 20
-  jump_force: 8
-  auto_jump: 0
-  air_control: 0.3
-  ground_settings:
-    max_speed: 7
-    acceleration: 14
-    deceleration: 10
-  air_settings:
-    max_speed: 7
-    acceleration: 8
-    deceleration: 4
-  strafe_settings:
-    max_speed: 1
-    acceleration: 50
-    deceleration: 35
-  character: {fileID: 0}
-  move_dir_norm: {x: 0, y: 0, z: 0}
-  player_velocity: {x: 0, y: 0, z: 0}
-  jump_queued: 0
-  player_friction: 0
-  move_input: {x: 0, y: 0, z: 0}
-  player_transform: {fileID: 0}
-  camera_transform: {fileID: 0}
---- !u!114 &8573411432976249892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2458800336198934795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c7e9e60bf2a9db409acd4b1655dcc0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  refresh_rate: 2
 --- !u!143 &6571139287054174907
 CharacterController:
   m_ObjectHideFlags: 0
@@ -574,6 +495,84 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8879325536257379172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2458800336198934795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df65e73ed0022434cae9eff70adeade6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraInput: {x: 0, y: 0}
+  movementInput: {x: 0, y: 0}
+  abilityCastInput: 0
+  abilityInput1: 0
+  abilityInput2: 0
+  abilityInput3: 0
+  abilityInput4: 0
+  ray: {fileID: 0}
+  inventory: {fileID: 0}
+  interactInput: 0
+  meleeInput: 0
+  spell_holder: {fileID: 0}
+  uiHandler: {fileID: 0}
+--- !u!114 &4952044361154062580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2458800336198934795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d405bce309e91439635653f88bb23f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 816319191806255751}
+  camera_controller: {fileID: 0}
+  friction: 6
+  gravity: 20
+  jump_force: 8
+  auto_jump: 1
+  air_control: 0.3
+  ground_settings:
+    max_speed: 7
+    acceleration: 14
+    deceleration: 10
+  air_settings:
+    max_speed: 7
+    acceleration: 2
+    deceleration: 2
+  strafe_settings:
+    max_speed: 3
+    acceleration: 50
+    deceleration: 50
+  character: {fileID: 6571139287054174907}
+  move_dir_norm: {x: 0, y: 0, z: 0}
+  player_velocity: {x: 0, y: 0, z: 0}
+  jump_queued: 1
+  double_jump_used: 0
+  player_friction: 0
+  move_input: {x: 0, y: 0, z: 0}
+  player_transform: {fileID: 1433699409713194845}
+  camera_transform: {fileID: 7178734355288448390}
+--- !u!114 &1341336446719708966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2458800336198934795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c7e9e60bf2a9db409acd4b1655dcc0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  refresh_rate: 4
 --- !u!1 &6409451614830519714
 GameObject:
   m_ObjectHideFlags: 0

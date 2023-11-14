@@ -73,21 +73,21 @@ public class PlayerController : MonoBehaviour
 
     public void Update()
     {
-/*        move_input = new Vector3(input_manager.movementInput.x, 0, input_manager.movementInput.y);
-        //Move/rotate camera
-        camera_controller.LookRotation(player_transform, camera_transform);
-        camera_controller.CursorLock();
+        /*        move_input = new Vector3(input_manager.movementInput.x, 0, input_manager.movementInput.y);
+                //Move/rotate camera
+                camera_controller.LookRotation(player_transform, camera_transform);
+                camera_controller.CursorLock();
 
-        QueueJump();
-        // Sets the player movement state.
-        if (character.isGrounded)
-        {
-            GroundMovement();
-        }
-        else
-        {
-            AirMovement();
-        }*/
+                QueueJump();
+                // Sets the player movement state.
+                if (character.isGrounded)
+                {
+                    GroundMovement();
+                }
+                else
+                {
+                    AirMovement();
+                }*/
     }
 
     public void FixedUpdate()
@@ -95,14 +95,14 @@ public class PlayerController : MonoBehaviour
         //Mainly physics based movement (i.e using rigidbody) should go here, but just in case
 
         // Move the character.
-/*        character.Move(player_velocity * Time.deltaTime);*/
+        /*        character.Move(player_velocity * Time.deltaTime);*/
     }
 
 
-    public void HandleCamera()
+    public void HandleCamera(Vector2 cameraInput)
     {
         // Move/rotate camera
-        camera_controller.LookRotation(player_transform, camera_transform);
+        camera_controller.LookRotation(cameraInput, player_transform, camera_transform);
         camera_controller.CursorLock();
     }
 
@@ -138,6 +138,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void HandleSprint()
+    {
+
+    }
 
 
     //Queue base jump
@@ -145,8 +149,8 @@ public class PlayerController : MonoBehaviour
     {
         if (auto_jump)
         {
-            jump_queued = true ;
-            return;        
+            jump_queued = true;
+            return;
         }
 
         if (!jump_queued)
@@ -161,6 +165,7 @@ public class PlayerController : MonoBehaviour
 
         if (character.isGrounded)
         {
+            jump_queued = true;
             double_jump_used = false;
         }
     }
@@ -281,14 +286,14 @@ public class PlayerController : MonoBehaviour
 
         Accelerate(w_direction, w_speed, ground_settings.acceleration);
 
-/*        // Reset the gravity velocity
-        player_velocity.y = -gravity * Time.deltaTime;
+        /*        // Reset the gravity velocity
+                player_velocity.y = -gravity * Time.deltaTime;
 
-        if (jump_queued)
-        {
-            player_velocity.y = jump_force;
-            jump_queued = false;
-        }*/
+                if (jump_queued)
+                {
+                    player_velocity.y = jump_force;
+                    jump_queued = false;
+                }*/
     }
 
     public void Applyfriction(float t)

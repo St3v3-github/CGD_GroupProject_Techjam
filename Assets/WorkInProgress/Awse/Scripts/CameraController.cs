@@ -1,9 +1,10 @@
 using System;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class CameraController : MonoBehaviour
 {
-    InputManager input_manager;
+    //InputManager input_manager;
 
     [SerializeField] private float sensitivity_x = 1f;
     [SerializeField] private float sensitivity_y = 1f;
@@ -25,7 +26,7 @@ public class CameraController : MonoBehaviour
 
     private void Awake()
     {
-        input_manager = FindObjectOfType<InputManager>();
+        //input_manager = FindObjectOfType<InputManager>();
     }
 
     private void Start()
@@ -34,7 +35,7 @@ public class CameraController : MonoBehaviour
                 Cursor.visible = false;*/
     }
 
-    public void LookRotation(Transform _character, Transform _camera)
+    public void LookRotation(Vector2 cameraInput, Transform _character, Transform _camera)
     {
         //Access inputs
         //float inputX = inputManager.cameraInput.normalized.x * Time.deltaTime * sensitivityX;
@@ -42,8 +43,8 @@ public class CameraController : MonoBehaviour
 
         //i dont know why this has to be set up like this, but any other way and the camera rotation is even more fucked
         //this is the only thing ive tried that seems to be fine
-        float rotation_y = input_manager.cameraInput.x * sensitivity_x;
-        float rotation_x = input_manager.cameraInput.y * sensitivity_y;
+        float rotation_y = cameraInput.x * sensitivity_x;
+        float rotation_x = cameraInput.y * sensitivity_y;
 
         character_rotation *= Quaternion.Euler(0f, rotation_y, 0f);
         camera_rotation *= Quaternion.Euler(-rotation_x, 0f, 0f);
