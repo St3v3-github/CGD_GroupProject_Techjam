@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SummonedAnimal : MonoBehaviour
+public class SummonedAnimal : Spell
 {
     public Animator animator;
     public ParticleSystem deathParticle;
@@ -12,6 +12,7 @@ public class SummonedAnimal : MonoBehaviour
     public float rotationSpeed = 1f;
     public float visionAngle = 60f;
 
+
     private GameObject target;
     private string attackTag;
     public bool hasTarget = false;
@@ -19,22 +20,16 @@ public class SummonedAnimal : MonoBehaviour
 
     void Start()
     {
+        setStatus();
+
+        setTargetTag();
+
+
         StartCoroutine(timerCoroutine());
-        if (this.tag == "Player1Spell")
+
+        if (target = FindTarget(targetTag))
         {
-            attackTag = "Player2";
-            if (target = FindTarget("Player2"))
-            {
-                hasTarget = true;
-            }
-        }
-        else if (this.tag == "Player2Spell")
-        {
-            attackTag = "Player1";
-            if (target = FindTarget("Player1"))
-            {
-                hasTarget = true;
-            }
+            hasTarget = true;
         }
     }
 
@@ -158,3 +153,5 @@ public class SummonedAnimal : MonoBehaviour
 
 
 }
+
+

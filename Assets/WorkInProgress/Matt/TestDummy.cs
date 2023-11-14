@@ -34,8 +34,6 @@ public class TestDummy : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log("A COLLISION");
-        
         
         
     }

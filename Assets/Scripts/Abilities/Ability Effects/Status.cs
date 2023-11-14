@@ -15,6 +15,8 @@ public abstract class StatusEffect : MonoBehaviour
 
     public abstract void ApplyEffect();
     public abstract void RemoveEffect();
+
+    public abstract string GetStatusType();
 }
 
 public class Fire : StatusEffect
@@ -42,6 +44,11 @@ public class Fire : StatusEffect
     {
         active = false;
         CancelInvoke("DealDamage");
+    }
+
+    public override string GetStatusType()
+    {
+        return "fire";
     }
 
     private IEnumerator FireCoroutine()
@@ -106,6 +113,11 @@ public class Ice : StatusEffect
         }
     }
 
+    public override string GetStatusType()
+    {
+        return "ice";
+    }
+
     private IEnumerator IceCoroutine()
     {
 
@@ -114,5 +126,4 @@ public class Ice : StatusEffect
 
         RemoveEffect();
     }
-
 }

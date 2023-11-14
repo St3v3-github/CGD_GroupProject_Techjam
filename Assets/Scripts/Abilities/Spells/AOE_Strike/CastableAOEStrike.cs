@@ -3,13 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CastableAOEStrike : MonoBehaviour
+public class CastableAOEStrike : Spell
 {
     public float attackRadius = 10f;
     public float damage = 60f;
     public GameObject projectionPrefab;
-    public GameObject particlePrefab;
-    public GameObject projection;
+    private GameObject particlePrefab;
+    public GameObject firePrefab;
+    public GameObject lightningPrefab;
+    public GameObject icePrefab;
+    public GameObject windPrefab;
+    private GameObject projection;
     public Camera playerCamera;
     private bool projectionOn = false;
 
@@ -17,7 +21,30 @@ public class CastableAOEStrike : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        setStatus();
+        switchType(currentStatus);
+    }
+
+    void switchType(StatusEffect status)
+    {
+        switch (status.GetStatusType())
+        {
+            case "fire":
+                particlePrefab = firePrefab;
+                break;
+            case "lightning":
+                particlePrefab = lightningPrefab;
+                break;
+            case "ice":
+                particlePrefab = icePrefab;
+                break;
+            case "wind":
+                particlePrefab = windPrefab;
+                break;
+            default:
+                particlePrefab = lightningPrefab;
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -27,8 +54,7 @@ public class CastableAOEStrike : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                projection = Instantiate(projectionPrefab, Vector3.zero, Quaternion.identity);
-                projectionOn = true;
+                switchProjectionOn();
 
             }
         }
@@ -37,8 +63,7 @@ public class CastableAOEStrike : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Q) || Input.GetMouseButtonDown(1))
             {
-                projectionOn = false;
-                Destroy(projection);
+                switchProjectionOff();
             }
 
             UpdateProjection();
@@ -53,8 +78,6 @@ public class CastableAOEStrike : MonoBehaviour
 
     void UpdateProjection()
     {
-
-
         // Get the camera's position and forward direction
         Vector3 cameraPosition = playerCamera.transform.position;
         Vector3 cameraForward = playerCamera.transform.forward;
@@ -74,8 +97,18 @@ public class CastableAOEStrike : MonoBehaviour
             // Set the object's position to the hit point
             projection.transform.position = targetPosition;
         }
+    }
 
-        
+    public void switchProjectionOn()
+    {
+        projection = Instantiate(projectionPrefab, Vector3.zero, Quaternion.identity);
+        projectionOn = true;
+    }
+
+    public void switchProjectionOff()
+    {
+        projectionOn = false;
+        Destroy(projection);
     }
 
     public void Strike(Vector3 centre)
@@ -85,16 +118,7 @@ public class CastableAOEStrike : MonoBehaviour
         // Creates Visual Prefab
         InstantiateStrike(projection.transform.position);
 
-        string targetTag = "Player1";
-
-        if (this.tag == "Player1")
-        {
-            targetTag = "Player2";
-        }
-        else if (this.tag == "Player2")
-        {
-            targetTag = "Player1";
-        }
+        setTargetTag();
 
 
         DetectCharacters(projection.transform.position, targetTag);

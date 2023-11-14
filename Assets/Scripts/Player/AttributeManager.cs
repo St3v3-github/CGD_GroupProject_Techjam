@@ -73,7 +73,7 @@ public class AttributeManager : MonoBehaviour
         ChangeStatus(statusEffect);
 
         //Particles and Shaders called here
-
+        Debug.Log("Health: " + health);
 
 
 
