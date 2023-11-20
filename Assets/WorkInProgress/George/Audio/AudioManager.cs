@@ -8,9 +8,6 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance { get; private set; }
 
-    //[field: Header("Music")]
-   // [field: SerializeField] public EventReference music { get; private set; }
-
 
     private List<EventInstance> eventInstances;
 
