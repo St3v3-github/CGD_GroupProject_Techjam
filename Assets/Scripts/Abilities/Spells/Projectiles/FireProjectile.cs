@@ -25,6 +25,7 @@ public class FireProjectile : MonoBehaviour
         //projectileSpawnPoint.z += (firePoint.forward * 0.5f).z;
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position - verticalOffset + firePoint.forward, firePoint.rotation);
         projectile.tag = this.tag + "Spell";
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.ProjectileSummoned, this.transform.position);
 
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
 
@@ -33,5 +34,6 @@ public class FireProjectile : MonoBehaviour
             rb.AddForce(firePoint.forward * projectileForce, ForceMode.Impulse);
             
         }
+        
     }
 }
