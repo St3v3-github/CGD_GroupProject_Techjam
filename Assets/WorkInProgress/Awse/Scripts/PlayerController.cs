@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    InputManager input_manager;
+    InputManager inputManager;
 
     [Header("Aiming")]
     [SerializeField] public Camera _camera;
@@ -35,6 +35,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public MovementSettings ground_settings = new MovementSettings(7, 14, 10);
     [SerializeField] public MovementSettings air_settings = new MovementSettings(7, 2, 2);
     [SerializeField] public MovementSettings strafe_settings = new MovementSettings(3, 50, 50);
+
+
+    [Header("Jump")]
+    public float jumpForce;
+    public float jumpCooldown;
+    public bool isReadyToJump;
+
+    [Header("Ground Check")]
+    public float playerHeight;
+    public LayerMask groundLayer;
+    public bool isGrounded;
+
+
+
+
 
     /// <summary>
     /// Returns player's current speed.
@@ -58,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        input_manager = FindObjectOfType<InputManager>();
+        inputManager = FindObjectOfType<InputManager>();
     }
 
     public void Start()
@@ -125,18 +140,37 @@ public class PlayerController : MonoBehaviour
     }
 
     public void HandleJump()
-    {
-        QueueJump();
-
-        // Reset the gravity velocity
-        player_velocity.y = -gravity * Time.deltaTime;
-
-        if (jump_queued)
+    { 
+        if (character.isGrounded)
         {
             player_velocity.y = jump_force;
-            jump_queued = false;
+            isReadyToJump = false;
+
+            Invoke(nameof(ResetJump), jumpCooldown);
         }
     }
+
+    private void ResetJump()
+    {
+        //player_velocity.y = -gravity * Time.deltaTime;
+        isReadyToJump = true;
+    }
+
+
+
+    /*    public void HandleJump()
+        {
+            //QueueJump();
+
+            // Reset the gravity velocity
+            player_velocity.y = -gravity * Time.deltaTime;
+
+            if (jump_queued)
+            {
+                player_velocity.y = jump_force;
+                jump_queued = false;
+            }
+        }*/
 
     public void HandleSprint()
     {
@@ -145,7 +179,7 @@ public class PlayerController : MonoBehaviour
 
 
     //Queue base jump
-    public void QueueJump()
+/*    public void QueueJump()
     {
         if (auto_jump)
         {
@@ -168,7 +202,7 @@ public class PlayerController : MonoBehaviour
             jump_queued = true;
             double_jump_used = false;
         }
-    }
+    }*/
 
     //Kind of scuffed, using coroutine to call this method to allow player to gain some y velocity
     //before setting double_jump_used to true. works for now
