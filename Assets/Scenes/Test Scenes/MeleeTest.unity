@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2466,6 +2466,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healEffectPrefab: {fileID: 1881552412633134, guid: da7875cab77480d49972b42ca872af40, type: 3}
   healAuraEffectPrefab: {fileID: 8218495360110280356, guid: 7bf8919e1a35b6646bcefe812ee5fd19, type: 3}
+--- !u!114 &673463428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673463401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7199b06f1bd7b146a287fdb86d48241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 222110270}
+  playerMesh: {fileID: 1915090856}
+  active: 0
+  astralMaterial: {fileID: 2100000, guid: 76bfc385126248e44b66ae735c4b8d6f, type: 2}
 --- !u!1001 &682451184
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3421,7 +3437,7 @@ PrefabInstance:
       objectReference: {fileID: 4138691137755610625, guid: 0a3cfad124e05f34e8ea711de70f733b, type: 3}
     - target: {fileID: 6705567158006449796, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: spellType
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6705567158006449796, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: firePrefab
@@ -3441,7 +3457,7 @@ PrefabInstance:
       objectReference: {fileID: 2411946523980864128, guid: d23bc64354c8a5f4f979df59713e1337, type: 3}
     - target: {fileID: 6883050563193714908, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: spellType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6883050563193714908, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: firePrefab
@@ -3477,7 +3493,7 @@ PrefabInstance:
       objectReference: {fileID: 4138691137755610625, guid: 0a3cfad124e05f34e8ea711de70f733b, type: 3}
     - target: {fileID: 7738827348918598539, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: spellType
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7738827348918598539, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: firePrefab
@@ -3505,7 +3521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7806108214886809912, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: spellType
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7806108214886809912, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       propertyPath: fireDamage
@@ -3580,6 +3596,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2618948000053937510, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 673463419}
+    - targetCorrespondingSourceObject: {fileID: 2618948000053937510, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 673463428}
   m_SourcePrefab: {fileID: 100100000, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
 --- !u!1 &899391454 stripped
 GameObject:
@@ -9832,6 +9851,11 @@ Transform:
   - {fileID: 1287125281}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1915090856 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8799653818110806382, guid: e9a96a8887cd1d84ca582d0d6f4ca19a, type: 3}
+  m_PrefabInstance: {fileID: 898750591}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1916697578
 GameObject:
   m_ObjectHideFlags: 0

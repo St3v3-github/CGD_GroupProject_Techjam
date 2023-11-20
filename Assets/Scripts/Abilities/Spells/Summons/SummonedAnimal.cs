@@ -39,19 +39,9 @@ public class SummonedAnimal : Spell
         {
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
 
-            if (this.tag == "Player1Spell")
+            if (target = FindTarget(targetTag))
             {
-                if (target = FindTarget("Player2"))
-                {
-                    hasTarget = true;
-                }
-            }
-            else if (this.tag == "Player2Spell")
-            {
-                if (target = FindTarget("Player1"))
-                {
-                    hasTarget = true;
-                }
+                hasTarget = true;
             }
 
         }
@@ -60,7 +50,7 @@ public class SummonedAnimal : Spell
     void OnCollisionEnter(Collision collision)
     {
         
-        // Code to damage player
+        // Damage
         if (collision.gameObject.tag == targetTag)
         {
             animator.SetTrigger("Attack");

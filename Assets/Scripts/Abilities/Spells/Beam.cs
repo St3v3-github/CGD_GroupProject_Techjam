@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Beam : MonoBehaviour
+public class Beam : Spell
 {
     public float damagePerTick = 5f;
     public float tickInterval = 0.2f;
@@ -20,20 +20,15 @@ public class Beam : MonoBehaviour
 
     void Start()
     {
-        
+        setTargetTag();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.B) && !active)
         {
-            Vector3 spawnPosition = playerCam.position;
-            spawnPosition.y -= 0.4f;
-            active = true;
-            abilityEndTime = Time.time + abilityDuration; // Set the end time of the ability
-            beam = Instantiate(particlePrefab, spawnPosition + (playerCam.forward), playerCam.rotation);
-            beam.transform.SetParent(playerCam.transform, true);
 
+            cast();
 
         }
 
@@ -51,7 +46,16 @@ public class Beam : MonoBehaviour
                 if (Time.time - lastTickTime >= tickInterval)
                 {
                     // Deal damage to the opponent
-                    
+                    if (hit.transform.tag == targetTag)
+                    {
+
+                        AttributeManager attributes = hit.transform.gameObject.GetComponent<AttributeManager>();
+
+                        if (attributes != null)
+                        {
+                            attributes.TakeDamage(damagePerTick);
+                        }
+                    }
 
                     // Update the last tick time
                     lastTickTime = Time.time;
@@ -64,6 +68,16 @@ public class Beam : MonoBehaviour
             active = false;
             Destroy(beam);
         }
+    }
+
+    void cast()
+    {
+        Vector3 spawnPosition = playerCam.position;
+        spawnPosition.y -= 0.4f;
+        active = true;
+        abilityEndTime = Time.time + abilityDuration; // Set the end time of the ability
+        beam = Instantiate(particlePrefab, spawnPosition + (playerCam.forward), playerCam.rotation);
+        beam.transform.SetParent(playerCam.transform, true);
     }
 }
 
