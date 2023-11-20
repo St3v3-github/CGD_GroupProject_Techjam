@@ -28,15 +28,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float friction = 6;
     [SerializeField] public float gravity = 20;
     [SerializeField] public float jump_force = 8;
+
     [Tooltip("Automatically jump when holding jump button")]
     [SerializeField] public bool auto_jump = false;
     [Tooltip("How precise the player's air control is, ranges from 0 to 1")]
     [SerializeField] public float air_control = 0.3f;
+
     [SerializeField] public MovementSettings ground_settings = new MovementSettings(7, 14, 10);
     [SerializeField] public MovementSettings air_settings = new MovementSettings(7, 2, 2);
     [SerializeField] public MovementSettings strafe_settings = new MovementSettings(3, 50, 50);
 
 
+    /// <summary>
+    /// Fixed Jump Variables
+    /// </summary>
     [Header("Jump")]
     public float jumpForce;
     public float jumpCooldown;
@@ -46,9 +51,6 @@ public class PlayerController : MonoBehaviour
     public float playerHeight;
     public LayerMask groundLayer;
     public bool isGrounded;
-
-
-
 
 
     /// <summary>
@@ -86,32 +88,32 @@ public class PlayerController : MonoBehaviour
         camera_controller.Init(player_transform, camera_transform);
     }
 
-    public void Update()
+/*    public void Update()
     {
-        /*        move_input = new Vector3(input_manager.movementInput.x, 0, input_manager.movementInput.y);
-                //Move/rotate camera
-                camera_controller.LookRotation(player_transform, camera_transform);
-                camera_controller.CursorLock();
+        move_input = new Vector3(input_manager.movementInput.x, 0, input_manager.movementInput.y);
+        //Move/rotate camera
+        camera_controller.LookRotation(player_transform, camera_transform);
+        camera_controller.CursorLock();
 
-                QueueJump();
-                // Sets the player movement state.
-                if (character.isGrounded)
-                {
-                    GroundMovement();
-                }
-                else
-                {
-                    AirMovement();
-                }*/
-    }
+        QueueJump();
+        // Sets the player movement state.
+        if (character.isGrounded)
+        {
+            GroundMovement();
+        }
+        else
+        {
+            AirMovement();
+        }
+    }*/
 
-    public void FixedUpdate()
+/*    public void FixedUpdate()
     {
         //Mainly physics based movement (i.e using rigidbody) should go here, but just in case
 
         // Move the character.
-        /*        character.Move(player_velocity * Time.deltaTime);*/
-    }
+        character.Move(player_velocity * Time.deltaTime);
+    }*/
 
 
     public void HandleCamera(Vector2 cameraInput)
@@ -155,31 +157,29 @@ public class PlayerController : MonoBehaviour
         //player_velocity.y = -gravity * Time.deltaTime;
         isReadyToJump = true;
     }
-
-
-
-    /*    public void HandleJump()
-        {
-            //QueueJump();
-
-            // Reset the gravity velocity
-            player_velocity.y = -gravity * Time.deltaTime;
-
-            if (jump_queued)
-            {
-                player_velocity.y = jump_force;
-                jump_queued = false;
-            }
-        }*/
-
     public void HandleSprint()
     {
 
     }
 
+    //old jump - after some breaking
+/*    public void HandleJump()
+    {
+        //QueueJump();
+
+        // Reset the gravity velocity
+        player_velocity.y = -gravity * Time.deltaTime;
+
+        if (jump_queued)
+        {
+            player_velocity.y = jump_force;
+            jump_queued = false;
+        }
+    }
+
 
     //Queue base jump
-/*    public void QueueJump()
+    public void QueueJump()
     {
         if (auto_jump)
         {
@@ -202,11 +202,11 @@ public class PlayerController : MonoBehaviour
             jump_queued = true;
             double_jump_used = false;
         }
-    }*/
+    }
 
     //Kind of scuffed, using coroutine to call this method to allow player to gain some y velocity
     //before setting double_jump_used to true. works for now
-    /*public void DoubleJumpToggle()
+    public void DoubleJumpToggle()
     {
         double_jump_used = true;
     }*/

@@ -59,6 +59,7 @@ public class InputManager : MonoBehaviour
         if (ctx.action.triggered)
         {
             playerController.HandleJump();
+            Debug.Log("Jumping");
         }
     }
 
