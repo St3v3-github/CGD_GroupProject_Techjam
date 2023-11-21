@@ -33,17 +33,7 @@ public class Raycast : MonoBehaviour
                 if (hit.collider.gameObject.TryGetComponent(out ItemScript itemScript))
                 {
                     ItemData new_item_data = hit.collider.gameObject.GetComponent<ItemInfo>().GetItemData();
-                    switch (new_item_data.type)
-                    {
-                        case 0:
-                            //display element pickup text
-                            break;
-                        case 1:
-                            //display spell rune pickup text
-                            break;
-                        default:
-                            break;
-                    }
+                    //display spell rune pickup text
                     target = hit.collider.gameObject;
                 }
             }

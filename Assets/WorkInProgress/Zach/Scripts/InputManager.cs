@@ -30,7 +30,7 @@ public class InputManagerZac : MonoBehaviour
         {
             InputControl actionInput = ctx.control;
 
-            if (ray.target != null && ray.target.GetComponent<ItemInfo>().GetItemData().type == 0)
+            if (ray.target != null && ray.target.GetComponent<ItemInfo>().GetItemData().ID != 0)
             {
                 int slotTarget = 0;
                 switch (actionInput.name)
@@ -95,7 +95,7 @@ public class InputManagerZac : MonoBehaviour
             InputControl actionInput = ctx.control;
             string actionButton = actionInput.name;
 
-            if (ray.target != null && ray.target.GetComponent<ItemInfo>().GetItemData().type == 1)
+            if (ray.target != null && ray.target.GetComponent<ItemInfo>().GetItemData().ID != 0)
             {
                 int slotTarget = 0;
                 switch (actionButton)

@@ -119,27 +119,26 @@ public class ElementalSpell : Spell
 
     public void setPrefab(ItemData spell)
     {
-        ItemData.elementEnum spelltype = spell.element;
-        int temp;
+        /*int temp;
         if (spell.ID <= 16)
         {
             temp = spell.ID % 4;
-        }
+        }*/
         switch (spell.ID)
         {
-            case 1:
+            case ItemData.SpellList.FIREBALL:
                 spellPrefab = firePrefab;
                 damage = fireDamage;
                 break;
-            case 2:
+            case ItemData.SpellList.ICEBALL:
                 spellPrefab = icePrefab;
                 damage = iceDamage;
                 break;
-            case 3:
+            case ItemData.SpellList.LIGHTNINGBALL:
                 spellPrefab = lightningPrefab;
                 damage = lightDamage;
                 break;
-            case 4:
+            case ItemData.SpellList.WINDBALL:
                 spellPrefab = windPrefab;
                 damage = windDamage;
                 break;
