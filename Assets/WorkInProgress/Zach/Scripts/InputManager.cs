@@ -7,7 +7,7 @@ public class InputManagerZac : MonoBehaviour
     public Vector2 movementInput;
     public bool jumpInput = false;
     public Raycast ray;
-    public Inventory inventory;
+    public InventoryEdit inventory;
 
     public void OnLook(InputAction.CallbackContext ctx)
     {
