@@ -195,7 +195,7 @@ public class InputManager : MonoBehaviour
 
     }*/
 
-    public void OnSpellRune(InputAction.CallbackContext ctx)
+    /*public void OnSpellRune(InputAction.CallbackContext ctx)
     {
         if (ctx.action.WasReleasedThisFrame())
         {
@@ -317,7 +317,7 @@ public class InputManager : MonoBehaviour
 
             }
         }
-    }
+    }*/
 }
 
 
