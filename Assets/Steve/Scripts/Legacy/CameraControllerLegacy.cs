@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CameraControllerLegacy : MonoBehaviour
@@ -51,4 +51,4 @@ public class CameraControllerLegacy : MonoBehaviour
         targetRotation = Quaternion.Euler(rotation);
         cameraPivot.localRotation = targetRotation;
     }
-}
+}*/
