@@ -18,8 +18,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    InputManager inputManager;
-
     [Header("Aiming")]
     [SerializeField] public Camera _camera;
     [SerializeField] public CameraController camera_controller;
@@ -31,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
     [Tooltip("Automatically jump when holding jump button")]
     [SerializeField] public bool auto_jump = false;
+
     [Tooltip("How precise the player's air control is, ranges from 0 to 1")]
     [SerializeField] public float air_control = 0.3f;
 
@@ -38,24 +37,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public MovementSettings air_settings = new MovementSettings(7, 2, 2);
     [SerializeField] public MovementSettings strafe_settings = new MovementSettings(3, 50, 50);
 
-
-    /// <summary>
-    /// Fixed Jump Variables
-    /// </summary>
+    // Fixed Jump Variables
     [Header("Jump")]
-    public float jumpForce;
     public float jumpCooldown;
     public bool isReadyToJump;
 
-    [Header("Ground Check")]
-    public float playerHeight;
-    public LayerMask groundLayer;
-    public bool isGrounded;
-
-
-    /// <summary>
-    /// Returns player's current speed.
-    /// </summary>
+    //Returns player's current speed.
     public float speed { get { return character.velocity.magnitude; } }
 
     public CharacterController character;
@@ -64,7 +51,6 @@ public class PlayerController : MonoBehaviour
 
     // Used to queue the next jump just before hitting the ground.
     public bool jump_queued = false;
-    public bool double_jump_used = false;
 
     // Used to display real time friction values.
     public float player_friction = 0;
@@ -73,10 +59,6 @@ public class PlayerController : MonoBehaviour
     public Transform player_transform;
     public Transform camera_transform;
 
-    private void Awake()
-    {
-        inputManager = FindObjectOfType<InputManager>();
-    }
 
     public void Start()
     {
@@ -87,34 +69,6 @@ public class PlayerController : MonoBehaviour
         camera_transform = _camera.transform;
         camera_controller.Init(player_transform, camera_transform);
     }
-
-/*    public void Update()
-    {
-        move_input = new Vector3(input_manager.movementInput.x, 0, input_manager.movementInput.y);
-        //Move/rotate camera
-        camera_controller.LookRotation(player_transform, camera_transform);
-        camera_controller.CursorLock();
-
-        QueueJump();
-        // Sets the player movement state.
-        if (character.isGrounded)
-        {
-            GroundMovement();
-        }
-        else
-        {
-            AirMovement();
-        }
-    }*/
-
-/*    public void FixedUpdate()
-    {
-        //Mainly physics based movement (i.e using rigidbody) should go here, but just in case
-
-        // Move the character.
-        character.Move(player_velocity * Time.deltaTime);
-    }*/
-
 
     public void HandleCamera(Vector2 cameraInput)
     {
@@ -140,76 +94,6 @@ public class PlayerController : MonoBehaviour
         // Move the character.
         character.Move(player_velocity * Time.deltaTime);
     }
-
-    public void HandleJump()
-    { 
-        if (character.isGrounded)
-        {
-            player_velocity.y = jump_force;
-            isReadyToJump = false;
-
-            Invoke(nameof(ResetJump), jumpCooldown);
-        }
-    }
-
-    private void ResetJump()
-    {
-        //player_velocity.y = -gravity * Time.deltaTime;
-        isReadyToJump = true;
-    }
-    public void HandleSprint()
-    {
-
-    }
-
-    //old jump - after some breaking
-/*    public void HandleJump()
-    {
-        //QueueJump();
-
-        // Reset the gravity velocity
-        player_velocity.y = -gravity * Time.deltaTime;
-
-        if (jump_queued)
-        {
-            player_velocity.y = jump_force;
-            jump_queued = false;
-        }
-    }
-
-
-    //Queue base jump
-    public void QueueJump()
-    {
-        if (auto_jump)
-        {
-            jump_queued = true;
-            return;
-        }
-
-        if (!jump_queued)
-        {
-            jump_queued = true;
-        }
-
-        else
-        {
-            jump_queued = false;
-        }
-
-        if (character.isGrounded)
-        {
-            jump_queued = true;
-            double_jump_used = false;
-        }
-    }
-
-    //Kind of scuffed, using coroutine to call this method to allow player to gain some y velocity
-    //before setting double_jump_used to true. works for now
-    public void DoubleJumpToggle()
-    {
-        double_jump_used = true;
-    }*/
 
     // Handles the player's air movement.
     public void AirMovement()
@@ -255,11 +139,6 @@ public class PlayerController : MonoBehaviour
         // Applies gravity to the player
         player_velocity.y -= gravity * Time.deltaTime;
 
-        /*if(input_manager.jumpInput && !double_jump_used)
-        {
-            player_velocity.y = jump_force;
-            Invoke("DoubleJumpToggle", 0.5f);
-        }*/
     }
 
     //Air control occurs when player is airborne, allowed the player to move horizontally more freely than when grounded.
@@ -319,15 +198,6 @@ public class PlayerController : MonoBehaviour
         w_speed *= ground_settings.max_speed;
 
         Accelerate(w_direction, w_speed, ground_settings.acceleration);
-
-        /*        // Reset the gravity velocity
-                player_velocity.y = -gravity * Time.deltaTime;
-
-                if (jump_queued)
-                {
-                    player_velocity.y = jump_force;
-                    jump_queued = false;
-                }*/
     }
 
     public void Applyfriction(float t)
@@ -380,4 +250,21 @@ public class PlayerController : MonoBehaviour
         player_velocity.x += accelspeed * _target_direction.x;
         player_velocity.z += accelspeed * _target_direction.z;
     }
+
+    public void HandleJump()
+    {
+        if (character.isGrounded)
+        {
+            player_velocity.y = jump_force;
+            isReadyToJump = false;
+
+            Invoke(nameof(ResetJump), jumpCooldown);
+        }
+    }
+
+    private void ResetJump()
+    {
+        isReadyToJump = true;
+    }
+
 }

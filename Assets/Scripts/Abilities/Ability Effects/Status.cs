@@ -21,7 +21,7 @@ public abstract class StatusEffect : MonoBehaviour
 
 public class Fire : StatusEffect
 {
-    private float damagePerSecond = 4;
+    //private float damagePerSecond = 4;
 
     public Fire() : base()
     {

@@ -1,20 +1,25 @@
 using System;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public class CameraController : MonoBehaviour
 {
-    //InputManager input_manager;
+    [Header("Camera Sensitivity")]
+    [SerializeField] private float sensitivity_x = 2f;
+    [SerializeField] private float sensitivity_y = 2f;
 
-    [SerializeField] private float sensitivity_x = 1f;
-    [SerializeField] private float sensitivity_y = 1f;
+    [Header("Camera Clamping")]
     [SerializeField] private bool clamp_vertical_rot = true;
     [SerializeField] private float minimum_x = -90F;
     [SerializeField] private float maximum_x = 90F;
+
+    [Header("Camera Smoothing")]
     [SerializeField] private bool smooth = false;
     [SerializeField] private float smooth_time = 5f;
+
+    [Header("Cursor Locking")]
     [SerializeField] private bool cursor_lock = true;
 
+    //Rotation Data
     private Quaternion character_rotation;
     private Quaternion camera_rotation;
 
@@ -24,37 +29,20 @@ public class CameraController : MonoBehaviour
         camera_rotation = _camera.localRotation;
     }
 
-    private void Awake()
-    {
-        //input_manager = FindObjectOfType<InputManager>();
-    }
-
-    private void Start()
-    {
-        /*      Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;*/
-    }
-
     public void LookRotation(Vector2 cameraInput, Transform _character, Transform _camera)
     {
-        //Access inputs
-        //float inputX = inputManager.cameraInput.normalized.x * Time.deltaTime * sensitivityX;
-        //float inputY = inputManager.cameraInput.normalized.y * Time.deltaTime * sensitivityY;
-
-        //i dont know why this has to be set up like this, but any other way and the camera rotation is even more fucked
-        //this is the only thing ive tried that seems to be fine
         float rotation_y = cameraInput.x * sensitivity_x;
         float rotation_x = cameraInput.y * sensitivity_y;
 
         character_rotation *= Quaternion.Euler(0f, rotation_y, 0f);
         camera_rotation *= Quaternion.Euler(-rotation_x, 0f, 0f);
 
-        if(clamp_vertical_rot)
+        if (clamp_vertical_rot)
         {
             camera_rotation = ClampRotationAroundXAxis(camera_rotation);
         }
 
-        if(smooth)
+        if (smooth)
         {
             _character.localRotation = Quaternion.Slerp(_character.localRotation, character_rotation, smooth_time * Time.deltaTime);
             _camera.localRotation = Quaternion.Slerp(_camera.localRotation, camera_rotation, smooth_time * Time.deltaTime);
@@ -70,7 +58,7 @@ public class CameraController : MonoBehaviour
 
     public void CursorLock()
     {
-        if(cursor_lock)
+        if (cursor_lock)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
