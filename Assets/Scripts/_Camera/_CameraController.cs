@@ -3,17 +3,23 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    InputManager input_manager;
-
+    [Header("Camera Sensitivity")]
     [SerializeField] private float sensitivity_x = 2f;
     [SerializeField] private float sensitivity_y = 2f;
+
+    [Header("Camera Clamping")]
     [SerializeField] private bool clamp_vertical_rot = true;
     [SerializeField] private float minimum_x = -90F;
     [SerializeField] private float maximum_x = 90F;
+
+    [Header("Camera Smoothing")]
     [SerializeField] private bool smooth = false;
     [SerializeField] private float smooth_time = 5f;
+
+    [Header("Cursor Locking")]
     [SerializeField] private bool cursor_lock = true;
 
+    //Rotation Data
     private Quaternion character_rotation;
     private Quaternion camera_rotation;
 
@@ -23,25 +29,10 @@ public class CameraController : MonoBehaviour
         camera_rotation = _camera.localRotation;
     }
 
-    private void Awake()
-    {
-        input_manager = FindObjectOfType<InputManager>();
-    }
-
-    private void Start()
-    {
-        /*      Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;*/
-    }
-
     public void LookRotation(Vector2 cameraInput, Transform _character, Transform _camera)
     {
-        //Access inputs
-        //float inputX = inputManager.cameraInput.normalized.x * Time.deltaTime * sensitivityX;
-        //float inputY = inputManager.cameraInput.normalized.y * Time.deltaTime * sensitivityY;
-
-        float rotation_y = input_manager.cameraInput.x * sensitivity_x;
-        float rotation_x = input_manager.cameraInput.y * sensitivity_y;
+        float rotation_y = cameraInput.x * sensitivity_x;
+        float rotation_x = cameraInput.y * sensitivity_y;
 
         character_rotation *= Quaternion.Euler(0f, rotation_y, 0f);
         camera_rotation *= Quaternion.Euler(-rotation_x, 0f, 0f);

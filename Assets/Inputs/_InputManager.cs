@@ -36,6 +36,7 @@ public class InputManager : MonoBehaviour
     public void OnMove(InputAction.CallbackContext ctx)
     {
         movementInput = ctx.ReadValue<Vector2>();
+
     }
 
     public void OnJump(InputAction.CallbackContext ctx)
