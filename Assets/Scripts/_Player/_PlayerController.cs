@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class _PlayerController : MonoBehaviour
 {
-    public _InputManager inputManager;
-
     [Header("Movement")]
     public float playerSpeed;
 
@@ -28,20 +26,10 @@ public class _PlayerController : MonoBehaviour
 
     Rigidbody playerRigidbody;
 
-    private void Awake()
-    {
-
-    }
-
     private void Start()
     {
         playerRigidbody = GetComponent<Rigidbody>();
         playerRigidbody.freezeRotation = true;
-    }
-
-    private void Update()
-    {
-
     }
 
     private void FixedUpdate()
@@ -49,17 +37,14 @@ public class _PlayerController : MonoBehaviour
         HandleGroundCheck();
     }
 
-    public void HandleMovement(Vector2 movementInput)
+    private void HandleGroundCheck()
     {
-        horizontalInput = movementInput.x;
-        verticalInput = movementInput.y;
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.5f, groundLayer);
+    }
 
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-
-        gameObject.transform.Translate(moveDirection * Time.deltaTime * playerSpeed);
-
-        //trying out Force movement - momentum seemed fun but maybe not :(
-        //playerRigidbody.AddForce(moveDirection.normalized * playerSpeed, ForceMode.Force);
+    private void ResetJump()
+    {
+        isReadyToJump = true;
     }
 
     public void HandleJump()
@@ -73,14 +58,15 @@ public class _PlayerController : MonoBehaviour
         }
     }
 
-    private void HandleGroundCheck()
+    public void HandleMovement(Vector2 movementInput)
     {
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.5f, groundLayer);
-    }
+        horizontalInput = movementInput.x;
+        verticalInput = movementInput.y;
 
-    private void ResetJump()
-    {
-        isReadyToJump = true;
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+
+        gameObject.transform.Translate(moveDirection * Time.deltaTime * playerSpeed);
+
     }
 }
 

@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
 using static UnityEngine.EventSystems.EventTrigger;
 
 public class _InputManager : MonoBehaviour
@@ -23,7 +24,7 @@ public class _InputManager : MonoBehaviour
     private void Update()
     {
         playerController.HandleMovement(movementInput);
-        playerController.HandleCamera(cameraInput);
+        cameraController.HandleCameraRotation(cameraInput);
     }
 
 

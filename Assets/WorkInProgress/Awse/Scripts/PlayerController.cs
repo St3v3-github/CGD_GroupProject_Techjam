@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
         camera_controller.Init(player_transform, camera_transform);
     }
 
-/*    public void Update()
+    public void Update()
     {
         move_input = new Vector3(input_manager.movementInput.x, 0, input_manager.movementInput.y);
         //Move/rotate camera
@@ -105,23 +105,15 @@ public class PlayerController : MonoBehaviour
         {
             AirMovement();
         }
-    }*/
-
-/*    public void FixedUpdate()
-    {
-        //Mainly physics based movement (i.e using rigidbody) should go here, but just in case
-
-        // Move the character.
-        character.Move(player_velocity * Time.deltaTime);
-    }*/
-
-
-    public void HandleCamera(Vector2 cameraInput)
-    {
-        // Move/rotate camera
-        camera_controller.LookRotation(cameraInput, player_transform, camera_transform);
-        camera_controller.CursorLock();
     }
+
+    /*    public void FixedUpdate()
+        {
+            //Mainly physics based movement (i.e using rigidbody) should go here, but just in case
+
+            // Move the character.
+            character.Move(player_velocity * Time.deltaTime);
+        }*/
 
     public void HandleMovement(Vector2 movementInput)
     {
