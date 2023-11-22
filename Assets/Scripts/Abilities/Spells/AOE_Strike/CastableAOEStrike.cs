@@ -21,6 +21,7 @@ public class CastableAOEStrike : ElementalSpell
         setPrefab(spellType);
 
         setTargetTag();
+        source = gameObject;
     }
 
 
@@ -127,24 +128,17 @@ public class CastableAOEStrike : ElementalSpell
 
         foreach (var player in players)
         {
-            AttributeManager attributes = player.GetComponent<AttributeManager>();
+            float distance = Vector3.Distance(centre, player.transform.position);
 
-            if (attributes != null)
-            {
-                // Calculate the distance between the center and the player
-                float distance = Vector3.Distance(centre, player.transform.position);
+            float damageMultiplier = damage / attackRadius;
 
-                float damageMultiplier = damage / attackRadius;
+            // Adjust the damage based on distance (you can use any formula here)
+            float adjustedDamage = damage - distance * damageMultiplier;
 
-                // Adjust the damage based on distance (you can use any formula here)
-                float adjustedDamage = damage - distance * damageMultiplier;
+            // Make sure the adjusted damage is not negative
+            adjustedDamage = Mathf.Max(0, adjustedDamage);
 
-                // Make sure the adjusted damage is not negative
-                adjustedDamage = Mathf.Max(0, adjustedDamage);
-
-                // Apply the adjusted damage to the player
-                attributes.TakeDamage(adjustedDamage);
-            }
+            dealDamage(player, adjustedDamage);
         }
     }
 

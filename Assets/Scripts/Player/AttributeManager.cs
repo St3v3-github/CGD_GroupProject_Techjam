@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public struct killing_data
+{
+    public GameObject killer;
+    public GameObject deaded;
+}
 public class AttributeManager : MonoBehaviour
 {
     //should be private for final (as we use getters and setters) but keep public for dev so we can eyeball inspector
@@ -18,6 +23,7 @@ public class AttributeManager : MonoBehaviour
 
     //CURRENT STATUS HERE
     public StatusEffect player_status;
+    public GameObject last_damage_player;
 
     void Start()
     {
@@ -51,20 +57,46 @@ public class AttributeManager : MonoBehaviour
         mp = _mp;
     }
 
+    //delete this later fix spells ya dumbass but go to sleep now
     public float TakeDamage(float damage)
     {
 
         health -= damage;
+        if (health < 0)
+        {
+            
+        }
 
         //Particles and Shaders called here
 
 
+        return health;
+    }
 
+    public float TakeDamage(float damage, GameObject attacker)
+    {
+        
+        health -= damage;
+        if (health < 0)
+        {
+            Die(attacker);
+        }
 
+        //Particles and Shaders called here
 
 
         return health;
     }
+
+    
+    public void Die(GameObject killer)
+    {
+        killing_data data;
+        data.killer = killer;
+        data.deaded = gameObject;
+        SendMessage("PrayToGod", data);
+    }
+
 
     public float TakeDamage(float damage, StatusEffect statusEffect)
     {

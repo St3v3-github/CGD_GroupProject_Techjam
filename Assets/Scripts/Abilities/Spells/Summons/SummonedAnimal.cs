@@ -12,6 +12,7 @@ public class SummonedAnimal : Spell
     public float visionAngle = 60f;
 
 
+
     private GameObject target;
     public bool hasTarget = false;
 
@@ -56,12 +57,7 @@ public class SummonedAnimal : Spell
             animator.SetTrigger("Attack");
             Debug.Log("Collision detected with: " + collision.gameObject.name);
 
-            AttributeManager attributes = collision.gameObject.GetComponent<AttributeManager>();
-
-            if (attributes != null)
-            {
-                attributes.TakeDamage(damage, currentStatus);
-            }
+            dealDamage(collision.gameObject, damage);
 
 
             deathParticle.Play(true);

@@ -7,6 +7,7 @@ public class Spell : MonoBehaviour
 {
     protected float damage;
     protected string targetTag;
+    public GameObject source;
 
     public void setTargetTag()
     {
@@ -17,6 +18,16 @@ public class Spell : MonoBehaviour
         else if (this.tag == "Player2Spell" || this.tag == "Player2")
         {
             targetTag = "Player1";
+        }
+    }
+
+    public void dealDamage(GameObject player, float damage)
+    {
+        AttributeManager attributes = player.GetComponent<AttributeManager>();
+
+        if (attributes != null)
+        {
+            attributes.TakeDamage(damage, source);
         }
     }
 }
