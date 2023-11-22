@@ -21,7 +21,7 @@ public class Fireball : MonoBehaviour
 
     void Update()
     {
-        if (inputManager.abilityInput1 && abilityReady)
+        if (abilityReady) //(inputManager.abilityInput1 && abilityReady)
         {
             Fire();
         }

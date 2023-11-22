@@ -4,10 +4,10 @@ using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
 using static UnityEngine.EventSystems.EventTrigger;
 
-public class _InputManager : MonoBehaviour
+public class InputManager : MonoBehaviour
 {
-    public _PlayerController playerController;
-    public _CameraController cameraController;
+    public PlayerController playerController;
+    public CameraController cameraController;
 
     [Header("Movement/Camera")]
     public Vector2 cameraInput;
@@ -24,7 +24,7 @@ public class _InputManager : MonoBehaviour
     private void Update()
     {
         playerController.HandleMovement(movementInput);
-        cameraController.HandleCameraRotation(cameraInput);
+        playerController.HandleCamera(cameraInput);
     }
 
 

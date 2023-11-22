@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3633123341394068714}
   - component: {fileID: 6908565506629579926}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerManager
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,14 +25,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2272497452931803498}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.70425975, z: -0, w: 0.7099424}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5991541038893579426}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 89.54, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6908565506629579926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 5421730042665572646}
+  m_PlayerPrefab: {fileID: 2272497452931803498}
   m_SplitScreen: 1
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
@@ -87,11 +87,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5991541038893579426}
   - component: {fileID: 3828310589087229849}
+  - component: {fileID: 811741846611718713}
   - component: {fileID: 8285321329579320587}
-  - component: {fileID: 4159515421499010173}
-  - component: {fileID: 5195106879401278619}
-  - component: {fileID: 6999701347645551063}
-  - component: {fileID: 2736067841070142836}
+  - component: {fileID: 7940312861641195697}
+  - component: {fileID: 8599124901616980960}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -139,6 +138,32 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!143 &811741846611718713
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5421730042665572646}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8285321329579320587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +191,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5195106879401278619}
+      - m_Target: {fileID: 7940312861641195697}
         m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
@@ -182,7 +207,7 @@ MonoBehaviour:
     m_ActionName: Player/Movement[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5195106879401278619}
+      - m_Target: {fileID: 7940312861641195697}
         m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: OnLook
         m_Mode: 0
@@ -198,7 +223,7 @@ MonoBehaviour:
     m_ActionName: Player/Camera[/XInputControllerWindows/rightStick/up,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/rightStick/right,/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5195106879401278619}
+      - m_Target: {fileID: 7940312861641195697}
         m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
@@ -214,7 +239,7 @@ MonoBehaviour:
     m_ActionName: Player/Jump[/XInputControllerWindows/buttonSouth,/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5195106879401278619}
+      - m_Target: {fileID: 7940312861641195697}
         m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: OnSprint
         m_Mode: 0
@@ -230,9 +255,9 @@ MonoBehaviour:
     m_ActionName: Player/Sprint[/XInputControllerWindows/leftStickPress,/Keyboard/shift]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5195106879401278619}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: OnInteract
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -305,33 +330,7 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 1618919226562968767}
---- !u!143 &4159515421499010173
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5421730042665572646}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5195106879401278619
+--- !u!114 &7940312861641195697
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -340,23 +339,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5421730042665572646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df65e73ed0022434cae9eff70adeade6, type: 3}
+  m_Script: {fileID: 11500000, guid: d23524a07e16f0643bb1d19c93233839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 8599124901616980960}
+  cameraController: {fileID: 6271701602903477881}
   cameraInput: {x: 0, y: 0}
   movementInput: {x: 0, y: 0}
-  abilityCastInput: 0
-  abilityInput1: 0
-  abilityInput2: 0
-  abilityInput3: 0
-  abilityInput4: 0
-  ray: {fileID: 0}
-  inventory: {fileID: 0}
-  interactInput: 0
-  meleeInput: 0
-  spell_holder: {fileID: 0}
-  uiHandler: {fileID: 0}
---- !u!114 &6999701347645551063
+--- !u!114 &8599124901616980960
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -365,15 +355,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5421730042665572646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09d405bce309e91439635653f88bb23f, type: 3}
+  m_Script: {fileID: 11500000, guid: be57164365be6474b9ddccee539be256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 1618919226562968767}
-  camera_controller: {fileID: 1585722497793060869}
+  camera_controller: {fileID: 6271701602903477881}
   friction: 6
   gravity: 20
   jump_force: 8
-  auto_jump: 1
+  auto_jump: 0
   air_control: 0.3
   ground_settings:
     max_speed: 7
@@ -387,15 +377,9 @@ MonoBehaviour:
     max_speed: 3
     acceleration: 50
     deceleration: 50
-  jumpForce: 0
-  jumpCooldown: 0
-  isReadyToJump: 0
-  playerHeight: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1032
-  isGrounded: 0
-  character: {fileID: 4159515421499010173}
+  jumpCooldown: 1
+  isReadyToJump: 1
+  character: {fileID: 811741846611718713}
   move_dir_norm: {x: 0, y: 0, z: 0}
   player_velocity: {x: 0, y: 0, z: 0}
   jump_queued: 0
@@ -404,19 +388,6 @@ MonoBehaviour:
   move_input: {x: 0, y: 0, z: 0}
   player_transform: {fileID: 5991541038893579426}
   camera_transform: {fileID: 6314635571462293677}
---- !u!114 &2736067841070142836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5421730042665572646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c7e9e60bf2a9db409acd4b1655dcc0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  refresh_rate: 4
 --- !u!1 &5607979601925190304
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,7 +400,7 @@ GameObject:
   - component: {fileID: 3291033372437239885}
   - component: {fileID: 7019615272116106131}
   m_Layer: 0
-  m_Name: Player_Mesh
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -512,9 +483,9 @@ GameObject:
   - component: {fileID: 1618919226562968767}
   - component: {fileID: 5515823890506335878}
   - component: {fileID: 2238414851901019435}
-  - component: {fileID: 1585722497793060869}
+  - component: {fileID: 6271701602903477881}
   m_Layer: 0
-  m_Name: PlayerCam
+  m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -568,7 +539,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 90
+  field of view: 80
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -638,7 +609,7 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!114 &1585722497793060869
+--- !u!114 &6271701602903477881
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -647,14 +618,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8826179002650953563}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1ce4b493e991174eac4a13284d06ea3, type: 3}
+  m_Script: {fileID: 11500000, guid: 05315dab01fe75946966a1e412394aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity_x: 1
-  sensitivity_y: 1
+  sensitivity_x: 0.5
+  sensitivity_y: 0.5
   clamp_vertical_rot: 1
-  minimum_x: -90
-  maximum_x: 90
+  minimum_x: -80
+  maximum_x: 80
   smooth: 0
   smooth_time: 5
   cursor_lock: 1
