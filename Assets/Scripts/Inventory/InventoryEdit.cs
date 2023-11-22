@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ItemData;
 
 public class InventoryEdit : MonoBehaviour
 {
@@ -45,7 +46,26 @@ public class InventoryEdit : MonoBehaviour
         //return this in case the old item should be dropped
     }
 
+    
+    /// <summary>
+    /// Call this function on spell use
+    /// </summary>
+    /// <param name="slot">Target spell slot</param>
+    /// <param name="duration">Time spent active before cooldown, useful for UI</param>
+    /// <param name="cooldown">Time required before next use</param>
+    public void setActiveFor(int slot, float duration, float cooldown)
+    {
+        dd_spell_inventory[slot].current_state = SpellState.ACTIVE;;
+        StartCoroutine(setOnCooldownFor(slot,duration,cooldown));
+    }
 
+    private IEnumerator setOnCooldownFor(int slot, float duration, float cooldown)
+    {
+        yield return new WaitForSeconds(duration);
+        dd_spell_inventory[slot].current_state = SpellState.COOLDOWN;
+        yield return new WaitForSeconds(cooldown);
+        dd_spell_inventory[slot].current_state = SpellState.READY;
+    }
 
     public ItemData.SpellList getSpellData(int slot)
     {
