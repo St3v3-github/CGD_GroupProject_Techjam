@@ -14,25 +14,21 @@ public class InventoryEdit : MonoBehaviour
     void Start()
     {
         //Dynamic init to avoid out of bounds
-        SpellData data_guide = SpellData.CreateInstance<SpellData>();
-      
-            for(int j = 0; j< spell_slots; j++)
-            {
-               
-               dd_spell_inventory.Add(ItemData.CreateInstance<ItemData>());
-            }
- 
+        for (int j = 0; j < spell_slots; j++)
+        {
+            dd_spell_inventory.Add(ItemData.CreateInstance<ItemData>());
+        }
     }
 
     public ItemData equipFromWorld(ItemData item_to_equip, int slot)
     {
         //Temporary copy
-//        Debug.Log(slot.ToString());
+        //Debug.Log(slot.ToString());
         ItemData swapped_item = dd_spell_inventory[slot];
         if (dd_spell_inventory[slot].ID == item_to_equip.ID)
         {
             //Upgrade system ->
-            dd_spell_inventory[slot].value += item_to_equip.value;
+            dd_spell_inventory[slot].uses_left += item_to_equip.uses_left;
             //Check if value is beyond certain thresholds?
             swapped_item = ItemData.CreateInstance<ItemData>();
             //return blank item data if upgrading to avoid duplication
@@ -43,15 +39,15 @@ public class InventoryEdit : MonoBehaviour
             dd_spell_inventory[slot] = item_to_equip;
         }
         //TODO: updateInvDisplay();
-//        Debug.Log(dd_spell_inventory[item_to_equip.type][slot].ID.ToString());
-        
+        //Debug.Log(dd_spell_inventory[item_to_equip.type][slot].ID.ToString());
+
         return swapped_item;
         //return this in case the old item should be dropped
     }
 
 
 
-    public int getSpellData(int slot)
+    public ItemData.SpellList getSpellData(int slot)
     {
         return dd_spell_inventory[slot].ID;
     }

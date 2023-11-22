@@ -14,7 +14,7 @@ public class PlayerSelector : MonoBehaviour
 
     public void updateItemDisplay ()
     {
-        Inventory playerInventory = Player.GetComponent<Inventory>();
+        InventoryEdit playerInventory = Player.GetComponent<InventoryEdit>();
         
 
         for (int i=0; i < playerInventory.spell_slots; i++)
