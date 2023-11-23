@@ -1155,6 +1155,58 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_ActionId
+      value: a20a3ab1-c6d8-4171-ac04-e022e11ba65f
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_ActionName
+      value: Player/Dash[/Keyboard/q]
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2032278400}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnDash
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InputManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10243,6 +10295,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2032278400 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7940312861641195697, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+  m_PrefabInstance: {fileID: 200016147}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d23524a07e16f0643bb1d19c93233839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2060921661
 GameObject:
   m_ObjectHideFlags: 0

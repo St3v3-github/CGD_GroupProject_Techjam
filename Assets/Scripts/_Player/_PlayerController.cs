@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -30,7 +31,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Automatically jump when holding jump button")]
     [SerializeField] public bool auto_jump = false;
 
-    [Tooltip("How precise the player's air control is, ranges from 0 to 1")]
+    [Tooltip("How precise the player's air control is, ranges from 0 to 1. Should not be greater than 0.4 if you want player to have control in air")]
     [SerializeField] public float air_control = 0.3f;
 
     [SerializeField] public MovementSettings ground_settings = new MovementSettings(7, 14, 10);
@@ -58,6 +59,22 @@ public class PlayerController : MonoBehaviour
     public Vector3 move_input;
     public Transform player_transform;
     public Transform camera_transform;
+
+
+    [Header("Dash")]
+    //Dashing related values
+    [Tooltip("How long the player's dash is")]
+    public float max_dash_time;
+    [Tooltip("The force of the player's dash")]
+    public float dash_force;
+    private float dash_timer;
+    private bool dashing = false;
+    private bool dash_ready = true;
+    private float dash_cooldown = 2f;
+    /*public float dash_force;
+    public float dash_duration;
+    public float dash_cd;
+    public float dash_cd_timer;*/
 
 
     public void Start()
@@ -265,6 +282,38 @@ public class PlayerController : MonoBehaviour
     private void ResetJump()
     {
         isReadyToJump = true;
+    }
+
+    public IEnumerator PlayerDash(Vector2 movement_input)
+    {
+        if (dash_ready)
+        {
+            dashing = true;
+            dash_timer = max_dash_time;
+
+            while (dashing)
+            {
+                Debug.Log("Dashing");
+                //gets input direction to dash any direction regardless of camera orientation
+                Vector3 input_direction = transform.forward * movement_input.y + transform.right * movement_input.x;
+                character.Move((input_direction.normalized * dash_force) * Time.deltaTime);
+
+                dash_timer -= Time.deltaTime;
+
+                if (dash_timer <= 0)
+                {
+                    dashing = false;
+                    dash_ready = false;
+                    Invoke(nameof(ResetDash), dash_cooldown);
+                }
+                yield return null;
+            }
+        }
+    }
+
+    private void ResetDash()
+    {
+        dash_ready = true;
     }
 
 }
