@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class TestDummy : MonoBehaviour
 {
-    int currentHealth;
-    public int maxHealth;
+    [SerializeField] float currentHealth;
+    public float maxHealth;
     public Color redColour;
     public Color baseColour;
+
+    private StatusEffect_Data data;
 
     void Awake()
     {
@@ -50,9 +52,28 @@ public class TestDummy : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        SetRed();
-        Invoke("ResetColour",0.3F);
-        Debug.Log("ENEMY DAMAGED");
+        if(other.CompareTag("Player1Spell"))
+        {
+            SetRed();
+            Invoke("ResetColour",0.3F);
+            Debug.Log("ENEMY DAMAGED");
+        }
         
+        
+    }
+
+    public float getCurrentHealth()
+    {
+        return currentHealth;
+    }
+
+    public void setCurrentHealth(float health)
+    {
+        currentHealth = health;
+    }
+
+    public float getMaxHealth()
+    {
+        return maxHealth;
     }
 }
