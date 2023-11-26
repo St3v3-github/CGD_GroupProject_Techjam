@@ -5,7 +5,7 @@ using UnityEngine;
 public class enemystatuseffects : MonoBehaviour, IEffectable
 {
     private StatusEffect_Data _data;
-    public TestDummy _testDummy;
+    public _testDummy _testDummy;
 
     private GameObject effectParticles;
 
@@ -16,6 +16,7 @@ public class enemystatuseffects : MonoBehaviour, IEffectable
 
     public void ApplyEffect(StatusEffect_Data _data)
     {
+        RemoveEffect();
         this._data = _data;
         effectParticles = Instantiate(_data.EffectParticles, transform);
     }
@@ -32,6 +33,10 @@ public class enemystatuseffects : MonoBehaviour, IEffectable
         if(effectParticles != null)
         {
             Destroy(effectParticles);
+        }
+        if(_testDummy.getCurrentMoveSpeed() != _testDummy.getBaseMoveSpeed())
+        {
+            _testDummy.setNewMoveSpeed(_testDummy.getBaseMoveSpeed());
         }
     }
 
@@ -56,7 +61,15 @@ public class enemystatuseffects : MonoBehaviour, IEffectable
             Debug.Log($"Condition: {currentEffectTime > nextTickTime + _data.TickSpeed}");
             Debug.Log($"New Health: {newHealth}");
 
+            currentHealth = Mathf.Clamp(currentHealth, 0, _testDummy.getMaxHealth());
             _testDummy.setCurrentHealth(newHealth);
+        }
+        if(_data.MovementPen > 0)
+        {
+            nextTickTime += _data.TickSpeed;
+            float newMoveSpeed = (_testDummy.getBaseMoveSpeed() / _data.MovementPen);
+            _testDummy.setNewMoveSpeed(newMoveSpeed);
+            Debug.Log(_testDummy.getCurrentMoveSpeed());
         }
     }
 }

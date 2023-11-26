@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class TestDummy : MonoBehaviour
@@ -10,7 +11,6 @@ public class TestDummy : MonoBehaviour
     public Color redColour;
     public Color baseColour;
 
-    private StatusEffect_Data data;
 
     void Awake()
     {
@@ -31,8 +31,11 @@ public class TestDummy : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private void Update()
+    {
 
- 
+    }
+
 
     private void OnCollisionEnter(Collision other)
     {
@@ -60,20 +63,5 @@ public class TestDummy : MonoBehaviour
         }
         
         
-    }
-
-    public float getCurrentHealth()
-    {
-        return currentHealth;
-    }
-
-    public void setCurrentHealth(float health)
-    {
-        currentHealth = health;
-    }
-
-    public float getMaxHealth()
-    {
-        return maxHealth;
     }
 }

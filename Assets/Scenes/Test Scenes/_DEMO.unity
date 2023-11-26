@@ -4927,6 +4927,7 @@ GameObject:
   - component: {fileID: 1113639462}
   - component: {fileID: 1113639461}
   - component: {fileID: 1113639463}
+  - component: {fileID: 1113639464}
   m_Layer: 7
   m_Name: TestDummy (2)
   m_TagString: Player2
@@ -4941,7 +4942,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113639455}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1aee09f608096b4aaa876f1d7b20d62, type: 3}
   m_Name: 
@@ -5060,8 +5061,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -5077,7 +5078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801ebb61a8efb0d4481897b4990d9377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _testDummy: {fileID: 1113639456}
+  _testDummy: {fileID: 1113639464}
 --- !u!136 &1113639463
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5101,6 +5102,23 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1113639464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113639455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c81213feb5f0d24296e9f34d50b9cff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 10
+  redColour: {r: 1, g: 0, b: 0, a: 0}
+  baseColour: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 0}
+  moveRight: 1
 --- !u!1 &1130065586
 GameObject:
   m_ObjectHideFlags: 0
@@ -9234,12 +9252,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b92d37ed7ec10064bb47c3fe62a4cd92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 2549314221037139667, guid: a0841cc0bab753a4cb5e13816d170ab5, type: 3}
+  projectilePrefab: {fileID: 2048872550747324139, guid: 5a919bd5d926b964b8203875da57d9db, type: 3}
   firePoint: {fileID: 1800296815}
   projectileForce: 100
   abiltyCooldown: 0
   abilityReady: 1
-  _data: {fileID: 11400000, guid: 3074652cddbb7144ea7768c056228903, type: 2}
+  _data: {fileID: 11400000, guid: 03aa394ec56ed484cabcad5fd62e7a76, type: 2}
 --- !u!1 &1857205170
 GameObject:
   m_ObjectHideFlags: 0
