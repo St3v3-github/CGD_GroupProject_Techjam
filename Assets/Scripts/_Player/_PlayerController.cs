@@ -67,14 +67,13 @@ public class PlayerController : MonoBehaviour
     public float max_dash_time;
     [Tooltip("The force of the player's dash")]
     public float dash_force;
-    private float dash_timer;
-    private bool dashing = false;
-    private bool dash_ready = true;
-    private float dash_cooldown = 2f;
-    /*public float dash_force;
-    public float dash_duration;
-    public float dash_cd;
-    public float dash_cd_timer;*/
+    [SerializeField] private float dash_timer;
+    [SerializeField] private bool dashing = false;
+    [SerializeField] private bool dash_ready = true;
+    [SerializeField] private float dash_cooldown = 2f;
+
+    //Quake's coordinate system, unlike a standard right handed one, has the Z-axis be up/down and the Y-axis be depth. All calculations
+    //are converted to match Unity's coordinate system.
 
 
     public void Start()
@@ -112,7 +111,9 @@ public class PlayerController : MonoBehaviour
         character.Move(player_velocity * Time.deltaTime);
     }
 
-    // Handles the player's air movement.
+    /// <summary>
+    /// Handles the player's air movement.
+    /// </summary>
     public void AirMovement()
     {
         float acceleleration;
@@ -158,7 +159,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    //Air control occurs when player is airborne, allowed the player to move horizontally more freely than when grounded.
+    /// <summary>
+    /// Air control occurs when player is airborne, affecting the player's ability to move horizontally when airborne.
+    /// </summary>
+    /// <param name="target_direction"></param>
+    /// <param name="target_speed"></param>
     public void AirControl(Vector3 target_direction, float target_speed)
     {
         // Only control air movement when moving forward or backward.
@@ -193,7 +198,9 @@ public class PlayerController : MonoBehaviour
         player_velocity.z *= speed;
     }
 
-    // Handles player ground movement.
+    /// <summary>
+    /// Handles player ground movement.
+    /// </summary>
     public void GroundMovement()
     {
         // Do not apply friction if the player is queueing up the next jump
@@ -216,7 +223,10 @@ public class PlayerController : MonoBehaviour
 
         Accelerate(w_direction, w_speed, ground_settings.acceleration);
     }
-
+    /// <summary>
+    /// Apply friction when player is grounded and jump is not queued (when/if jump queueing is reimplimented)
+    /// </summary>
+    /// <param name="t"></param>
     public void Applyfriction(float t)
     {
         Vector3 vec = player_velocity;
@@ -248,7 +258,12 @@ public class PlayerController : MonoBehaviour
         player_velocity.z *= new_speed;
     }
 
-    // Calculates acceleration based on desired speed and direction.
+    /// <summary>
+    /// Calculates acceleration based on desired speed and direction.
+    /// </summary>
+    /// <param name="_target_direction"></param>
+    /// <param name="_target_speed"></param>
+    /// <param name="_acceleration"></param>
     public void Accelerate(Vector3 _target_direction, float _target_speed, float _acceleration)
     {
         float currentspeed = Vector3.Dot(player_velocity, _target_direction);
