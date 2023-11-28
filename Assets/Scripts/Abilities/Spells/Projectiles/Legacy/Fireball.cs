@@ -14,6 +14,7 @@ public class Fireball : MonoBehaviour
     public float abiltyCooldown;
     public bool abilityReady;
 
+    // drag & drop applicable status effect data
     [SerializeField] private StatusEffect_Data _data;
 
     private void Awake()
