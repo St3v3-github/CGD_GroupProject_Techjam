@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpellCast : MonoBehaviour
+public class SpellCastOnRay : MonoBehaviour
 {
     public GameObject spell;
     public Camera playerCam;
@@ -13,11 +13,11 @@ public class SpellCast : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            cast();
+            Cast();
         }
     }
 
-    public void cast()
+    public void Cast()
     {
         RaycastHit hit;
         if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, range))

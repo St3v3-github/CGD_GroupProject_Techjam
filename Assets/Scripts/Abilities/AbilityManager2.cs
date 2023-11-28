@@ -40,13 +40,43 @@ public class AbilityManager2 : MonoBehaviour
                     }
                     break;
                 case ItemData.SpellList.ICEWALL:
+                    inventory.setActiveFor(slot, 2.0f, 1.0f); //TODO: Grab active and cooldown times from spells
 
+                    caster.GetComponent<Wall>().setType(ItemData.SpellType.ICE);
+                    if (caster.GetComponent<Wall>().isPlacingWall)
+                    {
+                        //caster.GetComponent<Wall>().PlaceWall();
+                    }
+                    else
+                    {
+                        caster.GetComponent<Wall>().StartPlacingWall();
+                    }
                     break;
                 case ItemData.SpellList.WINDGWALL:
+                    inventory.setActiveFor(slot, 2.0f, 1.0f); //TODO: Grab active and cooldown times from spells
 
+                    caster.GetComponent<Wall>().setType(ItemData.SpellType.WIND);
+                    if (caster.GetComponent<Wall>().isPlacingWall)
+                    {
+                        //caster.GetComponent<Wall>().PlaceWall();
+                    }
+                    else
+                    {
+                        caster.GetComponent<Wall>().StartPlacingWall();
+                    }
                     break;
                 case ItemData.SpellList.LIGHTNINGWALL:
+                    inventory.setActiveFor(slot, 2.0f, 1.0f); //TODO: Grab active and cooldown times from spells
 
+                    caster.GetComponent<Wall>().setType(ItemData.SpellType.LIGHTNING);
+                    if (caster.GetComponent<Wall>().isPlacingWall)
+                    {
+                        //caster.GetComponent<Wall>().PlaceWall();
+                    }
+                    else
+                    {
+                        caster.GetComponent<Wall>().StartPlacingWall();
+                    }
                     break;
                 case ItemData.SpellList.FIREBALL:
                     inventory.setActiveFor(slot, 0.0f, 1.0f); //TODO: Grab active and cooldown times from spells
@@ -64,15 +94,19 @@ public class AbilityManager2 : MonoBehaviour
                     break;
                 case ItemData.SpellList.FIRESTRIKE:
                     caster.GetComponent<CastableAOEStrike>().setType(ItemData.SpellType.FIRE);
+                    caster.GetComponent<CastableAOEStrike>().Cast();
                     break;
                 case ItemData.SpellList.ICESTRIKE:
-
+                    caster.GetComponent<CastableAOEStrike>().setType(ItemData.SpellType.ICE);
+                    caster.GetComponent<CastableAOEStrike>().Cast();
                     break;
                 case ItemData.SpellList.WINDSTRIKE:
-
+                    caster.GetComponent<CastableAOEStrike>().setType(ItemData.SpellType.WIND);
+                    caster.GetComponent<CastableAOEStrike>().Cast();
                     break;
                 case ItemData.SpellList.LIGHTNINGSTRIKE:
-
+                    caster.GetComponent<CastableAOEStrike>().setType(ItemData.SpellType.LIGHTNING);
+                    caster.GetComponent<CastableAOEStrike>().Cast();
                     break;
                 case ItemData.SpellList.FIRESUMMON:
                     caster.GetComponent<Summon>().setType(ItemData.SpellType.FIRE);
@@ -91,11 +125,13 @@ public class AbilityManager2 : MonoBehaviour
                     caster.GetComponent<Summon>().Cast();
                     break;
                 case ItemData.SpellList.BLACKHOLE:
+                    caster.GetComponent<SpellCastOnStaff>().Cast();
                     break;
                 case ItemData.SpellList.HEALSPELL:
-
+                    caster.GetComponent<Heal>().Cast();
                     break;
                 case ItemData.SpellList.POISONCLOUD:
+                    caster.GetComponent<SpellCastOnRay>().Cast();
                     break;
                 case ItemData.SpellList.POWERBEAM:
                     inventory.setActiveFor(slot, 3f, 1.0f);

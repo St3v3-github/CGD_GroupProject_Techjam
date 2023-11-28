@@ -620,6 +620,7 @@ GameObject:
   - component: {fileID: 4517045908497947722}
   - component: {fileID: 5520134397269985870}
   - component: {fileID: 1578295551330820959}
+  - component: {fileID: 3515913301227583845}
   - component: {fileID: 5021457644584775468}
   - component: {fileID: 8192622155015055736}
   - component: {fileID: 5112053906915280969}
@@ -703,7 +704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 974478289764777197}
-  projectile: {fileID: 0}
+  projectile: {fileID: 11400000, guid: a2733cace198a7044a1b992f627457a4, type: 2}
   allowInvoke: 1
   playerCam: {fileID: 5822131898686806388}
   firePoint: {fileID: 404214415002560938}
@@ -751,6 +752,22 @@ MonoBehaviour:
   lightningSpell: {fileID: 11400000, guid: 48af22166e400984980b12f91b478dda, type: 2}
   windSpell: {fileID: 11400000, guid: c50469bdf2356854b8df93982b6419a6, type: 2}
   summonPoint: {fileID: 5686921009914067106}
+--- !u!114 &3515913301227583845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8393186558806589648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 741951572994bf94ba0402ee9bb538d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell: {fileID: 1300558069441213901, guid: f6e7ad3968a386b439f1801d52b31938, type: 3}
+  playerCam: {fileID: 1232235808428731750}
+  FirePoint: {fileID: 404214415002560938}
+  range: 0
 --- !u!114 &5021457644584775468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -799,6 +816,7 @@ MonoBehaviour:
   beamRange: 50
   abilityDuration: 5
   playerCam: {fileID: 1232235808428731750}
+  firePoint: {fileID: 404214415002560938}
   targetLayer:
     serializedVersion: 2
     m_Bits: 4294967295

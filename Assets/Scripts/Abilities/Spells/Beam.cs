@@ -10,6 +10,7 @@ public class Beam : Spell
     public float beamRange = 50f;
     public float abilityDuration = 3f;  // Duration of the beam ability in seconds
     public Transform playerCam;
+    public Transform firePoint;
     public LayerMask targetLayer;
     public GameObject particlePrefab;
     private GameObject beam;

@@ -94,21 +94,22 @@ public class AdvancedProjectileSystem : Spell
 
         //Calculate direcion to target
 
-        Vector3 directonWihoutSpread = targetPoint - firePoint.position;
+        Vector3 directionWithoutSpread = targetPoint - firePoint.position;
 
 
         //Spread
         float x = Random.Range(-projectile.spread, projectile.spread);
         float y = Random.Range(-projectile.spread, projectile.spread);
-
-        Vector3 directonWithSpread = directonWihoutSpread + new Vector3(x, y, 0);
+        float z = Random.Range(-projectile.spread, projectile.spread);
+        Debug.Log(Vector3.Magnitude(directionWithoutSpread));
+        Vector3 directionWithSpread = directionWithoutSpread + (new Vector3(x, y, z) * Vector3.Magnitude(directionWithoutSpread)) / 15;
 
         //Instantiate Projectile
         GameObject currentProjectile = Instantiate(projectile.projectile, firePoint.position, Quaternion.identity);
-        currentProjectile.transform.forward = directonWithSpread.normalized;
+        currentProjectile.transform.forward = directionWithSpread.normalized;
 
         //Add Forces to projctile
-        currentProjectile.GetComponent<Rigidbody>().AddForce(directonWithSpread.normalized * projectile.shootForce, ForceMode.Impulse);
+        currentProjectile.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * projectile.shootForce, ForceMode.Impulse);
         // For bouncing projectiles only
         currentProjectile.GetComponent<Rigidbody>().AddForce(playerCam.transform.up * projectile.upwardForce, ForceMode.Impulse);
 

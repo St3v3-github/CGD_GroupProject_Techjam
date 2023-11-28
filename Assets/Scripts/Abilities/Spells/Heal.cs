@@ -28,11 +28,11 @@ public class Heal : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.H) && !isHealing)
         {
-            StartHealing();
+            Cast();
         }
     }
 
-    private void StartHealing()
+    public void Cast()
     {
         if (attributes != null)
         {
