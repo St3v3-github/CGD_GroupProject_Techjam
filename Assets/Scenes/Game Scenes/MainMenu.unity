@@ -2251,6 +2251,17 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1722783646 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7989015465516130585, guid: f8c50f51bbc892648b53a8d15f26f835, type: 3}
+  m_PrefabInstance: {fileID: 8112212119733000441}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05d89504a9ab47447939922dc7bd99f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1761928015
 GameObject:
   m_ObjectHideFlags: 0
@@ -3723,6 +3734,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5588175416735080258, guid: 6eaa51df4b7d2f144859a2ef114c40a6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5588175416735080258, guid: 6eaa51df4b7d2f144859a2ef114c40a6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5588175416735080258, guid: 6eaa51df4b7d2f144859a2ef114c40a6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1722783646}
+    - target: {fileID: 5588175416735080258, guid: 6eaa51df4b7d2f144859a2ef114c40a6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5588175416735080258, guid: 6eaa51df4b7d2f144859a2ef114c40a6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadNextScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 5588175416735080258, guid: 6eaa51df4b7d2f144859a2ef114c40a6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LevelLoader, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5588175416735080258, guid: 6eaa51df4b7d2f144859a2ef114c40a6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6312672913527902623, guid: 6eaa51df4b7d2f144859a2ef114c40a6, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -131
@@ -3808,6 +3847,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4170121396089881177, guid: f8c50f51bbc892648b53a8d15f26f835, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5440718049241541826, guid: f8c50f51bbc892648b53a8d15f26f835, type: 3}
       propertyPath: m_Name
       value: LevelLoader
@@ -3823,7 +3866,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 566203672}
   - {fileID: 1838347387}
-  - {fileID: 8112212119733000441}
-  - {fileID: 7074874636724803384}
   - {fileID: 1318354844}
+  - {fileID: 7074874636724803384}
   - {fileID: 6513165934393434459}
+  - {fileID: 8112212119733000441}
