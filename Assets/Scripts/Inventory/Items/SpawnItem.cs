@@ -34,9 +34,9 @@ public class SpawnItem : MonoBehaviour
     {
         switch(objectType)
         {
-            case Type.Element:
-                SpawnElement();
-                break;
+            //case Type.Element:
+                //SpawnElement();
+                //break;
 
             case Type.Spell:
                 SpawnSpells();
@@ -48,7 +48,7 @@ public class SpawnItem : MonoBehaviour
         
     }
 
-    private void SpawnElement() 
+    /*private void SpawnElement() 
     {
         int totalWeight = 0;
         int randomNumber = 0;
@@ -80,7 +80,7 @@ public class SpawnItem : MonoBehaviour
 
 
 
-    }
+    }*/
 
     private void SpawnSpells() {
 

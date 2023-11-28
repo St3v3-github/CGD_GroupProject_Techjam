@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1777733201285287414}
   - component: {fileID: -1358567913372954992}
   m_Layer: 0
-  m_Name: Strike_Lightning
+  m_Name: Ice_Wall
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0.21429}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8800186539704521362}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &8061649856186385738
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 33aa8bce068f5764daadda6524fc0e53, type: 2}
+  - {fileID: 2100000, guid: 677858a1f15e11e43923e4f36e0e6697, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -119,7 +119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6459b9fc4ac2abd4ca260b4a0a3c1385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item_data: {fileID: 11400000, guid: ee5d7641e6dc1ce4291d9638022546fe, type: 2}
+  item_data: {fileID: 11400000, guid: 52f6a315f3c3785499d4e4ab4ad75871, type: 2}
+  meshes: []
+  materials: []
 --- !u!114 &-1358567913372954992
 MonoBehaviour:
   m_ObjectHideFlags: 0
