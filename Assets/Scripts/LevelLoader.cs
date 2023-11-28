@@ -28,5 +28,7 @@ public class LevelLoader : MonoBehaviour
         yield return new WaitForSeconds(transitionTime);
 
         SceneManager.LoadScene(levelIndex);
+        
+        //SceneManager.LoadScene("Scene B");   -Can also do this :)
     }
 }
