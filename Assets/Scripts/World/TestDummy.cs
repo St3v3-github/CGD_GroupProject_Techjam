@@ -1,14 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class TestDummy : MonoBehaviour
 {
-    int currentHealth;
-    public int maxHealth;
+    [SerializeField] float currentHealth;
+    public float maxHealth;
     public Color redColour;
     public Color baseColour;
+
 
     void Awake()
     {
@@ -29,8 +31,11 @@ public class TestDummy : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private void Update()
+    {
 
- 
+    }
+
 
     private void OnCollisionEnter(Collision other)
     {
@@ -50,9 +55,13 @@ public class TestDummy : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        SetRed();
-        Invoke("ResetColour",0.3F);
-        Debug.Log("ENEMY DAMAGED");
+        if(other.CompareTag("Player1Spell"))
+        {
+            SetRed();
+            Invoke("ResetColour",0.3F);
+            Debug.Log("ENEMY DAMAGED");
+        }
+        
         
     }
 }

@@ -14,6 +14,8 @@ public class Fireball : MonoBehaviour
     public float abiltyCooldown;
     public bool abilityReady;
 
+    [SerializeField] private StatusEffect_Data _data;
+
     private void Awake()
     {
         inputManager = FindObjectOfType<InputManager>();
@@ -21,7 +23,7 @@ public class Fireball : MonoBehaviour
 
     void Update()
     {
-        if (abilityReady) //(inputManager.abilityInput1 && abilityReady)
+        if (Input.GetKeyDown(KeyCode.F))//(abilityReady) //(inputManager.abilityInput1 && abilityReady)
         {
             Fire();
         }
@@ -41,6 +43,19 @@ public class Fireball : MonoBehaviour
             Invoke(nameof(ResetAbility1), abiltyCooldown);
         }
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("entered trigger");
+        var effectable = other.GetComponent<IEffectable>();
+
+        if(effectable != null)
+        {
+            effectable.ApplyEffect(_data);
+        }
+
+        Destroy(this.gameObject);
     }
 
     private void ResetAbility1()
