@@ -31,8 +31,8 @@ public class CameraController : MonoBehaviour
 
     public void LookRotation(Vector2 cameraInput, Transform _character, Transform _camera)
     {
-        float rotation_y = cameraInput.x * sensitivity_x;
-        float rotation_x = cameraInput.y * sensitivity_y;
+        float rotation_y = cameraInput.normalized.x * sensitivity_x;
+        float rotation_x = cameraInput.normalized.y * sensitivity_y;
 
         character_rotation *= Quaternion.Euler(0f, rotation_y, 0f);
         camera_rotation *= Quaternion.Euler(-rotation_x, 0f, 0f);
