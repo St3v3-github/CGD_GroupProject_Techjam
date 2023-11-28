@@ -12,11 +12,8 @@ public class MeleeController : MonoBehaviour
     public float meleeSpeed = 1f;
     public float meleeDelay = 1f;
     public LayerMask playerLayer;
-
-
     bool inMelee = false;
     bool readyToMelee = true;
-
     [Header("Put cam here")]
     public Camera cam;
 
