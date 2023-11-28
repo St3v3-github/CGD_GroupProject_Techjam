@@ -20,4 +20,19 @@ public class AnimationManager : MonoBehaviour
     {
         playerAnim.SetBool("isGrounded", grounded);
     }
+
+    public void toggleAttackingBool(bool attacking)
+    {
+        playerAnim.SetBool("attacking", attacking);
+    }
+
+    public void toggleDamagedBool(bool damaged)
+    {
+        playerAnim.SetBool("damaged", damaged);
+    }
+
+    public void toggleDeadBool(bool dead)
+    {
+        playerAnim.SetBool("dead", dead);
+    }
 }
