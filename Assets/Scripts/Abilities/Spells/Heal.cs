@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Heal : MonoBehaviour
 {
+    public GameObject player;
     public GameObject healEffectPrefab;
     public GameObject healAuraEffectPrefab;
     private GameObject healEffect;
@@ -20,7 +21,7 @@ public class Heal : MonoBehaviour
     private void Start()
     {
         // Assuming this script is attached to the player GameObject
-        attributes = GetComponent<AttributeManager>();
+        attributes = player.GetComponent<AttributeManager>();
     }
 
     private void Update()

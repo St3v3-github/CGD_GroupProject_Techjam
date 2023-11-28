@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class CastableAOEStrike : ElementalSpell
 {
-    public float attackRadius = 10f;
-    public GameObject projectionPrefab;
 
+    public GameObject projectionPrefab;
+    private new StrikeData spell;
     
     private GameObject projection;
     public Camera playerCamera;
@@ -18,17 +18,18 @@ public class CastableAOEStrike : ElementalSpell
     void Start()
     {
         setStatus();
-        setPrefab(spellType);
+        
 
         setTargetTag();
         source = gameObject;
+
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        setStatus();
+        testingSwitch();
 
         if (!projectionOn)
         {
@@ -108,14 +109,14 @@ public class CastableAOEStrike : ElementalSpell
 
     public void InstantiateStrike(Vector3 centre)
     {
-        GameObject strike = Instantiate(spellPrefab, centre, Quaternion.identity);
+        GameObject strike = Instantiate(spell.prefab, centre, Quaternion.identity);
 
         StartCoroutine(timerCoroutine(strike));
     }
 
     public void DetectCharacters(Vector3 centre, string targetTag)
     {
-        Collider[] colliders = Physics.OverlapSphere(centre, attackRadius);
+        Collider[] colliders = Physics.OverlapSphere(centre, spell.attackRadius);
         List<GameObject> players = new List<GameObject>();
 
         foreach (var collider in colliders)
@@ -130,10 +131,10 @@ public class CastableAOEStrike : ElementalSpell
         {
             float distance = Vector3.Distance(centre, player.transform.position);
 
-            float damageMultiplier = damage / attackRadius;
+            float damageMultiplier = spell.damage / spell.attackRadius;
 
             // Adjust the damage based on distance (you can use any formula here)
-            float adjustedDamage = damage - distance * damageMultiplier;
+            float adjustedDamage = spell.damage - distance * damageMultiplier;
 
             // Make sure the adjusted damage is not negative
             adjustedDamage = Mathf.Max(0, adjustedDamage);

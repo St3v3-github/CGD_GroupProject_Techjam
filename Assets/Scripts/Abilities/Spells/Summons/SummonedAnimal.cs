@@ -57,7 +57,7 @@ public class SummonedAnimal : Spell
             animator.SetTrigger("Attack");
             Debug.Log("Collision detected with: " + collision.gameObject.name);
 
-            dealDamage(collision.gameObject, damage);
+            dealDamage(collision.gameObject, spell.damage);
 
 
             deathParticle.Play(true);

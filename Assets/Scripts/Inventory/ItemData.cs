@@ -17,27 +17,39 @@ public class ItemData : ScriptableObject
         EMPTY = 0,
         FIREBALL = 1,
         ICEBALL = 2,
-        LIGHTNINGBALL = 3, 
-        WINDBALL = 4,
+        WINDBALL = 3,
+        LIGHTNINGBALL = 4,
         FIREWALL = 5,
         ICEWALL = 6,
-        LIGHTNINGWALL = 7,
-        WINDWALL = 8,
+        WINDGWALL = 7,
+        LIGHTNINGWALL = 8,
         FIRESUMMON = 9,
         ICESUMMON = 10,
-        LIGHTNINGSUMMON = 11,
-        WINDSUMMON = 12,
+        WINDSUMMON = 11,
+        LIGHTNINGSUMMON = 12,
         FIRESTRIKE = 13,
         ICESTRIKE = 14,
-        LIGHTNINGSTRIKE = 15,
-        WINDSTRIKE = 16,
+        WINDSTRIKE = 15,
+        LIGHTNINGSTRIKE = 16,
         BLACKHOLE = 17,
         HEALSPELL = 18,
-        POISONCLOUD = 19
+        POISONCLOUD = 19,
+        POWERBEAM = 20,
+        //More
+    }
+
+    public enum SpellType
+    {
+        EMPTY = 0,
+        FIRE = 1,
+        ICE = 2,
+        WIND = 3,
+        LIGHTNING = 4,
         //More
     }
 
     public SpellList ID = 0;
+    public SpellType type = 0;
     public SpellState current_state = SpellState.READY;
     public string item_name = "Empty";
     public string description = "This is an empty inventory slot.";

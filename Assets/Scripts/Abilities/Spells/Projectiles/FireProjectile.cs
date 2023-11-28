@@ -15,12 +15,11 @@ public class FireProjectile : ElementalSpell
 
     private void Start()
     {
-        setStatus();
-        setPrefab(spellType);
+        //setStatus();
         setTargetTag();
     }
 
-    public override void setPrefab(spellEnum statusInput)
+    /*public override void setPrefab(spellEnum statusInput)
     {
 
         switch (statusInput)
@@ -51,7 +50,7 @@ public class FireProjectile : ElementalSpell
                 projectileForce = fireForce;
                 break;
         }
-    }
+    }*/
 
     void Update()
     {
@@ -68,7 +67,7 @@ public class FireProjectile : ElementalSpell
         //Vector3 projectileSpawnPoint = firePoint.position;
         //projectileSpawnPoint.x += (firePoint.forward * 0.5f).x;
         //projectileSpawnPoint.z += (firePoint.forward * 0.5f).z;
-        GameObject projectile = Instantiate(spellPrefab, firePoint.position - verticalOffset + firePoint.forward, firePoint.rotation);
+        GameObject projectile = Instantiate(spell.prefab, firePoint.position - verticalOffset + firePoint.forward, firePoint.rotation);
         projectile.tag = this.tag + "Spell";
 
         Rigidbody rb = projectile.GetComponent<Rigidbody>();

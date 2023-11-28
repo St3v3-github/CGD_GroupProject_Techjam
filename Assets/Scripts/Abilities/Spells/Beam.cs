@@ -8,12 +8,13 @@ public class Beam : Spell
     public float damagePerTick = 5f;
     public float tickInterval = 0.2f;
     public float beamRange = 50f;
-    public float abilityDuration = 5f;  // Duration of the beam ability in seconds
+    public float abilityDuration = 3f;  // Duration of the beam ability in seconds
+    public Transform playerCam;
     public LayerMask targetLayer;
     public GameObject particlePrefab;
     private GameObject beam;
     public bool active = false;
-    public Transform playerCam;
+
 
     private float lastTickTime;
     private float abilityEndTime;

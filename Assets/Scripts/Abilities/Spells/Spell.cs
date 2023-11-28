@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ItemData;
 using static UnityEngine.GraphicsBuffer;
 
 public class Spell : MonoBehaviour
 {
-    protected float damage;
+    protected SpellData spell;
     protected string targetTag;
     public GameObject source;
 
@@ -30,30 +31,38 @@ public class Spell : MonoBehaviour
             attributes.TakeDamage(damage, source);
         }
     }
+
+    public virtual void Cast()
+    {
+
+    }
 }
 
 public class ElementalSpell : Spell
 {
-
+    //Testing :)
+    public bool testing = true;
     public spellEnum spellType = new spellEnum();
-    public StatusEffect currentStatus;
 
-    public float fireDamage;
-    public float lightDamage;
-    public float iceDamage;
-    public float windDamage;
+    //public StatusEffect currentStatus;
 
+    public SpellData fireSpell;
+    public SpellData iceSpell;
+    public SpellData lightningSpell;
+    public SpellData windSpell;
 
-    public GameObject firePrefab;
-    public GameObject lightningPrefab;
-    public GameObject icePrefab;
-    public GameObject windPrefab;
-    protected GameObject spellPrefab;
-
+    public void testingSwitch()
+    {
+        if (testing)
+        {
+            setType(spellType);
+        }
+    }
 
     public void setStatus()
     {
-        switch (spellType)
+        //REPLACE WITH ROSA LOGIC
+        /*switch (spellType)
         {
             case spellEnum.fire:
                 currentStatus = GetComponent<Fire>();
@@ -72,12 +81,13 @@ public class ElementalSpell : Spell
             default:
                 currentStatus = null;
                 break;
-        }
+        }*/
     }
 
     public void setStatus(spellEnum statusInput)
     {
-        switch (statusInput)
+        //REPLACE WITH ROSA LOGIC
+        /*switch (statusInput)
         {
             case spellEnum.fire:
                 currentStatus = GetComponent<Fire>();
@@ -96,66 +106,78 @@ public class ElementalSpell : Spell
             default:
                 currentStatus = null;
                 break;
-        }
+        }*/
     }
 
 
-    public virtual void setPrefab(spellEnum statusInput)
+    public virtual void setType(spellEnum statusInput)
     {
        
         switch (statusInput)
         {
             case spellEnum.fire:
-                spellPrefab = firePrefab;
-                damage = fireDamage;
+                spell = fireSpell;
                 break;
             case spellEnum.ice:
-                spellPrefab = icePrefab;
-                damage = iceDamage;
+                spell = iceSpell;
                 break;
             case spellEnum.lightning:
-                spellPrefab = lightningPrefab;
-                damage = lightDamage;
+                spell = lightningSpell;
                 break;
             case spellEnum.wind:
-                spellPrefab = windPrefab;
-                damage = windDamage;
+                spell = windSpell;
                 break;
             default:
-                spellPrefab = firePrefab;
-                damage = fireDamage;
+                spell = fireSpell;
                 break;
         }
     }
 
-    public void setPrefab(ItemData spell)
+    public void setType(ItemData.SpellType type)
+    {
+        switch (type)
+        {
+            case ItemData.SpellType.FIRE:
+                spell = fireSpell;
+                break;
+            case ItemData.SpellType.ICE:
+                spell = iceSpell;
+                break;
+            case ItemData.SpellType.LIGHTNING:
+                spell = lightningSpell;
+                break;
+            case ItemData.SpellType.WIND:
+                spell = windSpell;
+                break;
+            default:
+                spell = fireSpell;
+                break;
+        }
+    }
+
+    public void setType(ItemData spellInfo)
     {
         /*int temp;
         if (spell.ID <= 16)
         {
             temp = spell.ID % 4;
         }*/
-        switch (spell.ID)
+        switch (spellInfo.type)
         {
-            case ItemData.SpellList.FIREBALL:
-                spellPrefab = firePrefab;
-                damage = fireDamage;
+            case ItemData.SpellType.FIRE:
+                spell = fireSpell;
                 break;
-            case ItemData.SpellList.ICEBALL:
-                spellPrefab = icePrefab;
-                damage = iceDamage;
+            case ItemData.SpellType.ICE:
+                spell = iceSpell;
                 break;
-            case ItemData.SpellList.LIGHTNINGBALL:
-                spellPrefab = lightningPrefab;
-                damage = lightDamage;
+            case ItemData.SpellType.LIGHTNING:
+                spell = lightningSpell;
                 break;
-            case ItemData.SpellList.WINDBALL:
-                spellPrefab = windPrefab;
-                damage = windDamage;
+            case ItemData.SpellType.WIND:
+                spell = windSpell;
                 break;
             default:
-                spellPrefab = firePrefab;
-                damage = fireDamage;
+                spell = fireSpell;
                 break;
         }
     }

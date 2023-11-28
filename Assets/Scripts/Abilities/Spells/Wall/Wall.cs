@@ -14,9 +14,8 @@ public class Wall : ElementalSpell
     void Start()
     {
         setStatus();
-        setPrefab(spellType);
 
-        if (spellPrefab == null)
+        if (spell.prefab == null)
         {
             Debug.LogError("wallPrefab is not assigned!");
         }
@@ -49,7 +48,7 @@ public class Wall : ElementalSpell
                 Debug.Log("Initial Rotation of Holographic: " + holographicInitialRotation.eulerAngles);
 
 
-                Debug.Log("Rotation of Spawned Wall: " + spellPrefab.transform.rotation.eulerAngles);
+                Debug.Log("Rotation of Spawned Wall: " + spell.prefab.transform.rotation.eulerAngles);
                 Quaternion holographicRotation = holographic.transform.rotation;
                 WallManager.Instance.SpawnWall(holographic.transform.position, holographicRotation);
                 Destroy(holographic);

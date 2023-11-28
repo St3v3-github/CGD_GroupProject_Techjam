@@ -10,10 +10,9 @@ public class Summon : ElementalSpell
     private Quaternion rotation = new Quaternion(0f, 0f, 0f, 1);
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        setStatus();
-        setPrefab(spellType);
+        //setStatus();
 
         setTargetTag();
     }
@@ -21,19 +20,20 @@ public class Summon : ElementalSpell
     // Update is called once per frame
     void Update()
     {
-        setStatus();
+        //setStatus();
         if (Input.GetKeyDown(KeyCode.T))
         {
-            Spawn();
+            Cast();
         }
+        testingSwitch();
     }
 
-    public void Spawn()
+    public override void Cast()
     {
         Quaternion summonRoation = summonPoint.rotation;
         summonRoation.x = 0f;
         summonRoation.z = 0f;
-        GameObject summon = Instantiate(spellPrefab, summonPoint.position - verticalOffset + Vector3.Scale(horizontalOffset, summonPoint.forward), summonRoation);
+        GameObject summon = Instantiate(spell.prefab, summonPoint.position /*- verticalOffset + Vector3.Scale(horizontalOffset, summonPoint.forward)*/, summonRoation);
         summon.GetComponent<SummonedAnimal>().source = gameObject;
         summon.tag = this.tag + "Spell";
     }

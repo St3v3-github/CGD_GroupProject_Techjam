@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AdvancedProjectileSystem : Spell
 {
-    public ProjectileData spell;
+    public ProjectileData projectile;
     int chargesLeft, chargesShot;
 
     //bools
@@ -36,7 +36,7 @@ public class AdvancedProjectileSystem : Spell
 
     private void Awake()
     {
-        chargesLeft = spell.totalCharges;
+        chargesLeft = projectile.totalCharges;
         readyToShoot = true;
     }
 
@@ -45,12 +45,12 @@ public class AdvancedProjectileSystem : Spell
         MyInput();
 
         //UI
-        //text.SetText(chargesLeft / spell.projectilesPerTap + " / " spell.totalCharges / spell.projectilesPerTap);
+        //text.SetText(chargesLeft / projectile.projectilesPerTap + " / " projectile.totalCharges / projectile.projectilesPerTap);
     }
     private void MyInput()
     {
         //If hold to fire
-        if (spell.allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
+        if (projectile.allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
         //If 1 shot per click
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
         // Additional check for security
@@ -58,7 +58,7 @@ public class AdvancedProjectileSystem : Spell
 
 
         //Recharging
-        if (Input.GetKeyDown(KeyCode.R) && chargesLeft < spell.totalCharges && !recharging) Recharge();
+        if (Input.GetKeyDown(KeyCode.R) && chargesLeft < projectile.totalCharges && !recharging) Recharge();
         //Automatic Recharging
         if (readyToShoot && shooting && !recharging && chargesLeft <= 0) Recharge();
 
@@ -98,19 +98,19 @@ public class AdvancedProjectileSystem : Spell
 
 
         //Spread
-        float x = Random.Range(-spell.spread, spell.spread);
-        float y = Random.Range(-spell.spread, spell.spread);
+        float x = Random.Range(-projectile.spread, projectile.spread);
+        float y = Random.Range(-projectile.spread, projectile.spread);
 
         Vector3 directonWithSpread = directonWihoutSpread + new Vector3(x, y, 0);
 
         //Instantiate Projectile
-        GameObject currentProjectile = Instantiate(spell.projectile, firePoint.position, Quaternion.identity);
+        GameObject currentProjectile = Instantiate(projectile.projectile, firePoint.position, Quaternion.identity);
         currentProjectile.transform.forward = directonWithSpread.normalized;
 
         //Add Forces to projctile
-        currentProjectile.GetComponent<Rigidbody>().AddForce(directonWithSpread.normalized * spell.shootForce, ForceMode.Impulse);
+        currentProjectile.GetComponent<Rigidbody>().AddForce(directonWithSpread.normalized * projectile.shootForce, ForceMode.Impulse);
         // For bouncing projectiles only
-        currentProjectile.GetComponent<Rigidbody>().AddForce(playerCam.transform.up * spell.upwardForce, ForceMode.Impulse);
+        currentProjectile.GetComponent<Rigidbody>().AddForce(playerCam.transform.up * projectile.upwardForce, ForceMode.Impulse);
 
         chargesLeft--;
         chargesShot++;
@@ -125,15 +125,15 @@ public class AdvancedProjectileSystem : Spell
         //Invoke resetShot ( if not already invoked)
         if (allowInvoke)
         {
-            Invoke("ResetShot", spell.timeBetweenShots);
+            Invoke("ResetShot", projectile.timeBetweenShots);
             allowInvoke = false;
         }
         
 
         // if multishot projectile, repeat function (for burst or shotgun)
-        if (chargesShot < spell.projectilesPerTap && chargesLeft > 0)
+        if (chargesShot < projectile.projectilesPerTap && chargesLeft > 0)
         {
-            Invoke("ProjectileShoot", spell.burstDelay);
+            Invoke("ProjectileShoot", projectile.burstDelay);
         }
     }
 
@@ -145,23 +145,18 @@ public class AdvancedProjectileSystem : Spell
         chargesShot++;
 
         //Spread
-        float x = Random.Range(-spell.spread, spell.spread);
-        float y = Random.Range(-spell.spread, spell.spread);
+        float x = Random.Range(-projectile.spread, projectile.spread);
+        float y = Random.Range(-projectile.spread, projectile.spread);
 
         Vector3 direction = playerCam.transform.forward + new Vector3(x, y, 0);
 
         //Raycast
-        if (Physics.Raycast(playerCam.transform.position, direction, out rayHit, spell.range, hittable))
+        if (Physics.Raycast(playerCam.transform.position, direction, out rayHit, projectile.range, hittable))
         {
             Debug.Log(rayHit.collider.name);
             if (rayHit.collider.CompareTag(targetTag))
             {
-                AttributeManager attributes = rayHit.collider.gameObject.GetComponent<AttributeManager>();
-
-                if (attributes != null)
-                {
-                    attributes.TakeDamage(damage);
-                }
+                dealDamage(rayHit.collider.gameObject, projectile.damage);
             }
         }
 
@@ -175,13 +170,13 @@ public class AdvancedProjectileSystem : Spell
         //Invoke resetShot ( if not already invoked)
         if (allowInvoke)
         {
-            Invoke("ResetShot", spell.timeBetweenShots);
+            Invoke("ResetShot", projectile.timeBetweenShots);
             allowInvoke = false;
         }
 
-        if (chargesShot < spell.totalCharges && chargesLeft > 0)
+        if (chargesShot < projectile.totalCharges && chargesLeft > 0)
         {
-            Invoke("RayShoot", spell.burstDelay);
+            Invoke("RayShoot", projectile.burstDelay);
         }
     }
 
@@ -195,12 +190,12 @@ public class AdvancedProjectileSystem : Spell
     private void Recharge()
     {
         recharging = true;
-        Invoke("RechargeFinished", spell.rechargeTime);
+        Invoke("RechargeFinished", projectile.rechargeTime);
     }
 
     private void RechargeFinished()
     {
-        chargesLeft = spell.totalCharges;
+        chargesLeft = projectile.totalCharges;
         recharging = false;
     }
 }

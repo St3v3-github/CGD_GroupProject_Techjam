@@ -28,7 +28,7 @@ public class Projectile : Spell
 
         if (attributes != null)
         {
-            attributes.TakeDamage(damage, statusEffect);
+            attributes.TakeDamage(spell.damage, statusEffect);
             attributes.ChangeStatus(statusEffect);
         }
 

@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8624bc6b495709047b4ac59a6bc19569, type: 3}
-  m_Name: IceShard
+  m_Name: LightningBolt
   m_EditorClassIdentifier: 
-  projectile: {fileID: 2033429670147736737, guid: ac6ea96265d46bf4281b1ce4d91674b0, type: 3}
-  description: Shotgun Like
-  shootForce: 50
+  projectile: {fileID: 0}
+  description: SMG Like
+  shootForce: 80
   upwardForce: 0
-  damage: 5
-  timeBetweenShots: 1
-  spread: 1
-  range: 25
-  rechargeTime: 2
+  damage: 10
+  timeBetweenShots: 0.1
+  spread: 0.05
+  range: 60
+  rechargeTime: 1
   burstDelay: 0
-  totalCharges: 48
-  projectilesPerTap: 8
-  allowButtonHold: 0
+  totalCharges: 20
+  projectilesPerTap: 1
+  allowButtonHold: 1

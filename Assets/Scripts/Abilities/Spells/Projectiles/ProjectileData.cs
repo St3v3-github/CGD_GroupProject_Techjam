@@ -8,6 +8,7 @@ public class ProjectileData : ScriptableObject
 {
     //Projectile
     public GameObject projectile;
+    public string description;
 
     //Projectile force
     public float shootForce, upwardForce;
