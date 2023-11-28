@@ -67,6 +67,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask playerLayer;
     bool inMelee = false;
     bool readyToMelee = true;
+
+    public AnimationManager playerAnimControl;
     
 
 
@@ -91,13 +93,25 @@ public class PlayerController : MonoBehaviour
     {
         // Sets the player movement state.
         move_input = new Vector3(movementInput.x, 0, movementInput.y);
+        
+        //Checks if the player is moving to trigger a walk animation
+        if(move_input.x != 0.0f || move_input.z != 0.0f)
+        {
+            playerAnimControl.toggleWalkingBool(true);
+        }
+        else
+        {
+            playerAnimControl.toggleWalkingBool(false);
+        }
 
         if (character.isGrounded)
         {
+            playerAnimControl.toggleGroundedBool(true); //Toggles boolean in the animator to trigger landing animation if airborne
             GroundMovement();
         }
         else
         {
+            playerAnimControl.toggleGroundedBool(false); //toggles boolean in animator to trigger falling animation
             AirMovement();
         }
 
@@ -268,6 +282,8 @@ public class PlayerController : MonoBehaviour
             player_velocity.y = jump_force;
             isReadyToJump = false;
 
+            playerAnimControl.toggleJumpingBool(true); //toggles bool in animator to trigger jumping animation
+
             Invoke(nameof(ResetJump), jumpCooldown);
         }
     }
@@ -275,6 +291,7 @@ public class PlayerController : MonoBehaviour
     private void ResetJump()
     {
         isReadyToJump = true;
+        playerAnimControl.toggleJumpingBool(false); //toggles bool in animator to stop jumping animation looping unintentionally
     }
 
     public void HandleMelee()
