@@ -8,13 +8,13 @@ public class LevelLoader : MonoBehaviour
     public Animator transition;
     public float transitionTime = 1f;
 
-    void Update()
+/*    void Update()
     {
         if(Input.GetMouseButtonDown(0))
         {
             LoadNextScene();
         }
-    }
+    }*/
 
     public void LoadNextScene()
     {
