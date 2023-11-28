@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1157,6 +1157,70 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1800296823}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnMelee
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InputManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285321329579320587, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8599124901616980960, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 255263585}
+    - target: {fileID: 8599124901616980960, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: meleeSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8599124901616980960, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+      propertyPath: playerLayer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1361,6 +1425,11 @@ GameObject:
 Transform:
   m_CorrespondingSourceObject: {fileID: 141690231642120486, guid: cf58f6e7c60a3ab4d8c27f1117a0db17, type: 3}
   m_PrefabInstance: {fileID: 235716491}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &255263585 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1618919226562968767, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+  m_PrefabInstance: {fileID: 200016147}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &259192728
 GameObject:
@@ -9258,6 +9327,17 @@ MonoBehaviour:
   abiltyCooldown: 0
   abilityReady: 1
   _data: {fileID: 11400000, guid: 083c196012954d743990b81d4114395a, type: 2}
+--- !u!114 &1800296823 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7940312861641195697, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
+  m_PrefabInstance: {fileID: 200016147}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800296814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d23524a07e16f0643bb1d19c93233839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1857205170
 GameObject:
   m_ObjectHideFlags: 0

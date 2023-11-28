@@ -59,6 +59,16 @@ public class PlayerController : MonoBehaviour
     public Transform player_transform;
     public Transform camera_transform;
 
+    [Header("Melee")]
+    public float meleeDistance = 3f;
+    public int meleeDamage = 1;
+    public float meleeSpeed = 1f;
+    public float meleeDelay = 1f;
+    public LayerMask playerLayer;
+    bool inMelee = false;
+    bool readyToMelee = true;
+    
+
 
     public void Start()
     {
@@ -265,6 +275,38 @@ public class PlayerController : MonoBehaviour
     private void ResetJump()
     {
         isReadyToJump = true;
+    }
+
+    public void HandleMelee()
+    {
+
+        if (!readyToMelee || inMelee) return;
+
+        readyToMelee = false;
+        inMelee = true;
+
+        Invoke(nameof(ResetMelee), meleeSpeed);
+        Invoke(nameof(MeleeRaycast), meleeDelay);
+    }
+
+    private void MeleeRaycast()
+    {
+
+        if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hit, meleeDistance, playerLayer))
+        {
+            Debug.Log("HIT ENEMY :O -1 HEALTH");
+            if (hit.transform.TryGetComponent<TestDummy>(out TestDummy T))
+            {
+                T.TakeDamage(meleeDamage);
+            }
+
+        }
+    }
+
+    private void ResetMelee()
+    {
+        inMelee = false;
+        readyToMelee = true;
     }
 
 }
