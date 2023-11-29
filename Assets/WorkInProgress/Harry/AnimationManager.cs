@@ -35,4 +35,14 @@ public class AnimationManager : MonoBehaviour
     {
         playerAnim.SetBool("dead", dead);
     }
+
+    public void toggleRunningBool(bool Running)
+    {
+        playerAnim.SetBool("Running", Running);
+    }
+
+    public void toggleCastingBool(bool Casting)
+    {
+        playerAnim.SetBool("Casting", Casting);
+    }
 }
