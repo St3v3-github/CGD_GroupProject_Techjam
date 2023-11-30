@@ -92,27 +92,10 @@ public class _testDummy : MonoBehaviour
     }
 
     public bool moveRight = true;
+
+    //added for the purpose of testing the slow and stun
     void Move()
-    {
-        //if(moveRight && Vector3.Distance(transform.position, startPos + (-transform.right * 3f)) < 0.01)
-        //{
-        //    moveRight = false;
-        //}
-        //if(!moveRight && Vector3.Distance(transform.position, startPos + (-transform.right * 3f)) < 0.01)
-        //{
-        //    moveRight = true;
-        //}
-
-        //if(moveRight)
-        //{
-        //    transform.position += transform.right * currentMoveSpeed * Time.deltaTime;
-        //}
-        //else
-        //{
-        //    transform.position += -transform.right * currentMoveSpeed * Time.deltaTime;
-        //}
-
-        
+    {  
         Vector3 targetPosition = moveRight ? startPos + (transform.right * 3f) : startPos - (transform.right * 3f);
 
         if (Vector3.Distance(transform.position, targetPosition) < 0.01)
