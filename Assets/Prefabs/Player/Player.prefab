@@ -228,7 +228,19 @@ MonoBehaviour:
     m_ActionId: 0079d2e0-899c-4675-af4e-a931c0e39610
     m_ActionName: Player/Interact[/XInputControllerWindows/buttonWest,/Keyboard/e]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2921279329162863994}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnSpellCast
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 35f20932-47d3-4ed1-9952-867131b1971a
     m_ActionName: Player/AbilityCast[/Mouse/leftButton,/XInputControllerWindows/rightTrigger]
   - m_PersistentCalls:
@@ -383,7 +395,7 @@ GameObject:
   - component: {fileID: 1863637143123250814}
   m_Layer: 6
   m_Name: AnimationController
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -463,7 +475,7 @@ GameObject:
   - component: {fileID: 1275186140544510898}
   m_Layer: 6
   m_Name: Camera
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -626,7 +638,7 @@ GameObject:
   - component: {fileID: 5112053906915280969}
   m_Layer: 6
   m_Name: SpellController
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -704,7 +716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 974478289764777197}
-  projectile: {fileID: 11400000, guid: a2733cace198a7044a1b992f627457a4, type: 2}
+  projectile: {fileID: 11400000, guid: 9097b4ccb20b00c43bf7da88b76235fc, type: 2}
   allowInvoke: 1
   playerCam: {fileID: 5822131898686806388}
   firePoint: {fileID: 404214415002560938}
@@ -1327,7 +1339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 155190, guid: a3d63e24f853705488ac04e22173bc16, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 156288, guid: a3d63e24f853705488ac04e22173bc16, type: 3}
       propertyPath: m_Layer

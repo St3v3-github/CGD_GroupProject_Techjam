@@ -1,22 +1,80 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class GameController : MonoBehaviour
 {
     // My name is Ozymandias, King of Kings; Look on my Works, ye Mighty, and despair!
     public GameRules game;
+    private bool lobby = true;
+    private float lobbyTimer = 30;
+    public TextMeshProUGUI lobbyText;
+    public LayerMask playerLayer;
     // Start is called before the first frame update
     void Start()
     {
-        // Creates list of players
-        Collider[] colliders = Physics.OverlapSphere(transform.position, Mathf.Infinity, 7);
-        foreach (Collider collider in colliders)
+
+    }
+
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (lobby)
         {
-            game.players.Add(collider.gameObject);
-            game.playerCount++;
+            lobbyTimer -= Time.deltaTime;
+
+            // Update the UI text with the current countdown value
+            lobbyText.text = Mathf.Round(lobbyTimer).ToString();
+
+            // Check if the countdown has reached zero
+            if (lobbyTimer <= 0)
+            {
+                lobbyText.text = "Game Starting";
+                StartGame();
+                Invoke("ClearText", 1f);
+
+            }
+        }
+        else if (!lobby)
+        {
+            game.timer -= Time.deltaTime;
+
+            if (game.timer <= 0)
+            {
+                switch (game.gameMode)
+                {
+                    case GameMode.FreeForAll:
+                        AnnounceFFAWinner();
+
+
+                        break;
+                    case GameMode.TeamDeathMatch:
+                        AnnounceTDMWinner();
+                        break;
+                }
+            }
+        }
+        
+    }
+
+    public void StartGame()
+    {
+        lobby = false;
+        // Creates list of players
+        //Collider[] colliders = Physics.OverlapSphere(transform.position, Mathf.Infinity, playerLayer);
+        GameObject[] colliders = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject collider in colliders)
+        {
+            if (collider.GetComponent<PlayerController>() != null)
+            {
+                game.players.Add(collider);
+                game.playerCount++;
+            }
         }
 
         // Creates list of spawnpoints in Map
@@ -44,27 +102,6 @@ public class GameController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        game.timer -= Time.deltaTime;
-
-        if (game.timer <= 0)
-        {
-            switch (game.gameMode)
-            {
-                case GameMode.FreeForAll:
-                    AnnounceFFAWinner();
-
-
-                    break;
-                case GameMode.TeamDeathMatch:
-                    AnnounceTDMWinner();
-                    break;
-            }
-        }
-    }
-
     public void StartTeams()
     {
         
@@ -86,6 +123,8 @@ public class GameController : MonoBehaviour
         }
 
     }
+
+    public void ClearText() {lobbyText.text = "";}
 
     //Respawning Code Below
 
