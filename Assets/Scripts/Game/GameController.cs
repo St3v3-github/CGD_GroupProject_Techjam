@@ -174,7 +174,7 @@ public class GameController : MonoBehaviour
             }
             count++;
         }
-        Debug.Log(Winner.tag + "WINS with " + WinningScore + "kills");
+        //Debug.Log(Winner.tag + "WINS with " + WinningScore + "kills");
     }
 
     // Update TDM below

@@ -48,7 +48,19 @@ public class AnimationManager : MonoBehaviour
 
     public void toggleEmotingBool()
     {
+        int emoteNumb = 1;
         bool Emoting = playerAnim.GetBool("Emoting");
+        float randomNumb = Random.Range(0, 1);
+        if (randomNumb > 0.5f)
+        {
+            emoteNumb = 1;
+        }
+        else
+        {
+            emoteNumb = 0;
+        }
+        Debug.Log(emoteNumb);
+        playerAnim.SetInteger("EmoteNumb", emoteNumb);
         playerAnim.SetBool("Emoting", !Emoting);
     }
 }

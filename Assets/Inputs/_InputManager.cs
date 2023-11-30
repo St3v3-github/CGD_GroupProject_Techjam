@@ -66,6 +66,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    //Event Action added for emoting - Harry
     public void OnDance(InputAction.CallbackContext ctx)
     {
         if (ctx.action.triggered)
