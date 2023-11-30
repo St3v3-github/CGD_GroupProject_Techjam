@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class PickupSpell : MonoBehaviour
 {
-    public static event System.Action<TestProjectile> OnSpellPickedUp; // Move this line outside the method
+    public static event System.Action<ProjectileData> OnSpellPickedUp; 
 
-    [SerializeField] TestProjectile spell;
+    [SerializeField] ProjectileData spell;
 
     private void OnTriggerEnter(Collider other)
     {
