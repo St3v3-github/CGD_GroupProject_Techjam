@@ -10,7 +10,7 @@ public class InventoryEdit : MonoBehaviour
 
     //2D array, spell slots x spell components
     //public List<List<ItemData>> dd_spell_inventory = new();
-    public List<ItemData> dd_spell_inventory = new();
+    public List<ItemData> dd_spell_inventory = new List<ItemData>();
 
     void Start()
     {
