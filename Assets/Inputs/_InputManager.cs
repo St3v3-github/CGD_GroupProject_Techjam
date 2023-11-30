@@ -74,6 +74,13 @@ public class InputManager : MonoBehaviour
         }
     }*/
 
+    public void OnDash(InputAction.CallbackContext ctx)
+    {
+        if (ctx.action.triggered)
+        {
+            StartCoroutine(playerController.PlayerDash(movementInput));
+        }
+    }
 }
 
 
