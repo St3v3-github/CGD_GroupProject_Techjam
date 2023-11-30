@@ -301,6 +301,7 @@ public class PlayerController : MonoBehaviour
 
         readyToMelee = false;
         inMelee = true;
+        playerAnimControl.toggleAttackingBool(true); //toggles bool in animator to trigger melee animation
 
         Invoke(nameof(ResetMelee), meleeSpeed);
         Invoke(nameof(MeleeRaycast), meleeDelay);
@@ -324,6 +325,7 @@ public class PlayerController : MonoBehaviour
     {
         inMelee = false;
         readyToMelee = true;
+        playerAnimControl.toggleAttackingBool(false); //toggles bool in animator to prevent melee anim looping
     }
 
 }
