@@ -45,4 +45,10 @@ public class AnimationManager : MonoBehaviour
     {
         playerAnim.SetBool("Casting", Casting);
     }
+
+    public void toggleEmotingBool()
+    {
+        bool Emoting = playerAnim.GetBool("Emoting");
+        playerAnim.SetBool("Emoting", !Emoting);
+    }
 }

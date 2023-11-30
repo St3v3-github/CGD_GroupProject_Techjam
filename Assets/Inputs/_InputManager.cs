@@ -8,6 +8,8 @@ public class InputManager : MonoBehaviour
 {
     public PlayerController playerController;
     public CameraController cameraController;
+    public AdvancedProjectileSystem projectileController;
+    public AnimationManager animationController;
 
     [Header("Movement/Camera")]
     public Vector2 cameraInput;
@@ -60,9 +62,18 @@ public class InputManager : MonoBehaviour
     {
         if (ctx.action.triggered)
         {
-            //Add script call Here
+            projectileController.MyInput();
         }
     }
+
+    public void OnDance(InputAction.CallbackContext ctx)
+    {
+        if (ctx.action.triggered)
+        {
+            animationController.toggleEmotingBool();
+        }
+    }
+
 
     /*
     public void OnMelee(InputAction.CallbackContext ctx)

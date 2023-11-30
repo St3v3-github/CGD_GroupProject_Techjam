@@ -143,6 +143,15 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dance"",
+                    ""type"": ""Button"",
+                    ""id"": ""e9e530a0-9791-44b1-b058-bbe6549958d8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -695,6 +704,28 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""action"": ""Melee"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2173384a-86aa-421e-a9f0-02292ec59acb"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dance"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef50a06a-e1a0-475b-95e5-dc9f91b2d30f"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dance"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -744,6 +775,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         m_Player_Elements = m_Player.FindAction("Elements", throwIfNotFound: true);
         m_Player_SpellTypes = m_Player.FindAction("SpellTypes", throwIfNotFound: true);
         m_Player_Melee = m_Player.FindAction("Melee", throwIfNotFound: true);
+        m_Player_Dance = m_Player.FindAction("Dance", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -818,6 +850,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Elements;
     private readonly InputAction m_Player_SpellTypes;
     private readonly InputAction m_Player_Melee;
+    private readonly InputAction m_Player_Dance;
     public struct PlayerActions
     {
         private @PlayerControlsAsset m_Wrapper;
@@ -835,6 +868,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         public InputAction @Elements => m_Wrapper.m_Player_Elements;
         public InputAction @SpellTypes => m_Wrapper.m_Player_SpellTypes;
         public InputAction @Melee => m_Wrapper.m_Player_Melee;
+        public InputAction @Dance => m_Wrapper.m_Player_Dance;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -883,6 +917,9 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @Melee.started += instance.OnMelee;
             @Melee.performed += instance.OnMelee;
             @Melee.canceled += instance.OnMelee;
+            @Dance.started += instance.OnDance;
+            @Dance.performed += instance.OnDance;
+            @Dance.canceled += instance.OnDance;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -926,6 +963,9 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @Melee.started -= instance.OnMelee;
             @Melee.performed -= instance.OnMelee;
             @Melee.canceled -= instance.OnMelee;
+            @Dance.started -= instance.OnDance;
+            @Dance.performed -= instance.OnDance;
+            @Dance.canceled -= instance.OnDance;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -976,5 +1016,6 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         void OnElements(InputAction.CallbackContext context);
         void OnSpellTypes(InputAction.CallbackContext context);
         void OnMelee(InputAction.CallbackContext context);
+        void OnDance(InputAction.CallbackContext context);
     }
 }
