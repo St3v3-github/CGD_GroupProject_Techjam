@@ -100,6 +100,8 @@ public class GameController : MonoBehaviour
                 game.teamScore.Add(0);
                 break;
         }
+
+        TeleportPlayers();
     }
 
     public void StartTeams()
@@ -122,6 +124,20 @@ public class GameController : MonoBehaviour
             
         }
 
+    }
+
+    public void TeleportPlayers()
+    {
+        foreach (GameObject player in game.players)
+        {
+            int rand = Random.Range(0, game.spawnPoints.Count);
+
+            if (game.spawnPoints[rand].GetComponent<SpawnPoint>().used = false)
+            {
+                player.transform.position = game.spawnPoints[rand].transform.position;
+                game.spawnPoints[rand].GetComponent<SpawnPoint>().used = true;
+            }
+        }
     }
 
     public void ClearText() {lobbyText.text = "";}
