@@ -1,11 +1,11 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SpellManager : MonoBehaviour
 {
-    private List<TestProjectile> spells = new List<TestProjectile>();
-    private TestProjectile equippedSpell;
+    private List<ProjectileData> spells = new List<ProjectileData>();
+    private ProjectileData equippedSpell;
 
     private int currentSpellIndex = 0;
 
@@ -19,12 +19,12 @@ public class SpellManager : MonoBehaviour
         PickupSpell.OnSpellPickedUp -= HandleSpellPickedUp;
     }
 
-    private void HandleSpellPickedUp(TestProjectile spellObject)
+    private void HandleSpellPickedUp(ProjectileData spellObject)
     {
         CollectSpell(spellObject);
     }
 
-    private void CollectSpell(TestProjectile spellObject)
+    private void CollectSpell(ProjectileData spellObject)
     {
         if(spells.Count < 2)
         {
@@ -78,7 +78,7 @@ public class SpellManager : MonoBehaviour
                 Destroy(castedProjectile, 0.5f); // Adjust the time as needed
             }
         }
-        /*
+        *//*
                 if(Input.GetKeyDown(KeyCode.F) && equippedSpell != null)
                 {
                     Debug.Log("About to cast spell: " + equippedSpell.name);
@@ -93,10 +93,10 @@ public class SpellManager : MonoBehaviour
                     {
                         Destroy(castedProjectile, 2f); // adjust to ability lifetime & remove rigidbody on impact
                     }
-                }*/
+                }*//*
     }
 
-    /*private void CastEquippedSpell(Vector3 castPos)
+    *//*private void CastEquippedSpell(Vector3 castPos)
     {
        //check spell has spell component
        SpellComponent spellComponent = equippedSpell.GetComponent<SpellComponent>();
@@ -111,7 +111,7 @@ public class SpellManager : MonoBehaviour
         {
             Debug.LogWarning("equipped spell doesn't have spell component");
         }
-    }*/
+    }*//*
 
     private void SwitchSpell()
     {
@@ -119,3 +119,4 @@ public class SpellManager : MonoBehaviour
         EquipSpell(currentSpellIndex);
     }
 }
+*/
