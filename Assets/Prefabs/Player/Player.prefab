@@ -61,7 +61,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 974478289764777197}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -295,6 +295,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 03861f45-172b-4b5c-a41d-a0860f14af4b
     m_ActionName: Player/Melee[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2921279329162863994}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a20a3ab1-c6d8-4171-ac04-e022e11ba65f
+    m_ActionName: Player/Dash[/Keyboard/q,/XInputControllerWindows/rightShoulder]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -365,6 +381,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   playerAnimControl: {fileID: 1863637143123250814}
+  max_dash_time: 0.2
+  dash_force: 15
+  dash_timer: 0
+  dashing: 0
+  dash_ready: 1
+  dash_cooldown: 2
 --- !u!114 &3819623973477509778
 MonoBehaviour:
   m_ObjectHideFlags: 0

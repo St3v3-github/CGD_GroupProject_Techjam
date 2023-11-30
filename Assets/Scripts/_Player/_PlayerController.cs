@@ -76,9 +76,9 @@ public class PlayerController : MonoBehaviour
     [Header("Dash")]
     //Dashing related values
     [Tooltip("How long the player's dash is")]
-    public float max_dash_time;
+    public float max_dash_time = 0.2f;
     [Tooltip("The force of the player's dash")]
-    public float dash_force;
+    public float dash_force = 15f;
     [SerializeField] private float dash_timer;
     [SerializeField] private bool dashing = false;
     [SerializeField] private bool dash_ready = true;
