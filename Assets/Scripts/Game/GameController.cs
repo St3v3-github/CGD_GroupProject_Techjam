@@ -104,7 +104,9 @@ public class GameController : MonoBehaviour
             if (spawnPoints[rand].GetComponent<SpawnPoint>().used == false)
             {
                 Debug.Log("teleporting player to " + spawnPoints[rand].transform.position);
-                player.transform.SetPositionAndRotation(spawnPoints[rand].transform.position, spawnPoints[rand].transform.rotation); 
+                player.GetComponent<CharacterController>().enabled = false;
+                player.transform.SetPositionAndRotation(spawnPoints[rand].transform.position, spawnPoints[rand].transform.rotation);
+                player.GetComponent<CharacterController>().enabled = true;
                 Debug.Log(player.name+ " is at" + player.transform.position);
                 spawnPoints[rand].GetComponent<SpawnPoint>().used = true;
             }
