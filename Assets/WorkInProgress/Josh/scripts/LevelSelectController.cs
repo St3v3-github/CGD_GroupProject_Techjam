@@ -18,8 +18,8 @@ public class LevelSelectController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Map = StartingMap;
-        Map.SetActive(true); 
+        Map = Levels[0]; 
+        Map.SetActive(true);
         
     }
 
