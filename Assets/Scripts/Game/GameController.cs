@@ -14,10 +14,20 @@ public class GameController : MonoBehaviour
     private float lobbyTimer = 30;
     public TextMeshProUGUI lobbyText;
     public LayerMask playerLayer;
+
+    public float timer;
+    private List<int> teamScore;
+    public int playerCount;
+    public List<GameObject> players;
+    public List<GameObject> team1;
+    public List<GameObject> team2;
+    public List<GameObject> spawnPoints;
+
+
     // Start is called before the first frame update
     void Start()
     {
-
+        timer = game.timer;
     }
 
 
@@ -42,9 +52,9 @@ public class GameController : MonoBehaviour
         }
         else if (!lobby)
         {
-            game.timer -= Time.deltaTime;
+            timer -= Time.deltaTime;
 
-            if (game.timer <= 0)
+            if (timer <= 0)
             {
                 switch (game.gameMode)
                 {
@@ -72,8 +82,8 @@ public class GameController : MonoBehaviour
         {
             if (collider.GetComponent<PlayerController>() != null)
             {
-                game.players.Add(collider);
-                game.playerCount++;
+                players.Add(collider);
+                playerCount++;
             }
         }
 
@@ -82,26 +92,40 @@ public class GameController : MonoBehaviour
 
         foreach (GameObject objectWithTag in objectsWithTag)
         {
-            game.spawnPoints.Add(objectWithTag);
+            spawnPoints.Add(objectWithTag);
+        }
+
+        Debug.Log("teleporting");
+        foreach (GameObject player in players)
+        {
+            
+            int rand = Random.Range(0, spawnPoints.Count);
+
+            if (spawnPoints[rand].GetComponent<SpawnPoint>().used == false)
+            {
+                Debug.Log("teleporting player to " + spawnPoints[rand].transform.position);
+                player.transform.SetPositionAndRotation(spawnPoints[rand].transform.position, spawnPoints[rand].transform.rotation); 
+                Debug.Log(player.name+ " is at" + player.transform.position);
+                spawnPoints[rand].GetComponent<SpawnPoint>().used = true;
+            }
         }
 
         // Game mode specific setup
         switch (game.gameMode)
         {
             case GameMode.FreeForAll:
-                foreach (GameObject player in game.players)
+                foreach (GameObject player in players)
                 {
-                    game.teamScore.Add(0);
+                    teamScore.Add(0);
                 }
                 break;
             case GameMode.TeamDeathMatch:
                 StartTeams();
-                game.teamScore.Add(0);
-                game.teamScore.Add(0);
+                teamScore.Add(0);
+                teamScore.Add(0);
                 break;
         }
 
-        TeleportPlayers();
     }
 
     public void StartTeams()
@@ -109,17 +133,17 @@ public class GameController : MonoBehaviour
         
         int count = 0;
         // Add the found GameObjects to the list
-        foreach (GameObject player in game.players)
+        foreach (GameObject player in players)
         {
             count++;
             
-            if (count >= (game.playerCount / 2))
+            if (count >= (playerCount / 2))
             {
-                game.team1.Add(player.gameObject);
+                team1.Add(player.gameObject);
             }
             else
             {
-                game.team2.Add(player.gameObject);
+                team2.Add(player.gameObject);
             }
             
         }
@@ -128,14 +152,16 @@ public class GameController : MonoBehaviour
 
     public void TeleportPlayers()
     {
-        foreach (GameObject player in game.players)
+        Debug.Log("teleporting");
+        foreach (GameObject player in players)
         {
-            int rand = Random.Range(0, game.spawnPoints.Count);
+            Debug.Log("teleporting player");
+            int rand = Random.Range(0, spawnPoints.Count);
 
-            if (game.spawnPoints[rand].GetComponent<SpawnPoint>().used = false)
+            if (spawnPoints[rand].GetComponent<SpawnPoint>().used == false)
             {
-                player.transform.position = game.spawnPoints[rand].transform.position;
-                game.spawnPoints[rand].GetComponent<SpawnPoint>().used = true;
+                player.transform.position = spawnPoints[rand].transform.position;
+                spawnPoints[rand].GetComponent<SpawnPoint>().used = true;
             }
         }
     }
@@ -169,7 +195,7 @@ public class GameController : MonoBehaviour
             possibleSpawnPoints.Add(deadPlayer);
         }
         
-        foreach (GameObject spawnPoint in game.spawnPoints)
+        foreach (GameObject spawnPoint in spawnPoints)
         {
             float newDistanceToSpawnPoint = Vector3.Distance(spawnPoint.transform.position, deadPlayer.transform.position);
 
@@ -197,11 +223,11 @@ public class GameController : MonoBehaviour
     public void UpdateFFAScore(GameObject killer)
     {
         int count = 0;
-        foreach (GameObject player in game.players)
+        foreach (GameObject player in players)
         {
             if (player == killer)
             {
-                game.teamScore[count] += 1;
+                teamScore[count] += 1;
             }
             count++;
         }
@@ -212,18 +238,18 @@ public class GameController : MonoBehaviour
         int count = 0;
         int WinningScore = 0;
         GameObject Winner = null;
-        foreach (GameObject player in game.players)
+        foreach (GameObject player in players)
         {
             if (count == 0)
             {
-                WinningScore = game.teamScore[0];
+                WinningScore = teamScore[0];
                 Winner = player;
             }
             else
             {
-                if (game.teamScore[count] > WinningScore)
+                if (teamScore[count] > WinningScore)
                 {
-                    WinningScore = game.teamScore[count];
+                    WinningScore = teamScore[count];
                     Winner = player;
                 }
             }
@@ -235,33 +261,33 @@ public class GameController : MonoBehaviour
     // Update TDM below
     public void UpdateTDMScore(GameObject killer)
     {
-        foreach (GameObject player in game.team1)
+        foreach (GameObject player in team1)
         {
             if (player == killer)
             {
-                game.teamScore[0] += 1;
+                teamScore[0] += 1;
             }
         }
-        foreach (GameObject player in game.team2)
+        foreach (GameObject player in team2)
         {
             if (player == killer)
             {
-                game.teamScore[1] += 1;
+                teamScore[1] += 1;
             }
         }
     }
 
     public void AnnounceTDMWinner()
     {
-        if (game.teamScore[0] == game.teamScore[1])
+        if (teamScore[0] == teamScore[1])
         {
             Debug.Log("Time Up. DRAW");
         }
-        else if (game.teamScore[0] > game.teamScore[1])
+        else if (teamScore[0] > teamScore[1])
         {
             Debug.Log("Time Up. Team 1 WINS");
         }
-        else if (game.teamScore[0] < game.teamScore[1])
+        else if (teamScore[0] < teamScore[1])
         {
             Debug.Log("Time Up. Team 2 WINS");
         }

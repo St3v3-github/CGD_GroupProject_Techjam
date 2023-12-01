@@ -8,6 +8,7 @@ public class AdvancedProjectileSystem : Spell
     public ProjectileData equippedProjectile;
     private List<ProjectileData> spells = new List<ProjectileData>();
     private int currentSpellIndex = 0;
+    private GameObject rechargeSurge;
 
     int chargesLeft, chargesShot;
 
@@ -35,6 +36,10 @@ public class AdvancedProjectileSystem : Spell
     private void Start()
     {
         setTargetTag();
+
+        rechargeSurge = Instantiate(equippedProjectile.recharge, firePoint.position, Quaternion.identity);
+        rechargeSurge.transform.SetParent(firePoint, true);
+        rechargeSurge.SetActive(false);
 
     }
 
@@ -213,11 +218,13 @@ public class AdvancedProjectileSystem : Spell
     private void Recharge()
     {
         recharging = true;
+        rechargeSurge.SetActive(true);
         Invoke("RechargeFinished", equippedProjectile.rechargeTime);
     }
 
     private void RechargeFinished()
     {
+        rechargeSurge.SetActive(false);
         chargesLeft = equippedProjectile.totalCharges;
         recharging = false;
     }
