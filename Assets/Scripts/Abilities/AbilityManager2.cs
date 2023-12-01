@@ -103,19 +103,61 @@ public class AbilityManager2 : MonoBehaviour
 
                 case ItemData.SpellList.FIRESTRIKE:
                     spell_controller.GetComponent<CastableAOEStrike>().setType(spellEnum.fire);
-                    spell_controller.GetComponent<CastableAOEStrike>().Cast();
+                  //  spell_controller.GetComponent<CastableAOEStrike>().Cast();
+                    if (!spell_controller.GetComponent<CastableAOEStrike>().projectionOn)
+                    {
+                        spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOn();
+                    }
+                    else
+                    {
+                        spell_controller.GetComponent<CastableAOEStrike>().Strike();
+                        spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOff();
+
+                    }
+
+
                     break;
                 case ItemData.SpellList.ICESTRIKE:
                     spell_controller.GetComponent<CastableAOEStrike>().setType(spellEnum.ice);
-                    spell_controller.GetComponent<CastableAOEStrike>().Cast();
+                    // spell_controller.GetComponent<CastableAOEStrike>().Cast();
+                    if (!spell_controller.GetComponent<CastableAOEStrike>().projectionOn)
+                    {
+                        spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOn();
+                    }
+                    else
+                    {
+                        spell_controller.GetComponent<CastableAOEStrike>().Strike();
+                        spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOff();
+
+                    }
                     break;
                 case ItemData.SpellList.WINDSTRIKE:
                     spell_controller.GetComponent<CastableAOEStrike>().setType(spellEnum.wind);
-                    spell_controller.GetComponent<CastableAOEStrike>().Cast();
+                    //  spell_controller.GetComponent<CastableAOEStrike>().Cast();
+                    if (!spell_controller.GetComponent<CastableAOEStrike>().projectionOn)
+                    {
+                        spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOn();
+                    }
+                    else
+                    {
+                        spell_controller.GetComponent<CastableAOEStrike>().Strike();
+                        spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOff();
+
+                    }
                     break;
                 case ItemData.SpellList.LIGHTNINGSTRIKE:
                     spell_controller.GetComponent<CastableAOEStrike>().setType(spellEnum.lightning);
-                    spell_controller.GetComponent<CastableAOEStrike>().Cast();
+                    //  spell_controller.GetComponent<CastableAOEStrike>().Cast();
+                    if (!spell_controller.GetComponent<CastableAOEStrike>().projectionOn)
+                    {
+                        spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOn();
+                    }
+                    else
+                    {
+                        spell_controller.GetComponent<CastableAOEStrike>().Strike();
+                        spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOff();
+
+                    }
                     break;
                 case ItemData.SpellList.FIRESUMMON:
                     spell_controller.GetComponent<Summon>().setType(spellEnum.fire);
