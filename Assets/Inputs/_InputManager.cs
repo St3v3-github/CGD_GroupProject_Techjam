@@ -8,6 +8,8 @@ public class InputManager : MonoBehaviour
 {
     public PlayerController playerController;
     public CameraController cameraController;
+    public AdvancedProjectileSystem projectileController;
+    public AnimationManager animationController;
 
     [Header("Movement/Camera")] public Vector2 cameraInput;
     public Vector2 movementInput;
@@ -106,6 +108,18 @@ public class InputManager : MonoBehaviour
         }
         
 
+    //Event Action added for emoting - Harry
+    public void OnDance(InputAction.CallbackContext ctx)
+    {
+        if (ctx.action.triggered)
+        {
+            animationController.toggleEmotingBool();
+        }
+    }
+
+
+    /*
+    public void OnMelee(InputAction.CallbackContext ctx)
         /*
         public void OnMelee(InputAction.CallbackContext ctx)
         {

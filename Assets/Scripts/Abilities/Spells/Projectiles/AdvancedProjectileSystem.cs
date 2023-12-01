@@ -22,6 +22,7 @@ public class AdvancedProjectileSystem : Spell
     public Transform firePoint;
     public RaycastHit rayHit;
     public LayerMask hittable;
+    public AnimationManager animControl;
 
     //Graphic (Coming soon)
     //public GameObject spellFlash, spellImpact;
@@ -64,7 +65,7 @@ public class AdvancedProjectileSystem : Spell
         //UI
         //text.SetText(chargesLeft / projectile.projectilesPerTap + " / " projectile.totalCharges / projectile.projectilesPerTap);
     }
-    private void MyInput()
+    public void MyInput()
     {
         //If hold to fire
         if (equippedProjectile.allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
@@ -83,6 +84,7 @@ public class AdvancedProjectileSystem : Spell
         if (readyToShoot && shooting && !recharging && chargesLeft > 0)
         {
             chargesShot = 0;
+            animControl.toggleCastingBool(true);
             ProjectileShoot();
 
         }
@@ -205,6 +207,7 @@ public class AdvancedProjectileSystem : Spell
         allowInvoke = true;
         readyToShoot = true;
         Debug.Log("Ready to shoot");
+        animControl.toggleCastingBool(false);
     }
 
     private void Recharge()
