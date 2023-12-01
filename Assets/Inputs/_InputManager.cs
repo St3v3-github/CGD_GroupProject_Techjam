@@ -9,8 +9,7 @@ public class InputManager : MonoBehaviour
     public PlayerController playerController;
     public CameraController cameraController;
 
-    [Header("Movement/Camera")]
-    public Vector2 cameraInput;
+    [Header("Movement/Camera")] public Vector2 cameraInput;
     public Vector2 movementInput;
 
     private void Awake()
@@ -60,19 +59,62 @@ public class InputManager : MonoBehaviour
     {
         if (ctx.action.triggered)
         {
-            //Add script call Here
-        }
-    }
+            //Determining Spell Slot
+            InputControl actionInput = ctx.control;
+            string actionButton = actionInput.name;
+            int slotTarget = 0;
+            switch (actionButton)
+            {
+                case "1":
+                    slotTarget = 0;
+                    break;
+                case "2":
+                    slotTarget = 1;
+                    break;
+                case "3":
+                    slotTarget = 2;
+                    break;
+                case "4":
+                    slotTarget = 3;
+                    break;
+                case "leftTrigger":
+                    slotTarget = 0;
+                    break;
+                case "leftBumper":
 
-    /*
-    public void OnMelee(InputAction.CallbackContext ctx)
-    {
-        if (ctx.action.triggered)
-        {
-            playerController.HandleMelee();
-            Debug.Log("Punch");
+                    slotTarget = 1;
+                    break;
+                case "leftShoulder":
+
+                    slotTarget = 1;
+                    break;
+                case "rightTrigger":
+
+                    slotTarget = 2;
+                    break;
+                case "rightBumper":
+
+                    slotTarget = 3;
+                    break;
+                case "rightShoulder":
+
+                    slotTarget = 3;
+                    break;
+            }
+            //Cast Spell from Abilitymanager in the selected slot.
+            GetComponent<AbilityManager2>().castSpell(slotTarget);
         }
-    }*/
+        
+
+        /*
+        public void OnMelee(InputAction.CallbackContext ctx)
+        {
+            if (ctx.action.triggered)
+            {
+                playerController.HandleMelee();
+                Debug.Log("Punch");
+            }
+        }*/
 
     public void OnDash(InputAction.CallbackContext ctx)
     {

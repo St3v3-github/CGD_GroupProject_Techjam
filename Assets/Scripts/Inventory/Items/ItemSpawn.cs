@@ -14,6 +14,10 @@ public class ItemSpawn : MonoBehaviour
     [SerializeField] int maxSpawnPoints = 0;
     [SerializeField] int minElementSpawns = 0;
     [SerializeField] int minSpellSpawns = 0;
+    [SerializeField]  List<GameObject> ultimateList = new List<GameObject>();
+    [SerializeField]  List<GameObject> rareList = new List<GameObject>();
+    [SerializeField]  List<GameObject> uncommonList = new List<GameObject>();
+    [SerializeField]  List<GameObject> commonList = new List<GameObject>();
     
     void Start()
     {
@@ -85,7 +89,7 @@ public class ItemSpawn : MonoBehaviour
 
 
 
-
+// THIS NEEDS TO BE SORTED - FIX LATER
         int spawnedElements = 0;
         int spawnedSpells = 0;
         for (int i = 0; i<chosenNumbers.Length ;i++) 
@@ -93,7 +97,7 @@ public class ItemSpawn : MonoBehaviour
             
             if(spawnedElements < minElementSpawns)
             {
-                SpawnPoints[chosenNumbers[i] - 1].GetComponent<SpawnItem>().SpawnObject(SpawnItem.Type.Element);
+                SpawnPoints[chosenNumbers[i] - 1].GetComponent<SpawnItem>().SpawnObject(SpawnItem.Type.Spell);
                 availableSpawns--;
                 spawnedElements++;
             }
@@ -112,7 +116,7 @@ public class ItemSpawn : MonoBehaviour
               
                 if(randomNumber == 0 )
                 {
-                    SpawnPoints[chosenNumbers[i] - 1].GetComponent<SpawnItem>().SpawnObject(SpawnItem.Type.Element);
+                    SpawnPoints[chosenNumbers[i] - 1].GetComponent<SpawnItem>().SpawnObject(SpawnItem.Type.Spell);
                     availableSpawns--;
 //                    Debug.Log("Randomly chosen an element.");
                 }
