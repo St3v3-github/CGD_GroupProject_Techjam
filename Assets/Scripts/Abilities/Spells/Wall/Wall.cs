@@ -7,7 +7,7 @@ public class Wall : ElementalSpell
 {
     public GameObject holographicPrefab;
     public GameObject holographic;
-    public bool isPlacingWall;
+    public bool isPlacingWall = false;
     private Quaternion holographicInitialRotation;
     private float holographicDespawnTime = 5.0f;
     public Camera playerCamera;
@@ -29,31 +29,14 @@ public class Wall : ElementalSpell
     {
 
         setStatus();
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            StartPlacingWall();
-            Invoke("DespawnHolographic", holographicDespawnTime);
-        }
-
+       
         if (isPlacingWall)
         {
             // Update the position of the holographic preview to follow the mouse cursor
             Vector3 mousePosition = GetMouseWorldPosition();
             holographic.transform.position = new Vector3(mousePosition.x, holographic.transform.position.y, mousePosition.z);
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                StopCoroutine(UpdateHolographicRotation());
-                // Output the initial rotation of the holographic
-                Debug.Log("Initial Rotation of Holographic: " + holographicInitialRotation.eulerAngles);
-
-
-                Debug.Log("Rotation of Spawned Wall: " + spell.prefab.transform.rotation.eulerAngles);
-                Quaternion holographicRotation = holographic.transform.rotation;
-                WallManager.Instance.SpawnWall(holographic.transform.position, holographicRotation);
-                Destroy(holographic);
-                isPlacingWall = false;
-            }
+    
         }
     }
 
@@ -75,6 +58,19 @@ public class Wall : ElementalSpell
         isPlacingWall = true;
         StartCoroutine(UpdateHolographicRotation());
 
+    }
+    public void PlaceWall()
+    {
+        StopCoroutine(UpdateHolographicRotation());
+        // Output the initial rotation of the holographic
+        //  Debug.Log("Initial Rotation of Holographic: " + holographicInitialRotation.eulerAngles);
+
+
+        //   Debug.Log("Rotation of Spawned Wall: " + wallPrefab.transform.rotation.eulerAngles);
+        Quaternion holographicRotation = holographic.transform.rotation;
+        WallManager.Instance.SpawnWall(holographic.transform.position, holographicRotation);
+        Destroy(holographic);
+        isPlacingWall = false;
     }
 
     private IEnumerator UpdateHolographicRotation()

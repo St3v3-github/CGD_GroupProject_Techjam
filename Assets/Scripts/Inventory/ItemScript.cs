@@ -5,9 +5,20 @@ using UnityEngine.InputSystem;
 
 public class ItemScript : MonoBehaviour, IInteractable
 {
-    public void Interact()
+  
+    private void Start()
     {
 
+        
+    }
+    public void Interact()
+    {
+        GetComponentInParent<SpawnItem>().hasItem = false;
         Destroy(gameObject); 
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        GetComponentInParent<SpawnItem>().hasItem = false;
+        Destroy(gameObject);
     }
 }
