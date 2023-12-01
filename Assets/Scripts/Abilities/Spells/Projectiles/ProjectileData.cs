@@ -19,5 +19,8 @@ public class ProjectileData : ScriptableObject
     public float timeBetweenShots, spread, range, rechargeTime, burstDelay;
     public int totalCharges, projectilesPerTap;
     public bool allowButtonHold;
+
+    //Projectile Status Effects
+    public StatusEffect_Data statusEffect;
     
 }
