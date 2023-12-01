@@ -36,6 +36,7 @@ public class InputManager : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext ctx)
     {
+        animationController.disableEmote();
         movementInput = ctx.ReadValue<Vector2>();
 
     }
@@ -44,6 +45,7 @@ public class InputManager : MonoBehaviour
     {
         if (ctx.action.triggered)
         {
+            animationController.disableEmote();
             playerController.HandleJump();
             Debug.Log("Jumping");
         }
@@ -53,12 +55,14 @@ public class InputManager : MonoBehaviour
     {
         if (ctx.action.triggered)
         {
+            animationController.disableEmote();
             //Add Script call Here
         }
     }
 
     public void OnSpellCast(InputAction.CallbackContext ctx)
     {
+        animationController.disableEmote();
         if (ctx.action.triggered)
         {
             //Determining Spell Slot
@@ -106,7 +110,8 @@ public class InputManager : MonoBehaviour
             //Cast Spell from Abilitymanager in the selected slot.
             GetComponent<AbilityManager2>().castSpell(slotTarget);
         }
-        
+
+    }
 
     //Event Action added for emoting - Harry
     public void OnDance(InputAction.CallbackContext ctx)

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AnimationManager : MonoBehaviour
@@ -62,5 +63,10 @@ public class AnimationManager : MonoBehaviour
         Debug.Log(emoteNumb);
         playerAnim.SetInteger("EmoteNumb", emoteNumb);
         playerAnim.SetBool("Emoting", !Emoting);
+    }
+
+    public void disableEmote()
+    {
+        playerAnim.SetBool("Emoting", false);
     }
 }

@@ -145,18 +145,18 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Dash"",
+                    ""name"": ""Dance"",
                     ""type"": ""Button"",
-                    ""id"": ""a20a3ab1-c6d8-4171-ac04-e022e11ba65f"",
+                    ""id"": ""e9e530a0-9791-44b1-b058-bbe6549958d8"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Dance"",
+                    ""name"": ""Dash"",
                     ""type"": ""Button"",
-                    ""id"": ""e9e530a0-9791-44b1-b058-bbe6549958d8"",
+                    ""id"": ""a20a3ab1-c6d8-4171-ac04-e022e11ba65f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",

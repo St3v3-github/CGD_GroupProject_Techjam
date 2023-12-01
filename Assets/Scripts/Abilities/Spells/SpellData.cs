@@ -8,4 +8,5 @@ public class SpellData : ScriptableObject
 {
     public float damage;
     public GameObject prefab;
+    public float radius;
 }

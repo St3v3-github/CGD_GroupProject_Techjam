@@ -46,7 +46,6 @@ GameObject:
   - component: {fileID: 2921279329162863994}
   - component: {fileID: 3597789930903828011}
   - component: {fileID: 3819623973477509778}
-  - component: {fileID: 7033012211298915937}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -312,6 +311,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a20a3ab1-c6d8-4171-ac04-e022e11ba65f
     m_ActionName: Player/Dash[/Keyboard/q,/XInputControllerWindows/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2921279329162863994}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnDance
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e9e530a0-9791-44b1-b058-bbe6549958d8
+    m_ActionName: Player/Dance[/Keyboard/u]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -408,18 +423,6 @@ MonoBehaviour:
   speed: 10
   player_status: {fileID: 0}
   last_damage_player: {fileID: 0}
---- !u!114 &7033012211298915937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 974478289764777197}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee490595e6221af46bd5e370e7e2d3f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2528506275594174360
 GameObject:
   m_ObjectHideFlags: 0
@@ -10535,7 +10538,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 974478289764777197}
-  projectile: {fileID: 11400000, guid: 9097b4ccb20b00c43bf7da88b76235fc, type: 2}
+  equippedProjectile: {fileID: 0}
   allowInvoke: 1
   playerCam: {fileID: 5822131898686806388}
   firePoint: {fileID: 404214415002560938}
@@ -10757,7 +10760,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1049532257496150, guid: ded05893db0d86a4baaf369681c87e5f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4555774033553318, guid: ded05893db0d86a4baaf369681c87e5f, type: 3}
       propertyPath: m_LocalScale.x
@@ -11040,7 +11043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1069959841205446, guid: d9197eec8ecc7714cbb8825a1467ae11, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4814251842664052, guid: d9197eec8ecc7714cbb8825a1467ae11, type: 3}
       propertyPath: m_LocalScale.x
@@ -11097,7 +11100,7 @@ PrefabInstance:
     - target: {fileID: 23106111332872496, guid: d9197eec8ecc7714cbb8825a1467ae11, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 014fbaa82701c3f4bbd9c27c7a0650e5, type: 2}
+      objectReference: {fileID: 2100000, guid: 068b891fe967b1c45850c97d1092abe0, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11557,6 +11560,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 149182, guid: a3d63e24f853705488ac04e22173bc16, type: 3}
+      propertyPath: m_Name
+      value: FootL
+      objectReference: {fileID: 0}
+    - target: {fileID: 149182, guid: a3d63e24f853705488ac04e22173bc16, type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
@@ -11699,6 +11706,10 @@ PrefabInstance:
     - target: {fileID: 185268, guid: a3d63e24f853705488ac04e22173bc16, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 187272, guid: a3d63e24f853705488ac04e22173bc16, type: 3}
+      propertyPath: m_Name
+      value: FootR
       objectReference: {fileID: 0}
     - target: {fileID: 187272, guid: a3d63e24f853705488ac04e22173bc16, type: 3}
       propertyPath: m_Layer

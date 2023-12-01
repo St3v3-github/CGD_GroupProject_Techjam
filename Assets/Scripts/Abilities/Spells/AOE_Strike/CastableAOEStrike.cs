@@ -7,7 +7,6 @@ public class CastableAOEStrike : ElementalSpell
 {
 
     public GameObject projectionPrefab;
-    private new StrikeData spell;
     
     private GameObject projection;
     public Camera playerCamera;
@@ -116,7 +115,7 @@ public class CastableAOEStrike : ElementalSpell
 
     public void DetectCharacters(Vector3 centre, string targetTag)
     {
-        Collider[] colliders = Physics.OverlapSphere(centre, spell.attackRadius);
+        Collider[] colliders = Physics.OverlapSphere(centre, spell.radius);
         List<GameObject> players = new List<GameObject>();
 
         foreach (var collider in colliders)
@@ -131,7 +130,7 @@ public class CastableAOEStrike : ElementalSpell
         {
             float distance = Vector3.Distance(centre, player.transform.position);
 
-            float damageMultiplier = spell.damage / spell.attackRadius;
+            float damageMultiplier = spell.damage / spell.radius;
 
             // Adjust the damage based on distance (you can use any formula here)
             float adjustedDamage = spell.damage - distance * damageMultiplier;
