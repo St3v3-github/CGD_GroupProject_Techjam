@@ -18,14 +18,15 @@ public class LevelSelectController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        Map = StartingMap;
+        Map.SetActive(true); 
         
     }
 
     // Update is called once per frame
     private void Update()
     {
-        Map = Levels[MapNumber];
+       
         
     }
 
@@ -33,9 +34,15 @@ public class LevelSelectController : MonoBehaviour
     {
         if (MapNumber < Numberofmaps)
         {
+         MapNumber++;
+        }
+
+        if (MapNumber == Numberofmaps)
+        {
             MapNumber++;
         }
-        if (MapNumber == Numberofmaps)
+
+        if (MapNumber > Numberofmaps)
         {
             MapNumber = 0; 
         }
@@ -43,7 +50,9 @@ public class LevelSelectController : MonoBehaviour
         {
             Levels[i].SetActive(false);
         }
-        Map.SetActive(true); 
+        Map = Levels[MapNumber];
+        Map.SetActive(true);  
+        
     }
     
 }
