@@ -16,6 +16,9 @@ public class SpawnItem : MonoBehaviour
     public enum SpawnerType {UltimateOnly, RareOnly, UncommonOnly, CommonOnly, AnySpell};
 
     public SpawnerType spawnerType;
+    public bool hasItem;
+    public float spawnTimer = 10f;
+    private float timer = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +29,15 @@ public class SpawnItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(!hasItem)
+        {
+            timer += Time.deltaTime;
+            if(timer > spawnTimer)
+            {
+                SpawnObject(SpawnItem.Type.Spell);
+            }
+        }
+
     }
     
     public void SpawnObject(Type objectType) 
@@ -80,6 +91,8 @@ public class SpawnItem : MonoBehaviour
                 Instantiate(spawnList[i], this.transform);
                 i = spawnList.Count + 1;
             }
+            hasItem = true;
+            timer = 0f;
         }
     }
 }

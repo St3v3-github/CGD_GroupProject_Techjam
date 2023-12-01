@@ -46,6 +46,8 @@ GameObject:
   - component: {fileID: 2921279329162863994}
   - component: {fileID: 3597789930903828011}
   - component: {fileID: 3819623973477509778}
+  - component: {fileID: 8831944262971521100}
+  - component: {fileID: 6340715753519854202}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -348,6 +350,7 @@ MonoBehaviour:
   cameraController: {fileID: 1275186140544510898}
   projectileController: {fileID: 4517045908497947722}
   animationController: {fileID: 1863637143123250814}
+  ray: {fileID: 4712851475361685754}
   cameraInput: {x: 0, y: 0}
   movementInput: {x: 0, y: 0}
 --- !u!114 &3597789930903828011
@@ -423,6 +426,34 @@ MonoBehaviour:
   speed: 10
   player_status: {fileID: 0}
   last_damage_player: {fileID: 0}
+--- !u!114 &8831944262971521100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974478289764777197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3163220782114504ab90d8eb16337a17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell_slots: 4
+  dd_spell_inventory: []
+--- !u!114 &6340715753519854202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974478289764777197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74ad960a4d4e9b34c8771f2ef8c065be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 8831944262971521100}
+  spell_controller: {fileID: 8393186558806589648}
 --- !u!1 &2528506275594174360
 GameObject:
   m_ObjectHideFlags: 0
@@ -10295,6 +10326,7 @@ GameObject:
   - component: {fileID: 736326385774699341}
   - component: {fileID: 6461436324428886240}
   - component: {fileID: 1275186140544510898}
+  - component: {fileID: 4712851475361685754}
   m_Layer: 6
   m_Name: Camera
   m_TagString: Untagged
@@ -10440,6 +10472,21 @@ MonoBehaviour:
   smooth: 0
   smooth_time: 5
   cursor_lock: 1
+--- !u!114 &4712851475361685754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4379525662178992784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c97dcf84bc3b645a3d987c29a6d796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 5
+  player: {fileID: 974478289764777197}
+  target: {fileID: 0}
 --- !u!1 &8393186558806589648
 GameObject:
   m_ObjectHideFlags: 0
@@ -10493,7 +10540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 974478289764777197}
-  testing: 1
+  testing: 0
   spellType: 0
   fireSpell: {fileID: 11400000, guid: b5823174e91e5e647acb7edfcc07400e, type: 2}
   iceSpell: {fileID: 11400000, guid: 9c1474e2b96b47d429cb8ef4e28793e0, type: 2}

@@ -45,6 +45,7 @@ public class ItemData : ScriptableObject
         ICE = 2,
         WIND = 3,
         LIGHTNING = 4,
+        OTHER = 5,
         //More
     }
 
@@ -57,5 +58,6 @@ public class ItemData : ScriptableObject
     //public int condition = 100;
     public uint uses_left = 1;
     public int spawn_weight = 1;
-    public Sprite icon; 
+    public Sprite icon;
+    public bool has_uses = true;
 }

@@ -10,6 +10,8 @@ public class InputManager : MonoBehaviour
     public CameraController cameraController;
     public AdvancedProjectileSystem projectileController;
     public AnimationManager animationController;
+    public Raycast ray;
+    private InventoryEdit inventory;
 
     [Header("Movement/Camera")] public Vector2 cameraInput;
     public Vector2 movementInput;
@@ -20,6 +22,7 @@ public class InputManager : MonoBehaviour
         //cameraController = FindObjectOfType<_CameraController>();
 
         //Add subsequent finds here
+        inventory = GetComponent<InventoryEdit>();
     }
 
     private void Update()
@@ -107,10 +110,21 @@ public class InputManager : MonoBehaviour
                     slotTarget = 3;
                     break;
             }
-            //Cast Spell from Abilitymanager in the selected slot.
-            GetComponent<AbilityManager2>().castSpell(slotTarget);
-        }
 
+            // Set item to inventory if looking at a pickup.
+            if (ray.target != null && ray.target.GetComponent<ItemInfo>().GetItemData().type != ItemData.SpellType.EMPTY)
+            {
+                ItemData unequipped = inventory.equipFromWorld(ray.target.GetComponent<ItemInfo>().GetItemData(), slotTarget);
+                ray.target.GetComponent<ItemScript>().Interact();
+            }
+            //Cast Spell from Abilitymanager in the selected slot.
+            else
+            {
+                GetComponent<AbilityManager2>().castSpell(slotTarget);
+            }
+            
+
+        }
     }
 
     //Event Action added for emoting - Harry
