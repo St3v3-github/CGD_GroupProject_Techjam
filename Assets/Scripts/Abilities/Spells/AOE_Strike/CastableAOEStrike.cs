@@ -10,7 +10,7 @@ public class CastableAOEStrike : ElementalSpell
     
     private GameObject projection;
     public Camera playerCamera;
-    private bool projectionOn = false;
+    public bool projectionOn = false;
 
 
     // Start is called before the first frame update
@@ -50,7 +50,7 @@ public class CastableAOEStrike : ElementalSpell
 
             if (Input.GetMouseButtonDown(0))
             {
-                Strike(projection.transform.position);
+                Strike();
             }
         }
 
@@ -91,7 +91,7 @@ public class CastableAOEStrike : ElementalSpell
         Destroy(projection);
     }
 
-    public void Strike(Vector3 centre)
+    public void Strike()
     {
         projectionOn = false;
 
