@@ -6,6 +6,7 @@ using UnityEngine;
 public class Projectile : Spell
 {
     public StatusEffect statusEffect;
+    public float damage;
     //private float timer = 0;
 
 
@@ -24,13 +25,7 @@ public class Projectile : Spell
         }
 
 
-        AttributeManager attributes = collision.gameObject.GetComponent<AttributeManager>();
-
-        if (attributes != null)
-        {
-            attributes.TakeDamage(spell.damage, statusEffect);
-            attributes.ChangeStatus(statusEffect);
-        }
+        dealDamage(collision.gameObject, damage);
 
         Destroy(gameObject);
     }

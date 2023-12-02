@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestProjectile : MonoBehaviour
+public class TestProjectile : Spell
 {
     public GameObject projectilePrefab;
     public float projectileForce = 100f;

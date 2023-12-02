@@ -10,6 +10,7 @@ public class Spell : MonoBehaviour
     protected string targetTag;
     public GameObject source;
 
+
     public void setTargetTag()
     {
         if (this.tag == "Player1Spell" || this.tag == "Player1")
@@ -30,6 +31,7 @@ public class Spell : MonoBehaviour
         {
             attributes.TakeDamage(damage, source);
         }
+        source.GetComponent<UIController>().Hit(damage);
     }
 
     public virtual void Cast()

@@ -69,4 +69,9 @@ public class AnimationManager : MonoBehaviour
     {
         playerAnim.SetBool("Emoting", false);
     }
+    public void FootL() { }
+    public void FootR() { }
+    public void Hit() { }
+    public void Run() { }
+    public void Attack1() { }
 }
