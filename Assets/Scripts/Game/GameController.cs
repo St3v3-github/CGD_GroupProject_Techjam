@@ -95,11 +95,15 @@ public class GameController : MonoBehaviour
             spawnPoints.Add(objectWithTag);
         }
 
-        Debug.Log("teleporting");
         foreach (GameObject player in players)
         {
             
             int rand = Random.Range(0, spawnPoints.Count);
+
+            while (spawnPoints[rand].GetComponent<SpawnPoint>().used == true)
+            {
+                rand = Random.Range(0, spawnPoints.Count);
+            }
 
             if (spawnPoints[rand].GetComponent<SpawnPoint>().used == false)
             {
@@ -107,9 +111,32 @@ public class GameController : MonoBehaviour
                 player.GetComponent<CharacterController>().enabled = false;
                 player.transform.SetPositionAndRotation(spawnPoints[rand].transform.position, spawnPoints[rand].transform.rotation);
                 player.GetComponent<CharacterController>().enabled = true;
-                Debug.Log(player.name+ " is at" + player.transform.position);
                 spawnPoints[rand].GetComponent<SpawnPoint>().used = true;
             }
+        }
+        Debug.Log("Setting tags");
+        switch (game.gameMode)
+        {
+            case GameMode.FreeForAll:
+                int i = 1;
+                foreach (GameObject player in players)
+                {
+
+                    string tagString = "Player" + i.ToString();
+                    Debug.Log(tagString);
+                    player.tag = tagString; i++;
+                }
+                break;
+            case GameMode.TeamDeathMatch:
+                foreach (GameObject player in team1)
+                {
+                    player.tag = "Player1";
+                }
+                foreach (GameObject player in team2)
+                {
+                    player.tag = "Player2";
+                }
+                break;
         }
 
         // Game mode specific setup
@@ -127,6 +154,8 @@ public class GameController : MonoBehaviour
                 teamScore.Add(0);
                 break;
         }
+
+        
 
     }
 
@@ -150,6 +179,33 @@ public class GameController : MonoBehaviour
             
         }
 
+    }
+
+    public void tagSetter()
+    {
+        switch (game.gameMode)
+        {
+            case GameMode.FreeForAll:
+                int i = 1;
+                foreach (GameObject player in players)
+                {
+
+                    string tagString = "Player" + i.ToString();
+                    Debug.Log(tagString);
+                    player.tag = tagString; i++;
+                }
+                break;
+            case GameMode.TeamDeathMatch:
+                foreach (GameObject player in team1)
+                {
+                    player.tag = "Player1";
+                }
+                foreach (GameObject player in team2)
+                {
+                    player.tag = "Player2";
+                }
+                break;
+        }
     }
 
     public void TeleportPlayers()
