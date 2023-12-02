@@ -11,8 +11,19 @@ public class TestProjectile : MonoBehaviour
     private bool abilityReady = true;
     public float abilityCooldown;
 
-    [SerializeField] private StatusEffect_Data _data;
+    public StatusEffect_Data effect;
 
+    private void Awake()
+    {
+        Debug.Log("awake");
+
+        effect = GetComponent<StatusEffect_Data>();
+        if (effect == null)
+        {
+            Debug.Log("Effect not found");
+        }
+        Debug.Log("Data: " + effect.name);
+    }
     public GameObject CastSpell(Transform playerTransform)
     {
         if (abilityReady)
@@ -20,6 +31,31 @@ public class TestProjectile : MonoBehaviour
             return Fire(playerTransform);
         }
         return null;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Collision detected");
+        if (collision.gameObject.CompareTag("Player")/* || collision.gameObject.layer == 3*/)
+        {
+            Debug.Log("collision = Player");
+
+            
+
+            enemystatuseffects effects = collision.gameObject.GetComponentInParent<enemystatuseffects>();
+
+            if(effects != null)
+            {
+                Debug.Log("effects detected");
+                effects.ApplyEffect(effect);
+            }
+            
+        }
+        Destroy(gameObject);
+
+        return;
+
+        AttributeManager attributes = collision.gameObject.GetComponent<AttributeManager>();       
     }
 
     private GameObject Fire(Transform playerTransform)

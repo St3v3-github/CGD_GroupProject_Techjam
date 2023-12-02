@@ -11,7 +11,6 @@ public class _testDummy : MonoBehaviour
     public Color redColour;
     public Color baseColour;
 
-    private StatusEffect_Data data;
 
     //movement to test slow
     private Vector3 startPos;

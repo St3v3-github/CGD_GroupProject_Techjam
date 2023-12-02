@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 3819623973477509778}
   - component: {fileID: 8831944262971521100}
   - component: {fileID: 6340715753519854202}
+  - component: {fileID: 6711876258732470944}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -420,7 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e05a9cdd70fd2214eb99223ab80fc12a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  currentHealth: 0
   maxHealth: 100
   mp: 0
   speed: 10
@@ -454,6 +455,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 8831944262971521100}
   spell_controller: {fileID: 8393186558806589648}
+--- !u!114 &6711876258732470944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974478289764777197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 801ebb61a8efb0d4481897b4990d9377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _testDummy: {fileID: 0}
+  selfMovement: {fileID: 3597789930903828011}
+  selfAttributes: {fileID: 3819623973477509778}
 --- !u!1 &2528506275594174360
 GameObject:
   m_ObjectHideFlags: 0
@@ -10407,7 +10423,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4379525662178992784}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &6461436324428886240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10464,8 +10480,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05315dab01fe75946966a1e412394aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity_x: 2.5
-  sensitivity_y: 2.5
+  sensitivity_x: 5
+  sensitivity_y: 5
   clamp_vertical_rot: 1
   minimum_x: -80
   maximum_x: 80
@@ -10614,6 +10630,7 @@ MonoBehaviour:
   windSpell: {fileID: 11400000, guid: 936255c6b740bbc448989eacd7a0bc25, type: 2}
   projectionPrefab: {fileID: 8198984963544093090, guid: ab0b8ce3ffd22ec4c94394e0087bf382, type: 3}
   playerCamera: {fileID: 5822131898686806388}
+  projectionOn: 0
 --- !u!114 &1578295551330820959
 MonoBehaviour:
   m_ObjectHideFlags: 0

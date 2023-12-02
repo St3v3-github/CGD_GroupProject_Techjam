@@ -23,4 +23,10 @@ public class ProjectileData : ScriptableObject
     //Projectile Status Effects
     public StatusEffect_Data statusEffect;
     
+    public StatusEffect_Data GetStatusEffect_Data()
+    {
+        return statusEffect;
+    }
+
+
 }

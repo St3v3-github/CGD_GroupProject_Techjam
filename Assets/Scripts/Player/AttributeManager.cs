@@ -10,7 +10,7 @@ public struct killing_data
 public class AttributeManager : MonoBehaviour
 {
     //should be private for final (as we use getters and setters) but keep public for dev so we can eyeball inspector
-    [SerializeField] public float health;
+    [SerializeField] public float currentHealth;
     [SerializeField] public float maxHealth;
     [SerializeField] public int mp;
     [SerializeField] public float speed;
@@ -28,7 +28,7 @@ public class AttributeManager : MonoBehaviour
     void Start()
     {
         //set all values to whatever default value we want
-        health = 100;
+        currentHealth = maxHealth;
         maxHealth = 100;
         mp = 100;
     }
@@ -41,11 +41,16 @@ public class AttributeManager : MonoBehaviour
 
     public float GetPlayerHealth()
     {
-        return health;
+        return currentHealth;
     }
-    public void SetPlayerHealth(int _health)
+    public void SetPlayerHealth(float _health)
     {
-        health = _health;
+        currentHealth = _health;
+    }
+
+    public float GetMaxHealth()
+    {
+        return maxHealth;
     }
 
     public int GetPlayerMP()
@@ -61,8 +66,8 @@ public class AttributeManager : MonoBehaviour
     public float TakeDamage(float damage)
     {
 
-        health -= damage;
-        if (health < 0)
+        currentHealth -= damage;
+        if (currentHealth < 0)
         {
             
         }
@@ -70,14 +75,14 @@ public class AttributeManager : MonoBehaviour
         //Particles and Shaders called here
 
 
-        return health;
+        return currentHealth;
     }
 
     public float TakeDamage(float damage, GameObject attacker)
     {
         
-        health -= damage;
-        if (health < 0)
+        currentHealth -= damage;
+        if (currentHealth < 0)
         {
             Die(attacker);
         }
@@ -85,7 +90,7 @@ public class AttributeManager : MonoBehaviour
         //Particles and Shaders called here
 
 
-        return health;
+        return currentHealth;
     }
 
     
@@ -101,27 +106,27 @@ public class AttributeManager : MonoBehaviour
     public float TakeDamage(float damage, StatusEffect statusEffect)
     {
 
-        health -= damage;
+        currentHealth -= damage;
         ChangeStatus(statusEffect);
 
         //Particles and Shaders called here
-        Debug.Log("Health: " + health);
+        Debug.Log("Health: " + currentHealth);
 
 
 
 
 
-        return health;
+        return currentHealth;
     }
 
     public float Heal(float heal)
     {
-        if (health < maxHealth)
+        if (currentHealth < maxHealth)
         {
-            health += heal;
-            if (health > maxHealth)
+            currentHealth += heal;
+            if (currentHealth > maxHealth)
             {
-                health = maxHealth;
+                currentHealth = maxHealth;
             }
         }
         
@@ -129,18 +134,18 @@ public class AttributeManager : MonoBehaviour
         //Particles and Shaders called here
 
 
-        return health;
+        return currentHealth;
     }
 
     public float OverHeal(float heal)
     {
-        health += heal;
+        currentHealth += heal;
 
 
         //Particles and Shaders called here
 
 
-        return health;
+        return currentHealth;
     }
 
     public float ChangeStatus(StatusEffect newStatus)
@@ -156,7 +161,7 @@ public class AttributeManager : MonoBehaviour
 
         }
 
-        return health;
+        return currentHealth;
     }
 
     public void SpeedModifier(float speedMod)
