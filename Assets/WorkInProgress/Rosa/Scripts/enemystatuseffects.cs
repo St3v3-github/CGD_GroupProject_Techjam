@@ -6,8 +6,16 @@ public class enemystatuseffects : MonoBehaviour, IEffectable
 {
     private StatusEffect_Data _data;
     public _testDummy _testDummy;
+    public PlayerController selfMovement;
+    public AttributeManager selfAttributes;
 
     private GameObject effectParticles;
+
+    private void Start()
+    {
+        selfMovement = GetComponent<PlayerController>();
+        selfAttributes = GetComponent<AttributeManager>();
+    }
 
     private void Update()
     {
@@ -18,6 +26,7 @@ public class enemystatuseffects : MonoBehaviour, IEffectable
     {
         RemoveEffect();
         this._data = _data;
+        Debug.Log(_data); 
         effectParticles = Instantiate(_data.EffectParticles, transform);
     }
 
@@ -34,10 +43,12 @@ public class enemystatuseffects : MonoBehaviour, IEffectable
         {
             Destroy(effectParticles);
         }
-        if(_testDummy.getCurrentMoveSpeed() != _testDummy.getBaseMoveSpeed())
+        /*if (_testDummy.getCurrentMoveSpeed() != _testDummy.getBaseMoveSpeed())
         {
             _testDummy.setNewMoveSpeed(_testDummy.getBaseMoveSpeed());
-        }
+        }*/
+
+        // Add slow for PvP (can get current speed but not base speed ?)
     }
 
     
@@ -54,18 +65,31 @@ public class enemystatuseffects : MonoBehaviour, IEffectable
         {
             nextTickTime += _data.TickSpeed;
 
-            float currentHealth = _testDummy.getCurrentHealth();
-            float newHealth = currentHealth - _data.DOT_Amount;
+            //dummy test
+            float _currentHealth = _testDummy.getCurrentHealth();
+            float _newHealth = _currentHealth - _data.DOT_Amount;
+
+
+
 
             Debug.Log($"currentEffectTime: {currentEffectTime}, lastTickTime: {nextTickTime}, TickSpeed: {_data.TickSpeed}");
             Debug.Log($"Condition: {currentEffectTime > nextTickTime + _data.TickSpeed}");
-            Debug.Log($"New Health: {newHealth}");
+            Debug.Log($"New Health: {_newHealth}");
 
-            currentHealth = Mathf.Clamp(currentHealth, 0, _testDummy.getMaxHealth());
-            _testDummy.setCurrentHealth(newHealth);
+            _currentHealth = Mathf.Clamp(_currentHealth, 0, _testDummy.getMaxHealth());
+            _testDummy.setCurrentHealth(_newHealth);
+
+
+            //PvP test
+            float currentHealth = selfAttributes.GetPlayerHealth();
+            float newHealth = currentHealth - _data.DOT_Amount;
+
+            currentHealth = Mathf.Clamp(currentHealth, 0, selfAttributes.GetMaxHealth());
+            selfAttributes.SetPlayerHealth(newHealth);
         }
         if(_data.MovementPen > 0)
         {
+            //edit for PvP - same as above
             nextTickTime += _data.TickSpeed;
             float newMoveSpeed = (_testDummy.getBaseMoveSpeed() / _data.MovementPen);
             _testDummy.setNewMoveSpeed(newMoveSpeed);

@@ -5,28 +5,44 @@ using UnityEngine;
 
 public class Projectile : Spell
 {
-    public StatusEffect statusEffect;
     public float damage;
+    public StatusEffect_Data effect;
+
     //private float timer = 0;
 
 
     void Start()
     {
         StartCoroutine(timerCoroutine());
-        setTargetTag();
+        effect = GetComponentInParent<StatusEffect_Data>();
+        Debug.Log("Current Effect: " + effect);
+        //setTargetTag();
     }
 
 
     void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag(targetTag) || collision.gameObject.layer == 3)
+        if (!collision.gameObject.CompareTag("Player")/* || collision.gameObject.layer == 3*/)
         {
             return;
         }
 
 
-        dealDamage(collision.gameObject, damage);
+        AttributeManager attributes = collision.gameObject.GetComponent<AttributeManager>();
+        enemystatuseffects effects = collision.gameObject.GetComponent<enemystatuseffects>();
 
+        if (effects != null)
+        {
+            /*attributes.TakeDamage(spell.damage, statusEffect);
+            attributes.ChangeStatus(statusEffect);*/
+
+            effects.ApplyEffect(effect);
+            Debug.Log("Effect applied");
+        }
+        else
+        {
+            Debug.LogError("enemy status effects script not found");
+        }
         Destroy(gameObject);
     }
 

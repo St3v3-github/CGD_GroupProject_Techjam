@@ -63,7 +63,7 @@ public class Fire : StatusEffect
     private void DealDamage()
     {
         AttributeManager attributes = affectedObject.GetComponent<AttributeManager>();
-        if (attributes.health > 0)
+        if (attributes.currentHealth > 0)
         {
             //attributes.TakeDamage(damagePerSecond);
         }
@@ -82,7 +82,7 @@ public class Ice : StatusEffect
     {
         active = true;
         AttributeManager attributes = affectedObject.GetComponent<AttributeManager>();
-        if (attributes.health > 0)
+        if (attributes.currentHealth > 0)
         {
             attributes.SpeedModifier(speedMultiplier);
         }
@@ -95,7 +95,7 @@ public class Ice : StatusEffect
         active = true;
         this.duration = duration;
         AttributeManager attributes = affectedObject.GetComponent<AttributeManager>();
-        if (attributes.health > 0)
+        if (attributes.currentHealth > 0)
         {
             attributes.SpeedModifier(speedMultiplier);
         }
@@ -107,7 +107,7 @@ public class Ice : StatusEffect
     {
         active = false;
         AttributeManager attributes = affectedObject.GetComponent<AttributeManager>();
-        if (attributes.health > 0)
+        if (attributes.currentHealth > 0)
         {
             attributes.SpeedModifier(1 / speedMultiplier);
         }
