@@ -21,8 +21,7 @@ public class HeartBeat : MonoBehaviour
     {
          HealhString = Health.value.ToString();
          Text.GetComponent<TextMeshProUGUI>().text = HealhString;
-        //Text.GetComponent<TextMeshPro>().text = Health.value.ToString();    
-
+       
         if (Health.value > 75) 
         { 
             animator.speed = 0; 
