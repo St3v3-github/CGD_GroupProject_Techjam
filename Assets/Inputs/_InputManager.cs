@@ -132,7 +132,7 @@ public class InputManager : MonoBehaviour
     {
         if (ctx.action.triggered)
         {
-            animationController.toggleEmotingBool();
+            animationController.toggleEmotingBool(true);
         }
     }
 
