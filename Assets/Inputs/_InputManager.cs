@@ -112,7 +112,7 @@ public class InputManager : MonoBehaviour
             }
 
             // Set item to inventory if looking at a pickup.
-            if (ray.target != null && ray.target.GetComponent<ItemInfo>().GetItemData().type != ItemData.SpellType.EMPTY)
+            if (ray.target != null && ray.target.GetComponent<ItemInfo>().GetItemData().type != ItemData.SpellType.EMPTY && SlotCheck(ray.target.GetComponent<ItemInfo>().GetItemData(), slotTarget))
             {
                 ItemData unequipped = inventory.equipFromWorld(ray.target.GetComponent<ItemInfo>().GetItemData(), slotTarget);
                 ray.target.GetComponent<ItemScript>().Interact();
@@ -154,6 +154,22 @@ public class InputManager : MonoBehaviour
         if (ctx.action.triggered)
         {
             StartCoroutine(playerController.PlayerDash(movementInput));
+        }
+    }
+
+    private bool SlotCheck(ItemData itemData, int slot)
+    {
+        if(slot == 2 && itemData.slot == ItemData.SlotType.BASIC)
+        {
+            return true;
+        }
+        else if(slot != 2 && itemData.slot != ItemData.SlotType.BASIC)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

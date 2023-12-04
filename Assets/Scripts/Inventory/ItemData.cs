@@ -47,10 +47,19 @@ public class ItemData : ScriptableObject
         LIGHTNING = 4,
         OTHER = 5,
         //More
+    } 
+    public enum SlotType
+    {
+        EMPTY = 0,
+        BASIC = 1,
+        SPELL = 2,
+        
+        //More
     }
 
     public SpellList ID = 0;
     public SpellType type = 0;
+    public SlotType slot = 0;
     public SpellState current_state = SpellState.READY;
     public string item_name = "Empty";
     public string description = "This is an empty inventory slot.";

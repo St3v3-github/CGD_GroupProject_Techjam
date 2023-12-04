@@ -77,8 +77,11 @@ public class Wall : ElementalSpell
     {
         while (isPlacingWall)
         {
+           
+
             if (playerCamera != null)
             {
+               
                 // Match the rotation of the player's camera around the Y-axis
                 Quaternion playerCameraRotation = playerCamera.transform.rotation;
                 Vector3 euler = playerCameraRotation.eulerAngles;

@@ -52,8 +52,8 @@ public class SummonedAnimal : Spell
         // Damage
         if (collision.gameObject.tag == targetTag)
         {
-            animator.SetTrigger("Attack");
-            Debug.Log("Collision detected with: " + collision.gameObject.name);
+           // animator.SetTrigger("Attack");
+           // Debug.Log("Collision detected with: " + collision.gameObject.name);
 
             dealDamage(collision.gameObject, spell.damage);
 

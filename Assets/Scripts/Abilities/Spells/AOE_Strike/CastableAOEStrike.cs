@@ -32,26 +32,15 @@ public class CastableAOEStrike : ElementalSpell
 
         if (!projectionOn)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                switchProjectionOn();
-
-            }
+           
         }
         else if (projectionOn)
         {
 
-            if (Input.GetKeyDown(KeyCode.Q) || Input.GetMouseButtonDown(1))
-            {
-                switchProjectionOff();
-            }
-
+           
             UpdateProjection();
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                Strike();
-            }
+          
         }
 
     }
