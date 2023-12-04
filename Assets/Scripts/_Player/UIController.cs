@@ -1,12 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
     public GameObject hitMarker;
     public GameObject scoreboard;
+    public GameObject player;
+    public TextMeshProUGUI healthText;
 
+
+    private void Update()
+    {
+        float health = player.GetComponent<AttributeManager>().currentHealth;
+        healthText.text = health.ToString();
+    }
     public void OpenScoreboard()
     {
         scoreboard.SetActive(true);

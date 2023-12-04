@@ -25,13 +25,17 @@ public class Spell : MonoBehaviour
 
     public void dealDamage(GameObject player, float damage)
     {
-        AttributeManager attributes = player.GetComponent<AttributeManager>();
-
-        if (attributes != null)
+        if (player.layer == LayerMask.NameToLayer("layer_Player") && player.tag != source.tag)
         {
-            attributes.TakeDamage(damage, source);
+            AttributeManager attributes = player.GetComponent<AttributeManager>();
+
+            if (attributes != null)
+            {
+                attributes.TakeDamage(damage, source);
+            }
+            source.GetComponent<UIController>().Hit(damage);
         }
-        source.GetComponent<UIController>().Hit(damage);
+        
     }
 
     public virtual void Cast()

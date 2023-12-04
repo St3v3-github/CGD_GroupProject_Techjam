@@ -11,8 +11,6 @@ public class SummonedAnimal : Spell
     public float rotationSpeed = 1f;
     public float visionAngle = 60f;
 
-
-
     private GameObject target;
     public bool hasTarget = false;
 
@@ -132,8 +130,6 @@ public class SummonedAnimal : Spell
         yield return new WaitForSeconds(10f);
         Destroy(transform.gameObject);
     }
-
-
 }
 
 

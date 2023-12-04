@@ -48,16 +48,7 @@ public class Beam : Spell
                 if (Time.time - lastTickTime >= tickInterval)
                 {
                     // Deal damage to the opponent
-                    if (hit.transform.tag == targetTag)
-                    {
-
-                        AttributeManager attributes = hit.transform.gameObject.GetComponent<AttributeManager>();
-
-                        if (attributes != null)
-                        {
-                            attributes.TakeDamage(damagePerTick);
-                        }
-                    }
+                    dealDamage(hit.transform.gameObject, damagePerTick);
 
                     // Update the last tick time
                     lastTickTime = Time.time;

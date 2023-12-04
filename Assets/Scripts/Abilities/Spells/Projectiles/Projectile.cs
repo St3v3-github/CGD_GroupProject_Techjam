@@ -6,7 +6,7 @@ using UnityEngine;
 public class Projectile : Spell
 {
     public float damage;
-    public StatusEffect_Data effect;
+    //public StatusEffect_Data effect;
 
     //private float timer = 0;
 
@@ -14,27 +14,33 @@ public class Projectile : Spell
     void Start()
     {
         StartCoroutine(timerCoroutine());
-        effect = GetComponentInParent<StatusEffect_Data>();
-        Debug.Log("Current Effect: " + effect);
+        //effect = GetComponentInParent<StatusEffect_Data>();
+        //Debug.Log("Current Effect: " + effect);
         //setTargetTag();
     }
 
 
     void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Player")/* || collision.gameObject.layer == 3*/)
+        if (collision.transform.gameObject.layer == LayerMask.NameToLayer("layer_Player"))
         {
-            return;
+            dealDamage(source, damage);
+            Destroy(gameObject);
+
+        }
+        else if (collision.transform.gameObject.layer == LayerMask.NameToLayer("map"))
+        {
+            Destroy(gameObject);
         }
 
 
-        AttributeManager attributes = collision.gameObject.GetComponent<AttributeManager>();
-        enemystatuseffects effects = collision.gameObject.GetComponent<enemystatuseffects>();
+        //AttributeManager attributes = collision.gameObject.GetComponent<AttributeManager>();
+        //enemystatuseffects effects = collision.gameObject.GetComponent<enemystatuseffects>();
 
-        if (effects != null)
+        /*if (effects != null)
         {
-            /*attributes.TakeDamage(spell.damage, statusEffect);
-            attributes.ChangeStatus(statusEffect);*/
+            attributes.TakeDamage(spell.damage, statusEffect);
+            attributes.ChangeStatus(statusEffect);
 
             effects.ApplyEffect(effect);
             Debug.Log("Effect applied");
@@ -42,8 +48,7 @@ public class Projectile : Spell
         else
         {
             Debug.LogError("enemy status effects script not found");
-        }
-        Destroy(gameObject);
+        }*/
     }
 
     private IEnumerator timerCoroutine()

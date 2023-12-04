@@ -133,6 +133,7 @@ public class AdvancedProjectileSystem : Spell
         //Instantiate Projectile
         GameObject currentProjectile = Instantiate(equippedProjectile.projectile, firePoint.position, Quaternion.identity);
         currentProjectile.transform.forward = directionWithSpread.normalized;
+        currentProjectile.GetComponent<Projectile>().source = source;
 
         //Add Forces to projctile
         currentProjectile.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * equippedProjectile.shootForce, ForceMode.Impulse);

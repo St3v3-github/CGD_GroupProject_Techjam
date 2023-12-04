@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class PoisonCloud : MonoBehaviour
+public class PoisonCloud : Spell
 {
     public float damagePerSecond = 5f; // Adjust the damage value
     public float delayBeforeDamage = 2f; // Adjust the delay before damage starts
@@ -25,7 +25,7 @@ public class PoisonCloud : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player1") || other.CompareTag("Player2"))
+        if (other.transform.gameObject.CompareTag("Player1") || other.CompareTag("Player2"))
         {
             // Player entered the poison cloud
             Debug.Log("Player entered the poison cloud");
@@ -36,7 +36,7 @@ public class PoisonCloud : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player1") || other.CompareTag("Player2"))
+        if (other.transform.gameObject.layer == LayerMask.NameToLayer("layer_player"))
         {
             // Player exited the poison cloud
             Debug.Log("Player exited the poison cloud");
