@@ -7,6 +7,11 @@ public class AnimationManager : MonoBehaviour
 {
     public Animator playerAnim;
 
+    private void Awake()
+    {
+        playerAnim.fireEvents = false;
+    }
+
     public void toggleWalkingBool(bool walking)
     {
         playerAnim.SetBool("walking", walking);
