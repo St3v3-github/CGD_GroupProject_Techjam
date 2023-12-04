@@ -14,7 +14,11 @@ public class ItemScript : MonoBehaviour, IInteractable
     public void Interact()
     {
         GetComponentInParent<SpawnItem>().hasItem = false;
-        Destroy(gameObject); 
+        Destroy(gameObject);
+        if (gameObject.GetComponent<PickupSpell>() != null)
+        {
+            gameObject.GetComponent<PickupSpell>().ApplyToPlayer();
+        }
     }
     private void OnTriggerEnter(Collider other)
     {

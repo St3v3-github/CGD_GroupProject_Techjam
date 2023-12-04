@@ -399,6 +399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spell_slots: 4
+  fireballforalpha: {fileID: 11400000, guid: 4a95dc6ed230c8a4789dc33b11fbce2d, type: 2}
   dd_spell_inventory: []
 --- !u!114 &6340715753519854202
 MonoBehaviour:
@@ -10600,8 +10601,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05315dab01fe75946966a1e412394aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity_x: 5
-  sensitivity_y: 5
+  sensitivity_x: 2.5
+  sensitivity_y: 2.5
   clamp_vertical_rot: 1
   minimum_x: -80
   maximum_x: 80
@@ -10707,8 +10708,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5686921009914067106}
-  - component: {fileID: 6593092261228187523}
-  - component: {fileID: 1433661745487581648}
   - component: {fileID: 4517045908497947722}
   - component: {fileID: 5520134397269985870}
   - component: {fileID: 1578295551330820959}
@@ -10738,51 +10737,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1557659141253257577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6593092261228187523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8393186558806589648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cf93984522608a4b921626b9256d865, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 974478289764777197}
-  testing: 0
-  spellType: 0
-  fireSpell: {fileID: 11400000, guid: b5823174e91e5e647acb7edfcc07400e, type: 2}
-  iceSpell: {fileID: 11400000, guid: 9c1474e2b96b47d429cb8ef4e28793e0, type: 2}
-  lightningSpell: {fileID: 11400000, guid: 805e07072e7c28e4ba2445575b1e8dbd, type: 2}
-  windSpell: {fileID: 11400000, guid: cf3596db7a32dce4c9b4160d7c6389bc, type: 2}
-  holographicPrefab: {fileID: 5574004772051186745, guid: e3dd036b1082eae43979f9632eefd763, type: 3}
-  holographic: {fileID: 0}
-  isPlacingWall: 0
-  playerCamera: {fileID: 5822131898686806388}
---- !u!114 &1433661745487581648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8393186558806589648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 960cc036908981d4cbb2486928eabc7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 974478289764777197}
-  testing: 1
-  spellType: 0
-  fireSpell: {fileID: 11400000, guid: b5823174e91e5e647acb7edfcc07400e, type: 2}
-  iceSpell: {fileID: 11400000, guid: 9c1474e2b96b47d429cb8ef4e28793e0, type: 2}
-  lightningSpell: {fileID: 11400000, guid: 805e07072e7c28e4ba2445575b1e8dbd, type: 2}
-  windSpell: {fileID: 11400000, guid: cf3596db7a32dce4c9b4160d7c6389bc, type: 2}
-  wallHeight: 3
-  wallSpawnTime: 3
-  wallDespawnTime: 3
 --- !u!114 &4517045908497947722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10796,7 +10750,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 974478289764777197}
-  equippedProjectile: {fileID: 11400000, guid: d89c753843fd2b84ca94eccab2ea9fc9, type: 2}
+  equippedProjectile: {fileID: 11400000, guid: e9a801d15eee89743af235b7bbbc5caa, type: 2}
+  fireballforalpha: {fileID: 11400000, guid: e9a801d15eee89743af235b7bbbc5caa, type: 2}
   allowInvoke: 1
   playerCam: {fileID: 5822131898686806388}
   firePoint: {fileID: 404214415002560938}

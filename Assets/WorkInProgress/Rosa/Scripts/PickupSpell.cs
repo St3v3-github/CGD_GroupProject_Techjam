@@ -11,7 +11,7 @@ public class PickupSpell : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+       /* if (other.gameObject.tag == "Player")
         {
             Debug.Log("collided");
 
@@ -19,6 +19,12 @@ public class PickupSpell : MonoBehaviour
             OnSpellPickedUp?.Invoke(spell);
 
             Destroy(gameObject);
-        }
+        }*/
+    }
+    public void ApplyToPlayer()
+    {
+        OnSpellPickedUp?.Invoke(spell);
+
+        Destroy(gameObject);
     }
 }
