@@ -26,10 +26,10 @@ public class Heal : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H) && !isHealing)
+        /*if (Input.GetKeyDown(KeyCode.H) && !isHealing)
         {
             Cast();
-        }
+        }*/
     }
 
     public void Cast()
@@ -40,7 +40,7 @@ public class Heal : MonoBehaviour
         }
         else
         {
-            Debug.LogError("AttributeManager not found on the player GameObject!");
+            //Debug.LogError("AttributeManager not found on the player GameObject!");
         }
     }
 
