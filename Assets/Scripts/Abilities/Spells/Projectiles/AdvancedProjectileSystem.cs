@@ -16,7 +16,7 @@ public class AdvancedProjectileSystem : Spell
     int chargesLeft, chargesShot;
 
     //bools
-    bool shooting, readyToShoot, recharging;
+   public bool shooting, readyToShoot, recharging;
 
     //Testing :)
     public bool allowInvoke = true;
@@ -141,7 +141,7 @@ public class AdvancedProjectileSystem : Spell
         float x = Random.Range(-equippedProjectile.spread, equippedProjectile.spread);
         float y = Random.Range(-equippedProjectile.spread, equippedProjectile.spread);
         float z = Random.Range(-equippedProjectile.spread, equippedProjectile.spread);
-        Debug.Log(Vector3.Magnitude(directionWithoutSpread));
+        
         Vector3 directionWithSpread = directionWithoutSpread + (new Vector3(x, y, z) * Vector3.Magnitude(directionWithoutSpread)) / 15;
 
         //Instantiate Projectile
@@ -227,6 +227,7 @@ public class AdvancedProjectileSystem : Spell
     {
         allowInvoke = true;
         readyToShoot = true;
+        shooting = false;
         Debug.Log("Ready to shoot");
         animControl.toggleCastingBool(false);
     }

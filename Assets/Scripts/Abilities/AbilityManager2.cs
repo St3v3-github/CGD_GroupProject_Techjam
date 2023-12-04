@@ -28,36 +28,48 @@ public class AbilityManager2 : MonoBehaviour
         int answer = 0;
         if (inventory.dd_spell_inventory[slot].current_state==ItemData.SpellState.READY)
         {
-            Debug.Log("WE ARE IN THE CAST SPELL FUNCTION. CURRENT SLOT IS: " + slot);
+        //    Debug.Log("WE ARE IN THE CAST SPELL FUNCTION. CURRENT SLOT IS: " + slot);
             switch(inventory.dd_spell_inventory[slot].ID) 
             {
                 case ItemData.SpellList.FIREBALL:
                    if(ctx.performed)
                     {
-                        spell_controller.GetComponent<AdvancedProjectileSystem>().ToggleShooting();
-                        spell_controller.GetComponent<AdvancedProjectileSystem>().ProjectileShoot();
+                        if (spell_controller.GetComponent<AdvancedProjectileSystem>().readyToShoot)
+                        {
+                            spell_controller.GetComponent<AdvancedProjectileSystem>().ToggleShooting();
+                            spell_controller.GetComponent<AdvancedProjectileSystem>().ProjectileShoot(); 
+                        }
+                        
                     }
                                      break;
                 case ItemData.SpellList.ICEBALL:
                     if (ctx.performed)
                     {
-                        spell_controller.GetComponent<AdvancedProjectileSystem>().ToggleShooting();
-                        spell_controller.GetComponent<AdvancedProjectileSystem>().ProjectileShoot();
+                        if (spell_controller.GetComponent<AdvancedProjectileSystem>().readyToShoot)
+                        {
+                            spell_controller.GetComponent<AdvancedProjectileSystem>().ToggleShooting();
+                            spell_controller.GetComponent<AdvancedProjectileSystem>().ProjectileShoot(); 
+                        }
                     }
                     break;
                 case ItemData.SpellList.WINDBALL:
                     if (ctx.performed)
                     {
-                        spell_controller.GetComponent<AdvancedProjectileSystem>().ToggleShooting();
-                        spell_controller.GetComponent<AdvancedProjectileSystem>().ProjectileShoot();
+                        if (spell_controller.GetComponent<AdvancedProjectileSystem>().readyToShoot)
+                        {
+                            spell_controller.GetComponent<AdvancedProjectileSystem>().ToggleShooting();
+                            spell_controller.GetComponent<AdvancedProjectileSystem>().ProjectileShoot(); 
+                        }
                     }
                     break;
                 case ItemData.SpellList.LIGHTNINGBALL:
                     if (ctx.performed)
                     {
-                        spell_controller.GetComponent<AdvancedProjectileSystem>().ToggleShooting();
-                        spell_controller.GetComponent<AdvancedProjectileSystem>().ProjectileShoot();
-                        
+                        if (spell_controller.GetComponent<AdvancedProjectileSystem>().readyToShoot)
+                        {
+                            spell_controller.GetComponent<AdvancedProjectileSystem>().ToggleShooting();
+                            spell_controller.GetComponent<AdvancedProjectileSystem>().ProjectileShoot(); 
+                        }
                     }
                     break;
                 case ItemData.SpellList.FIREWALL:

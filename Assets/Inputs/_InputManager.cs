@@ -58,7 +58,7 @@ public class InputManager : MonoBehaviour
             //animationController.disableEmote();
             animationController.toggleEmotingBool(false);
             playerController.HandleJump();
-            Debug.Log("Jumping");
+           
         }
     }
 

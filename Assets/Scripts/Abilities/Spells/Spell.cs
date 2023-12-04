@@ -13,10 +13,27 @@ public class Spell : MonoBehaviour
     private void Awake()
     {
         gameObject.layer = LayerMask.NameToLayer("layer_Spell");
+      
     }
 
     public void setTargetTag()
     {
+        if (tag != "Player1Spell" || tag != "Player2Spell")
+        {
+            if (source.CompareTag("Player1"))
+            {
+                this.tag = "Player1Spell";
+            
+            } 
+            else if (source.CompareTag("Player2"))
+            {
+                this.tag = "Player2Spell";
+            }
+          
+        }
+        
+        
+        Debug.Log("TRYING TO SET TARGET TAG");
         if (this.tag == "Player1Spell" || this.tag == "Player1")
         {
             targetTag = "Player2";
@@ -25,6 +42,7 @@ public class Spell : MonoBehaviour
         {
             targetTag = "Player1";
         }
+       
     }
 
     public bool playerCheck(GameObject hitbox)
@@ -69,7 +87,7 @@ public class Spell : MonoBehaviour
             }
 
             //Hitmarker
-            player.GetComponent<UIController>().Hit(damage);
+            source.GetComponent<UIController>().Hit(damage);
         }
         return false;
         

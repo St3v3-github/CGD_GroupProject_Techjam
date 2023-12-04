@@ -127,17 +127,22 @@ public class GameController : MonoBehaviour
 
                     string tagString = "Player" + i.ToString();
                     Debug.Log(tagString);
-                    player.tag = tagString; i++;
+                    player.tag = tagString;
+                    player.GetComponent<AbilityManager2>().spell_controller.gameObject.tag = tagString;
+                    player.GetComponent<UIController>().attributeController.gameObject.tag = tagString;
+                    i++;
                 }
                 break;
             case GameMode.TeamDeathMatch:
                 foreach (GameObject player in team1)
                 {
                     player.tag = "Player1";
+                    
                 }
                 foreach (GameObject player in team2)
                 {
                     player.tag = "Player2";
+                   
                 }
                 break;
         }

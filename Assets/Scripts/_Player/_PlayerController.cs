@@ -369,7 +369,7 @@ public class PlayerController : MonoBehaviour
 
             while (dashing)
             {
-                Debug.Log("Dashing");
+               
                 //gets input direction to dash any direction regardless of camera orientation
                 Vector3 input_direction = transform.forward * movement_input.y + transform.right * movement_input.x;
                 character.Move((input_direction.normalized * dash_force) * Time.deltaTime);

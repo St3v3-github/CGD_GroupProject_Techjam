@@ -22,7 +22,7 @@ public class SummonedAnimal : Spell
 
         StartCoroutine(timerCoroutine());
 
-        if (target = FindTarget(targetTag))
+        if (target == FindTarget(targetTag))
         {
             hasTarget = true;
         }

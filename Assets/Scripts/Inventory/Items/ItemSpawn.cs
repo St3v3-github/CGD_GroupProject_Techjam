@@ -44,7 +44,7 @@ public class ItemSpawn : MonoBehaviour
                 newSpelllist.AddRange(uncommonList);
                 newSpelllist.AddRange(rareList);
                 newSpelllist.AddRange(ultimateList);
-                Debug.Log(newSpelllist);
+               
                 return newSpelllist;
              
             case SpawnerType.CommonOnly:

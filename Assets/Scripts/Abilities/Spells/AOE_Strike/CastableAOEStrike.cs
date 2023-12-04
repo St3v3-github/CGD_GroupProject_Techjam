@@ -20,7 +20,7 @@ public class CastableAOEStrike : ElementalSpell
         
 
         setTargetTag();
-        source = gameObject;
+       // source = gameObject;
 
     }
 
@@ -97,7 +97,7 @@ public class CastableAOEStrike : ElementalSpell
     {
         GameObject strike = Instantiate(spell.prefab, centre, Quaternion.identity);
         StartCoroutine(timerCoroutine(strike));
-        AudioManager.instance.PlayOneShot(FMODEvents.instance.thunderSound, this.transform.position);
+//        AudioManager.instance.PlayOneShot(FMODEvents.instance.thunderSound, this.transform.position);
     }
 
     public void DetectCharacters(Vector3 centre, string targetTag)
