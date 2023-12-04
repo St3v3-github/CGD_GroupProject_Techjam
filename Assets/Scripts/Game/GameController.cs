@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
     // My name is Ozymandias, King of Kings; Look on my Works, ye Mighty, and despair!
     public GameRules game;
     private bool lobby = true;
-    private float lobbyTimer = 30;
+    private float lobbyTimer = 10;
     public TextMeshProUGUI lobbyText;
     public LayerMask playerLayer;
 

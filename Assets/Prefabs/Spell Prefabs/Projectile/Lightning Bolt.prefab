@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8920573724755311817}
   - component: {fileID: 4690390950236979806}
   - component: {fileID: 714225389899818899}
-  - component: {fileID: 9162002029706206861}
   - component: {fileID: 3341783972037316594}
   - component: {fileID: 8736301312679441879}
+  - component: {fileID: -7798567158084648155}
   m_Layer: 0
   m_Name: Lightning Bolt
   m_TagString: Untagged
@@ -87,27 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &9162002029706206861
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2549314221037139667}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3341783972037316594
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -147,10 +126,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 358c2c5e3fa02264e875aaa6faafea6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  source: {fileID: 0}
   projectilePrefab: {fileID: 2549314221037139667}
   projectileForce: 100
   abilityCooldown: 0
   effect: {fileID: 11400000, guid: 083c196012954d743990b81d4114395a, type: 2}
+--- !u!135 &-7798567158084648155
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2549314221037139667}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &4581797393110463714
 PrefabInstance:
   m_ObjectHideFlags: 0
