@@ -14,6 +14,7 @@ public class AttributeManager : MonoBehaviour
     [SerializeField] public float maxHealth;
     [SerializeField] public int mp;
     [SerializeField] public float speed;
+    [SerializeField] public int score;
 
 
     //examples of other values we might eventually have. all values relating to the player would probably be held in this one manager
@@ -67,7 +68,7 @@ public class AttributeManager : MonoBehaviour
     {
 
         currentHealth -= damage;
-        if (currentHealth < 0)
+        if (currentHealth <= 0)
         {
             
         }
@@ -82,7 +83,7 @@ public class AttributeManager : MonoBehaviour
     {
         
         currentHealth -= damage;
-        if (currentHealth < 0)
+        if (currentHealth <= 0)
         {
             Die(attacker);
         }
@@ -99,7 +100,8 @@ public class AttributeManager : MonoBehaviour
         killing_data data;
         data.killer = killer;
         data.deaded = gameObject;
-        SendMessage("PrayToGod", data);
+        GameObject god = GameObject.Find("GameController");
+        god.SendMessage("PrayToGod", data);
     }
 
 
