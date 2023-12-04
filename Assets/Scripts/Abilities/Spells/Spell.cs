@@ -27,17 +27,20 @@ public class Spell : MonoBehaviour
         }
     }
 
-    public bool dealDamage(GameObject player, float damage)
+    public bool dealDamage(GameObject hitbox, float damage)
     {
+        GameObject player = hitbox.transform.parent.gameObject;
         if (player.layer == LayerMask.NameToLayer("layer_Player") && player.tag != source.tag)
         {
-            AttributeManager attributes = player.GetComponent<AttributeManager>();
+            AttributeManager attributes = hitbox.GetComponent<AttributeManager>();
 
             if (attributes != null)
             {
                 attributes.TakeDamage(damage, source);
                 return true;
             }
+
+            //Hitmarker
             source.GetComponent<UIController>().Hit(damage);
         }
         return false;

@@ -220,6 +220,7 @@ public class GameController : MonoBehaviour
             if (spawnPoints[rand].GetComponent<SpawnPoint>().used == false)
             {
                 player.transform.position = spawnPoints[rand].transform.position;
+                player.transform.rotation = spawnPoints[rand].transform.rotation;
                 spawnPoints[rand].GetComponent<SpawnPoint>().used = true;
             }
         }
@@ -240,6 +241,10 @@ public class GameController : MonoBehaviour
                 UpdateTDMScore(prayer.killer);
                 break;
         }
+
+        prayer.deaded.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(true);
+        prayer.deaded.transform.Find("AttributeController").gameObject.SetActive(false);
+
 
         StartCoroutine(reincarnatePlayer(prayer.deaded, FindSpawnPoint(prayer.deaded)));
     }
@@ -267,21 +272,25 @@ public class GameController : MonoBehaviour
             }
         }
         int randomNumber = Random.Range(0, game.spawnPointVariance);
-
+        Debug.Log("Random number is" +  randomNumber);
         return possibleSpawnPoints[randomNumber];
     }
 
     private IEnumerator reincarnatePlayer(GameObject player, GameObject respawnPoint)
     {
         yield return new WaitForSeconds(game.respawnTimer);
-        player.transform.position = respawnPoint.transform.position;
-        player.transform.rotation = respawnPoint.transform.rotation;
+        player.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(false);
+        player.transform.Find("AttributeController").gameObject.SetActive(true);
+        player.GetComponent<CharacterController>().enabled = false;
+        player.transform.SetPositionAndRotation(respawnPoint.transform.position, respawnPoint.transform.rotation);
+        player.GetComponent<CharacterController>().enabled = true;
+        player.transform.Find("AttributeController").GetComponent<AttributeManager>().currentHealth = player.transform.GetChild(5).GetComponent<AttributeManager>().maxHealth;
     }
 
     // FFA Score below
     public void UpdateFFAScore(GameObject killer)
     {
-        killer.GetComponent<AttributeManager>().score += 1;
+        killer.transform.Find("AttributeController").GetComponent<AttributeManager>().score += 1;
     }
 
     public void AnnounceFFAWinner()
@@ -293,14 +302,14 @@ public class GameController : MonoBehaviour
         {
             if (count == 0)
             {
-                WinningScore = player.GetComponent<AttributeManager>().score;
+                WinningScore = player.transform.Find("AttributeController").GetComponent<AttributeManager>().score;
                 Winner = player;
             }
             else
             {
-                if (player.GetComponent<AttributeManager>().score > WinningScore)
+                if (player.transform.Find("AttributeController").GetComponent<AttributeManager>().score > WinningScore)
                 {
-                    WinningScore = player.GetComponent<AttributeManager>().score;
+                    WinningScore = player.transform.Find("AttributeController").GetComponent<AttributeManager>().score;
                     Winner = player;
                 }
             }

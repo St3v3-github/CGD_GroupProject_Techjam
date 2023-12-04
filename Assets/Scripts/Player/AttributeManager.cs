@@ -74,6 +74,10 @@ public class AttributeManager : MonoBehaviour
     {
         mp = _mp;
     }
+    public void Reset()
+    {
+        currentHealth = maxHealth;
+    }
 
     //delete this later fix spells ya dumbass but go to sleep now
     public float TakeDamage(float damage)
@@ -111,9 +115,15 @@ public class AttributeManager : MonoBehaviour
     {
         killing_data data;
         data.killer = killer;
-        data.deaded = gameObject;
+        data.deaded = gameObject.transform.parent.gameObject;
         GameObject god = GameObject.Find("GameController");
         god.SendMessage("PrayToGod", data);
+        Invoke("unDie", 0.1f);
+    }
+
+    public void unDie()
+    {
+        currentHealth = maxHealth;
     }
 
 

@@ -22,7 +22,6 @@ public class Projectile : Spell
 
     void OnTriggerEnter(Collider collision)
     {
-        Debug.Log(collision.transform.gameObject.layer);
         /*if (dealDamage(collision.transform.gameObject, damage))
         {
             Debug.Log("hit player");
@@ -30,12 +29,11 @@ public class Projectile : Spell
 
         }
         else*/
-        if (collision.transform.gameObject.layer == LayerMask.NameToLayer("layer_Player") && collision.tag != this.tag)
+        if (dealDamage(collision.gameObject, damage))
         {
             Debug.Log("hit player: " + collision.name);
             Destroy(gameObject);
         }
-        else { Debug.Log("hit nothing"); }
 
 
         //AttributeManager attributes = collision.gameObject.GetComponent<AttributeManager>();
