@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -11,7 +12,7 @@ public class GameController : MonoBehaviour
     // My name is Ozymandias, King of Kings; Look on my Works, ye Mighty, and despair!
     public GameRules game;
     private bool lobby = true;
-    private float lobbyTimer = 120;
+    private float lobbyTimer = 30;
     public TextMeshProUGUI lobbyText;
     public LayerMask playerLayer;
 
@@ -54,6 +55,7 @@ public class GameController : MonoBehaviour
         else if (!lobby)
         {
             timer -= Time.deltaTime;
+            lobbyText.text = "Game time" + timer.ToString();
 
             if (timer <= 0)
             {
@@ -244,6 +246,7 @@ public class GameController : MonoBehaviour
 
         prayer.deaded.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(true);
         prayer.deaded.transform.Find("AttributeController").gameObject.SetActive(false);
+        prayer.deaded.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(false);
 
 
         StartCoroutine(reincarnatePlayer(prayer.deaded, FindSpawnPoint(prayer.deaded)));
@@ -290,7 +293,9 @@ public class GameController : MonoBehaviour
     // FFA Score below
     public void UpdateFFAScore(GameObject killer)
     {
-        killer.transform.Find("AttributeController").GetComponent<AttributeManager>().score += 1;
+        if (killer.GetComponent<AttributeManager>() != null) { killer.GetComponent<AttributeManager>().score += 1; }
+        else { killer.transform.Find("AttributeController").GetComponent<AttributeManager>().score += 1; }
+        
     }
 
     public void AnnounceFFAWinner()

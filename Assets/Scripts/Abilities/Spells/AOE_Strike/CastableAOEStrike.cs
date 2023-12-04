@@ -83,34 +83,32 @@ public class CastableAOEStrike : ElementalSpell
     public void Strike()
     {
         projectionOn = false;
+        Destroy(projection);
 
         // Creates Visual Prefab
         InstantiateStrike(projection.transform.position);
 
-        setTargetTag();
-
-
         DetectCharacters(projection.transform.position, targetTag);
 
-        Destroy(projection);
+        
     }
 
     public void InstantiateStrike(Vector3 centre)
     {
         GameObject strike = Instantiate(spell.prefab, centre, Quaternion.identity);
-
         StartCoroutine(timerCoroutine(strike));
         AudioManager.instance.PlayOneShot(FMODEvents.instance.thunderSound, this.transform.position);
     }
 
     public void DetectCharacters(Vector3 centre, string targetTag)
     {
+        Debug.Log("detecting");
         Collider[] colliders = Physics.OverlapSphere(centre, spell.radius);
         List<GameObject> players = new List<GameObject>();
 
-        foreach (var collider in colliders)
+        foreach (Collider collider in colliders)
         {
-            if (collider.CompareTag(targetTag))
+            if (playerCheck(collider.gameObject))
             {
                 players.Add(collider.gameObject);
             }
@@ -127,7 +125,7 @@ public class CastableAOEStrike : ElementalSpell
 
             // Make sure the adjusted damage is not negative
             adjustedDamage = Mathf.Max(0, adjustedDamage);
-
+            Debug.Log("damage calculated");
             dealDamage(player, adjustedDamage);
         }
     }

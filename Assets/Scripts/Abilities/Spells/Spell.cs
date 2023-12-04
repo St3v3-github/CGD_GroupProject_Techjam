@@ -27,9 +27,37 @@ public class Spell : MonoBehaviour
         }
     }
 
+    public bool playerCheck(GameObject hitbox)
+    {
+        GameObject player;
+        if (hitbox.transform.parent != null)
+        {
+            player = hitbox.transform.parent.gameObject;
+        }
+        else
+        {
+            player = hitbox;
+        }
+
+        
+        if (player.layer == LayerMask.NameToLayer("layer_Player") && player.tag != source.tag)
+        {
+            return true;
+        }
+        return false;
+    }
+
     public bool dealDamage(GameObject hitbox, float damage)
     {
-        GameObject player = hitbox.transform.parent.gameObject;
+        GameObject player;
+        if (hitbox.transform.parent != null)
+        {
+            player = hitbox.transform.parent.gameObject;
+        }
+        else
+        {
+            player = hitbox;
+        }
         if (player.layer == LayerMask.NameToLayer("layer_Player") && player.tag != source.tag)
         {
             AttributeManager attributes = hitbox.GetComponent<AttributeManager>();
