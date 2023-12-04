@@ -6,6 +6,8 @@ using UnityEngine;
 public class AnimationManager : MonoBehaviour
 {
     public Animator playerAnim;
+    public Camera emoteCam;
+    public Camera playerCam;
 
     private void Awake()
     {
@@ -52,8 +54,9 @@ public class AnimationManager : MonoBehaviour
         playerAnim.SetBool("Casting", Casting);
     }
 
-    public void toggleEmotingBool()
+    public void toggleEmotingBool(bool Emoting)
     {
+        /*
         int emoteNumb = 1;
         bool Emoting = playerAnim.GetBool("Emoting");
         float randomNumb = Random.Range(0, 1);
@@ -68,11 +71,51 @@ public class AnimationManager : MonoBehaviour
         Debug.Log(emoteNumb);
         playerAnim.SetInteger("EmoteNumb", emoteNumb);
         playerAnim.SetBool("Emoting", !Emoting);
+        playerCam.enabled = false;
+        emoteCam.enabled = true;
+        */
+
+        if (playerAnim.GetBool("Emoting"))
+        {
+            if (Emoting)
+            {
+                Emoting = !Emoting;
+            }
+        }
+        if (Emoting)
+        {
+            int emoteNumb = 1;
+            float randomNumb = Random.Range(0, 10);
+            if(randomNumb >= 5)
+            {
+                emoteNumb = 1;
+            }
+            else
+            {
+                emoteNumb = 0;
+            }
+            Debug.Log(emoteNumb);
+            playerAnim.SetInteger("EmoteNumb", emoteNumb);
+            playerAnim.SetBool("Emoting", Emoting);
+            if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Idle")) //prevents 3rd person camera from activating when emote won't trigger
+            {
+                playerCam.enabled = false;
+                emoteCam.enabled = true;
+            }
+        }
+        else
+        {
+            playerAnim.SetBool("Emoting", Emoting);
+            emoteCam.enabled = false;
+            playerCam.enabled = true;
+        }
     }
 
     public void disableEmote()
     {
         playerAnim.SetBool("Emoting", false);
+        emoteCam.enabled = false;
+        playerCam.enabled = true;
     }
     public void FootL() { }
     public void FootR() { }
