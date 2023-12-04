@@ -6,7 +6,9 @@ using UnityEngine.InputSystem;
 
 public class AdvancedProjectileSystem : Spell
 {
+
     public ProjectileData equippedProjectile;
+    public ProjectileData fireballforalpha;
     private List<ProjectileData> spells = new List<ProjectileData>();
     private int currentSpellIndex = 0;
     private GameObject rechargeSurge;
@@ -36,6 +38,8 @@ public class AdvancedProjectileSystem : Spell
 
     private void Start()
     {
+        var clone = Instantiate(fireballforalpha);
+        equippedProjectile = clone;
         setTargetTag();
 
         rechargeSurge = Instantiate(equippedProjectile.recharge, firePoint.position, Quaternion.identity);
@@ -73,10 +77,12 @@ public class AdvancedProjectileSystem : Spell
     }
     public void MyInput()
     {
-        //If hold to fire
-       /* if (equippedProjectile.allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
+        /*//If hold to fire
+        if (equippedProjectile.allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
         //If 1 shot per click
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
+        
+       
         // Additional check for security
         if (Input.GetKeyUp(KeyCode.Mouse0)) shooting = false;*/
 
@@ -84,14 +90,14 @@ public class AdvancedProjectileSystem : Spell
         //Recharging
         if (Input.GetKeyDown(KeyCode.R) && chargesLeft < equippedProjectile.totalCharges && !recharging) Recharge();
         //Automatic Recharging
-        if (readyToShoot && shooting && !recharging && chargesLeft <= 0) Recharge();
+        if (readyToShoot && !recharging && chargesLeft <= 0) Recharge();
 
         //Fire
         if (readyToShoot && shooting && !recharging && chargesLeft > 0)
         {
             chargesShot = 0;
             animControl.toggleCastingBool(true);
-            ProjectileShoot();
+            //ProjectileShoot();
 
         }
     }
@@ -105,6 +111,7 @@ public class AdvancedProjectileSystem : Spell
 
     public void ProjectileShoot()
     {
+        
         readyToShoot = false;
         Debug.Log("Shoot called");
 
@@ -170,6 +177,7 @@ public class AdvancedProjectileSystem : Spell
         {
             Invoke("ProjectileShoot", equippedProjectile.burstDelay);
         }
+        
     }
 
 

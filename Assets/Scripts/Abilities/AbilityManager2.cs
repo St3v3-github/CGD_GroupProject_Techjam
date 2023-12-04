@@ -14,6 +14,7 @@ public class AbilityManager2 : MonoBehaviour
     {
         
     }
+    
 
     // Update is called once per frame
     void Update()
@@ -37,24 +38,28 @@ public class AbilityManager2 : MonoBehaviour
                 case ItemData.SpellList.FIREBALL:
                    if(ctx.performed)
                     {
+                        spell_controller.GetComponent<AdvancedProjectileSystem>().ToggleShooting();
                         spell_controller.GetComponent<AdvancedProjectileSystem>().ProjectileShoot();
                     }
                                      break;
                 case ItemData.SpellList.ICEBALL:
                     if (ctx.performed)
                     {
+                        spell_controller.GetComponent<AdvancedProjectileSystem>().ToggleShooting();
                         spell_controller.GetComponent<AdvancedProjectileSystem>().ProjectileShoot();
                     }
                     break;
                 case ItemData.SpellList.WINDBALL:
                     if (ctx.performed)
                     {
+                        spell_controller.GetComponent<AdvancedProjectileSystem>().ToggleShooting();
                         spell_controller.GetComponent<AdvancedProjectileSystem>().ProjectileShoot();
                     }
                     break;
                 case ItemData.SpellList.LIGHTNINGBALL:
                     if (ctx.performed)
                     {
+                        spell_controller.GetComponent<AdvancedProjectileSystem>().ToggleShooting();
                         spell_controller.GetComponent<AdvancedProjectileSystem>().ProjectileShoot();
                     }
                     break;

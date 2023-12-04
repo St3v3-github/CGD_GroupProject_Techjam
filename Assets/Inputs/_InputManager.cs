@@ -15,7 +15,8 @@ public class InputManager : MonoBehaviour
     private InventoryEdit inventory;
     private bool spell_is_held;
 
-    [Header("Movement/Camera")] public Vector2 cameraInput;
+    [Header("Movement/Camera")] 
+    public Vector2 cameraInput;
     public Vector2 movementInput;
 
     private void Awake()

@@ -34811,6 +34811,8 @@ MonoBehaviour:
   players: []
   team1: []
   team2: []
+  team1Score: 0
+  team2Score: 0
   spawnPoints: []
 --- !u!4 &1095218046
 Transform:
@@ -34951,7 +34953,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5895785950274026239, guid: cf58f6e7c60a3ab4d8c27f1117a0db17, type: 3}
       propertyPath: spawnerType
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -40073,7 +40075,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5895785950274026239, guid: cf58f6e7c60a3ab4d8c27f1117a0db17, type: 3}
       propertyPath: spawnerType
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -43433,7 +43435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5895785950274026239, guid: cf58f6e7c60a3ab4d8c27f1117a0db17, type: 3}
       propertyPath: spawnerType
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -56723,7 +56725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5895785950274026239, guid: cf58f6e7c60a3ab4d8c27f1117a0db17, type: 3}
       propertyPath: spawnerType
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -62893,7 +62895,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1813525193085780977, guid: 1b111b69dc6175a47929a4c4510f0cec, type: 3}
       propertyPath: commonList.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1813525193085780977, guid: 1b111b69dc6175a47929a4c4510f0cec, type: 3}
       propertyPath: SpawnPoints.Array.size
@@ -62901,7 +62903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1813525193085780977, guid: 1b111b69dc6175a47929a4c4510f0cec, type: 3}
       propertyPath: ultimateList.Array.size
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1813525193085780977, guid: 1b111b69dc6175a47929a4c4510f0cec, type: 3}
       propertyPath: commonList.Array.data[0]
@@ -62914,7 +62916,7 @@ PrefabInstance:
     - target: {fileID: 1813525193085780977, guid: 1b111b69dc6175a47929a4c4510f0cec, type: 3}
       propertyPath: commonList.Array.data[2]
       value: 
-      objectReference: {fileID: 1244088288140402285, guid: 4b374e30de82265409f57ba0c6eba4ce, type: 3}
+      objectReference: {fileID: 1244088288140402285, guid: 7945def0be7f4084db6e891d7cb682f7, type: 3}
     - target: {fileID: 1813525193085780977, guid: 1b111b69dc6175a47929a4c4510f0cec, type: 3}
       propertyPath: commonList.Array.data[3]
       value: 
@@ -62935,6 +62937,30 @@ PrefabInstance:
       propertyPath: SpawnPoints.Array.data[3]
       value: 
       objectReference: {fileID: 1370542094}
+    - target: {fileID: 1813525193085780977, guid: 1b111b69dc6175a47929a4c4510f0cec, type: 3}
+      propertyPath: ultimateList.Array.data[1]
+      value: 
+      objectReference: {fileID: 1236032156942314204, guid: a1993fffb200b014ebd42b6ba3a91046, type: 3}
+    - target: {fileID: 1813525193085780977, guid: 1b111b69dc6175a47929a4c4510f0cec, type: 3}
+      propertyPath: ultimateList.Array.data[2]
+      value: 
+      objectReference: {fileID: 1236032156942314204, guid: 3e2a78a86fe7dc24ab0473d8d109ff6d, type: 3}
+    - target: {fileID: 1813525193085780977, guid: 1b111b69dc6175a47929a4c4510f0cec, type: 3}
+      propertyPath: ultimateList.Array.data[3]
+      value: 
+      objectReference: {fileID: 1236032156942314204, guid: 99e253e4913147d4b9ab896aafc1d61f, type: 3}
+    - target: {fileID: 1813525193085780977, guid: 1b111b69dc6175a47929a4c4510f0cec, type: 3}
+      propertyPath: ultimateList.Array.data[4]
+      value: 
+      objectReference: {fileID: 1236032156942314204, guid: c4f1b5471a6b25d459efab4256758caf, type: 3}
+    - target: {fileID: 1813525193085780977, guid: 1b111b69dc6175a47929a4c4510f0cec, type: 3}
+      propertyPath: ultimateList.Array.data[5]
+      value: 
+      objectReference: {fileID: 1236032156942314204, guid: c86e48ca01769cf4180548b95fc2391e, type: 3}
+    - target: {fileID: 1813525193085780977, guid: 1b111b69dc6175a47929a4c4510f0cec, type: 3}
+      propertyPath: ultimateList.Array.data[6]
+      value: 
+      objectReference: {fileID: 1236032156942314204, guid: e2d554f6d243f8a408c32e12e4d7fd2e, type: 3}
     - target: {fileID: 5356950731781970327, guid: 1b111b69dc6175a47929a4c4510f0cec, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.755227
@@ -66841,3 +66867,5 @@ SceneRoots:
   - {fileID: 1096425782}
   - {fileID: 1836162332}
   - {fileID: 1370542093}
+  - {fileID: 499848504}
+  - {fileID: 243059662}
