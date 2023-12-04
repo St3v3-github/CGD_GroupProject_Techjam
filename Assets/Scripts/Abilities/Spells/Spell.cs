@@ -12,7 +12,7 @@ public class Spell : MonoBehaviour
 
     private void Awake()
     {
-        gameObject.layer = LayerMask.NameToLayer("spell_Layer");
+        gameObject.layer = LayerMask.NameToLayer("layer_Spell");
     }
 
     public void setTargetTag()
