@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/ItemData")]
@@ -11,6 +12,20 @@ public class ItemData : ScriptableObject
         ACTIVE,
         COOLDOWN
     }
+
+    public void DecreaseCharges()
+    {
+        Debug.Log("DECREASING CHARGES");
+        uses_left--;
+        if (uses_left <= 0)
+        {       
+            Debug.Log("DESTROYING SPELL");
+            ResetObject();
+            
+        }
+    }
+
+    
 
     public enum SpellList
     {
@@ -57,6 +72,7 @@ public class ItemData : ScriptableObject
         //More
     }
 
+    public ItemData BLANK_COPY;
     public SpellList ID = 0;
     public SpellType type = 0;
     public SlotType slot = 0;
@@ -69,4 +85,14 @@ public class ItemData : ScriptableObject
     public int spawn_weight = 1;
     public Sprite icon;
     public bool has_uses = true;
+  
+    private void ResetObject()
+    {
+        type = BLANK_COPY.type;
+        slot = BLANK_COPY.slot;
+        ID = BLANK_COPY.ID;
+        current_state = SpellState.COOLDOWN;
+        uses_left = BLANK_COPY.uses_left;
+        icon = BLANK_COPY.icon;
+    }
 }

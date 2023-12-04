@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public struct killing_data
 {
@@ -26,6 +27,8 @@ public class AttributeManager : MonoBehaviour
     public StatusEffect player_status;
     public GameObject last_damage_player;
 
+    public Slider healthbar; 
+
     void Start()
     {
         //set all values to whatever default value we want
@@ -50,6 +53,8 @@ public class AttributeManager : MonoBehaviour
     {
         //attribute manager would check players current status and call status functions here!!
         //example: player is on fire via fire status, HP reduced by 5 every 1 second?
+
+        healthbar.value = currentHealth; 
     }
 
     public float GetPlayerHealth()
