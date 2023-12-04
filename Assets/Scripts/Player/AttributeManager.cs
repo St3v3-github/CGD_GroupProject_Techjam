@@ -36,12 +36,14 @@ public class AttributeManager : MonoBehaviour
         currentHealth = maxHealth;
         maxHealth = 100;
         mp = 100;
+
     }
 
     void Update()
     {
         //attribute manager would check players current status and call status functions here!!
         //example: player is on fire via fire status, HP reduced by 5 every 1 second?
+        Healthbar.maxValue = maxHealth; 
         Healthbar.value = currentHealth;
         
 
