@@ -12,7 +12,7 @@ public class Spell : MonoBehaviour
 
     private void Awake()
     {
-        gameObject.layer = LayerMask.NameToLayer("spell_Layer");
+        gameObject.layer = LayerMask.NameToLayer("layer_Spell");
     }
 
     public void setTargetTag()
@@ -27,7 +27,7 @@ public class Spell : MonoBehaviour
         }
     }
 
-    public void dealDamage(GameObject player, float damage)
+    public bool dealDamage(GameObject player, float damage)
     {
         if (player.layer == LayerMask.NameToLayer("layer_Player") && player.tag != source.tag)
         {
@@ -36,9 +36,11 @@ public class Spell : MonoBehaviour
             if (attributes != null)
             {
                 attributes.TakeDamage(damage, source);
+                return true;
             }
             source.GetComponent<UIController>().Hit(damage);
         }
+        return false;
         
     }
 

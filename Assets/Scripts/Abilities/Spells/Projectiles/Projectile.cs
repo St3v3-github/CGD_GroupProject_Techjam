@@ -20,22 +20,22 @@ public class Projectile : Spell
     }
 
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collision)
     {
         Debug.Log(collision.transform.gameObject.layer);
-        if (collision.transform.gameObject.layer == LayerMask.NameToLayer("layer_Player"))
+        /*if (dealDamage(collision.transform.gameObject, damage))
         {
             Debug.Log("hit player");
-            dealDamage(collision.transform.gameObject, damage);
             Destroy(gameObject);
 
         }
-        /*else if (collision.transform.gameObject.layer == LayerMask.NameToLayer("Default"))
+        else*/
+        if (collision.transform.gameObject.layer == LayerMask.NameToLayer("layer_Player") && collision.tag != this.tag)
         {
-            Debug.Log("hit map");
+            Debug.Log("hit player: " + collision.name);
             Destroy(gameObject);
-        }*/
-        Debug.Log("hit nothing");
+        }
+        else { Debug.Log("hit nothing"); }
 
 
         //AttributeManager attributes = collision.gameObject.GetComponent<AttributeManager>();

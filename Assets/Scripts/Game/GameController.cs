@@ -11,16 +11,17 @@ public class GameController : MonoBehaviour
     // My name is Ozymandias, King of Kings; Look on my Works, ye Mighty, and despair!
     public GameRules game;
     private bool lobby = true;
-    private float lobbyTimer = 30;
+    private float lobbyTimer = 10;
     public TextMeshProUGUI lobbyText;
     public LayerMask playerLayer;
 
     public float timer;
-    private List<int> teamScore;
     public int playerCount;
     public List<GameObject> players;
     public List<GameObject> team1;
     public List<GameObject> team2;
+    public int team1Score;
+    public int team2Score;
     public List<GameObject> spawnPoints;
 
 
@@ -140,7 +141,7 @@ public class GameController : MonoBehaviour
         }
 
         // Game mode specific setup
-        switch (game.gameMode)
+        /*switch (game.gameMode)
         {
             case GameMode.FreeForAll:
                 foreach (GameObject player in players)
@@ -153,7 +154,7 @@ public class GameController : MonoBehaviour
                 teamScore.Add(0);
                 teamScore.Add(0);
                 break;
-        }
+        }*/
 
         
 
@@ -280,15 +281,7 @@ public class GameController : MonoBehaviour
     // FFA Score below
     public void UpdateFFAScore(GameObject killer)
     {
-        int count = 0;
-        foreach (GameObject player in players)
-        {
-            if (player == killer)
-            {
-                teamScore[count] += 1;
-            }
-            count++;
-        }
+        killer.GetComponent<AttributeManager>().score += 1;
     }
 
     public void AnnounceFFAWinner()
@@ -300,14 +293,14 @@ public class GameController : MonoBehaviour
         {
             if (count == 0)
             {
-                WinningScore = teamScore[0];
+                WinningScore = player.GetComponent<AttributeManager>().score;
                 Winner = player;
             }
             else
             {
-                if (teamScore[count] > WinningScore)
+                if (player.GetComponent<AttributeManager>().score > WinningScore)
                 {
-                    WinningScore = teamScore[count];
+                    WinningScore = player.GetComponent<AttributeManager>().score;
                     Winner = player;
                 }
             }
@@ -323,29 +316,29 @@ public class GameController : MonoBehaviour
         {
             if (player == killer)
             {
-                teamScore[0] += 1;
+                team1Score += 1;
             }
         }
         foreach (GameObject player in team2)
         {
             if (player == killer)
             {
-                teamScore[1] += 1;
+                team2Score += 1;
             }
         }
     }
 
     public void AnnounceTDMWinner()
     {
-        if (teamScore[0] == teamScore[1])
+        if (team1Score == team2Score)
         {
             Debug.Log("Time Up. DRAW");
         }
-        else if (teamScore[0] > teamScore[1])
+        else if (team1Score > team2Score)
         {
             Debug.Log("Time Up. Team 1 WINS");
         }
-        else if (teamScore[0] < teamScore[1])
+        else if (team1Score < team2Score)
         {
             Debug.Log("Time Up. Team 2 WINS");
         }
