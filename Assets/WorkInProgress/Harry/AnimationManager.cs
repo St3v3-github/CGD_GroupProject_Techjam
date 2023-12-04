@@ -97,8 +97,11 @@ public class AnimationManager : MonoBehaviour
             Debug.Log(emoteNumb);
             playerAnim.SetInteger("EmoteNumb", emoteNumb);
             playerAnim.SetBool("Emoting", Emoting);
-            playerCam.enabled = false;
-            emoteCam.enabled = true;
+            if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+            {
+                playerCam.enabled = false;
+                emoteCam.enabled = true;
+            }
         }
         else
         {
