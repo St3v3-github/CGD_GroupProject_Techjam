@@ -20,7 +20,7 @@ public class AttributeManager : MonoBehaviour
     //examples of other values we might eventually have. all values relating to the player would probably be held in this one manager
     //[SerializeField] private int move_speed;
     //[SerializeField] private int defensive_power;
-    //[SerializeField] private int offensive_power;
+    //[SerializeField] private int offensive_power;/./
 
     //CURRENT STATUS HERE
     public StatusEffect player_status;
