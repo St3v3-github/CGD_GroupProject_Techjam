@@ -39,7 +39,8 @@ public class InputManager : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext ctx)
     {
-        animationController.disableEmote();
+        //animationController.disableEmote();
+        animationController.toggleEmotingBool(false);
         movementInput = ctx.ReadValue<Vector2>();
 
     }
@@ -48,7 +49,8 @@ public class InputManager : MonoBehaviour
     {
         if (ctx.action.triggered)
         {
-            animationController.disableEmote();
+            //animationController.disableEmote();
+            animationController.toggleEmotingBool(false);
             playerController.HandleJump();
             Debug.Log("Jumping");
         }
@@ -58,14 +60,16 @@ public class InputManager : MonoBehaviour
     {
         if (ctx.action.triggered)
         {
-            animationController.disableEmote();
+            //animationController.disableEmote();
+            animationController.toggleEmotingBool(false);
             //Add Script call Here
         }
     }
 
     public void OnSpellCast(InputAction.CallbackContext ctx)
     {
-        animationController.disableEmote();
+        //animationController.disableEmote();
+        animationController.toggleEmotingBool(false);
         if (ctx.action.triggered)
         {
             //Determining Spell Slot
@@ -132,7 +136,7 @@ public class InputManager : MonoBehaviour
     {
         if (ctx.action.triggered)
         {
-            animationController.toggleEmotingBool();
+            animationController.toggleEmotingBool(true);
         }
     }
 
