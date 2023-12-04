@@ -15,7 +15,7 @@ public class UIController : MonoBehaviour
     private void Update()
     {
         float health = player.GetComponent<AttributeManager>().currentHealth;
-        healthText.text = health.ToString();
+        //healthText.text = health.ToString();
     }
     public void OpenScoreboard()
     {
