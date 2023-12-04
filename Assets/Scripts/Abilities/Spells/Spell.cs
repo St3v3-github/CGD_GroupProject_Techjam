@@ -10,6 +10,10 @@ public class Spell : MonoBehaviour
     protected string targetTag;
     public GameObject source;
 
+    private void Awake()
+    {
+        gameObject.layer = LayerMask.NameToLayer("spell_Layer");
+    }
 
     public void setTargetTag()
     {

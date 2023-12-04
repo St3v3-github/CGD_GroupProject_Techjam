@@ -22,16 +22,20 @@ public class Projectile : Spell
 
     void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision.transform.gameObject.layer);
         if (collision.transform.gameObject.layer == LayerMask.NameToLayer("layer_Player"))
         {
-            dealDamage(source, damage);
+            Debug.Log("hit player");
+            dealDamage(collision.transform.gameObject, damage);
             Destroy(gameObject);
 
         }
-        else if (collision.transform.gameObject.layer == LayerMask.NameToLayer("map"))
+        /*else if (collision.transform.gameObject.layer == LayerMask.NameToLayer("Default"))
         {
+            Debug.Log("hit map");
             Destroy(gameObject);
-        }
+        }*/
+        Debug.Log("hit nothing");
 
 
         //AttributeManager attributes = collision.gameObject.GetComponent<AttributeManager>();
