@@ -186,7 +186,7 @@ public class AbilityManager2 : MonoBehaviour
                     break;
                 case ItemData.SpellList.POWERBEAM:
                     inventory.setActiveFor(slot, 3f, 1.0f);
-                    spell_controller.GetComponent<Beam>().Cast();
+                    spell_controller.GetComponent<Beam>().cast();
                     break;
 
             }

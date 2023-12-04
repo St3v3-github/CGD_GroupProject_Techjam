@@ -15,14 +15,14 @@ public class Wall : ElementalSpell
     {
         setStatus();
 
-        if (spell.prefab == null)
+       /* if (spell.prefab == null)
         {
             Debug.LogError("wallPrefab is not assigned!");
         }
         if (holographicPrefab == null)
         {
             Debug.LogError("holographicPrefab is not assigned!");
-        }
+        }*/
     }
 
     void Update()

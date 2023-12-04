@@ -63,7 +63,7 @@ public class Beam : Spell
         }
     }
 
-    void cast()
+   public void cast()
     {
         Vector3 spawnPosition = playerCam.position;
         spawnPosition.y -= 0.4f;
