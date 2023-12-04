@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Timers;
+
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class AbilityManager2 : MonoBehaviour
 {
@@ -18,8 +20,13 @@ public class AbilityManager2 : MonoBehaviour
     {
         
     }
+    public void cancelBasicSpell()
+    {
+        Debug.Log("WE ARE CANCELLING THE SPELL");
+        spell_controller.GetComponent<AdvancedProjectileSystem>().ToggleShooting();
+    }
 
-    public int castSpell(int slot)
+    public int castSpell(int slot, InputAction.CallbackContext ctx)
     {
         int answer = 0;
         if (inventory.dd_spell_inventory[slot].current_state==ItemData.SpellState.READY)
@@ -27,20 +34,30 @@ public class AbilityManager2 : MonoBehaviour
             Debug.Log("WE ARE IN THE CAST SPELL FUNCTION. CURRENT SLOT IS: " + slot);
             switch(inventory.dd_spell_inventory[slot].ID) 
             {
-             /*case ItemData.SpellList.FIREBALL:
-                   inventory.setActiveFor(slot, 0.0f, 1.0f); //TODO: Grab active and cooldown times from spells
-                   caster.GetComponent<FireProjectile>().setType(ItemData.SpellType.FIRE);
-                   caster.GetComponent<FireProjectile>().Fire();
-                   break;
-               case ItemData.SpellList.ICEBALL:
-
-                   break;
-               case ItemData.SpellList.WINDBALL:
-
-                   break;
-               case ItemData.SpellList.LIGHTNINGBALL:
-
-                   break;*/
+                case ItemData.SpellList.FIREBALL:
+                   if(ctx.performed)
+                    {
+                        spell_controller.GetComponent<AdvancedProjectileSystem>().ProjectileShoot();
+                    }
+                                     break;
+                case ItemData.SpellList.ICEBALL:
+                    if (ctx.performed)
+                    {
+                        spell_controller.GetComponent<AdvancedProjectileSystem>().ProjectileShoot();
+                    }
+                    break;
+                case ItemData.SpellList.WINDBALL:
+                    if (ctx.performed)
+                    {
+                        spell_controller.GetComponent<AdvancedProjectileSystem>().ProjectileShoot();
+                    }
+                    break;
+                case ItemData.SpellList.LIGHTNINGBALL:
+                    if (ctx.performed)
+                    {
+                        spell_controller.GetComponent<AdvancedProjectileSystem>().ProjectileShoot();
+                    }
+                    break;
                 case ItemData.SpellList.FIREWALL:
                     inventory.setActiveFor(slot, 2.0f, 1.0f); //TODO: Grab active and cooldown times from spells
 

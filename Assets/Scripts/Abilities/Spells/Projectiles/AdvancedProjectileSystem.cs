@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class AdvancedProjectileSystem : Spell
 {
@@ -73,11 +74,11 @@ public class AdvancedProjectileSystem : Spell
     public void MyInput()
     {
         //If hold to fire
-        if (equippedProjectile.allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
+       /* if (equippedProjectile.allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
         //If 1 shot per click
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
         // Additional check for security
-        if (Input.GetKeyUp(KeyCode.Mouse0)) shooting = false;
+        if (Input.GetKeyUp(KeyCode.Mouse0)) shooting = false;*/
 
 
         //Recharging
@@ -94,9 +95,15 @@ public class AdvancedProjectileSystem : Spell
 
         }
     }
+    public void ToggleShooting()
+    {
+        shooting = !shooting;
+    }
+
+   
 
 
-    private void ProjectileShoot()
+    public void ProjectileShoot()
     {
         readyToShoot = false;
         Debug.Log("Shoot called");
@@ -243,7 +250,8 @@ public class AdvancedProjectileSystem : Spell
 
         if (spells.Count < 2)
         {
-            equippedProjectile = spellObject;
+            var clone = Instantiate(spellObject);
+            equippedProjectile = clone;
 
             //store collected spell
             spells.Add(spellObject);

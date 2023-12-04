@@ -6,18 +6,22 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class InputManager : MonoBehaviour
 {
+    private PlayerControlsAsset playercontrols;
     public PlayerController playerController;
     public CameraController cameraController;
     public AdvancedProjectileSystem projectileController;
     public AnimationManager animationController;
     public Raycast ray;
     private InventoryEdit inventory;
+    private bool spell_is_held;
 
     [Header("Movement/Camera")] public Vector2 cameraInput;
     public Vector2 movementInput;
 
     private void Awake()
     {
+       
+    
         //playerController = FindObjectOfType<_PlayerController>();
         //cameraController = FindObjectOfType<_CameraController>();
 
@@ -27,6 +31,7 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
+       
         playerController.HandleMovement(movementInput);
         playerController.HandleCamera(cameraInput);
     }
@@ -111,6 +116,7 @@ public class InputManager : MonoBehaviour
                     break;
             }
 
+            
             // Set item to inventory if looking at a pickup.
             if (ray.target != null && ray.target.GetComponent<ItemInfo>().GetItemData().type != ItemData.SpellType.EMPTY && SlotCheck(ray.target.GetComponent<ItemInfo>().GetItemData(), slotTarget))
             {
@@ -120,7 +126,7 @@ public class InputManager : MonoBehaviour
             //Cast Spell from Abilitymanager in the selected slot.
             else
             {
-                GetComponent<AbilityManager2>().castSpell(slotTarget);
+                GetComponent<AbilityManager2>().castSpell(slotTarget,ctx);
             }
             
 
@@ -172,6 +178,8 @@ public class InputManager : MonoBehaviour
             return false;
         }
     }
+
+    
 }
 
 
