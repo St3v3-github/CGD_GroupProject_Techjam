@@ -97,7 +97,7 @@ public class AnimationManager : MonoBehaviour
             Debug.Log(emoteNumb);
             playerAnim.SetInteger("EmoteNumb", emoteNumb);
             playerAnim.SetBool("Emoting", Emoting);
-            if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+            if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Idle")) //prevents 3rd person camera from activating when emote won't trigger
             {
                 playerCam.enabled = false;
                 emoteCam.enabled = true;
