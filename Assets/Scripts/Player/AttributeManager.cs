@@ -31,6 +31,18 @@ public class AttributeManager : MonoBehaviour
         currentHealth = maxHealth;
         maxHealth = 100;
         mp = 100;
+
+        // Set tags
+        string parentTag = transform.parent.tag;
+        Debug.Log("parent tag: " + parentTag);
+        if(parentTag == "Player1")
+        {
+            this.tag = "Player1";
+        }
+        else if(parentTag == "Player2")
+        {
+            this.tag = "Player2";
+        }
     }
 
     void Update()
