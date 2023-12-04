@@ -69,7 +69,7 @@ public class Spell : MonoBehaviour
             }
 
             //Hitmarker
-            source.GetComponent<UIController>().Hit(damage);
+            player.GetComponent<UIController>().Hit(damage);
         }
         return false;
         
