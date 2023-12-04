@@ -18,7 +18,7 @@ public class ItemScript : MonoBehaviour, IInteractable
     }
     private void OnTriggerEnter(Collider other)
     {
-        GetComponentInParent<SpawnItem>().hasItem = false;
-        Destroy(gameObject);
+        //GetComponentInParent<SpawnItem>().hasItem = false;
+        //Destroy(gameObject);
     }
 }
