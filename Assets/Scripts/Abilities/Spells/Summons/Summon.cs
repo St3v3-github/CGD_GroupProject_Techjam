@@ -36,5 +36,6 @@ public class Summon : ElementalSpell
         GameObject summon = Instantiate(spell.prefab, summonPoint.position - verticalOffset /*- verticalOffset + Vector3.Scale(horizontalOffset, summonPoint.forward)*/, summonRoation);
         summon.GetComponent<SummonedAnimal>().source = gameObject;
         summon.tag = this.tag + "Spell";
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.stagSound, this.transform.position);
     }
 }
