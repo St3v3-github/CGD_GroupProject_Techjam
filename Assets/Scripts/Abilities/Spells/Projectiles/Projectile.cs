@@ -23,18 +23,19 @@ public class Projectile : Spell
     void OnTriggerEnter(Collider collision)
     {
         Debug.Log(collision.transform.gameObject.layer);
-        if (dealDamage(collision.transform.gameObject, damage))
+        /*if (dealDamage(collision.transform.gameObject, damage))
         {
             Debug.Log("hit player");
             Destroy(gameObject);
 
         }
-        /*else if (collision.transform.gameObject.layer == LayerMask.NameToLayer("Default"))
+        else*/
+        if (collision.transform.gameObject.layer == LayerMask.NameToLayer("layer_Player") && collision.tag != this.tag)
         {
-            Debug.Log("hit map");
+            Debug.Log("hit player: " + collision.name);
             Destroy(gameObject);
-        }*/
-        Debug.Log("hit nothing");
+        }
+        else { Debug.Log("hit nothing"); }
 
 
         //AttributeManager attributes = collision.gameObject.GetComponent<AttributeManager>();
