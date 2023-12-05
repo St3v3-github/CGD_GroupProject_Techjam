@@ -67,6 +67,8 @@ public class Spell : MonoBehaviour
 
     public bool dealDamage(GameObject hitbox, float damage)
     {
+        bool valid_target = false;
+        
         GameObject player;
         if (hitbox.transform.parent != null)
         {
@@ -76,15 +78,24 @@ public class Spell : MonoBehaviour
         {
             player = hitbox;
         }
+        Debug.Log(player.name);
+        
         if (player.layer == LayerMask.NameToLayer("layer_Player") && player.tag != source.tag)
         {
-            AttributeManager attributes = hitbox.GetComponent<AttributeManager>();
 
-            if (attributes != null)
-            {
-                attributes.TakeDamage(damage, source);
-                return true;
-            }
+            Debug.Log(hitbox.name);
+           // AttributeManager attributes = hitbox.GetComponent<AttributeManager>();
+           if (hitbox.name == "Player(Clone)" || hitbox.name == "AttributeController")
+           {
+               AttributeManager attributes = player.GetComponent<UIController>().attributeController.GetComponent<AttributeManager>();
+
+               if (attributes != null)
+               {
+                   attributes.TakeDamage(damage, source);
+                   return true;
+               }
+           }
+           
 
             //Hitmarker
             source.GetComponent<UIController>().Hit(damage);

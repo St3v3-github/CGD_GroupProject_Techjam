@@ -47,20 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d97063a39d0bc48a365a695cfbafd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTag: 
-  spellType: 0
-  currentStatus: {fileID: 0}
-  fireDamage: 0
-  lightDamage: 0
-  iceDamage: 0
-  windDamage: 0
-  firePrefab: {fileID: 0}
-  lightningPrefab: {fileID: 0}
-  icePrefab: {fileID: 0}
-  windPrefab: {fileID: 0}
+  source: {fileID: 0}
   animator: {fileID: 3982802121835070828}
   deathParticle: {fileID: 2978121533964236345}
-  statusEffect: {fileID: 0}
+  currentStatus: {fileID: 0}
   moveSpeed: 5
   rotationSpeed: 10
   visionAngle: 60
@@ -75,7 +65,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -527,30 +517,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3982802121827297922}
     m_Modifications:
-    - target: {fileID: 198723151463817030, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
-      propertyPath: playOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198723151463817030, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
-      propertyPath: moveWithTransform
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198723151463817030, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
-      propertyPath: InitialModule.startSpeed.minScalar
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 198955094679354124, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
-      propertyPath: playOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 199716733195319564, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 199925524669934206, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1345027383935582, guid: 6f0890880019da2458189cb3e81d44da, type: 3}
       propertyPath: m_Name
       value: FX_Fire_Big_02
@@ -612,6 +578,30 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 199925524669934206, guid: 6f0890880019da2458189cb3e81d44da, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198723151463817030, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198723151463817030, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198723151463817030, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198955094679354124, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199716733195319564, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199925524669934206, guid: 508c9f007a2bf724d88361f16953bbac, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
