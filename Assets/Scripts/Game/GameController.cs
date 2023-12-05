@@ -30,6 +30,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         timer = game.timer;
+        lobbyText.fontSize = 100; 
     }
 
 

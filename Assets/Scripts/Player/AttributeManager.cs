@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,8 +28,9 @@ public class AttributeManager : MonoBehaviour
     public StatusEffect player_status;
     public GameObject last_damage_player;
 
-    public Slider healthbar; 
-
+    public Slider healthbar;
+    public GameObject ScoreText;
+    public string scorefloat; 
     void Start()
     {
         //set all values to whatever default value we want
@@ -54,7 +56,9 @@ public class AttributeManager : MonoBehaviour
         //attribute manager would check players current status and call status functions here!!
         //example: player is on fire via fire status, HP reduced by 5 every 1 second?
 
-        healthbar.value = currentHealth; 
+        healthbar.value = currentHealth;
+        scorefloat = score.ToString(); 
+        ScoreText.GetComponent<TextMeshProUGUI>().text = scorefloat; 
     }
 
     public float GetPlayerHealth()
