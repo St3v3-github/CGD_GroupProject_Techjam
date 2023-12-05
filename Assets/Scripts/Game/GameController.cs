@@ -56,7 +56,7 @@ public class GameController : MonoBehaviour
         else if (!lobby)
         {
             timer -= Time.deltaTime;
-            lobbyText.text = "Game time" + timer.ToString();
+            lobbyText.text = "Game time " + Mathf.Round(timer).ToString();
 
             if (timer <= 0)
             {
