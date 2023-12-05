@@ -77,11 +77,11 @@ public class ItemData : ScriptableObject
     public SpellType type = 0;
     public SlotType slot = 0;
     public SpellState current_state = SpellState.READY;
-    public string item_name = "Empty";
+    public string item_name = "EMPTY";
     public string description = "This is an empty inventory slot.";
     //public bool degrading = false;
     //public int condition = 100;
-    public uint uses_left = 1;
+    public uint uses_left = 0;
     public int spawn_weight = 1;
     public Sprite icon;
     public bool has_uses = true;

@@ -58,7 +58,7 @@ public class Spell : MonoBehaviour
         }
 
         
-        if (player.layer == LayerMask.NameToLayer("layer_Player") && player.tag != source.tag)
+        if (player.layer == LayerMask.NameToLayer("layer_Player"))
         {
             return true;
         }
@@ -78,7 +78,7 @@ public class Spell : MonoBehaviour
         {
             player = hitbox;
         }
-        Debug.Log(player.name);
+      
         
         if (player.layer == LayerMask.NameToLayer("layer_Player") && player.tag != source.tag)
         {
@@ -94,6 +94,53 @@ public class Spell : MonoBehaviour
                    attributes.TakeDamage(damage, source);
                    return true;
                }
+           }
+           
+
+            //Hitmarker
+            source.GetComponent<UIController>().Hit(damage);
+        }
+        return false;
+        
+        // THIS IS USED FOR THE STRIKE ONLY, NEEDED A SEPERATE FUNCTION TO ALLOW FOR HITTING SELF WITH THE SPELL
+    }public bool dealDamage(GameObject hitbox, float damage, bool strike)
+    {
+        bool valid_target = false;
+        
+        GameObject player;
+        if (hitbox.transform.parent != null)
+        {
+            player = hitbox.transform.parent.gameObject;
+        }
+        else
+        {
+            player = hitbox;
+        }
+     
+        
+
+        if (player.layer == LayerMask.NameToLayer("layer_Player"))
+        {
+
+            
+           // AttributeManager attributes = hitbox.GetComponent<AttributeManager>();
+           if (hitbox.name == "Player(Clone)" || hitbox.name == "AttributeController")
+           {
+               AttributeManager attributes = player.GetComponent<UIController>().attributeController.GetComponent<AttributeManager>();
+                if(!attributes.hit_by_strike)
+                {
+                    attributes.hit_by_strike = true;
+                    if (attributes != null)
+                    {
+                        attributes.TakeDamage(damage, source);
+                        return true;
+                    }
+                }
+                else
+                {
+                    attributes.hit_by_strike = false;
+                }
+               
            }
            
 

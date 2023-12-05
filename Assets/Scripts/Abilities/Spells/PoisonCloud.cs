@@ -78,7 +78,7 @@ public class PoisonCloud : Spell
 
         Debug.Log("Applying damage to player: " + damage);
 
-        AttributeManager attributes = player.gameObject.GetComponent<AttributeManager>();
+        AttributeManager attributes = player.gameObject.GetComponentInChildren<AttributeManager>();
 
         if (attributes != null)
         {

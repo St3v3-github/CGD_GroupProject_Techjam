@@ -113,7 +113,7 @@ public class AdvancedProjectileSystem : Spell
     {
         
         readyToShoot = false;
-        Debug.Log("Shoot called");
+       // Debug.Log("Shoot called");
 
         //Find exact hit position using raycat
         Ray ray = playerCam.ViewportPointToRay(new Vector3(0.5f,0.5f, 0));
@@ -228,7 +228,7 @@ public class AdvancedProjectileSystem : Spell
         allowInvoke = true;
         readyToShoot = true;
         shooting = false;
-        Debug.Log("Ready to shoot");
+       // Debug.Log("Ready to shoot");
         animControl.toggleCastingBool(false);
     }
 
@@ -248,14 +248,14 @@ public class AdvancedProjectileSystem : Spell
 
     private void HandleSpellPickedUp(ProjectileData spellObject)
     {
-        Debug.Log("Subscribed to handler");
+        //Debug.Log("Subscribed to handler");
         CollectSpell(spellObject);        
 
     }
 
     private void CollectSpell(ProjectileData spellObject)
     {
-        Debug.Log("Collect Spell Called");
+       // Debug.Log("Collect Spell Called");
 
         if (spells.Count < 2)
         {
@@ -264,7 +264,7 @@ public class AdvancedProjectileSystem : Spell
 
             //store collected spell
             spells.Add(spellObject);
-            Debug.Log("Spell collected: " + spellObject.name);
+          //  Debug.Log("Spell collected: " + spellObject.name);
 
             //equip if first spell
             if (spells.Count == 1)

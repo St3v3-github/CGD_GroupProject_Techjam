@@ -16,6 +16,7 @@ public class AttributeManager : MonoBehaviour
     [SerializeField] public int mp;
     [SerializeField] public float speed;
     [SerializeField] public int score;
+    public bool hit_by_strike = false;
 
 
     //examples of other values we might eventually have. all values relating to the player would probably be held in this one manager

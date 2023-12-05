@@ -108,11 +108,13 @@ public class CastableAOEStrike : ElementalSpell
 
         foreach (Collider collider in colliders)
         {
+            Debug.Log(collider.name);
             if (playerCheck(collider.gameObject))
             {
                 players.Add(collider.gameObject);
             }
         }
+       
 
         foreach (var player in players)
         {
@@ -126,7 +128,7 @@ public class CastableAOEStrike : ElementalSpell
             // Make sure the adjusted damage is not negative
             adjustedDamage = Mathf.Max(0, adjustedDamage);
             Debug.Log("damage calculated");
-            dealDamage(player, adjustedDamage);
+            dealDamage(player, adjustedDamage,true);
         }
     }
 
