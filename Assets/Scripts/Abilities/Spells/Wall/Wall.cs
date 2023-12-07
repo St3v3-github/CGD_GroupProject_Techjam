@@ -13,7 +13,7 @@ public class Wall : ElementalSpell
     public Camera playerCamera;
     void Start()
     {
-        setStatus();
+        SetStatus();
 
        /* if (spell.prefab == null)
         {
@@ -28,7 +28,7 @@ public class Wall : ElementalSpell
     void Update()
     {
 
-        setStatus();
+        SetStatus();
        
         if (isPlacingWall)
         {

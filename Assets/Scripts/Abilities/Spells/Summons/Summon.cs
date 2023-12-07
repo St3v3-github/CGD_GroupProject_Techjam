@@ -14,7 +14,7 @@ public class Summon : ElementalSpell
     {
         //setStatus();
 
-        setTargetTag();
+        SetTargetTag();
     }
 
     // Update is called once per frame

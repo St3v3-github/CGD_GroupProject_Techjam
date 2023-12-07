@@ -18,7 +18,7 @@ public class SummonedAnimal : Spell
 
     void Start()
     {
-        setTargetTag();
+        SetTargetTag();
 
 
         StartCoroutine(timerCoroutine());
@@ -59,7 +59,7 @@ public class SummonedAnimal : Spell
            // animator.SetTrigger("Attack");
            // Debug.Log("Collision detected with: " + collision.gameObject.name);
 
-            dealDamage(collision.gameObject, spell.damage);
+            DealDamage(collision.gameObject, spell.damage);
 
 
             deathParticle.Play(true);
@@ -86,7 +86,7 @@ public class SummonedAnimal : Spell
             // animator.SetTrigger("Attack");
             // Debug.Log("Collision detected with: " + collision.gameObject.name);
 
-            dealDamage(other.gameObject, spell.damage);
+            DealDamage(other.gameObject, spell.damage);
 
 
             deathParticle.Play(true);
