@@ -29,7 +29,7 @@ public class AttributeManager : MonoBehaviour
     public StatusEffect playerStatus;
     public GameObject lastDamagePlayer;
 
-    public Slider healthBar;
+    public Slider healthbar;
     public GameObject ScoreText;
     public string scorefloat;
 
@@ -62,7 +62,7 @@ public class AttributeManager : MonoBehaviour
         //attribute manager would check players current status and call status functions here!!
         //example: player is on fire via fire status, HP reduced by 5 every 1 second?
 
-        healthBar.value = currentHealth;
+        healthbar.value = currentHealth;
         scorefloat = score.ToString(); 
         ScoreText.GetComponent<TextMeshProUGUI>().text = scorefloat; 
     }
@@ -218,6 +218,7 @@ public class AttributeManager : MonoBehaviour
 
     public void DamageFlyText(float damageDealt)
     {
+        Debug.Log("Damage Text Spawn");
         var damageText = Instantiate(damageFlyTextPrefab, transform.position, Quaternion.identity, transform);
         damageText.GetComponent<TextMesh>().text = damageDealt.ToString();
     }

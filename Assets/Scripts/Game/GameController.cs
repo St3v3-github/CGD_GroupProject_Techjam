@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
 {
     public GameRules game;
     private bool lobby = true;
-    private float lobbyTimer = 30;
+    private float lobbyTimer = 5;
     public TextMeshProUGUI lobbyText;
     public LayerMask playerLayer;
 
@@ -252,7 +252,7 @@ public class GameController : MonoBehaviour
 
         prayer.deaded.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(true);
         prayer.deaded.transform.Find("AttributeController").GetComponent<AttributeManager>().currentHealth = 0;
-        prayer.deaded.transform.Find("AttributeController").GetComponent<AttributeManager>().healthBar.value = 0;
+        prayer.deaded.transform.Find("AttributeController").GetComponent<AttributeManager>().healthbar.value = 0;
         prayer.deaded.transform.Find("AttributeController").gameObject.SetActive(false);
         prayer.deaded.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(false);
         prayer.deaded.transform.Find("Mesh").gameObject.SetActive(false);
