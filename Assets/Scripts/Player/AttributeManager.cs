@@ -219,7 +219,7 @@ public class AttributeManager : MonoBehaviour
     public void DamageFlyText(float damageDealt)
     {
         Debug.Log("Damage Text Spawn");
-        var damageText = Instantiate(damageFlyTextPrefab, transform.position, Quaternion.identity, transform);
+        var damageText = Instantiate(damageFlyTextPrefab, transform.position, transform.rotation, transform);
         damageText.GetComponent<TextMesh>().text = damageDealt.ToString();
     }
 }

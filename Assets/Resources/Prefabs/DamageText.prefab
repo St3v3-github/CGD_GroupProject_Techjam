@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 6449997185615960267}
   - component: {fileID: 3866079633737921470}
   - component: {fileID: 4930470099532151528}
-  - component: {fileID: -3519886817359259645}
+  - component: {fileID: -3597091016615764577}
+  - component: {fileID: -5268383988737360527}
   m_Layer: 0
   m_Name: DamageText
   m_TagString: Untagged
@@ -27,13 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129862360079981974}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: 40.36204, y: 43.93461, z: 60.665085}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!23 &3866079633737921470
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -98,7 +99,7 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
---- !u!114 &-3519886817359259645
+--- !u!114 &-3597091016615764577
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,3 +111,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aafac39993642054c8e670ad63311b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  despawnTime: 2
+--- !u!95 &-5268383988737360527
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129862360079981974}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 43a643cfd655c8842a6ae76b0c6cdf77, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
