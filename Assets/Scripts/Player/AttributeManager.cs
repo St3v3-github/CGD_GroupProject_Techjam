@@ -26,12 +26,14 @@ public class AttributeManager : MonoBehaviour
     //[SerializeField] private int offensive_power;/./
 
     //CURRENT STATUS HERE
-    public StatusEffect player_status;
-    public GameObject last_damage_player;
+    public StatusEffect playerStatus;
+    public GameObject lastDamagePlayer;
 
-    public Slider healthbar;
+    public Slider healthBar;
     public GameObject ScoreText;
-    public string scorefloat; 
+    public string scorefloat;
+
+    public GameObject damageFlyTextPrefab;
     void Start()
     {
         //set all values to whatever default value we want
@@ -50,6 +52,9 @@ public class AttributeManager : MonoBehaviour
         {
             this.tag = "Player2";
         }
+
+        //need to load from resources as attribute controller seems to be created at runtime, cannot reference in inspector
+        damageFlyTextPrefab = (GameObject)Resources.Load("prefabs/DamageText", typeof(GameObject));
     }
 
     void Update()
@@ -57,7 +62,7 @@ public class AttributeManager : MonoBehaviour
         //attribute manager would check players current status and call status functions here!!
         //example: player is on fire via fire status, HP reduced by 5 every 1 second?
 
-        healthbar.value = currentHealth;
+        healthBar.value = currentHealth;
         scorefloat = score.ToString(); 
         ScoreText.GetComponent<TextMeshProUGUI>().text = scorefloat; 
     }
@@ -116,6 +121,10 @@ public class AttributeManager : MonoBehaviour
 
         //Particles and Shaders called here
 
+        if (damageFlyTextPrefab)
+        {
+            DamageFlyText(damage);
+        }
 
         return currentHealth;
     }
@@ -146,7 +155,10 @@ public class AttributeManager : MonoBehaviour
         //Particles and Shaders called here
         Debug.Log("Health: " + currentHealth);
 
-
+        if(damageFlyTextPrefab)
+        {
+            DamageFlyText(damage);
+        }
 
 
 
@@ -185,13 +197,13 @@ public class AttributeManager : MonoBehaviour
     public float ChangeStatus(StatusEffect newStatus)
     {
 
-        if (player_status != newStatus)
+        if (playerStatus != newStatus)
         {
-            player_status.RemoveEffect();
+            playerStatus.RemoveEffect();
 
-            player_status = newStatus;
+            playerStatus = newStatus;
 
-            player_status.ApplyEffect();
+            playerStatus.ApplyEffect();
 
         }
 
@@ -202,5 +214,11 @@ public class AttributeManager : MonoBehaviour
     {
         speed *= speedMod;
     
+    }
+
+    public void DamageFlyText(float damageDealt)
+    {
+        var damageText = Instantiate(damageFlyTextPrefab, transform.position, Quaternion.identity, transform);
+        damageText.GetComponent<TextMesh>().text = damageDealt.ToString();
     }
 }
