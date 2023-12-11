@@ -14,5 +14,6 @@ public class DamageFlyText : MonoBehaviour
         transform.localPosition += textOffsetHeight;
         transform.localPosition += new Vector3(Random.Range(-randomTextOffset.x, randomTextOffset.x),
             Random.Range(-randomTextOffset.y, randomTextOffset.y), Random.Range(-randomTextOffset.z, randomTextOffset.z));
+        transform.rotation = Quaternion.LookRotation(transform.position - Camera.main.transform.position);
     }
 }
