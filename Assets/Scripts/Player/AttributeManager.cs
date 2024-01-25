@@ -34,6 +34,7 @@ public class AttributeManager : MonoBehaviour
     public string scorefloat;
 
     public GameObject damageFlyTextPrefab;
+    Color original_color;
     void Start()
     {
         //set all values to whatever default value we want
@@ -55,6 +56,9 @@ public class AttributeManager : MonoBehaviour
 
         //need to load from resources as attribute controller seems to be created at runtime, cannot reference in inspector
         damageFlyTextPrefab = (GameObject)Resources.Load("prefabs/DamageText", typeof(GameObject));
+
+        //original_color = GetComponentInParent<Renderer>().material.color;
+        original_color = transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color;
     }
 
     void Update()
@@ -126,6 +130,11 @@ public class AttributeManager : MonoBehaviour
             DamageFlyText(damage);
         }
 
+        if (this.isActiveAndEnabled)
+        {
+            StartCoroutine(DamageEffect());
+        }
+
         return currentHealth;
     }
 
@@ -160,7 +169,10 @@ public class AttributeManager : MonoBehaviour
             DamageFlyText(damage);
         }
 
-
+        if(this.isActiveAndEnabled)
+        {
+            StartCoroutine(DamageEffect());
+        }
 
         return currentHealth;
     }
@@ -219,7 +231,15 @@ public class AttributeManager : MonoBehaviour
     public void DamageFlyText(float damageDealt)
     {
         Debug.Log("Damage Text Spawn");
-        var damageText = Instantiate(damageFlyTextPrefab, transform.position, transform.rotation, transform);
+        var damageText = Instantiate(damageFlyTextPrefab, transform.position, 
+            transform.parent.gameObject.GetComponentInChildren<Camera>().transform.rotation, transform);
         damageText.GetComponent<TextMesh>().text = damageDealt.ToString();
+    }
+
+    public IEnumerator DamageEffect()
+    {
+        transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
+        yield return new WaitForSeconds(0.5f);
+        transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color = original_color;
     }
 }
