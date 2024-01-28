@@ -34,7 +34,7 @@ public class AttributeManager : MonoBehaviour
     public string scorefloat;
 
     public GameObject damageFlyTextPrefab;
-    Color original_color;
+    Color originalColor;
     void Start()
     {
         //set all values to whatever default value we want
@@ -58,7 +58,7 @@ public class AttributeManager : MonoBehaviour
         damageFlyTextPrefab = (GameObject)Resources.Load("prefabs/DamageText", typeof(GameObject));
 
         //original_color = GetComponentInParent<Renderer>().material.color;
-        original_color = transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color;
+        originalColor = transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color;
     }
 
     void Update()
@@ -120,6 +120,7 @@ public class AttributeManager : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
+            transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color = originalColor;
             Die(attacker);
         }
 
@@ -127,7 +128,7 @@ public class AttributeManager : MonoBehaviour
 
         if (damageFlyTextPrefab)
         {
-            DamageFlyText(damage);
+            DamageFlyText(damage, attacker);
         }
 
         if (this.isActiveAndEnabled)
@@ -230,9 +231,20 @@ public class AttributeManager : MonoBehaviour
 
     public void DamageFlyText(float damageDealt)
     {
-        Debug.Log("Damage Text Spawn");
         var damageText = Instantiate(damageFlyTextPrefab, transform.position, 
             transform.parent.gameObject.GetComponentInChildren<Camera>().transform.rotation, transform);
+        damageText.GetComponent<TextMesh>().text = damageDealt.ToString();
+    }
+
+    public void DamageFlyText(float damageDealt, GameObject attacker)
+    {
+        var damageText = Instantiate(damageFlyTextPrefab, transform.position,
+            transform.parent.gameObject.GetComponentInChildren<Camera>().transform.rotation, transform);
+        damageText.GetComponent<DamageFlyText>().FaceAttacker(attacker.GetComponentInChildren<Camera>());
+        //damageText.transform.LookAt(attacker.GetComponentInChildren<Camera>().transform);
+        //damageText.transform.rotation = Quaternion.LookRotation(attacker.GetComponentInChildren<Camera>().transform.position - damageText.transform.position);
+        //Vector3 dir = attacker.transform.position - damageText.transform.position;
+        //damageText.transform.rotation = Quaternion.FromToRotation(Vector3.up, dir);
         damageText.GetComponent<TextMesh>().text = damageDealt.ToString();
     }
 
@@ -240,6 +252,6 @@ public class AttributeManager : MonoBehaviour
     {
         transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
         yield return new WaitForSeconds(0.5f);
-        transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color = original_color;
+        transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color = originalColor;
     }
 }
