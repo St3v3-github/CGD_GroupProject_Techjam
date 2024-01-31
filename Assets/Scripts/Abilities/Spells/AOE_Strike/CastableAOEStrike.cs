@@ -102,7 +102,6 @@ public class CastableAOEStrike : ElementalSpell
 
     public void DetectCharacters(Vector3 centre, string targetTag)
     {
-        Debug.Log("detecting");
         Collider[] colliders = Physics.OverlapSphere(centre, spell.radius);
         List<GameObject> players = new List<GameObject>();
 

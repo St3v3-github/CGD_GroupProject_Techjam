@@ -400,7 +400,7 @@ MonoBehaviour:
   playerController: {fileID: 3597789930903828011}
   advancedProjectileSystem: {fileID: 3008120021183470106}
   cameraController: {fileID: 1275186140544510898}
-  projectileController: {fileID: 4517045908497947722}
+  projectileController: {fileID: 0}
   animationController: {fileID: 1863637143123250814}
   ray: {fileID: 4712851475361685754}
   cameraInput: {x: 0, y: 0}
@@ -521,10 +521,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source: {fileID: 974478289764777197}
   equippedProjectile: {fileID: 11400000, guid: e9a801d15eee89743af235b7bbbc5caa, type: 2}
-  fireballforalpha: {fileID: 11400000, guid: e9a801d15eee89743af235b7bbbc5caa, type: 2}
+  chargesLeft: 0
+  chargesShot: 0
   shooting: 0
   readyToShoot: 0
   recharging: 0
+  shootWithRay: 0
   allowInvoke: 1
   playerCam: {fileID: 5822131898686806388}
   firePoint: {fileID: 404214415002560938}
@@ -11095,7 +11097,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5686921009914067106}
-  - component: {fileID: 4517045908497947722}
   - component: {fileID: 5520134397269985870}
   - component: {fileID: 1578295551330820959}
   - component: {fileID: 3515913301227583845}
@@ -11124,31 +11125,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1557659141253257577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4517045908497947722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8393186558806589648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 406c8511d3235cb4eba857bfdc5e24d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 974478289764777197}
-  equippedProjectile: {fileID: 11400000, guid: e9a801d15eee89743af235b7bbbc5caa, type: 2}
-  fireballforalpha: {fileID: 11400000, guid: e9a801d15eee89743af235b7bbbc5caa, type: 2}
-  shooting: 0
-  readyToShoot: 0
-  recharging: 0
-  allowInvoke: 1
-  playerCam: {fileID: 5822131898686806388}
-  firePoint: {fileID: 404214415002560938}
-  hittable:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  animControl: {fileID: 1863637143123250814}
 --- !u!114 &5520134397269985870
 MonoBehaviour:
   m_ObjectHideFlags: 0
