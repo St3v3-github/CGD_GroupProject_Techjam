@@ -18,6 +18,7 @@ public class AdvancedProjectileSystem : Spell
     //bools
     [Header("Bools")]
     public bool shooting, readyToShoot, recharging;
+    public bool shootWithRay;
 
     //Testing :)
     public bool allowInvoke = true;
@@ -96,8 +97,14 @@ public class AdvancedProjectileSystem : Spell
         {
             chargesShot = 0;
             animControl.toggleCastingBool(true);
-            ProjectileShoot();
-
+            if (shootWithRay)
+            {
+                RayShoot();
+            }
+            else
+            {
+                ProjectileShoot();
+            }
         }
     }
     public void ToggleShooting()
