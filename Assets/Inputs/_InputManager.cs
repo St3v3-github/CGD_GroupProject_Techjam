@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
 {
     private PlayerControlsAsset playercontrols;
     public PlayerController playerController;
+    public UpdatedPlayerController updatedPlayerController;
     public CameraController cameraController;
     public AdvancedProjectileSystem projectileController;
     public AnimationManager animationController;
@@ -33,8 +34,8 @@ public class InputManager : MonoBehaviour
     private void Update()
     {
        
-        playerController.HandleMovement(movementInput);
-        playerController.HandleCamera(cameraInput);
+        updatedPlayerController.HandleMovement(movementInput);
+        updatedPlayerController.HandleCamera(cameraInput);
     }
 
 
