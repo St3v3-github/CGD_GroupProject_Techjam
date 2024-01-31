@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
 using static UnityEngine.EventSystems.EventTrigger;
+using static UpdatedPlayerController;
 
 public class InputManager : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class InputManager : MonoBehaviour
     public Vector2 cameraInput;
     public Vector2 movementInput;
 
+    
+
     private void Awake()
     {
        
@@ -36,8 +39,11 @@ public class InputManager : MonoBehaviour
        
         updatedPlayerController.HandleMovement(movementInput);
         updatedPlayerController.HandleCamera(cameraInput);
+        
+
     }
 
+    
 
     public void OnLook(InputAction.CallbackContext ctx)
     {
@@ -54,12 +60,15 @@ public class InputManager : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext ctx)
     {
-        if (ctx.action.triggered)
+        if (ctx.action.triggered && updatedPlayerController.isGrounded && updatedPlayerController.readyToJump)
         {
             //animationController.disableEmote();
-            animationController.toggleEmotingBool(false);
-            playerController.HandleJump();
-           
+            //animationController.toggleEmotingBool(false);
+            //playerController.HandleJump();
+
+
+
+            updatedPlayerController.HandleJump();
         }
     }
 
@@ -67,9 +76,15 @@ public class InputManager : MonoBehaviour
     {
         if (ctx.action.triggered)
         {
-            //animationController.disableEmote();
-            animationController.toggleEmotingBool(false);
-            //Add Script call Here
+            updatedPlayerController.sprintPressed = !updatedPlayerController.sprintPressed;
+        }
+    }
+
+    public void OnCrouch(InputAction.CallbackContext ctx)
+    {
+        if (ctx.action.triggered)
+        {
+            updatedPlayerController.crouchPressed = !updatedPlayerController.crouchPressed;
         }
     }
 
