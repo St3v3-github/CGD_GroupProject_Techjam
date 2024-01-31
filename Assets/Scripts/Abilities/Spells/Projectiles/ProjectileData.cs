@@ -9,6 +9,7 @@ public class ProjectileData : ScriptableObject
     //Projectile
     public GameObject projectile;
     public GameObject recharge;
+    public GameObject particle;
     public string description;
 
     //Projectile force

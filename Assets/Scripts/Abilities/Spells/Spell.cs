@@ -13,7 +13,7 @@ public class Spell : MonoBehaviour
     private void Awake()
     {
         gameObject.layer = LayerMask.NameToLayer("layer_Spell");
-      
+        source = this.gameObject;
     }
 
     public void setTargetTag()
@@ -78,20 +78,22 @@ public class Spell : MonoBehaviour
         {
             player = hitbox;
         }
+        player = hitbox;
       
         
         if (player.layer == LayerMask.NameToLayer("layer_Player") && player.tag != source.tag)
         {
-
+            Debug.Log("1");
             Debug.Log(hitbox.name);
            // AttributeManager attributes = hitbox.GetComponent<AttributeManager>();
-           if (hitbox.name == "Player(Clone)" || hitbox.name == "AttributeController")
+           if (hitbox.tag == "PLayer1" || hitbox.tag == "Player2")
            {
                AttributeManager attributes = player.GetComponent<UIController>().attributeController.GetComponent<AttributeManager>();
-
-               if (attributes != null)
+                Debug.Log("2");
+                if (attributes != null)
                {
-                   attributes.TakeDamage(damage, source);
+                    Debug.Log("3");
+                    attributes.TakeDamage(damage, source);
                    return true;
                }
            }

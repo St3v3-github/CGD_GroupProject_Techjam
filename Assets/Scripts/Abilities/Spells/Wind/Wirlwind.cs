@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class Wirlwind : MonoBehaviour
 {
-    public SliderInt SliderInt = new SliderInt();
+    public float bounceStrength = 5;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -16,7 +16,7 @@ public class Wirlwind : MonoBehaviour
             
             Rigidbody rb = player.GetComponent<Rigidbody>();
 
-            rb.AddForce(Vector3.up * 5f, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * bounceStrength, ForceMode.Impulse);
         }
     }
 }

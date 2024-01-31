@@ -6,17 +6,18 @@ using UnityEngine.InputSystem;
 
 public class AdvancedProjectileSystem : Spell
 {
-
+    [Header("Spell Data")]
     public ProjectileData equippedProjectile;
-    public ProjectileData fireballforalpha;
     private List<ProjectileData> spells = new List<ProjectileData>();
     private int currentSpellIndex = 0;
     private GameObject rechargeSurge;
 
-    int chargesLeft, chargesShot;
+    [Header("Clip")]
+    [SerializeField] private int chargesLeft, chargesShot;
 
     //bools
-   public bool shooting, readyToShoot, recharging;
+    [Header("Bools")]
+    public bool shooting, readyToShoot, recharging;
 
     //Testing :)
     public bool allowInvoke = true;
@@ -38,8 +39,6 @@ public class AdvancedProjectileSystem : Spell
 
     private void Start()
     {
-        var clone = Instantiate(fireballforalpha);
-        equippedProjectile = clone;
         setTargetTag();
 
         rechargeSurge = Instantiate(equippedProjectile.recharge, firePoint.position, Quaternion.identity);
@@ -97,7 +96,7 @@ public class AdvancedProjectileSystem : Spell
         {
             chargesShot = 0;
             animControl.toggleCastingBool(true);
-            //ProjectileShoot();
+            ProjectileShoot();
 
         }
     }
@@ -192,15 +191,12 @@ public class AdvancedProjectileSystem : Spell
         float y = Random.Range(-equippedProjectile.spread, equippedProjectile.spread);
 
         Vector3 direction = playerCam.transform.forward + new Vector3(x, y, 0);
-
+        List<RaycastHit> hits = new List<RaycastHit>();
         //Raycast
         if (Physics.Raycast(playerCam.transform.position, direction, out rayHit, equippedProjectile.range, hittable))
         {
-            Debug.Log(rayHit.collider.name);
-            if (rayHit.collider.CompareTag(targetTag))
-            {
-                dealDamage(rayHit.collider.gameObject, equippedProjectile.damage);
-            }
+            Debug.Log(rayHit.collider.gameObject.name);
+            dealDamage(rayHit.collider.gameObject, equippedProjectile.damage);
         }
 
         //ShakeCamera
@@ -211,11 +207,7 @@ public class AdvancedProjectileSystem : Spell
         //Instantiate(spellFlash, firePoint.position, Quaternion.identity);
 
         //Invoke resetShot ( if not already invoked)
-        if (allowInvoke)
-        {
-            Invoke("ResetShot", equippedProjectile.timeBetweenShots);
-            allowInvoke = false;
-        }
+        Invoke("ResetShot", equippedProjectile.timeBetweenShots);
 
         if (chargesShot < equippedProjectile.totalCharges && chargesLeft > 0)
         {
@@ -227,8 +219,12 @@ public class AdvancedProjectileSystem : Spell
     {
         allowInvoke = true;
         readyToShoot = true;
-        shooting = false;
-       // Debug.Log("Ready to shoot");
+        if (!equippedProjectile.allowButtonHold)
+        {
+
+            shooting = false;
+        }
+        // Debug.Log("Ready to shoot");
         animControl.toggleCastingBool(false);
     }
 

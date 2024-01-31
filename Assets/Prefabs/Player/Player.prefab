@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 8831944262971521100}
   - component: {fileID: 6340715753519854202}
   - component: {fileID: 9037200316612442087}
+  - component: {fileID: 3008120021183470106}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -167,13 +168,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 2.4
+  m_Radius: 0.8
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!114 &3765167287048175808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,8 +284,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2921279329162863994}
         m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
+        m_MethodName: OnPrimaryCast
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -397,12 +398,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 3597789930903828011}
+  advancedProjectileSystem: {fileID: 3008120021183470106}
   cameraController: {fileID: 1275186140544510898}
   projectileController: {fileID: 4517045908497947722}
   animationController: {fileID: 1863637143123250814}
   ray: {fileID: 4712851475361685754}
   cameraInput: {x: 0, y: 0}
   movementInput: {x: 0, y: 0}
+  shootInput: 0
 --- !u!114 &3597789930903828011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,6 +507,31 @@ MonoBehaviour:
   player: {fileID: 974478289764777197}
   healthText: {fileID: 4417325605559549734}
   attributeController: {fileID: 5462922462062542653}
+--- !u!114 &3008120021183470106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974478289764777197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 406c8511d3235cb4eba857bfdc5e24d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 974478289764777197}
+  equippedProjectile: {fileID: 11400000, guid: e9a801d15eee89743af235b7bbbc5caa, type: 2}
+  fireballforalpha: {fileID: 11400000, guid: e9a801d15eee89743af235b7bbbc5caa, type: 2}
+  shooting: 0
+  readyToShoot: 0
+  recharging: 0
+  allowInvoke: 1
+  playerCam: {fileID: 5822131898686806388}
+  firePoint: {fileID: 404214415002560938}
+  hittable:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  animControl: {fileID: 1863637143123250814}
 --- !u!1 &1837251313428888528
 GameObject:
   m_ObjectHideFlags: 0
@@ -10879,7 +10907,6 @@ GameObject:
   m_Component:
   - component: {fileID: 894559704450128298}
   - component: {fileID: 4074272386671593609}
-  - component: {fileID: 3861078700423224220}
   m_Layer: 6
   m_Name: AttributeController
   m_TagString: Player
@@ -10925,29 +10952,6 @@ MonoBehaviour:
   healthbar: {fileID: 4701921683868773410}
   ScoreText: {fileID: 1837251313428888528}
   scorefloat: 
---- !u!136 &3861078700423224220
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5462922462062542653}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.7032048
-  m_Height: 2.89
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0.1773197}
 --- !u!1 &7822440753357677050
 GameObject:
   m_ObjectHideFlags: 0
