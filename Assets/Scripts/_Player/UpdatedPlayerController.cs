@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build;
 using UnityEngine;
+using UnityEngine.Audio;
 using static InputManager;
 
 public class UpdatedPlayerController : MonoBehaviour
@@ -38,7 +40,14 @@ public class UpdatedPlayerController : MonoBehaviour
     public bool readyToJump;
     public bool sprintPressed = false;
 
+    public float maxSlopeAngle;
+    private RaycastHit slopeHit;
+    bool exitingSlope;
+
     public MovementState state;
+
+    //Keycode for hardcoding - when implementation done hook up to input system later on :) - Matt
+    public KeyCode crouchKey = KeyCode.LeftControl;
 
     public enum MovementState
     {
@@ -52,13 +61,13 @@ public class UpdatedPlayerController : MonoBehaviour
     {
         //Crouch just compresses the character right now, need to hook up the crouch to the animation manager in the future
         //and just make the hitbox of the player smaller.
-        if(crouchPressed)
+        if(Input.GetKey(crouchKey))
         {
             state = MovementState.crouching;
             moveSpeed = crouchSpeed;
         }
 
-        if (isGrounded && sprintPressed)
+        else if (isGrounded && sprintPressed)
         {
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;
@@ -80,6 +89,7 @@ public class UpdatedPlayerController : MonoBehaviour
         rb.freezeRotation = true;
 
         readyToJump = true;
+
         startYScale = transform.localScale.y;
     }
 
@@ -99,16 +109,21 @@ public class UpdatedPlayerController : MonoBehaviour
             rb.drag = 0;
         }
 
-        StateHandler();
-
-        if(crouchPressed)
+        if (Input.GetKeyDown(crouchKey))
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
         }
-        else
+        else if (Input.GetKeyUp(crouchKey)) 
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+        }
+
+        StateHandler();
+
+        if(Input.GetKeyDown(KeyCode.Space)) 
+        {
+            Debug.Log(moveSpeed);
         }
     }
 
@@ -120,12 +135,14 @@ public class UpdatedPlayerController : MonoBehaviour
 
         movementDirection = transform.forward * movementInput.y + transform.right * movementInput.x;
 
-        rb.AddForce(movementDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        if (OnSlope() && !exitingSlope)
+        {
+            //Debug.Log(1);
+            rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
 
-
-        /*
-
-        
+            if (rb.velocity.y > 0)
+                rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+        }
 
         if (isGrounded)
         {
@@ -135,7 +152,9 @@ public class UpdatedPlayerController : MonoBehaviour
         {
             rb.AddForce(movementDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
         }
-        */
+
+        rb.useGravity = !OnSlope();
+        
     }
 
     public void HandleCamera(Vector2 cameraInput)
@@ -166,15 +185,26 @@ public class UpdatedPlayerController : MonoBehaviour
     
 
     private void SpeedControl()
+    {
+        if(OnSlope())
+        {
+            if(rb.velocity.magnitude > moveSpeed)
+            {
+                rb.velocity = rb.velocity.normalized * moveSpeed;
+            }
+            
+        }
+        else
         {
             Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-            if(flatVelocity.magnitude > moveSpeed)
-            {
-                Vector3 limitedVelocity = flatVelocity.normalized * moveSpeed;
-                rb.velocity = new Vector3(limitedVelocity.x, rb.velocity.y, limitedVelocity.z);
-            }
-        }
+                if(flatVelocity.magnitude > moveSpeed)
+                {
+                    Vector3 limitedVelocity = flatVelocity.normalized * moveSpeed;
+                    rb.velocity = new Vector3(limitedVelocity.x, rb.velocity.y, limitedVelocity.z);
+                }
+        }        
+    }
 
     
 
@@ -182,6 +212,8 @@ public class UpdatedPlayerController : MonoBehaviour
 
     private void Jump()
     {
+        exitingSlope = true;
+
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
@@ -190,5 +222,24 @@ public class UpdatedPlayerController : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+
+        exitingSlope = false;
+    }
+
+    private bool OnSlope()
+    {
+        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
+        {
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            return angle < maxSlopeAngle && angle != 0;
+            
+        }
+
+        return false;
+    }
+
+    private Vector3 GetSlopeMoveDirection()
+    {
+        return Vector3.ProjectOnPlane(movementDirection, slopeHit.normal).normalized;
     }
 }

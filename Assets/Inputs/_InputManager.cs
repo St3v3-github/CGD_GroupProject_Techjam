@@ -10,6 +10,7 @@ public class InputManager : MonoBehaviour
     private PlayerControlsAsset playercontrols;
     public PlayerController playerController;
     public UpdatedPlayerController updatedPlayerController;
+    public Sliding1 sliding;
     public CameraController cameraController;
     public AdvancedProjectileSystem projectileController;
     public AnimationManager animationController;
@@ -40,7 +41,7 @@ public class InputManager : MonoBehaviour
         updatedPlayerController.HandleMovement(movementInput);
         updatedPlayerController.HandleCamera(cameraInput);
         
-
+        //sliding.AssignValues(movementInput);
     }
 
     
@@ -84,7 +85,16 @@ public class InputManager : MonoBehaviour
     {
         if (ctx.action.triggered)
         {
-            updatedPlayerController.crouchPressed = !updatedPlayerController.crouchPressed;
+            //updatedPlayerController.crouchPressed = !updatedPlayerController.crouchPressed;
+        }
+
+        if(ctx.performed)
+        {
+            sliding.slidePressed = true;
+        }
+        else if(ctx.canceled)
+        {
+            sliding.slidePressed = false;
         }
     }
 
