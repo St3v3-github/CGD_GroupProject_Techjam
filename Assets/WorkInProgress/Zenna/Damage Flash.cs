@@ -5,21 +5,21 @@ using UnityEngine;
 public class DamageFlash : MonoBehaviour
 {
 
-    MeshRenderer meshRenderer;
-    Color originalColour;
+    [SerializeField] SkinnedMeshRenderer meshRendererToUse;
+    public Material originalMat;
     float flashTime = .15f;
 
-    public Material[] material;
+    public Material materialToUse;
 
     public bool Damaging = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
-        originalColour = meshRenderer.material.color;
-        meshRenderer.enabled = true;
-        meshRenderer.sharedMaterial = material[0];
+        //meshRendererToUse = GetComponent<SkinnedMeshRenderer>();
+        //originalColour = meshRendererToUse.material.color;
+        //meshRendererToUse.enabled = true;
+        //meshRendererToUse.sharedMaterial = materialToUse;
     }
 
     // Update is called once per frame
@@ -30,12 +30,18 @@ public class DamageFlash : MonoBehaviour
             DamageFlashing();
             Debug.Log("DAMAGE");
         }
+
+        if (Input.GetKeyDown("space"))
+        {
+            Debug.Log("CHANGEMATERIAL");
+            DamageFlashing();
+        }
        
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("BOX"))
         {
             Debug.Log("COLLISIONpaint");
             DamageFlashing();
@@ -49,7 +55,7 @@ public class DamageFlash : MonoBehaviour
 
     void DamageFlashing()
     {
-        meshRenderer.sharedMaterial = material[1];
+        meshRendererToUse.material = materialToUse;
 
         Invoke("FlashingStop", flashTime);
     }
@@ -57,7 +63,7 @@ public class DamageFlash : MonoBehaviour
     void FlashingStop()
     {
 
-        meshRenderer.material.color = originalColour;
+        meshRendererToUse.material = originalMat;
 
     }
 }
