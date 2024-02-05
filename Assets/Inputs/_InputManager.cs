@@ -10,7 +10,7 @@ public class InputManager : MonoBehaviour
     private PlayerControlsAsset playercontrols;
     public PlayerController playerController;
     public UpdatedPlayerController updatedPlayerController;
-    public Sliding1 sliding;
+    public Sliding sliding;
     public CameraController cameraController;
     public AdvancedProjectileSystem projectileController;
     public AnimationManager animationController;
@@ -41,7 +41,7 @@ public class InputManager : MonoBehaviour
         updatedPlayerController.HandleMovement(movementInput);
         updatedPlayerController.HandleCamera(cameraInput);
         
-        //sliding.AssignValues(movementInput);
+       sliding.AssignValues(movementInput);
     }
 
     
@@ -90,11 +90,11 @@ public class InputManager : MonoBehaviour
 
         if(ctx.performed)
         {
-            sliding.slidePressed = true;
+            sliding.StartSlide();
         }
         else if(ctx.canceled)
         {
-            sliding.slidePressed = false;
+            sliding.EndSlide();
         }
     }
 

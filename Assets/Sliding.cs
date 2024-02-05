@@ -33,7 +33,7 @@ public class Sliding : MonoBehaviour
 
     private void Update()
     {
-        if (slidePressed && (horizontalInput != 0 || verticalInput != 0))
+        /*if (slidePressed && (horizontalInput != 0 || verticalInput != 0))
         {
             StartSlide();
         }
@@ -42,7 +42,7 @@ public class Sliding : MonoBehaviour
         {
             EndSlide();
         }
-
+*/
         Debug.Log(slideTimer);
     }
 
@@ -60,7 +60,7 @@ public class Sliding : MonoBehaviour
         verticalInput = moveInput.y; 
     }
 
-    private void StartSlide()
+    public void StartSlide()
     {
         sliding = true;
 
@@ -83,7 +83,7 @@ public class Sliding : MonoBehaviour
             EndSlide();
     }
 
-    private void EndSlide()
+    public void EndSlide()
     {   
         sliding = false;
 
