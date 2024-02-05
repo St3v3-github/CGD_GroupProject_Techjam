@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 974566168759426221}
-  - component: {fileID: 7547544012651816680}
   - component: {fileID: 8521900389906227251}
   m_Layer: 0
   m_Name: PoisonCloud
@@ -34,27 +33,6 @@ Transform:
   - {fileID: 6980460939952284218}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &7547544012651816680
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2127068259652599947}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8521900389906227251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,8 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8148de73eeba9044d808069c83739328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  source: {fileID: 0}
   damagePerSecond: 5
   delayBeforeDamage: 2
+  maxColliderRadius: 5
+  sizeIncreaseDuration: 5
 --- !u!1001 &6976388255048713966
 PrefabInstance:
   m_ObjectHideFlags: 0
