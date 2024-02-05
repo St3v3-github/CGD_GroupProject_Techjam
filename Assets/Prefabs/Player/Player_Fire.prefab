@@ -476,7 +476,7 @@ MonoBehaviour:
   spell_slots: 4
   fireballforalpha: {fileID: 11400000, guid: 4a95dc6ed230c8a4789dc33b11fbce2d, type: 2}
   dd_spell_inventory:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 883a7d5b699c81c47b21a7fac9f970c8, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -11101,13 +11101,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5686921009914067106}
+  - component: {fileID: 4437084896201454627}
   - component: {fileID: 5520134397269985870}
   - component: {fileID: 1578295551330820959}
   - component: {fileID: 3515913301227583845}
   - component: {fileID: 5021457644584775468}
   - component: {fileID: 8192622155015055736}
   - component: {fileID: 5112053906915280969}
-  - component: {fileID: 4437084896201454627}
   m_Layer: 6
   m_Name: SpellController
   m_TagString: Untagged
@@ -11130,6 +11130,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1557659141253257577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4437084896201454627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8393186558806589648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb4d0ce1d9b3574080d15a28510ec3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 0}
+  firePoint: {fileID: 404214415002560938}
+  prefab: {fileID: 1702362178713909210, guid: 9df84c82f8e0d1e4d9db0c574c091af9, type: 3}
+  playerCam: {fileID: 1232235808428731750}
+  projectileForce: 10
 --- !u!114 &5520134397269985870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11242,23 +11259,6 @@ MonoBehaviour:
     m_Bits: 4294967295
   particlePrefab: {fileID: 1821233908984145251, guid: b6f891a1cd9e041449891c2a4fb5627f, type: 3}
   active: 0
---- !u!114 &4437084896201454627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8393186558806589648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb4d0ce1d9b3574080d15a28510ec3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 0}
-  firePoint: {fileID: 404214415002560938}
-  prefab: {fileID: 1702362178713909210, guid: 9df84c82f8e0d1e4d9db0c574c091af9, type: 3}
-  playerCam: {fileID: 1232235808428731750}
-  projectileForce: 10
 --- !u!1001 &960937758123907442
 PrefabInstance:
   m_ObjectHideFlags: 0

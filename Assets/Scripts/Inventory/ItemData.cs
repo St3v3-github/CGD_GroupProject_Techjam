@@ -50,6 +50,30 @@ public class ItemData : ScriptableObject
         HEALSPELL = 18,
         POISONCLOUD = 19,
         POWERBEAM = 20,
+        FIREGRENADE = 21,
+        FLAMETHROWER = 22,
+        //More
+    }
+
+    public enum newSpellList
+    {
+        // CLASS SPELLS
+        EMPTY = 0,
+        FIREGRENADE = 1,
+        FLAMETHROWER = 2,
+        ICESLOW = 3,
+        ICEWALL = 4,
+        WIRLWIND = 5,
+        WINDRUSH = 6,
+        LIGHTNINGSTRIKE = 7,
+        CHAINEDLIGHTNING = 8,
+        GROUNDSMASH = 9,
+        EARTHARENA = 10,
+        // ULTIMATE PICKUP SPELLS
+        BLACKHOLE = 17,
+        HEALSPELL = 18,
+        POISONCLOUD = 19,
+        POWERBEAM = 20,
         //More
     }
 
