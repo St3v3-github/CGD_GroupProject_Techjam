@@ -18,7 +18,7 @@ public class TextUpdater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerInventory.dd_spell_inventory[slot].uses_left > 0)
+        /*if (playerInventory.dd_spell_inventory[slot].uses_left > 0)
         {
             spelltext.text = playerInventory.dd_spell_inventory[slot].item_name;
             chargetext.text = playerInventory.dd_spell_inventory[slot].uses_left.ToString();
@@ -27,7 +27,7 @@ public class TextUpdater : MonoBehaviour
         {
             spelltext.text = "EMPTY";
             chargetext.text = 0.ToString();
-        }
+        }*/
      
         
     }
