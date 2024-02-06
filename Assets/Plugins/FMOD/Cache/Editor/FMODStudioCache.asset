@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7200009864497517492
+--- !u!114 &-9160536643852165866
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -19,7 +19,7 @@ MonoBehaviour:
     Data3: -658511478
     Data4: 1015014035
   Banks:
-  - {fileID: -2423752134389366320}
+  - {fileID: -8577610441079299784}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -27,7 +27,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-4918207976901299687
+--- !u!114 &-8577610441079299784
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -36,25 +36,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SummonStag
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SFX.bank
   m_EditorClassIdentifier: 
-  Path: event:/SummonStag
-  Guid:
-    Data1: -390726173
-    Data2: 1137819060
-    Data3: -1082087508
-    Data4: 1086797803
-  Banks:
-  - {fileID: -2423752134389366320}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-4477109954104725513
+  Path: Assets/Plugins/FMOD/Build/SFX.bank
+  Name: SFX
+  StudioPath: bank:/SFX
+  lastModified: 638428149110827826
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-6215078180672241936
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,7 +64,7 @@ MonoBehaviour:
     Data3: -925127246
     Data4: 1261830401
   Banks:
-  - {fileID: -2423752134389366320}
+  - {fileID: -8577610441079299784}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -81,85 +72,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-2423752134389366320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/SFX.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Plugins/FMOD/Build/SFX.bank
-  Name: SFX
-  StudioPath: bank:/SFX
-<<<<<<< HEAD
-  lastModified: 638425875707029291
-=======
-  lastModified: 638374522360000000
->>>>>>> Awse
-  FileSizes: []
-  Exists: 1
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
-  m_Name: FMODStudioCache
-  m_EditorClassIdentifier: 
-  EditorBanks:
-  - {fileID: 6641807216325928951}
-  - {fileID: 1279858848157751200}
-  - {fileID: 8781569767946616124}
-  - {fileID: -2423752134389366320}
-  EditorEvents:
-  - {fileID: 7182535154621413140}
-  - {fileID: 5952631502939319781}
-  - {fileID: -7200009864497517492}
-  - {fileID: -4477109954104725513}
-  - {fileID: -4918207976901299687}
-  EditorParameters: []
-  MasterBanks:
-  - {fileID: 1279858848157751200}
-  StringsBanks:
-  - {fileID: 6641807216325928951}
-<<<<<<< HEAD
-  cacheTime: 638425875707029291
-=======
-  cacheTime: 638374522360000000
->>>>>>> Awse
-  cacheVersion: 131609
---- !u!114 &1279858848157751200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Plugins/FMOD/Build/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-<<<<<<< HEAD
-  lastModified: 638425875706997097
-=======
-  lastModified: 638374522360000000
->>>>>>> Awse
-  FileSizes: []
-  Exists: 1
---- !u!114 &5952631502939319781
+--- !u!114 &-5000909266538247187
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,48 +82,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/thunderSpell
+  m_Name: event:/SummonStag
   m_EditorClassIdentifier: 
-  Path: event:/thunderSpell
+  Path: event:/SummonStag
   Guid:
-    Data1: 1089165849
-    Data2: 1312599242
-    Data3: 1328511361
-    Data4: 1650737932
+    Data1: -390726173
+    Data2: 1137819060
+    Data3: -1082087508
+    Data4: 1086797803
   Banks:
-  - {fileID: -2423752134389366320}
-  IsStream: 1
-  Is3D: 0
+  - {fileID: -8577610441079299784}
+  IsStream: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 3000
---- !u!114 &6641807216325928951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Plugins/FMOD/Build/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-<<<<<<< HEAD
-  lastModified: 638425875707019256
-=======
-  lastModified: 638374522360000000
->>>>>>> Awse
-  FileSizes:
-  - Name: 
-    Value: 1036
-  Exists: 1
---- !u!114 &7182535154621413140
+  Length: 0
+--- !u!114 &-3537915149035120362
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -229,7 +118,7 @@ MonoBehaviour:
     Data3: 890142595
     Data4: 1357195468
   Banks:
-  - {fileID: 8781569767946616124}
+  - {fileID: 3719646049796001075}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -237,7 +126,82 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 8045
---- !u!114 &8781569767946616124
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: 4637277803520788503}
+  - {fileID: 285241093141086317}
+  - {fileID: 3719646049796001075}
+  - {fileID: -8577610441079299784}
+  EditorEvents:
+  - {fileID: -3537915149035120362}
+  - {fileID: 3694837540878573835}
+  - {fileID: -9160536643852165866}
+  - {fileID: -6215078180672241936}
+  - {fileID: -5000909266538247187}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: 285241093141086317}
+  StringsBanks:
+  - {fileID: 4637277803520788503}
+  cacheTime: 638428149110827826
+  cacheVersion: 131609
+--- !u!114 &285241093141086317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Plugins/FMOD/Build/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638428149110757206
+  FileSizes: []
+  Exists: 1
+--- !u!114 &3694837540878573835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/thunderSpell
+  m_EditorClassIdentifier: 
+  Path: event:/thunderSpell
+  Guid:
+    Data1: 1089165849
+    Data2: 1312599242
+    Data3: 1328511361
+    Data4: 1650737932
+  Banks:
+  - {fileID: -8577610441079299784}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3000
+--- !u!114 &3719646049796001075
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -252,10 +216,26 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Build/Music.bank
   Name: Music
   StudioPath: bank:/Music
-<<<<<<< HEAD
-  lastModified: 638425875707007100
-=======
-  lastModified: 638374522360000000
->>>>>>> Awse
+  lastModified: 638428149110787451
   FileSizes: []
+  Exists: 1
+--- !u!114 &4637277803520788503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Plugins/FMOD/Build/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638428149110767273
+  FileSizes:
+  - Name: 
+    Value: 1036
   Exists: 1

@@ -10672,6 +10672,7 @@ GameObject:
   - component: {fileID: 6461436324428886240}
   - component: {fileID: 1275186140544510898}
   - component: {fileID: 4712851475361685754}
+  - component: {fileID: 4507832317774558462}
   m_Layer: 6
   m_Name: Camera
   m_TagString: Untagged
@@ -10832,6 +10833,18 @@ MonoBehaviour:
   range: 5
   player: {fileID: 974478289764777197}
   target: {fileID: 0}
+--- !u!114 &4507832317774558462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4379525662178992784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 282995712c23a804b84a455640d1478a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4473104076444269589
 GameObject:
   m_ObjectHideFlags: 0
@@ -10992,11 +11005,14 @@ MonoBehaviour:
   speed: 10
   score: 0
   hit_by_strike: 0
-  player_status: {fileID: 0}
-  last_damage_player: {fileID: 0}
+  playerStatus: {fileID: 0}
+  lastDamagePlayer: {fileID: 0}
   healthbar: {fileID: 4701921683868773410}
   ScoreText: {fileID: 1837251313428888528}
   scorefloat: 
+  damageFlyTextPrefab: {fileID: 0}
+  damageFlash: {fileID: 8442137360108322043}
+  cameraShake: {fileID: 4507832317774558462}
 --- !u!136 &3861078700423224220
 CapsuleCollider:
   m_ObjectHideFlags: 0

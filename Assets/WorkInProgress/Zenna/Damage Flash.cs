@@ -31,10 +31,11 @@ public class DamageFlash : MonoBehaviour
             Debug.Log("DAMAGE");
         }
 
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("x"))
         {
             Debug.Log("CHANGEMATERIAL");
-            DamageFlashing();
+            //DamageFlashing();
+            //StartCoroutine(Shake(.15f, .4f));
         }
        
     }
@@ -53,9 +54,10 @@ public class DamageFlash : MonoBehaviour
 
     }
 
-    void DamageFlashing()
+    public void DamageFlashing()
     {
         meshRendererToUse.material = materialToUse;
+        Debug.Log("DAMAGE FLASH");
 
         Invoke("FlashingStop", flashTime);
     }
@@ -66,4 +68,6 @@ public class DamageFlash : MonoBehaviour
         meshRendererToUse.material = originalMat;
 
     }
+
+    
 }

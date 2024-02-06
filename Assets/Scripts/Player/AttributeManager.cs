@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,6 +36,9 @@ public class AttributeManager : MonoBehaviour
 
     public GameObject damageFlyTextPrefab;
     Color originalColor;
+
+    public DamageFlash damageFlash;
+    public CameraShake cameraShake;
     void Start()
     {
         //set all values to whatever default value we want
@@ -68,7 +72,9 @@ public class AttributeManager : MonoBehaviour
 
         healthbar.value = currentHealth;
         scorefloat = score.ToString(); 
-        ScoreText.GetComponent<TextMeshProUGUI>().text = scorefloat; 
+        ScoreText.GetComponent<TextMeshProUGUI>().text = scorefloat;
+
+       
     }
 
     public float GetPlayerHealth()
@@ -126,6 +132,9 @@ public class AttributeManager : MonoBehaviour
 
         //Particles and Shaders called here
 
+        damageFlash.DamageFlashing();
+        StartCoroutine(cameraShake.Shake(.15f, .05f));
+
         if (damageFlyTextPrefab)
         {
             DamageFlyText(damage, attacker);
@@ -133,7 +142,7 @@ public class AttributeManager : MonoBehaviour
 
         if (this.isActiveAndEnabled)
         {
-            StartCoroutine(DamageEffect());
+            //StartCoroutine(DamageEffect());
         }
 
         return currentHealth;
@@ -165,14 +174,19 @@ public class AttributeManager : MonoBehaviour
         //Particles and Shaders called here
         Debug.Log("Health: " + currentHealth);
 
-        if(damageFlyTextPrefab)
+        damageFlash.DamageFlashing();
+        StartCoroutine(cameraShake.Shake(.15f, .05f));
+
+
+
+        if (damageFlyTextPrefab)
         {
             DamageFlyText(damage);
         }
 
         if(this.isActiveAndEnabled)
         {
-            StartCoroutine(DamageEffect());
+            //StartCoroutine(DamageEffect());
         }
 
         return currentHealth;
@@ -248,10 +262,10 @@ public class AttributeManager : MonoBehaviour
         damageText.GetComponent<TextMesh>().text = damageDealt.ToString();
     }
 
-    public IEnumerator DamageEffect()
-    {
-        transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
-        yield return new WaitForSeconds(0.5f);
-        transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color = originalColor;
-    }
+    //public IEnumerator DamageEffect()
+    //{
+     //   transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
+    //    yield return new WaitForSeconds(0.5f);
+    //    transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color = originalColor;
+   // }
 }
