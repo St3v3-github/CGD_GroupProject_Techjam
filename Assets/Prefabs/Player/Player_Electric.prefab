@@ -475,7 +475,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spell_slots: 4
   fireballforalpha: {fileID: 11400000, guid: 4a95dc6ed230c8a4789dc33b11fbce2d, type: 2}
-  dd_spell_inventory: []
+  dd_spell_inventory:
+  - {fileID: 11400000, guid: 1a78367d30c25494fb1691554ed48d64, type: 2}
+  - {fileID: 11400000, guid: 9d200133370e0204b94530ae74e0a83b, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &6340715753519854202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12844,6 +12848,10 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13743470, guid: a3d63e24f853705488ac04e22173bc16, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0eeb4fc0dbc25934195630a92493a54d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

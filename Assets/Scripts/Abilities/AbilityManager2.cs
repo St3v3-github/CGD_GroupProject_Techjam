@@ -108,9 +108,9 @@ public class AbilityManager2 : MonoBehaviour
                     break;
 
                 case ItemData.SpellList.WINDRUSH:
-                    if (spell_controller.GetComponent<ThrowSpell>() == null) { Debug.Log("Not Found"); return 0; }
+                    if (spell_controller.GetComponent<Boop>() == null) { Debug.Log("Not Found"); return 0; }
                     if (!inventory.checkCooldown(slot)) { return 0; }
-                    spell_controller.GetComponent<ThrowSpell>().Cast();
+                    spell_controller.GetComponent<Boop>().Cast();
                     break;
 
 

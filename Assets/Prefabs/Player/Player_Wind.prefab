@@ -475,7 +475,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spell_slots: 4
   fireballforalpha: {fileID: 11400000, guid: 4a95dc6ed230c8a4789dc33b11fbce2d, type: 2}
-  dd_spell_inventory: []
+  dd_spell_inventory:
+  - {fileID: 11400000, guid: e8e679e6f3521c747abd0d854eace102, type: 2}
+  - {fileID: 11400000, guid: c765645da47eeb94cb4897484b0a1825, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &6340715753519854202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11098,6 +11102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5686921009914067106}
   - component: {fileID: 5520134397269985870}
+  - component: {fileID: 7273411779588275495}
   - component: {fileID: 3515913301227583845}
   - component: {fileID: 5021457644584775468}
   - component: {fileID: 8192622155015055736}
@@ -11146,6 +11151,26 @@ MonoBehaviour:
   projectionPrefab: {fileID: 8198984963544093090, guid: ab0b8ce3ffd22ec4c94394e0087bf382, type: 3}
   playerCamera: {fileID: 5822131898686806388}
   projectionOn: 0
+--- !u!114 &7273411779588275495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8393186558806589648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66419a0937aa046418f1a5c85ea4b400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 974478289764777197}
+  BoopPrefab: {fileID: 5284997892635039367, guid: b63c1bf0c6d0cde46b179897510f876b, type: 3}
+  playerCam: {fileID: 1232235808428731750}
+  DirectHitDamage: 0
+  knockbackForce: 10
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 192
 --- !u!114 &3515913301227583845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12820,6 +12845,10 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13743470, guid: a3d63e24f853705488ac04e22173bc16, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f41973792ba10204ea9f52b2e6721689, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

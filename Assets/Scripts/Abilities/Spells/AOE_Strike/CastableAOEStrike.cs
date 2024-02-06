@@ -95,7 +95,7 @@ public class CastableAOEStrike : ElementalSpell
 
     public void InstantiateStrike(Vector3 centre)
     {
-        GameObject strike = Instantiate(spell.prefab, centre, Quaternion.identity);
+        GameObject strike = Instantiate(spell.prefab, centre + Vector3.up * 0.5f, Quaternion.identity);
         StartCoroutine(timerCoroutine(strike));
 //        AudioManager.instance.PlayOneShot(FMODEvents.instance.thunderSound, this.transform.position);
     }
