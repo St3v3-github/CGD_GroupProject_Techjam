@@ -50034,6 +50034,7 @@ MonoBehaviour:
   Numberofmaps: 0
   Levels: []
   StartingMap: {fileID: 0}
+  LevelNum: 0
 --- !u!1001 &1228473785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52287,6 +52288,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1284404711}
+  - component: {fileID: 1284404712}
   m_Layer: 0
   m_Name: Level1
   m_TagString: Untagged
@@ -52311,6 +52313,21 @@ Transform:
   - {fileID: 1815923498}
   m_Father: {fileID: 1386451586}
   m_LocalEulerAnglesHint: {x: 0, y: -11.1, z: 0}
+--- !u!114 &1284404712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284404710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55080e20e1e605f4697e228c9772f60a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOn: 0
+  a: {fileID: 1284404710}
+  levelSelect: 0
 --- !u!1001 &1285184773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55679,6 +55696,7 @@ MonoBehaviour:
   - {fileID: 1912085277}
   - {fileID: 806306141}
   StartingMap: {fileID: 0}
+  LevelNum: 0
 --- !u!4 &1386451586
 Transform:
   m_ObjectHideFlags: 0
@@ -73793,6 +73811,42 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2132394272}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2132394273}
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
+        m_MethodName: NextLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2132394273}
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1872765794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84123,6 +84177,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 465834, guid: 6cc63cba898ace244bba643423dfda2e, type: 3}
   m_PrefabInstance: {fileID: 2131070054}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2132394272
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2132394274}
+  - component: {fileID: 2132394273}
+  m_Layer: 0
+  m_Name: LevelLoaderManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &2132394273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132394272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05d89504a9ab47447939922dc7bd99f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  a: {fileID: 1386451584}
+  levelSelect: 0
+--- !u!4 &2132394274
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132394272}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.3165274, y: -2.537147, z: 2.8940868}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2133023396
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85163,3 +85263,4 @@ SceneRoots:
   - {fileID: 1386451586}
   - {fileID: 543275364}
   - {fileID: 204072474}
+  - {fileID: 2132394274}
