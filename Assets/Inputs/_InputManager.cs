@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour
     public PlayerController playerController;
     public UpdatedPlayerController updatedPlayerController;
     public Sliding sliding;
+    public Dashing dashing;
     public CameraController cameraController;
     public AdvancedProjectileSystem projectileController;
     public AnimationManager animationController;
@@ -88,11 +89,11 @@ public class InputManager : MonoBehaviour
             //updatedPlayerController.crouchPressed = !updatedPlayerController.crouchPressed;
         }
 
-        if(ctx.performed)
+        if(ctx.performed && (movementInput.x != 0 || movementInput.y != 0))
         {
             sliding.StartSlide();
         }
-        else if(ctx.canceled)
+        else if(ctx.canceled && updatedPlayerController.sliding)
         {
             sliding.EndSlide();
         }
@@ -190,7 +191,7 @@ public class InputManager : MonoBehaviour
     {
         if (ctx.action.triggered)
         {
-            StartCoroutine(playerController.PlayerDash(movementInput));
+            dashing.Dash();
         }
     }
 

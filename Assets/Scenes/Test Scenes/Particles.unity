@@ -222,8 +222,8 @@ Transform:
   m_GameObject: {fileID: 164217970}
   serializedVersion: 2
   m_LocalRotation: {x: 0.33380687, y: 0, z: 0, w: 0.94264156}
-  m_LocalPosition: {x: 0, y: 8.1, z: -26.8}
-  m_LocalScale: {x: 26.235, y: 0.42188504, z: 26.235}
+  m_LocalPosition: {x: 0, y: 35.1, z: -60.1}
+  m_LocalScale: {x: 26.235, y: 0.42188504, z: 114.41347}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -489,7 +489,24 @@ MonoBehaviour:
   slideForce: 200
   slidePressed: 0
   slideYScale: 0.5
-  sliding: 0
+--- !u!114 &1321253218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777263590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1d50c6896c021442af8f00b74b5636d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCam: {fileID: 1352718549}
+  dashForce: 20
+  dashUpwardForce: 0
+  dashDuration: 0.25
+  dashCooldown: 1.5
+  dashCooldownTimer: 0
 --- !u!1 &1349310959
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,6 +612,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 70, y: 0, z: 0}
+--- !u!4 &1352718549 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 845629927216722984, guid: 0d129c298ba7d4f43910e577437fae31, type: 3}
+  m_PrefabInstance: {fileID: 1592525314}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1533761118 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 250363314973824816, guid: 0d129c298ba7d4f43910e577437fae31, type: 3}
@@ -667,12 +689,20 @@ PrefabInstance:
       value: 99
       objectReference: {fileID: 0}
     - target: {fileID: 1305339434855979495, guid: 0d129c298ba7d4f43910e577437fae31, type: 3}
+      propertyPath: dashSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305339434855979495, guid: 0d129c298ba7d4f43910e577437fae31, type: 3}
       propertyPath: jumpForce
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1305339434855979495, guid: 0d129c298ba7d4f43910e577437fae31, type: 3}
       propertyPath: walkSpeed
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305339434855979495, guid: 0d129c298ba7d4f43910e577437fae31, type: 3}
+      propertyPath: slideSpeed
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1305339434855979495, guid: 0d129c298ba7d4f43910e577437fae31, type: 3}
       propertyPath: crouchSpeed
@@ -697,6 +727,14 @@ PrefabInstance:
     - target: {fileID: 1305339434855979495, guid: 0d129c298ba7d4f43910e577437fae31, type: 3}
       propertyPath: maxSlopeAngle
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305339434855979495, guid: 0d129c298ba7d4f43910e577437fae31, type: 3}
+      propertyPath: speedIncreaseMultiplier
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305339434855979495, guid: 0d129c298ba7d4f43910e577437fae31, type: 3}
+      propertyPath: sloperIncreaseMultiplier
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1667328944037848483, guid: 0d129c298ba7d4f43910e577437fae31, type: 3}
       propertyPath: m_Name
@@ -815,6 +853,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3616381785613122612, guid: 0d129c298ba7d4f43910e577437fae31, type: 3}
+      propertyPath: dashing
+      value: 
+      objectReference: {fileID: 1321253218}
+    - target: {fileID: 3616381785613122612, guid: 0d129c298ba7d4f43910e577437fae31, type: 3}
       propertyPath: sliding
       value: 
       objectReference: {fileID: 1321253208}
@@ -917,6 +959,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1667328944037848483, guid: 0d129c298ba7d4f43910e577437fae31, type: 3}
       insertIndex: 10
       addedObject: {fileID: 1321253208}
+    - targetCorrespondingSourceObject: {fileID: 1667328944037848483, guid: 0d129c298ba7d4f43910e577437fae31, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1321253218}
   m_SourcePrefab: {fileID: 100100000, guid: 0d129c298ba7d4f43910e577437fae31, type: 3}
 --- !u!1 &1967810803
 GameObject:

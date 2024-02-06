@@ -15,9 +15,17 @@ public class UpdatedPlayerController : MonoBehaviour
     float xRotation;
     float yRotation;
 
-    private float moveSpeed;
+    private float desiredMoveSpeed;
+    private float lastDesiredMoveSpeed;
+
+    public float speedIncreaseMultiplier;
+    public float sloperIncreaseMultiplier;
+
+    public float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;
+    public float slideSpeed;
+    public float dashSpeed;
 
     public Transform orientation; //this might not be needed
 
@@ -44,6 +52,9 @@ public class UpdatedPlayerController : MonoBehaviour
     private RaycastHit slopeHit;
     bool exitingSlope;
 
+    public bool sliding;
+    public bool dashing;
+
     public MovementState state;
 
     //Keycode for hardcoding - when implementation done hook up to input system later on :) - Matt
@@ -54,6 +65,8 @@ public class UpdatedPlayerController : MonoBehaviour
         walking,
         sprinting,
         crouching,
+        sliding,
+        dashing,
         air
     }
 
@@ -61,26 +74,58 @@ public class UpdatedPlayerController : MonoBehaviour
     {
         //Crouch just compresses the character right now, need to hook up the crouch to the animation manager in the future
         //and just make the hitbox of the player smaller.
-        if(Input.GetKey(crouchKey))
+        
+
+        if(dashing)
+        {
+            state = MovementState.dashing;
+            desiredMoveSpeed = dashSpeed;
+        }
+        else if(sliding)
+        {
+            state = MovementState.sliding;
+
+            if(OnSlope() && rb.velocity.y < 0.1f)
+            {
+                desiredMoveSpeed = slideSpeed;
+            }
+            else
+            {
+                desiredMoveSpeed = sprintSpeed;
+            }
+        }
+        else if(Input.GetKey(crouchKey))
         {
             state = MovementState.crouching;
-            moveSpeed = crouchSpeed;
+            desiredMoveSpeed = crouchSpeed;
         }
 
         else if (isGrounded && sprintPressed)
         {
             state = MovementState.sprinting;
-            moveSpeed = sprintSpeed;
+            desiredMoveSpeed = sprintSpeed;
         }
         else if (isGrounded)
         {
             state = MovementState.walking;
-            moveSpeed = walkSpeed;
+            desiredMoveSpeed = walkSpeed;
         }
         else
         {
             state = MovementState.air;
         }
+
+        if (Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4f && moveSpeed != 0)
+        {
+            StopAllCoroutines();
+            StartCoroutine(SmoothlyLerpMoveSpeed());
+        }
+        else
+        {
+            moveSpeed = desiredMoveSpeed;
+        }
+
+        lastDesiredMoveSpeed = desiredMoveSpeed;
     }
     // Start is called before the first frame update
     void Start()
@@ -100,7 +145,7 @@ public class UpdatedPlayerController : MonoBehaviour
 
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
 
-        if (isGrounded)
+        if (state == MovementState.walking || state == MovementState.sprinting || state == MovementState.crouching)
         {
             rb.drag = groundDrag;
         }
@@ -138,13 +183,13 @@ public class UpdatedPlayerController : MonoBehaviour
         if (OnSlope() && !exitingSlope)
         {
             //Debug.Log(1);
-            rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
+            rb.AddForce(GetSlopeMoveDirection(movementDirection) * moveSpeed * 20f, ForceMode.Force);
 
             if (rb.velocity.y > 0)
                 rb.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
 
-        if (isGrounded)
+        else if (isGrounded)
         {
             rb.AddForce(movementDirection.normalized * moveSpeed * 10f, ForceMode.Force);
         }
@@ -226,7 +271,7 @@ public class UpdatedPlayerController : MonoBehaviour
         exitingSlope = false;
     }
 
-    private bool OnSlope()
+    public bool OnSlope()
     {
         if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
         {
@@ -238,8 +283,36 @@ public class UpdatedPlayerController : MonoBehaviour
         return false;
     }
 
-    private Vector3 GetSlopeMoveDirection()
+    public Vector3 GetSlopeMoveDirection(Vector3 direction)
     {
-        return Vector3.ProjectOnPlane(movementDirection, slopeHit.normal).normalized;
+        return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
+    }
+
+    private IEnumerator SmoothlyLerpMoveSpeed()
+    {
+        float time = 0;
+        float difference = Mathf.Abs(desiredMoveSpeed - moveSpeed);
+        float startValue = moveSpeed;
+
+        while (time < difference)
+        {
+            moveSpeed = Mathf.Lerp(startValue, desiredMoveSpeed, time / difference);
+
+            if(OnSlope())
+            {
+                float slopeAngle = Vector3.Angle(Vector3.up, slopeHit.normal);
+                float slopeAngleIncrease = 1 + (slopeAngle / 90f);
+
+                time += Time.deltaTime * speedIncreaseMultiplier * sloperIncreaseMultiplier * slopeAngleIncrease;
+            }
+            else
+            {
+                time += Time.deltaTime * speedIncreaseMultiplier;
+            }
+            
+            yield return null;
+        }
+
+        moveSpeed = desiredMoveSpeed;
     }
 }

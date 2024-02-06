@@ -17,7 +17,6 @@ public class Sliding : MonoBehaviour
     public float slideYScale;
     private float startYScale;
 
-    public bool sliding;
 
     private float horizontalInput;
     private float verticalInput;
@@ -43,12 +42,12 @@ public class Sliding : MonoBehaviour
             EndSlide();
         }
 */
-        Debug.Log(slideTimer);
+        //Debug.Log(slideTimer);
     }
 
     private void FixedUpdate()
     {
-        if(sliding)
+        if(pm.sliding)
         {
             SlidingMovement();
         }
@@ -62,7 +61,7 @@ public class Sliding : MonoBehaviour
 
     public void StartSlide()
     {
-        sliding = true;
+        pm.sliding = true;
 
         playerObj.localScale = new Vector3(playerObj.localScale.x, slideYScale, playerObj.localScale.z);
         rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
@@ -72,20 +71,28 @@ public class Sliding : MonoBehaviour
 
     private void SlidingMovement()
     {
-        
         Vector3 inputDirection = transform.forward * verticalInput + transform.right * horizontalInput;
+        if (!pm.OnSlope() || rb.velocity.y > -0.1f)
+        {
+            
 
-        rb.AddForce(inputDirection.normalized * slideForce, ForceMode.Force);
+            rb.AddForce(inputDirection.normalized * slideForce, ForceMode.Force);
 
-        slideTimer -= Time.deltaTime;
+            slideTimer -= Time.deltaTime;
+        }
+        else
+        {
+            rb.AddForce(pm.GetSlopeMoveDirection(inputDirection) * slideForce, ForceMode.Force);
+        }
 
-        if(slideTimer <= 0)
+
+        if (slideTimer <= 0)
             EndSlide();
     }
 
     public void EndSlide()
     {   
-        sliding = false;
+        pm.sliding = false;
 
         playerObj.localScale = new Vector3(playerObj.localScale.x, startYScale, playerObj.localScale.z);
     }
