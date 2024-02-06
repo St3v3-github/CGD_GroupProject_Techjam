@@ -25,37 +25,7 @@ public class ItemData : ScriptableObject
         }
     }
 
-    
-
     public enum SpellList
-    {
-        EMPTY = 0,
-        FIREBALL = 1,
-        ICEBALL = 2,
-        WINDBALL = 3,
-        LIGHTNINGBALL = 4,
-        FIREWALL = 5,
-        ICEWALL = 6,
-        WINDGWALL = 7,
-        LIGHTNINGWALL = 8,
-        FIRESUMMON = 9,
-        ICESUMMON = 10,
-        WINDSUMMON = 11,
-        LIGHTNINGSUMMON = 12,
-        FIRESTRIKE = 13,
-        ICESTRIKE = 14,
-        WINDSTRIKE = 15,
-        LIGHTNINGSTRIKE = 16,
-        BLACKHOLE = 17,
-        HEALSPELL = 18,
-        POISONCLOUD = 19,
-        POWERBEAM = 20,
-        FIREGRENADE = 21,
-        FLAMETHROWER = 22,
-        //More
-    }
-
-    public enum newSpellList
     {
         // CLASS SPELLS
         EMPTY = 0,
@@ -74,6 +44,7 @@ public class ItemData : ScriptableObject
         HEALSPELL = 18,
         POISONCLOUD = 19,
         POWERBEAM = 20,
+        SUMMON = 21,
         //More
     }
 

@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 using static UnityEngine.EventSystems.EventTrigger;
 
 public class ChainLightning : Spell
 {
     [Header("Player References")]
     public Camera playerCam;
+    public GameObject prefab;
+    private List<GameObject> arcs;
 
     [Header("Data")]
     public float damage;
@@ -17,6 +20,16 @@ public class ChainLightning : Spell
     public LayerMask hittable;
     private RaycastHit rayHit;
     List<GameObject> playersHit = new List<GameObject>();
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+
+            Cast();
+
+        }
+    }
 
     public void Cast()
     {
@@ -31,6 +44,9 @@ public class ChainLightning : Spell
                 Debug.Log("Hit");
                 playersHit.Add(rayHit.collider.gameObject);
                 lastPlayerHit = rayHit.collider.gameObject;
+                GameObject arc = Instantiate(prefab, transform.position, Quaternion.identity);
+                arc.GetComponent<Line>().setPoints(transform, lastPlayerHit.transform);
+                arcs.Add(arc);
 
                 // Attempt to bounce x number of times
                 for (int i = 0; i < bounceTotal; i++)
@@ -42,6 +58,9 @@ public class ChainLightning : Spell
                         Debug.Log("Bounced and Hit");
                         lastPlayerHit = newPlayer;
                         playersHit.Add(newPlayer);
+                        arc = Instantiate(prefab, transform.position, Quaternion.identity);
+                        arc.GetComponent<Line>().setPoints(transform, lastPlayerHit.transform);
+                        arcs.Add(arc);
                     }
                 }
             }
@@ -85,4 +104,14 @@ public class ChainLightning : Spell
         // Return next player to be struck
         return closestPlayer;
     }
+
+    /*public void createVFX(Transform player)
+    {
+        GameObject arc = Instantiate(prefab, transform.position, Quaternion.identity);
+        VisualEffect effect = arc.GetComponent<VisualEffect>();
+        effect.SetVector3("Pos1", transform.position);
+        effect.SetVector3("Pos2", transform.position);
+        effect.SetVector3("Pos3", player.position);
+        effect.SetVector3("Pos4", player.position);
+    }*/
 }
