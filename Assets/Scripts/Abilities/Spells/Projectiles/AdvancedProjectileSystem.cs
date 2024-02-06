@@ -40,7 +40,7 @@ public class AdvancedProjectileSystem : Spell
     {
         var clone = Instantiate(fireballforalpha);
         equippedProjectile = clone;
-        setTargetTag();
+        SetTargetTag();
 
         rechargeSurge = Instantiate(equippedProjectile.recharge, firePoint.position, Quaternion.identity);
         rechargeSurge.transform.SetParent(firePoint, true);
@@ -199,7 +199,7 @@ public class AdvancedProjectileSystem : Spell
             Debug.Log(rayHit.collider.name);
             if (rayHit.collider.CompareTag(targetTag))
             {
-                dealDamage(rayHit.collider.gameObject, equippedProjectile.damage);
+                DealDamage(rayHit.collider.gameObject, equippedProjectile.damage);
             }
         }
 

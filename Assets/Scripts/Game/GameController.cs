@@ -9,10 +9,9 @@ using UnityEngine.UIElements;
 
 public class GameController : MonoBehaviour
 {
-    // My name is Ozymandias, King of Kings; Look on my Works, ye Mighty, and despair!
     public GameRules game;
     private bool lobby = true;
-    private float lobbyTimer = 30;
+    private float lobbyTimer = 5;
     public TextMeshProUGUI lobbyText;
     public LayerMask playerLayer;
 
@@ -190,7 +189,7 @@ public class GameController : MonoBehaviour
 
     }
 
-    public void tagSetter()
+    public void TagSetter()
     {
         switch (game.gameMode)
         {
@@ -238,6 +237,7 @@ public class GameController : MonoBehaviour
 
     //Respawning Code Below
 
+    //Change this function name
     public void PrayToGod(killing_data prayer)
     {
         switch (game.gameMode)
@@ -259,7 +259,7 @@ public class GameController : MonoBehaviour
         prayer.deaded.GetComponent<CharacterController>().enabled = false;
 
 
-        StartCoroutine(reincarnatePlayer(prayer.deaded, FindSpawnPoint(prayer.deaded)));
+        StartCoroutine(ReincarnatePlayer(prayer.deaded, FindSpawnPoint(prayer.deaded)));
     }
 
     public GameObject FindSpawnPoint(GameObject deadPlayer)
@@ -289,7 +289,7 @@ public class GameController : MonoBehaviour
         return possibleSpawnPoints[randomNumber];
     }
 
-    private IEnumerator reincarnatePlayer(GameObject player, GameObject respawnPoint)
+    private IEnumerator ReincarnatePlayer(GameObject player, GameObject respawnPoint)
     {
         yield return new WaitForSeconds(game.respawnTimer);
         player.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(false);
