@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
     public UpdatedPlayerController updatedPlayerController;
     public Sliding sliding;
     public Dashing dashing;
+    public JetPack jetPack;
     public CameraController cameraController;
     public AdvancedProjectileSystem projectileController;
     public AnimationManager animationController;
@@ -71,6 +72,18 @@ public class InputManager : MonoBehaviour
 
 
             updatedPlayerController.HandleJump();
+        }
+        /*else if(ctx.action.triggered && !updatedPlayerController.hasDoubleJumped)
+        {
+            updatedPlayerController.HandleJump();
+        }*/
+        if(ctx.performed)
+        {
+            jetPack.usingJetpack = true;
+        }
+        else if(ctx.canceled)
+        {
+            jetPack.usingJetpack = false;
         }
     }
 

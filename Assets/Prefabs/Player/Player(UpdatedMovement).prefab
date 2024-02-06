@@ -92,6 +92,18 @@ PrefabInstance:
       propertyPath: camera_controller
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3765167287048175808, guid: 4756afa63734c0547afcac466ef28d2b, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3765167287048175808, guid: 4756afa63734c0547afcac466ef28d2b, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_ActionId
+      value: 553b58a1-2ff5-427c-a4bc-f58376c54122
+      objectReference: {fileID: 0}
+    - target: {fileID: 3765167287048175808, guid: 4756afa63734c0547afcac466ef28d2b, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_ActionName
+      value: Player/Crouch[/Keyboard/leftCtrl,/XInputControllerWindows/rightStickPress]
+      objectReference: {fileID: 0}
     - target: {fileID: 3830535463769247574, guid: 4756afa63734c0547afcac466ef28d2b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -249,13 +261,36 @@ MonoBehaviour:
   sensX: 400
   sensY: 400
   playerCam: {fileID: 5362061048560648250}
+  speedIncreaseMultiplier: 0
+  sloperIncreaseMultiplier: 0
   moveSpeed: 7
+  walkSpeed: 0
+  sprintSpeed: 0
+  slideSpeed: 0
+  dashSpeed: 0
   orientation: {fileID: 0}
   playerHeight: 2
   groundMask:
     serializedVersion: 2
     m_Bits: 1024
+  isGrounded: 0
   groundDrag: 5
+  crouchSpeed: 0
+  crouchYScale: 0
+  crouchPressed: 0
+  jumpForce: 0
+  jumpCooldown: 0
+  airMultiplier: 0
+  readyToJump: 0
+  sprintPressed: 0
+  maxSlopeAngle: 0
+  sliding: 0
+  dashing: 0
+  hasDoubleJumped: 0
+  hasJumpedThisFrame: 0
+  maxJumpCount: 0
+  state: 0
+  crouchKey: 306
 --- !u!54 &5718852310439445281
 Rigidbody:
   m_ObjectHideFlags: 0

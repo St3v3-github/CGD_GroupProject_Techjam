@@ -54,6 +54,10 @@ public class UpdatedPlayerController : MonoBehaviour
 
     public bool sliding;
     public bool dashing;
+    public bool hasDoubleJumped = false;
+    public bool hasJumpedThisFrame;
+    private int jumpCount;
+    public int maxJumpCount;
 
     public MovementState state;
 
@@ -136,14 +140,23 @@ public class UpdatedPlayerController : MonoBehaviour
         readyToJump = true;
 
         startYScale = transform.localScale.y;
+
+        jumpCount = maxJumpCount;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         SpeedControl();
 
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
+
+        if(isGrounded)
+        {
+            jumpCount = maxJumpCount;
+            
+        }
 
         if (state == MovementState.walking || state == MovementState.sprinting || state == MovementState.crouching)
         {
@@ -221,8 +234,13 @@ public class UpdatedPlayerController : MonoBehaviour
     {
         //Debug.Log("test");
         readyToJump = false;
+        jumpCount -= 1;
 
-        Jump();
+        if (jumpCount > 0)
+        {
+            Jump();
+        }
+       
 
         Invoke(nameof(ResetJump), jumpCooldown);
     }
@@ -262,6 +280,7 @@ public class UpdatedPlayerController : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        //jumpCount -= 1;
     }
 
     private void ResetJump()
