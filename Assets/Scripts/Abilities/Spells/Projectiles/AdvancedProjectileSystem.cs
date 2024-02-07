@@ -62,6 +62,8 @@ public class AdvancedProjectileSystem : Spell
     {
         chargesLeft = equippedProjectile.totalCharges;
         readyToShoot = true;
+        shooting = false;
+        allowInvoke = true;
     }
 
     private void Update()
@@ -142,23 +144,27 @@ public class AdvancedProjectileSystem : Spell
 
         Vector3 directionWithoutSpread = targetPoint - firePoint.position;
 
-
+        Debug.Log("Step 1");
         //Spread
         float x = Random.Range(-equippedProjectile.spread, equippedProjectile.spread);
         float y = Random.Range(-equippedProjectile.spread, equippedProjectile.spread);
         float z = Random.Range(-equippedProjectile.spread, equippedProjectile.spread);
-        
-        Vector3 directionWithSpread = directionWithoutSpread + (new Vector3(x, y, z) * Vector3.Magnitude(directionWithoutSpread)) / 15;
 
+        Vector3 directionWithSpread = directionWithoutSpread + (new Vector3(x, y, z) * Vector3.Magnitude(directionWithoutSpread)) / 15;
         //Instantiate Projectile
         GameObject currentProjectile = Instantiate(equippedProjectile.projectile, firePoint.position, Quaternion.identity);
         currentProjectile.transform.forward = directionWithSpread.normalized;
-        currentProjectile.GetComponent<Projectile>().source = source;
+
+        Projectile currentProjectileScript = currentProjectile.GetComponent<Projectile>();
+        currentProjectileScript.source = source;
+        currentProjectileScript.damage = equippedProjectile.damage;
+        currentProjectileScript.setLifetime(equippedProjectile.lifetime);
 
         //Add Forces to projctile
-        currentProjectile.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * equippedProjectile.shootForce, ForceMode.Impulse);
+        Rigidbody rb = currentProjectile.GetComponent<Rigidbody>();
+        rb.AddForce(directionWithSpread.normalized * equippedProjectile.shootForce, ForceMode.Impulse);
         // For bouncing projectiles only    
-        currentProjectile.GetComponent<Rigidbody>().AddForce(playerCam.transform.up * equippedProjectile.upwardForce, ForceMode.Impulse);
+        rb.AddForce(playerCam.transform.up * equippedProjectile.upwardForce, ForceMode.Impulse);
 
         chargesLeft--;
         chargesShot++;
@@ -176,7 +182,7 @@ public class AdvancedProjectileSystem : Spell
             Invoke("ResetShot", equippedProjectile.timeBetweenShots);
             allowInvoke = false;
         }
-        
+
 
         // if multishot projectile, repeat function (for burst or shotgun)
         if (chargesShot < equippedProjectile.projectilesPerTap && chargesLeft > 0)

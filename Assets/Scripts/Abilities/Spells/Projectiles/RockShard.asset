@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8624bc6b495709047b4ac59a6bc19569, type: 3}
-  m_Name: IceShard
+  m_Name: RockShard
   m_EditorClassIdentifier: 
-  projectile: {fileID: 2033429670147736737, guid: ac6ea96265d46bf4281b1ce4d91674b0, type: 3}
-  recharge: {fileID: 1236643204216662, guid: 99ce6d04afecfbc4aa0086ed670a3290, type: 3}
+  projectile: {fileID: 3912578324506755978, guid: 0bed72d476f38a843a239e926ba3028e, type: 3}
+  recharge: {fileID: 1236643204216662, guid: e250081a212d0bb43a719fff1a3ee626, type: 3}
+  particle: {fileID: 0}
   description: Shotgun Like
   shootForce: 50
   upwardForce: 0
@@ -21,6 +22,7 @@ MonoBehaviour:
   timeBetweenShots: 1
   spread: 1
   range: 25
+  lifetime: 2
   rechargeTime: 2
   burstDelay: 0
   totalCharges: 48

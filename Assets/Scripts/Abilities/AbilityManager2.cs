@@ -55,11 +55,28 @@ public class AbilityManager2 : MonoBehaviour
                     if (spell_controller.GetComponent<Wall>().isPlacingWall)
                     {
                         spell_controller.GetComponent<Wall>().PlaceWall();
-                        inventory.dd_spell_inventory[slot].DecreaseCharges();
                     }
                     else
                     {
                         spell_controller.GetComponent<Wall>().StartPlacingWall();
+                    }
+                    break;
+
+                // LIGHTNING CLASS
+                case ItemData.SpellList.ICESLOW:
+                    if (spell_controller.GetComponent<CastableAOEStrike>() == null) { return 0; }
+                    if (!inventory.checkCooldown(slot)) { return 0; }
+                    spell_controller.GetComponent<CastableAOEStrike>().setType(spellEnum.ice);
+                    //  spell_controller.GetComponent<CastableAOEStrike>().Cast();
+                    if (!spell_controller.GetComponent<CastableAOEStrike>().projectionOn)
+                    {
+                        spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOn();
+                    }
+                    else
+                    {
+                        spell_controller.GetComponent<CastableAOEStrike>().Strike();
+                        spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOff();
+
                     }
                     break;
 
@@ -78,7 +95,6 @@ public class AbilityManager2 : MonoBehaviour
                     {
                         spell_controller.GetComponent<CastableAOEStrike>().Strike();
                         spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOff();
-                        inventory.dd_spell_inventory[slot].DecreaseCharges();
 
                     }
                     break;
@@ -102,7 +118,6 @@ public class AbilityManager2 : MonoBehaviour
                     {
                         spell_controller.GetComponent<CastableAOEStrike>().Strike();
                         spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOff();
-                        inventory.dd_spell_inventory[slot].DecreaseCharges();
 
                     }
                     break;

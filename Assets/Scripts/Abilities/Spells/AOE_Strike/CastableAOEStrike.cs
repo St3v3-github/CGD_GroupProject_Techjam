@@ -11,6 +11,7 @@ public class CastableAOEStrike : ElementalSpell
     private GameObject projection;
     public Camera playerCamera;
     public bool projectionOn = false;
+    public bool doesDamage;
 
 
     // Start is called before the first frame update
@@ -88,9 +89,10 @@ public class CastableAOEStrike : ElementalSpell
         // Creates Visual Prefab
         InstantiateStrike(projection.transform.position);
 
-        DetectCharacters(projection.transform.position, targetTag);
-
-        
+        if (doesDamage)
+        {
+            DetectCharacters(projection.transform.position, targetTag);
+        }
     }
 
     public void InstantiateStrike(Vector3 centre)

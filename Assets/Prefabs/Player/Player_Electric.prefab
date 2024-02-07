@@ -400,7 +400,7 @@ MonoBehaviour:
   playerController: {fileID: 3597789930903828011}
   advancedProjectileSystem: {fileID: 3008120021183470106}
   cameraController: {fileID: 1275186140544510898}
-  projectileController: {fileID: 0}
+  projectileController: {fileID: 3008120021183470106}
   animationController: {fileID: 1863637143123250814}
   ray: {fileID: 4712851475361685754}
   cameraInput: {x: 0, y: 0}
@@ -524,11 +524,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 974478289764777197}
-  equippedProjectile: {fileID: 11400000, guid: e9a801d15eee89743af235b7bbbc5caa, type: 2}
+  equippedProjectile: {fileID: 11400000, guid: a2733cace198a7044a1b992f627457a4, type: 2}
   chargesLeft: 0
   chargesShot: 0
   shooting: 0
-  readyToShoot: 0
+  readyToShoot: 1
   recharging: 0
   shootWithRay: 0
   allowInvoke: 1
@@ -11151,6 +11151,7 @@ MonoBehaviour:
   projectionPrefab: {fileID: 8198984963544093090, guid: ab0b8ce3ffd22ec4c94394e0087bf382, type: 3}
   playerCamera: {fileID: 5822131898686806388}
   projectionOn: 0
+  doesDamage: 1
 --- !u!114 &9017122128436567335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12851,7 +12852,7 @@ PrefabInstance:
     - target: {fileID: 13743470, guid: a3d63e24f853705488ac04e22173bc16, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0eeb4fc0dbc25934195630a92493a54d, type: 2}
+      objectReference: {fileID: 2100000, guid: a88a35ab52ddd074aab55f748926adf9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

@@ -17,7 +17,7 @@ public class ProjectileData : ScriptableObject
 
     //Projectile stats
     public int damage;
-    public float timeBetweenShots, spread, range, rechargeTime, burstDelay;
+    public float timeBetweenShots, spread, range, lifetime, rechargeTime, burstDelay;
     public int totalCharges, projectilesPerTap;
     public bool allowButtonHold;
 
