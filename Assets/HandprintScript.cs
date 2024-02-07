@@ -8,16 +8,16 @@ public class HandprintScript : MonoBehaviour
     public Animator coffin;
     public GameObject WallBefore; 
     public GameObject WallAfter;
-    public ParticleSystem FX;
+    public GameObject Fx1;
     public bool Trigger = false;
-    bool allhands = false;
+   
      
     
      
     // Start is called before the first frame update
     void Start()
     {
-       
+        
     }
 
     // Update is called once per frame
@@ -26,8 +26,9 @@ public class HandprintScript : MonoBehaviour
          if (Trigger)
         {
             CoffinAnimaton();
+            
+            
             Trigger = false;
-             
         }
     }
 
@@ -44,7 +45,7 @@ public class HandprintScript : MonoBehaviour
     {
         int i = 0;
         int k = handprints.Length;
-        float v = 0.25f;
+        float v = 0.1f;
         StartCoroutine(Hands());
         IEnumerator Hands()
         {
@@ -54,11 +55,13 @@ public class HandprintScript : MonoBehaviour
             handprints[i].SetActive(true);
             i ++; 
             yield return new WaitForSeconds(v);
+          }
             if (i == k )
-                { 
+                {
+                
                 wallchange();
                 }
-        }
+        
         }
 
     }
@@ -66,7 +69,14 @@ public class HandprintScript : MonoBehaviour
     public void wallchange()
     {
         WallBefore.SetActive(false);
-       
-        WallAfter.SetActive(true); 
+        Fx1.SetActive(true); 
+        WallAfter.SetActive(true);
+        StartCoroutine(Turnoff());
+        IEnumerator Turnoff() 
+        { 
+            yield return new WaitForSecondsRealtime(2);
+            Fx1.SetActive(false); 
+        }
+        
     }
 }
