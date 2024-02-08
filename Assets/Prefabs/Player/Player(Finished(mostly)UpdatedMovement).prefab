@@ -26321,6 +26321,7 @@ GameObject:
   - component: {fileID: 2128389038683888302}
   - component: {fileID: 2305343695094470884}
   - component: {fileID: 8523026064644066608}
+  - component: {fileID: 2785644034249644050}
   m_Layer: 6
   m_Name: Player(Finished(mostly)UpdatedMovement)
   m_TagString: Player
@@ -26662,6 +26663,7 @@ MonoBehaviour:
   projectileController: {fileID: 8804230571906558251}
   animationController: {fileID: 6727766820694850335}
   grappling: {fileID: 8523026064644066608}
+  grappleSwing: {fileID: 2785644034249644050}
   ray: {fileID: 425103282212623771}
   cameraInput: {x: 0, y: 0}
   movementInput: {x: 0, y: 0}
@@ -26917,6 +26919,25 @@ MonoBehaviour:
   grapplingCooldown: 1
   overshootYAxis: 2
   lr: {fileID: 1173528832031344777}
+--- !u!114 &2785644034249644050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5262217071470266764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ed55f8ae6bdcc44a4add64ead70a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lr: {fileID: 1173528832031344777}
+  gunTip: {fileID: 4691944331993996491}
+  cam: {fileID: 6167938817103763463}
+  player: {fileID: 5844765085397117960}
+  grappleable:
+    serializedVersion: 2
+    m_Bits: 3903
 --- !u!1 &5319166711595923639
 GameObject:
   m_ObjectHideFlags: 0

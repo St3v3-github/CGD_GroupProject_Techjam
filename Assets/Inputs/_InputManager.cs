@@ -17,6 +17,7 @@ public class InputManager : MonoBehaviour
     public AdvancedProjectileSystem projectileController;
     public AnimationManager animationController;
     public Grappling grappling;
+    public GrappleSwing grappleSwing;
     public Raycast ray;
     private InventoryEdit inventory;
     private bool spell_is_held;
@@ -117,11 +118,12 @@ public class InputManager : MonoBehaviour
     {
         if(ctx.performed)
         {
-            grappling.StartGrapple();
+            //grappling.StartGrapple();
+            grappleSwing.StartSwing();
         }
         else if(ctx.canceled)
         {
-
+            grappleSwing.StopSwing();
         }
     }
 

@@ -29,6 +29,7 @@ public class UpdatedPlayerController : MonoBehaviour
     public float sprintSpeed;
     public float slideSpeed;
     public float dashSpeed;
+    public float swingSpeed;
 
     public Transform orientation; //this might not be needed
 
@@ -62,6 +63,7 @@ public class UpdatedPlayerController : MonoBehaviour
     public bool dashing;
     public bool freeze;
     public bool activeGrapple;
+    public bool swinging;
     public bool hasDoubleJumped = false;
     public bool hasJumpedThisFrame;
     private int jumpCount;
@@ -82,6 +84,7 @@ public class UpdatedPlayerController : MonoBehaviour
         crouching,
         sliding,
         dashing,
+        swinging,
         air
     }
 
@@ -113,6 +116,11 @@ public class UpdatedPlayerController : MonoBehaviour
             {
                 desiredMoveSpeed = sprintSpeed;
             }
+        }
+        else if(swinging)
+        {
+            state = MovementState.swinging;
+            moveSpeed = swingSpeed;
         }
         else if(Input.GetKey(crouchKey))
         {
@@ -206,6 +214,10 @@ public class UpdatedPlayerController : MonoBehaviour
     public void HandleMovement(Vector2 movementInput)
     {
         if(activeGrapple)
+        {
+            return;
+        }
+        if(swinging)
         {
             return;
         }
