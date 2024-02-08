@@ -37,6 +37,7 @@ public class UpdatedPlayerController : MonoBehaviour
 
     Rigidbody rb;
     public Grappling grappling;
+    public AnimationManager animControl;
 
     public float playerHeight;
     public LayerMask groundMask;
@@ -77,6 +78,7 @@ public class UpdatedPlayerController : MonoBehaviour
     public enum MovementState
     {
         freeze,
+        idle,
         walking,
         sprinting,
         crouching,
@@ -129,10 +131,30 @@ public class UpdatedPlayerController : MonoBehaviour
         {
             state = MovementState.walking;
             desiredMoveSpeed = walkSpeed;
+            animControl.toggleGroundedBool(true);
+            if (movementDirection.x != 0 || movementDirection.z != 0)
+            {
+                animControl.toggleWalkingBool(true);                
+            }
+            else 
+            {
+                animControl.toggleWalkingBool(false);
+            }
         }
+        /*
+        else if(isGrounded && (movementDirection.x == 0 && movementDirection.z == 0) && readyToJump)
+        {
+            state = MovementState.idle;
+            moveSpeed = 0;
+            animControl.toggleWalkingBool(false);
+            animControl.toggleGroundedBool(true);
+        }
+        */
         else
         {
             state = MovementState.air;
+            animControl.toggleGroundedBool(false);
+            animControl.toggleEmotingBool(false);
         }
 
         if (Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4f && moveSpeed != 0)
@@ -171,6 +193,7 @@ public class UpdatedPlayerController : MonoBehaviour
         if(isGrounded)
         {
             jumpCount = maxJumpCount;
+            animControl.toggleJumpingBool(false);
             
         }
 
@@ -302,6 +325,8 @@ public class UpdatedPlayerController : MonoBehaviour
 
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
+        animControl.toggleJumpingBool(true);
+
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         //jumpCount -= 1;
     }
@@ -309,6 +334,8 @@ public class UpdatedPlayerController : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+
+        animControl.toggleJumpingBool(false);
 
         exitingSlope = false;
     }

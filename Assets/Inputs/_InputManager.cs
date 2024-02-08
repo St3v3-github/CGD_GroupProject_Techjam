@@ -185,6 +185,7 @@ public class InputManager : MonoBehaviour
             else
             {
                 GetComponent<AbilityManager2>().castSpell(slotTarget,ctx);
+                updatedPlayerController.animControl.toggleCastingBool(true);
             }
             
 
@@ -196,7 +197,7 @@ public class InputManager : MonoBehaviour
     {
         if (ctx.action.triggered)
         {
-            animationController.toggleEmotingBool(true);
+            updatedPlayerController.animControl.toggleEmotingBool(true);
         }
     }
 
