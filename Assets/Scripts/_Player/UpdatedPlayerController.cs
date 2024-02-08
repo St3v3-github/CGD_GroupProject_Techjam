@@ -15,6 +15,7 @@ public class UpdatedPlayerController : MonoBehaviour
     float xRotation;
     float yRotation;
 
+
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
 
@@ -32,7 +33,10 @@ public class UpdatedPlayerController : MonoBehaviour
     public Transform orientation; //this might not be needed
 
     Vector3 movementDirection;
+    Vector3 velocityToSet;
+
     Rigidbody rb;
+    public Grappling grappling;
 
     public float playerHeight;
     public LayerMask groundMask;
@@ -56,10 +60,14 @@ public class UpdatedPlayerController : MonoBehaviour
 
     public bool sliding;
     public bool dashing;
+    public bool freeze;
+    public bool activeGrapple;
     public bool hasDoubleJumped = false;
     public bool hasJumpedThisFrame;
     private int jumpCount;
     public int maxJumpCount;
+
+    private bool enableMovementOnNextTouch;
 
     public MovementState state;
 
@@ -68,6 +76,7 @@ public class UpdatedPlayerController : MonoBehaviour
 
     public enum MovementState
     {
+        freeze,
         walking,
         sprinting,
         crouching,
@@ -81,8 +90,13 @@ public class UpdatedPlayerController : MonoBehaviour
         //Crouch just compresses the character right now, need to hook up the crouch to the animation manager in the future
         //and just make the hitbox of the player smaller.
         
-
-        if(dashing)
+        if(freeze)
+        {
+            state = MovementState.freeze;
+            moveSpeed = 0;
+            rb.velocity = Vector3.zero;
+        }
+        else if(dashing)
         {
             state = MovementState.dashing;
             desiredMoveSpeed = dashSpeed;
@@ -160,7 +174,7 @@ public class UpdatedPlayerController : MonoBehaviour
             
         }
 
-        if (state == MovementState.walking || state == MovementState.sprinting || state == MovementState.crouching)
+        if (state == MovementState.walking || state == MovementState.sprinting || state == MovementState.crouching && !activeGrapple)
         {
             rb.drag = groundDrag;
         }
@@ -191,7 +205,10 @@ public class UpdatedPlayerController : MonoBehaviour
 
     public void HandleMovement(Vector2 movementInput)
     {
-        
+        if(activeGrapple)
+        {
+            return;
+        }
 
         movementDirection = transform.forward * movementInput.y + transform.right * movementInput.x;
 
@@ -251,6 +268,10 @@ public class UpdatedPlayerController : MonoBehaviour
 
     private void SpeedControl()
     {
+        if(activeGrapple)
+        {
+            return;
+        }
         if(OnSlope())
         {
             if(rb.velocity.magnitude > moveSpeed)
@@ -335,5 +356,50 @@ public class UpdatedPlayerController : MonoBehaviour
         }
 
         moveSpeed = desiredMoveSpeed;
+    }
+
+    public Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float trajectoryHeight)
+    {
+        float gravity = Physics.gravity.y;
+        float displacement = endPoint.y - startPoint.y;
+        Vector3 displacementXZ = new Vector3(endPoint.x - startPoint.x, 0f, endPoint.z - startPoint.z);
+
+        Vector3 yVelocity = Vector3.up * Mathf.Sqrt(displacement - 2 * gravity * trajectoryHeight);
+        Vector3 xzVelocity = displacementXZ / (Mathf.Sqrt(-2 * trajectoryHeight / gravity) + Mathf.Sqrt(2 * (displacement - trajectoryHeight) / gravity));
+
+
+        return yVelocity + xzVelocity;
+    }
+
+    private void SetVelocity()
+    {
+        enableMovementOnNextTouch = true;
+        rb.velocity = velocityToSet;
+    }
+
+    public void JumpToPosition(Vector3 targetPosition, float trajectoryHeight)
+    {
+        activeGrapple = true;
+
+        velocityToSet = CalculateJumpVelocity(transform.position, targetPosition, trajectoryHeight);
+        Invoke(nameof(SetVelocity), 0.1f);
+
+        Invoke(nameof(ResetRestriction), 3f);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(enableMovementOnNextTouch)
+        {
+            enableMovementOnNextTouch = false;
+            ResetRestriction();
+
+            grappling.stopGrapple();
+        }
+    }
+
+    private void ResetRestriction()
+    {
+        activeGrapple = false;
     }
 }

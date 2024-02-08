@@ -16,6 +16,7 @@ public class InputManager : MonoBehaviour
     public CameraController cameraController;
     public AdvancedProjectileSystem projectileController;
     public AnimationManager animationController;
+    public Grappling grappling;
     public Raycast ray;
     private InventoryEdit inventory;
     private bool spell_is_held;
@@ -109,6 +110,18 @@ public class InputManager : MonoBehaviour
         else if(ctx.canceled && updatedPlayerController.sliding)
         {
             sliding.EndSlide();
+        }
+    }
+
+    public void OnAction(InputAction.CallbackContext ctx)
+    {
+        if(ctx.performed)
+        {
+            grappling.StartGrapple();
+        }
+        else if(ctx.canceled)
+        {
+
         }
     }
 
