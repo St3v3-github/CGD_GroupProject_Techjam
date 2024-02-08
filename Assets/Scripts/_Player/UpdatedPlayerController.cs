@@ -52,7 +52,11 @@ public class UpdatedPlayerController : MonoBehaviour
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
+    public float jumpForceMultiplier;
+    public float maxJumpForce;
+    private float existingJumpForce;
     public bool readyToJump;
+    public bool chargingJump;
     public bool sprintPressed = false;
 
     public float maxSlopeAngle;
@@ -166,6 +170,7 @@ public class UpdatedPlayerController : MonoBehaviour
         startYScale = transform.localScale.y;
 
         jumpCount = maxJumpCount;
+        existingJumpForce = jumpForce;
     }
 
     // Update is called once per frame
@@ -179,7 +184,6 @@ public class UpdatedPlayerController : MonoBehaviour
         if(isGrounded)
         {
             jumpCount = maxJumpCount;
-            
         }
 
         if (state == MovementState.walking || state == MovementState.sprinting || state == MovementState.crouching && !activeGrapple)
@@ -206,6 +210,13 @@ public class UpdatedPlayerController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space)) 
         {
             Debug.Log(moveSpeed);
+        }
+
+
+
+        if(chargingJump && jumpForce < maxJumpForce)
+        {
+            jumpForce += (jumpForceMultiplier * Time.deltaTime);
         }
     }
 
@@ -276,6 +287,15 @@ public class UpdatedPlayerController : MonoBehaviour
         Invoke(nameof(ResetJump), jumpCooldown);
     }
 
+    public void HandlePound()
+    {
+        if(!isGrounded)
+        {
+            rb.AddForce(Vector3.down * 1000000f, ForceMode.Impulse);
+        }
+        
+    }
+
     
 
     private void SpeedControl()
@@ -321,7 +341,7 @@ public class UpdatedPlayerController : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
-
+        jumpForce = existingJumpForce;
         exitingSlope = false;
     }
 
