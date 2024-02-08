@@ -154,7 +154,6 @@ public class AdvancedProjectileSystem : Spell
         //Instantiate Projectile
         GameObject currentProjectile = Instantiate(equippedProjectile.projectile, firePoint.position, Quaternion.identity);
         currentProjectile.transform.forward = directionWithSpread.normalized;
-        Debug.Log(directionWithSpread);
         Projectile currentProjectileScript = currentProjectile.GetComponent<Projectile>();
         currentProjectileScript.source = source;
         currentProjectileScript.damage = equippedProjectile.damage;

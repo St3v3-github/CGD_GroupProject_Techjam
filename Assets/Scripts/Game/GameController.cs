@@ -127,7 +127,6 @@ public class GameController : MonoBehaviour
                 {
 
                     string tagString = "Player" + i.ToString();
-                    Debug.Log(tagString);
                     player.tag = tagString;
                     player.GetComponent<AbilityManager2>().spell_controller.gameObject.tag = tagString;
                     player.GetComponent<UIController>().attributeController.gameObject.tag = tagString;

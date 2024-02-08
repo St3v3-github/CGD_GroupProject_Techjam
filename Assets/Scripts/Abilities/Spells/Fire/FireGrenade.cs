@@ -39,7 +39,7 @@ public class Grenade : Spell
     private IEnumerator timerCoroutine()
     {
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(10f);
         Destroy(gameObject);
     }
 }
