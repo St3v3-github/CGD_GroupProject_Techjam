@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class FireCircle : Spell
 {
@@ -8,12 +9,14 @@ public class FireCircle : Spell
     public float maxRadius = 5f; // Adjust the maximum collider radius
     public float sizeIncreaseDuration = 5f; // Adjust the duration over which the collider size increases
     public float duration = 10f;
+    private ParticleSystem particle;
 
     private GameObject playerInPoisonCloud; // Store the reference to the player
     private float timeSinceStart = 0f;
 
     private void Start()
     {
+        particle = GetComponent<ParticleSystem>();
         StartCoroutine(TimerCoroutine());
     }
 
@@ -22,10 +25,13 @@ public class FireCircle : Spell
         timeSinceStart += Time.deltaTime;
 
         // Increase the collider radius gradually over the specified duration
-        float currentColliderRadius = Mathf.Lerp(0f, maxRadius, timeSinceStart / sizeIncreaseDuration);
+        float currentRadius = Mathf.Lerp(0f, maxRadius, timeSinceStart / sizeIncreaseDuration);
+
+        ParticleSystem.ShapeModule ps = particle.shape;
+        ps.radius = currentRadius;
 
         // Check for players within the poison cloud
-        Collider[] colliders = Physics.OverlapSphere(transform.position, currentColliderRadius);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, currentRadius);
         foreach (Collider collider in colliders)
         {
             if (collider.gameObject.CompareTag("Player1") || collider.CompareTag("Player2"))
