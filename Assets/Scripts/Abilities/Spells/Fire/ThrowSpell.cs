@@ -32,7 +32,7 @@ public class ThrowSpell : Spell
     {
         Debug.Log("Throw");
         GameObject projectile = Instantiate(prefab, firePoint.position, playerCam.rotation);
-        projectile.GetComponent<FireGrenade>().source = this.gameObject;
+        projectile.GetComponent<Grenade>().source = this.gameObject;
         projectile.tag = this.tag + "Spell";
 
         Rigidbody rb = projectile.GetComponent<Rigidbody>();

@@ -40,7 +40,6 @@ public class Projectile : Spell
 
         if ((impactLayers | (1 << collision.gameObject.layer)) != 0)
         {
-            Debug.Log("Hit");
             GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }

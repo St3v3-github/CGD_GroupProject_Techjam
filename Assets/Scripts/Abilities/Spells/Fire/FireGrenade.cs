@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class FireGrenade : Spell
+public class Grenade : Spell
 {
     public float DirectHitDamage;
-    public GameObject FirePrefab;
+    public GameObject Prefab;
     //public StatusEffect_Data effect;
 
     //private float timer = 0;
@@ -29,8 +29,8 @@ public class FireGrenade : Spell
             
         }
 
-        GameObject fire = Instantiate(FirePrefab, transform.position, Quaternion.identity);
-        fire.GetComponent<FireCircle>().source = source;
+        GameObject effect = Instantiate(Prefab, transform.position, Quaternion.identity);
+        effect.GetComponent<Spell>().source = source;
         Destroy(gameObject);
 
 

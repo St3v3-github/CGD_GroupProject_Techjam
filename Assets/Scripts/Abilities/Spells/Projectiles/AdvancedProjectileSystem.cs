@@ -133,6 +133,7 @@ public class AdvancedProjectileSystem : Spell
         {
             //ray hit Something
             targetPoint = hit.point;
+            targetPoint = ray.GetPoint(100);
         }
         else
         {
@@ -144,7 +145,6 @@ public class AdvancedProjectileSystem : Spell
 
         Vector3 directionWithoutSpread = targetPoint - firePoint.position;
 
-        Debug.Log("Step 1");
         //Spread
         float x = Random.Range(-equippedProjectile.spread, equippedProjectile.spread);
         float y = Random.Range(-equippedProjectile.spread, equippedProjectile.spread);
@@ -154,7 +154,7 @@ public class AdvancedProjectileSystem : Spell
         //Instantiate Projectile
         GameObject currentProjectile = Instantiate(equippedProjectile.projectile, firePoint.position, Quaternion.identity);
         currentProjectile.transform.forward = directionWithSpread.normalized;
-
+        Debug.Log(directionWithSpread);
         Projectile currentProjectileScript = currentProjectile.GetComponent<Projectile>();
         currentProjectileScript.source = source;
         currentProjectileScript.damage = equippedProjectile.damage;

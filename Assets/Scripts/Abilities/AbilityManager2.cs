@@ -43,27 +43,8 @@ public class AbilityManager2 : MonoBehaviour
                     inventory.setActiveFor(slot, 3f, 1.0f);
                     spell_controller.GetComponent<Beam>().cast();
                     break;
-
-                // ICE CLASS
+                // Ice CLASS
                 case ItemData.SpellList.ICEWALL:
-                    if (spell_controller.GetComponent<Wall>() == null || spell_controller.GetComponent<WallManager>() == null) { return 0; }
-                    if (!inventory.checkCooldown(slot)) { return 0; }
-                    inventory.setActiveFor(slot, 2.0f, 1.0f); //TODO: Grab active and cooldown times from spells
-
-                    spell_controller.GetComponent<Wall>().setType(spellEnum.ice);
-                    spell_controller.GetComponent<WallManager>().setType(spellEnum.ice);
-                    if (spell_controller.GetComponent<Wall>().isPlacingWall)
-                    {
-                        spell_controller.GetComponent<Wall>().PlaceWall();
-                    }
-                    else
-                    {
-                        spell_controller.GetComponent<Wall>().StartPlacingWall();
-                    }
-                    break;
-
-                // LIGHTNING CLASS
-                case ItemData.SpellList.ICESLOW:
                     if (spell_controller.GetComponent<CastableAOEStrike>() == null) { return 0; }
                     if (!inventory.checkCooldown(slot)) { return 0; }
                     spell_controller.GetComponent<CastableAOEStrike>().setType(spellEnum.ice);
@@ -78,6 +59,11 @@ public class AbilityManager2 : MonoBehaviour
                         spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOff();
 
                     }
+                    break;
+                case ItemData.SpellList.ICESLOW:
+                    if (spell_controller.GetComponent<ThrowSpell>() == null) { Debug.Log("Not Found"); return 0; }
+                    if (!inventory.checkCooldown(slot)) { return 0; }
+                    spell_controller.GetComponent<ThrowSpell>().Cast();
                     break;
 
 

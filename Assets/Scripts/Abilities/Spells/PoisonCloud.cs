@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
+public class playerInArea
+{
+    public GameObject player;
+    public float timeInArea;
+}
+
 public class PoisonCloud : Spell
 {
     public float damagePerSecond = 5f; // Adjust the damage value
@@ -13,7 +19,7 @@ public class PoisonCloud : Spell
     private bool isInPoisonCloud = false;
     private float timeInPoisonCloud = 0f;
     private float timeSinceStart = 0f;
-    private List<GameObject> playersInPoisonCloud; // Store the reference to the player
+    private List<playerInArea> playersInPoisonCloud; // Store the reference to the player
 
     private void Start()
     {
@@ -37,23 +43,26 @@ public class PoisonCloud : Spell
             {
                 // Player entered the poison cloud
                 Debug.Log("Player entered the poison cloud");
-                isInPoisonCloud = true;
-                playersInPoisonCloud.Add(collider.gameObject);
+                playerInArea pia = new playerInArea();
+                pia.player = collider.gameObject;
+                pia.timeInArea = 0;
+                playersInPoisonCloud.Add(pia);
                 break;
             }
         }
 
-        if (isInPoisonCloud)
+        if (playersInPoisonCloud.Count != 0)
         {
             // Increment the timer while the player is in the poison cloud
-            timeInPoisonCloud += Time.deltaTime;
-            foreach (GameObject player in playersInPoisonCloud)
+            
+            foreach (playerInArea pia in playersInPoisonCloud)
             {
+                pia.timeInArea += Time.deltaTime;
                 // Check if the delay period has passed
-                if (timeInPoisonCloud > delayBeforeDamage && player != null)
+                if (pia.timeInArea > delayBeforeDamage && pia.player != null)
                 {
                     // Apply damage over time
-                    ApplyDamageOverTime(player);
+                    ApplyDamageOverTime(pia.player);
                 }
             }
         }
