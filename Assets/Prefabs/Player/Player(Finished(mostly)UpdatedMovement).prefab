@@ -26791,6 +26791,7 @@ MonoBehaviour:
   sprintSpeed: 10
   slideSpeed: 30
   dashSpeed: 100
+  swingSpeed: 0
   orientation: {fileID: 0}
   grappling: {fileID: 8523026064644066608}
   animControl: {fileID: 6727766820694850335}
@@ -26806,13 +26807,17 @@ MonoBehaviour:
   jumpForce: 10
   jumpCooldown: 1.5
   airMultiplier: 0.3
+  jumpForceMultiplier: 2
+  maxJumpForce: 15
   readyToJump: 0
+  chargingJump: 0
   sprintPressed: 0
   maxSlopeAngle: 40
   sliding: 0
   dashing: 0
   freeze: 0
   activeGrapple: 0
+  swinging: 0
   hasDoubleJumped: 0
   hasJumpedThisFrame: 0
   maxJumpCount: 2
@@ -26939,6 +26944,7 @@ MonoBehaviour:
   grappleable:
     serializedVersion: 2
     m_Bits: 3903
+  pm: {fileID: 4874942322783985347}
 --- !u!1 &5319166711595923639
 GameObject:
   m_ObjectHideFlags: 0

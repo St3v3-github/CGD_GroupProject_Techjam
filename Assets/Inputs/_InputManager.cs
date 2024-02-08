@@ -92,6 +92,7 @@ public class InputManager : MonoBehaviour
         if(ctx.performed && updatedPlayerController.isGrounded && updatedPlayerController.readyToJump)
         {
             updatedPlayerController.chargingJump = true;
+            Debug.Log(updatedPlayerController.chargingJump);
         }
 
         if(ctx.canceled && updatedPlayerController.isGrounded && updatedPlayerController.readyToJump)
