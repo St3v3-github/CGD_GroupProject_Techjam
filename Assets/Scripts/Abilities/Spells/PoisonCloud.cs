@@ -42,11 +42,16 @@ public class PoisonCloud : Spell
             if (collider.gameObject.CompareTag("Player1") || collider.CompareTag("Player2"))
             {
                 // Player entered the poison cloud
-                Debug.Log("Player entered the poison cloud");
-                playerInArea pia = new playerInArea();
-                pia.player = collider.gameObject;
-                pia.timeInArea = 0;
-                playersInPoisonCloud.Add(pia);
+                if ((playersInPoisonCloud.Find((x) => x.player == collider.gameObject)).player != collider.gameObject)
+                {
+                    Debug.Log("Player entered the poison cloud");
+
+                    playerInArea pia = new playerInArea();
+                    pia.player = collider.gameObject;
+                    pia.timeInArea = 0;
+                    playersInPoisonCloud.Add(pia);
+                }
+                
                 break;
             }
         }
