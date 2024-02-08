@@ -52,7 +52,6 @@ public class JetPack : MonoBehaviour
         }
 
         bool JetPackInUse = canUseJetPack && usingJetpack && currentFill > 0f;
-        Debug.Log(JetPackInUse);
 
         if(JetPackInUse)
         {

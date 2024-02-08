@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
+using UnityEngine.UI;
 using static UnityEngine.EventSystems.EventTrigger;
 using static UpdatedPlayerController;
 
@@ -17,6 +18,7 @@ public class InputManager : MonoBehaviour
     public AdvancedProjectileSystem projectileController;
     public AnimationManager animationController;
     public Grappling grappling;
+    public GrappleSwing grappleSwing;
     public Raycast ray;
     private InventoryEdit inventory;
     private bool spell_is_held;
@@ -64,7 +66,7 @@ public class InputManager : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext ctx)
     {
-        if (ctx.action.triggered && updatedPlayerController.isGrounded && updatedPlayerController.readyToJump)
+        /*if (ctx.action.triggered && updatedPlayerController.isGrounded && updatedPlayerController.readyToJump)
         {
             //animationController.disableEmote();
             //animationController.toggleEmotingBool(false);
@@ -74,10 +76,10 @@ public class InputManager : MonoBehaviour
 
             updatedPlayerController.HandleJump();
         }
-        /*else if(ctx.action.triggered && !updatedPlayerController.hasDoubleJumped)
+        *//*else if(ctx.action.triggered && !updatedPlayerController.hasDoubleJumped)
         {
             updatedPlayerController.HandleJump();
-        }*/
+        }*//*
         if(ctx.performed)
         {
             jetPack.usingJetpack = true;
@@ -85,6 +87,17 @@ public class InputManager : MonoBehaviour
         else if(ctx.canceled)
         {
             jetPack.usingJetpack = false;
+        }*/
+
+        if(ctx.performed && updatedPlayerController.isGrounded && updatedPlayerController.readyToJump)
+        {
+            updatedPlayerController.chargingJump = true;
+        }
+
+        if(ctx.canceled && updatedPlayerController.isGrounded && updatedPlayerController.readyToJump)
+        {
+            updatedPlayerController.chargingJump = false;
+            updatedPlayerController.HandleJump();
         }
     }
 
@@ -115,13 +128,20 @@ public class InputManager : MonoBehaviour
 
     public void OnAction(InputAction.CallbackContext ctx)
     {
-        if(ctx.performed)
+        if (ctx.action.triggered)
         {
-            grappling.StartGrapple();
+            updatedPlayerController.HandlePound();
+        }
+
+        if (ctx.performed)
+        {
+            //grappling.StartGrapple();
+            //grappleSwing.StartSwing();
+            //updatedPlayerController.HandlePound();
         }
         else if(ctx.canceled)
         {
-
+            //grappleSwing.StopSwing();
         }
     }
 

@@ -29,6 +29,7 @@ public class UpdatedPlayerController : MonoBehaviour
     public float sprintSpeed;
     public float slideSpeed;
     public float dashSpeed;
+    public float swingSpeed;
 
     public Transform orientation; //this might not be needed
 
@@ -52,7 +53,11 @@ public class UpdatedPlayerController : MonoBehaviour
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
+    public float jumpForceMultiplier;
+    public float maxJumpForce;
+    private float existingJumpForce;
     public bool readyToJump;
+    public bool chargingJump;
     public bool sprintPressed = false;
 
     public float maxSlopeAngle;
@@ -63,6 +68,7 @@ public class UpdatedPlayerController : MonoBehaviour
     public bool dashing;
     public bool freeze;
     public bool activeGrapple;
+    public bool swinging;
     public bool hasDoubleJumped = false;
     public bool hasJumpedThisFrame;
     private int jumpCount;
@@ -84,6 +90,7 @@ public class UpdatedPlayerController : MonoBehaviour
         crouching,
         sliding,
         dashing,
+        swinging,
         air
     }
 
@@ -115,6 +122,11 @@ public class UpdatedPlayerController : MonoBehaviour
             {
                 desiredMoveSpeed = sprintSpeed;
             }
+        }
+        else if(swinging)
+        {
+            state = MovementState.swinging;
+            moveSpeed = swingSpeed;
         }
         else if(Input.GetKey(crouchKey))
         {
@@ -180,6 +192,7 @@ public class UpdatedPlayerController : MonoBehaviour
         startYScale = transform.localScale.y;
 
         jumpCount = maxJumpCount;
+        existingJumpForce = jumpForce;
     }
 
     // Update is called once per frame
@@ -222,6 +235,13 @@ public class UpdatedPlayerController : MonoBehaviour
         {
             Debug.Log(moveSpeed);
         }
+
+
+
+        if(chargingJump && jumpForce < maxJumpForce)
+        {
+            jumpForce += (jumpForceMultiplier * Time.deltaTime);
+        }
     }
 
     
@@ -229,6 +249,10 @@ public class UpdatedPlayerController : MonoBehaviour
     public void HandleMovement(Vector2 movementInput)
     {
         if(activeGrapple)
+        {
+            return;
+        }
+        if(swinging)
         {
             return;
         }
@@ -287,6 +311,15 @@ public class UpdatedPlayerController : MonoBehaviour
         Invoke(nameof(ResetJump), jumpCooldown);
     }
 
+    public void HandlePound()
+    {
+        if(!isGrounded)
+        {
+            rb.AddForce(Vector3.down * 1000000f, ForceMode.Impulse);
+        }
+        
+    }
+
     
 
     private void SpeedControl()
@@ -337,6 +370,7 @@ public class UpdatedPlayerController : MonoBehaviour
 
         animControl.toggleJumpingBool(false);
 
+        jumpForce = existingJumpForce;
         exitingSlope = false;
     }
 
