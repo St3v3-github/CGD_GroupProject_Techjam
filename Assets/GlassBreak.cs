@@ -20,7 +20,6 @@ public class GlassBreak : MonoBehaviour
         {   
             after.SetActive(true);
             before.SetActive(false);
-            
         }
         
     }
