@@ -12,7 +12,9 @@ public class FullScreenController : MonoBehaviour
 
     [Header("references")]
     [SerializeField] private ScriptableRendererFeature _fullScreenDamage;
-    [SerializeField] private Material _material;
+    [SerializeField] private Material _materialFire;
+
+    [SerializeField] private Material _materialIce;
 
     //private int _voronoiIntensity = Shader.PropertyToID("_VoronoiIntensity");
    // private int _vignetteIntensity = Shader.PropertyToID("_VignetteIntensity");
