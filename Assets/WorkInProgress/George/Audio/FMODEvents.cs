@@ -20,6 +20,12 @@ public class FMODEvents : MonoBehaviour
     [field: Header("Wind SFX")]
     [field: SerializeField] public EventReference windSound { get; private set; }
 
+    [field: Header("Ice SFX")]
+    [field: SerializeField] public EventReference iceSound { get; private set; }
+
+    [field: Header("Electricity SFX")]
+    [field: SerializeField] public EventReference zapSound { get; private set; }
+
     public static FMODEvents instance { get; private set; }
 
     private void Awake()
