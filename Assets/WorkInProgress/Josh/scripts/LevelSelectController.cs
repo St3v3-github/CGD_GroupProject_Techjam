@@ -14,7 +14,12 @@ public class LevelSelectController : MonoBehaviour
     public int Numberofmaps;
     public GameObject[] Levels;
     public GameObject StartingMap; 
-    int i; 
+    int i;
+    [SerializeField] public int LevelNum = 1;
+    //[SerializeField] public bool isLevel1 = false;
+    //[SerializeField] public bool isLevel2 = false;
+    //[SerializeField] public bool isLevel3 = false;
+    //[SerializeField] public bool isLevel4 = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,29 +35,33 @@ public class LevelSelectController : MonoBehaviour
         
     }
 
+
    public void NextMap()
     {
         if (MapNumber < Numberofmaps)
         {
          MapNumber++;
+            LevelNum++;
         }
 
         if (MapNumber == Numberofmaps)
         {
             MapNumber++;
+            LevelNum++;
         }
 
         if (MapNumber > Numberofmaps)
         {
-            MapNumber = 0; 
+            MapNumber = 0;
+            LevelNum = 0;
         }
         for (i = 0; i < Numberofmaps; i++)
         {
             Levels[i].SetActive(false);
         }
         Map = Levels[MapNumber];
-        Map.SetActive(true);  
-        
+        Map.SetActive(true);
     }
-    
+
+
 }
