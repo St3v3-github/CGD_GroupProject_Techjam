@@ -94,7 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3765167287048175808, guid: 4756afa63734c0547afcac466ef28d2b, type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 3765167287048175808, guid: 4756afa63734c0547afcac466ef28d2b, type: 3}
       propertyPath: m_ActionEvents.Array.data[15].m_ActionId
@@ -217,6 +217,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4379525662178992784, guid: 4756afa63734c0547afcac466ef28d2b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3222360396043545715}
+    - targetCorrespondingSourceObject: {fileID: 4379525662178992784, guid: 4756afa63734c0547afcac466ef28d2b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1216300959277692719}
+    - targetCorrespondingSourceObject: {fileID: 2932552556323957563, guid: 4756afa63734c0547afcac466ef28d2b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -346068098902191748}
   m_SourcePrefab: {fileID: 100100000, guid: 4756afa63734c0547afcac466ef28d2b, type: 3}
 --- !u!1 &1667328944037848483 stripped
 GameObject:
@@ -261,6 +267,7 @@ MonoBehaviour:
   sensX: 400
   sensY: 400
   playerCam: {fileID: 5362061048560648250}
+  speedMultiplier: 0
   speedIncreaseMultiplier: 0
   sloperIncreaseMultiplier: 0
   moveSpeed: 7
@@ -268,7 +275,10 @@ MonoBehaviour:
   sprintSpeed: 0
   slideSpeed: 0
   dashSpeed: 0
+  swingSpeed: 0
   orientation: {fileID: 0}
+  grappling: {fileID: 0}
+  animControl: {fileID: 0}
   playerHeight: 2
   groundMask:
     serializedVersion: 2
@@ -281,11 +291,17 @@ MonoBehaviour:
   jumpForce: 0
   jumpCooldown: 0
   airMultiplier: 0
+  jumpForceMultiplier: 0
+  maxJumpForce: 0
   readyToJump: 0
+  chargingJump: 0
   sprintPressed: 0
   maxSlopeAngle: 0
   sliding: 0
   dashing: 0
+  freeze: 0
+  activeGrapple: 0
+  swinging: 0
   hasDoubleJumped: 0
   hasJumpedThisFrame: 0
   maxJumpCount: 0
@@ -338,6 +354,37 @@ MonoBehaviour:
   sensX: 0
   sensY: 0
   orientation: {fileID: 0}
+--- !u!114 &-1216300959277692719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2765970356882308062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
+--- !u!1 &3609359138599105141 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2932552556323957563, guid: 4756afa63734c0547afcac466ef28d2b, type: 3}
+  m_PrefabInstance: {fileID: 1920081555105519950}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-346068098902191748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3609359138599105141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!20 &5362061048560648250 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 5822131898686806388, guid: 4756afa63734c0547afcac466ef28d2b, type: 3}
