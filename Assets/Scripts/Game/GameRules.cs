@@ -14,7 +14,4 @@ public class GameRules : ScriptableObject
     [SerializeField] public float timer;
     [SerializeField] public float respawnTimer;
     [SerializeField] public int spawnPointVariance;
-
-
-
 }

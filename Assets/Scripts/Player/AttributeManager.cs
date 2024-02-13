@@ -18,6 +18,7 @@ public class AttributeManager : MonoBehaviour
     [SerializeField] public int mp;
     [SerializeField] public float speed;
     [SerializeField] public int score;
+    public bool dead = false;
     public bool hit_by_strike = false;
 
 
@@ -71,6 +72,7 @@ public class AttributeManager : MonoBehaviour
         //example: player is on fire via fire status, HP reduced by 5 every 1 second?
 
         healthbar.value = currentHealth;
+        //TODO: Fix this for new GameController
         scorefloat = score.ToString(); 
         ScoreText.GetComponent<TextMeshProUGUI>().text = scorefloat;
 

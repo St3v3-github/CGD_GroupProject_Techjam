@@ -119,6 +119,8 @@ GameObject:
   - component: {fileID: 8831944262971521100}
   - component: {fileID: 6340715753519854202}
   - component: {fileID: 9037200316612442087}
+  - component: {fileID: 8560481316225124167}
+  - component: {fileID: 2071158734692247006}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -144,7 +146,6 @@ Transform:
   - {fileID: 7286747320838427526}
   - {fileID: 7876832612726562485}
   - {fileID: 49267707356469619}
-  - {fileID: 894559704450128298}
   - {fileID: 5611252498046804216}
   - {fileID: 1059183678427591383}
   m_Father: {fileID: 0}
@@ -504,7 +505,46 @@ MonoBehaviour:
   scoreboard: {fileID: 1742542783299560907}
   player: {fileID: 974478289764777197}
   healthText: {fileID: 4417325605559549734}
-  attributeController: {fileID: 5462922462062542653}
+  attributeController: {fileID: 0}
+--- !u!114 &8560481316225124167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974478289764777197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05a9cdd70fd2214eb99223ab80fc12a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 100
+  mp: 0
+  speed: 10
+  score: 0
+  hit_by_strike: 0
+  player_status: {fileID: 0}
+  last_damage_player: {fileID: 0}
+  healthbar: {fileID: 4701921683868773410}
+  ScoreText: {fileID: 1837251313428888528}
+  scorefloat: 
+--- !u!114 &2071158734692247006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974478289764777197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e7c25fd8d34cf41a844312097a9737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  kill_count: 0
+  death_count: 0
+  lastDamagedBy: {fileID: 0}
 --- !u!1 &1837251313428888528
 GameObject:
   m_ObjectHideFlags: 0
