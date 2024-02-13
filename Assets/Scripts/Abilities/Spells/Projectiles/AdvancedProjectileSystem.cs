@@ -40,7 +40,7 @@ public class AdvancedProjectileSystem : Spell
 
     private void Start()
     {
-        setTargetTag();
+
 
         rechargeSurge = Instantiate(equippedProjectile.recharge, firePoint.position, Quaternion.identity);
         rechargeSurge.transform.SetParent(firePoint, true);

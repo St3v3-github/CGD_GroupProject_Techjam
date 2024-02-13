@@ -105,7 +105,51 @@ public class Spell : MonoBehaviour
         return false;
         
         // THIS IS USED FOR THE STRIKE ONLY, NEEDED A SEPERATE FUNCTION TO ALLOW FOR HITTING SELF WITH THE SPELL
-    }public bool DealDamage(GameObject hitbox, float damage, bool strike)
+    }
+
+    public bool dealDamage(GameObject hitbox, float damage)
+    {
+        bool valid_target = false;
+
+        GameObject player;
+        if (hitbox.transform.parent != null)
+        {
+            player = hitbox.transform.parent.gameObject;
+        }
+        else
+        {
+            player = hitbox;
+        }
+        player = hitbox;
+
+
+        if (player.layer == LayerMask.NameToLayer("layer_Player") && player.tag != source.tag)
+        {
+            Debug.Log("1");
+            Debug.Log(hitbox.name);
+            // AttributeManager attributes = hitbox.GetComponent<AttributeManager>();
+            if (hitbox.tag == "PLayer1" || hitbox.tag == "Player2")
+            {
+                AttributeManager attributes = player.GetComponent<UIController>().attributeController.GetComponent<AttributeManager>();
+                Debug.Log("2");
+                if (attributes != null)
+                {
+                    Debug.Log("3");
+                    attributes.TakeDamage(damage, source);
+                    return true;
+                }
+            }
+
+
+            //Hitmarker
+            source.GetComponent<UIController>().Hit(damage);
+        }
+        return false;
+
+        // THIS IS USED FOR THE STRIKE ONLY, NEEDED A SEPERATE FUNCTION TO ALLOW FOR HITTING SELF WITH THE SPELL
+    }
+
+    public bool DealDamage(GameObject hitbox, float damage, bool strike)
     {
         bool valid_target = false;
         
@@ -151,6 +195,26 @@ public class Spell : MonoBehaviour
         }
         return false;
         
+    }
+
+    public bool playerCheck(GameObject hitbox)
+    {
+        GameObject player;
+        if (hitbox.transform.parent != null)
+        {
+            player = hitbox.transform.parent.gameObject;
+        }
+        else
+        {
+            player = hitbox;
+        }
+
+
+        if (player.layer == LayerMask.NameToLayer("layer_Player"))
+        {
+            return true;
+        }
+        return false;
     }
 
     public virtual void Cast()

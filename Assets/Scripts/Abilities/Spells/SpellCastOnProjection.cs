@@ -18,7 +18,7 @@ public class SpellCastOnProjection : Spell
     {
         
 
-        setTargetTag();
+
        // source = gameObject;
 
     }

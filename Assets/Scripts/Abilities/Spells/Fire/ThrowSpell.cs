@@ -16,7 +16,7 @@ public class ThrowSpell : Spell
 
     private void Start()
     {
-        setTargetTag();
+     
     }
 
     void Update()

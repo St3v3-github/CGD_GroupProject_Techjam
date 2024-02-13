@@ -5289,12 +5289,16 @@ MonoBehaviour:
   mp: 0
   speed: 10
   score: 0
+  dead: 0
   hit_by_strike: 0
-  player_status: {fileID: 0}
-  last_damage_player: {fileID: 0}
+  playerStatus: {fileID: 0}
+  lastDamagePlayer: {fileID: 0}
   healthbar: {fileID: 414815503636060483}
   ScoreText: {fileID: 6772875119555858097}
   scorefloat: 
+  damageFlyTextPrefab: {fileID: 0}
+  damageFlash: {fileID: 0}
+  cameraShake: {fileID: 0}
 --- !u!136 &8148246218191187709
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -24433,10 +24437,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source: {fileID: 5262217071470266764}
   equippedProjectile: {fileID: 11400000, guid: e9a801d15eee89743af235b7bbbc5caa, type: 2}
-  fireballforalpha: {fileID: 11400000, guid: e9a801d15eee89743af235b7bbbc5caa, type: 2}
+  chargesLeft: 0
+  chargesShot: 0
   shooting: 0
   readyToShoot: 0
   recharging: 0
+  shootWithRay: 0
   allowInvoke: 1
   playerCam: {fileID: 1462951080912202773}
   firePoint: {fileID: 4691944331993996491}
@@ -24466,6 +24472,7 @@ MonoBehaviour:
   projectionPrefab: {fileID: 8198984963544093090, guid: ab0b8ce3ffd22ec4c94394e0087bf382, type: 3}
   playerCamera: {fileID: 1462951080912202773}
   projectionOn: 0
+  doesDamage: 0
 --- !u!114 &5865401049734321726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26342,6 +26349,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2512892146780671401}
   - {fileID: 6167938817103763463}
   - {fileID: 751306034107846083}
   - {fileID: 2422538887695148775}
@@ -26655,6 +26663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 8461356319046550346}
+  advancedProjectileSystem: {fileID: 0}
   updatedPlayerController: {fileID: 4874942322783985347}
   sliding: {fileID: 7689209407819378517}
   dashing: {fileID: 2128389038683888302}
@@ -26667,6 +26676,7 @@ MonoBehaviour:
   ray: {fileID: 425103282212623771}
   cameraInput: {x: 0, y: 0}
   movementInput: {x: 0, y: 0}
+  shootInput: 0
 --- !u!114 &8461356319046550346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27686,6 +27696,55 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &6481997587045252041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2512892146780671401}
+  - component: {fileID: 846828696536523700}
+  m_Layer: 6
+  m_Name: Fullscreen Effect Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2512892146780671401
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6481997587045252041}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.2647686, y: 0.10899997, z: 0.7934017}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5844765085397117960}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &846828696536523700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6481997587045252041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9bbd25301a72ea488a40a84f7d076ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hurtDisplayTime: 1.5
+  _hurtFadeOutTime: 0.5
+  _fullScreenDamage: {fileID: 6792930231468119443, guid: 8c62ffbe594070c48840db33636ff486, type: 2}
+  _materialFire: {fileID: 2100000, guid: 30487f97d0b5b804aa4140627c6d13d3, type: 2}
+  _materialIce: {fileID: 2100000, guid: 4c0288a724becd843912dafff5e68a04, type: 2}
 --- !u!1 &6678817569023234218
 GameObject:
   m_ObjectHideFlags: 0

@@ -47,7 +47,7 @@ public class AbilityManager2 : MonoBehaviour
                 case ItemData.SpellList.ICEWALL:
                     if (spell_controller.GetComponent<CastableAOEStrike>() == null) { return 0; }
                     if (!inventory.checkCooldown(slot)) { return 0; }
-                    spell_controller.GetComponent<CastableAOEStrike>().setType(spellEnum.ice);
+                    spell_controller.GetComponent<CastableAOEStrike>().SetType(spellEnum.ice);
                     //  spell_controller.GetComponent<CastableAOEStrike>().Cast();
                     if (!spell_controller.GetComponent<CastableAOEStrike>().projectionOn)
                     {
@@ -71,7 +71,7 @@ public class AbilityManager2 : MonoBehaviour
                 case ItemData.SpellList.LIGHTNINGSTRIKE:
                     if (spell_controller.GetComponent<CastableAOEStrike>() == null) { return 0; }
                     if (!inventory.checkCooldown(slot)) { return 0; }
-                    spell_controller.GetComponent<CastableAOEStrike>().setType(spellEnum.lightning);
+                    spell_controller.GetComponent<CastableAOEStrike>().SetType(spellEnum.lightning);
                     //  spell_controller.GetComponent<CastableAOEStrike>().Cast();
                     if (!spell_controller.GetComponent<CastableAOEStrike>().projectionOn)
                     {
@@ -94,7 +94,7 @@ public class AbilityManager2 : MonoBehaviour
                 // WIND CLASS
                 case ItemData.SpellList.WIRLWIND:
                     if (spell_controller.GetComponent<CastableAOEStrike>() == null) { return 0; }
-                    spell_controller.GetComponent<CastableAOEStrike>().setType(spellEnum.wind);
+                    spell_controller.GetComponent<CastableAOEStrike>().SetType(spellEnum.wind);
                     //  spell_controller.GetComponent<CastableAOEStrike>().Cast();
                     if (!spell_controller.GetComponent<CastableAOEStrike>().projectionOn)
                     {
@@ -119,7 +119,7 @@ public class AbilityManager2 : MonoBehaviour
                 // ULTIMATES
                 case ItemData.SpellList.SUMMON:
                     if (spell_controller.GetComponent<Summon>() == null) { return 0; }
-                    spell_controller.GetComponent<Summon>().setType(spellEnum.fire);
+                    spell_controller.GetComponent<Summon>().SetType(spellEnum.fire);
                     spell_controller.GetComponent<Summon>().Cast();
                     inventory.dd_spell_inventory[slot].DecreaseCharges();
                     break;
