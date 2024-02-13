@@ -8,6 +8,7 @@ public class ItemInfo : MonoBehaviour
     // Start is called before the first frame update
 
     public ItemData item_data;
+    [SerializeField] ItemData private_item_data;
 
     //Lists should be on the spawner, unless dropping items
     public List<Mesh> meshes = new List<Mesh>();
@@ -16,6 +17,10 @@ public class ItemInfo : MonoBehaviour
     void Start()
     {
         //fill up the lists for method 1
+        var clone = Instantiate(private_item_data);
+        item_data = clone;
+     
+
     }
 
     // Update is called once per frame

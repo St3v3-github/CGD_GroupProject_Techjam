@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
 {
+    public bool used = false;
     // Start is called before the first frame update
     void Start()
     {

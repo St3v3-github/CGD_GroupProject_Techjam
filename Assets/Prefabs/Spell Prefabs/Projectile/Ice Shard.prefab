@@ -147,9 +147,10 @@ GameObject:
   - component: {fileID: 4875551677005714096}
   - component: {fileID: 8799207345262146998}
   - component: {fileID: 4159903937358508399}
-  - component: {fileID: 1000278990364697830}
   - component: {fileID: 2167661832666957537}
   - component: {fileID: 4702892473004286359}
+  - component: {fileID: 7829543232693295647}
+  - component: {fileID: -7149629103325720901}
   m_Layer: 0
   m_Name: Ice Shard
   m_TagString: Untagged
@@ -166,7 +167,7 @@ Transform:
   m_GameObject: {fileID: 2033429670147736737}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.074}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -226,28 +227,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2033429670147736737}
   m_Mesh: {fileID: 4300000, guid: abe89b42422171342b6d1c35662f93c6, type: 3}
---- !u!64 &1000278990364697830
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2033429670147736737}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: abe89b42422171342b6d1c35662f93c6, type: 3}
 --- !u!54 &2167661832666957537
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -282,12 +261,51 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2033429670147736737}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 530abae2154fe5046a03fc565e17a8fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statusEffect: {fileID: 0}
+  source: {fileID: 0}
+  damage: 0
+--- !u!114 &7829543232693295647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033429670147736737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 358c2c5e3fa02264e875aaa6faafea6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 0}
+  projectilePrefab: {fileID: 2033429670147736737}
+  projectileForce: 100
+  abilityCooldown: 2
+  effect: {fileID: 11400000, guid: 03aa394ec56ed484cabcad5fd62e7a76, type: 2}
+--- !u!135 &-7149629103325720901
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033429670147736737}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4002398644467145934
 GameObject:
   m_ObjectHideFlags: 0
@@ -5293,7 +5311,7 @@ Transform:
   m_GameObject: {fileID: 7628821990692622232}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.046}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

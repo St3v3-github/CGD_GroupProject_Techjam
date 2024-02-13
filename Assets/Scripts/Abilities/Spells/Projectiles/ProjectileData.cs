@@ -8,6 +8,8 @@ public class ProjectileData : ScriptableObject
 {
     //Projectile
     public GameObject projectile;
+    public GameObject recharge;
+    public string description;
 
     //Projectile force
     public float shootForce, upwardForce;
@@ -17,5 +19,14 @@ public class ProjectileData : ScriptableObject
     public float timeBetweenShots, spread, range, rechargeTime, burstDelay;
     public int totalCharges, projectilesPerTap;
     public bool allowButtonHold;
+
+    //Projectile Status Effects
+    public StatusEffect_Data statusEffect;
     
+    public StatusEffect_Data GetStatusEffect_Data()
+    {
+        return statusEffect;
+    }
+
+
 }

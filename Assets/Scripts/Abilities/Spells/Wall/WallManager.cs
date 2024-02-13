@@ -19,7 +19,6 @@ public class WallManager : ElementalSpell
         if (Instance == null)
         {
             setStatus();
-            setPrefab(spellType);
             Instance = this;
         }
         else
@@ -30,9 +29,9 @@ public class WallManager : ElementalSpell
 
     public void SpawnWall(Vector3 position, Quaternion initialRotation)
     {
-        Vector3 targetPosition = new Vector3(position.x, 0f, position.z);
+        Vector3 targetPosition = new Vector3(position.x, position.y, position.z);
 
-        GameObject wall = Instantiate(spellPrefab, new Vector3(position.x, -3.5f, position.z), initialRotation);
+        GameObject wall = Instantiate(spell.prefab, new Vector3(position.x, position.y, position.z), initialRotation);
 
         StartCoroutine(MoveWallToPosition(wall, targetPosition, 1.0f));
         StartCoroutine(DisappearWall(wall));

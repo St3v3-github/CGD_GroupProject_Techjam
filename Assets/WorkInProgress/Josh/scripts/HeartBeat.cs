@@ -22,18 +22,18 @@ public class HeartBeat : MonoBehaviour
          HealhString = Health.value.ToString();
          Text.GetComponent<TextMeshProUGUI>().text = HealhString;
        
-        if (Health.value > 75) 
+        if (Health.value > 70) 
         { 
             animator.speed = 0; 
         }
-        if (Health.value < 75) 
+        if (Health.value < 70) 
         {
-            if (Health.value > 50)
+            if (Health.value > 45)
             {
                 animator.speed = 1;
             }
         }
-        if (Health.value < 50)
+        if (Health.value < 45)
         {
             if (Health.value > 20)
             {

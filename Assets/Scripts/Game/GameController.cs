@@ -1,22 +1,94 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class GameController : MonoBehaviour
 {
     // My name is Ozymandias, King of Kings; Look on my Works, ye Mighty, and despair!
     public GameRules game;
+    private bool lobby = true;
+    private float lobbyTimer = 30;
+    public TextMeshProUGUI lobbyText;
+    public LayerMask playerLayer;
+
+    public float timer;
+    public int playerCount;
+    public List<GameObject> players;
+    public List<GameObject> team1;
+    public List<GameObject> team2;
+    public int team1Score;
+    public int team2Score;
+    public List<GameObject> spawnPoints;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        // Creates list of players
-        Collider[] colliders = Physics.OverlapSphere(transform.position, Mathf.Infinity, 7);
-        foreach (Collider collider in colliders)
+        timer = game.timer;
+        lobbyText.fontSize = 100; 
+    }
+
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (lobby)
         {
-            game.players.Add(collider.gameObject);
-            game.playerCount++;
+            lobbyTimer -= Time.deltaTime;
+
+            // Update the UI text with the current countdown value
+            lobbyText.text = Mathf.Round(lobbyTimer).ToString();
+
+            // Check if the countdown has reached zero
+            if (lobbyTimer <= 0)
+            {
+                lobbyText.text = "Game Starting";
+                StartGame();
+                Invoke("ClearText", 1f);
+
+            }
+        }
+        else if (!lobby)
+        {
+            timer -= Time.deltaTime;
+            lobbyText.text = "Game time " + Mathf.Round(timer).ToString();
+
+            if (timer <= 0)
+            {
+                switch (game.gameMode)
+                {
+                    case GameMode.FreeForAll:
+                        AnnounceFFAWinner();
+
+
+                        break;
+                    case GameMode.TeamDeathMatch:
+                        AnnounceTDMWinner();
+                        break;
+                }
+            }
+        }
+        
+    }
+
+    public void StartGame()
+    {
+        lobby = false;
+        // Creates list of players
+        //Collider[] colliders = Physics.OverlapSphere(transform.position, Mathf.Infinity, playerLayer);
+        GameObject[] colliders = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject collider in colliders)
+        {
+            if (collider.GetComponent<PlayerController>() != null)
+            {
+                players.Add(collider);
+                playerCount++;
+            }
         }
 
         // Creates list of spawnpoints in Map
@@ -24,45 +96,76 @@ public class GameController : MonoBehaviour
 
         foreach (GameObject objectWithTag in objectsWithTag)
         {
-            game.spawnPoints.Add(objectWithTag);
+            spawnPoints.Add(objectWithTag);
         }
 
-        // Game mode specific setup
+        foreach (GameObject player in players)
+        {
+            
+            int rand = Random.Range(0, spawnPoints.Count);
+
+            while (spawnPoints[rand].GetComponent<SpawnPoint>().used == true)
+            {
+                rand = Random.Range(0, spawnPoints.Count);
+            }
+
+            if (spawnPoints[rand].GetComponent<SpawnPoint>().used == false)
+            {
+                Debug.Log("teleporting player to " + spawnPoints[rand].transform.position);
+                player.GetComponent<CharacterController>().enabled = false;
+                player.transform.SetPositionAndRotation(spawnPoints[rand].transform.position, spawnPoints[rand].transform.rotation);
+                player.GetComponent<CharacterController>().enabled = true;
+                spawnPoints[rand].GetComponent<SpawnPoint>().used = true;
+            }
+        }
+        Debug.Log("Setting tags");
         switch (game.gameMode)
         {
             case GameMode.FreeForAll:
-                foreach (GameObject player in game.players)
+                int i = 1;
+                foreach (GameObject player in players)
                 {
-                    game.teamScore.Add(0);
+
+                    string tagString = "Player" + i.ToString();
+                    Debug.Log(tagString);
+                    player.tag = tagString;
+                    player.GetComponent<AbilityManager2>().spell_controller.gameObject.tag = tagString;
+                    player.GetComponent<UIController>().attributeController.gameObject.tag = tagString;
+                    i++;
+                }
+                break;
+            case GameMode.TeamDeathMatch:
+                foreach (GameObject player in team1)
+                {
+                    player.tag = "Player1";
+                    
+                }
+                foreach (GameObject player in team2)
+                {
+                    player.tag = "Player2";
+                   
+                }
+                break;
+        }
+
+        // Game mode specific setup
+        /*switch (game.gameMode)
+        {
+            case GameMode.FreeForAll:
+                foreach (GameObject player in players)
+                {
+                    teamScore.Add(0);
                 }
                 break;
             case GameMode.TeamDeathMatch:
                 StartTeams();
-                game.teamScore.Add(0);
-                game.teamScore.Add(0);
+                teamScore.Add(0);
+                teamScore.Add(0);
                 break;
-        }
-    }
+        }*/
 
-    // Update is called once per frame
-    void Update()
-    {
-        game.timer -= Time.deltaTime;
+        
 
-        if (game.timer <= 0)
-        {
-            switch (game.gameMode)
-            {
-                case GameMode.FreeForAll:
-                    AnnounceFFAWinner();
-
-
-                    break;
-                case GameMode.TeamDeathMatch:
-                    AnnounceTDMWinner();
-                    break;
-            }
-        }
     }
 
     public void StartTeams()
@@ -70,22 +173,68 @@ public class GameController : MonoBehaviour
         
         int count = 0;
         // Add the found GameObjects to the list
-        foreach (GameObject player in game.players)
+        foreach (GameObject player in players)
         {
             count++;
             
-            if (count >= (game.playerCount / 2))
+            if (count >= (playerCount / 2))
             {
-                game.team1.Add(player.gameObject);
+                team1.Add(player.gameObject);
             }
             else
             {
-                game.team2.Add(player.gameObject);
+                team2.Add(player.gameObject);
             }
             
         }
 
     }
+
+    public void tagSetter()
+    {
+        switch (game.gameMode)
+        {
+            case GameMode.FreeForAll:
+                int i = 1;
+                foreach (GameObject player in players)
+                {
+
+                    string tagString = "Player" + i.ToString();
+                    Debug.Log(tagString);
+                    player.tag = tagString; i++;
+                }
+                break;
+            case GameMode.TeamDeathMatch:
+                foreach (GameObject player in team1)
+                {
+                    player.tag = "Player1";
+                }
+                foreach (GameObject player in team2)
+                {
+                    player.tag = "Player2";
+                }
+                break;
+        }
+    }
+
+    public void TeleportPlayers()
+    {
+        Debug.Log("teleporting");
+        foreach (GameObject player in players)
+        {
+            Debug.Log("teleporting player");
+            int rand = Random.Range(0, spawnPoints.Count);
+
+            if (spawnPoints[rand].GetComponent<SpawnPoint>().used == false)
+            {
+                player.transform.position = spawnPoints[rand].transform.position;
+                player.transform.rotation = spawnPoints[rand].transform.rotation;
+                spawnPoints[rand].GetComponent<SpawnPoint>().used = true;
+            }
+        }
+    }
+
+    public void ClearText() {lobbyText.text = "";}
 
     //Respawning Code Below
 
@@ -101,6 +250,15 @@ public class GameController : MonoBehaviour
                 break;
         }
 
+        prayer.deaded.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(true);
+        prayer.deaded.transform.Find("AttributeController").GetComponent<AttributeManager>().currentHealth = 0;
+        prayer.deaded.transform.Find("AttributeController").GetComponent<AttributeManager>().healthbar.value = 0;
+        prayer.deaded.transform.Find("AttributeController").gameObject.SetActive(false);
+        prayer.deaded.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(false);
+        prayer.deaded.transform.Find("Mesh").gameObject.SetActive(false);
+        prayer.deaded.GetComponent<CharacterController>().enabled = false;
+
+
         StartCoroutine(reincarnatePlayer(prayer.deaded, FindSpawnPoint(prayer.deaded)));
     }
 
@@ -114,7 +272,7 @@ public class GameController : MonoBehaviour
             possibleSpawnPoints.Add(deadPlayer);
         }
         
-        foreach (GameObject spawnPoint in game.spawnPoints)
+        foreach (GameObject spawnPoint in spawnPoints)
         {
             float newDistanceToSpawnPoint = Vector3.Distance(spawnPoint.transform.position, deadPlayer.transform.position);
 
@@ -127,29 +285,28 @@ public class GameController : MonoBehaviour
             }
         }
         int randomNumber = Random.Range(0, game.spawnPointVariance);
-
+        Debug.Log("Random number is" +  randomNumber);
         return possibleSpawnPoints[randomNumber];
     }
 
     private IEnumerator reincarnatePlayer(GameObject player, GameObject respawnPoint)
     {
         yield return new WaitForSeconds(game.respawnTimer);
-        player.transform.position = respawnPoint.transform.position;
-        player.transform.rotation = respawnPoint.transform.rotation;
+        player.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(false);
+        player.transform.Find("AttributeController").gameObject.SetActive(true);
+        player.transform.Find("Mesh").gameObject.SetActive(true);
+        player.GetComponent<CharacterController>().enabled = false;
+        player.transform.SetPositionAndRotation(respawnPoint.transform.position, respawnPoint.transform.rotation);
+        player.GetComponent<CharacterController>().enabled = true;
+        player.transform.Find("AttributeController").GetComponent<AttributeManager>().currentHealth = player.transform.GetChild(5).GetComponent<AttributeManager>().maxHealth;
     }
 
     // FFA Score below
     public void UpdateFFAScore(GameObject killer)
     {
-        int count = 0;
-        foreach (GameObject player in game.players)
-        {
-            if (player == killer)
-            {
-                game.teamScore[count] += 1;
-            }
-            count++;
-        }
+        if (killer.GetComponent<AttributeManager>() != null) { killer.GetComponent<AttributeManager>().score += 1; }
+        else { killer.transform.Find("AttributeController").GetComponent<AttributeManager>().score += 1; }
+        
     }
 
     public void AnnounceFFAWinner()
@@ -157,56 +314,56 @@ public class GameController : MonoBehaviour
         int count = 0;
         int WinningScore = 0;
         GameObject Winner = null;
-        foreach (GameObject player in game.players)
+        foreach (GameObject player in players)
         {
             if (count == 0)
             {
-                WinningScore = game.teamScore[0];
+                WinningScore = player.transform.Find("AttributeController").GetComponent<AttributeManager>().score;
                 Winner = player;
             }
             else
             {
-                if (game.teamScore[count] > WinningScore)
+                if (player.transform.Find("AttributeController").GetComponent<AttributeManager>().score > WinningScore)
                 {
-                    WinningScore = game.teamScore[count];
+                    WinningScore = player.transform.Find("AttributeController").GetComponent<AttributeManager>().score;
                     Winner = player;
                 }
             }
             count++;
         }
-        Debug.Log(Winner.tag + "WINS with " + WinningScore + "kills");
+        //Debug.Log(Winner.tag + "WINS with " + WinningScore + "kills");
     }
 
     // Update TDM below
     public void UpdateTDMScore(GameObject killer)
     {
-        foreach (GameObject player in game.team1)
+        foreach (GameObject player in team1)
         {
             if (player == killer)
             {
-                game.teamScore[0] += 1;
+                team1Score += 1;
             }
         }
-        foreach (GameObject player in game.team2)
+        foreach (GameObject player in team2)
         {
             if (player == killer)
             {
-                game.teamScore[1] += 1;
+                team2Score += 1;
             }
         }
     }
 
     public void AnnounceTDMWinner()
     {
-        if (game.teamScore[0] == game.teamScore[1])
+        if (team1Score == team2Score)
         {
             Debug.Log("Time Up. DRAW");
         }
-        else if (game.teamScore[0] > game.teamScore[1])
+        else if (team1Score > team2Score)
         {
             Debug.Log("Time Up. Team 1 WINS");
         }
-        else if (game.teamScore[0] < game.teamScore[1])
+        else if (team1Score < team2Score)
         {
             Debug.Log("Time Up. Team 2 WINS");
         }

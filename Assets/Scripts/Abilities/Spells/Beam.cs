@@ -8,12 +8,14 @@ public class Beam : Spell
     public float damagePerTick = 5f;
     public float tickInterval = 0.2f;
     public float beamRange = 50f;
-    public float abilityDuration = 5f;  // Duration of the beam ability in seconds
+    public float abilityDuration = 3f;  // Duration of the beam ability in seconds
+    public Transform playerCam;
+    public Transform firePoint;
     public LayerMask targetLayer;
     public GameObject particlePrefab;
     private GameObject beam;
     public bool active = false;
-    public Transform playerCam;
+
 
     private float lastTickTime;
     private float abilityEndTime;
@@ -46,16 +48,7 @@ public class Beam : Spell
                 if (Time.time - lastTickTime >= tickInterval)
                 {
                     // Deal damage to the opponent
-                    if (hit.transform.tag == targetTag)
-                    {
-
-                        AttributeManager attributes = hit.transform.gameObject.GetComponent<AttributeManager>();
-
-                        if (attributes != null)
-                        {
-                            attributes.TakeDamage(damagePerTick);
-                        }
-                    }
+                    dealDamage(hit.transform.gameObject, damagePerTick);
 
                     // Update the last tick time
                     lastTickTime = Time.time;
@@ -70,7 +63,7 @@ public class Beam : Spell
         }
     }
 
-    void cast()
+   public void cast()
     {
         Vector3 spawnPosition = playerCam.position;
         spawnPosition.y -= 0.4f;

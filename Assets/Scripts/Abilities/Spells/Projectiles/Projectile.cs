@@ -5,34 +5,52 @@ using UnityEngine;
 
 public class Projectile : Spell
 {
-    public StatusEffect statusEffect;
+    public float damage;
+    //public StatusEffect_Data effect;
+
     //private float timer = 0;
 
 
     void Start()
     {
         StartCoroutine(timerCoroutine());
-        setTargetTag();
+        //effect = GetComponentInParent<StatusEffect_Data>();
+        //Debug.Log("Current Effect: " + effect);
+        //setTargetTag();
     }
 
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collision)
     {
-        if (!collision.gameObject.CompareTag(targetTag) || collision.gameObject.layer == 3)
+        /*if (dealDamage(collision.transform.gameObject, damage))
         {
-            return;
+            Debug.Log("hit player");
+            Destroy(gameObject);
+
+        }
+        else*/
+        if (dealDamage(collision.gameObject, damage))
+        {
+            Debug.Log("hit player: " + collision.name);
+            Destroy(gameObject);
         }
 
 
-        AttributeManager attributes = collision.gameObject.GetComponent<AttributeManager>();
+        //AttributeManager attributes = collision.gameObject.GetComponent<AttributeManager>();
+        //enemystatuseffects effects = collision.gameObject.GetComponent<enemystatuseffects>();
 
-        if (attributes != null)
+        /*if (effects != null)
         {
-            attributes.TakeDamage(damage, statusEffect);
+            attributes.TakeDamage(spell.damage, statusEffect);
             attributes.ChangeStatus(statusEffect);
-        }
 
-        Destroy(gameObject);
+            effects.ApplyEffect(effect);
+            Debug.Log("Effect applied");
+        }
+        else
+        {
+            Debug.LogError("enemy status effects script not found");
+        }*/
     }
 
     private IEnumerator timerCoroutine()

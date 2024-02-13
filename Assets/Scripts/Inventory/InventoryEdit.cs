@@ -6,11 +6,12 @@ using static ItemData;
 public class InventoryEdit : MonoBehaviour
 {
     public int spell_slots = 4;
+    public ItemData fireballforalpha;
     //public int element_selection = 0;
 
     //2D array, spell slots x spell components
     //public List<List<ItemData>> dd_spell_inventory = new();
-    public List<ItemData> dd_spell_inventory = new();
+    public List<ItemData> dd_spell_inventory = new List<ItemData>();
 
     void Start()
     {
@@ -19,6 +20,8 @@ public class InventoryEdit : MonoBehaviour
         {
             dd_spell_inventory.Add(ItemData.CreateInstance<ItemData>());
         }
+        var clone = Instantiate(fireballforalpha);
+        dd_spell_inventory[2] = clone;
     }
 
     public ItemData equipFromWorld(ItemData item_to_equip, int slot)

@@ -8,10 +8,17 @@ using UnityEngine;
 
 public class SpawnItem : MonoBehaviour
 {
-    [SerializeField] List<GameObject> elements = new List<GameObject>();
-    [SerializeField] List<GameObject> spells = new List<GameObject>();
+    // REMOVED OLD LISTS - NOW USING SINGLE SPAWN LIST
+  public List<GameObject> spawnList = new List<GameObject>();
+    
 
-    public enum Type {Element, Spell};
+    public enum Type {Spell, Other};
+    public enum SpawnerType {UltimateOnly, RareOnly, UncommonOnly, CommonOnly, AnySpell};
+
+    public SpawnerType spawnerType;
+    public bool hasItem;
+    public float spawnTimer = 10f;
+    private float timer = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -22,20 +29,23 @@ public class SpawnItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(!hasItem)
+        {
+            timer += Time.deltaTime;
+            if(timer > spawnTimer)
+            {
+                SpawnObject(SpawnItem.Type.Spell);
+            }
+        }
+
     }
-
-
-    // Object type:
-    // 0 = Elements
-    // 1 = Spells
-
+    
     public void SpawnObject(Type objectType) 
     {
         switch(objectType)
         {
-            case Type.Element:
-                SpawnElement();
+            case Type.Other:
+                // SPAWN OTHER THINGS HERE MAYBE (HP PICKUPS ETC)
                 break;
 
             case Type.Spell:
@@ -48,49 +58,21 @@ public class SpawnItem : MonoBehaviour
         
     }
 
-    private void SpawnElement() 
+    public void SetSpells(List<GameObject> spellslist)
+    {
+        spawnList.Clear();
+        spawnList = spellslist;
+    }
+    
+    private void SpawnSpells() 
     {
         int totalWeight = 0;
         int randomNumber = 0;
 
-        for (int i  = 0; i < elements.Count; i++)
+        for (int i = 0; i < spawnList.Count; i++)
         {
             int itemWeight = 0;
-            itemWeight = elements[i].GetComponent<ItemInfo>().GetWeight();
-            totalWeight += itemWeight;
-        }
-        //UnityEngine.Debug.Log("Total Weight is: " +  totalWeight);
-
-        randomNumber = UnityEngine.Random.Range(1, totalWeight+1);
-//        UnityEngine.Debug.Log("Elements Random number is: " + randomNumber);
-
-        for (int i = 0; i < elements.Count; i++)
-        {
-            int itemWeight = 0;
-            itemWeight = elements[i].GetComponent<ItemInfo>().GetWeight();
-
-            randomNumber -= itemWeight;
-            if (randomNumber < 1)
-            {
-                Instantiate(elements[i], this.transform);
-                i = elements.Count + 1;
-            }
-        }
-
-
-
-
-    }
-
-    private void SpawnSpells() {
-
-        int totalWeight = 0;
-        int randomNumber = 0;
-
-        for (int i = 0; i < spells.Count; i++)
-        {
-            int itemWeight = 0;
-            itemWeight = spells[i].GetComponent<ItemInfo>().GetWeight();
+            itemWeight = spawnList[i].GetComponent<ItemInfo>().GetWeight();
             totalWeight += itemWeight;
         }
         //UnityEngine.Debug.Log("Total Weight is: " + totalWeight);
@@ -98,22 +80,19 @@ public class SpawnItem : MonoBehaviour
         randomNumber = UnityEngine.Random.Range(1, totalWeight + 1);
      //   UnityEngine.Debug.Log("Spells Random number is: " + randomNumber);
 
-        for (int i = 0; i < elements.Count; i++)
+        for (int i = 0; i < spawnList.Count; i++)
         {
             int itemWeight = 0;
-            itemWeight = elements[i].GetComponent<ItemInfo>().GetWeight();
+            itemWeight = spawnList[i].GetComponent<ItemInfo>().GetWeight();
 
             randomNumber -= itemWeight;
             if (randomNumber < 1)
             {
-                Instantiate(spells[i], this.transform);
-                i = spells.Count + 1;
+                Instantiate(spawnList[i], this.transform);
+                i = spawnList.Count + 1;
             }
+            hasItem = true;
+            timer = 0f;
         }
-
-
-    
-
-
     }
 }

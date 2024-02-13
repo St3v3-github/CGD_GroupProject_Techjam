@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Heal : MonoBehaviour
 {
+    public GameObject player;
     public GameObject healEffectPrefab;
     public GameObject healAuraEffectPrefab;
     private GameObject healEffect;
@@ -20,18 +21,18 @@ public class Heal : MonoBehaviour
     private void Start()
     {
         // Assuming this script is attached to the player GameObject
-        attributes = GetComponent<AttributeManager>();
+        attributes = player.GetComponent<AttributeManager>();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H) && !isHealing)
+        /*if (Input.GetKeyDown(KeyCode.H) && !isHealing)
         {
-            StartHealing();
-        }
+            Cast();
+        }*/
     }
 
-    private void StartHealing()
+    public void Cast()
     {
         if (attributes != null)
         {
@@ -39,7 +40,7 @@ public class Heal : MonoBehaviour
         }
         else
         {
-            Debug.LogError("AttributeManager not found on the player GameObject!");
+            //Debug.LogError("AttributeManager not found on the player GameObject!");
         }
     }
 

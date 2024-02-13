@@ -1,7 +1,9 @@
-using System;
+    using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static SpawnItem;
 
 public class ItemSpawn : MonoBehaviour
 {
@@ -10,10 +12,15 @@ public class ItemSpawn : MonoBehaviour
 
 
     [SerializeField] List<GameObject> SpawnPoints = new List<GameObject>();
-    [SerializeField] int minSpawnPoints = 0;
+   [SerializeField] int minSpawnPoints = 0;
     [SerializeField] int maxSpawnPoints = 0;
-    [SerializeField] int minElementSpawns = 0;
+    //[SerializeField] int minElementSpawns = 0;
     [SerializeField] int minSpellSpawns = 0;
+    [SerializeField]  List<GameObject> ultimateList = new List<GameObject>();
+    [SerializeField]  List<GameObject> rareList = new List<GameObject>();
+    [SerializeField]  List<GameObject> uncommonList = new List<GameObject>();
+    [SerializeField]  List<GameObject> commonList = new List<GameObject>();
+
     
     void Start()
     {
@@ -27,13 +34,51 @@ public class ItemSpawn : MonoBehaviour
         
     }
 
+    private List<GameObject> GetSpellList(SpawnerType spawnerType) 
+    {
+        switch (spawnerType)
+        {
+            case SpawnerType.AnySpell:
+                List<GameObject> newSpelllist = new List<GameObject>();
+                newSpelllist.AddRange(commonList);
+                newSpelllist.AddRange(uncommonList);
+                newSpelllist.AddRange(rareList);
+                newSpelllist.AddRange(ultimateList);
+               
+                return newSpelllist;
+             
+            case SpawnerType.CommonOnly:
+                return commonList;
+                
+            case SpawnerType.UncommonOnly:
+                return uncommonList;
+                
+            case SpawnerType.RareOnly:
+                return rareList;
+                
+            case SpawnerType.UltimateOnly:
+                return ultimateList;
+                
+                           
+        }
+        return null;
+    }
+
     public void GenerateSpawnpoints()
     {
         int listsize = SpawnPoints.Count;
         int randomSpawnCount = 0;
 
+        for(int i = 0;i < SpawnPoints.Count; i++)
+        {
+            SpawnerType currentSpawnerType = SpawnPoints[i].GetComponent<SpawnItem>().spawnerType;
+       List<GameObject> currentSpellList = GetSpellList(currentSpawnerType);
+                SpawnPoints[i].GetComponent<SpawnItem>().SetSpells(currentSpellList);
+        }
+
         randomSpawnCount = UnityEngine.Random.Range(minSpawnPoints, maxSpawnPoints+1);
         Debug.Log("Number of spawn points is: " + randomSpawnCount);
+
 
 
 
@@ -85,15 +130,15 @@ public class ItemSpawn : MonoBehaviour
 
 
 
-
-        int spawnedElements = 0;
-        int spawnedSpells = 0;
+// THIS NEEDS TO BE SORTED - FIX LATER
+       // int spawnedElements = 0;
+        //int spawnedSpells = 0;
         for (int i = 0; i<chosenNumbers.Length ;i++) 
         {
             
-            if(spawnedElements < minElementSpawns)
+           /* if(spawnedElements < minElementSpawns)
             {
-                SpawnPoints[chosenNumbers[i] - 1].GetComponent<SpawnItem>().SpawnObject(SpawnItem.Type.Element);
+                SpawnPoints[chosenNumbers[i] - 1].GetComponent<SpawnItem>().SpawnObject(SpawnItem.Type.Spell);
                 availableSpawns--;
                 spawnedElements++;
             }
@@ -102,8 +147,8 @@ public class ItemSpawn : MonoBehaviour
                 SpawnPoints[chosenNumbers[i] - 1].GetComponent<SpawnItem>().SpawnObject(SpawnItem.Type.Spell);
                 availableSpawns--;
                 spawnedSpells++;
-            }
-            else if( availableSpawns > 0 )
+            }*/
+            if( availableSpawns > 0 )
             {
 
                 int randomNumber = 0;
@@ -112,7 +157,7 @@ public class ItemSpawn : MonoBehaviour
               
                 if(randomNumber == 0 )
                 {
-                    SpawnPoints[chosenNumbers[i] - 1].GetComponent<SpawnItem>().SpawnObject(SpawnItem.Type.Element);
+                    SpawnPoints[chosenNumbers[i] - 1].GetComponent<SpawnItem>().SpawnObject(SpawnItem.Type.Spell);
                     availableSpawns--;
 //                    Debug.Log("Randomly chosen an element.");
                 }

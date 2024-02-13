@@ -1,16 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ItemData;
 using static UnityEngine.GraphicsBuffer;
 
 public class Spell : MonoBehaviour
 {
-    protected float damage;
+    protected SpellData spell;
     protected string targetTag;
     public GameObject source;
 
+    private void Awake()
+    {
+        gameObject.layer = LayerMask.NameToLayer("layer_Spell");
+      
+    }
+
     public void setTargetTag()
     {
+        if (tag != "Player1Spell" || tag != "Player2Spell")
+        {
+            if (source.CompareTag("Player1"))
+            {
+                this.tag = "Player1Spell";
+            
+            } 
+            else if (source.CompareTag("Player2"))
+            {
+                this.tag = "Player2Spell";
+            }
+          
+        }
+        
+        
+        Debug.Log("TRYING TO SET TARGET TAG");
         if (this.tag == "Player1Spell" || this.tag == "Player1")
         {
             targetTag = "Player2";
@@ -19,41 +42,146 @@ public class Spell : MonoBehaviour
         {
             targetTag = "Player1";
         }
+       
     }
 
-    public void dealDamage(GameObject player, float damage)
+    public bool playerCheck(GameObject hitbox)
     {
-        AttributeManager attributes = player.GetComponent<AttributeManager>();
-
-        if (attributes != null)
+        GameObject player;
+        if (hitbox.transform.parent != null)
         {
-            attributes.TakeDamage(damage, source);
+            player = hitbox.transform.parent.gameObject;
         }
+        else
+        {
+            player = hitbox;
+        }
+
+        
+        if (player.layer == LayerMask.NameToLayer("layer_Player"))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool dealDamage(GameObject hitbox, float damage)
+    {
+        bool valid_target = false;
+        
+        GameObject player;
+        if (hitbox.transform.parent != null)
+        {
+            player = hitbox.transform.parent.gameObject;
+        }
+        else
+        {
+            player = hitbox;
+        }
+      
+        
+        if (player.layer == LayerMask.NameToLayer("layer_Player") && player.tag != source.tag)
+        {
+
+            Debug.Log(hitbox.name);
+           // AttributeManager attributes = hitbox.GetComponent<AttributeManager>();
+           if (hitbox.name == "Player(Clone)" || hitbox.name == "AttributeController")
+           {
+               AttributeManager attributes = player.GetComponent<UIController>().attributeController.GetComponent<AttributeManager>();
+
+               if (attributes != null)
+               {
+                   attributes.TakeDamage(damage, source);
+                   return true;
+               }
+           }
+           
+
+            //Hitmarker
+            source.GetComponent<UIController>().Hit(damage);
+        }
+        return false;
+        
+        // THIS IS USED FOR THE STRIKE ONLY, NEEDED A SEPERATE FUNCTION TO ALLOW FOR HITTING SELF WITH THE SPELL
+    }public bool dealDamage(GameObject hitbox, float damage, bool strike)
+    {
+        bool valid_target = false;
+        
+        GameObject player;
+        if (hitbox.transform.parent != null)
+        {
+            player = hitbox.transform.parent.gameObject;
+        }
+        else
+        {
+            player = hitbox;
+        }
+     
+        
+
+        if (player.layer == LayerMask.NameToLayer("layer_Player"))
+        {
+
+            
+           // AttributeManager attributes = hitbox.GetComponent<AttributeManager>();
+           if (hitbox.name == "Player(Clone)" || hitbox.name == "AttributeController")
+           {
+               AttributeManager attributes = player.GetComponent<UIController>().attributeController.GetComponent<AttributeManager>();
+                if(!attributes.hit_by_strike)
+                {
+                    attributes.hit_by_strike = true;
+                    if (attributes != null)
+                    {
+                        attributes.TakeDamage(damage, source);
+                        return true;
+                    }
+                }
+                else
+                {
+                    attributes.hit_by_strike = false;
+                }
+               
+           }
+           
+
+            //Hitmarker
+            source.GetComponent<UIController>().Hit(damage);
+        }
+        return false;
+        
+    }
+
+    public virtual void Cast()
+    {
+
     }
 }
 
 public class ElementalSpell : Spell
 {
-
+    //Testing :)
+    public bool testing = true;
     public spellEnum spellType = new spellEnum();
-    public StatusEffect currentStatus;
 
-    public float fireDamage;
-    public float lightDamage;
-    public float iceDamage;
-    public float windDamage;
+    //public StatusEffect currentStatus;
 
+    public SpellData fireSpell;
+    public SpellData iceSpell;
+    public SpellData lightningSpell;
+    public SpellData windSpell;
 
-    public GameObject firePrefab;
-    public GameObject lightningPrefab;
-    public GameObject icePrefab;
-    public GameObject windPrefab;
-    protected GameObject spellPrefab;
-
+    public void testingSwitch()
+    {
+        if (testing)
+        {
+            setType(spellType);
+        }
+    }
 
     public void setStatus()
     {
-        switch (spellType)
+        //REPLACE WITH ROSA LOGIC
+        /*switch (spellType)
         {
             case spellEnum.fire:
                 currentStatus = GetComponent<Fire>();
@@ -72,12 +200,13 @@ public class ElementalSpell : Spell
             default:
                 currentStatus = null;
                 break;
-        }
+        }*/
     }
 
     public void setStatus(spellEnum statusInput)
     {
-        switch (statusInput)
+        //REPLACE WITH ROSA LOGIC
+        /*switch (statusInput)
         {
             case spellEnum.fire:
                 currentStatus = GetComponent<Fire>();
@@ -96,66 +225,78 @@ public class ElementalSpell : Spell
             default:
                 currentStatus = null;
                 break;
-        }
+        }*/
     }
 
 
-    public virtual void setPrefab(spellEnum statusInput)
+    public virtual void setType(spellEnum statusInput)
     {
        
         switch (statusInput)
         {
             case spellEnum.fire:
-                spellPrefab = firePrefab;
-                damage = fireDamage;
+                spell = fireSpell;
                 break;
             case spellEnum.ice:
-                spellPrefab = icePrefab;
-                damage = iceDamage;
+                spell = iceSpell;
                 break;
             case spellEnum.lightning:
-                spellPrefab = lightningPrefab;
-                damage = lightDamage;
+                spell = lightningSpell;
                 break;
             case spellEnum.wind:
-                spellPrefab = windPrefab;
-                damage = windDamage;
+                spell = windSpell;
                 break;
             default:
-                spellPrefab = firePrefab;
-                damage = fireDamage;
+                spell = fireSpell;
                 break;
         }
     }
 
-    public void setPrefab(ItemData spell)
+    public void setType(ItemData.SpellType type)
+    {
+        switch (type)
+        {
+            case ItemData.SpellType.FIRE:
+                spell = fireSpell;
+                break;
+            case ItemData.SpellType.ICE:
+                spell = iceSpell;
+                break;
+            case ItemData.SpellType.LIGHTNING:
+                spell = lightningSpell;
+                break;
+            case ItemData.SpellType.WIND:
+                spell = windSpell;
+                break;
+            default:
+                spell = fireSpell;
+                break;
+        }
+    }
+
+    public void setType(ItemData spellInfo)
     {
         /*int temp;
         if (spell.ID <= 16)
         {
             temp = spell.ID % 4;
         }*/
-        switch (spell.ID)
+        switch (spellInfo.type)
         {
-            case ItemData.SpellList.FIREBALL:
-                spellPrefab = firePrefab;
-                damage = fireDamage;
+            case ItemData.SpellType.FIRE:
+                spell = fireSpell;
                 break;
-            case ItemData.SpellList.ICEBALL:
-                spellPrefab = icePrefab;
-                damage = iceDamage;
+            case ItemData.SpellType.ICE:
+                spell = iceSpell;
                 break;
-            case ItemData.SpellList.LIGHTNINGBALL:
-                spellPrefab = lightningPrefab;
-                damage = lightDamage;
+            case ItemData.SpellType.LIGHTNING:
+                spell = lightningSpell;
                 break;
-            case ItemData.SpellList.WINDBALL:
-                spellPrefab = windPrefab;
-                damage = windDamage;
+            case ItemData.SpellType.WIND:
+                spell = windSpell;
                 break;
             default:
-                spellPrefab = firePrefab;
-                damage = fireDamage;
+                spell = fireSpell;
                 break;
         }
     }

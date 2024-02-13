@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +12,6 @@ public class SummonedAnimal : Spell
     public float rotationSpeed = 1f;
     public float visionAngle = 60f;
 
-
-
     private GameObject target;
     public bool hasTarget = false;
 
@@ -24,7 +23,7 @@ public class SummonedAnimal : Spell
 
         StartCoroutine(timerCoroutine());
 
-        if (target = FindTarget(targetTag))
+        if (target == FindTarget(targetTag))
         {
             hasTarget = true;
         }
@@ -48,16 +47,19 @@ public class SummonedAnimal : Spell
         }
     }
 
+    
+
     void OnCollisionEnter(Collision collision)
     {
-        
+     Debug.Log("THE SUMMON HAS COLLIDED");   
         // Damage
         if (collision.gameObject.tag == targetTag)
         {
-            animator.SetTrigger("Attack");
-            Debug.Log("Collision detected with: " + collision.gameObject.name);
+        Debug.Log("THE SUMMON HAS COLLIDED WITH ITS TARGET");   
+           // animator.SetTrigger("Attack");
+           // Debug.Log("Collision detected with: " + collision.gameObject.name);
 
-            dealDamage(collision.gameObject, damage);
+            dealDamage(collision.gameObject, spell.damage);
 
 
             deathParticle.Play(true);
@@ -72,6 +74,34 @@ public class SummonedAnimal : Spell
             StartCoroutine(DeathCoroutine());
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("THE SUMMON HAS COLLIDED");   
+        // Damage
+        if (other.gameObject.tag == targetTag)
+        {
+            Debug.Log("THE SUMMON HAS COLLIDED WITH ITS TARGET");
+            Debug.Log(other.name);
+            // animator.SetTrigger("Attack");
+            // Debug.Log("Collision detected with: " + collision.gameObject.name);
+
+            dealDamage(other.gameObject, spell.damage);
+
+
+            deathParticle.Play(true);
+            StartCoroutine(DeathCoroutine());
+        }
+
+        // Die if hit wall
+        if (other.gameObject.layer == 8)
+        {
+            animator.SetTrigger("Attack");
+            deathParticle.Play(true);
+            StartCoroutine(DeathCoroutine());
+        }
+    }
+
 
     GameObject FindTarget(string tag)
     {
@@ -133,7 +163,10 @@ public class SummonedAnimal : Spell
         Destroy(transform.gameObject);
     }
 
-
+    public void SetSpellData(SpellData spellData)
+    {
+        spell = spellData;
+    }
 }
 
 

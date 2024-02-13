@@ -127,18 +127,36 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""SpellTypes"",
+                    ""name"": ""SpellCast"",
                     ""type"": ""Button"",
                     ""id"": ""989449cd-f2f9-443a-9e03-4454d2327598"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Melee"",
+                    ""type"": ""Button"",
+                    ""id"": ""03861f45-172b-4b5c-a41d-a0860f14af4b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Melee"",
+                    ""name"": ""Dance"",
                     ""type"": ""Button"",
-                    ""id"": ""03861f45-172b-4b5c-a41d-a0860f14af4b"",
+                    ""id"": ""e9e530a0-9791-44b1-b058-bbe6549958d8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""a20a3ab1-c6d8-4171-ac04-e022e11ba65f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -589,44 +607,44 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""5072ec35-4a87-4dd6-91b9-2c320df3095c"",
-                    ""path"": ""<Keyboard>/5"",
+                    ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SpellTypes"",
+                    ""action"": ""SpellCast"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""93d8354c-a8a7-4705-b4a4-4d59da1623fa"",
-                    ""path"": ""<Keyboard>/6"",
+                    ""path"": ""<Keyboard>/2"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SpellTypes"",
+                    ""action"": ""SpellCast"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""3a1ea128-d7f4-483b-8430-a8a1a23af55f"",
-                    ""path"": ""<Keyboard>/7"",
+                    ""path"": ""<Keyboard>/3"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SpellTypes"",
+                    ""action"": ""SpellCast"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""96297fdc-d2d8-422c-acf8-f8d2a4f44046"",
-                    ""path"": ""<Keyboard>/8"",
+                    ""path"": ""<Keyboard>/4"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SpellTypes"",
+                    ""action"": ""SpellCast"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -637,7 +655,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SpellTypes"",
+                    ""action"": ""SpellCast"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -648,7 +666,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SpellTypes"",
+                    ""action"": ""SpellCast"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -659,7 +677,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SpellTypes"",
+                    ""action"": ""SpellCast"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -670,7 +688,29 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SpellTypes"",
+                    ""action"": ""SpellCast"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff8f1599-500d-4589-8cb2-d515e6714371"",
+                    ""path"": ""<XInputController>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpellCast"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a0ce7418-3877-4e62-b853-c44acccfa306"",
+                    ""path"": ""<XInputController>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpellCast"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -693,6 +733,50 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Melee"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2173384a-86aa-421e-a9f0-02292ec59acb"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dance"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef50a06a-e1a0-475b-95e5-dc9f91b2d30f"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dance"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""04e49b05-eed2-4d7b-8b45-442183fb305a"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dffa7dfe-c5b2-45c7-85bd-57d0f84e59fb"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -742,8 +826,10 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         m_Player_Ability3 = m_Player.FindAction("Ability3", throwIfNotFound: true);
         m_Player_Ability4 = m_Player.FindAction("Ability4", throwIfNotFound: true);
         m_Player_Elements = m_Player.FindAction("Elements", throwIfNotFound: true);
-        m_Player_SpellTypes = m_Player.FindAction("SpellTypes", throwIfNotFound: true);
+        m_Player_SpellCast = m_Player.FindAction("SpellCast", throwIfNotFound: true);
         m_Player_Melee = m_Player.FindAction("Melee", throwIfNotFound: true);
+        m_Player_Dance = m_Player.FindAction("Dance", throwIfNotFound: true);
+        m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -816,8 +902,10 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Ability3;
     private readonly InputAction m_Player_Ability4;
     private readonly InputAction m_Player_Elements;
-    private readonly InputAction m_Player_SpellTypes;
+    private readonly InputAction m_Player_SpellCast;
     private readonly InputAction m_Player_Melee;
+    private readonly InputAction m_Player_Dance;
+    private readonly InputAction m_Player_Dash;
     public struct PlayerActions
     {
         private @PlayerControlsAsset m_Wrapper;
@@ -833,8 +921,10 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         public InputAction @Ability3 => m_Wrapper.m_Player_Ability3;
         public InputAction @Ability4 => m_Wrapper.m_Player_Ability4;
         public InputAction @Elements => m_Wrapper.m_Player_Elements;
-        public InputAction @SpellTypes => m_Wrapper.m_Player_SpellTypes;
+        public InputAction @SpellCast => m_Wrapper.m_Player_SpellCast;
         public InputAction @Melee => m_Wrapper.m_Player_Melee;
+        public InputAction @Dance => m_Wrapper.m_Player_Dance;
+        public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -877,12 +967,18 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @Elements.started += instance.OnElements;
             @Elements.performed += instance.OnElements;
             @Elements.canceled += instance.OnElements;
-            @SpellTypes.started += instance.OnSpellTypes;
-            @SpellTypes.performed += instance.OnSpellTypes;
-            @SpellTypes.canceled += instance.OnSpellTypes;
+            @SpellCast.started += instance.OnSpellCast;
+            @SpellCast.performed += instance.OnSpellCast;
+            @SpellCast.canceled += instance.OnSpellCast;
             @Melee.started += instance.OnMelee;
             @Melee.performed += instance.OnMelee;
             @Melee.canceled += instance.OnMelee;
+            @Dance.started += instance.OnDance;
+            @Dance.performed += instance.OnDance;
+            @Dance.canceled += instance.OnDance;
+            @Dash.started += instance.OnDash;
+            @Dash.performed += instance.OnDash;
+            @Dash.canceled += instance.OnDash;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -920,12 +1016,18 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @Elements.started -= instance.OnElements;
             @Elements.performed -= instance.OnElements;
             @Elements.canceled -= instance.OnElements;
-            @SpellTypes.started -= instance.OnSpellTypes;
-            @SpellTypes.performed -= instance.OnSpellTypes;
-            @SpellTypes.canceled -= instance.OnSpellTypes;
+            @SpellCast.started -= instance.OnSpellCast;
+            @SpellCast.performed -= instance.OnSpellCast;
+            @SpellCast.canceled -= instance.OnSpellCast;
             @Melee.started -= instance.OnMelee;
             @Melee.performed -= instance.OnMelee;
             @Melee.canceled -= instance.OnMelee;
+            @Dance.started -= instance.OnDance;
+            @Dance.performed -= instance.OnDance;
+            @Dance.canceled -= instance.OnDance;
+            @Dash.started -= instance.OnDash;
+            @Dash.performed -= instance.OnDash;
+            @Dash.canceled -= instance.OnDash;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -974,7 +1076,9 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         void OnAbility3(InputAction.CallbackContext context);
         void OnAbility4(InputAction.CallbackContext context);
         void OnElements(InputAction.CallbackContext context);
-        void OnSpellTypes(InputAction.CallbackContext context);
+        void OnSpellCast(InputAction.CallbackContext context);
         void OnMelee(InputAction.CallbackContext context);
+        void OnDance(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
 }

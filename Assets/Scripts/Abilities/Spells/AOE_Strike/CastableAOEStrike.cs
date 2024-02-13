@@ -5,53 +5,42 @@ using UnityEngine;
 
 public class CastableAOEStrike : ElementalSpell
 {
-    public float attackRadius = 10f;
-    public GameObject projectionPrefab;
 
+    public GameObject projectionPrefab;
     
     private GameObject projection;
     public Camera playerCamera;
-    private bool projectionOn = false;
+    public bool projectionOn = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
         setStatus();
-        setPrefab(spellType);
+        
 
         setTargetTag();
-        source = gameObject;
+       // source = gameObject;
+
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        setStatus();
+        testingSwitch();
 
         if (!projectionOn)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                switchProjectionOn();
-
-            }
+           
         }
         else if (projectionOn)
         {
 
-            if (Input.GetKeyDown(KeyCode.Q) || Input.GetMouseButtonDown(1))
-            {
-                switchProjectionOff();
-            }
-
+           
             UpdateProjection();
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                Strike(projection.transform.position);
-            }
+          
         }
 
     }
@@ -91,54 +80,55 @@ public class CastableAOEStrike : ElementalSpell
         Destroy(projection);
     }
 
-    public void Strike(Vector3 centre)
+    public void Strike()
     {
         projectionOn = false;
+        Destroy(projection);
 
         // Creates Visual Prefab
         InstantiateStrike(projection.transform.position);
 
-        setTargetTag();
-
-
         DetectCharacters(projection.transform.position, targetTag);
 
-        Destroy(projection);
+        
     }
 
     public void InstantiateStrike(Vector3 centre)
     {
-        GameObject strike = Instantiate(spellPrefab, centre, Quaternion.identity);
-
+        GameObject strike = Instantiate(spell.prefab, centre, Quaternion.identity);
         StartCoroutine(timerCoroutine(strike));
+//        AudioManager.instance.PlayOneShot(FMODEvents.instance.thunderSound, this.transform.position);
     }
 
     public void DetectCharacters(Vector3 centre, string targetTag)
     {
-        Collider[] colliders = Physics.OverlapSphere(centre, attackRadius);
+        Debug.Log("detecting");
+        Collider[] colliders = Physics.OverlapSphere(centre, spell.radius);
         List<GameObject> players = new List<GameObject>();
 
-        foreach (var collider in colliders)
+        foreach (Collider collider in colliders)
         {
-            if (collider.CompareTag(targetTag))
+            Debug.Log(collider.name);
+            if (playerCheck(collider.gameObject))
             {
                 players.Add(collider.gameObject);
             }
         }
+       
 
         foreach (var player in players)
         {
             float distance = Vector3.Distance(centre, player.transform.position);
 
-            float damageMultiplier = damage / attackRadius;
+            float damageMultiplier = spell.damage / spell.radius;
 
             // Adjust the damage based on distance (you can use any formula here)
-            float adjustedDamage = damage - distance * damageMultiplier;
+            float adjustedDamage = spell.damage - distance * damageMultiplier;
 
             // Make sure the adjusted damage is not negative
             adjustedDamage = Mathf.Max(0, adjustedDamage);
-
-            dealDamage(player, adjustedDamage);
+            Debug.Log("damage calculated");
+            dealDamage(player, adjustedDamage,true);
         }
     }
 

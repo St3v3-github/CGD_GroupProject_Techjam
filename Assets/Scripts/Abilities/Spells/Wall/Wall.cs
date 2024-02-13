@@ -7,54 +7,36 @@ public class Wall : ElementalSpell
 {
     public GameObject holographicPrefab;
     public GameObject holographic;
-    public bool isPlacingWall;
+    public bool isPlacingWall = false;
     private Quaternion holographicInitialRotation;
     private float holographicDespawnTime = 5.0f;
     public Camera playerCamera;
     void Start()
     {
         setStatus();
-        setPrefab(spellType);
 
-        if (spellPrefab == null)
+       /* if (spell.prefab == null)
         {
             Debug.LogError("wallPrefab is not assigned!");
         }
         if (holographicPrefab == null)
         {
             Debug.LogError("holographicPrefab is not assigned!");
-        }
+        }*/
     }
 
     void Update()
     {
 
         setStatus();
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            StartPlacingWall();
-            Invoke("DespawnHolographic", holographicDespawnTime);
-        }
-
+       
         if (isPlacingWall)
         {
             // Update the position of the holographic preview to follow the mouse cursor
             Vector3 mousePosition = GetMouseWorldPosition();
             holographic.transform.position = new Vector3(mousePosition.x, holographic.transform.position.y, mousePosition.z);
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                StopCoroutine(UpdateHolographicRotation());
-                // Output the initial rotation of the holographic
-                Debug.Log("Initial Rotation of Holographic: " + holographicInitialRotation.eulerAngles);
-
-
-                Debug.Log("Rotation of Spawned Wall: " + spellPrefab.transform.rotation.eulerAngles);
-                Quaternion holographicRotation = holographic.transform.rotation;
-                WallManager.Instance.SpawnWall(holographic.transform.position, holographicRotation);
-                Destroy(holographic);
-                isPlacingWall = false;
-            }
+    
         }
     }
 
@@ -77,13 +59,29 @@ public class Wall : ElementalSpell
         StartCoroutine(UpdateHolographicRotation());
 
     }
+    public void PlaceWall()
+    {
+        StopCoroutine(UpdateHolographicRotation());
+        // Output the initial rotation of the holographic
+        //  Debug.Log("Initial Rotation of Holographic: " + holographicInitialRotation.eulerAngles);
+
+
+        //   Debug.Log("Rotation of Spawned Wall: " + wallPrefab.transform.rotation.eulerAngles);
+        Quaternion holographicRotation = holographic.transform.rotation;
+        WallManager.Instance.SpawnWall(holographic.transform.position, holographicRotation);
+        Destroy(holographic);
+        isPlacingWall = false;
+    }
 
     private IEnumerator UpdateHolographicRotation()
     {
         while (isPlacingWall)
         {
+           
+
             if (playerCamera != null)
             {
+               
                 // Match the rotation of the player's camera around the Y-axis
                 Quaternion playerCameraRotation = playerCamera.transform.rotation;
                 Vector3 euler = playerCameraRotation.eulerAngles;

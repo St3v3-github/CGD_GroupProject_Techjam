@@ -1,0 +1,50 @@
+{
+    "format": {
+        "version": "1.0"
+    },
+    "scene": {
+        "scale_factor": 188.00001525878906
+    },
+    "shaders": {
+        "Main shader": {
+            "displacementTessellation": {
+                "displacement": {
+                    "scale": 0,
+                    "source_channel": 0
+                },
+                "enable": true,
+                "tessellation": {
+                    "max_length": 64,
+                    "subdiv_count": 1,
+                    "subdiv_mode": 0
+                }
+            },
+            "parameters": {
+                "Base Surface": {
+                    "ao_intensity": 0.23999999463558197,
+                    "emissive_intensity": 3.619999885559082,
+                    "horizonFade": 0.9599999785423279,
+                    "nbSamples": 16
+                },
+                "Geometry/Bent Normal": {
+                    "bent_normal_diffuse_amount": 1,
+                    "bent_normal_specular_amount": 1,
+                    "use_bent_normal": false
+                },
+                "Geometry/Parallax Occlusion Mapping": {
+                    "maxPOMSamples": 16,
+                    "minPOMSamples": 4,
+                    "pomStrength": 1,
+                    "usePOM": false
+                }
+            },
+            "shader": "pbr-metal-rough-with-alpha-blending",
+            "shaderInstance": "Main shader"
+        }
+    },
+    "texturesets": {
+        "Material.001": {
+            "shader": "Main shader"
+        }
+    }
+}

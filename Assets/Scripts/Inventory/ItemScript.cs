@@ -5,9 +5,24 @@ using UnityEngine.InputSystem;
 
 public class ItemScript : MonoBehaviour, IInteractable
 {
-    public void Interact()
+  
+    private void Start()
     {
 
-        Destroy(gameObject); 
+        
+    }
+    public void Interact()
+    {
+        GetComponentInParent<SpawnItem>().hasItem = false;
+        Destroy(gameObject);
+        if (gameObject.GetComponent<PickupSpell>() != null)
+        {
+            gameObject.GetComponent<PickupSpell>().ApplyToPlayer();
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        //GetComponentInParent<SpawnItem>().hasItem = false;
+        //Destroy(gameObject);
     }
 }
