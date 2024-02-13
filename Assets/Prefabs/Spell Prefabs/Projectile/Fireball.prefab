@@ -101,6 +101,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source: {fileID: 0}
   damage: 25
+  hitImpact: {fileID: 0}
+  impactLayers:
+    serializedVersion: 2
+    m_Bits: 3583
 --- !u!54 &3341783972037316594
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -147,7 +151,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.75
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &4333389540326412330
 PrefabInstance:

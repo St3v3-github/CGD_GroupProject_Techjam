@@ -6,6 +6,8 @@ using UnityEngine;
 public class Projectile : Spell
 {
     public float damage;
+    public GameObject hitImpact;
+    public LayerMask impactLayers;
     //public StatusEffect_Data effect;
 
     //private float timer = 0;
@@ -32,8 +34,17 @@ public class Projectile : Spell
         if (DealDamage(collision.gameObject, damage))
         {
             Debug.Log("hit player: " + collision.name);
-            Destroy(gameObject);
+            GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
         }
+
+        if ((impactLayers | (1 << collision.gameObject.layer)) != 0)
+        {
+            GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
+        }
+        
+
 
 
         //AttributeManager attributes = collision.gameObject.GetComponent<AttributeManager>();
@@ -51,6 +62,11 @@ public class Projectile : Spell
         {
             Debug.LogError("enemy status effects script not found");
         }*/
+    }
+
+    public void setLifetime(float lifetime)
+    {
+        Destroy(gameObject, lifetime);
     }
 
     private IEnumerator timerCoroutine()

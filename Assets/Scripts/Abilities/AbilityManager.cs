@@ -45,7 +45,7 @@ public class AbilityManager : MonoBehaviour
         switch (ability_list[selected_ability].state)
         {
             case BaseAbility.AbilityState.READY:
-                if (player_controls.Player.AbilityCast.IsPressed() && ability_list[selected_ability] != null)
+                if (player_controls.Player.PrimaryCast.IsPressed() && ability_list[selected_ability] != null)
                 {
                     if (ability_list[selected_ability].GetAbilityCost() <= attribute_manager.GetPlayerMP())
                     {
@@ -76,11 +76,11 @@ public class AbilityManager : MonoBehaviour
                         print("Not enough MP for ability! MP: " + attribute_manager.GetPlayerMP());
                     }
                 }
-                if (player_controls.Player.AbilityCast.IsPressed() && ability_list[selected_ability] == null)
+                if (player_controls.Player.PrimaryCast.IsPressed() && ability_list[selected_ability] == null)
                 {
                     print("Ability does not exist!");
                 }
-                if(!player_controls.Player.AbilityCast.IsPressed() && (ability_list[selected_ability].GetAbilityCastTime() > 0))
+                if(!player_controls.Player.PrimaryCast.IsPressed() && (ability_list[selected_ability].GetAbilityCastTime() > 0))
                 {
                     ability_list[selected_ability].ResetCastTime();
                 }

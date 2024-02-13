@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 577207719748953414, guid: f9425aab094fc5540a11a34571d7071b, type: 3}
   recharge: {fileID: 1236643204216662, guid: 86b8420ab7dde434ebc4801205eba5ae, type: 3}
+  particle: {fileID: 0}
   description: 
   shootForce: 60
   upwardForce: 0
@@ -21,8 +22,10 @@ MonoBehaviour:
   timeBetweenShots: 0.4
   spread: 0
   range: 100
+  lifetime: 5
   rechargeTime: 1
   burstDelay: 0
   totalCharges: 10
   projectilesPerTap: 0
   allowButtonHold: 1
+  statusEffect: {fileID: 0}

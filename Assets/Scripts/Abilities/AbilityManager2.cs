@@ -31,144 +31,23 @@ public class AbilityManager2 : MonoBehaviour
         //    Debug.Log("WE ARE IN THE CAST SPELL FUNCTION. CURRENT SLOT IS: " + slot);
             switch(inventory.dd_spell_inventory[slot].ID) 
             {
-                case ItemData.SpellList.FIREBALL:
-                   if(ctx.performed)
-                    {
-                        if (spell_controller.GetComponent<AdvancedProjectileSystem>().readyToShoot)
-                        {
-                            spell_controller.GetComponent<AdvancedProjectileSystem>().ToggleShooting();
-                            spell_controller.GetComponent<AdvancedProjectileSystem>().ProjectileShoot(); 
-                        }
-                        
-                    }
-                                     break;
-                case ItemData.SpellList.ICEBALL:
-                    if (ctx.performed)
-                    {
-                        if (spell_controller.GetComponent<AdvancedProjectileSystem>().readyToShoot)
-                        {
-                            spell_controller.GetComponent<AdvancedProjectileSystem>().ToggleShooting();
-                            spell_controller.GetComponent<AdvancedProjectileSystem>().ProjectileShoot(); 
-                        }
-                    }
+                // FIRE CLASS
+                case ItemData.SpellList.FIREGRENADE:
+                    if (spell_controller.GetComponent<ThrowSpell>() == null) { Debug.Log("Not Found"); return 0; }
+                    if (!inventory.checkCooldown(slot)) { return 0; }
+                    spell_controller.GetComponent<ThrowSpell>().Cast();
                     break;
-                case ItemData.SpellList.WINDBALL:
-                    if (ctx.performed)
-                    {
-                        if (spell_controller.GetComponent<AdvancedProjectileSystem>().readyToShoot)
-                        {
-                            spell_controller.GetComponent<AdvancedProjectileSystem>().ToggleShooting();
-                            spell_controller.GetComponent<AdvancedProjectileSystem>().ProjectileShoot(); 
-                        }
-                    }
+                case ItemData.SpellList.FLAMETHROWER:
+                    if (spell_controller.GetComponent<Beam>() == null) { return 0; }
+                    if (!inventory.checkCooldown(slot)) { return 0; }
+                    inventory.setActiveFor(slot, 3f, 1.0f);
+                    spell_controller.GetComponent<Beam>().cast();
                     break;
-                case ItemData.SpellList.LIGHTNINGBALL:
-                    if (ctx.performed)
-                    {
-                        if (spell_controller.GetComponent<AdvancedProjectileSystem>().readyToShoot)
-                        {
-                            spell_controller.GetComponent<AdvancedProjectileSystem>().ToggleShooting();
-                            spell_controller.GetComponent<AdvancedProjectileSystem>().ProjectileShoot(); 
-                        }
-                    }
-                    break;
-                case ItemData.SpellList.FIREWALL:
-                    inventory.setActiveFor(slot, 2.0f, 1.0f); //TODO: Grab active and cooldown times from spells
-
-                    spell_controller.GetComponent<Wall>().SetType(spellEnum.fire);
-                    spell_controller.GetComponent<WallManager>().SetType(spellEnum.fire);
-                    if (spell_controller.GetComponent<Wall>().isPlacingWall)
-                    {
-                        spell_controller.GetComponent<Wall>().PlaceWall();
-                        inventory.dd_spell_inventory[slot].DecreaseCharges();
-                    }
-                    else
-                    {
-                        spell_controller.GetComponent<Wall>().StartPlacingWall();
-                       
-                        
-                    }
-                    break;
+                // Ice CLASS
                 case ItemData.SpellList.ICEWALL:
-                    inventory.setActiveFor(slot, 2.0f, 1.0f); //TODO: Grab active and cooldown times from spells
-
-                    spell_controller.GetComponent<Wall>().SetType(spellEnum.ice);
-                    spell_controller.GetComponent<WallManager>().SetType(spellEnum.ice);
-                    if (spell_controller.GetComponent<Wall>().isPlacingWall)
-                    {
-                        spell_controller.GetComponent<Wall>().PlaceWall();
-                        inventory.dd_spell_inventory[slot].DecreaseCharges();
-                    }
-                    else
-                    {
-                        spell_controller.GetComponent<Wall>().StartPlacingWall();
-                    }
-                    break;
-                case ItemData.SpellList.WINDGWALL:
-                    inventory.setActiveFor(slot, 2.0f, 1.0f); //TODO: Grab active and cooldown times from spells
-
-                    spell_controller.GetComponent<Wall>().SetType(spellEnum.wind);
-                    spell_controller.GetComponent<WallManager>().SetType(spellEnum.wind);
-                    if (spell_controller.GetComponent<Wall>().isPlacingWall)
-                    {
-                        spell_controller.GetComponent<Wall>().PlaceWall();
-                        inventory.dd_spell_inventory[slot].DecreaseCharges();
-                    }
-                    else
-                    {
-                        spell_controller.GetComponent<Wall>().StartPlacingWall();
-                    }
-                    break;
-                case ItemData.SpellList.LIGHTNINGWALL:
-                    inventory.setActiveFor(slot, 2.0f, 1.0f); //TODO: Grab active and cooldown times from spells
-
-                    spell_controller.GetComponent<Wall>().SetType(spellEnum.lightning);
-                    spell_controller.GetComponent<WallManager>().SetType(spellEnum.lightning);
-                    if (spell_controller.GetComponent<Wall>().isPlacingWall)
-                    {
-                        spell_controller.GetComponent<Wall>().PlaceWall();
-                        inventory.dd_spell_inventory[slot].DecreaseCharges();
-                    }
-                    else
-                    {
-                        spell_controller.GetComponent<Wall>().StartPlacingWall();
-                    }
-                    break;
-
-                case ItemData.SpellList.FIRESTRIKE:
-                    spell_controller.GetComponent<CastableAOEStrike>().SetType(spellEnum.fire);
-                  //  spell_controller.GetComponent<CastableAOEStrike>().Cast();
-                    if (!spell_controller.GetComponent<CastableAOEStrike>().projectionOn)
-                    {
-                        spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOn();
-                    }
-                    else
-                    {
-                        spell_controller.GetComponent<CastableAOEStrike>().Strike();
-                        spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOff();
-                        inventory.dd_spell_inventory[slot].DecreaseCharges();
-
-                    }
-
-
-                    break;
-                case ItemData.SpellList.ICESTRIKE:
-                    spell_controller.GetComponent<CastableAOEStrike>().SetType(spellEnum.ice);
-                    // spell_controller.GetComponent<CastableAOEStrike>().Cast();
-                    if (!spell_controller.GetComponent<CastableAOEStrike>().projectionOn)
-                    {
-                        spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOn();
-                    }
-                    else
-                    {
-                        spell_controller.GetComponent<CastableAOEStrike>().Strike();
-                        spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOff();
-                        inventory.dd_spell_inventory[slot].DecreaseCharges();
-
-                    }
-                    break;
-                case ItemData.SpellList.WINDSTRIKE:
-                    spell_controller.GetComponent<CastableAOEStrike>().SetType(spellEnum.wind);
+                    if (spell_controller.GetComponent<CastableAOEStrike>() == null) { return 0; }
+                    if (!inventory.checkCooldown(slot)) { return 0; }
+                    spell_controller.GetComponent<CastableAOEStrike>().setType(spellEnum.ice);
                     //  spell_controller.GetComponent<CastableAOEStrike>().Cast();
                     if (!spell_controller.GetComponent<CastableAOEStrike>().projectionOn)
                     {
@@ -178,12 +57,21 @@ public class AbilityManager2 : MonoBehaviour
                     {
                         spell_controller.GetComponent<CastableAOEStrike>().Strike();
                         spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOff();
-                        inventory.dd_spell_inventory[slot].DecreaseCharges();
 
                     }
                     break;
+                case ItemData.SpellList.ICESLOW:
+                    if (spell_controller.GetComponent<ThrowSpell>() == null) { Debug.Log("Not Found"); return 0; }
+                    if (!inventory.checkCooldown(slot)) { return 0; }
+                    spell_controller.GetComponent<ThrowSpell>().Cast();
+                    break;
+
+
+                // LIGHTNING CLASS
                 case ItemData.SpellList.LIGHTNINGSTRIKE:
-                    spell_controller.GetComponent<CastableAOEStrike>().SetType(spellEnum.lightning);
+                    if (spell_controller.GetComponent<CastableAOEStrike>() == null) { return 0; }
+                    if (!inventory.checkCooldown(slot)) { return 0; }
+                    spell_controller.GetComponent<CastableAOEStrike>().setType(spellEnum.lightning);
                     //  spell_controller.GetComponent<CastableAOEStrike>().Cast();
                     if (!spell_controller.GetComponent<CastableAOEStrike>().projectionOn)
                     {
@@ -193,43 +81,65 @@ public class AbilityManager2 : MonoBehaviour
                     {
                         spell_controller.GetComponent<CastableAOEStrike>().Strike();
                         spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOff();
-                        inventory.dd_spell_inventory[slot].DecreaseCharges();
 
                     }
                     break;
-                case ItemData.SpellList.FIRESUMMON:
-                    spell_controller.GetComponent<Summon>().SetType(spellEnum.fire);
-                    spell_controller.GetComponent<Summon>().Cast();
-                    inventory.dd_spell_inventory[slot].DecreaseCharges();
+                case ItemData.SpellList.CHAINEDLIGHTNING:
+                    if (spell_controller.GetComponent<ChainLightning>() == null) { return 0; }
+                    if (!inventory.checkCooldown(slot)) { return 0; }
+                    inventory.setActiveFor(slot, 1f, 1.0f);
+                    spell_controller.GetComponent<ChainLightning>().Cast();
                     break;
-                case ItemData.SpellList.ICESUMMON:
-                    spell_controller.GetComponent<Summon>().SetType(spellEnum.ice);
-                    spell_controller.GetComponent<Summon>().Cast();
-                    inventory.dd_spell_inventory[slot].DecreaseCharges();
+
+                // WIND CLASS
+                case ItemData.SpellList.WIRLWIND:
+                    if (spell_controller.GetComponent<CastableAOEStrike>() == null) { return 0; }
+                    spell_controller.GetComponent<CastableAOEStrike>().setType(spellEnum.wind);
+                    //  spell_controller.GetComponent<CastableAOEStrike>().Cast();
+                    if (!spell_controller.GetComponent<CastableAOEStrike>().projectionOn)
+                    {
+                        spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOn();
+                    }
+                    else
+                    {
+                        spell_controller.GetComponent<CastableAOEStrike>().Strike();
+                        spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOff();
+
+                    }
                     break;
-                case ItemData.SpellList.WINDSUMMON:
-                    spell_controller.GetComponent<Summon>().SetType(spellEnum.wind);
-                    spell_controller.GetComponent<Summon>().Cast();
-                    inventory.dd_spell_inventory[slot].DecreaseCharges();
+
+                case ItemData.SpellList.WINDRUSH:
+                    if (spell_controller.GetComponent<Boop>() == null) { Debug.Log("Not Found"); return 0; }
+                    if (!inventory.checkCooldown(slot)) { return 0; }
+                    spell_controller.GetComponent<Boop>().Cast();
                     break;
-                case ItemData.SpellList.LIGHTNINGSUMMON:
-                    spell_controller.GetComponent<Summon>().SetType(spellEnum.lightning);
+
+
+
+                // ULTIMATES
+                case ItemData.SpellList.SUMMON:
+                    if (spell_controller.GetComponent<Summon>() == null) { return 0; }
+                    spell_controller.GetComponent<Summon>().setType(spellEnum.fire);
                     spell_controller.GetComponent<Summon>().Cast();
                     inventory.dd_spell_inventory[slot].DecreaseCharges();
                     break;
                 case ItemData.SpellList.BLACKHOLE:
+                    if (spell_controller.GetComponent<SpellCastOnStaff>() == null) { return 0; }
                     spell_controller.GetComponent<SpellCastOnStaff>().Cast();
                     inventory.dd_spell_inventory[slot].DecreaseCharges();
                     break;
                 case ItemData.SpellList.HEALSPELL:
+                    if (spell_controller.GetComponent<Heal>() == null) { return 0; }
                     spell_controller.GetComponent<Heal>().Cast();
                     inventory.dd_spell_inventory[slot].DecreaseCharges();
                     break;
                 case ItemData.SpellList.POISONCLOUD:
+                    if (spell_controller.GetComponent<SpellCastOnRay>() == null) { return 0; }
                     spell_controller.GetComponent<SpellCastOnRay>().Cast();
                     inventory.dd_spell_inventory[slot].DecreaseCharges();
                     break;
                 case ItemData.SpellList.POWERBEAM:
+                    if (spell_controller.GetComponent<Beam>() == null) { return 0; }
                     inventory.setActiveFor(slot, 3f, 1.0f);
                     spell_controller.GetComponent<Beam>().cast();
                     inventory.dd_spell_inventory[slot].DecreaseCharges();

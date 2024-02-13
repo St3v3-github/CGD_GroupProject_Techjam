@@ -11,6 +11,7 @@ public class CastableAOEStrike : ElementalSpell
     private GameObject projection;
     public Camera playerCamera;
     public bool projectionOn = false;
+    public bool doesDamage;
 
 
     // Start is called before the first frame update
@@ -88,21 +89,21 @@ public class CastableAOEStrike : ElementalSpell
         // Creates Visual Prefab
         InstantiateStrike(projection.transform.position);
 
-        DetectCharacters(projection.transform.position, targetTag);
-
-        
+        if (doesDamage)
+        {
+            DetectCharacters(projection.transform.position, targetTag);
+        }
     }
 
     public void InstantiateStrike(Vector3 centre)
     {
-        GameObject strike = Instantiate(spell.prefab, centre, Quaternion.identity);
+        GameObject strike = Instantiate(spell.prefab, centre + Vector3.up * 0.5f, playerCamera.transform.rotation);
         StartCoroutine(timerCoroutine(strike));
 //        AudioManager.instance.PlayOneShot(FMODEvents.instance.thunderSound, this.transform.position);
     }
 
     public void DetectCharacters(Vector3 centre, string targetTag)
     {
-        Debug.Log("detecting");
         Collider[] colliders = Physics.OverlapSphere(centre, spell.radius);
         List<GameObject> players = new List<GameObject>();
 

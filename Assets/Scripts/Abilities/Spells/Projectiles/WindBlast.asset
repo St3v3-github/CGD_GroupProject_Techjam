@@ -14,15 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 2549314221037139667, guid: ec5c63368d40a2843bcb9697745788c5, type: 3}
   recharge: {fileID: 1236643204216662, guid: d94028df5e1977b4ab4eec9cc2497b40, type: 3}
+  particle: {fileID: 0}
   description: Burst Rifle
   shootForce: 100
   upwardForce: 0
   damage: 20
-  timeBetweenShots: 0.5
+  timeBetweenShots: 1
   spread: 0.1
   range: 0
+  lifetime: 5
   rechargeTime: 1.5
   burstDelay: 0.1
   totalCharges: 30
   projectilesPerTap: 3
-  allowButtonHold: 1
+  allowButtonHold: 0
+  statusEffect: {fileID: 0}

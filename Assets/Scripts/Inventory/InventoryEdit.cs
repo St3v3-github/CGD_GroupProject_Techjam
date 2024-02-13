@@ -74,4 +74,13 @@ public class InventoryEdit : MonoBehaviour
     {
         return dd_spell_inventory[slot].ID;
     }
+
+    public bool checkCooldown(int slot)
+    {
+        if (dd_spell_inventory[slot].current_state == SpellState.READY)
+        {
+            return true;
+        }
+        return false;
+    }
 }

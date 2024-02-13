@@ -3,47 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class PoisonCloud : Spell
+public class PoisonCloud : MonoBehaviour
 {
     public float damagePerSecond = 5f; // Adjust the damage value
-    public float delayBeforeDamage = 2f; // Adjust the delay before damage starts
-    public float maxColliderRadius = 5f; // Adjust the maximum collider radius
+    public float maxRadius = 5f; // Adjust the maximum collider radius
     public float sizeIncreaseDuration = 5f; // Adjust the duration over which the collider size increases
+    public float duration = 10f;
 
-    private bool isInPoisonCloud = false;
-    private float timeInPoisonCloud = 0f;
-    private float timeSinceStart = 0f;
     private GameObject playerInPoisonCloud; // Store the reference to the player
-    private SphereCollider poisonCollider; // Reference to the sphere collider
+    private float timeSinceStart = 0f;
 
     private void Start()
     {
-        // Get the reference to the SphereCollider component
-        poisonCollider = GetComponent<SphereCollider>();
-        StartCoroutine(timerCoroutine());
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.transform.gameObject.CompareTag("Player1") || other.CompareTag("Player2"))
-        {
-            // Player entered the poison cloud
-            Debug.Log("Player entered the poison cloud");
-            isInPoisonCloud = true;
-            playerInPoisonCloud = other.gameObject;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.transform.gameObject.layer == LayerMask.NameToLayer("layer_player"))
-        {
-            // Player exited the poison cloud
-            Debug.Log("Player exited the poison cloud");
-            isInPoisonCloud = false;
-            timeInPoisonCloud = 0f; // Reset the timer
-            playerInPoisonCloud = null;
-        }
+        StartCoroutine(TimerCoroutine());
     }
 
     private void Update()
@@ -51,25 +23,19 @@ public class PoisonCloud : Spell
         timeSinceStart += Time.deltaTime;
 
         // Increase the collider radius gradually over the specified duration
-        float currentColliderRadius = Mathf.Lerp(0f, maxColliderRadius, timeSinceStart / sizeIncreaseDuration);
+        float currentColliderRadius = Mathf.Lerp(0f, maxRadius, timeSinceStart / sizeIncreaseDuration);
 
-        // Update the sphere collider's radius
-        poisonCollider.radius = currentColliderRadius;
-
-        if (isInPoisonCloud)
+        // Check for players within the poison cloud
+        Collider[] colliders = Physics.OverlapSphere(transform.position, currentColliderRadius);
+        foreach (Collider collider in colliders)
         {
-            // Increment the timer while the player is in the poison cloud
-            timeInPoisonCloud += Time.deltaTime;
-
-            // Check if the delay period has passed
-            if (timeInPoisonCloud > delayBeforeDamage && playerInPoisonCloud != null)
+            if (collider.gameObject.CompareTag("Player1") || collider.CompareTag("Player2"))
             {
                 // Apply damage over time
-                ApplyDamageOverTime(playerInPoisonCloud);
+                ApplyDamageOverTime(collider.gameObject);
             }
         }
     }
-
 
     private void ApplyDamageOverTime(GameObject player)
     {
@@ -86,13 +52,10 @@ public class PoisonCloud : Spell
         }
     }
 
-
-    private IEnumerator timerCoroutine()
+    private IEnumerator TimerCoroutine()
     {
-
-        yield return new WaitForSeconds(10f);
-        Destroy(transform.gameObject);
+        yield return new WaitForSeconds(duration);
+        Destroy(gameObject);
     }
 }
-
 

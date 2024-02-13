@@ -1,0 +1,460 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9031512233432294318
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1589660299094828174}
+  - component: {fileID: 2970849585313065017}
+  - component: {fileID: -1701894740030472519}
+  m_Layer: 0
+  m_Name: Colorize Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1589660299094828174
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9031512233432294318}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2970849585313065017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9031512233432294318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2108585221, guid: 3343b3146a5773a42a50380d8eb4508b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderPipeline: 0
+  multiObjectReference: {fileID: 0}
+  objectReference: {fileID: 0}
+  errorWrongRP: 0
+  showTexturePreview: 0
+  showEmissionTexturePreview: 0
+  showMetallicTexturePreview: 0
+  textureRef: {fileID: 0}
+  textureRefOriginal: {fileID: 0}
+  meshFilterRef: {fileID: 0}
+  skinnedMeshRendererRef: {fileID: 0}
+  isSolidPalette: 1
+  wasSetUpToContainPureSolid: 0
+  notPureSolidPalette: 0
+  isPatternedPalette: 0
+  wasSetUpToContainsPatterns: 0
+  isGradientPalette: 0
+  wasSetupToContainGradients: 0
+  isNonPaletteTexture: 0
+  wasSetupToAsNonPaletteTexture: 0
+  isSpriteTexture: 0
+  wasSetupAsSpriteTexture: 0
+  uvPointsRef: []
+  trianglesRef: 
+  preFilteredColors: []
+  filteredColors: []
+  colorsIncludedInPatterns: []
+  isPrefabUnpacked: 1
+  showColorMerging: 1
+  HLColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  enableCopyPasteFunctions: 0
+  ignoreMaxColorPerPatternRestriction: 0
+  maxColorsPerPatternRegion: 100
+  numberOfReferences: 0
+  multiObjectReferencingList: []
+  multiObjectsManualReferencingList: []
+  multiObjectsManualReferencingListRefined: []
+  multiObjectsManualListOfMaterials: []
+  gradientFiltering: 0
+  autoCleanPatterns: 1
+  autoCleanSensitivity: 0
+  autoCleanSensitivityMultiplier: 1
+  mergeSimilarColors: 1
+  groupingTolerance: 0
+  groupSimilarColors: 1
+  materialReferenceMode: 0
+  specifyMaterialOfInterest: {fileID: 0}
+  currentObjectMaterial: {fileID: 0}
+  previousObjectMaterial: {fileID: 0}
+  individualModeColorLimit: 500
+  numberOfColorsInPatternedRegion: 0
+  originalMaterialRef: {fileID: 0}
+  materialToCopyFrom: {fileID: 0}
+  setupMetallicSmoothness: 0
+  wasMetallicSmoothnessSetup: 0
+  overrideMetallicTexture: 0
+  metallicTextureRef: {fileID: 0}
+  universalMetallicStrength: 0
+  universalSmoothnessStrength: 0
+  metallicAndSmoothnessGradientMode: 0
+  metallicAndSmoothnessMode: 0
+  emissionTextureColorMode: 0
+  emissionManualTextureColor: {r: 0, g: 0, b: 0, a: 0}
+  emissionHDROverlayColor: {r: 0, g: 0, b: 0, a: 0}
+  setupEmissions: 0
+  wasEmissionsSetup: 0
+  overrideEmissionsTexture: 0
+  emissionTextureRef: {fileID: 0}
+  advancedOptionType: 0
+  colorTintingValue: 0
+  colorForColorTinting1: {r: 1, g: 1, b: 1, a: 1}
+  colorForColorTinting2: {r: 1, g: 1, b: 1, a: 1}
+  colorForColorTinting3: {r: 1, g: 1, b: 1, a: 1}
+  colorForColorTinting4: {r: 1, g: 1, b: 1, a: 1}
+  colorForColorTinting5: {r: 1, g: 1, b: 1, a: 1}
+  colorForColorTinting6: {r: 1, g: 1, b: 1, a: 1}
+  covertToSolidMode: 0
+  randomPatternType: 0
+  textureInjectionMode: 0
+  GeneratedRandomPatternTexture: {fileID: 0}
+  perlinNoiseMultiplier: 0
+  stripeFrequencyMultiplier: 0
+  stripeOffset: 0
+  cellularAutomataRule: 1
+  voronoiCoagulationStrength: 1
+  checkerBoardNoiseMultiplier: 0
+  checkersColorOne: {r: 0, g: 0, b: 0, a: 0}
+  checkersColorTwo: {r: 0, g: 0, b: 0, a: 0}
+  voronoiShader: {fileID: 0}
+  gradientPatternColor:
+    serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 65535
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  brickWidth: 40
+  brickHeight: 10
+  brickOffsetX: 2
+  brickOffsetY: 2
+  brickVariationA: 0.5
+  initialGrainMaxChance: 0
+  ringsScale: 1
+  ringsAge: 1
+  woodIntensity: 1
+  brickType: 0
+  borderColor: {r: 0, g: 0, b: 0, a: 0}
+  borderWidth: 1
+  listOfRandomColors: []
+  mergeSelectionArea: 0
+  gradientColor:
+    serializedVersion: 2
+    key0: {r: 1, g: 0, b: 0, a: 1}
+    key1: {r: 0, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 65535
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  gradientDirectionOffset: 0
+  gradientEmissionColor:
+    serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 65535
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  emissionGradientDirectionOffset: 0
+  gradientMetallicColor:
+    serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 65535
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  gradientReflectionColor:
+    serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 65535
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  gradientMetallicAndReflectionCombinedColor:
+    serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 65535
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  metallicAndReflectionGradientDirectionOffset: 0
+  gradientPaintMode: 0
+  gradientEmissionPaintMode: 0
+  gradientMetallicReflectionPaintMode: 0
+  textureForGradientInjectionPainting: {fileID: 0}
+  xTextureOffset: 0
+  yTextureOffset: 0
+  xTilling: 10
+  yTilling: 10
+  inverseX: 0
+  inverseY: 0
+  switchXY: 0
+  linkTiling: 1
+  textureSize: 0
+  _injectionTextureDimension: 8
+  paintMode: 0
+  groupsList: 
+  groupAssignmentsValue: 0
+  isOriginallySolidConvertingToGradient: 0
+  groupByValueIgnoreSameColorPreventionID: 0
+  gradientDetectionSensitivity: 0
+  gradientDetectionSensitivityBuffer: 3
+  mergeToNewGroup: 0
+  mergeToNewColor: {r: 0, g: 0, b: 0, a: 1}
+  _directory: Assets/Smitesoft/Colorize Palette Modifier/Scripts/Editor/EditorResources
+  openSettings: 0
+  disableHelpBoxes: 0
+  highLightTechIndividual: 0
+  highLightTechGroup: 0
+  copiedColor: {r: 0, g: 0, b: 0, a: 1}
+  hexColor: 
+  enableGroupNamesOnIndividualTab: 1
+  mergeGroupNameWithPartitionDividers: 1
+  useRecommendedPartitionSettings: 1
+  enableGroupDividers: 1
+  highlightColor: 0
+  useShiftForHighLight: 0
+  includeInactiveMaterialsAndTextures: 0
+  multiObjectsParents: []
+  lastIndexHighlighted: -1
+  lastGroupIndexHighlighted: -1
+  unFocusedCounter: 0
+  highLighting: 0
+  enableFrozenIndividualModeHighlighting: 0
+  enableFrozenGroupHighlighting: 1
+  enableRecommendedHighlightingSettings: 1
+  lastHighlightType: 0
+  xMinRevert: 0
+  yMinRevert: 0
+  widthRevert: 0
+  heightRevert: 0
+  overClockHighLight: 1
+  overClockHighLightGroup: 1
+  outlierCutoffMultiplierA: 1.45
+  indexOfLastClickedIndividualRegion: -1
+  indexOfLastClickedGroup: -1
+  paintBuildAssignMode: 0
+  preventExactColorsFromMerging: 0
+  folderNaming: 0
+  suffix: 
+  didWeBuildLastSession: 0
+  didWeOverrideLastSession: 0
+  objectsReference: []
+  materialToMassAssign: {fileID: 0}
+  customPaletteMode: 0
+  paletteName: 
+  includeDupes: 0
+  customPaletteDatabaseRef: {fileID: 0}
+  loadedCustomPalette: []
+  currentCustomPaletteIndex: 0
+  tempListOfNewCustomColorsForSaving: []
+  currentCustomPaletteIndexForPaletteEditing: 0
+  loadedForEditingCustomPalette: []
+  saveThisPalette_Generated: 0
+  includeColorTheoryColors_Generated: 0
+  includeOnlySelectedColors_Generated: 0
+  colorPalette: 0
+  skinTonesPalette:
+    colorSelectionsX: 
+    colorsX: []
+  natureColorPalette:
+    colorSelectionsX: 
+    colorsX: []
+  metallicPalette_Platinum:
+    colorSelectionsX: 
+    colorsX: []
+  metallicPalette_Gold:
+    colorSelectionsX: 
+    colorsX: []
+  metallicPalette_WhiteGold:
+    colorSelectionsX: 
+    colorsX: []
+  metallicPalette_Silver:
+    colorSelectionsX: 
+    colorsX: []
+  metallicPalette_Bronze:
+    colorSelectionsX: 
+    colorsX: []
+  metallicPalette_Copper:
+    colorSelectionsX: 
+    colorsX: []
+  metallicPalette_Tin:
+    colorSelectionsX: 
+    colorsX: []
+  metallicPalette_CopperRose:
+    colorSelectionsX: 
+    colorsX: []
+  metallicPalette_HeavyMetals:
+    colorSelectionsX: 
+    colorsX: []
+  metallicPalette_Steel:
+    colorSelectionsX: 
+    colorsX: []
+  metallicPalette_RustedIron:
+    colorSelectionsX: 
+    colorsX: []
+  onlyGenerateColorTheoryColors: 0
+  skipGeneratingColorTheoryColors: 0
+  colorTheory: 0
+  useColorTheory: 0
+  colorTheoryGeneratedPalette:
+    colorSelectionsX: 
+    colorsX: []
+--- !u!114 &-1701894740030472519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9031512233432294318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23e0c362213693c4390271deb9b4bb75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

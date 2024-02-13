@@ -6,17 +6,19 @@ using UnityEngine.InputSystem;
 
 public class AdvancedProjectileSystem : Spell
 {
-
+    [Header("Spell Data")]
     public ProjectileData equippedProjectile;
-    public ProjectileData fireballforalpha;
     private List<ProjectileData> spells = new List<ProjectileData>();
     private int currentSpellIndex = 0;
     private GameObject rechargeSurge;
 
-    int chargesLeft, chargesShot;
+    [Header("Clip")]
+    [SerializeField] private int chargesLeft, chargesShot;
 
     //bools
-   public bool shooting, readyToShoot, recharging;
+    [Header("Bools")]
+    public bool shooting, readyToShoot, recharging;
+    public bool shootWithRay;
 
     //Testing :)
     public bool allowInvoke = true;
@@ -38,9 +40,7 @@ public class AdvancedProjectileSystem : Spell
 
     private void Start()
     {
-        var clone = Instantiate(fireballforalpha);
-        equippedProjectile = clone;
-        SetTargetTag();
+        setTargetTag();
 
         rechargeSurge = Instantiate(equippedProjectile.recharge, firePoint.position, Quaternion.identity);
         rechargeSurge.transform.SetParent(firePoint, true);
@@ -62,6 +62,8 @@ public class AdvancedProjectileSystem : Spell
     {
         chargesLeft = equippedProjectile.totalCharges;
         readyToShoot = true;
+        shooting = false;
+        allowInvoke = true;
     }
 
     private void Update()
@@ -97,8 +99,14 @@ public class AdvancedProjectileSystem : Spell
         {
             chargesShot = 0;
             animControl.toggleCastingBool(true);
-            //ProjectileShoot();
-
+            if (shootWithRay)
+            {
+                RayShoot();
+            }
+            else
+            {
+                ProjectileShoot();
+            }
         }
     }
     public void ToggleShooting()
@@ -125,6 +133,7 @@ public class AdvancedProjectileSystem : Spell
         {
             //ray hit Something
             targetPoint = hit.point;
+            targetPoint = ray.GetPoint(100);
         }
         else
         {
@@ -136,23 +145,25 @@ public class AdvancedProjectileSystem : Spell
 
         Vector3 directionWithoutSpread = targetPoint - firePoint.position;
 
-
         //Spread
         float x = Random.Range(-equippedProjectile.spread, equippedProjectile.spread);
         float y = Random.Range(-equippedProjectile.spread, equippedProjectile.spread);
         float z = Random.Range(-equippedProjectile.spread, equippedProjectile.spread);
-        
-        Vector3 directionWithSpread = directionWithoutSpread + (new Vector3(x, y, z) * Vector3.Magnitude(directionWithoutSpread)) / 15;
 
+        Vector3 directionWithSpread = directionWithoutSpread + (new Vector3(x, y, z) * Vector3.Magnitude(directionWithoutSpread)) / 15;
         //Instantiate Projectile
         GameObject currentProjectile = Instantiate(equippedProjectile.projectile, firePoint.position, Quaternion.identity);
         currentProjectile.transform.forward = directionWithSpread.normalized;
-        currentProjectile.GetComponent<Projectile>().source = source;
+        Projectile currentProjectileScript = currentProjectile.GetComponent<Projectile>();
+        currentProjectileScript.source = source;
+        currentProjectileScript.damage = equippedProjectile.damage;
+        currentProjectileScript.setLifetime(equippedProjectile.lifetime);
 
         //Add Forces to projctile
-        currentProjectile.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * equippedProjectile.shootForce, ForceMode.Impulse);
+        Rigidbody rb = currentProjectile.GetComponent<Rigidbody>();
+        rb.AddForce(directionWithSpread.normalized * equippedProjectile.shootForce, ForceMode.Impulse);
         // For bouncing projectiles only    
-        currentProjectile.GetComponent<Rigidbody>().AddForce(playerCam.transform.up * equippedProjectile.upwardForce, ForceMode.Impulse);
+        rb.AddForce(playerCam.transform.up * equippedProjectile.upwardForce, ForceMode.Impulse);
 
         chargesLeft--;
         chargesShot++;
@@ -170,7 +181,7 @@ public class AdvancedProjectileSystem : Spell
             Invoke("ResetShot", equippedProjectile.timeBetweenShots);
             allowInvoke = false;
         }
-        
+
 
         // if multishot projectile, repeat function (for burst or shotgun)
         if (chargesShot < equippedProjectile.projectilesPerTap && chargesLeft > 0)
@@ -192,15 +203,12 @@ public class AdvancedProjectileSystem : Spell
         float y = Random.Range(-equippedProjectile.spread, equippedProjectile.spread);
 
         Vector3 direction = playerCam.transform.forward + new Vector3(x, y, 0);
-
+        List<RaycastHit> hits = new List<RaycastHit>();
         //Raycast
         if (Physics.Raycast(playerCam.transform.position, direction, out rayHit, equippedProjectile.range, hittable))
         {
-            Debug.Log(rayHit.collider.name);
-            if (rayHit.collider.CompareTag(targetTag))
-            {
-                DealDamage(rayHit.collider.gameObject, equippedProjectile.damage);
-            }
+            Debug.Log(rayHit.collider.gameObject.name);
+            dealDamage(rayHit.collider.gameObject, equippedProjectile.damage);
         }
 
         //ShakeCamera
@@ -211,11 +219,7 @@ public class AdvancedProjectileSystem : Spell
         //Instantiate(spellFlash, firePoint.position, Quaternion.identity);
 
         //Invoke resetShot ( if not already invoked)
-        if (allowInvoke)
-        {
-            Invoke("ResetShot", equippedProjectile.timeBetweenShots);
-            allowInvoke = false;
-        }
+        Invoke("ResetShot", equippedProjectile.timeBetweenShots);
 
         if (chargesShot < equippedProjectile.totalCharges && chargesLeft > 0)
         {
@@ -227,8 +231,12 @@ public class AdvancedProjectileSystem : Spell
     {
         allowInvoke = true;
         readyToShoot = true;
-        shooting = false;
-       // Debug.Log("Ready to shoot");
+        if (!equippedProjectile.allowButtonHold)
+        {
+
+            shooting = false;
+        }
+        // Debug.Log("Ready to shoot");
         animControl.toggleCastingBool(false);
     }
 

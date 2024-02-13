@@ -10,6 +10,7 @@ public class InputManager : MonoBehaviour
 {
     private PlayerControlsAsset playercontrols;
     public PlayerController playerController;
+    public AdvancedProjectileSystem advancedProjectileSystem;
     public UpdatedPlayerController updatedPlayerController;
     public Sliding sliding;
     public Dashing dashing;
@@ -26,6 +27,9 @@ public class InputManager : MonoBehaviour
     [Header("Movement/Camera")] 
     public Vector2 cameraInput;
     public Vector2 movementInput;
+
+    [Header("Shooting")]
+    public bool shootInput;
 
     
 
@@ -110,6 +114,33 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    public void OnPrimaryCast(InputAction.CallbackContext ctx)
+    {
+        if (advancedProjectileSystem != null)
+        {
+            if (advancedProjectileSystem.equippedProjectile.allowButtonHold)
+            {
+                if (ctx.action.triggered)
+                {
+                    advancedProjectileSystem.shooting = true;
+                }
+                if (ctx.action.WasReleasedThisFrame())
+                {
+                    advancedProjectileSystem.shooting = false;
+                }
+            }
+            else
+            {
+                if (ctx.action.triggered)
+                {
+                    advancedProjectileSystem.shooting = true;
+                }
+            }
+        }
+
+
+    }
+
     public void OnCrouch(InputAction.CallbackContext ctx)
     {
         if (ctx.action.triggered)
@@ -182,7 +213,7 @@ public class InputManager : MonoBehaviour
                     slotTarget = 1;
                     break;
                 case "rightTrigger":
-
+                    return;
                     slotTarget = 2;
                     break;
                 case "rightBumper":
@@ -194,8 +225,6 @@ public class InputManager : MonoBehaviour
                     slotTarget = 3;
                     break;
             }
-
-            
             // Set item to inventory if looking at a pickup.
             if (ray.target != null && ray.target.GetComponent<ItemInfo>().GetItemData().type != ItemData.SpellType.EMPTY && SlotCheck(ray.target.GetComponent<ItemInfo>().GetItemData(), slotTarget))
             {

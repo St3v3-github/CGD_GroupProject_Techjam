@@ -124,7 +124,6 @@ public class AttributeManager : MonoBehaviour
 
     public float TakeDamage(float damage, GameObject attacker)
     {
-        
         currentHealth -= damage;
         if (currentHealth <= 0)
         {

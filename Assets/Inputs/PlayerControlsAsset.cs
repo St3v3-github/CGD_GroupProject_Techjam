@@ -73,7 +73,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""AbilityCast"",
+                    ""name"": ""PrimaryCast"",
                     ""type"": ""Button"",
                     ""id"": ""35f20932-47d3-4ed1-9952-867131b1971a"",
                     ""expectedControlType"": ""Button"",
@@ -431,7 +431,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""AbilityCast"",
+                    ""action"": ""PrimaryCast"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -442,7 +442,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""AbilityCast"",
+                    ""action"": ""PrimaryCast"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -871,7 +871,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-        m_Player_AbilityCast = m_Player.FindAction("AbilityCast", throwIfNotFound: true);
+        m_Player_PrimaryCast = m_Player.FindAction("PrimaryCast", throwIfNotFound: true);
         m_Player_Ability1 = m_Player.FindAction("Ability1", throwIfNotFound: true);
         m_Player_Ability2 = m_Player.FindAction("Ability2", throwIfNotFound: true);
         m_Player_Ability3 = m_Player.FindAction("Ability3", throwIfNotFound: true);
@@ -949,7 +949,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Interact;
-    private readonly InputAction m_Player_AbilityCast;
+    private readonly InputAction m_Player_PrimaryCast;
     private readonly InputAction m_Player_Ability1;
     private readonly InputAction m_Player_Ability2;
     private readonly InputAction m_Player_Ability3;
@@ -970,7 +970,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
-        public InputAction @AbilityCast => m_Wrapper.m_Player_AbilityCast;
+        public InputAction @PrimaryCast => m_Wrapper.m_Player_PrimaryCast;
         public InputAction @Ability1 => m_Wrapper.m_Player_Ability1;
         public InputAction @Ability2 => m_Wrapper.m_Player_Ability2;
         public InputAction @Ability3 => m_Wrapper.m_Player_Ability3;
@@ -1006,9 +1006,9 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
-            @AbilityCast.started += instance.OnAbilityCast;
-            @AbilityCast.performed += instance.OnAbilityCast;
-            @AbilityCast.canceled += instance.OnAbilityCast;
+            @PrimaryCast.started += instance.OnPrimaryCast;
+            @PrimaryCast.performed += instance.OnPrimaryCast;
+            @PrimaryCast.canceled += instance.OnPrimaryCast;
             @Ability1.started += instance.OnAbility1;
             @Ability1.performed += instance.OnAbility1;
             @Ability1.canceled += instance.OnAbility1;
@@ -1061,9 +1061,9 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
-            @AbilityCast.started -= instance.OnAbilityCast;
-            @AbilityCast.performed -= instance.OnAbilityCast;
-            @AbilityCast.canceled -= instance.OnAbilityCast;
+            @PrimaryCast.started -= instance.OnPrimaryCast;
+            @PrimaryCast.performed -= instance.OnPrimaryCast;
+            @PrimaryCast.canceled -= instance.OnPrimaryCast;
             @Ability1.started -= instance.OnAbility1;
             @Ability1.performed -= instance.OnAbility1;
             @Ability1.canceled -= instance.OnAbility1;
@@ -1139,7 +1139,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnAbilityCast(InputAction.CallbackContext context);
+        void OnPrimaryCast(InputAction.CallbackContext context);
         void OnAbility1(InputAction.CallbackContext context);
         void OnAbility2(InputAction.CallbackContext context);
         void OnAbility3(InputAction.CallbackContext context);
