@@ -82,8 +82,10 @@ public class AnimationManager : MonoBehaviour
                 Emoting = !Emoting;
             }
         }
+        /*
         if (Emoting)
         {
+            
             int emoteNumb = 1;
             float randomNumb = Random.Range(0, 10);
             if(randomNumb >= 5)
@@ -95,7 +97,8 @@ public class AnimationManager : MonoBehaviour
                 emoteNumb = 0;
             }
             Debug.Log(emoteNumb);
-            playerAnim.SetInteger("EmoteNumb", emoteNumb);
+        
+            //playerAnim.SetInteger("EmoteNumb", emoteNumb);
             playerAnim.SetBool("Emoting", Emoting);
             if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Idle")) //prevents 3rd person camera from activating when emote won't trigger
             {
@@ -109,6 +112,9 @@ public class AnimationManager : MonoBehaviour
             //emoteCam.enabled = false;
             //playerCam.enabled = true;
         }
+            */
+
+        playerAnim.SetBool("Emoting", Emoting);
     }
 
     public void disableEmote()

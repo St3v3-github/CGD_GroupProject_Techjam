@@ -2,15 +2,23 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
+using UnityEngine.UI;
 using static UnityEngine.EventSystems.EventTrigger;
+using static UpdatedPlayerController;
 
 public class InputManager : MonoBehaviour
 {
     private PlayerControlsAsset playercontrols;
     public PlayerController playerController;
+    public UpdatedPlayerController updatedPlayerController;
+    public Sliding sliding;
+    public Dashing dashing;
+    public JetPack jetPack;
     public CameraController cameraController;
     public AdvancedProjectileSystem projectileController;
     public AnimationManager animationController;
+    public Grappling grappling;
+    public GrappleSwing grappleSwing;
     public Raycast ray;
     private InventoryEdit inventory;
     private bool spell_is_held;
@@ -18,6 +26,8 @@ public class InputManager : MonoBehaviour
     [Header("Movement/Camera")] 
     public Vector2 cameraInput;
     public Vector2 movementInput;
+
+    
 
     private void Awake()
     {
@@ -33,10 +43,13 @@ public class InputManager : MonoBehaviour
     private void Update()
     {
        
-        playerController.HandleMovement(movementInput);
-        playerController.HandleCamera(cameraInput);
+        updatedPlayerController.HandleMovement(movementInput);
+        updatedPlayerController.HandleCamera(cameraInput);
+        
+       sliding.AssignValues(movementInput);
     }
 
+    
 
     public void OnLook(InputAction.CallbackContext ctx)
     {
@@ -53,12 +66,39 @@ public class InputManager : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext ctx)
     {
-        if (ctx.action.triggered)
+        /*if (ctx.action.triggered && updatedPlayerController.isGrounded && updatedPlayerController.readyToJump)
         {
             //animationController.disableEmote();
-            animationController.toggleEmotingBool(false);
-            playerController.HandleJump();
-           
+            //animationController.toggleEmotingBool(false);
+            //playerController.HandleJump();
+
+
+
+            updatedPlayerController.HandleJump();
+        }
+        *//*else if(ctx.action.triggered && !updatedPlayerController.hasDoubleJumped)
+        {
+            updatedPlayerController.HandleJump();
+        }*//*
+        if(ctx.performed)
+        {
+            jetPack.usingJetpack = true;
+        }
+        else if(ctx.canceled)
+        {
+            jetPack.usingJetpack = false;
+        }*/
+
+        if(ctx.performed && updatedPlayerController.isGrounded && updatedPlayerController.readyToJump)
+        {
+            updatedPlayerController.chargingJump = true;
+            Debug.Log(updatedPlayerController.chargingJump);
+        }
+
+        if(ctx.canceled && updatedPlayerController.isGrounded && updatedPlayerController.readyToJump)
+        {
+            updatedPlayerController.chargingJump = false;
+            updatedPlayerController.HandleJump();
         }
     }
 
@@ -66,9 +106,43 @@ public class InputManager : MonoBehaviour
     {
         if (ctx.action.triggered)
         {
-            //animationController.disableEmote();
-            animationController.toggleEmotingBool(false);
-            //Add Script call Here
+            updatedPlayerController.sprintPressed = !updatedPlayerController.sprintPressed;
+        }
+    }
+
+    public void OnCrouch(InputAction.CallbackContext ctx)
+    {
+        if (ctx.action.triggered)
+        {
+            //updatedPlayerController.crouchPressed = !updatedPlayerController.crouchPressed;
+        }
+
+        if(ctx.performed && (movementInput.x != 0 || movementInput.y != 0))
+        {
+            sliding.StartSlide();
+        }
+        else if(ctx.canceled && updatedPlayerController.sliding)
+        {
+            sliding.EndSlide();
+        }
+    }
+
+    public void OnAction(InputAction.CallbackContext ctx)
+    {
+        if (ctx.action.triggered)
+        {
+            updatedPlayerController.HandlePound();
+        }
+
+        if (ctx.performed)
+        {
+            //grappling.StartGrapple();
+            //grappleSwing.StartSwing();
+            //updatedPlayerController.HandlePound();
+        }
+        else if(ctx.canceled)
+        {
+            //grappleSwing.StopSwing();
         }
     }
 
@@ -132,6 +206,7 @@ public class InputManager : MonoBehaviour
             else
             {
                 GetComponent<AbilityManager2>().castSpell(slotTarget,ctx);
+                updatedPlayerController.animControl.toggleCastingBool(true);
             }
             
 
@@ -143,7 +218,7 @@ public class InputManager : MonoBehaviour
     {
         if (ctx.action.triggered)
         {
-            animationController.toggleEmotingBool(true);
+            updatedPlayerController.animControl.toggleEmotingBool(true);
         }
     }
 
@@ -164,7 +239,7 @@ public class InputManager : MonoBehaviour
     {
         if (ctx.action.triggered)
         {
-            StartCoroutine(playerController.PlayerDash(movementInput));
+            dashing.Dash();
         }
     }
 
