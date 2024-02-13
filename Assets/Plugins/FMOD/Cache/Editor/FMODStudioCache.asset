@@ -101,25 +101,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SummonStag
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SFX.bank
   m_EditorClassIdentifier: 
-  Path: event:/SummonStag
-  Guid:
-    Data1: -390726173
-    Data2: 1137819060
-    Data3: -1082087508
-    Data4: 1086797803
-  Banks:
-  - {fileID: 7777059482378376334}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-4477109954104725513
+  Path: Assets/Plugins/FMOD/Build/SFX.bank
+  Name: SFX
+  StudioPath: bank:/SFX
+  lastModified: 638425875707029291
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-6215078180672241936
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,6 +128,33 @@ MonoBehaviour:
     Data2: 1300559651
     Data3: -925127246
     Data4: 1261830401
+  Banks:
+  - {fileID: 7777059482378376334}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-5000909266538247187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SummonStag
+  m_EditorClassIdentifier: 
+  Path: event:/SummonStag
+  Guid:
+    Data1: -390726173
+    Data2: 1137819060
+    Data3: -1082087508
+    Data4: 1086797803
   Banks:
   - {fileID: 7777059482378376334}
   IsStream: 0

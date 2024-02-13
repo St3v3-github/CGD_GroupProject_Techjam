@@ -16,10 +16,10 @@ public class CastableAOEStrike : ElementalSpell
     // Start is called before the first frame update
     void Start()
     {
-        setStatus();
+        SetStatus();
         
 
-        setTargetTag();
+        SetTargetTag();
        // source = gameObject;
 
     }
@@ -109,7 +109,7 @@ public class CastableAOEStrike : ElementalSpell
         foreach (Collider collider in colliders)
         {
             Debug.Log(collider.name);
-            if (playerCheck(collider.gameObject))
+            if (PlayerCheck(collider.gameObject))
             {
                 players.Add(collider.gameObject);
             }
@@ -128,7 +128,7 @@ public class CastableAOEStrike : ElementalSpell
             // Make sure the adjusted damage is not negative
             adjustedDamage = Mathf.Max(0, adjustedDamage);
             Debug.Log("damage calculated");
-            dealDamage(player, adjustedDamage,true);
+            DealDamage(player, adjustedDamage,true);
         }
     }
 

@@ -16,7 +16,7 @@ public class Spell : MonoBehaviour
       
     }
 
-    public void setTargetTag()
+    public void SetTargetTag()
     {
         if (tag != "Player1Spell" || tag != "Player2Spell")
         {
@@ -45,7 +45,7 @@ public class Spell : MonoBehaviour
        
     }
 
-    public bool playerCheck(GameObject hitbox)
+    public bool PlayerCheck(GameObject hitbox)
     {
         GameObject player;
         if (hitbox.transform.parent != null)
@@ -65,7 +65,7 @@ public class Spell : MonoBehaviour
         return false;
     }
 
-    public bool dealDamage(GameObject hitbox, float damage)
+    public bool DealDamage(GameObject hitbox, float damage)
     {
         bool valid_target = false;
         
@@ -103,7 +103,7 @@ public class Spell : MonoBehaviour
         return false;
         
         // THIS IS USED FOR THE STRIKE ONLY, NEEDED A SEPERATE FUNCTION TO ALLOW FOR HITTING SELF WITH THE SPELL
-    }public bool dealDamage(GameObject hitbox, float damage, bool strike)
+    }public bool DealDamage(GameObject hitbox, float damage, bool strike)
     {
         bool valid_target = false;
         
@@ -174,11 +174,11 @@ public class ElementalSpell : Spell
     {
         if (testing)
         {
-            setType(spellType);
+            SetType(spellType);
         }
     }
 
-    public void setStatus()
+    public void SetStatus()
     {
         //REPLACE WITH ROSA LOGIC
         /*switch (spellType)
@@ -203,7 +203,7 @@ public class ElementalSpell : Spell
         }*/
     }
 
-    public void setStatus(spellEnum statusInput)
+    public void SetStatus(spellEnum statusInput)
     {
         //REPLACE WITH ROSA LOGIC
         /*switch (statusInput)
@@ -229,7 +229,7 @@ public class ElementalSpell : Spell
     }
 
 
-    public virtual void setType(spellEnum statusInput)
+    public virtual void SetType(spellEnum statusInput)
     {
        
         switch (statusInput)
@@ -252,7 +252,7 @@ public class ElementalSpell : Spell
         }
     }
 
-    public void setType(ItemData.SpellType type)
+    public void SetType(ItemData.SpellType type)
     {
         switch (type)
         {
@@ -274,7 +274,7 @@ public class ElementalSpell : Spell
         }
     }
 
-    public void setType(ItemData spellInfo)
+    public void SetType(ItemData spellInfo)
     {
         /*int temp;
         if (spell.ID <= 16)

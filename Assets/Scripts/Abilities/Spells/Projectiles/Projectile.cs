@@ -29,7 +29,7 @@ public class Projectile : Spell
 
         }
         else*/
-        if (dealDamage(collision.gameObject, damage))
+        if (DealDamage(collision.gameObject, damage))
         {
             Debug.Log("hit player: " + collision.name);
             Destroy(gameObject);

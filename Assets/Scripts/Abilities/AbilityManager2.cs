@@ -75,8 +75,8 @@ public class AbilityManager2 : MonoBehaviour
                 case ItemData.SpellList.FIREWALL:
                     inventory.setActiveFor(slot, 2.0f, 1.0f); //TODO: Grab active and cooldown times from spells
 
-                    spell_controller.GetComponent<Wall>().setType(spellEnum.fire);
-                    spell_controller.GetComponent<WallManager>().setType(spellEnum.fire);
+                    spell_controller.GetComponent<Wall>().SetType(spellEnum.fire);
+                    spell_controller.GetComponent<WallManager>().SetType(spellEnum.fire);
                     if (spell_controller.GetComponent<Wall>().isPlacingWall)
                     {
                         spell_controller.GetComponent<Wall>().PlaceWall();
@@ -92,8 +92,8 @@ public class AbilityManager2 : MonoBehaviour
                 case ItemData.SpellList.ICEWALL:
                     inventory.setActiveFor(slot, 2.0f, 1.0f); //TODO: Grab active and cooldown times from spells
 
-                    spell_controller.GetComponent<Wall>().setType(spellEnum.ice);
-                    spell_controller.GetComponent<WallManager>().setType(spellEnum.ice);
+                    spell_controller.GetComponent<Wall>().SetType(spellEnum.ice);
+                    spell_controller.GetComponent<WallManager>().SetType(spellEnum.ice);
                     if (spell_controller.GetComponent<Wall>().isPlacingWall)
                     {
                         spell_controller.GetComponent<Wall>().PlaceWall();
@@ -107,8 +107,8 @@ public class AbilityManager2 : MonoBehaviour
                 case ItemData.SpellList.WINDGWALL:
                     inventory.setActiveFor(slot, 2.0f, 1.0f); //TODO: Grab active and cooldown times from spells
 
-                    spell_controller.GetComponent<Wall>().setType(spellEnum.wind);
-                    spell_controller.GetComponent<WallManager>().setType(spellEnum.wind);
+                    spell_controller.GetComponent<Wall>().SetType(spellEnum.wind);
+                    spell_controller.GetComponent<WallManager>().SetType(spellEnum.wind);
                     if (spell_controller.GetComponent<Wall>().isPlacingWall)
                     {
                         spell_controller.GetComponent<Wall>().PlaceWall();
@@ -122,8 +122,8 @@ public class AbilityManager2 : MonoBehaviour
                 case ItemData.SpellList.LIGHTNINGWALL:
                     inventory.setActiveFor(slot, 2.0f, 1.0f); //TODO: Grab active and cooldown times from spells
 
-                    spell_controller.GetComponent<Wall>().setType(spellEnum.lightning);
-                    spell_controller.GetComponent<WallManager>().setType(spellEnum.lightning);
+                    spell_controller.GetComponent<Wall>().SetType(spellEnum.lightning);
+                    spell_controller.GetComponent<WallManager>().SetType(spellEnum.lightning);
                     if (spell_controller.GetComponent<Wall>().isPlacingWall)
                     {
                         spell_controller.GetComponent<Wall>().PlaceWall();
@@ -136,7 +136,7 @@ public class AbilityManager2 : MonoBehaviour
                     break;
 
                 case ItemData.SpellList.FIRESTRIKE:
-                    spell_controller.GetComponent<CastableAOEStrike>().setType(spellEnum.fire);
+                    spell_controller.GetComponent<CastableAOEStrike>().SetType(spellEnum.fire);
                   //  spell_controller.GetComponent<CastableAOEStrike>().Cast();
                     if (!spell_controller.GetComponent<CastableAOEStrike>().projectionOn)
                     {
@@ -153,7 +153,7 @@ public class AbilityManager2 : MonoBehaviour
 
                     break;
                 case ItemData.SpellList.ICESTRIKE:
-                    spell_controller.GetComponent<CastableAOEStrike>().setType(spellEnum.ice);
+                    spell_controller.GetComponent<CastableAOEStrike>().SetType(spellEnum.ice);
                     // spell_controller.GetComponent<CastableAOEStrike>().Cast();
                     if (!spell_controller.GetComponent<CastableAOEStrike>().projectionOn)
                     {
@@ -168,7 +168,7 @@ public class AbilityManager2 : MonoBehaviour
                     }
                     break;
                 case ItemData.SpellList.WINDSTRIKE:
-                    spell_controller.GetComponent<CastableAOEStrike>().setType(spellEnum.wind);
+                    spell_controller.GetComponent<CastableAOEStrike>().SetType(spellEnum.wind);
                     //  spell_controller.GetComponent<CastableAOEStrike>().Cast();
                     if (!spell_controller.GetComponent<CastableAOEStrike>().projectionOn)
                     {
@@ -183,7 +183,7 @@ public class AbilityManager2 : MonoBehaviour
                     }
                     break;
                 case ItemData.SpellList.LIGHTNINGSTRIKE:
-                    spell_controller.GetComponent<CastableAOEStrike>().setType(spellEnum.lightning);
+                    spell_controller.GetComponent<CastableAOEStrike>().SetType(spellEnum.lightning);
                     //  spell_controller.GetComponent<CastableAOEStrike>().Cast();
                     if (!spell_controller.GetComponent<CastableAOEStrike>().projectionOn)
                     {
@@ -198,22 +198,22 @@ public class AbilityManager2 : MonoBehaviour
                     }
                     break;
                 case ItemData.SpellList.FIRESUMMON:
-                    spell_controller.GetComponent<Summon>().setType(spellEnum.fire);
+                    spell_controller.GetComponent<Summon>().SetType(spellEnum.fire);
                     spell_controller.GetComponent<Summon>().Cast();
                     inventory.dd_spell_inventory[slot].DecreaseCharges();
                     break;
                 case ItemData.SpellList.ICESUMMON:
-                    spell_controller.GetComponent<Summon>().setType(spellEnum.ice);
+                    spell_controller.GetComponent<Summon>().SetType(spellEnum.ice);
                     spell_controller.GetComponent<Summon>().Cast();
                     inventory.dd_spell_inventory[slot].DecreaseCharges();
                     break;
                 case ItemData.SpellList.WINDSUMMON:
-                    spell_controller.GetComponent<Summon>().setType(spellEnum.wind);
+                    spell_controller.GetComponent<Summon>().SetType(spellEnum.wind);
                     spell_controller.GetComponent<Summon>().Cast();
                     inventory.dd_spell_inventory[slot].DecreaseCharges();
                     break;
                 case ItemData.SpellList.LIGHTNINGSUMMON:
-                    spell_controller.GetComponent<Summon>().setType(spellEnum.lightning);
+                    spell_controller.GetComponent<Summon>().SetType(spellEnum.lightning);
                     spell_controller.GetComponent<Summon>().Cast();
                     inventory.dd_spell_inventory[slot].DecreaseCharges();
                     break;

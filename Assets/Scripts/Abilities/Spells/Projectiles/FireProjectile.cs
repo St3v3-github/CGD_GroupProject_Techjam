@@ -16,7 +16,7 @@ public class FireProjectile : ElementalSpell
     private void Start()
     {
         //setStatus();
-        setTargetTag();
+        SetTargetTag();
     }
 
     /*public override void setPrefab(spellEnum statusInput)
@@ -54,7 +54,7 @@ public class FireProjectile : ElementalSpell
 
     void Update()
     {
-        setStatus();
+        SetStatus();
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {

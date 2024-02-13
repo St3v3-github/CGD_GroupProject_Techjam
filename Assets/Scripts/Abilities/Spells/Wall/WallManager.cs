@@ -18,7 +18,7 @@ public class WallManager : ElementalSpell
     {
         if (Instance == null)
         {
-            setStatus();
+            SetStatus();
             Instance = this;
         }
         else

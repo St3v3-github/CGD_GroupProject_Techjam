@@ -22,7 +22,7 @@ public class Beam : Spell
 
     void Start()
     {
-        setTargetTag();
+        SetTargetTag();
     }
 
     void Update()
@@ -48,7 +48,7 @@ public class Beam : Spell
                 if (Time.time - lastTickTime >= tickInterval)
                 {
                     // Deal damage to the opponent
-                    dealDamage(hit.transform.gameObject, damagePerTick);
+                    DealDamage(hit.transform.gameObject, damagePerTick);
 
                     // Update the last tick time
                     lastTickTime = Time.time;

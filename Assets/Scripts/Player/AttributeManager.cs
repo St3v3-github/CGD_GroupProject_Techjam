@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,12 +27,18 @@ public class AttributeManager : MonoBehaviour
     //[SerializeField] private int offensive_power;/./
 
     //CURRENT STATUS HERE
-    public StatusEffect player_status;
-    public GameObject last_damage_player;
+    public StatusEffect playerStatus;
+    public GameObject lastDamagePlayer;
 
     public Slider healthbar;
     public GameObject ScoreText;
-    public string scorefloat; 
+    public string scorefloat;
+
+    public GameObject damageFlyTextPrefab;
+    Color originalColor;
+
+    public DamageFlash damageFlash;
+    public CameraShake cameraShake;
     void Start()
     {
         //set all values to whatever default value we want
@@ -50,6 +57,12 @@ public class AttributeManager : MonoBehaviour
         {
             this.tag = "Player2";
         }
+
+        //need to load from resources as attribute controller seems to be created at runtime, cannot reference in inspector
+        damageFlyTextPrefab = (GameObject)Resources.Load("prefabs/DamageText", typeof(GameObject));
+
+        //original_color = GetComponentInParent<Renderer>().material.color;
+        originalColor = transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color;
     }
 
     void Update()
@@ -59,7 +72,9 @@ public class AttributeManager : MonoBehaviour
 
         healthbar.value = currentHealth;
         scorefloat = score.ToString(); 
-        ScoreText.GetComponent<TextMeshProUGUI>().text = scorefloat; 
+        ScoreText.GetComponent<TextMeshProUGUI>().text = scorefloat;
+
+       
     }
 
     public float GetPlayerHealth()
@@ -111,11 +126,24 @@ public class AttributeManager : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
+            transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color = originalColor;
             Die(attacker);
         }
 
         //Particles and Shaders called here
 
+        damageFlash.DamageFlashing();
+        StartCoroutine(cameraShake.Shake(.15f, .05f));
+
+        if (damageFlyTextPrefab)
+        {
+            DamageFlyText(damage, attacker);
+        }
+
+        if (this.isActiveAndEnabled)
+        {
+            //StartCoroutine(DamageEffect());
+        }
 
         return currentHealth;
     }
@@ -146,9 +174,20 @@ public class AttributeManager : MonoBehaviour
         //Particles and Shaders called here
         Debug.Log("Health: " + currentHealth);
 
+        damageFlash.DamageFlashing();
+        StartCoroutine(cameraShake.Shake(.15f, .05f));
 
 
 
+        if (damageFlyTextPrefab)
+        {
+            DamageFlyText(damage);
+        }
+
+        if(this.isActiveAndEnabled)
+        {
+            //StartCoroutine(DamageEffect());
+        }
 
         return currentHealth;
     }
@@ -185,13 +224,13 @@ public class AttributeManager : MonoBehaviour
     public float ChangeStatus(StatusEffect newStatus)
     {
 
-        if (player_status != newStatus)
+        if (playerStatus != newStatus)
         {
-            player_status.RemoveEffect();
+            playerStatus.RemoveEffect();
 
-            player_status = newStatus;
+            playerStatus = newStatus;
 
-            player_status.ApplyEffect();
+            playerStatus.ApplyEffect();
 
         }
 
@@ -203,4 +242,30 @@ public class AttributeManager : MonoBehaviour
         speed *= speedMod;
     
     }
+
+    public void DamageFlyText(float damageDealt)
+    {
+        var damageText = Instantiate(damageFlyTextPrefab, transform.position, 
+            transform.parent.gameObject.GetComponentInChildren<Camera>().transform.rotation, transform);
+        damageText.GetComponent<TextMesh>().text = damageDealt.ToString();
+    }
+
+    public void DamageFlyText(float damageDealt, GameObject attacker)
+    {
+        var damageText = Instantiate(damageFlyTextPrefab, transform.position,
+            transform.parent.gameObject.GetComponentInChildren<Camera>().transform.rotation, transform);
+        damageText.GetComponent<DamageFlyText>().FaceAttacker(attacker.GetComponentInChildren<Camera>());
+        //damageText.transform.LookAt(attacker.GetComponentInChildren<Camera>().transform);
+        //damageText.transform.rotation = Quaternion.LookRotation(attacker.GetComponentInChildren<Camera>().transform.position - damageText.transform.position);
+        //Vector3 dir = attacker.transform.position - damageText.transform.position;
+        //damageText.transform.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+        damageText.GetComponent<TextMesh>().text = damageDealt.ToString();
+    }
+
+    //public IEnumerator DamageEffect()
+    //{
+     //   transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
+    //    yield return new WaitForSeconds(0.5f);
+    //    transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color = originalColor;
+   // }
 }
