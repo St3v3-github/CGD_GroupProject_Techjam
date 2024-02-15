@@ -47,8 +47,8 @@ public class InputManager : MonoBehaviour
     private void Update()
     {
        
-        updatedPlayerController.HandleMovement(movementInput);
-        updatedPlayerController.HandleCamera(cameraInput);
+        //updatedPlayerController.HandleMovement(movementInput);
+        //updatedPlayerController.HandleCamera(cameraInput);
         
        sliding.AssignValues(movementInput);
     }

@@ -71,7 +71,8 @@ public class GameModeHandler : MonoBehaviour
                 keepHoldOfComp.currentHealth = 0;
                 keepHoldOfComp.healthbar.value = 0;
                 prayer.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(true);
-                prayer.GetComponent<CharacterController>().enabled = false;
+                //prayer.GetComponent<CharacterController>().enabled = false;
+                prayer.GetComponent<UpdatedPlayerController>().enabled = false;
                 var deadScoreInfo = prayer.GetComponent<PlayerScoreInfo>();
                 var killerScoreInfo = deadScoreInfo.lastDamagedBy.GetComponent<PlayerScoreInfo>();
                 killerScoreInfo.kill_count++;
@@ -138,9 +139,9 @@ public class GameModeHandler : MonoBehaviour
     {
         yield return new WaitForSeconds(respawnTimer);
         player.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(false);
-        //player.GetComponent<CharacterController>().enabled = false;
         player.transform.SetPositionAndRotation(respawnPoint.transform.position, respawnPoint.transform.rotation);
-        player.GetComponent<CharacterController>().enabled = true;
+        player.GetComponent<UpdatedPlayerController>().enabled = true;
+      
         AttributeManager attributeComp = player.transform.GetComponent<AttributeManager>();
         attributeComp.currentHealth = attributeComp.maxHealth;
         attributeComp.dead = false;
