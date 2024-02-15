@@ -11,7 +11,7 @@ public class TheLevelManager : MonoBehaviour
     void Start()
     {
         isOn = true;
-        levelSelect = a.GetComponent<LevelSelectController>().LevelNum;
+        levelSelect = a.GetComponent<LevelSelectController>().MapNumber;
     }
 
     // Update is called once per frame
