@@ -45,13 +45,14 @@ public class ChainLightning : Spell
                 playersHit.Add(rayHit.collider.gameObject);
                 lastPlayerHit = rayHit.collider.gameObject;
                 GameObject arc = Instantiate(prefab, transform.position, Quaternion.identity);
-                arc.GetComponent<Line>().setPoints(transform, lastPlayerHit.transform);
+                arc.GetComponent<LightningVisual>().setPoints(transform, lastPlayerHit.transform);
                 arcs.Add(arc);
 
                 // Attempt to bounce x number of times
                 for (int i = 0; i < bounceTotal; i++)
                 {
                     GameObject newPlayer = chain(lastPlayerHit);
+
                     //Bounced hit
                     if (dealDamage(newPlayer, damage))
                     {
@@ -59,7 +60,7 @@ public class ChainLightning : Spell
                         lastPlayerHit = newPlayer;
                         playersHit.Add(newPlayer);
                         arc = Instantiate(prefab, transform.position, Quaternion.identity);
-                        arc.GetComponent<Line>().setPoints(transform, lastPlayerHit.transform);
+                        arc.GetComponent<LightningVisual>().setPoints(transform, lastPlayerHit.transform);
                         arcs.Add(arc);
                     }
                 }
