@@ -15,7 +15,7 @@ public class InputManager : MonoBehaviour
     public Sliding sliding;
     public Dashing dashing;
     public JetPack jetPack;
-    public CameraController cameraController;
+    public UpdatedCameraController cameraController;
     public AdvancedProjectileSystem projectileController;
     public AnimationManager animationController;
     public Grappling grappling;
@@ -37,8 +37,8 @@ public class InputManager : MonoBehaviour
     {
        
     
-        //playerController = FindObjectOfType<_PlayerController>();
-        //cameraController = FindObjectOfType<_CameraController>();
+        playerController = FindObjectOfType<PlayerController>();
+        cameraController = FindObjectOfType<UpdatedCameraController>();
 
         //Add subsequent finds here
         inventory = GetComponent<InventoryEdit>();
@@ -47,8 +47,8 @@ public class InputManager : MonoBehaviour
     private void Update()
     {
        
-        //updatedPlayerController.HandleMovement(movementInput);
-        //updatedPlayerController.HandleCamera(cameraInput);
+        updatedPlayerController.HandleMovement(movementInput);
+        updatedPlayerController.HandleCamera(cameraInput);
         
         sliding.AssignValues(movementInput);
     }
