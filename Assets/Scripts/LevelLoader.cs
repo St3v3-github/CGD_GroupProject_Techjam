@@ -24,7 +24,7 @@ public class LevelLoader : MonoBehaviour
     //Function to load the scene
     public void NextLevel()
     {
-        levelSelect = a.GetComponent<LevelSelectController>().MapNumber;
+        levelSelect = a.GetComponent<LevelSelectController>().mapNumber;
     }
     public void LoadNextScene()
     {

@@ -159,6 +159,8 @@ public class AdvancedProjectileSystem : Spell
         currentProjectileScript.damage = equippedProjectile.damage;
         currentProjectileScript.setLifetime(equippedProjectile.lifetime);
 
+        playSound();
+
         //Add Forces to projctile
         Rigidbody rb = currentProjectile.GetComponent<Rigidbody>();
         rb.AddForce(directionWithSpread.normalized * equippedProjectile.shootForce, ForceMode.Impulse);
@@ -296,6 +298,25 @@ public class AdvancedProjectileSystem : Spell
             equippedProjectile = spells[index];
             Debug.Log("Equipped spell: " + equippedProjectile.name);
             readyToShoot = true;
+        }
+    }
+
+    private void playSound()
+    {
+        switch(equippedProjectile.Type)
+        {
+            case spellEnum.fire:
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.stagSound, this.transform.position);
+                break;
+            case spellEnum.ice:
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.iceSound, this.transform.position);
+                break;
+            case spellEnum.lightning:
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.zapSound, this.transform.position);
+                break;
+            case spellEnum.wind:
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.windSound, this.transform.position);
+                break;
         }
     }
 }

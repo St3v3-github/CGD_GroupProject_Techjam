@@ -399,9 +399,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 3597789930903828011}
   advancedProjectileSystem: {fileID: 3008120021183470106}
+  updatedPlayerController: {fileID: 0}
+  sliding: {fileID: 0}
+  dashing: {fileID: 0}
+  jetPack: {fileID: 0}
   cameraController: {fileID: 1275186140544510898}
   projectileController: {fileID: 3008120021183470106}
   animationController: {fileID: 1863637143123250814}
+  grappling: {fileID: 0}
+  grappleSwing: {fileID: 0}
   ray: {fileID: 4712851475361685754}
   cameraInput: {x: 0, y: 0}
   movementInput: {x: 0, y: 0}
@@ -729,9 +735,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5611252498046804216}
   - component: {fileID: 8015418899393691754}
-  - component: {fileID: 3771923525280279461}
   - component: {fileID: 4043577696445069316}
   - component: {fileID: 8197863556053364435}
+  - component: {fileID: -8218770105406227049}
   m_Layer: 6
   m_Name: EmoteCamera
   m_TagString: Untagged
@@ -805,14 +811,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &3771923525280279461
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2932552556323957563}
-  m_Enabled: 0
 --- !u!114 &4043577696445069316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -877,6 +875,19 @@ MonoBehaviour:
   smooth: 0
   smooth_time: 5
   cursor_lock: 1
+--- !u!114 &-8218770105406227049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2932552556323957563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &3569435963357128751
 GameObject:
   m_ObjectHideFlags: 0
@@ -10701,10 +10712,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1232235808428731750}
   - component: {fileID: 5822131898686806388}
-  - component: {fileID: 736326385774699341}
   - component: {fileID: 6461436324428886240}
   - component: {fileID: 1275186140544510898}
   - component: {fileID: 4712851475361685754}
+  - component: {fileID: 1697459927554248975}
   m_Layer: 6
   m_Name: Camera
   m_TagString: Untagged
@@ -10778,14 +10789,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &736326385774699341
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4379525662178992784}
-  m_Enabled: 0
 --- !u!114 &6461436324428886240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10865,6 +10868,19 @@ MonoBehaviour:
   range: 5
   player: {fileID: 974478289764777197}
   target: {fileID: 0}
+--- !u!114 &1697459927554248975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4379525662178992784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &4473104076444269589
 GameObject:
   m_ObjectHideFlags: 0
@@ -10952,12 +10968,16 @@ MonoBehaviour:
   mp: 0
   speed: 10
   score: 0
+  dead: 0
   hit_by_strike: 0
-  player_status: {fileID: 0}
-  last_damage_player: {fileID: 0}
+  playerStatus: {fileID: 0}
+  lastDamagePlayer: {fileID: 0}
   healthbar: {fileID: 4701921683868773410}
   ScoreText: {fileID: 1837251313428888528}
   scorefloat: 
+  damageFlyTextPrefab: {fileID: 0}
+  damageFlash: {fileID: 0}
+  cameraShake: {fileID: 0}
 --- !u!1 &7822440753357677050
 GameObject:
   m_ObjectHideFlags: 0

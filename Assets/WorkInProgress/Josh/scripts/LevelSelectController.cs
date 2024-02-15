@@ -6,65 +6,49 @@ using UnityEngine.UI;
 
 public class LevelSelectController : MonoBehaviour
 {
-
-    public GameObject Map;
-    public Button next;
-    public Button Previous;
-    public int MapNumber = 0;
-    public int Numberofmaps;
-    public GameObject[] Levels;
-    public GameObject StartingMap;
-    int i;
+    public int mapNumber = 0;
+    public int numberofmaps;
+    public GameObject[] levels;
+    public int startingMap;
+    public GameObject charSelectObj;
     // Start is called before the first frame update
     void Start()
     {
-        Map = Levels[0];
-        Map.SetActive(true);
-
+        levels[startingMap].SetActive(true);
     }
 
     // Update is called once per frame
     private void Update()
     {
 
-
     }
 
     public void NextMap()
     {
-        MapNumber++;
-        if(MapNumber==Numberofmaps)
+        levels[mapNumber].SetActive(false);
+        mapNumber++;
+        if(mapNumber==numberofmaps)
         {
-            MapNumber = 0;
+            mapNumber = 0;
         }
-
-        for (i = 0; i < Numberofmaps; i++)
-        {
-            Levels[i].SetActive(false);
-        }
-        Map = Levels[MapNumber];
-        Map.SetActive(true);
-
+        levels[mapNumber].SetActive(true);
     }
 
     public void PrevMap()
     {
-        MapNumber--;
-        if(MapNumber<0)
+        levels[mapNumber].SetActive(false);
+        mapNumber--;
+        if(mapNumber<0)
         {
-            MapNumber = Numberofmaps-1;
+            mapNumber = numberofmaps-1;
         }
-
-        for (i = 0; i < Numberofmaps; i++)
-        {
-            Levels[i].SetActive(false);
-        }
-        Map = Levels[MapNumber];
-        Map.SetActive(true);
+        levels[mapNumber].SetActive(true);
     }
 
     public void CharSelect()
     {
+        levels[mapNumber].SetActive(false);
+        charSelectObj.SetActive(true);
         //Transition to character selection
     }
 }
