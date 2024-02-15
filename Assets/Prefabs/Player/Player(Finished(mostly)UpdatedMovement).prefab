@@ -5316,7 +5316,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.7032048
   m_Height: 2.89
@@ -26314,7 +26314,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5844765085397117960}
-  - component: {fileID: 682610752628073107}
   - component: {fileID: 4945813540337930193}
   - component: {fileID: 8124955446648026529}
   - component: {fileID: 7785409075449729051}
@@ -26359,32 +26358,6 @@ Transform:
   - {fileID: 674977228062414233}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &682610752628073107
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5262217071470266764}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 2048
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &4945813540337930193
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -26646,7 +26619,7 @@ MonoBehaviour:
     m_ActionId: ed0f19c0-fdb6-4077-881d-803bac56bc4e
     m_ActionName: Player/Action[/DualShock4GamepadHID/buttonEast,/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: Gamepad
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 1462951080912202773}
@@ -26710,7 +26683,7 @@ MonoBehaviour:
     deceleration: 50
   jumpCooldown: 1
   isReadyToJump: 1
-  character: {fileID: 682610752628073107}
+  character: {fileID: 0}
   move_dir_norm: {x: 0, y: 0, z: 0}
   player_velocity: {x: 0, y: 0, z: 0}
   jump_queued: 0
@@ -26902,7 +26875,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5262217071470266764}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 587b4a27572f4e848bebedf50d87b848, type: 3}
   m_Name: 
@@ -28325,7 +28298,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &674977228062414233
 Transform:
   m_ObjectHideFlags: 0

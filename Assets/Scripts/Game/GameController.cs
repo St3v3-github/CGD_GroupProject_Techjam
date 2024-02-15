@@ -111,9 +111,9 @@ public class GameController : MonoBehaviour
             if (spawnPoints[rand].GetComponent<SpawnPoint>().used == false)
             {
                 Debug.Log("teleporting player to " + spawnPoints[rand].transform.position);
-                player.GetComponent<CharacterController>().enabled = false;
+                //player.GetComponent<CharacterController>().enabled = false;
                 player.transform.SetPositionAndRotation(spawnPoints[rand].transform.position, spawnPoints[rand].transform.rotation);
-                player.GetComponent<CharacterController>().enabled = true;
+                //player.GetComponent<CharacterController>().enabled = true;
                 spawnPoints[rand].GetComponent<SpawnPoint>().used = true;
             }
         }
@@ -255,7 +255,7 @@ public class GameController : MonoBehaviour
         prayer.deaded.transform.Find("AttributeController").gameObject.SetActive(false);
         prayer.deaded.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(false);
         prayer.deaded.transform.Find("Mesh").gameObject.SetActive(false);
-        prayer.deaded.GetComponent<CharacterController>().enabled = false;
+        //prayer.deaded.GetComponent<CharacterController>().enabled = false;
 
 
         StartCoroutine(ReincarnatePlayer(prayer.deaded, FindSpawnPoint(prayer.deaded)));
@@ -294,9 +294,9 @@ public class GameController : MonoBehaviour
         player.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(false);
         player.transform.Find("AttributeController").gameObject.SetActive(true);
         player.transform.Find("Mesh").gameObject.SetActive(true);
-        player.GetComponent<CharacterController>().enabled = false;
+        //player.GetComponent<CharacterController>().enabled = false;
         player.transform.SetPositionAndRotation(respawnPoint.transform.position, respawnPoint.transform.rotation);
-        player.GetComponent<CharacterController>().enabled = true;
+        //player.GetComponent<CharacterController>().enabled = true;
         player.transform.Find("AttributeController").GetComponent<AttributeManager>().currentHealth = player.transform.GetChild(5).GetComponent<AttributeManager>().maxHealth;
     }
 
