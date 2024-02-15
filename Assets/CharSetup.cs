@@ -1,7 +1,10 @@
 using FMOD;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CharSetup : MonoBehaviour
 {
@@ -9,39 +12,35 @@ public class CharSetup : MonoBehaviour
     public GameObject[] characterPositions;
     public GameObject[] toJoinDisplays;
     public GameObject[] playerSetupMenus;
+    public GameObject[] playerClassRotation;
     List<bool> spaceTaken = new List<bool>();
-   public List<GameObject> players;
+    List<int> playerClassID = new List<int>();
+    public List<GameObject> players;
     // Start is called before the first frame update
     void Start()
     {
         for(int i = 0;i<maxPlayers;i++)
         {
             spaceTaken.Add(false);
+            playerClassID.Add(0);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void handleNewPlayer()
     {
-        UnityEngine.Debug.Log("WE ARE IN THE HANDLE NEW PLAYER");
         players = new List<GameObject>();
         int newPlayerSpace = findSpace();
         toJoinDisplays[newPlayerSpace].SetActive(false);
         playerSetupMenus[newPlayerSpace].SetActive(true);
-        
+
+        UnityEngine.Debug.Log("Handling Player, about to run the foreach loop.");
         foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
         {
             players.Add(player);
         }
         players[players.Count - 1].GetComponent<UpdatedPlayerController>().enabled = false;
         players[players.Count - 1].GetComponentInChildren<Camera>().enabled = false;
-        players[players.Count - 1].transform.SetPositionAndRotation(characterPositions[newPlayerSpace].transform.position, characterPositions[newPlayerSpace].transform.rotation);
-        UnityEngine.Debug.Log(players[players.Count - 1].name);
+        players[players.Count - 1].GetComponent<Rigidbody>().MovePosition(characterPositions[newPlayerSpace].transform.position);
     }
 
     public int findSpace()
@@ -55,5 +54,22 @@ public class CharSetup : MonoBehaviour
             }
         }
         return 0;
+    }
+
+    public void nextClass(int index)
+    {
+        var playerInputSave = players[index].GetComponent<PlayerInput>();
+        var playerObjectSave = players[index];
+        playerClassID[index]++;
+        if (playerClassID[index] == playerClassRotation.Count())
+        {
+            playerClassID[index] = 0;
+        }
+        var newPlayer = Instantiate(playerClassRotation[playerClassID[index]], players[index].transform.position, players[index].transform.rotation);
+        players[index] = newPlayer;
+        //Change inputs? TODO: Destroy player
+        players[index].GetComponent<PlayerInput>().actions = playerInputSave.actions;
+        GameObject.Destroy(playerObjectSave);
+
     }
 }

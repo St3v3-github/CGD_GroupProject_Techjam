@@ -380,6 +380,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e9e530a0-9791-44b1-b058-bbe6549958d8
     m_ActionName: Player/Dance[/Keyboard/u]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 553b58a1-2ff5-427c-a4bc-f58376c54122
+    m_ActionName: Player/Crouch[/Keyboard/leftCtrl]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ed0f19c0-fdb6-4077-881d-803bac56bc4e
+    m_ActionName: Player/Action
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -399,9 +407,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 3597789930903828011}
   advancedProjectileSystem: {fileID: 3008120021183470106}
-  cameraController: {fileID: 1275186140544510898}
+  updatedPlayerController: {fileID: 0}
+  sliding: {fileID: 0}
+  dashing: {fileID: 0}
+  jetPack: {fileID: 0}
+  cameraController: {fileID: 0}
   projectileController: {fileID: 3008120021183470106}
   animationController: {fileID: 1863637143123250814}
+  grappling: {fileID: 0}
+  grappleSwing: {fileID: 0}
   ray: {fileID: 4712851475361685754}
   cameraInput: {x: 0, y: 0}
   movementInput: {x: 0, y: 0}
@@ -10915,7 +10929,7 @@ GameObject:
   - component: {fileID: 4074272386671593609}
   m_Layer: 6
   m_Name: AttributeController
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10952,12 +10966,16 @@ MonoBehaviour:
   mp: 0
   speed: 10
   score: 0
+  dead: 0
   hit_by_strike: 0
-  player_status: {fileID: 0}
-  last_damage_player: {fileID: 0}
+  playerStatus: {fileID: 0}
+  lastDamagePlayer: {fileID: 0}
   healthbar: {fileID: 4701921683868773410}
   ScoreText: {fileID: 1837251313428888528}
   scorefloat: 
+  damageFlyTextPrefab: {fileID: 0}
+  damageFlash: {fileID: 0}
+  cameraShake: {fileID: 0}
 --- !u!1 &7822440753357677050
 GameObject:
   m_ObjectHideFlags: 0
