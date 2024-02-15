@@ -1,116 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8902023499236430838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/WindSpell
-  m_EditorClassIdentifier: 
-  Path: event:/WindSpell
-  Guid:
-    Data1: -1440877703
-    Data2: 1115423853
-    Data3: 1808908733
-    Data4: 1909397492
-  Banks:
-  - {fileID: 7777059482378376334}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-7200009864497517492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FireProjectile
-  m_EditorClassIdentifier: 
-  Path: event:/FireProjectile
-  Guid:
-    Data1: -999739365
-    Data2: 1230845486
-    Data3: -658511478
-    Data4: 1015014035
-  Banks:
-  - {fileID: 7777059482378376334}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-7078206399323999023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Plugins/FMOD/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638433533094983262
-  FileSizes: []
-  Exists: 1
---- !u!114 &-5290319275064501437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Plugins/FMOD/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638433533094993252
-  FileSizes:
-  - Name: 
-    Value: 1156
-  Exists: 1
---- !u!114 &-4918207976901299687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/SFX.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Plugins/FMOD/Build/SFX.bank
-  Name: SFX
-  StudioPath: bank:/SFX
-  lastModified: 638425875707029291
-  FileSizes: []
-  Exists: 1
---- !u!114 &-6215078180672241936
+--- !u!114 &-8577425406075560482
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,7 +19,7 @@ MonoBehaviour:
     Data3: -925127246
     Data4: 1261830401
   Banks:
-  - {fileID: 7777059482378376334}
+  - {fileID: 7635581003836745853}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -137,7 +27,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-5000909266538247187
+--- !u!114 &-8520792535731775838
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,43 +37,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SummonStag
+  m_Name: event:/WindSpell
   m_EditorClassIdentifier: 
-  Path: event:/SummonStag
+  Path: event:/WindSpell
   Guid:
-    Data1: -390726173
-    Data2: 1137819060
-    Data3: -1082087508
-    Data4: 1086797803
+    Data1: -1440877703
+    Data2: 1115423853
+    Data3: 1808908733
+    Data4: 1909397492
   Banks:
-  - {fileID: 7777059482378376334}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-383961271186554486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/IceSpell
-  m_EditorClassIdentifier: 
-  Path: event:/IceSpell
-  Guid:
-    Data1: -1287245242
-    Data2: 1285552189
-    Data3: -621446728
-    Data4: -485240396
-  Banks:
-  - {fileID: 7777059482378376334}
+  - {fileID: 7635581003836745853}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -191,7 +54,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &11400000
+--- !u!114 &-8315783505254874011
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,32 +63,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
-  m_Name: FMODStudioCache
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FireProjectile
   m_EditorClassIdentifier: 
-  EditorBanks:
-  - {fileID: -5290319275064501437}
-  - {fileID: -7078206399323999023}
-  - {fileID: 857212056527076557}
-  - {fileID: 7777059482378376334}
-  EditorEvents:
-  - {fileID: 7182535154621413140}
-  - {fileID: 5952631502939319781}
-  - {fileID: -7200009864497517492}
-  - {fileID: -4477109954104725513}
-  - {fileID: -4918207976901299687}
-  - {fileID: 2964894838779326676}
-  - {fileID: -383961271186554486}
-  - {fileID: -8902023499236430838}
-  - {fileID: 89915535465601669}
-  EditorParameters: []
-  MasterBanks:
-  - {fileID: -7078206399323999023}
-  StringsBanks:
-  - {fileID: -5290319275064501437}
-  cacheTime: 638433567417684926
-  cacheVersion: 131609
---- !u!114 &89915535465601669
+  Path: event:/FireProjectile
+  Guid:
+    Data1: -999739365
+    Data2: 1230845486
+    Data3: -658511478
+    Data4: 1015014035
+  Banks:
+  - {fileID: 7635581003836745853}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-7717156952702255130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Music.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Plugins/FMOD/Desktop/Music.bank
+  Name: Music
+  StudioPath: bank:/Music
+  lastModified: 638436070646070456
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-7620013008598850157
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,7 +118,7 @@ MonoBehaviour:
     Data3: 1262237327
     Data4: -1806510876
   Banks:
-  - {fileID: 7777059482378376334}
+  - {fileID: 7635581003836745853}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -252,127 +126,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &857212056527076557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Music.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Plugins/FMOD/Desktop/Music.bank
-  Name: Music
-  StudioPath: bank:/Music
-  lastModified: 638433567417684926
-  FileSizes: []
-  Exists: 1
---- !u!114 &2964894838779326676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: 
-  Guid:
-    Data1: 1811923097
-    Data2: 1184227220
-    Data3: 1262237327
-    Data4: -1806510876
-  Banks:
-  - {fileID: 0}
-  - {fileID: 0}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &5952631502939319781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Plugins/FMOD/Build/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638422185370425811
-  FileSizes:
-  - Name: 
-    Value: 1036
-  Exists: 1
---- !u!114 &4034503760284002982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/thunderSpell
-  m_EditorClassIdentifier: 
-  Path: event:/thunderSpell
-  Guid:
-    Data1: 1089165849
-    Data2: 1312599242
-    Data3: 1328511361
-    Data4: 1650737932
-  Banks:
-  - {fileID: 7777059482378376334}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3000
---- !u!114 &7182535154621413140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/BackgroundMusic
-  m_EditorClassIdentifier: 
-  Path: event:/BackgroundMusic
-  Guid:
-    Data1: -2059798418
-    Data2: 1155817732
-    Data3: 890142595
-    Data4: 1357195468
-  Banks:
-  - {fileID: 857212056527076557}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 164007
---- !u!114 &7777059482378376334
+--- !u!114 &-7345101901351854673
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -391,7 +145,7 @@ MonoBehaviour:
     Data3: -1082087508
     Data4: 1086797803
   Banks:
-  - {fileID: 6184099060127551221}
+  - {fileID: 7635581003836745853}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -399,7 +153,159 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &6184099060127551221
+--- !u!114 &-6242552106720205154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/IceSpell
+  m_EditorClassIdentifier: 
+  Path: event:/IceSpell
+  Guid:
+    Data1: -1287245242
+    Data2: 1285552189
+    Data3: -621446728
+    Data4: -485240396
+  Banks:
+  - {fileID: 7635581003836745853}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2971334151148444906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Plugins/FMOD/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638436070644665187
+  FileSizes:
+  - Name: 
+    Value: 1156
+  Exists: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: -2971334151148444906}
+  - {fileID: 911107279810399283}
+  - {fileID: -7717156952702255130}
+  - {fileID: 7635581003836745853}
+  EditorEvents:
+  - {fileID: 7218466382959077412}
+  - {fileID: 2093235858370314596}
+  - {fileID: -8315783505254874011}
+  - {fileID: -6242552106720205154}
+  - {fileID: -8577425406075560482}
+  - {fileID: -8520792535731775838}
+  - {fileID: -7620013008598850157}
+  - {fileID: -7345101901351854673}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: 911107279810399283}
+  StringsBanks:
+  - {fileID: -2971334151148444906}
+  cacheTime: 638436070646921009
+  cacheVersion: 131609
+--- !u!114 &911107279810399283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Plugins/FMOD/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638436070644624675
+  FileSizes: []
+  Exists: 1
+--- !u!114 &2093235858370314596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/thunderSpell
+  m_EditorClassIdentifier: 
+  Path: event:/thunderSpell
+  Guid:
+    Data1: 1089165849
+    Data2: 1312599242
+    Data3: 1328511361
+    Data4: 1650737932
+  Banks:
+  - {fileID: 7635581003836745853}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3000
+--- !u!114 &7218466382959077412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BackgroundMusic
+  m_EditorClassIdentifier: 
+  Path: event:/BackgroundMusic
+  Guid:
+    Data1: -2059798418
+    Data2: 1155817732
+    Data3: 890142595
+    Data4: 1357195468
+  Banks:
+  - {fileID: -7717156952702255130}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 164007
+--- !u!114 &7635581003836745853
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -414,6 +320,6 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638433533095350287
+  lastModified: 638436070646921009
   FileSizes: []
   Exists: 1
