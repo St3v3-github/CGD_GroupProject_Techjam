@@ -25,6 +25,7 @@ public class ThrowSpell : Spell
         if (Input.GetKeyDown(KeyCode.V))
         {
             Cast();
+            //AudioManager.instance.PlayOneShot(FMODEvents.instance.zapSound, this.transform.position);
         }
     }
 
@@ -34,6 +35,7 @@ public class ThrowSpell : Spell
         GameObject projectile = Instantiate(prefab, firePoint.position, playerCam.rotation);
         projectile.GetComponent<Grenade>().source = this.gameObject;
         projectile.tag = this.tag + "Spell";
+        //AudioManager.instance.PlayOneShot(FMODEvents.instance.iceSound, this.transform.position);
 
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
 
