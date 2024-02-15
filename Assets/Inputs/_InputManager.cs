@@ -50,7 +50,7 @@ public class InputManager : MonoBehaviour
         updatedPlayerController.HandleMovement(movementInput);
         updatedPlayerController.HandleCamera(cameraInput);
         
-       sliding.AssignValues(movementInput);
+        sliding.AssignValues(movementInput);
     }
 
     
@@ -235,7 +235,7 @@ public class InputManager : MonoBehaviour
             else
             {
                 GetComponent<AbilityManager2>().castSpell(slotTarget,ctx);
-                updatedPlayerController.animControl.toggleCastingBool(true);
+                //updatedPlayerController.animControl.toggleCastingBool(true);
             }
             
 
