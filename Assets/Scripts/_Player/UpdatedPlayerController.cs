@@ -12,8 +12,8 @@ public class UpdatedPlayerController : MonoBehaviour
 
     public Camera playerCam;
 
-    float xRotation;
-    float yRotation;
+    public float xRotation;
+    public float yRotation;
 
 
     private float desiredMoveSpeed;
