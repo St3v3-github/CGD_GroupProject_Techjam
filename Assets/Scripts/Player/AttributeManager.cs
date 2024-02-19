@@ -28,7 +28,7 @@ public class AttributeManager : MonoBehaviour
     //[SerializeField] private int offensive_power;/./
 
     //CURRENT STATUS HERE
-    public StatusEffect playerStatus;
+    public StatusEffect_Data playerStatus;
     public GameObject lastDamagePlayer;
 
     public Slider healthbar;
@@ -40,6 +40,10 @@ public class AttributeManager : MonoBehaviour
 
     public DamageFlash damageFlash;
     public CameraShake cameraShake;
+
+    //Screen Effects
+    [SerializeField] private FullScreenController screenFX;
+
     void Start()
     {
         //set all values to whatever default value we want
@@ -146,6 +150,7 @@ public class AttributeManager : MonoBehaviour
             //StartCoroutine(DamageEffect());
         }
 
+
         return currentHealth;
     }
 
@@ -166,11 +171,11 @@ public class AttributeManager : MonoBehaviour
     }
 
 
-    public float TakeDamage(float damage, StatusEffect statusEffect)
+    public float TakeStatusFXDamage(float damage, StatusEffect_Data statusEffect)
     {
 
         currentHealth -= damage;
-        ChangeStatus(statusEffect);
+        //ChangeStatus(statusEffect);
 
         //Particles and Shaders called here
         Debug.Log("Health: " + currentHealth);
@@ -211,7 +216,8 @@ public class AttributeManager : MonoBehaviour
         return currentHealth;
     }
 
-    public float OverHeal(float heal)
+    // Probably not using overheal? 
+    /*public float OverHeal(float heal)
     {
         currentHealth += heal;
 
@@ -220,9 +226,10 @@ public class AttributeManager : MonoBehaviour
 
 
         return currentHealth;
-    }
+    }*/
 
-    public float ChangeStatus(StatusEffect newStatus)
+    // Following probably not needed due to effects being handled in status effects script
+    /*public float ChangeStatus(StatusEffect_Data newStatus)
     {
 
         if (playerStatus != newStatus)
@@ -236,7 +243,7 @@ public class AttributeManager : MonoBehaviour
         }
 
         return currentHealth;
-    }
+    }*/
 
     public void SpeedModifier(float speedMod)
     {

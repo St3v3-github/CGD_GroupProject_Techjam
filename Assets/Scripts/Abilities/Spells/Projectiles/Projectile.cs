@@ -8,7 +8,7 @@ public class Projectile : Spell
     public float damage;
     public GameObject hitImpact;
     public LayerMask impactLayers;
-    //public StatusEffect_Data effect;
+    public StatusEffect_Data effect;
 
     //private float timer = 0;
 
@@ -16,8 +16,8 @@ public class Projectile : Spell
     void Start()
     {
         StartCoroutine(timerCoroutine());
-        //effect = GetComponentInParent<StatusEffect_Data>();
-        //Debug.Log("Current Effect: " + effect);
+        effect = GetComponentInParent<StatusEffect_Data>();
+        Debug.Log("Current Effect: " + effect);
         //setTargetTag();
     }
 
@@ -35,7 +35,18 @@ public class Projectile : Spell
         {
             Debug.Log("hit player: " + collision.name);
             GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+
+            //Apply Status Effects
+            enemystatuseffects statusFX = collision.gameObject.GetComponentInParent<enemystatuseffects>();
+
+            if (statusFX != null)
+            {
+                Debug.Log("effects detected");
+                statusFX.ApplyEffect(effect);
+            }
+
+            //Need to change to destroy after delay - new IEnumerator function to destroy
+            //Destroy(this.gameObject);
         }
 
         if ((impactLayers | (1 << collision.gameObject.layer)) != 0)
@@ -44,16 +55,16 @@ public class Projectile : Spell
             Destroy(this.gameObject);
         }
         
+        
+        AttributeManager attributes = collision.gameObject.GetComponent<AttributeManager>();
+        enemystatuseffects effects = collision.gameObject.GetComponent<enemystatuseffects>();
 
-
-
-        //AttributeManager attributes = collision.gameObject.GetComponent<AttributeManager>();
-        //enemystatuseffects effects = collision.gameObject.GetComponent<enemystatuseffects>();
-
-        /*if (effects != null)
+        if (effects != null)
         {
-            attributes.TakeDamage(spell.damage, statusEffect);
-            attributes.ChangeStatus(statusEffect);
+            attributes.TakeStatusFXDamage(spell.damage, effect);
+
+            //probably not necessary - current effects handled in this script
+            //attributes.ChangeStatus(effect);
 
             effects.ApplyEffect(effect);
             Debug.Log("Effect applied");
@@ -61,7 +72,7 @@ public class Projectile : Spell
         else
         {
             Debug.LogError("enemy status effects script not found");
-        }*/
+        }
     }
 
     public void setLifetime(float lifetime)

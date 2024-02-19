@@ -10,6 +10,7 @@ public class enemystatuseffects : MonoBehaviour, IEffectable
     public AttributeManager selfAttributes;
 
     private GameObject effectParticles;
+    private FullScreenController screenFX;
 
     private void Start()
     {
@@ -28,6 +29,9 @@ public class enemystatuseffects : MonoBehaviour, IEffectable
         this._data = _data;
         Debug.Log(_data); 
         effectParticles = Instantiate(_data.EffectParticles, transform);
+        //apply screen shader
+        screenFX = Instantiate(_data.screenFX, transform);
+
     }
 
     private float currentEffectTime = 0f;
@@ -48,7 +52,7 @@ public class enemystatuseffects : MonoBehaviour, IEffectable
             _testDummy.setNewMoveSpeed(_testDummy.getBaseMoveSpeed());
         }*/
 
-        // Add slow for PvP (can get current speed but not base speed ?)
+        // Reset player speed to base speed
     }
 
     
@@ -86,6 +90,7 @@ public class enemystatuseffects : MonoBehaviour, IEffectable
 
             currentHealth = Mathf.Clamp(currentHealth, 0, selfAttributes.GetMaxHealth());
             selfAttributes.SetPlayerHealth(newHealth);
+
         }
         if(_data.MovementPen > 0)
         {

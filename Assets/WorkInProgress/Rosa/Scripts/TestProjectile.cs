@@ -53,9 +53,7 @@ public class TestProjectile : Spell
         }
         Destroy(gameObject);
 
-        return;
-
-        AttributeManager attributes = collision.gameObject.GetComponent<AttributeManager>();       
+        return;    
     }
 
     private GameObject Fire(Transform playerTransform)

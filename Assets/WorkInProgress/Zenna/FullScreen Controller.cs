@@ -10,7 +10,7 @@ public class FullScreenController : MonoBehaviour
     [SerializeField] private float _hurtDisplayTime = 1.5f;
     [SerializeField] private float _hurtFadeOutTime = 0.5f;
 
-    [Header("references")]
+    [Header("References")]
     [SerializeField] private ScriptableRendererFeature _fullScreenDamage;
     [SerializeField] private Material _materialFire;
 
@@ -37,7 +37,7 @@ public class FullScreenController : MonoBehaviour
 
     }
 
-    private void ShaderStart()
+    public void ShaderStart()
     {
         _fullScreenDamage.SetActive(true);
     }

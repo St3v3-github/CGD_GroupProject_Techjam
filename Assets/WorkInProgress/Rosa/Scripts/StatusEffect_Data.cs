@@ -13,5 +13,6 @@ public class StatusEffect_Data : ScriptableObject
     public float Lifetime;
 
     public GameObject EffectParticles;
+    public FullScreenController screenFX;
 
 }
