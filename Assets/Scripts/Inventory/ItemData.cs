@@ -80,6 +80,7 @@ public class ItemData : ScriptableObject
     public int spawn_weight = 1;
     public Sprite icon;
     public bool has_uses = true;
+    public float cooldown_duration = 0;
   
     private void ResetObject()
     {
@@ -90,4 +91,5 @@ public class ItemData : ScriptableObject
         uses_left = BLANK_COPY.uses_left;
         icon = BLANK_COPY.icon;
     }
+    
 }

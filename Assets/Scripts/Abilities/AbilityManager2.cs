@@ -36,12 +36,15 @@ public class AbilityManager2 : MonoBehaviour
                     if (spell_controller.GetComponent<ThrowSpell>() == null) { Debug.Log("Not Found"); return 0; }
                     if (!inventory.checkCooldown(slot)) { return 0; }
                     spell_controller.GetComponent<ThrowSpell>().Cast();
+                    FiredSpell(slot);
+
                     break;
                 case ItemData.SpellList.FLAMETHROWER:
                     if (spell_controller.GetComponent<Beam>() == null) { return 0; }
                     if (!inventory.checkCooldown(slot)) { return 0; }
                     inventory.setActiveFor(slot, 3f, 1.0f);
                     spell_controller.GetComponent<Beam>().cast();
+                    FiredSpell(slot);
                     break;
                 // Ice CLASS
                 case ItemData.SpellList.ICEWALL:
@@ -57,6 +60,7 @@ public class AbilityManager2 : MonoBehaviour
                     {
                         spell_controller.GetComponent<CastableAOEStrike>().Strike();
                         spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOff();
+                        FiredSpell(slot);
 
                     }
                     break;
@@ -64,6 +68,7 @@ public class AbilityManager2 : MonoBehaviour
                     if (spell_controller.GetComponent<ThrowSpell>() == null) { Debug.Log("Not Found"); return 0; }
                     if (!inventory.checkCooldown(slot)) { return 0; }
                     spell_controller.GetComponent<ThrowSpell>().Cast();
+                    FiredSpell(slot);
                     break;
 
 
@@ -81,6 +86,7 @@ public class AbilityManager2 : MonoBehaviour
                     {
                         spell_controller.GetComponent<CastableAOEStrike>().Strike();
                         spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOff();
+                        FiredSpell(slot);
 
                     }
                     break;
@@ -89,6 +95,7 @@ public class AbilityManager2 : MonoBehaviour
                     if (!inventory.checkCooldown(slot)) { return 0; }
                     inventory.setActiveFor(slot, 1f, 1.0f);
                     spell_controller.GetComponent<ChainLightning>().Cast();
+                    FiredSpell(slot);
                     break;
 
                 // WIND CLASS
@@ -104,6 +111,7 @@ public class AbilityManager2 : MonoBehaviour
                     {
                         spell_controller.GetComponent<CastableAOEStrike>().Strike();
                         spell_controller.GetComponent<CastableAOEStrike>().switchProjectionOff();
+                        FiredSpell(slot);
 
                     }
                     break;
@@ -112,6 +120,7 @@ public class AbilityManager2 : MonoBehaviour
                     if (spell_controller.GetComponent<Boop>() == null) { Debug.Log("Not Found"); return 0; }
                     if (!inventory.checkCooldown(slot)) { return 0; }
                     spell_controller.GetComponent<Boop>().Cast();
+                    FiredSpell(slot);
                     break;
 
 
@@ -154,5 +163,23 @@ public class AbilityManager2 : MonoBehaviour
         }
         
         return answer;
+    }
+
+   private IEnumerator SpellCD (float spellduration, int spellslot)
+    {
+        yield return new WaitForSeconds(spellduration);
+        inventory.dd_spell_inventory[spellslot].current_state = ItemData.SpellState.READY;
+
+    }
+    private void FiredSpell(int spellslot)
+    {
+        inventory.dd_spell_inventory[spellslot].current_state = ItemData.SpellState.COOLDOWN;
+        StartCoroutine(SpellCD(inventory.dd_spell_inventory[spellslot].cooldown_duration, spellslot));
+    }
+    private IEnumerator SpellActive(float activeduration, int spellslot)
+    {
+        yield return new WaitForSeconds(activeduration);
+        inventory.dd_spell_inventory[spellslot].current_state = ItemData.SpellState.READY;
+
     }
 }
