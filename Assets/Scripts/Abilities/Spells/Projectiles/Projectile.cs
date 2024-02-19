@@ -37,8 +37,13 @@ public class Projectile : Spell
             GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
+        else
+        {
+            GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
+        }
 
-        if ((impactLayers | (1 << collision.gameObject.layer)) != 0)
+        /*if ((impactLayers | (1 << collision.gameObject.layer)) != 0)
         {
             GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
             Destroy(this.gameObject);

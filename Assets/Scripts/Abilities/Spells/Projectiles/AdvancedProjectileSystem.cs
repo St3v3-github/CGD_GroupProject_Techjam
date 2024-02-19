@@ -303,7 +303,7 @@ public class AdvancedProjectileSystem : Spell
 
     private void playSound()
     {
-        switch(equippedProjectile.Type)
+        /*switch(equippedProjectile.Type)
         {
             case spellEnum.fire:
                 AudioManager.instance.PlayOneShot(FMODEvents.instance.stagSound, this.transform.position);
@@ -317,6 +317,6 @@ public class AdvancedProjectileSystem : Spell
             case spellEnum.wind:
                 AudioManager.instance.PlayOneShot(FMODEvents.instance.windSound, this.transform.position);
                 break;
-        }
+        }*/
     }
 }
