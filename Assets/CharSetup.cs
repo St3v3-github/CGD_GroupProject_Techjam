@@ -38,6 +38,7 @@ public class CharSetup : MonoBehaviour
         {
             players.Add(player);
         }
+        UnityEngine.Debug.Log("New player is being added...");
         players[players.Count - 1].GetComponent<UpdatedPlayerController>().enabled = false;
         players[players.Count - 1].GetComponentInChildren<Camera>().enabled = false;
         players[players.Count - 1].GetComponent<Rigidbody>().MovePosition(characterPositions[newPlayerSpace].transform.position);
@@ -67,9 +68,12 @@ public class CharSetup : MonoBehaviour
         }
         var newPlayer = Instantiate(playerClassRotation[playerClassID[index]], players[index].transform.position, players[index].transform.rotation);
         players[index] = newPlayer;
+        players[index].GetComponent<UpdatedPlayerController>().enabled = false;
+        players[index].GetComponentInChildren<Camera>().enabled = false;
         //Change inputs? TODO: Destroy player
-        players[index].GetComponent<PlayerInput>().actions = playerInputSave.actions;
+        //players[index].GetComponent<PlayerInput>().actions = playerInputSave.actions;
         GameObject.Destroy(playerObjectSave);
+        UnityEngine.Debug.Log("Player " + index.ToString() + " is cycling class...");
 
     }
 }

@@ -7,38 +7,30 @@ using static InputManager;
 
 public class UpdatedPlayerController : MonoBehaviour
 {
+    [Header("Sensitivity")]
     public float sensX;
     public float sensY;
 
-    public Camera playerCam;
-
-    float xRotation;
-    float yRotation;
-
-
-    private float desiredMoveSpeed;
-    private float lastDesiredMoveSpeed;
-
-    public float speedMultiplier;
-
-    public float speedIncreaseMultiplier;
-    public float sloperIncreaseMultiplier;
-
-    public float moveSpeed;
+    //Move Speed Values
+    private float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;
     public float slideSpeed;
     public float dashSpeed;
     public float swingSpeed;
+    private float desiredMoveSpeed;
+    private float lastDesiredMoveSpeed;
 
-    public Transform orientation; //this might not be needed
+    //Move Speed Scalars
+    public float speedMultiplier;
+    public float speedIncreaseMultiplier;
+    public float sloperIncreaseMultiplier;
 
-    Vector3 movementDirection;
-    Vector3 velocityToSet;
-
+    //References
     Rigidbody rb;
     public Grappling grappling;
     public AnimationManager animControl;
+    public Camera playerCam;
 
     public float playerHeight;
     public LayerMask groundMask;
@@ -76,10 +68,13 @@ public class UpdatedPlayerController : MonoBehaviour
 
     private bool enableMovementOnNextTouch;
 
-    public MovementState state;
+    Vector3 movementDirection;
+    Vector3 velocityToSet;
 
-    //Keycode for hardcoding - when implementation done hook up to input system later on :) - Matt
-    public KeyCode crouchKey = KeyCode.LeftControl;
+    float xRotation;
+    float yRotation;
+
+    public MovementState state;
 
     public enum MovementState
     {
@@ -128,7 +123,7 @@ public class UpdatedPlayerController : MonoBehaviour
             state = MovementState.swinging;
             moveSpeed = swingSpeed;
         }
-        else if(Input.GetKey(crouchKey))
+        else if(crouchPressed)
         {
             state = MovementState.crouching;
             desiredMoveSpeed = crouchSpeed;
@@ -137,6 +132,15 @@ public class UpdatedPlayerController : MonoBehaviour
         else if (isGrounded && sprintPressed)
         {
             state = MovementState.sprinting;
+            animControl.toggleGroundedBool(true);
+            if (movementDirection.x != 0 || movementDirection.z != 0)
+            {
+                animControl.toggleWalkingBool(true);
+            }
+            else
+            {
+                animControl.toggleWalkingBool(false);
+            }
             desiredMoveSpeed = sprintSpeed;
         }
         else if (isGrounded)
@@ -219,12 +223,12 @@ public class UpdatedPlayerController : MonoBehaviour
             rb.drag = 0;
         }
 
-        if (Input.GetKeyDown(crouchKey))
+        if (crouchPressed)
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
         }
-        else if (Input.GetKeyUp(crouchKey)) 
+        else if (!crouchPressed) 
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
         }
@@ -258,6 +262,8 @@ public class UpdatedPlayerController : MonoBehaviour
         }
 
         movementDirection = transform.forward * movementInput.y + transform.right * movementInput.x;
+
+        animControl.updateMovementFloats(new Vector2(movementInput.x * desiredMoveSpeed, movementInput.y * desiredMoveSpeed));
 
         if (OnSlope() && !exitingSlope)
         {
@@ -304,6 +310,7 @@ public class UpdatedPlayerController : MonoBehaviour
 
         if (jumpCount > 0)
         {
+            crouchPressed = false;
             Jump();
         }
        

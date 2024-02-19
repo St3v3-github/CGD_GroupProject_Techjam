@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static ItemData;
+using static UnityEditor.Progress;
 
 public class InventoryEdit : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class InventoryEdit : MonoBehaviour
         var clone = Instantiate(fireballforalpha);
         dd_spell_inventory[2] = clone;
     }
+
+   
 
     public ItemData equipFromWorld(ItemData item_to_equip, int slot)
     {
@@ -82,5 +85,10 @@ public class InventoryEdit : MonoBehaviour
             return true;
         }
         return false;
+    }
+    public void SetUsed(int slot)
+    {
+        dd_spell_inventory[slot].current_state = SpellState.COOLDOWN;
+
     }
 }
