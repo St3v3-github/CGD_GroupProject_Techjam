@@ -9,8 +9,9 @@ using static UpdatedPlayerController;
 
 public class InputManager : MonoBehaviour
 {
+
+    [Header("References")]
     private PlayerControlsAsset playercontrols;
-    public PlayerController playerController;
     public AdvancedProjectileSystem advancedProjectileSystem;
     public UpdatedPlayerController updatedPlayerController;
     public Sliding sliding;
@@ -51,7 +52,6 @@ public class InputManager : MonoBehaviour
     {
        
     
-        playerController = FindObjectOfType<PlayerController>();
         cameraController = FindObjectOfType<UpdatedCameraController>();
 
         //Add subsequent finds here
@@ -174,7 +174,7 @@ public class InputManager : MonoBehaviour
     {
         if (ctx.action.triggered)
         {
-            //updatedPlayerController.crouchPressed = !updatedPlayerController.crouchPressed;
+            updatedPlayerController.crouchPressed = !updatedPlayerController.crouchPressed;
         }
 
         
