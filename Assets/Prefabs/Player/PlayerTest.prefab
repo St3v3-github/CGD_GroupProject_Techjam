@@ -10831,7 +10831,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1946129503111233968}
   m_PlaneDistance: 0.5
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -25234,6 +25234,7 @@ GameObject:
   - component: {fileID: 775196412946322661}
   - component: {fileID: 4530562303021372081}
   - component: {fileID: 692544893140267904}
+  - component: {fileID: 2631326112995482606}
   m_Layer: 6
   m_Name: SpellController
   m_TagString: Untagged
@@ -25339,7 +25340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spell: {fileID: 1300558069441213901, guid: f6e7ad3968a386b439f1801d52b31938, type: 3}
-  playerCam: {fileID: 0}
+  playerCam: {fileID: 7241906957195377663}
   FirePoint: {fileID: 5400324781677892195}
   range: 0
 --- !u!114 &775196412946322661
@@ -25370,7 +25371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spell: {fileID: 2127068259652599947, guid: d95385e4946d75444a65088e9d3b8d01, type: 3}
-  playerCam: {fileID: 0}
+  playerCam: {fileID: 1946129503111233968}
   range: 100
 --- !u!114 &692544893140267904
 MonoBehaviour:
@@ -25389,13 +25390,30 @@ MonoBehaviour:
   tickInterval: 0.2
   beamRange: 50
   abilityDuration: 5
-  playerCam: {fileID: 0}
+  playerCam: {fileID: 7241906957195377663}
   firePoint: {fileID: 5400324781677892195}
   targetLayer:
     serializedVersion: 2
     m_Bits: 4294967295
   particlePrefab: {fileID: 1821233908984145251, guid: b6f891a1cd9e041449891c2a4fb5627f, type: 3}
   active: 0
+--- !u!114 &2631326112995482606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4257967271512095513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb4d0ce1d9b3574080d15a28510ec3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 141443802332303738}
+  firePoint: {fileID: 5400324781677892195}
+  prefab: {fileID: 1702362178713909210, guid: 9df84c82f8e0d1e4d9db0c574c091af9, type: 3}
+  playerCam: {fileID: 7241906957195377663}
+  projectileForce: 10
 --- !u!1 &4401237591145431266
 GameObject:
   m_ObjectHideFlags: 0
@@ -26103,7 +26121,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spell_slots: 4
   fireballforalpha: {fileID: 11400000, guid: 4a95dc6ed230c8a4789dc33b11fbce2d, type: 2}
-  dd_spell_inventory: []
+  dd_spell_inventory:
+  - {fileID: 11400000, guid: 711172ccffab553468fc26ab0d8a4068, type: 2}
+  - {fileID: 11400000, guid: 883a7d5b699c81c47b21a7fac9f970c8, type: 2}
+  - {fileID: 0}
 --- !u!114 &1770899243380345267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28822,7 +28843,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAnim: {fileID: 3058641290690927777}
   emoteCam: {fileID: 2328850415395273635}
-  playerCam: {fileID: 0}
+  playerCam: {fileID: 1946129503111233968}
 --- !u!1 &7883665090393198769
 GameObject:
   m_ObjectHideFlags: 0
