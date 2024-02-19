@@ -123,6 +123,14 @@ public class AnimationManager : MonoBehaviour
         emoteCam.enabled = false;
         playerCam.enabled = true;
     }
+
+    public void updateMovementFloats(Vector2 movement)
+    {
+        //Vector2 animMovement = movement.normalized;
+        playerAnim.SetFloat("XSpeed", movement.x);
+        playerAnim.SetFloat("ZSpeed", movement.y);
+    }
+
     public void FootL() { }
     public void FootR() { }
     public void Hit() { }

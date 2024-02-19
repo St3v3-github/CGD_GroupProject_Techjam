@@ -1,3 +1,4 @@
+using System.Runtime.Serialization;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,8 +9,9 @@ using static UpdatedPlayerController;
 
 public class InputManager : MonoBehaviour
 {
+
+    [Header("References")]
     private PlayerControlsAsset playercontrols;
-    public PlayerController playerController;
     public AdvancedProjectileSystem advancedProjectileSystem;
     public UpdatedPlayerController updatedPlayerController;
     public Sliding sliding;
@@ -31,13 +33,25 @@ public class InputManager : MonoBehaviour
     [Header("Shooting")]
     public bool shootInput;
 
-    
+    [Header("Wizard Element")]
+    public WizardType Element;
+
+    public enum WizardType
+    {
+        wind,
+        fire,
+        earth,
+        ice,
+        electric,
+        plant
+    }
+
+
 
     private void Awake()
     {
        
     
-        playerController = FindObjectOfType<PlayerController>();
         cameraController = FindObjectOfType<UpdatedCameraController>();
 
         //Add subsequent finds here
@@ -70,39 +84,54 @@ public class InputManager : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext ctx)
     {
-        /*if (ctx.action.triggered && updatedPlayerController.isGrounded && updatedPlayerController.readyToJump)
+        if(Element == WizardType.fire || Element == WizardType.ice || Element == WizardType.plant || Element == WizardType.electric) 
         {
-            //animationController.disableEmote();
-            //animationController.toggleEmotingBool(false);
-            //playerController.HandleJump();
+            if (ctx.action.triggered && updatedPlayerController.isGrounded && updatedPlayerController.readyToJump)
+            {
+                //animationController.disableEmote();
+                //animationController.toggleEmotingBool(false);
+                //playerController.HandleJump();
 
 
 
-            updatedPlayerController.HandleJump();
+                updatedPlayerController.HandleJump();
+            }
         }
-        *//*else if(ctx.action.triggered && !updatedPlayerController.hasDoubleJumped)
-        {
-            updatedPlayerController.HandleJump();
-        }*//*
-        if(ctx.performed)
-        {
-            jetPack.usingJetpack = true;
-        }
-        else if(ctx.canceled)
-        {
-            jetPack.usingJetpack = false;
-        }*/
+        
 
-        if(ctx.performed && updatedPlayerController.isGrounded && updatedPlayerController.readyToJump)
+        if(Element == WizardType.wind)
         {
-            updatedPlayerController.chargingJump = true;
-            Debug.Log(updatedPlayerController.chargingJump);
+            if (ctx.action.triggered && updatedPlayerController.isGrounded && updatedPlayerController.readyToJump)
+            {
+                //animationController.disableEmote();
+                //animationController.toggleEmotingBool(false);
+                //playerController.HandleJump();
+
+
+
+                updatedPlayerController.HandleJump();
+            }
+            else if(ctx.action.triggered && !updatedPlayerController.hasDoubleJumped)
+            {
+                updatedPlayerController.HandleJump();
+            }
         }
 
-        if(ctx.canceled && updatedPlayerController.isGrounded && updatedPlayerController.readyToJump)
+        
+
+        if(Element == WizardType.earth)
         {
-            updatedPlayerController.chargingJump = false;
-            updatedPlayerController.HandleJump();
+            if(ctx.performed && updatedPlayerController.isGrounded && updatedPlayerController.readyToJump)
+            {
+                updatedPlayerController.chargingJump = true;
+                Debug.Log(updatedPlayerController.chargingJump);
+            }
+
+            if(ctx.canceled && updatedPlayerController.isGrounded && updatedPlayerController.readyToJump)
+            {
+                updatedPlayerController.chargingJump = false;
+                updatedPlayerController.HandleJump();
+            }
         }
     }
 
@@ -145,36 +174,68 @@ public class InputManager : MonoBehaviour
     {
         if (ctx.action.triggered)
         {
-            //updatedPlayerController.crouchPressed = !updatedPlayerController.crouchPressed;
+            updatedPlayerController.crouchPressed = !updatedPlayerController.crouchPressed;
         }
 
-        if(ctx.performed && (movementInput.x != 0 || movementInput.y != 0))
-        {
-            sliding.StartSlide();
-        }
-        else if(ctx.canceled && updatedPlayerController.sliding)
-        {
-            sliding.EndSlide();
-        }
+        
     }
 
     public void OnAction(InputAction.CallbackContext ctx)
     {
-        if (ctx.action.triggered)
+        if(Element == WizardType.earth)
         {
-            updatedPlayerController.HandlePound();
+            if (ctx.action.triggered)
+            {
+                updatedPlayerController.HandlePound();
+            }
         }
 
-        if (ctx.performed)
+        if (Element == WizardType.fire)
         {
-            //grappling.StartGrapple();
-            //grappleSwing.StartSwing();
-            //updatedPlayerController.HandlePound();
+            if (ctx.performed)
+            {
+                jetPack.usingJetpack = true;
+            }
+            else if (ctx.canceled)
+            {
+                jetPack.usingJetpack = false;
+            }
         }
-        else if(ctx.canceled)
+
+        if (Element == WizardType.ice)
         {
-            //grappleSwing.StopSwing();
+            if (ctx.performed && (movementInput.x != 0 || movementInput.y != 0))
+            {
+                sliding.StartSlide();
+            }
+            else if (ctx.canceled && updatedPlayerController.sliding)
+            {
+                sliding.EndSlide();
+            }
         }
+        
+        if(Element == WizardType.plant)
+        {
+            if (ctx.performed)
+            {
+                grappling.StartGrapple();
+                //grappleSwing.StartSwing();
+            }
+            else if (ctx.canceled)
+            {
+                //grappleSwing.StopSwing();
+            }
+        }
+
+        if(Element == WizardType.electric)
+        {
+            if (ctx.action.triggered)
+            {
+                dashing.Dash();
+            }
+        }
+       
+
     }
 
     public void OnSpellCast(InputAction.CallbackContext ctx)
@@ -266,10 +327,7 @@ public class InputManager : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext ctx)
     {
-        if (ctx.action.triggered)
-        {
-            dashing.Dash();
-        }
+        
     }
 
     private bool SlotCheck(ItemData itemData, int slot)
