@@ -132,6 +132,15 @@ public class UpdatedPlayerController : MonoBehaviour
         else if (isGrounded && sprintPressed)
         {
             state = MovementState.sprinting;
+            animControl.toggleGroundedBool(true);
+            if (movementDirection.x != 0 || movementDirection.z != 0)
+            {
+                animControl.toggleWalkingBool(true);
+            }
+            else
+            {
+                animControl.toggleWalkingBool(false);
+            }
             desiredMoveSpeed = sprintSpeed;
         }
         else if (isGrounded)
@@ -253,6 +262,8 @@ public class UpdatedPlayerController : MonoBehaviour
         }
 
         movementDirection = transform.forward * movementInput.y + transform.right * movementInput.x;
+
+        animControl.updateMovementFloats(new Vector2(movementInput.x * desiredMoveSpeed, movementInput.y * desiredMoveSpeed));
 
         if (OnSlope() && !exitingSlope)
         {
