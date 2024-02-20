@@ -3418,6 +3418,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: MenuControls, Assembly-CSharp
+        m_MethodName: moveToCharSelection
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 1386451585}
         m_TargetAssemblyTypeName: LevelSelectController, Assembly-CSharp
         m_MethodName: CharSelect
@@ -26851,17 +26863,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634233704}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2083777861}
   m_Father: {fileID: 1049124692}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200, y: -300}
+  m_AnchoredPosition: {x: 275, y: -300}
   m_SizeDelta: {x: 50, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &634233706
@@ -28109,14 +28121,16 @@ MonoBehaviour:
   - {fileID: 640707649}
   - {fileID: 528855484}
   playerClassRotation:
-  - {fileID: 5262217071470266764, guid: f83da5a409e9c8d4097b66db24f6a013, type: 3}
-  - {fileID: 974478289764777197, guid: bbec53dfced4ef2419df0ba68a6270a1, type: 3}
-  - {fileID: 974478289764777197, guid: 01840f27830b17a4b8481b5a506a6107, type: 3}
-  - {fileID: 974478289764777197, guid: c76480cd967612b45a4dde8fdd5175c1, type: 3}
-  - {fileID: 974478289764777197, guid: 8902b51d474f2f94eaf776f4b80a40e7, type: 3}
-  - {fileID: 974478289764777197, guid: adc907af9ff8c5a4d97caba6d69444cc, type: 3}
-  - {fileID: 974478289764777197, guid: 779e33fb0632e044c928766a6616c250, type: 3}
+  - {fileID: 141443802332303738, guid: a3dfb88c9b443b24c9d9dfa42187cc34, type: 3}
+  - {fileID: 141443802332303738, guid: 2c4bfb5c64f6695499e63a876273bf1a, type: 3}
+  - {fileID: 141443802332303738, guid: 3b58dd72cc160e249b52f2e9dd0c52b6, type: 3}
+  - {fileID: 141443802332303738, guid: 154968efb73f3d54f819703b5f5bfd6a, type: 3}
+  - {fileID: 141443802332303738, guid: dee3c94f73b19f44da11bb5113a6aed5, type: 3}
+  - {fileID: 141443802332303738, guid: ee80253bb81594c4b8093e4fb5b7d22f, type: 3}
+  componentRegistries: []
   players: []
+  inputManager: {fileID: 658441333}
+  updateAfterDestroy: 0
 --- !u!114 &658441333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28163,7 +28177,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 5262217071470266764, guid: f83da5a409e9c8d4097b66db24f6a013, type: 3}
+  m_PlayerPrefab: {fileID: 141443802332303738, guid: a3dfb88c9b443b24c9d9dfa42187cc34, type: 3}
   m_SplitScreen: 1
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
@@ -38471,6 +38485,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: MenuControls, Assembly-CSharp
+        m_MethodName: moveToMapSelection
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &943794858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47583,17 +47609,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1158344809}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 528081396}
   m_Father: {fileID: 528855488}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200, y: -300}
+  m_AnchoredPosition: {x: 275, y: -300}
   m_SizeDelta: {x: 50, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1158344811
@@ -51443,6 +51469,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1233420178}
+  - component: {fileID: 1233420180}
   m_Layer: 0
   m_Name: SceneController
   m_TagString: Untagged
@@ -51465,6 +51492,104 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1233420180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233420176}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 83e99c0039411e34fa28b22e8e700d83, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 703931eb-9788-4154-b9a3-f162928a99dd
+    m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: eaa52bff-51af-40d4-98eb-8791066b8adb
+    m_ActionName: Player/Camera[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 939fbb7f-54e5-4b5e-ba29-168069f4cd1d
+    m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6ab0843b-6b51-4b2a-9081-54891663adb2
+    m_ActionName: Player/Sprint[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0079d2e0-899c-4675-af4e-a931c0e39610
+    m_ActionName: Player/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 35f20932-47d3-4ed1-9952-867131b1971a
+    m_ActionName: Player/PrimaryCast[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1b2dcaeb-60eb-4a73-86d7-c62d00078c38
+    m_ActionName: Player/Elements[/Keyboard/1,/Keyboard/2,/Keyboard/3,/Keyboard/4]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 989449cd-f2f9-443a-9e03-4454d2327598
+    m_ActionName: Player/SpellCast[/Keyboard/1,/Keyboard/2,/Keyboard/3,/Keyboard/4]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 03861f45-172b-4b5c-a41d-a0860f14af4b
+    m_ActionName: Player/Melee[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e9e530a0-9791-44b1-b058-bbe6549958d8
+    m_ActionName: Player/Dance[/Keyboard/u]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a20a3ab1-c6d8-4171-ac04-e022e11ba65f
+    m_ActionName: Player/Dash[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 553b58a1-2ff5-427c-a4bc-f58376c54122
+    m_ActionName: Player/Crouch[/Keyboard/leftCtrl]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ed0f19c0-fdb6-4077-881d-803bac56bc4e
+    m_ActionName: Player/Action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6f6345cc-491b-4952-8d3f-1ea653f8b341
+    m_ActionName: Player/Ability1[/Keyboard/1]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a4fa6175-88a6-4314-847a-534b48f967f1
+    m_ActionName: Player/Ability2[/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e94a143c-3f01-4e34-9060-271cc52ebac8
+    m_ActionName: Player/Ability3[/Keyboard/3]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 75d4e658-3277-4ebc-9334-556326ccd989
+    m_ActionName: Player/Ability4[/Keyboard/4]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 1151625517}
 --- !u!1001 &1234840024
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58337,17 +58462,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435604700}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1649398519}
   m_Father: {fileID: 640707650}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200, y: -300}
+  m_AnchoredPosition: {x: 275, y: -300}
   m_SizeDelta: {x: 50, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1435604702
@@ -65031,17 +65156,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1618435038}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1389172843}
   m_Father: {fileID: 1856920845}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200, y: -300}
+  m_AnchoredPosition: {x: 275, y: -300}
   m_SizeDelta: {x: 50, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1618435040
@@ -70708,7 +70833,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press A to Enter
+  m_text: Press any key to Enter
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 493b3e320ad51ab4c9296a21fce57a25, type: 2}
   m_sharedMaterial: {fileID: -6175685420442557525, guid: 493b3e320ad51ab4c9296a21fce57a25, type: 2}
@@ -71608,8 +71733,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -402.9}
-  m_SizeDelta: {x: 409.47, y: 87.24}
+  m_AnchoredPosition: {x: 0, y: -400}
+  m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1762776529
 MonoBehaviour:
