@@ -7,7 +7,6 @@ public class SummonedAnimal : Spell
 {
     public Animator animator;
     public ParticleSystem deathParticle;
-    public StatusEffect currentStatus;
     public float moveSpeed = 5f;
     public float rotationSpeed = 1f;
     public float visionAngle = 60f;
