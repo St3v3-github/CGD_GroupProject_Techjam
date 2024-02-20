@@ -212,7 +212,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2277351053746800788}
@@ -25730,6 +25730,7 @@ GameObject:
   - component: {fileID: 1446453331940890188}
   - component: {fileID: 9055387862627763096}
   - component: {fileID: 3261859820062135994}
+  - component: {fileID: 3105610319157412066}
   m_Layer: 6
   m_Name: Player(UpdatedMovement)
   m_TagString: Player
@@ -25770,10 +25771,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -26123,7 +26124,9 @@ MonoBehaviour:
   fireballforalpha: {fileID: 11400000, guid: 4a95dc6ed230c8a4789dc33b11fbce2d, type: 2}
   dd_spell_inventory:
   - {fileID: 11400000, guid: 1a78367d30c25494fb1691554ed48d64, type: 2}
-  - {fileID: 11400000, guid: 9d200133370e0204b94530ae74e0a83b, type: 2}
+  - {fileID: 11400000, guid: 4492ab946a1ddd0429b210319763fada, type: 2}
+  - {fileID: 11400000, guid: 4492ab946a1ddd0429b210319763fada, type: 2}
+  - {fileID: 11400000, guid: 4492ab946a1ddd0429b210319763fada, type: 2}
 --- !u!114 &1770899243380345267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26329,6 +26332,29 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3903
   pm: {fileID: 0}
+--- !u!136 &3105610319157412066
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4822170820165355300}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 2048
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 2047
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4842355538952120438
 GameObject:
   m_ObjectHideFlags: 0

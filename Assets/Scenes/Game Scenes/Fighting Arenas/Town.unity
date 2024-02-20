@@ -40297,6 +40297,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 408248, guid: 20980883898f4704f86e6d74b75682ef, type: 3}
   m_PrefabInstance: {fileID: 1174469085}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1175103825
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1175103827}
+  - component: {fileID: 1175103826}
+  m_Layer: 0
+  m_Name: CAMERA CULL HANDLER_DELETE AFTER DEMO
+  m_TagString: CAMERACULL
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1175103826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175103825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bfd9932905ec384193ac6b5e6712618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  current_player_count: 0
+  p1_layermask:
+    serializedVersion: 2
+    m_Bits: 61439
+  p2_layermask:
+    serializedVersion: 2
+    m_Bits: 57343
+  p3_layermask:
+    serializedVersion: 2
+    m_Bits: 49151
+  p4_layermask:
+    serializedVersion: 2
+    m_Bits: 32767
+--- !u!4 &1175103827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175103825}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 34.78319, y: -5.674555, z: 152.47137}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1175527758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42290,7 +42347,7 @@ PrefabInstance:
     - target: {fileID: 5303722602665480458, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
       propertyPath: m_PlayerPrefab
       value: 
-      objectReference: {fileID: 5262217071470266764, guid: f83da5a409e9c8d4097b66db24f6a013, type: 3}
+      objectReference: {fileID: 141443802332303738, guid: 154968efb73f3d54f819703b5f5bfd6a, type: 3}
     - target: {fileID: 6080690929611422468, guid: 5c57a87dff3e0e249939defa95d1769c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -56981,6 +57038,10 @@ PrefabInstance:
     - target: {fileID: 4170121396089881177, guid: f8c50f51bbc892648b53a8d15f26f835, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4798908633416068854, guid: f8c50f51bbc892648b53a8d15f26f835, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5346617727500549300, guid: f8c50f51bbc892648b53a8d15f26f835, type: 3}
       propertyPath: m_LocalScale.x
@@ -73224,3 +73285,4 @@ SceneRoots:
   - {fileID: 1979554470}
   - {fileID: 957171892}
   - {fileID: 402939564420128378}
+  - {fileID: 1175103827}

@@ -212,7 +212,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2277351053746800788}
@@ -25730,6 +25730,8 @@ GameObject:
   - component: {fileID: 1446453331940890188}
   - component: {fileID: 9055387862627763096}
   - component: {fileID: 3261859820062135994}
+  - component: {fileID: 5519755123549960946}
+  - component: {fileID: 9144717006841255354}
   m_Layer: 6
   m_Name: Player(UpdatedMovement)
   m_TagString: Player
@@ -25770,10 +25772,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -26122,8 +26124,10 @@ MonoBehaviour:
   spell_slots: 4
   fireballforalpha: {fileID: 11400000, guid: 4a95dc6ed230c8a4789dc33b11fbce2d, type: 2}
   dd_spell_inventory:
-  - {fileID: 11400000, guid: 711172ccffab553468fc26ab0d8a4068, type: 2}
   - {fileID: 11400000, guid: 883a7d5b699c81c47b21a7fac9f970c8, type: 2}
+  - {fileID: 11400000, guid: 4492ab946a1ddd0429b210319763fada, type: 2}
+  - {fileID: 11400000, guid: 4492ab946a1ddd0429b210319763fada, type: 2}
+  - {fileID: 11400000, guid: 4492ab946a1ddd0429b210319763fada, type: 2}
 --- !u!114 &1770899243380345267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26329,6 +26333,41 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3903
   pm: {fileID: 0}
+--- !u!136 &5519755123549960946
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4822170820165355300}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 2048
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 2047
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9144717006841255354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4822170820165355300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec6bb45340bdfab45a276f6412f6cbee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4842355538952120438
 GameObject:
   m_ObjectHideFlags: 0
@@ -28128,6 +28167,7 @@ GameObject:
   - component: {fileID: 6956940518980718314}
   - component: {fileID: 4279713890985531431}
   - component: {fileID: 7230450545615160136}
+  - component: {fileID: 4763424389055297148}
   m_Layer: 6
   m_Name: Camera
   m_TagString: Untagged
@@ -28288,6 +28328,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attenuationObject: {fileID: 0}
+--- !u!114 &4763424389055297148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6695985431671467108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d312f26cc8156b4fb591a149715bf0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerCharacter: {fileID: 3058641290681475325}
+  PlayerStaff: {fileID: 6249023769877654301}
 --- !u!1 &6756632740282084180
 GameObject:
   m_ObjectHideFlags: 0

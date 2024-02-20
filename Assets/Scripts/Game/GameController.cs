@@ -263,7 +263,7 @@ public class GameController : MonoBehaviour
 
     public GameObject FindSpawnPoint(GameObject deadPlayer)
     {
-        List<GameObject> possibleSpawnPoints = new();
+        List<GameObject> possibleSpawnPoints = new List<GameObject>();
 
         // Fills list with 0s
         for (int i = 0; i < game.spawnPointVariance; i++)
