@@ -22,7 +22,7 @@ public class UpdatedPlayerController : MonoBehaviour
     private float lastDesiredMoveSpeed;
 
     //Move Speed Scalars
-    public float speedMultiplier;
+    public float speedModifier;
     public float speedIncreaseMultiplier;
     public float sloperIncreaseMultiplier;
 
@@ -268,7 +268,7 @@ public class UpdatedPlayerController : MonoBehaviour
         if (OnSlope() && !exitingSlope)
         {
             //Debug.Log(1);
-            rb.AddForce(GetSlopeMoveDirection(movementDirection) * moveSpeed * speedMultiplier * 20f, ForceMode.Force);
+            rb.AddForce(GetSlopeMoveDirection(movementDirection) * moveSpeed * speedModifier * 20f, ForceMode.Force);
 
             if (rb.velocity.y > 0)
                 rb.AddForce(Vector3.down * 80f, ForceMode.Force);
@@ -276,11 +276,11 @@ public class UpdatedPlayerController : MonoBehaviour
 
         else if (isGrounded)
         {
-            rb.AddForce(movementDirection.normalized * moveSpeed * speedMultiplier * 10f, ForceMode.Force);
+            rb.AddForce(movementDirection.normalized * moveSpeed * speedModifier * 10f, ForceMode.Force);
         }
         else if (!isGrounded)
         {
-            rb.AddForce(movementDirection.normalized * moveSpeed * 10f * speedMultiplier * airMultiplier, ForceMode.Force);
+            rb.AddForce(movementDirection.normalized * moveSpeed * 10f * speedModifier * airMultiplier, ForceMode.Force);
         }
 
         rb.useGravity = !OnSlope();
@@ -469,5 +469,14 @@ public class UpdatedPlayerController : MonoBehaviour
     private void ResetRestriction()
     {
         activeGrapple = false;
+    }
+
+    public float GetSpeedModifier()
+    {
+        return speedModifier;
+    }
+    public void SetSpeedModifier(float newSpeedMod)
+    {
+        speedModifier = newSpeedMod;
     }
 }

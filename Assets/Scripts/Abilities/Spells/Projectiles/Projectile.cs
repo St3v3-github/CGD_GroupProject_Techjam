@@ -37,7 +37,7 @@ public class Projectile : Spell
             GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
 
             //Apply Status Effects
-            enemystatuseffects statusFX = collision.gameObject.GetComponentInParent<enemystatuseffects>();
+            StatusEffectsManager statusFX = collision.gameObject.GetComponentInParent<StatusEffectsManager>();
 
             if (statusFX != null)
             {
@@ -57,7 +57,7 @@ public class Projectile : Spell
         
         
         AttributeManager attributes = collision.gameObject.GetComponent<AttributeManager>();
-        enemystatuseffects effects = collision.gameObject.GetComponent<enemystatuseffects>();
+        StatusEffectsManager effects = collision.gameObject.GetComponent<StatusEffectsManager>();
 
         if (effects != null)
         {

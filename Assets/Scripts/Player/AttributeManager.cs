@@ -16,14 +16,13 @@ public class AttributeManager : MonoBehaviour
     [SerializeField] public float currentHealth;
     [SerializeField] public float maxHealth;
     [SerializeField] public int mp;
-    [SerializeField] public float speed;
     [SerializeField] public int score;
     public bool dead = false;
     public bool hit_by_strike = false;
 
 
     //examples of other values we might eventually have. all values relating to the player would probably be held in this one manager
-    //[SerializeField] private int move_speed;
+
     //[SerializeField] private int defensive_power;
     //[SerializeField] private int offensive_power;/./
 
@@ -83,11 +82,13 @@ public class AttributeManager : MonoBehaviour
        
     }
 
-    public float GetPlayerHealth()
+    
+
+    public float GetCurrentHealth()
     {
         return currentHealth;
     }
-    public void SetPlayerHealth(float _health)
+    public void SetCurrentHealth(float _health)
     {
         currentHealth = _health;
     }
@@ -245,11 +246,6 @@ public class AttributeManager : MonoBehaviour
         return currentHealth;
     }*/
 
-    public void SpeedModifier(float speedMod)
-    {
-        speed *= speedMod;
-    
-    }
 
     public void DamageFlyText(float damageDealt)
     {

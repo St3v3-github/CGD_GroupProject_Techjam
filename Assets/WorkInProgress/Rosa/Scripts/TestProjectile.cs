@@ -42,7 +42,7 @@ public class TestProjectile : Spell
 
             
 
-            enemystatuseffects effects = collision.gameObject.GetComponentInParent<enemystatuseffects>();
+            StatusEffectsManager effects = collision.gameObject.GetComponentInParent<StatusEffectsManager>();
 
             if(effects != null)
             {
