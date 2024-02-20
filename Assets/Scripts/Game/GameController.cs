@@ -255,7 +255,12 @@ public class GameController : MonoBehaviour
         prayer.deaded.transform.GetComponent<InputManager>().enabled = false;
         prayer.deaded.transform.Find("AttributeController").gameObject.SetActive(false);
         prayer.deaded.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(false);
-        prayer.deaded.transform.Find("Mesh").gameObject.SetActive(false);
+
+        GameObject playerMesh = prayer.deaded.transform.Find("Mesh").gameObject;
+        GameObject RagdollMesh = Instantiate(playerMesh, playerMesh.transform.position, playerMesh.transform.rotation);
+        playerMesh.SetActive(false);
+        
+        RagdollMesh.GetComponent<RagDollPlayer>().RagdollMesh();
         //prayer.deaded.GetComponent<CharacterController>().enabled = false;
 
 
