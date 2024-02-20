@@ -59,6 +59,7 @@ public class CharSetup : MonoBehaviour
             componentRegistries.Add(player.GetComponent<ComponentRegistry>());
         }
         UnityEngine.Debug.Log("New player is being added...");
+        //TODO: Update to using componentRegistries[players.Count - 1].playerInput.playerIndex;
         componentRegistries[players.Count - 1].inputManager.enabled = false;
         componentRegistries[players.Count - 1].advancedProjectileSystem.enabled = false;
         componentRegistries[players.Count - 1].playerCamera.enabled = false;
@@ -83,7 +84,6 @@ public class CharSetup : MonoBehaviour
         spaceTaken[index] = false;
         var playerDevice = componentRegistries[index].playerInput.devices;
         var playerControlScheme = componentRegistries[index].playerInput.currentControlScheme;
-        var playerObjectSave = players[index];
         Destroy(players[index]);
         playerClassID[index]++;
         if (playerClassID[index] == playerClassRotation.Count())
