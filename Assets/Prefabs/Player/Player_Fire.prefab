@@ -147,6 +147,7 @@ Transform:
   - {fileID: 49267707356469619}
   - {fileID: 894559704450128298}
   - {fileID: 5611252498046804216}
+  - {fileID: 1682921129023955997}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &5618296061614036978
@@ -11278,6 +11279,63 @@ MonoBehaviour:
     m_Bits: 4294967295
   particlePrefab: {fileID: 1821233908984145251, guid: b6f891a1cd9e041449891c2a4fb5627f, type: 3}
   active: 0
+--- !u!1 &8968217136129480649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1682921129023955997}
+  - component: {fileID: 6976860512638875047}
+  m_Layer: 6
+  m_Name: Fullscreen Effect Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1682921129023955997
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8968217136129480649}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.2647686, y: 1.67, z: 0.7934017}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1557659141253257577}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6976860512638875047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8968217136129480649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9bbd25301a72ea488a40a84f7d076ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hurtDisplayTime: 1.5
+  _hurtFadeOutTime: 0.5
+  FullScreenDamageFire: {fileID: -4393279280416708730, guid: 8c62ffbe594070c48840db33636ff486, type: 2}
+  FullScreenRendererPlant: {fileID: 6792930231468119443, guid: 8c62ffbe594070c48840db33636ff486, type: 2}
+  FullScreenRendererIce: {fileID: -5141335606195290235, guid: 8c62ffbe594070c48840db33636ff486, type: 2}
+  FullScreenRendererWind: {fileID: 3113598435624742061, guid: 8c62ffbe594070c48840db33636ff486, type: 2}
+  FullScreenRendererElectricity: {fileID: -8375329515533422463, guid: 8c62ffbe594070c48840db33636ff486, type: 2}
+  FullScreenRendererEarth: {fileID: -2919517985550565735, guid: 8c62ffbe594070c48840db33636ff486, type: 2}
+  _materialFire: {fileID: -876546973899608171, guid: 129a58dbb2203bd4fb0adbb37e1df45d, type: 3}
+  _materialIce: {fileID: 2100000, guid: 4c0288a724becd843912dafff5e68a04, type: 2}
+  renderer: 0
+  _voronoiIntensityStat: 2.5
+  _vignetteIntensityStat: 1.5
 --- !u!1001 &960937758123907442
 PrefabInstance:
   m_ObjectHideFlags: 0

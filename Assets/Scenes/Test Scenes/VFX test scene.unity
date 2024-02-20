@@ -393,9 +393,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hurtDisplayTime: 1.5
   _hurtFadeOutTime: 0.5
-  _fullScreenDamage: {fileID: 6792930231468119443, guid: 8c62ffbe594070c48840db33636ff486, type: 2}
-  _materialFire: {fileID: 2100000, guid: 30487f97d0b5b804aa4140627c6d13d3, type: 2}
+  FullScreenDamageFire: {fileID: -4393279280416708730, guid: 8c62ffbe594070c48840db33636ff486, type: 2}
+  FullScreenRendererPlant: {fileID: 6792930231468119443, guid: 8c62ffbe594070c48840db33636ff486, type: 2}
+  FullScreenRendererIce: {fileID: -5141335606195290235, guid: 8c62ffbe594070c48840db33636ff486, type: 2}
+  FullScreenRendererWind: {fileID: 3113598435624742061, guid: 8c62ffbe594070c48840db33636ff486, type: 2}
+  FullScreenRendererElectricity: {fileID: -8375329515533422463, guid: 8c62ffbe594070c48840db33636ff486, type: 2}
+  FullScreenRendererEarth: {fileID: -2919517985550565735, guid: 8c62ffbe594070c48840db33636ff486, type: 2}
+  FullScreenRendererHealing: {fileID: 5753977074513993261, guid: 8c62ffbe594070c48840db33636ff486, type: 2}
+  _materialFire: {fileID: -876546973899608171, guid: 129a58dbb2203bd4fb0adbb37e1df45d, type: 3}
   _materialIce: {fileID: 2100000, guid: 4c0288a724becd843912dafff5e68a04, type: 2}
+  renderer: 0
+  _voronoiIntensityStat: 2.5
+  _vignetteIntensityStat: 1.5
 --- !u!1 &1357788401
 GameObject:
   m_ObjectHideFlags: 0
@@ -662,7 +671,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 18698588510094474, guid: 4756afa63734c0547afcac466ef28d2b, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1557659141253257577, guid: 4756afa63734c0547afcac466ef28d2b, type: 3}
       insertIndex: -1

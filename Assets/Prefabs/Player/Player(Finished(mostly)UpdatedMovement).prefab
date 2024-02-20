@@ -26243,7 +26243,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2512892146780671401}
   - {fileID: 6167938817103763463}
   - {fileID: 751306034107846083}
   - {fileID: 2422538887695148775}
@@ -26251,6 +26250,7 @@ Transform:
   - {fileID: 4912904807978134546}
   - {fileID: 5254347349594598603}
   - {fileID: 674977228062414233}
+  - {fileID: 2512892146780671401}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &4945813540337930193
@@ -27610,9 +27610,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hurtDisplayTime: 1.5
   _hurtFadeOutTime: 0.5
-  _fullScreenDamage: {fileID: 6792930231468119443, guid: 8c62ffbe594070c48840db33636ff486, type: 2}
+  FullScreenDamageFire: {fileID: 0}
+  FullScreenRendererPlant: {fileID: 0}
+  FullScreenRendererIce: {fileID: 0}
+  FullScreenRendererWind: {fileID: 0}
+  FullScreenRendererElectricity: {fileID: 0}
+  FullScreenRendererEarth: {fileID: 0}
   _materialFire: {fileID: 2100000, guid: 30487f97d0b5b804aa4140627c6d13d3, type: 2}
   _materialIce: {fileID: 2100000, guid: 4c0288a724becd843912dafff5e68a04, type: 2}
+  renderer: 0
+  _voronoiIntensityStat: 2.5
+  _vignetteIntensityStat: 1.5
 --- !u!1 &6678817569023234218
 GameObject:
   m_ObjectHideFlags: 0

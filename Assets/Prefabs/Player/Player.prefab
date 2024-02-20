@@ -1,5 +1,62 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &18698588510094474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4459924388341443053}
+  - component: {fileID: 8003468700935100253}
+  m_Layer: 6
+  m_Name: Fullscreen Effect Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4459924388341443053
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18698588510094474}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.2647686, y: 1.67, z: 0.7934017}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1557659141253257577}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8003468700935100253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18698588510094474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9bbd25301a72ea488a40a84f7d076ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hurtDisplayTime: 1.5
+  _hurtFadeOutTime: 0.5
+  FullScreenDamageFire: {fileID: -4393279280416708730, guid: 8c62ffbe594070c48840db33636ff486, type: 2}
+  FullScreenRendererPlant: {fileID: 6792930231468119443, guid: 8c62ffbe594070c48840db33636ff486, type: 2}
+  FullScreenRendererIce: {fileID: -5141335606195290235, guid: 8c62ffbe594070c48840db33636ff486, type: 2}
+  FullScreenRendererWind: {fileID: 3113598435624742061, guid: 8c62ffbe594070c48840db33636ff486, type: 2}
+  FullScreenRendererElectricity: {fileID: -8375329515533422463, guid: 8c62ffbe594070c48840db33636ff486, type: 2}
+  FullScreenRendererEarth: {fileID: -2919517985550565735, guid: 8c62ffbe594070c48840db33636ff486, type: 2}
+  _materialFire: {fileID: -876546973899608171, guid: 129a58dbb2203bd4fb0adbb37e1df45d, type: 3}
+  _materialIce: {fileID: 2100000, guid: 4c0288a724becd843912dafff5e68a04, type: 2}
+  renderer: 0
+  _voronoiIntensityStat: 2.5
+  _vignetteIntensityStat: 1.5
 --- !u!1 &19630553111497305
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,6 +198,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4459924388341443053}
   - {fileID: 1232235808428731750}
   - {fileID: 5686921009914067106}
   - {fileID: 7286747320838427526}
@@ -382,6 +440,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e9e530a0-9791-44b1-b058-bbe6549958d8
     m_ActionName: Player/Dance[/Keyboard/u]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 553b58a1-2ff5-427c-a4bc-f58376c54122
+    m_ActionName: Player/Crouch[/Keyboard/leftCtrl]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ed0f19c0-fdb6-4077-881d-803bac56bc4e
+    m_ActionName: Player/Action
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -405,7 +471,7 @@ MonoBehaviour:
   sliding: {fileID: 0}
   dashing: {fileID: 0}
   jetPack: {fileID: 0}
-  cameraController: {fileID: 1275186140544510898}
+  cameraController: {fileID: 0}
   projectileController: {fileID: 0}
   animationController: {fileID: 1863637143123250814}
   grappling: {fileID: 0}
