@@ -185,9 +185,6 @@ public class UpdatedPlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        components.rigidBody = GetComponent<Rigidbody>();
-        components.rigidBody.freezeRotation = true;
-
         readyToJump = true;
 
         startYScale = transform.localScale.y;

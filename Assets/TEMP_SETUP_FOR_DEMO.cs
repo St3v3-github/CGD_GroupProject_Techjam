@@ -7,7 +7,7 @@ public class TEMP_SETUP_FOR_DEMO : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject.FindWithTag("PlayerHandler").GetComponent<DemoPlayerSetup>().SetNextChar();
+        //GameObject.FindWithTag("PlayerHandler").GetComponent<DemoPlayerSetup>().SetNextChar();
         
     }
 

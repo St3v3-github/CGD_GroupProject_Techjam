@@ -35,7 +35,7 @@ public class Spell : MonoBehaviour
         }
         
         
-        Debug.Log("TRYING TO SET TARGET TAG");
+        //Debug.Log("TRYING TO SET TARGET TAG");
         if (this.tag == "Player1Spell" || this.tag == "Player1")
         {
             targetTag = "Player2";
