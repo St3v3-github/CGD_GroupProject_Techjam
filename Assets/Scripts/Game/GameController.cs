@@ -252,6 +252,7 @@ public class GameController : MonoBehaviour
         prayer.deaded.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(true);
         prayer.deaded.transform.Find("AttributeController").GetComponent<AttributeManager>().currentHealth = 0;
         prayer.deaded.transform.Find("AttributeController").GetComponent<AttributeManager>().healthbar.value = 0;
+        prayer.deaded.transform.GetComponent<InputManager>().enabled = false;
         prayer.deaded.transform.Find("AttributeController").gameObject.SetActive(false);
         prayer.deaded.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(false);
         prayer.deaded.transform.Find("Mesh").gameObject.SetActive(false);
@@ -297,6 +298,8 @@ public class GameController : MonoBehaviour
         //player.GetComponent<CharacterController>().enabled = false;
         player.transform.SetPositionAndRotation(respawnPoint.transform.position, respawnPoint.transform.rotation);
         //player.GetComponent<CharacterController>().enabled = true;
+        player.transform.GetComponent<UpdatedPlayerController>().enabled = true;
+        player.transform.GetComponent<InputManager>().enabled = true;
         player.transform.Find("AttributeController").GetComponent<AttributeManager>().currentHealth = player.transform.GetChild(5).GetComponent<AttributeManager>().maxHealth;
     }
 
