@@ -252,9 +252,15 @@ public class GameController : MonoBehaviour
         prayer.deaded.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(true);
         prayer.deaded.transform.Find("AttributeController").GetComponent<AttributeManager>().currentHealth = 0;
         prayer.deaded.transform.Find("AttributeController").GetComponent<AttributeManager>().healthbar.value = 0;
+        prayer.deaded.transform.GetComponent<InputManager>().enabled = false;
         prayer.deaded.transform.Find("AttributeController").gameObject.SetActive(false);
         prayer.deaded.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(false);
-        prayer.deaded.transform.Find("Mesh").gameObject.SetActive(false);
+
+        GameObject playerMesh = prayer.deaded.transform.Find("Mesh").gameObject;
+        GameObject RagdollMesh = Instantiate(playerMesh, playerMesh.transform.position, playerMesh.transform.rotation);
+        playerMesh.SetActive(false);
+        
+        RagdollMesh.GetComponent<RagDollPlayer>().RagdollMesh();
         //prayer.deaded.GetComponent<CharacterController>().enabled = false;
 
 
@@ -263,7 +269,7 @@ public class GameController : MonoBehaviour
 
     public GameObject FindSpawnPoint(GameObject deadPlayer)
     {
-        List<GameObject> possibleSpawnPoints = new();
+        List<GameObject> possibleSpawnPoints = new List<GameObject>();
 
         // Fills list with 0s
         for (int i = 0; i < game.spawnPointVariance; i++)
@@ -297,6 +303,8 @@ public class GameController : MonoBehaviour
         //player.GetComponent<CharacterController>().enabled = false;
         player.transform.SetPositionAndRotation(respawnPoint.transform.position, respawnPoint.transform.rotation);
         //player.GetComponent<CharacterController>().enabled = true;
+        player.transform.GetComponent<UpdatedPlayerController>().enabled = true;
+        player.transform.GetComponent<InputManager>().enabled = true;
         player.transform.Find("AttributeController").GetComponent<AttributeManager>().currentHealth = player.transform.GetChild(5).GetComponent<AttributeManager>().maxHealth;
     }
 

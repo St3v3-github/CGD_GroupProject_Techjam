@@ -25730,6 +25730,7 @@ GameObject:
   - component: {fileID: 1446453331940890188}
   - component: {fileID: 9055387862627763096}
   - component: {fileID: 3261859820062135994}
+  - component: {fileID: 8789623202957632645}
   m_Layer: 6
   m_Name: Player(UpdatedMovement)
   m_TagString: Player
@@ -25770,10 +25771,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -26330,6 +26331,29 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3903
   pm: {fileID: 0}
+--- !u!136 &8789623202957632645
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4822170820165355300}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 2048
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 2047
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4842355538952120438
 GameObject:
   m_ObjectHideFlags: 0

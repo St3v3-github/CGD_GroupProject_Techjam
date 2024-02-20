@@ -72,14 +72,14 @@ public class Spell : MonoBehaviour
         bool valid_target = false;
         
         GameObject player;
-        if (hitbox.transform.parent != null)
+       /* if (hitbox.transform.parent != null)
         {
             player = hitbox.transform.parent.gameObject;
         }
         else
         {
             player = hitbox;
-        }
+        }*/
         player = hitbox;
       
         
@@ -88,7 +88,7 @@ public class Spell : MonoBehaviour
             Debug.Log("1");
             Debug.Log(hitbox.name);
            // AttributeManager attributes = hitbox.GetComponent<AttributeManager>();
-           if (hitbox.tag == "PLayer1" || hitbox.tag == "Player2")
+           if (hitbox.tag == "Player1" || hitbox.tag == "Player2")
            {
                AttributeManager attributes = player.GetComponent<UIController>().attributeController.GetComponent<AttributeManager>();
                 Debug.Log("2");

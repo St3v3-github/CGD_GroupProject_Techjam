@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class reference : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class reference : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        nuke.Stop();
+       // nuke.Stop();
     }
 
     // Update is called once per frame

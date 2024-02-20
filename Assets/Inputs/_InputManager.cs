@@ -28,7 +28,7 @@ public class InputManager : MonoBehaviour
 
     [Header("Movement/Camera")] 
     public Vector2 cameraInput;
-    public Vector2 movementInput;
+    public Vector2 movementInput = new Vector2(0,0);
 
     [Header("Shooting")]
     public bool shootInput;

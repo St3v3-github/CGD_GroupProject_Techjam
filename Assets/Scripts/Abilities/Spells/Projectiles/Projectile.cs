@@ -34,12 +34,13 @@ public class Projectile : Spell
         if (DealDamage(collision.gameObject, damage))
         {
             Debug.Log("hit player: " + collision.name);
-            GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
+            //GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
-        else
+        else if(collision.gameObject.tag != source.tag)
         {
-            GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
+            Debug.Log(collision.name);
+            //GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
 

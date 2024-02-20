@@ -133,8 +133,10 @@ public class AttributeManager : MonoBehaviour
 
         //Particles and Shaders called here
 
-        damageFlash.DamageFlashing();
-        StartCoroutine(cameraShake.Shake(.15f, .05f));
+
+        //DAMAGE FLASH REMOVED FOR DEMO
+        //damageFlash.DamageFlashing();
+        //StartCoroutine(cameraShake.Shake(.15f, .05f));
 
         if (damageFlyTextPrefab)
         {
