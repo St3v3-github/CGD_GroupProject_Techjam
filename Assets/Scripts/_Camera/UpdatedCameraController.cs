@@ -32,7 +32,7 @@ public class UpdatedCameraController : MonoBehaviour
         yRotation += camX;
 
         xRotation -= camY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        xRotation = Mathf.Clamp(xRotation, -45f, 45f);
 
         orientation.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
         transform.rotation = Quaternion.Euler(xRotation, 0f, 0f);
