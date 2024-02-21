@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class MoveCamera : MonoBehaviour
 {
-    public Transform cameraPosition;
+    public Transform FirstPersonPosition;
+    public Transform ThirdPersonPosition;
+    public bool isThirdPerson;
 
      void Update()
     {
-        transform.position = cameraPosition.position;
+        if (isThirdPerson)
+        {
+            transform.position = ThirdPersonPosition.position;
+        }
+        
+        else
+        {
+            transform.position = FirstPersonPosition.position;
+        }
     }
 }
