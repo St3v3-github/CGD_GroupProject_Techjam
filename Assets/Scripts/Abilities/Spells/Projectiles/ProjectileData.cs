@@ -31,7 +31,5 @@ public class ProjectileData : ScriptableObject
     {
         return statusEffect;
     }
-
-
 }
 

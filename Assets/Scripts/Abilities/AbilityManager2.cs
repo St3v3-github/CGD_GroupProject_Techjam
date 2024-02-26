@@ -120,7 +120,7 @@ public class AbilityManager2 : MonoBehaviour
                     if (spell_controller.GetComponent<Boop>() == null) { Debug.Log("Not Found"); return 0; }
                     if (!inventory.checkCooldown(slot)) { return 0; }
                     spell_controller.GetComponent<Boop>().Cast();
-                    FiredSpell(slot);
+                    SetOnCooldown(slot);
                     break;
 
 
@@ -171,15 +171,16 @@ public class AbilityManager2 : MonoBehaviour
         inventory.dd_spell_inventory[spellslot].current_state = ItemData.SpellState.READY;
 
     }
-    private void FiredSpell(int spellslot)
+    private void SetOnCooldown(int spellslot)
     {
         inventory.dd_spell_inventory[spellslot].current_state = ItemData.SpellState.COOLDOWN;
         StartCoroutine(SpellCD(inventory.dd_spell_inventory[spellslot].cooldown_duration, spellslot));
     }
-    private IEnumerator SpellActive(float activeduration, int spellslot)
+    private IEnumerator SetOnActive(float activeduration, int spellslot)
     {
+        inventory.dd_spell_inventory[spellslot].current_state = ItemData.SpellState.ACTIVE;
         yield return new WaitForSeconds(activeduration);
-        inventory.dd_spell_inventory[spellslot].current_state = ItemData.SpellState.READY;
+         StartCoroutine(SpellCD(inventory.dd_spell_inventory[spellslot].cooldown_duration, spellslot));
 
     }
 }

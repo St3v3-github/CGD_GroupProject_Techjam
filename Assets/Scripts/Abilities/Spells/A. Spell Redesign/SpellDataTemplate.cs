@@ -25,21 +25,22 @@ public class SpellDataTemplate : ScriptableObject
     #endregion
 
     #region Projectile Data
-    private enum ProjectileList
-    {
+    //element specific projectile goes here: (drag & drop in inspector)
+    private ProjectileData projectile;
+    
 
-    }
     #endregion
 
 
     #region Grenade Data
-
+    
     #endregion
 
 
     #region AOE Data
-
+   
     #endregion
+
 
 
     #region Ultimate Data
