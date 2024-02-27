@@ -27,6 +27,7 @@ public class GameModeHandler : MonoBehaviour
     List<Team> teams;
 
     [SerializeField] List<GameObject> players;
+    [SerializeField] List<ComponentRegistry> playerRegistries;
     [SerializeField] List<GameObject> spawnPoints;
     [SerializeField] List<GameObject> spawnFlag;
     [SerializeField] List<float> spawnPointDistances;
@@ -64,6 +65,31 @@ public class GameModeHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        for(int i = 0; i < players.Count;i++)
+        {
+            var attributeComp = playerRegistries[i].attributeManager;
+            if (!attributeComp.dead && attributeComp.currentHealth <= 0)
+            {
+                attributeComp.dead = true;
+                attributeComp.currentHealth = 0;
+                attributeComp.healthbar.value = 0;
+                playerRegistries[i].animationManager.toggleDeadBool(true);
+                playerRegistries[i].playerController.enabled = false;
+                var deadScoreInfo = players[i].GetComponent<PlayerScoreInfo>();
+                var killerScoreInfo = deadScoreInfo.lastDamagedBy.GetComponent<PlayerScoreInfo>();
+                killerScoreInfo.kill_count++;
+                teams[killerScoreInfo.team].team_kills++;
+                deadScoreInfo.death_count++;
+                teams[deadScoreInfo.team].team_deaths++;
+                if (gameMode == 0)
+                {
+                    teams[killerScoreInfo.team].score++;
+                }
+
+                StartCoroutine(reincarnatePlayer(players[i], FindSpawnPoint()));
+            }
+        }
+        /*
         foreach(var prayer in players)
         {
             var keepHoldOfComp = prayer.GetComponent<ComponentRegistry>().attributeManager;
@@ -89,6 +115,7 @@ public class GameModeHandler : MonoBehaviour
                 StartCoroutine(reincarnatePlayer(prayer, FindSpawnPoint()));
             }
         }
+        */
 
         currentGameTime -= Time.deltaTime;
         if(currentGameTime < 0)
@@ -199,6 +226,7 @@ public class GameModeHandler : MonoBehaviour
         currentGameTime = ruleSetting.gameTime + countdownStartTimer;
         teams = new List<Team>();
         players = new List<GameObject>();
+        playerRegistries = new List<ComponentRegistry>();
         foreach (var newPlayer in GameObject.FindGameObjectsWithTag("Player"))
         {
             players.Add(newPlayer);
@@ -208,10 +236,16 @@ public class GameModeHandler : MonoBehaviour
             newPlayer.transform.rotation = spawnPoint.transform.rotation;
             var compRegistry = newPlayer.GetComponent<ComponentRegistry>();
             compRegistry.playerCamera.enabled = true;
+            playerRegistries.Add(compRegistry);
             while(teams.Count <= newPlayer.GetComponent<PlayerScoreInfo>().team) //FORBIDDEN WHILE LOOP, DONT USE WHILE
             {
                 teams.Add(new Team());
             }
+        }
+        for(int i = 0; i < players.Count; i++)
+        {
+            //TODO: Calculations
+            //playerRegistries[i].playerCamera.rect.Set(0.0f, 0.0f, 1.0f, 1.0f);
         }
         StartCoroutine(StartCountdownTimer());
     }
