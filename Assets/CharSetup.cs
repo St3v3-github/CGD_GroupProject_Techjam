@@ -62,6 +62,7 @@ public class CharSetup : MonoBehaviour
                 componentRegistry.playerCamera.enabled = false;
                 componentRegistry.playerController.enabled = false;
                 componentRegistry.rigidBody.MovePosition(characterPositions[componentRegistry.playerInput.playerIndex].transform.position);
+                componentRegistry.rigidBody.MoveRotation(componentRegistries[componentRegistry.playerInput.playerIndex].transform.rotation * Quaternion.Euler(0,180,0));
                 toJoinDisplays[componentRegistry.playerInput.playerIndex].SetActive(false);
                 playerSetupMenus[componentRegistry.playerInput.playerIndex].SetActive(true);
             }
