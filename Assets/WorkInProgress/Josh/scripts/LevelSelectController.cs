@@ -51,4 +51,47 @@ public class LevelSelectController : MonoBehaviour
         charSelectObj.SetActive(true);
         //Transition to character selection
     }
+
+    public void StartGameplayScene()
+    {
+        StartCoroutine(LoadScene());
+    }
+
+    public IEnumerator LoadScene()
+    {
+        AsyncOperation sceneLoader = SceneManager.LoadSceneAsync(sceneNames[mapNumber], LoadSceneMode.Additive);
+        sceneLoader.allowSceneActivation = false;
+        while (sceneLoader.progress < 0.9f)
+        {
+            Debug.Log("Loading scene " + sceneNames[mapNumber] + " <<||>> Progress: " + sceneLoader.progress);
+            yield return null;
+        }
+        FinishLoading(sceneLoader);
+    }
+
+    public void FinishLoading(AsyncOperation sceneLoader)
+    {
+        sceneLoader.allowSceneActivation = true;
+        var scene = SceneManager.GetSceneByName(sceneNames[mapNumber]);
+        Debug.Log(sceneNames[mapNumber] + " loaded?");
+        if (scene.IsValid())
+        {
+            foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
+            {
+                SceneManager.MoveGameObjectToScene(player, scene);
+            }
+
+            foreach (var rootGameObject in scene.GetRootGameObjects())
+            {
+                if (rootGameObject.CompareTag("GameController"))
+                {
+                    var rules = rootGameObject.GetComponent<GameModeHandler>().ruleSetting;
+                    rules.gameTime = 300;
+                    //Can edit the rules here.
+                    rootGameObject.GetComponent<GameModeHandler>().LoadGameSettings();
+                }
+            }
+            SceneManager.SetActiveScene(scene);
+        }
+    }
 }

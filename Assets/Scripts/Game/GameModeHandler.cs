@@ -19,9 +19,6 @@ public class GameModeHandler : MonoBehaviour
         public float respawnTimer = 3.0f;
         public float respawnThreshold = 100.0f;
         public int countdownStartTimer = 5;
-        public int spawnPointCount = 0;
-        public List<GameObject> playerCharacters = new List<GameObject>();
-        public List<GameObject> initialSpawn = new List<GameObject>();
     }
 
     public GameRuleSetting ruleSetting; //Edit This on Menu
@@ -194,13 +191,18 @@ public class GameModeHandler : MonoBehaviour
         respawnTimer = ruleSetting.respawnTimer;
         countdownStartTimer = ruleSetting.countdownStartTimer;
         gameMode = ruleSetting.gameMode;
-        foreach(var newPlayer in ruleSetting.playerCharacters)
+        currentGameTime = ruleSetting.gameTime + countdownStartTimer;
+        teams = new List<Team>();
+        players = new List<GameObject>();
+        foreach (var newPlayer in GameObject.FindGameObjectsWithTag("Player"))
         {
             players.Add(newPlayer);
             //TODO: Change the index to work
-            newPlayer.transform.position = ruleSetting.initialSpawn[0].transform.position;
-            newPlayer.transform.rotation = ruleSetting.initialSpawn[0].transform.rotation;
-            newPlayer.GetComponent<PlayerController>().enabled = false;
+            var spawnPoint = FindSpawnPoint();
+            newPlayer.transform.position = spawnPoint.transform.position;
+            newPlayer.transform.rotation = spawnPoint.transform.rotation;
+            var compRegistry = newPlayer.GetComponent<ComponentRegistry>();
+            compRegistry.playerCamera.enabled = true;
             while(teams.Count <= newPlayer.GetComponent<PlayerScoreInfo>().team) //FORBIDDEN WHILE LOOP, DONT USE WHILE
             {
                 teams.Add(new Team());
