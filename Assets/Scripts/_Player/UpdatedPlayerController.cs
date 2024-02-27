@@ -11,7 +11,7 @@ public class UpdatedPlayerController : MonoBehaviour
     public float sensX;
     public float sensY;
 
-    //Move Speed Values
+    [Header("Movement Speed Values")]
     private float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;
@@ -21,27 +21,30 @@ public class UpdatedPlayerController : MonoBehaviour
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
 
-    //Move Speed Scalars
+    [Header("Movement Speed Scalers")]
     public float speedMultiplier;
     public float speedIncreaseMultiplier;
     public float sloperIncreaseMultiplier;
 
-    //References
+    [Header("References")]
     Rigidbody rb;
     public Grappling grappling;
     public AnimationManager animControl;
     public Camera playerCam;
 
+    [Header("Player Height & Ground Settings")]
     public float playerHeight;
     public LayerMask groundMask;
     public bool isGrounded;
     public float groundDrag;
 
+    [Header("Crouch Settings")]
     public float crouchSpeed;
     public float crouchYScale;
     private float startYScale;
     public bool crouchPressed = false;
 
+    [Header("Jump Settings")]
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
@@ -52,10 +55,12 @@ public class UpdatedPlayerController : MonoBehaviour
     public bool chargingJump;
     public bool sprintPressed = false;
 
+    [Header("Slide Settings")]
     public float maxSlopeAngle;
     private RaycastHit slopeHit;
     bool exitingSlope;
 
+    [Header("Booleans")]
     public bool sliding;
     public bool dashing;
     public bool freeze;
@@ -71,6 +76,7 @@ public class UpdatedPlayerController : MonoBehaviour
     Vector3 movementDirection;
     Vector3 velocityToSet;
 
+    [Header("Rotation values")]
     float xRotation;
     float yRotation;
 
