@@ -176,11 +176,11 @@ public class AbilityManager2 : MonoBehaviour
         inventory.dd_spell_inventory[spellslot].current_state = ItemData.SpellState.COOLDOWN;
         StartCoroutine(SpellCD(inventory.dd_spell_inventory[spellslot].cooldown_duration, spellslot));
     }
-    private IEnumerator SetOnActive(float activeduration, int spellslot)
+/*    private IEnumerator SetOnActive(float activeduration, int S)
     {
         inventory.dd_spell_inventory[spellslot].current_state = ItemData.SpellState.ACTIVE;
         yield return new WaitForSeconds(activeduration);
          StartCoroutine(SpellCD(inventory.dd_spell_inventory[spellslot].cooldown_duration, spellslot));
 
-    }
+    }*/
 }
