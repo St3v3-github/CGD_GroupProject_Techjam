@@ -26366,12 +26366,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 4822170820165355300}
-  testing: 1
-  spellType: 1
-  fireSpell: {fileID: 11400000, guid: e8dc3605504d4fa47a4f53f54c47dc08, type: 2}
-  iceSpell: {fileID: 11400000, guid: 13c19894772117e449f1388b19bb708b, type: 2}
-  lightningSpell: {fileID: 11400000, guid: 86e631664ce22eb40ad2256047ff504c, type: 2}
-  windSpell: {fileID: 11400000, guid: 936255c6b740bbc448989eacd7a0bc25, type: 2}
   projectionPrefab: {fileID: 8198984963544093090, guid: ab0b8ce3ffd22ec4c94394e0087bf382, type: 3}
   playerCamera: {fileID: 1946129503111233968}
   projectionOn: 0
@@ -26389,12 +26383,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 4822170820165355300}
-  testing: 1
-  spellType: 1
-  fireSpell: {fileID: 11400000, guid: c642ba047fd141840a9b64ed0f181345, type: 2}
-  iceSpell: {fileID: 11400000, guid: 7e40e2c01d3eeb542a373612c41d0409, type: 2}
-  lightningSpell: {fileID: 11400000, guid: 48af22166e400984980b12f91b478dda, type: 2}
-  windSpell: {fileID: 11400000, guid: c50469bdf2356854b8df93982b6419a6, type: 2}
   summonPoint: {fileID: 108579657671345003}
 --- !u!114 &9198259862436971180
 MonoBehaviour:
@@ -26929,7 +26917,7 @@ MonoBehaviour:
     m_ActionName: Player/Sprint[/XInputControllerWindows/leftStickPress,/Keyboard/shift]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7487155259430018739}
         m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: 
         m_Mode: 0
@@ -26947,7 +26935,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7487155259430018739}
         m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: OnPrimaryCast
+        m_MethodName: OnSpellSlot1
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26957,29 +26945,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 35f20932-47d3-4ed1-9952-867131b1971a
-    m_ActionName: Player/AbilityCast[/Mouse/leftButton,/XInputControllerWindows/rightTrigger]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 6f6345cc-491b-4952-8d3f-1ea653f8b341
     m_ActionName: Player/Ability1[/Keyboard/1,/XInputControllerWindows/dpad/up]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a4fa6175-88a6-4314-847a-534b48f967f1
-    m_ActionName: Player/Ability2[/Keyboard/2,/XInputControllerWindows/dpad/right]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e94a143c-3f01-4e34-9060-271cc52ebac8
-    m_ActionName: Player/Ability3[/Keyboard/3,/XInputControllerWindows/dpad/down]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 75d4e658-3277-4ebc-9334-556326ccd989
-    m_ActionName: Player/Ability4[/Keyboard/4,/XInputControllerWindows/dpad/left]
-  - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7487155259430018739}
         m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: OnElement
+        m_MethodName: OnSpellSlot2
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26989,8 +26961,40 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 1b2dcaeb-60eb-4a73-86d7-c62d00078c38
-    m_ActionName: Player/Elements[/Keyboard/1,/Keyboard/2,/Keyboard/3,/Keyboard/4]
+    m_ActionId: a4fa6175-88a6-4314-847a-534b48f967f1
+    m_ActionName: Player/Ability2[/Keyboard/2,/XInputControllerWindows/dpad/right]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7487155259430018739}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnSpellSlot3
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e94a143c-3f01-4e34-9060-271cc52ebac8
+    m_ActionName: Player/Ability3[/Keyboard/3,/XInputControllerWindows/dpad/down]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7487155259430018739}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnSpellSlot4
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 75d4e658-3277-4ebc-9334-556326ccd989
+    m_ActionName: Player/Ability4[/Keyboard/4,/XInputControllerWindows/dpad/left]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7487155259430018739}
@@ -27007,10 +27011,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 989449cd-f2f9-443a-9e03-4454d2327598
     m_ActionName: Player/SpellTypes[/Keyboard/5,/Keyboard/6,/Keyboard/7,/Keyboard/8]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 03861f45-172b-4b5c-a41d-a0860f14af4b
-    m_ActionName: Player/Melee[/Keyboard/f]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7487155259430018739}
@@ -27059,22 +27059,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 553b58a1-2ff5-427c-a4bc-f58376c54122
     m_ActionName: Player/Crouch[/Keyboard/leftCtrl]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7487155259430018739}
-        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: OnAction
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: ed0f19c0-fdb6-4077-881d-803bac56bc4e
-    m_ActionName: Player/Action[/DualShock4GamepadHID/buttonEast,/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -27103,6 +27087,7 @@ MonoBehaviour:
   grappling: {fileID: 9055387862627763096}
   grappleSwing: {fileID: 3261859820062135994}
   ray: {fileID: 6956940518980718314}
+  spellManagerTemplate: {fileID: 0}
   cameraInput: {x: 0, y: 0}
   movementInput: {x: 0, y: 0}
   shootInput: 0
@@ -28526,7 +28511,7 @@ MonoBehaviour:
   _hurtDisplayTime: 1.5
   _hurtFadeOutTime: 0.5
   _fullScreenDamage: {fileID: 6792930231468119443, guid: 8c62ffbe594070c48840db33636ff486, type: 2}
-  _materialFire: {fileID: 2100000, guid: 30487f97d0b5b804aa4140627c6d13d3, type: 2}
+  _materialFire: {fileID: 0}
   _materialIce: {fileID: 2100000, guid: 4c0288a724becd843912dafff5e68a04, type: 2}
 --- !u!1 &5981440893950911817
 GameObject:

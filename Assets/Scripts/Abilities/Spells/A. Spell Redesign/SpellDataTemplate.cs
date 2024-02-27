@@ -7,8 +7,8 @@ using UnityEngine;
 public class SpellDataTemplate : ScriptableObject
 {
 
-    #region Spell Variables
-    [Header("Spell Variables")]
+    #region General Spell Variables
+    [Header("General Spell Variables")]
 
     //
     public GameObject prefab;
@@ -91,7 +91,9 @@ public class SpellDataTemplate : ScriptableObject
 
     //-----------------------------------------------------------------------------------------------
 
-    #region Projectile Data
+    #region Projetile Settings
+    [Header("Projectile Settings")]
+
     //element specific projectile goes here: (drag & drop in inspector)
     private ProjectileData projectile;
 
@@ -100,18 +102,20 @@ public class SpellDataTemplate : ScriptableObject
 
 
     #region Grenade Data
+    [Header("Grenade Settings")]
 
     #endregion
 
 
-    #region AOE Data
+    #region AOE Settings
+    [Header("AOE Settings")]
 
     #endregion
 
 
 
-    #region Ultimate Data
-
+    #region Ultimate Settings
+    [Header("Ultimate Settings")]
     public bool isUltimate = true;
 
     #endregion
