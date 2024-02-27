@@ -22,7 +22,7 @@ public class Beam : Spell
 
     void Start()
     {
-        SetTargetTag();
+       // SetTargetTag();
     }
 
     void Update()

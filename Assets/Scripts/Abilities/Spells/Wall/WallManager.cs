@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class WallManager : ElementalSpell
+public class WallManager : Spell
 {
     public float wallHeight = 3.0f; 
     public float wallSpawnTime = 3.0f; 
@@ -18,7 +18,7 @@ public class WallManager : ElementalSpell
     {
         if (Instance == null)
         {
-            SetStatus();
+         //   SetStatus();
             Instance = this;
         }
         else
@@ -31,10 +31,10 @@ public class WallManager : ElementalSpell
     {
         Vector3 targetPosition = new Vector3(position.x, position.y, position.z);
 
-        GameObject wall = Instantiate(spell.prefab, new Vector3(position.x, position.y, position.z), initialRotation);
+       /* GameObject wall = Instantiate(spell.prefab, new Vector3(position.x, position.y, position.z), initialRotation);
 
         StartCoroutine(MoveWallToPosition(wall, targetPosition, 1.0f));
-        StartCoroutine(DisappearWall(wall));
+        StartCoroutine(DisappearWall(wall));*/
     }
 
     private IEnumerator MoveWallToPosition(GameObject wall, Vector3 targetPosition, float duration)

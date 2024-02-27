@@ -23,13 +23,13 @@ public class AbilityManager2 : MonoBehaviour
     }
  
 
-    public int castSpell(int slot, InputAction.CallbackContext ctx)
+    public int castSpell(int slot)
     {
         int answer = 0;
         if (inventory.dd_spell_inventory[slot].current_state==ItemData.SpellState.READY)
         {
         //    Debug.Log("WE ARE IN THE CAST SPELL FUNCTION. CURRENT SLOT IS: " + slot);
-            switch(inventory.dd_spell_inventory[slot].ID) 
+            /*switch(inventory.dd_spell_inventory[slot].ID) 
             {
                 // FIRE CLASS
                 case ItemData.SpellList.FIREGRENADE:
@@ -154,7 +154,7 @@ public class AbilityManager2 : MonoBehaviour
                     inventory.dd_spell_inventory[slot].DecreaseCharges();
                     break;
 
-            }
+            }*/
             
         }
         else

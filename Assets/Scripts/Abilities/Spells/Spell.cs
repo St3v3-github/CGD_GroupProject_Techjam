@@ -7,7 +7,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Spell : MonoBehaviour
 {
-    protected SpellData spell;
+   // protected SpellData spell;
     protected float CooldownTimer;
     protected SpellState state;
     protected string targetTag;
@@ -75,7 +75,7 @@ public class Spell : MonoBehaviour
         return false;
     }
 
-    public void UpdateCooldown()
+  /*  public void UpdateCooldown()
     {
         if(state == SpellState.COOLDOWN)
         {
@@ -87,7 +87,7 @@ public class Spell : MonoBehaviour
                 CooldownTimer = 0;
             }
         }
-    }
+    }*/
 }
 
 

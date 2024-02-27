@@ -23,11 +23,11 @@ public class Grenade : Spell
 
     void OnTriggerEnter(Collider collision)
     {
-        if (dealDamage(collision.gameObject, DirectHitDamage))
+       /* if (dealDamage(collision.gameObject, DirectHitDamage))
         {
             Debug.Log("hit player: " + collision.name);
             
-        }
+        }*/
 
         GameObject effect = Instantiate(Prefab, transform.position, Quaternion.identity);
         effect.GetComponent<Spell>().source = source;

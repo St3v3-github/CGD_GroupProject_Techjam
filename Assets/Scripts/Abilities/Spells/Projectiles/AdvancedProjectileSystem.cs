@@ -210,7 +210,7 @@ public class AdvancedProjectileSystem : Spell
         if (Physics.Raycast(playerCam.transform.position, direction, out rayHit, equippedProjectile.range, hittable))
         {
             Debug.Log(rayHit.collider.gameObject.name);
-            dealDamage(rayHit.collider.gameObject, equippedProjectile.damage);
+           // dealDamage(rayHit.collider.gameObject, equippedProjectile.damage);
         }
 
         //ShakeCamera

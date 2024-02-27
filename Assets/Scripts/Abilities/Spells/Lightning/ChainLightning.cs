@@ -39,7 +39,7 @@ public class ChainLightning : Spell
         if (Physics.Raycast(playerCam.transform.position, direction, out rayHit, range, hittable))
         {
             // Intial hit
-            if(dealDamage(rayHit.collider.gameObject, damage))
+            /*if(dealDamage(rayHit.collider.gameObject, damage))
             {
                 Debug.Log("Hit");
                 playersHit.Add(rayHit.collider.gameObject);
@@ -54,7 +54,7 @@ public class ChainLightning : Spell
                     GameObject newPlayer = chain(lastPlayerHit);
 
                     //Bounced hit
-                    if (dealDamage(newPlayer, damage))
+                    *//*if (dealDamage(newPlayer, damage))
                     {
                         Debug.Log("Bounced and Hit");
                         lastPlayerHit = newPlayer;
@@ -62,9 +62,9 @@ public class ChainLightning : Spell
                         arc = Instantiate(prefab, transform.position, Quaternion.identity);
                         arc.GetComponent<LightningVisual>().setPoints(transform, lastPlayerHit.transform);
                         arcs.Add(arc);
-                    }
+                    }*//*
                 }
-            }
+            }*/
         }
     }
 
@@ -76,10 +76,10 @@ public class ChainLightning : Spell
 
         foreach (Collider collider in colliders)
         {
-            if (playerCheck(collider.gameObject))
+            /*if (playerCheck(collider.gameObject))
             {
                 players.Add(collider.gameObject);
-            }
+            }*/
         }
 
         GameObject closestPlayer = null;

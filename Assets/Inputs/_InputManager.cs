@@ -23,6 +23,9 @@ public class InputManager : MonoBehaviour
     public Grappling grappling;
     public GrappleSwing grappleSwing;
     public Raycast ray;
+
+    public SpellManagerTemplate spellManagerTemplate;
+
     private InventoryEdit inventory;
     private bool spell_is_held;
 
@@ -234,74 +237,37 @@ public class InputManager : MonoBehaviour
                 dashing.Dash();
             }
         }
-       
 
     }
 
-    public void OnSpellCast(InputAction.CallbackContext ctx)
+    public void OnSpellSlot1(InputAction.CallbackContext ctx)
     {
-        //animationController.disableEmote();
         animationController.toggleEmotingBool(false);
         if (ctx.action.triggered)
-        {
-            //Determining Spell Slot
-            InputControl actionInput = ctx.control;
-            string actionButton = actionInput.name;
-            int slotTarget = 0;
-            switch (actionButton)
-            {
-                case "1":
-                    slotTarget = 0;
-                    break;
-                case "2":
-                    slotTarget = 1;
-                    break;
-                case "3":
-                    slotTarget = 2;
-                    break;
-                case "4":
-                    slotTarget = 3;
-                    break;
-                case "leftTrigger":
-                    slotTarget = 0;
-                    break;
-                case "leftBumper":
-
-                    slotTarget = 1;
-                    break;
-                case "leftShoulder":
-
-                    slotTarget = 1;
-                    break;
-                case "rightTrigger":
-                    return;
-                    slotTarget = 2;
-                    break;
-                case "rightBumper":
-
-                    slotTarget = 3;
-                    break;
-                case "rightShoulder":
-
-                    slotTarget = 3;
-                    break;
-            }
-            // Set item to inventory if looking at a pickup.
-            if (ray.target != null && ray.target.GetComponent<ItemInfo>().GetItemData().type != ItemData.SpellType.EMPTY && SlotCheck(ray.target.GetComponent<ItemInfo>().GetItemData(), slotTarget))
-            {
-                ItemData unequipped = inventory.equipFromWorld(ray.target.GetComponent<ItemInfo>().GetItemData(), slotTarget);
-                ray.target.GetComponent<ItemScript>().Interact();
-            }
-            //Cast Spell from Abilitymanager in the selected slot.
-            else
-            {
-                GetComponent<AbilityManager2>().castSpell(slotTarget,ctx);
-                //updatedPlayerController.animControl.toggleCastingBool(true);
-            }
-            
-
-        }
+            spellManagerTemplate.Cast(0);
+    } 
+    
+    public void OnSpellSlot2(InputAction.CallbackContext ctx)
+    {
+        animationController.toggleEmotingBool(false);
+        if (ctx.action.triggered)
+            spellManagerTemplate.Cast(1);
     }
+    
+    public void OnSpellSlot3(InputAction.CallbackContext ctx)
+    {
+        animationController.toggleEmotingBool(false);
+        if (ctx.action.triggered)
+            spellManagerTemplate.Cast(2);
+    } 
+    
+    public void OnSpellSlot4(InputAction.CallbackContext ctx)
+    {
+        animationController.toggleEmotingBool(false);
+        if (ctx.action.triggered)
+            spellManagerTemplate.Cast(3);
+    }
+
 
     //Event Action added for emoting - Harry
     public void OnDance(InputAction.CallbackContext ctx)
@@ -330,21 +296,7 @@ public class InputManager : MonoBehaviour
         
     }
 
-    private bool SlotCheck(ItemData itemData, int slot)
-    {
-        if(slot == 2 && itemData.slot == ItemData.SlotType.BASIC)
-        {
-            return true;
-        }
-        else if(slot != 2 && itemData.slot != ItemData.SlotType.BASIC)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+    
 
     
 }

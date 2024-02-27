@@ -14,19 +14,6 @@ public class InventoryEdit : MonoBehaviour
     //public List<List<ItemData>> dd_spell_inventory = new();
     public List<ItemData> dd_spell_inventory = new List<ItemData>();
 
-    void Start()
-    {
-        //Dynamic init to avoid out of bounds
-        for (int j = 0; j < spell_slots; j++)
-        {
-            dd_spell_inventory.Add(ItemData.CreateInstance<ItemData>());
-        }
-        var clone = Instantiate(fireballforalpha);
-        dd_spell_inventory[2] = clone;
-    }
-
-   
-
     public ItemData equipFromWorld(ItemData item_to_equip, int slot)
     {
         //Temporary copy
@@ -35,7 +22,7 @@ public class InventoryEdit : MonoBehaviour
         if (dd_spell_inventory[slot].ID == item_to_equip.ID)
         {
             //Upgrade system ->
-            dd_spell_inventory[slot].uses_left += item_to_equip.uses_left;
+           // dd_spell_inventory[slot].uses_left += item_to_equip.uses_left;
             //Check if value is beyond certain thresholds?
             swapped_item = ItemData.CreateInstance<ItemData>();
             //return blank item data if upgrading to avoid duplication
@@ -59,7 +46,20 @@ public class InventoryEdit : MonoBehaviour
     /// <param name="slot">Target spell slot</param>
     /// <param name="duration">Time spent active before cooldown, useful for UI</param>
     /// <param name="cooldown">Time required before next use</param>
-    public void setActiveFor(int slot, float duration, float cooldown)
+    /// 
+
+
+
+
+
+    /// REVISIT THIS CODE AS IT'S REQUIRED FOR SPELL STATES
+    /// 
+
+
+///
+
+
+    /*public void setActiveFor(int slot, float duration, float cooldown)
     {
         dd_spell_inventory[slot].current_state = SpellState.ACTIVE;;
         StartCoroutine(setOnCooldownFor(slot,duration,cooldown));
@@ -90,5 +90,5 @@ public class InventoryEdit : MonoBehaviour
     {
         dd_spell_inventory[slot].current_state = SpellState.COOLDOWN;
 
-    }
+    }*/
 }

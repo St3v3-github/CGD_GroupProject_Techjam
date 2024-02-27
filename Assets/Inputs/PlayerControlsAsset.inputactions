@@ -51,16 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PrimaryCast",
-                    "type": "Button",
-                    "id": "35f20932-47d3-4ed1-9952-867131b1971a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Ability1",
+                    "name": "SpellSlot1",
                     "type": "Button",
                     "id": "6f6345cc-491b-4952-8d3f-1ea653f8b341",
                     "expectedControlType": "Button",
@@ -69,7 +60,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Ability2",
+                    "name": "SpellSlot2",
                     "type": "Button",
                     "id": "a4fa6175-88a6-4314-847a-534b48f967f1",
                     "expectedControlType": "Button",
@@ -78,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Ability3",
+                    "name": "SpellSlot3",
                     "type": "Button",
                     "id": "e94a143c-3f01-4e34-9060-271cc52ebac8",
                     "expectedControlType": "Button",
@@ -87,18 +78,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Ability4",
+                    "name": "SpellSlot4",
                     "type": "Button",
                     "id": "75d4e658-3277-4ebc-9334-556326ccd989",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Elements",
-                    "type": "Button",
-                    "id": "1b2dcaeb-60eb-4a73-86d7-c62d00078c38",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -112,15 +94,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Melee",
-                    "type": "Button",
-                    "id": "03861f45-172b-4b5c-a41d-a0860f14af4b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 },
                 {
                     "name": "Dance",
@@ -144,15 +117,6 @@
                     "name": "Crouch",
                     "type": "Button",
                     "id": "553b58a1-2ff5-427c-a4bc-f58376c54122",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Action",
-                    "type": "Button",
-                    "id": "ed0f19c0-fdb6-4077-881d-803bac56bc4e",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -404,45 +368,23 @@
                 },
                 {
                     "name": "",
-                    "id": "3c33da96-8ad5-4d40-89e2-33f32bce0f48",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PrimaryCast",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e46f7991-eb00-4055-8b93-f41cf882a35a",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PrimaryCast",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "aadf3f45-f56c-440d-a0e7-2c8e674cd8ba",
                     "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Ability1",
+                    "action": "SpellSlot1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "5310d1cf-66c6-44b3-9d4c-3a59d3501714",
-                    "path": "<Gamepad>/dpad/up",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Ability1",
+                    "action": "SpellSlot1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -453,18 +395,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Ability2",
+                    "action": "SpellSlot2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "561b0072-158a-41e8-bc7b-4fa632670252",
-                    "path": "<Gamepad>/dpad/right",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Ability2",
+                    "action": "SpellSlot2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -475,18 +417,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Ability3",
+                    "action": "SpellSlot3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "970de51b-3e1b-4070-9c57-63cd52d5a02c",
-                    "path": "<Gamepad>/dpad/down",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Ability3",
+                    "action": "SpellSlot3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "901741a6-1595-4031-b5ae-b8d89ff7dbac",
+                    "path": "<XInputController>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpellSlot3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -497,106 +450,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Ability4",
+                    "action": "SpellSlot4",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "fc276426-567c-4829-b2bf-7a65b915bf9f",
-                    "path": "<Gamepad>/dpad/left",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Ability4",
+                    "action": "SpellSlot4",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "32a480e7-8f9d-47d3-bc03-7d81d829915d",
-                    "path": "<Keyboard>/1",
+                    "id": "b8bb0a9c-44ad-46bc-aa44-6663b577f2a1",
+                    "path": "<XInputController>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Elements",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f3d8e769-dc31-4df4-8de1-35f2a763457d",
-                    "path": "<Keyboard>/2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Elements",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0214ae33-6bea-4617-a120-402f9b061101",
-                    "path": "<Keyboard>/3",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Elements",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "18c464b9-f095-4fe2-9dae-a20268d44669",
-                    "path": "<Keyboard>/4",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Elements",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "702cd400-d8fd-496f-9b39-5a3c5de9a08d",
-                    "path": "<Gamepad>/dpad/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Elements",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8932d835-d21c-43e3-a273-2c745cb11aa9",
-                    "path": "<Gamepad>/dpad/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Elements",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e376fa31-46bb-4dfe-82f3-e671db4ef825",
-                    "path": "<Gamepad>/dpad/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Elements",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6536ad9f-0bea-4144-9b4b-3a664d4771b9",
-                    "path": "<Gamepad>/dpad/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Elements",
+                    "action": "SpellSlot4",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -712,28 +588,6 @@
                 },
                 {
                     "name": "",
-                    "id": "196eaf22-f4a6-4084-97e3-d2a20eab4623",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Melee",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "83816187-947e-4680-b01c-cabcbfa15176",
-                    "path": "<Keyboard>/f",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Melee",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "2173384a-86aa-421e-a9f0-02292ec59acb",
                     "path": "<Keyboard>/u",
                     "interactions": "",
@@ -795,17 +649,6 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Crouch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8755875d-c0d2-486a-8848-909cd8a3f985",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

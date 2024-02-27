@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Summon : ElementalSpell
+public class Summon : Spell
 {
     public Transform summonPoint;
     private Vector3 verticalOffset = new Vector3(0f, 1.5f, 0f);
@@ -14,7 +14,7 @@ public class Summon : ElementalSpell
     {
         //setStatus();
 
-        SetTargetTag();
+       // SetTargetTag();
     }
 
     // Update is called once per frame
@@ -25,18 +25,18 @@ public class Summon : ElementalSpell
         {
             Cast();
         }
-        testingSwitch();
+        //testingSwitch();
     }
 
-    public override void Cast()
+  /*  public override void Cast()
     {
         Quaternion summonRoation = summonPoint.rotation;
         summonRoation.x = 0f;
         summonRoation.z = 0f;
-        GameObject summon = Instantiate(spell.prefab, summonPoint.position - verticalOffset /*- verticalOffset + Vector3.Scale(horizontalOffset, summonPoint.forward)*/, summonRoation);
+        GameObject summon = Instantiate(spell.prefab, summonPoint.position - verticalOffset *//*- verticalOffset + Vector3.Scale(horizontalOffset, summonPoint.forward)*//*, summonRoation);
         summon.GetComponent<SummonedAnimal>().source = source;
         summon.GetComponent<SummonedAnimal>().SetSpellData(spell);
         //summon.tag = this.tag + "Spell";
         AudioManager.instance.PlayOneShot(FMODEvents.instance.stagSound, this.transform.position);
-    }
+    }*/
 }

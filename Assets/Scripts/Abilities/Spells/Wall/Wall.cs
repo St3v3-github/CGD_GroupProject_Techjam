@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class Wall : ElementalSpell
+public class Wall : Spell
 {
     public GameObject holographicPrefab;
     public GameObject holographic;
@@ -13,7 +13,7 @@ public class Wall : ElementalSpell
     public Camera playerCamera;
     void Start()
     {
-        SetStatus();
+    //    SetStatus();
 
        /* if (spell.prefab == null)
         {
@@ -28,7 +28,7 @@ public class Wall : ElementalSpell
     void Update()
     {
 
-        SetStatus();
+       // SetStatus();
        
         if (isPlacingWall)
         {

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CastableAOEStrike : ElementalSpell
+public class CastableAOEStrike : Spell
 {
 
     public GameObject projectionPrefab;
@@ -17,10 +17,10 @@ public class CastableAOEStrike : ElementalSpell
     // Start is called before the first frame update
     void Start()
     {
-        SetStatus();
+    //    SetStatus();
         
 
-        SetTargetTag();
+     //   SetTargetTag();
        // source = gameObject;
 
     }
@@ -29,7 +29,7 @@ public class CastableAOEStrike : ElementalSpell
     // Update is called once per frame
     void Update()
     {
-        testingSwitch();
+      //  testingSwitch();
 
         if (!projectionOn)
         {
@@ -97,14 +97,14 @@ public class CastableAOEStrike : ElementalSpell
 
     public void InstantiateStrike(Vector3 centre)
     {
-        GameObject strike = Instantiate(spell.prefab, centre + Vector3.up * 0.5f, playerCamera.transform.rotation);
-        StartCoroutine(timerCoroutine(strike));
+       /* GameObject strike = Instantiate(spell.prefab, centre + Vector3.up * 0.5f, playerCamera.transform.rotation);
+        StartCoroutine(timerCoroutine(strike));*/
 //        AudioManager.instance.PlayOneShot(FMODEvents.instance.thunderSound, this.transform.position);
     }
 
     public void DetectCharacters(Vector3 centre, string targetTag)
     {
-        Collider[] colliders = Physics.OverlapSphere(centre, spell.radius);
+        /*Collider[] colliders = Physics.OverlapSphere(centre, spell.radius);
         List<GameObject> players = new List<GameObject>();
 
         foreach (Collider collider in colliders)
@@ -114,10 +114,10 @@ public class CastableAOEStrike : ElementalSpell
             {
                 players.Add(collider.gameObject);
             }
-        }
+        }*/
        
 
-        foreach (var player in players)
+      /*  foreach (var player in players)
         {
             float distance = Vector3.Distance(centre, player.transform.position);
 
@@ -130,7 +130,7 @@ public class CastableAOEStrike : ElementalSpell
             adjustedDamage = Mathf.Max(0, adjustedDamage);
             Debug.Log("damage calculated");
             DealDamage(player, adjustedDamage,true);
-        }
+        }*/
     }
 
     public Vector3 GetMouseWorldPosition()

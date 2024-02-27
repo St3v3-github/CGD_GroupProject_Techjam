@@ -34,7 +34,7 @@ public class Boop : Spell
         foreach (Collider c in hitColliders)
         {
             GameObject player = c.gameObject;
-            dealDamage(player, DirectHitDamage);
+           // dealDamage(player, DirectHitDamage);
             Rigidbody rb = player.GetComponent<Rigidbody>();
             if (rb != null)
             {

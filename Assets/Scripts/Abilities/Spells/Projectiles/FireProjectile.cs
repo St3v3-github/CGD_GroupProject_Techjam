@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Burst.Intrinsics;
 using UnityEngine;
 
-public class FireProjectile : ElementalSpell
+public class FireProjectile : Spell
 {
     public Transform firePoint;
     private Vector3 verticalOffset = new Vector3(0f, 0.5f, 0f);
@@ -16,7 +16,7 @@ public class FireProjectile : ElementalSpell
     private void Start()
     {
         //setStatus();
-        SetTargetTag();
+        //SetTargetTag();
     }
 
     /*public override void setPrefab(spellEnum statusInput)
@@ -52,9 +52,9 @@ public class FireProjectile : ElementalSpell
         }
     }*/
 
-    void Update()
+   /* void Update()
     {
-        SetStatus();
+       // SetStatus();
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -77,5 +77,5 @@ public class FireProjectile : ElementalSpell
             rb.AddForce(firePoint.forward * projectileForce, ForceMode.Impulse);
             
         }
-    }
+    }*/
 }
