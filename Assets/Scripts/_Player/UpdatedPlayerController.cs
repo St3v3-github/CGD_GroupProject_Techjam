@@ -276,11 +276,23 @@ public class UpdatedPlayerController : MonoBehaviour
 
         else if (isGrounded)
         {
-            rb.AddForce(movementDirection.normalized * moveSpeed * speedMultiplier * 10f, ForceMode.Force);
+            if(movementInput.y > 0)
+            {
+                rb.AddForce(movementDirection.normalized * moveSpeed * speedMultiplier * 20f, ForceMode.Force);
+            }
+            else if(movementInput.x != 0)
+            {
+                rb.AddForce(movementDirection.normalized * moveSpeed * speedMultiplier * 15f, ForceMode.Force);
+            }
+            else
+            {
+                rb.AddForce(movementDirection.normalized * moveSpeed * speedMultiplier * 10f, ForceMode.Force);
+            }
+            
         }
         else if (!isGrounded)
         {
-            rb.AddForce(movementDirection.normalized * moveSpeed * 10f * speedMultiplier * airMultiplier, ForceMode.Force);
+            rb.AddForce(movementDirection.normalized * moveSpeed * speedMultiplier * 10f * airMultiplier, ForceMode.Force);
         }
 
         rb.useGravity = !OnSlope();

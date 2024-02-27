@@ -10312,7 +10312,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae72b51b08646dc46a5e2f98ebb26946, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraPosition: {fileID: 1592251245567519170}
+  FirstPersonPosition: {fileID: 0}
+  ThirdPersonPosition: {fileID: 0}
+  isThirdPerson: 0
 --- !u!1 &2498756427548121891
 GameObject:
   m_ObjectHideFlags: 0
@@ -27199,8 +27201,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensX: 150
   sensY: 150
-  walkSpeed: 7
-  sprintSpeed: 10
+  walkSpeed: 10
+  sprintSpeed: 13
   slideSpeed: 30
   dashSpeed: 100
   swingSpeed: 15
@@ -27219,11 +27221,11 @@ MonoBehaviour:
   crouchSpeed: 32
   crouchYScale: 0.5
   crouchPressed: 0
-  jumpForce: 10
+  jumpForce: 90
   jumpCooldown: 1.5
-  airMultiplier: 0.3
-  jumpForceMultiplier: 2
-  maxJumpForce: 15
+  airMultiplier: 0.01
+  jumpForceMultiplier: 10
+  maxJumpForce: 120
   readyToJump: 0
   chargingJump: 0
   sprintPressed: 0
@@ -27262,7 +27264,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4822170820165355300}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -27294,7 +27296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCam: {fileID: 7241906957195377663}
-  dashForce: 20
+  dashForce: 100
   dashUpwardForce: 0
   dashDuration: 0.25
   dashCooldown: 1.5
@@ -27313,7 +27315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canUseJetPack: 0
   usingJetpack: 0
-  jetPackThrust: 0.1
+  jetPackThrust: 1.325
   currentFill: 0
   maxFill: 3
   lastTimeOfUse: 0
