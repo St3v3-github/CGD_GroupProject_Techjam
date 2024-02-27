@@ -17,8 +17,6 @@ public class SpellDataTemplate : ScriptableObject
     //Sprite for UI
     public Sprite Icon;
 
-    public bool isUltimate = true;
-
     public float damageValue;
 
     public bool isReadyState;
@@ -96,23 +94,25 @@ public class SpellDataTemplate : ScriptableObject
     #region Projectile Data
     //element specific projectile goes here: (drag & drop in inspector)
     private ProjectileData projectile;
-    
+
 
     #endregion
 
 
     #region Grenade Data
-    
+
     #endregion
 
 
     #region AOE Data
-   
+
     #endregion
 
 
 
     #region Ultimate Data
+
+    public bool isUltimate = true;
 
     #endregion
 
