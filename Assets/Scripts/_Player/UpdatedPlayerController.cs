@@ -14,6 +14,7 @@ public class UpdatedPlayerController : MonoBehaviour
     //Move Speed Values
     private float moveSpeed;
     public float walkSpeed;
+    public float crouchSpeed;
     public float sprintSpeed;
     public float slideSpeed;
     public float dashSpeed;
@@ -32,12 +33,11 @@ public class UpdatedPlayerController : MonoBehaviour
     public AnimationManager animControl;
     public Camera playerCam;
 
-    public float playerHeight;
+    private float playerHeight = 2;
     public LayerMask groundMask;
     public bool isGrounded;
     public float groundDrag;
 
-    public float crouchSpeed;
     public float crouchYScale;
     private float startYScale;
     public bool crouchPressed = false;
