@@ -30,34 +30,18 @@ public class CharSetup : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        if(updateAfterDestroy)
+        if (updateAfterDestroy)
         {
-            foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
+            updateAfterDestroy = false;
+            foreach (var player in GameObject.FindObjectsOfType<ComponentRegistry>(true))
             {
-                var componentRegistry = player.GetComponent<ComponentRegistry>();
-                if (componentRegistry.playerInput.playerIndex != -1)
+                if(player.gameObject.activeSelf == false)
                 {
-                    players[componentRegistry.playerInput.playerIndex] = player;
-                    UnityEngine.Debug.Log("Player Index: " + componentRegistry.playerInput.playerIndex.ToString());
-                    componentRegistries[componentRegistry.playerInput.playerIndex] = componentRegistry;
-
-                    componentRegistry.inputManager.enabled = false;
-                    componentRegistry.advancedProjectileSystem.enabled = false;
-                    componentRegistry.playerCamera.enabled = false;
-                    componentRegistry.rigidBody.MovePosition(characterPositions[componentRegistry.playerInput.playerIndex].transform.position);
-                    toJoinDisplays[componentRegistry.playerInput.playerIndex].SetActive(false);
-                    playerSetupMenus[componentRegistry.playerInput.playerIndex].SetActive(true);
-                }
-
-                if(componentRegistry.playerInput.devices.Count == 0)
-                {
-                    Destroy(player);
-                    updateAfterDestroy = true;
+                    Destroy(player.gameObject);
                 }
             }
-            updateAfterDestroy = false;
         }
     }
 
@@ -76,6 +60,7 @@ public class CharSetup : MonoBehaviour
                 componentRegistry.inputManager.enabled = false;
                 componentRegistry.advancedProjectileSystem.enabled = false;
                 componentRegistry.playerCamera.enabled = false;
+                componentRegistry.playerController.enabled = false;
                 componentRegistry.rigidBody.MovePosition(characterPositions[componentRegistry.playerInput.playerIndex].transform.position);
                 toJoinDisplays[componentRegistry.playerInput.playerIndex].SetActive(false);
                 playerSetupMenus[componentRegistry.playerInput.playerIndex].SetActive(true);
@@ -84,35 +69,20 @@ public class CharSetup : MonoBehaviour
         UnityEngine.Debug.Log("New player is being added...");
     }
 
-    public int FindSpace()
-    {
-        /*
-        for (int i = 0; i < maxPlayers; i++)
-        {
-            if (!spaceTaken[i])
-            {
-                spaceTaken[i] = true;
-                return i;
-            }
-        }*/
-        return 0;
-        
-    }
-
     public void NextClass(int index)
     {
         if (componentRegistries[index] != null && players[index] != null)
         {
-            var playerDevice = componentRegistries[index].playerInput.devices;
+            var playerDevice = componentRegistries[index].playerInput.devices.FirstOrDefault<InputDevice>();
             var playerControlScheme = componentRegistries[index].playerInput.currentControlScheme;
             playerClassID[index]++;
             if (playerClassID[index] == playerClassRotation.Count())
             {
                 playerClassID[index] = 0;
             }
-            Destroy(players[index]);
+            players[index].SetActive(false);
             UnityEngine.Debug.Log("Player " + index.ToString() + " is cycling class...");
-            PlayerInput.Instantiate(playerClassRotation[playerClassID[index]], index, playerControlScheme, index, playerDevice[0]);
+            PlayerInput.Instantiate(playerClassRotation[playerClassID[index]], index, playerControlScheme, index, playerDevice);
             updateAfterDestroy = true;
         }
     }
