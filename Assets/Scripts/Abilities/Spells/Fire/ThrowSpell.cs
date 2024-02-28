@@ -22,14 +22,14 @@ public class ThrowSpell : Spell
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.V))
+       /* if (Input.GetKeyDown(KeyCode.V))
         {
             Cast();
             //AudioManager.instance.PlayOneShot(FMODEvents.instance.zapSound, this.transform.position);
-        }
+        }*/
     }
 
-    public override void Cast()
+    /*public override void Cast()
     {
         Debug.Log("Throw");
         GameObject projectile = Instantiate(prefab, firePoint.position, playerCam.rotation);
@@ -44,5 +44,5 @@ public class ThrowSpell : Spell
             rb.AddForce(playerCam.forward * projectileForce, ForceMode.Impulse);
             
         }
-    }
+    }*/
 }

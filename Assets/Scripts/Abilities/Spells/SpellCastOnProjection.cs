@@ -78,7 +78,7 @@ public class SpellCastOnProjection : Spell
         Destroy(projection);
     }
 
-    public override void Cast()
+   /* public override void Cast()
     {
         projectionOn = false;
         Destroy(projection);
@@ -87,7 +87,7 @@ public class SpellCastOnProjection : Spell
         InstantiateSpell(projection.transform.position);
 
         
-    }
+    }*/
 
     public void InstantiateSpell(Vector3 centre)
     {

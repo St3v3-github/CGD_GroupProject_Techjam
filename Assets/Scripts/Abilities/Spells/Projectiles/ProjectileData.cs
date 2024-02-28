@@ -25,7 +25,7 @@ public class ProjectileData : ScriptableObject
     public StatusEffect_Data statusEffect;
 
     //Projectile Sound Effects
-    public spellEnum Type;
+  
 
     public StatusEffect_Data GetStatusEffect_Data()
     {

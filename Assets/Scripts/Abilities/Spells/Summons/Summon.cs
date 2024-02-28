@@ -21,10 +21,10 @@ public class Summon : Spell
     void Update()
     {
         //setStatus();
-        if (Input.GetKeyDown(KeyCode.T))
+        /*if (Input.GetKeyDown(KeyCode.T))
         {
             Cast();
-        }
+        }*/
         //testingSwitch();
     }
 

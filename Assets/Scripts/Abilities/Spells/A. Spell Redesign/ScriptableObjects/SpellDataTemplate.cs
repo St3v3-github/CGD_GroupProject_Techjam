@@ -37,6 +37,7 @@ public class SpellDataTemplate : ScriptableObject
         ACTIVE,
         COOLDOWN
     }
+    public bool changingState = false;
 
     public SpellState currentState = SpellState.READY;
 

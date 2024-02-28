@@ -25,7 +25,7 @@ public class Boop : Spell
         //Visualise.DisplayBox(gameObject.transform.position, transform.localScale / 2, Quaternion.identity);
     }
 
-    public override void Cast()
+    /*public override void Cast()
     {
         GameObject boop = Instantiate(BoopPrefab, transform.position, playerCam.rotation, transform);
         Destroy(boop, 1f);
@@ -44,6 +44,6 @@ public class Boop : Spell
             }
 
         }
-    }
+    }*/
 }
 

@@ -15,12 +15,17 @@ public class InputManager : MonoBehaviour
     public SpellManagerTemplate spellManagerTemplate;
     private bool spell_is_held;
 
-    [Header("Movement/Camera")] 
+    [Header("Movement/Camera")]
     public Vector2 cameraInput;
-    public Vector2 movementInput = new Vector2(0,0);
+    public Vector2 movementInput = new Vector2(0, 0);
 
     [Header("Shooting")]
     public bool shootInput;
+    private bool firingSlot1;
+    private bool firingSlot2;
+    private bool firingSlot3;
+    private bool firingSlot4;
+
 
     [Header("Wizard Element")]
     public WizardType Element;
@@ -37,6 +42,26 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
+        if (firingSlot1)
+        {
+            spellManagerTemplate.Cast(0);
+        }
+
+        if (firingSlot2)
+        {
+            spellManagerTemplate.Cast(1);
+        }
+
+
+        if (firingSlot3)
+        {
+            spellManagerTemplate.Cast(2);
+        }
+
+        if (firingSlot4)
+        {
+            spellManagerTemplate.Cast(3);
+        }
 
         componentRegistry.playerController.HandleMovement(movementInput);
         componentRegistry.playerController.HandleCamera(cameraInput);
@@ -44,7 +69,7 @@ public class InputManager : MonoBehaviour
         componentRegistry.sliding.AssignValues(movementInput);
     }
 
-    
+
 
     public void OnLook(InputAction.CallbackContext ctx)
     {
@@ -61,7 +86,20 @@ public class InputManager : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext ctx)
     {
-        if(Element == WizardType.fire || Element == WizardType.ice || Element == WizardType.plant || Element == WizardType.electric) 
+        if (Element == WizardType.fire || Element == WizardType.ice || Element == WizardType.plant || Element == WizardType.electric)
+        {
+            if (ctx.action.triggered && componentRegistry.playerController.isGrounded && componentRegistry.playerController.readyToJump)
+            {
+                //animationController.disableEmote();
+                //animationController.toggleEmotingBool(false);
+                //playerController.HandleJump();
+
+                componentRegistry.playerController.HandleJump();
+            }
+        }
+
+
+        if (Element == WizardType.wind)
         {
             if (ctx.action.triggered && componentRegistry.playerController.isGrounded && componentRegistry.playerController.readyToJump)
             {
@@ -73,38 +111,23 @@ public class InputManager : MonoBehaviour
 
                 componentRegistry.playerController.HandleJump();
             }
-        }
-        
-
-        if(Element == WizardType.wind)
-        {
-            if (ctx.action.triggered && componentRegistry.playerController.isGrounded && componentRegistry.playerController.readyToJump)
-            {
-                //animationController.disableEmote();
-                //animationController.toggleEmotingBool(false);
-                //playerController.HandleJump();
-
-
-
-                componentRegistry.playerController.HandleJump();
-            }
-            else if(ctx.action.triggered && !componentRegistry.playerController.hasDoubleJumped)
+            else if (ctx.action.triggered && !componentRegistry.playerController.hasDoubleJumped)
             {
                 componentRegistry.playerController.HandleJump();
             }
         }
 
-        
 
-        if(Element == WizardType.earth)
+
+        if (Element == WizardType.earth)
         {
-            if(ctx.performed && componentRegistry.playerController.isGrounded && componentRegistry.playerController.readyToJump)
+            if (ctx.performed && componentRegistry.playerController.isGrounded && componentRegistry.playerController.readyToJump)
             {
                 componentRegistry.playerController.chargingJump = true;
                 Debug.Log(componentRegistry.playerController.chargingJump);
             }
 
-            if(ctx.canceled && componentRegistry.playerController.isGrounded && componentRegistry.playerController.readyToJump)
+            if (ctx.canceled && componentRegistry.playerController.isGrounded && componentRegistry.playerController.readyToJump)
             {
                 componentRegistry.playerController.chargingJump = false;
                 componentRegistry.playerController.HandleJump();
@@ -130,7 +153,7 @@ public class InputManager : MonoBehaviour
 
     public void OnAction(InputAction.CallbackContext ctx)
     {
-        if(Element == WizardType.earth)
+        if (Element == WizardType.earth)
         {
             if (ctx.action.triggered)
             {
@@ -161,8 +184,8 @@ public class InputManager : MonoBehaviour
                 componentRegistry.sliding.EndSlide();
             }
         }
-        
-        if(Element == WizardType.plant)
+
+        if (Element == WizardType.plant)
         {
             if (ctx.performed)
             {
@@ -175,7 +198,7 @@ public class InputManager : MonoBehaviour
             }
         }
 
-        if(Element == WizardType.electric)
+        if (Element == WizardType.electric)
         {
             if (ctx.action.triggered)
             {
@@ -188,29 +211,65 @@ public class InputManager : MonoBehaviour
     public void OnSpellSlot1(InputAction.CallbackContext ctx)
     {
         componentRegistry.animationManager.toggleEmotingBool(false);
+
         if (ctx.action.triggered)
-            spellManagerTemplate.Cast(0);
-    } 
-    
+        {
+            firingSlot1 = true;
+        }
+
+        else if (ctx.action.WasReleasedThisFrame())
+        {
+            firingSlot1 = false;
+        }
+
+    }
+
     public void OnSpellSlot2(InputAction.CallbackContext ctx)
     {
         componentRegistry.animationManager.toggleEmotingBool(false);
+
         if (ctx.action.triggered)
-            spellManagerTemplate.Cast(1);
+        {
+            firingSlot2 = true;
+        }
+
+        else if (ctx.action.WasReleasedThisFrame())
+        {
+            firingSlot2 = false;
+        }
+
     }
-    
+
     public void OnSpellSlot3(InputAction.CallbackContext ctx)
     {
         componentRegistry.animationManager.toggleEmotingBool(false);
+
         if (ctx.action.triggered)
-            spellManagerTemplate.Cast(2);
-    } 
-    
+        {
+            firingSlot3 = true;
+        }
+
+        else if (ctx.action.WasReleasedThisFrame())
+        {
+            firingSlot3 = false;
+        }
+
+    }
+
     public void OnSpellSlot4(InputAction.CallbackContext ctx)
     {
         componentRegistry.animationManager.toggleEmotingBool(false);
+
         if (ctx.action.triggered)
-            spellManagerTemplate.Cast(3);
+        {
+            firingSlot4 = true;
+        }
+
+        else if (ctx.action.WasReleasedThisFrame())
+        {
+            firingSlot4 = false;
+        }
+
     }
 
 
@@ -238,12 +297,9 @@ public class InputManager : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext ctx)
     {
-        
+
     }
 
-    
-
-    
 }
 
 
