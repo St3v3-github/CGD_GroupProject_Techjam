@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 5d133deeaa66ed445853e946ff25e073, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43723655, g: 0.48498803, b: 0.5652567, a: 1}
+  m_IndirectSpecularColor: {r: 0.5015748, g: 0.27015787, b: 0.21001217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7817,63 +7817,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4724850145814070, guid: 3c544eee478f9ca47b7a7e2645103261, type: 3}
   m_PrefabInstance: {fileID: 251410991}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &210815769
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1656147746}
-    m_Modifications:
-    - target: {fileID: 1520931703748784, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
-      propertyPath: m_Name
-      value: SM_Env_BackgroundCards_Preset_01
-      objectReference: {fileID: 0}
-    - target: {fileID: 4431005849754184, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -33.874718
-      objectReference: {fileID: 0}
-    - target: {fileID: 4431005849754184, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4431005849754184, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 24.657408
-      objectReference: {fileID: 0}
-    - target: {fileID: 4431005849754184, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4431005849754184, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4431005849754184, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4431005849754184, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4431005849754184, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4431005849754184, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4431005849754184, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
 --- !u!4 &210871016 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 410682, guid: df22dae66d96c2944adb65e1661878de, type: 3}
@@ -21078,11 +21021,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 8.107592, y: 0.37784535, z: 8.329295}
   m_Center: {x: -0.00000047683716, y: 0.18892267, z: -0.0000023841858}
---- !u!4 &578530057 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4431005849754184, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
-  m_PrefabInstance: {fileID: 210815769}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &580234359
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37981,6 +37919,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f359f0a6d1fd7dd4790bf050f1bb5c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  players: []
+  playerRegistries: []
+  spawnPoints: []
+  spawnFlag: []
+  spawnPointDistances: []
+  currentGameTime: 0
+  countdownStartTimer: 0
+  respawnThreshold: 0
+  respawnTimer: 0
 --- !u!114 &1068764246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58618,7 +58565,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 578530057}
   - {fileID: 1389229237}
   - {fileID: 967757997}
   - {fileID: 1387271903}

@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 85cf0b004bc4a654b9e501efcce47902, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43975514, g: 0.48817998, b: 0.5683994, a: 1}
+  m_IndirectSpecularColor: {r: 0.67433286, g: 0.77783763, b: 0.78887975, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -9759,8 +9759,7 @@ Transform:
   m_LocalPosition: {x: -29.896673, y: -6.4451437, z: -39.307873}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 735638132}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &244268037
@@ -37508,6 +37507,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f359f0a6d1fd7dd4790bf050f1bb5c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  players: []
+  playerRegistries: []
+  spawnPoints: []
+  spawnFlag: []
+  spawnPointDistances: []
+  currentGameTime: 0
+  countdownStartTimer: 0
+  respawnThreshold: 0
+  respawnTimer: 0
 --- !u!1001 &1095850220
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -73286,3 +73294,4 @@ SceneRoots:
   - {fileID: 957171892}
   - {fileID: 402939564420128378}
   - {fileID: 1175103827}
+  - {fileID: 243059662}
