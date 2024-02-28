@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameModeHandler : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class GameModeHandler : MonoBehaviour
     {
         public int team_kills = 0;
         public int team_deaths = 0;
-        public int score = 0;
+        public int score = 0; 
     }
 
     public class GameRuleSetting
@@ -19,22 +20,22 @@ public class GameModeHandler : MonoBehaviour
         public float respawnTimer = 3.0f;
         public float respawnThreshold = 100.0f;
         public int countdownStartTimer = 5;
-        public int spawnPointCount = 0;
-        public List<GameObject> playerCharacters = new List<GameObject>();
-        public List<GameObject> initialSpawn = new List<GameObject>();
     }
 
-    public GameRuleSetting ruleSetting; //Edit This on Menu
+    public GameRuleSetting ruleSetting = new GameRuleSetting(); //Edit This on Menu
     int gameMode = 0;
     List<Team> teams;
-    List<GameObject> players;
-    List<GameObject> spawnPoints;
-    List<GameObject> spawnFlag;
-    List<float> spawnPointDistances;
-    private float currentGameTime;
-    private int countdownStartTimer;
-    float respawnThreshold;
-    float respawnTimer;
+
+    [SerializeField] List<GameObject> players;
+    [SerializeField] List<ComponentRegistry> playerRegistries;
+    [SerializeField] List<GameObject> spawnPoints;
+    [SerializeField] List<GameObject> spawnFlag;
+    [SerializeField] List<float> spawnPointDistances;
+    [SerializeField] float currentGameTime;
+    [SerializeField] int countdownStartTimer;
+    [SerializeField] float respawnThreshold;
+    [SerializeField] float respawnTimer;
+    //[SerializeField] GameObject playerManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,15 +57,42 @@ public class GameModeHandler : MonoBehaviour
             spawnPointDistances.Add(float.MaxValue);
         }
 
+        //playerManager = GameObject.FindGameObjectWithTag("PlayerManager");
+        
         //LoadGameSettings();
     }
 
     // Update is called once per frame
     void Update()
     {
+        for(int i = 0; i < players.Count;i++)
+        {
+            var attributeComp = playerRegistries[i].attributeManager;
+            if (!attributeComp.dead && attributeComp.currentHealth <= 0)
+            {
+                attributeComp.dead = true;
+                attributeComp.currentHealth = 0;
+                attributeComp.healthbar.value = 0;
+                playerRegistries[i].animationManager.toggleDeadBool(true);
+                playerRegistries[i].playerController.enabled = false;
+                var deadScoreInfo = players[i].GetComponent<PlayerScoreInfo>();
+                var killerScoreInfo = deadScoreInfo.lastDamagedBy.GetComponent<PlayerScoreInfo>();
+                killerScoreInfo.kill_count++;
+                teams[killerScoreInfo.team].team_kills++;
+                deadScoreInfo.death_count++;
+                teams[deadScoreInfo.team].team_deaths++;
+                if (gameMode == 0)
+                {
+                    teams[killerScoreInfo.team].score++;
+                }
+
+                StartCoroutine(reincarnatePlayer(players[i], FindSpawnPoint()));
+            }
+        }
+        /*
         foreach(var prayer in players)
         {
-            AttributeManager keepHoldOfComp = prayer.GetComponent<AttributeManager>();
+            var keepHoldOfComp = prayer.GetComponent<ComponentRegistry>().attributeManager;
             if (!keepHoldOfComp.dead && keepHoldOfComp.currentHealth <= 0)
             {
                 keepHoldOfComp.dead = true;
@@ -87,6 +115,7 @@ public class GameModeHandler : MonoBehaviour
                 StartCoroutine(reincarnatePlayer(prayer, FindSpawnPoint()));
             }
         }
+        */
 
         currentGameTime -= Time.deltaTime;
         if(currentGameTime < 0)
@@ -194,23 +223,31 @@ public class GameModeHandler : MonoBehaviour
         respawnTimer = ruleSetting.respawnTimer;
         countdownStartTimer = ruleSetting.countdownStartTimer;
         gameMode = ruleSetting.gameMode;
-        foreach(var newPlayer in ruleSetting.playerCharacters)
+        currentGameTime = ruleSetting.gameTime + countdownStartTimer;
+        teams = new List<Team>();
+        players = new List<GameObject>();
+        playerRegistries = new List<ComponentRegistry>();
+        foreach (var newPlayer in GameObject.FindGameObjectsWithTag("Player"))
         {
             players.Add(newPlayer);
             //TODO: Change the index to work
-            newPlayer.transform.position = ruleSetting.initialSpawn[0].transform.position;
-            newPlayer.transform.rotation = ruleSetting.initialSpawn[0].transform.rotation;
-            newPlayer.GetComponent<PlayerController>().enabled = false;
+            var spawnPoint = FindSpawnPoint();
+            newPlayer.transform.position = spawnPoint.transform.position;
+            newPlayer.transform.rotation = spawnPoint.transform.rotation;
+            var compRegistry = newPlayer.GetComponent<ComponentRegistry>();
+            compRegistry.playerCamera.enabled = true;
+            playerRegistries.Add(compRegistry);
             while(teams.Count <= newPlayer.GetComponent<PlayerScoreInfo>().team) //FORBIDDEN WHILE LOOP, DONT USE WHILE
             {
                 teams.Add(new Team());
             }
         }
-        StartCoroutine(StartCountdownTimer());
-        foreach (var newPlayer in players)
+        for(int i = 0; i < players.Count; i++)
         {
-            newPlayer.GetComponent<PlayerController>().enabled = true;
+            //TODO: Calculations
+            //playerRegistries[i].playerCamera.rect.Set(0.0f, 0.0f, 1.0f, 1.0f);
         }
+        StartCoroutine(StartCountdownTimer());
     }
 
     public IEnumerator StartCountdownTimer()
@@ -219,6 +256,18 @@ public class GameModeHandler : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             //TODO: Update UI visuals
+        }
+        CountDownEnd();
+    }
+
+    public void CountDownEnd()
+    {
+        foreach(var player in players)
+        {
+            var componentRegistry = player.GetComponent<ComponentRegistry>();
+            componentRegistry.inputManager.enabled = true;
+            componentRegistry.advancedProjectileSystem.enabled = true;
+            componentRegistry.playerController.enabled = true;
         }
     }
 }

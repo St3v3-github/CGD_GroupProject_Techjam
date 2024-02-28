@@ -11,22 +11,7 @@ public class InputManager : MonoBehaviour
 {
 
     [Header("References")]
-    private PlayerControlsAsset playercontrols;
-    public AdvancedProjectileSystem advancedProjectileSystem;
-    public UpdatedPlayerController updatedPlayerController;
-    public Sliding sliding;
-    public Dashing dashing;
-    public JetPack jetPack;
-    public UpdatedCameraController cameraController;
-    public AdvancedProjectileSystem projectileController;
-    public AnimationManager animationController;
-    public Grappling grappling;
-    public GrappleSwing grappleSwing;
-    public Raycast ray;
-
-    public SpellManagerTemplate spellManagerTemplate;
-
-    private InventoryEdit inventory;
+    public ComponentRegistry componentRegistry;
     private bool spell_is_held;
 
     [Header("Movement/Camera")] 
@@ -49,25 +34,13 @@ public class InputManager : MonoBehaviour
         plant
     }
 
-
-
-    private void Awake()
-    {
-       
-    
-        cameraController = FindObjectOfType<UpdatedCameraController>();
-
-        //Add subsequent finds here
-        inventory = GetComponent<InventoryEdit>();
-    }
-
     private void Update()
     {
-       
-        updatedPlayerController.HandleMovement(movementInput);
-        updatedPlayerController.HandleCamera(cameraInput);
-        
-        sliding.AssignValues(movementInput);
+
+        componentRegistry.playerController.HandleMovement(movementInput);
+        componentRegistry.playerController.HandleCamera(cameraInput);
+
+        componentRegistry.sliding.AssignValues(movementInput);
     }
 
     
@@ -80,7 +53,7 @@ public class InputManager : MonoBehaviour
     public void OnMove(InputAction.CallbackContext ctx)
     {
         //animationController.disableEmote();
-        animationController.toggleEmotingBool(false);
+        componentRegistry.animationManager.toggleEmotingBool(false);
         movementInput = ctx.ReadValue<Vector2>();
 
     }
@@ -89,7 +62,7 @@ public class InputManager : MonoBehaviour
     {
         if(Element == WizardType.fire || Element == WizardType.ice || Element == WizardType.plant || Element == WizardType.electric) 
         {
-            if (ctx.action.triggered && updatedPlayerController.isGrounded && updatedPlayerController.readyToJump)
+            if (ctx.action.triggered && componentRegistry.playerController.isGrounded && componentRegistry.playerController.readyToJump)
             {
                 //animationController.disableEmote();
                 //animationController.toggleEmotingBool(false);
@@ -97,14 +70,14 @@ public class InputManager : MonoBehaviour
 
 
 
-                updatedPlayerController.HandleJump();
+                componentRegistry.playerController.HandleJump();
             }
         }
         
 
         if(Element == WizardType.wind)
         {
-            if (ctx.action.triggered && updatedPlayerController.isGrounded && updatedPlayerController.readyToJump)
+            if (ctx.action.triggered && componentRegistry.playerController.isGrounded && componentRegistry.playerController.readyToJump)
             {
                 //animationController.disableEmote();
                 //animationController.toggleEmotingBool(false);
@@ -112,11 +85,11 @@ public class InputManager : MonoBehaviour
 
 
 
-                updatedPlayerController.HandleJump();
+                componentRegistry.playerController.HandleJump();
             }
-            else if(ctx.action.triggered && !updatedPlayerController.hasDoubleJumped)
+            else if(ctx.action.triggered && !componentRegistry.playerController.hasDoubleJumped)
             {
-                updatedPlayerController.HandleJump();
+                componentRegistry.playerController.HandleJump();
             }
         }
 
@@ -124,16 +97,16 @@ public class InputManager : MonoBehaviour
 
         if(Element == WizardType.earth)
         {
-            if(ctx.performed && updatedPlayerController.isGrounded && updatedPlayerController.readyToJump)
+            if(ctx.performed && componentRegistry.playerController.isGrounded && componentRegistry.playerController.readyToJump)
             {
-                updatedPlayerController.chargingJump = true;
-                Debug.Log(updatedPlayerController.chargingJump);
+                componentRegistry.playerController.chargingJump = true;
+                Debug.Log(componentRegistry.playerController.chargingJump);
             }
 
-            if(ctx.canceled && updatedPlayerController.isGrounded && updatedPlayerController.readyToJump)
+            if(ctx.canceled && componentRegistry.playerController.isGrounded && componentRegistry.playerController.readyToJump)
             {
-                updatedPlayerController.chargingJump = false;
-                updatedPlayerController.HandleJump();
+                componentRegistry.playerController.chargingJump = false;
+                componentRegistry.playerController.HandleJump();
             }
         }
     }
@@ -142,30 +115,30 @@ public class InputManager : MonoBehaviour
     {
         if (ctx.action.triggered)
         {
-            updatedPlayerController.sprintPressed = !updatedPlayerController.sprintPressed;
+            componentRegistry.playerController.sprintPressed = !componentRegistry.playerController.sprintPressed;
         }
     }
 
     public void OnPrimaryCast(InputAction.CallbackContext ctx)
     {
-        if (advancedProjectileSystem != null)
+        if (componentRegistry.advancedProjectileSystem != null)
         {
-            if (advancedProjectileSystem.spellDataTemplate.allowButtonHold)
+            if (componentRegistry.advancedProjectileSystem.equippedProjectile.allowButtonHold)
             {
                 if (ctx.action.triggered)
                 {
-                    advancedProjectileSystem.shooting = true;
+                    componentRegistry.advancedProjectileSystem.shooting = true;
                 }
                 if (ctx.action.WasReleasedThisFrame())
                 {
-                    advancedProjectileSystem.shooting = false;
+                    componentRegistry.advancedProjectileSystem.shooting = false;
                 }
             }
             else
             {
                 if (ctx.action.triggered)
                 {
-                    advancedProjectileSystem.shooting = true;
+                    componentRegistry.advancedProjectileSystem.shooting = true;
                 }
             }
         }
@@ -177,7 +150,7 @@ public class InputManager : MonoBehaviour
     {
         if (ctx.action.triggered)
         {
-            updatedPlayerController.crouchPressed = !updatedPlayerController.crouchPressed;
+            componentRegistry.playerController.crouchPressed = !componentRegistry.playerController.crouchPressed;
         }
 
         
@@ -189,7 +162,7 @@ public class InputManager : MonoBehaviour
         {
             if (ctx.action.triggered)
             {
-                updatedPlayerController.HandlePound();
+                componentRegistry.playerController.HandlePound();
             }
         }
 
@@ -197,11 +170,11 @@ public class InputManager : MonoBehaviour
         {
             if (ctx.performed)
             {
-                jetPack.usingJetpack = true;
+                componentRegistry.jetPack.usingJetpack = true;
             }
             else if (ctx.canceled)
             {
-                jetPack.usingJetpack = false;
+                componentRegistry.jetPack.usingJetpack = false;
             }
         }
 
@@ -209,11 +182,11 @@ public class InputManager : MonoBehaviour
         {
             if (ctx.performed && (movementInput.x != 0 || movementInput.y != 0))
             {
-                sliding.StartSlide();
+                componentRegistry.sliding.StartSlide();
             }
-            else if (ctx.canceled && updatedPlayerController.sliding)
+            else if (ctx.canceled && componentRegistry.playerController.sliding)
             {
-                sliding.EndSlide();
+                componentRegistry.sliding.EndSlide();
             }
         }
         
@@ -221,7 +194,7 @@ public class InputManager : MonoBehaviour
         {
             if (ctx.performed)
             {
-                grappling.StartGrapple();
+                componentRegistry.grappling.StartGrapple();
                 //grappleSwing.StartSwing();
             }
             else if (ctx.canceled)
@@ -234,7 +207,7 @@ public class InputManager : MonoBehaviour
         {
             if (ctx.action.triggered)
             {
-                dashing.Dash();
+                componentRegistry.dashing.Dash();
             }
         }
 
@@ -274,7 +247,7 @@ public class InputManager : MonoBehaviour
     {
         if (ctx.action.triggered)
         {
-            updatedPlayerController.animControl.toggleEmotingBool(true);
+            componentRegistry.animationManager.toggleEmotingBool(true);
         }
     }
 

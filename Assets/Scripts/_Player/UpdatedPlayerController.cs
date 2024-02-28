@@ -26,11 +26,8 @@ public class UpdatedPlayerController : MonoBehaviour
     public float speedIncreaseMultiplier;
     public float sloperIncreaseMultiplier;
 
-    [Header("References")]
-    Rigidbody rb;
-    public Grappling grappling;
-    public AnimationManager animControl;
-    public Camera playerCam;
+    //References
+    public ComponentRegistry components;
 
     [Header("Player Height & Ground Settings")]
     public float playerHeight;
@@ -104,7 +101,7 @@ public class UpdatedPlayerController : MonoBehaviour
         {
             state = MovementState.freeze;
             moveSpeed = 0;
-            rb.velocity = Vector3.zero;
+            components.rigidBody.velocity = Vector3.zero;
         }
         else if(dashing)
         {
@@ -115,7 +112,7 @@ public class UpdatedPlayerController : MonoBehaviour
         {
             state = MovementState.sliding;
 
-            if(OnSlope() && rb.velocity.y < 0.1f)
+            if(OnSlope() && components.rigidBody.velocity.y < 0.1f)
             {
                 desiredMoveSpeed = slideSpeed;
             }
@@ -138,14 +135,14 @@ public class UpdatedPlayerController : MonoBehaviour
         else if (isGrounded && sprintPressed)
         {
             state = MovementState.sprinting;
-            animControl.toggleGroundedBool(true);
+            components.animationManager.toggleGroundedBool(true);
             if (movementDirection.x != 0 || movementDirection.z != 0)
             {
-                animControl.toggleWalkingBool(true);
+                components.animationManager.toggleWalkingBool(true);
             }
             else
             {
-                animControl.toggleWalkingBool(false);
+                components.animationManager.toggleWalkingBool(false);
             }
             desiredMoveSpeed = sprintSpeed;
         }
@@ -153,14 +150,14 @@ public class UpdatedPlayerController : MonoBehaviour
         {
             state = MovementState.walking;
             desiredMoveSpeed = walkSpeed;
-            animControl.toggleGroundedBool(true);
+            components.animationManager.toggleGroundedBool(true);
             if (movementDirection.x != 0 || movementDirection.z != 0)
             {
-                animControl.toggleWalkingBool(true);                
+                components.animationManager.toggleWalkingBool(true);                
             }
             else 
             {
-                animControl.toggleWalkingBool(false);
+                components.animationManager.toggleWalkingBool(false);
             }
         }
         /*
@@ -175,8 +172,8 @@ public class UpdatedPlayerController : MonoBehaviour
         else
         {
             state = MovementState.air;
-            animControl.toggleGroundedBool(false);
-            animControl.toggleEmotingBool(false);
+            components.animationManager.toggleGroundedBool(false);
+            components.animationManager.toggleEmotingBool(false);
         }
 
         if (Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4f && moveSpeed != 0)
@@ -194,9 +191,6 @@ public class UpdatedPlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true;
-
         readyToJump = true;
 
         startYScale = transform.localScale.y;
@@ -216,23 +210,23 @@ public class UpdatedPlayerController : MonoBehaviour
         if(isGrounded)
         {
             jumpCount = maxJumpCount;
-            animControl.toggleJumpingBool(false);
+            components.animationManager.toggleJumpingBool(false);
             
         }
 
         if (state == MovementState.walking || state == MovementState.sprinting || state == MovementState.crouching && !activeGrapple)
         {
-            rb.drag = groundDrag;
+            components.rigidBody.drag = groundDrag;
         }
         else
         {
-            rb.drag = 0;
+            components.rigidBody.drag = 0;
         }
 
         if (crouchPressed)
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
-            rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+            components.rigidBody.AddForce(Vector3.down * 5f, ForceMode.Impulse);
         }
         else if (!crouchPressed) 
         {
@@ -269,27 +263,27 @@ public class UpdatedPlayerController : MonoBehaviour
 
         movementDirection = transform.forward * movementInput.y + transform.right * movementInput.x;
 
-        animControl.updateMovementFloats(new Vector2(movementInput.x * desiredMoveSpeed, movementInput.y * desiredMoveSpeed));
+        components.animationManager.updateMovementFloats(new Vector2(movementInput.x * desiredMoveSpeed, movementInput.y * desiredMoveSpeed));
 
         if (OnSlope() && !exitingSlope)
         {
             //Debug.Log(1);
-            rb.AddForce(GetSlopeMoveDirection(movementDirection) * moveSpeed * speedMultiplier * 20f, ForceMode.Force);
+            components.rigidBody.AddForce(GetSlopeMoveDirection(movementDirection) * moveSpeed * speedMultiplier * 20f, ForceMode.Force);
 
-            if (rb.velocity.y > 0)
-                rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+            if (components.rigidBody.velocity.y > 0)
+                components.rigidBody.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
 
         else if (isGrounded)
         {
-            rb.AddForce(movementDirection.normalized * moveSpeed * speedMultiplier * 10f, ForceMode.Force);
+            components.rigidBody.AddForce(movementDirection.normalized * moveSpeed * speedMultiplier * 10f, ForceMode.Force);
         }
         else if (!isGrounded)
         {
-            rb.AddForce(movementDirection.normalized * moveSpeed * 10f * speedMultiplier * airMultiplier, ForceMode.Force);
+            components.rigidBody.AddForce(movementDirection.normalized * moveSpeed * 10f * speedMultiplier * airMultiplier, ForceMode.Force);
         }
 
-        rb.useGravity = !OnSlope();
+        components.rigidBody.useGravity = !OnSlope();
         
     }
 
@@ -303,7 +297,7 @@ public class UpdatedPlayerController : MonoBehaviour
         xRotation -= camY;
         xRotation = Mathf.Clamp(xRotation, -70, 70);
 
-        playerCam.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
+        components.playerCamera.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
         transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
         
     }
@@ -328,7 +322,7 @@ public class UpdatedPlayerController : MonoBehaviour
     {
         if(!isGrounded)
         {
-            rb.AddForce(Vector3.down * 1000000f, ForceMode.Impulse);
+            components.rigidBody.AddForce(Vector3.down * 1000000f, ForceMode.Impulse);
         }
         
     }
@@ -343,20 +337,20 @@ public class UpdatedPlayerController : MonoBehaviour
         }
         if(OnSlope())
         {
-            if(rb.velocity.magnitude > moveSpeed)
+            if(components.rigidBody.velocity.magnitude > moveSpeed)
             {
-                rb.velocity = rb.velocity.normalized * moveSpeed;
+                components.rigidBody.velocity = components.rigidBody.velocity.normalized * moveSpeed;
             }
             
         }
         else
         {
-            Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            Vector3 flatVelocity = new Vector3(components.rigidBody.velocity.x, 0f, components.rigidBody.velocity.z);
 
                 if(flatVelocity.magnitude > moveSpeed)
                 {
                     Vector3 limitedVelocity = flatVelocity.normalized * moveSpeed;
-                    rb.velocity = new Vector3(limitedVelocity.x, rb.velocity.y, limitedVelocity.z);
+                components.rigidBody.velocity = new Vector3(limitedVelocity.x, components.rigidBody.velocity.y, limitedVelocity.z);
                 }
         }        
     }
@@ -369,11 +363,11 @@ public class UpdatedPlayerController : MonoBehaviour
     {
         exitingSlope = true;
 
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        components.rigidBody.velocity = new Vector3(components.rigidBody.velocity.x, 0f, components.rigidBody.velocity.z);
 
-        animControl.toggleJumpingBool(true);
+        components.animationManager.toggleJumpingBool(true);
 
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        components.rigidBody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         //jumpCount -= 1;
     }
 
@@ -381,7 +375,7 @@ public class UpdatedPlayerController : MonoBehaviour
     {
         readyToJump = true;
 
-        animControl.toggleJumpingBool(false);
+        components.animationManager.toggleJumpingBool(false);
 
         jumpForce = existingJumpForce;
         exitingSlope = false;
@@ -448,7 +442,7 @@ public class UpdatedPlayerController : MonoBehaviour
     private void SetVelocity()
     {
         enableMovementOnNextTouch = true;
-        rb.velocity = velocityToSet;
+        components.rigidBody.velocity = velocityToSet;
     }
 
     public void JumpToPosition(Vector3 targetPosition, float trajectoryHeight)
@@ -468,7 +462,7 @@ public class UpdatedPlayerController : MonoBehaviour
             enableMovementOnNextTouch = false;
             ResetRestriction();
 
-            grappling.stopGrapple();
+            components.grappling.stopGrapple();
         }
     }
 

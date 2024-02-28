@@ -10,9 +10,9 @@ public class CullPlayerFromCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var camerahandler = GameObject.FindWithTag("CAMERACULL").GetComponent<CullPlayersFromCameraHandler>();
-        PlayerCharacter.layer = camerahandler.GetNewLayer();
-        this.GetComponent<Camera>().cullingMask = camerahandler.GetNewLayerMask();
+        //var camerahandler = GameObject.FindWithTag("CAMERACULL").GetComponent<CullPlayersFromCameraHandler>();
+        //PlayerCharacter.layer = camerahandler.GetNewLayer();
+        //this.GetComponent<Camera>().cullingMask = camerahandler.GetNewLayerMask();
 
 
 
