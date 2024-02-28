@@ -33,7 +33,7 @@ public class AdvancedProjectileSystem : Spell
     {
         if(spellDataTemplate != null)
         {
-            MyInput();
+            //MyInput();
         }
         
 
@@ -42,7 +42,7 @@ public class AdvancedProjectileSystem : Spell
     }
 
 
-    public void MyInput()
+    /*public void MyInput()
     {
         //If hold to fire
         if (spellDataTemplate.allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
@@ -72,12 +72,12 @@ public class AdvancedProjectileSystem : Spell
     public void ToggleShooting()
     {
         shooting = !shooting;
-    }
+    }*/
 
    
 
 
-    public void ProjectileShoot()
+/*    public void ProjectileShoot()
     {
         readyToShoot = false;
        // Debug.Log("Shoot called");
@@ -134,23 +134,23 @@ public class AdvancedProjectileSystem : Spell
         //Instantiate(spellFlash, firePoint.position, Quaternion.identity);
 
         //Invoke resetShot ( if not already invoked)
-/*        if (fireRateLimited)
+*//*        if (fireRateLimited)
         {
             Invoke("ResetShot", spellDataTemplate.timeBetweenShots);
             fireRateLimited = false;
-        }*/
+        }*//*
 
 
         // if multishot projectile, repeat function (for burst or shotgun)
-/*        if (chargesShot < equippedProjectile.projectilesPerTap && chargesLeft > 0)
+*//*        if (chargesShot < equippedProjectile.projectilesPerTap && chargesLeft > 0)
         {
             Invoke("ProjectileShoot", equippedProjectile.burstDelay);
-        }*/
+        }*//*
         
     }
 
-
-    private void RayShoot()
+*/
+/*    private void RayShoot()
     {
         readyToShoot = false;
 
@@ -175,15 +175,18 @@ public class AdvancedProjectileSystem : Spell
         //Instantiate(spellFlash, firePoint.position, Quaternion.identity);
 
         //Invoke resetShot ( if not already invoked)
-/*        Invoke("ResetShot", spellDataTemplate.timeBetweenShots);*/
+*//*        Invoke("ResetShot", spellDataTemplate.timeBetweenShots);*/
 
 /*        if (chargesShot < equippedProjectile.totalCharges && chargesLeft > 0)
         {
             Invoke("RayShoot", equippedProjectile.burstDelay);
-        }*/
-    }
+        }*//*
+    }*/
 
     private void ResetShot()
+    {
+
+    }
 /*    {
         fireRateLimited = true;
         readyToShoot = true;

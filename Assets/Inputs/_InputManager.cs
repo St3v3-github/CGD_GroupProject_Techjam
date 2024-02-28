@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
 
     [Header("References")]
     public ComponentRegistry componentRegistry;
+    public SpellManagerTemplate spellManagerTemplate;
     private bool spell_is_held;
 
     [Header("Movement/Camera")] 
@@ -119,41 +120,12 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    public void OnPrimaryCast(InputAction.CallbackContext ctx)
-    {
-        if (componentRegistry.advancedProjectileSystem != null)
-        {
-            if (componentRegistry.advancedProjectileSystem.equippedProjectile.allowButtonHold)
-            {
-                if (ctx.action.triggered)
-                {
-                    componentRegistry.advancedProjectileSystem.shooting = true;
-                }
-                if (ctx.action.WasReleasedThisFrame())
-                {
-                    componentRegistry.advancedProjectileSystem.shooting = false;
-                }
-            }
-            else
-            {
-                if (ctx.action.triggered)
-                {
-                    componentRegistry.advancedProjectileSystem.shooting = true;
-                }
-            }
-        }
-
-
-    }
-
     public void OnCrouch(InputAction.CallbackContext ctx)
     {
         if (ctx.action.triggered)
         {
             componentRegistry.playerController.crouchPressed = !componentRegistry.playerController.crouchPressed;
         }
-
-        
     }
 
     public void OnAction(InputAction.CallbackContext ctx)
@@ -215,28 +187,28 @@ public class InputManager : MonoBehaviour
 
     public void OnSpellSlot1(InputAction.CallbackContext ctx)
     {
-        animationController.toggleEmotingBool(false);
+        componentRegistry.animationManager.toggleEmotingBool(false);
         if (ctx.action.triggered)
             spellManagerTemplate.Cast(0);
     } 
     
     public void OnSpellSlot2(InputAction.CallbackContext ctx)
     {
-        animationController.toggleEmotingBool(false);
+        componentRegistry.animationManager.toggleEmotingBool(false);
         if (ctx.action.triggered)
             spellManagerTemplate.Cast(1);
     }
     
     public void OnSpellSlot3(InputAction.CallbackContext ctx)
     {
-        animationController.toggleEmotingBool(false);
+        componentRegistry.animationManager.toggleEmotingBool(false);
         if (ctx.action.triggered)
             spellManagerTemplate.Cast(2);
     } 
     
     public void OnSpellSlot4(InputAction.CallbackContext ctx)
     {
-        animationController.toggleEmotingBool(false);
+        componentRegistry.animationManager.toggleEmotingBool(false);
         if (ctx.action.triggered)
             spellManagerTemplate.Cast(3);
     }

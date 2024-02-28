@@ -106,7 +106,6 @@ public class SpellDataTemplate : ScriptableObject
     public bool usesAdvProjSystem = false;
 
     public Transform firePoint;
-    public 
     #endregion
 
 

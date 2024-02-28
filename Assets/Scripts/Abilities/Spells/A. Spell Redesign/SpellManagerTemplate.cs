@@ -40,7 +40,7 @@ public class SpellManagerTemplate : MonoBehaviour
 
     private void HandleProjectileSpells(int slot)
     {
-        playSound();
+        //playSound();
 
         //SET SHOOTING ON SPELLDATA TEMPLATE
         //SHOOTING LOGIC
@@ -49,9 +49,7 @@ public class SpellManagerTemplate : MonoBehaviour
         // 
 
         //Find exact Ray hit position using raycat
-        /// COME BACK TO THIS WHEN COMPONENTREGISTRY IS MERGED
-        ///Ray ray = GetComponentInParent<ComponentRegistry>().playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        Ray ray = new Ray();
+        Ray ray = GetComponentInParent<ComponentRegistry>().playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
 
         //Check if ray hits anything
@@ -75,6 +73,7 @@ public class SpellManagerTemplate : MonoBehaviour
         float z = Random.Range(-spellDataTemplate.spread, spellDataTemplate.spread);
 
         Vector3 directionWithSpread = directionWithoutSpread + (new Vector3(x, y, z) * Vector3.Magnitude(directionWithoutSpread)) / 15;
+       
         //Instantiate Projectile
         GameObject currentProjectile = Instantiate(spellDataTemplate.Spellprefab, spellSlotArray[slot].firePoint.position, Quaternion.identity);
         currentProjectile.transform.forward = directionWithSpread.normalized;
@@ -87,8 +86,9 @@ public class SpellManagerTemplate : MonoBehaviour
         Rigidbody rb = currentProjectile.GetComponent<Rigidbody>();
         rb.AddForce(directionWithSpread.normalized * spellDataTemplate.shootForce, ForceMode.Impulse);
         // For bouncing projectiles only    
-        ///rb.AddForce(GetComponentInParent<ComponentRegistry>().playerCamera.transform.up * spellDataTemplate.upwardForce, ForceMode.Impulse);
+        rb.AddForce(GetComponentInParent<ComponentRegistry>().playerCamera.transform.up * spellDataTemplate.upwardForce, ForceMode.Impulse);
 
+        #region camera shake
         //ShakeCamera
         //camShake.shake(camShakeDuration, camShakeMagnitude);
 
@@ -109,10 +109,10 @@ public class SpellManagerTemplate : MonoBehaviour
                 {
                     Invoke("ProjectileShoot", equippedProjectile.burstDelay);
                 }*/
-
+        #endregion
     }
 
-   
+
 
     private void HandleThrowableSpells()
     {
@@ -201,7 +201,7 @@ public class SpellManagerTemplate : MonoBehaviour
         {
             #region Fire
             case SpellDataTemplate.SpellID.FireProjectile:
-                HandleProjectileSpells();
+                HandleProjectileSpells(slotNumber);
                 break;
 
             case SpellDataTemplate.SpellID.FireGrenade:
@@ -217,7 +217,7 @@ public class SpellManagerTemplate : MonoBehaviour
 
             #region Ice
             case SpellDataTemplate.SpellID.IceProjectile:
-                HandleProjectileSpells();
+                HandleProjectileSpells(slotNumber);
                 break;
 
             case SpellDataTemplate.SpellID.IceGrenade:
@@ -233,7 +233,7 @@ public class SpellManagerTemplate : MonoBehaviour
 
             #region Wind
             case SpellDataTemplate.SpellID.WindProjectile:
-                HandleProjectileSpells();
+                HandleProjectileSpells(slotNumber);
                 break;
 
             case SpellDataTemplate.SpellID.WhirlwindBouncePad:
@@ -249,7 +249,7 @@ public class SpellManagerTemplate : MonoBehaviour
 
             #region Lightning
             case SpellDataTemplate.SpellID.LightningProjectile:
-                HandleProjectileSpells();
+                HandleProjectileSpells(slotNumber);
                 break;
 
             case SpellDataTemplate.SpellID.LightningStrikeAOE:
