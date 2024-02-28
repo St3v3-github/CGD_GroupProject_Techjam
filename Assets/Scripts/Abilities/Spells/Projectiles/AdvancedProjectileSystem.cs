@@ -7,21 +7,9 @@ using UnityEngine.InputSystem;
 public class AdvancedProjectileSystem : Spell
 {
     [Header("Spell Data")]
-    public ProjectileData equippedProjectile;
-    private List<ProjectileData> spells = new List<ProjectileData>();
+    private SpellDataTemplate spellDataTemplate;
+    private List<SpellDataTemplate> spells = new List<SpellDataTemplate>();
     private int currentSpellIndex = 0;
-    private GameObject rechargeSurge;
-
-    [Header("Clip")]
-    [SerializeField] private int chargesLeft, chargesShot;
-
-    //bools
-    [Header("Bools")]
-    public bool shooting, readyToShoot, recharging;
-    public bool shootWithRay;
-
-    //Testing :)
-    public bool allowInvoke = true;
 
     //Reference
     public Camera playerCam;
@@ -34,41 +22,16 @@ public class AdvancedProjectileSystem : Spell
     //public GameObject spellFlash, spellImpact;
     //public CamShake camShake;
     //public float camShakeMagnitude, cameShakeDuration;
-    //public Text text;
+    //public Text text;*/
 
-
-
-    private void Start()
+    public void SetSpellDataTemplate(SpellDataTemplate newTemplate)
     {
-
-
-        rechargeSurge = Instantiate(equippedProjectile.recharge, firePoint.position, Quaternion.identity);
-        rechargeSurge.transform.SetParent(firePoint, true);
-        rechargeSurge.SetActive(false);
-
-    }
-
-    private void OnEnable()
-    {
-        PickupSpell.OnSpellPickedUp += HandleSpellPickedUp;
-    }
-
-    private void OnDisable()
-    {
-        PickupSpell.OnSpellPickedUp -= HandleSpellPickedUp;
-    }
-
-    private void Awake()
-    {
-        chargesLeft = equippedProjectile.totalCharges;
-        readyToShoot = true;
-        shooting = false;
-        allowInvoke = true;
+        spellDataTemplate = newTemplate;
     }
 
     private void Update()
     {
-        if(equippedProjectile != null)
+        if(spellDataTemplate != null)
         {
             MyInput();
         }
@@ -77,27 +40,24 @@ public class AdvancedProjectileSystem : Spell
         //UI
         //text.SetText(chargesLeft / projectile.projectilesPerTap + " / " projectile.totalCharges / projectile.projectilesPerTap);
     }
+
+
     public void MyInput()
     {
-        /*//If hold to fire
-        if (equippedProjectile.allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
+        //If hold to fire
+        if (spellDataTemplate.allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
         //If 1 shot per click
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
-        
-       
+
+
         // Additional check for security
-        if (Input.GetKeyUp(KeyCode.Mouse0)) shooting = false;*/
+        if (Input.GetKeyUp(KeyCode.Mouse0)) shooting = false;
 
 
-        //Recharging
-        if (Input.GetKeyDown(KeyCode.R) && chargesLeft < equippedProjectile.totalCharges && !recharging) Recharge();
-        //Automatic Recharging
-        if (readyToShoot && !recharging && chargesLeft <= 0) Recharge();
 
         //Fire
-        if (readyToShoot && shooting && !recharging && chargesLeft > 0)
+        if (readyToShoot && shooting)
         {
-            chargesShot = 0;
             animControl.toggleCastingBool(true);
             if (shootWithRay)
             {
@@ -119,7 +79,6 @@ public class AdvancedProjectileSystem : Spell
 
     public void ProjectileShoot()
     {
-        
         readyToShoot = false;
        // Debug.Log("Shoot called");
 
@@ -146,29 +105,26 @@ public class AdvancedProjectileSystem : Spell
         Vector3 directionWithoutSpread = targetPoint - firePoint.position;
 
         //Spread
-        float x = Random.Range(-equippedProjectile.spread, equippedProjectile.spread);
-        float y = Random.Range(-equippedProjectile.spread, equippedProjectile.spread);
-        float z = Random.Range(-equippedProjectile.spread, equippedProjectile.spread);
+        float x = Random.Range(-spellDataTemplate.spread, spellDataTemplate.spread);
+        float y = Random.Range(-spellDataTemplate.spread, spellDataTemplate.spread);
+        float z = Random.Range(-spellDataTemplate.spread, spellDataTemplate.spread);
 
         Vector3 directionWithSpread = directionWithoutSpread + (new Vector3(x, y, z) * Vector3.Magnitude(directionWithoutSpread)) / 15;
         //Instantiate Projectile
-        GameObject currentProjectile = Instantiate(equippedProjectile.projectile, firePoint.position, Quaternion.identity);
+        GameObject currentProjectile = Instantiate(spellDataTemplate.Spellprefab, firePoint.position, Quaternion.identity);
         currentProjectile.transform.forward = directionWithSpread.normalized;
         Projectile currentProjectileScript = currentProjectile.GetComponent<Projectile>();
         currentProjectileScript.source = source;
-        currentProjectileScript.damage = equippedProjectile.damage;
-        currentProjectileScript.setLifetime(equippedProjectile.lifetime);
+        currentProjectileScript.damage = spellDataTemplate.damageValue;
+        currentProjectileScript.setLifetime(spellDataTemplate.lifetime);
 
         playSound();
 
         //Add Forces to projctile
         Rigidbody rb = currentProjectile.GetComponent<Rigidbody>();
-        rb.AddForce(directionWithSpread.normalized * equippedProjectile.shootForce, ForceMode.Impulse);
+        rb.AddForce(directionWithSpread.normalized * spellDataTemplate.shootForce, ForceMode.Impulse);
         // For bouncing projectiles only    
-        rb.AddForce(playerCam.transform.up * equippedProjectile.upwardForce, ForceMode.Impulse);
-
-        chargesLeft--;
-        chargesShot++;
+        rb.AddForce(playerCam.transform.up * spellDataTemplate.upwardForce, ForceMode.Impulse);
 
         //ShakeCamera
         //camShake.shake(camShakeDuration, camShakeMagnitude);
@@ -178,18 +134,18 @@ public class AdvancedProjectileSystem : Spell
         //Instantiate(spellFlash, firePoint.position, Quaternion.identity);
 
         //Invoke resetShot ( if not already invoked)
-        if (allowInvoke)
+/*        if (fireRateLimited)
         {
-            Invoke("ResetShot", equippedProjectile.timeBetweenShots);
-            allowInvoke = false;
-        }
+            Invoke("ResetShot", spellDataTemplate.timeBetweenShots);
+            fireRateLimited = false;
+        }*/
 
 
         // if multishot projectile, repeat function (for burst or shotgun)
-        if (chargesShot < equippedProjectile.projectilesPerTap && chargesLeft > 0)
+/*        if (chargesShot < equippedProjectile.projectilesPerTap && chargesLeft > 0)
         {
             Invoke("ProjectileShoot", equippedProjectile.burstDelay);
-        }
+        }*/
         
     }
 
@@ -197,17 +153,15 @@ public class AdvancedProjectileSystem : Spell
     private void RayShoot()
     {
         readyToShoot = false;
-        chargesLeft--;
-        chargesShot++;
 
         //Spread
-        float x = Random.Range(-equippedProjectile.spread, equippedProjectile.spread);
-        float y = Random.Range(-equippedProjectile.spread, equippedProjectile.spread);
+        float x = Random.Range(-spellDataTemplate.spread, spellDataTemplate.spread);
+        float y = Random.Range(-spellDataTemplate.spread, spellDataTemplate.spread);
 
         Vector3 direction = playerCam.transform.forward + new Vector3(x, y, 0);
         List<RaycastHit> hits = new List<RaycastHit>();
         //Raycast
-        if (Physics.Raycast(playerCam.transform.position, direction, out rayHit, equippedProjectile.range, hittable))
+        if (Physics.Raycast(playerCam.transform.position, direction, out rayHit, spellDataTemplate.range, hittable))
         {
             Debug.Log(rayHit.collider.gameObject.name);
            // dealDamage(rayHit.collider.gameObject, equippedProjectile.damage);
@@ -221,85 +175,26 @@ public class AdvancedProjectileSystem : Spell
         //Instantiate(spellFlash, firePoint.position, Quaternion.identity);
 
         //Invoke resetShot ( if not already invoked)
-        Invoke("ResetShot", equippedProjectile.timeBetweenShots);
+/*        Invoke("ResetShot", spellDataTemplate.timeBetweenShots);*/
 
-        if (chargesShot < equippedProjectile.totalCharges && chargesLeft > 0)
+/*        if (chargesShot < equippedProjectile.totalCharges && chargesLeft > 0)
         {
             Invoke("RayShoot", equippedProjectile.burstDelay);
-        }
+        }*/
     }
 
     private void ResetShot()
-    {
-        allowInvoke = true;
+/*    {
+        fireRateLimited = true;
         readyToShoot = true;
-        if (!equippedProjectile.allowButtonHold)
+        if (!spellDataTemplate.allowButtonHold)
         {
 
             shooting = false;
         }
         // Debug.Log("Ready to shoot");
         animControl.toggleCastingBool(false);
-    }
-
-    private void Recharge()
-    {
-        recharging = true;
-        rechargeSurge.SetActive(true);
-        Invoke("RechargeFinished", equippedProjectile.rechargeTime);
-    }
-
-    private void RechargeFinished()
-    {
-        rechargeSurge.SetActive(false);
-        chargesLeft = equippedProjectile.totalCharges;
-        recharging = false;
-    }
-
-    private void HandleSpellPickedUp(ProjectileData spellObject)
-    {
-        //Debug.Log("Subscribed to handler");
-        CollectSpell(spellObject);        
-
-    }
-
-    private void CollectSpell(ProjectileData spellObject)
-    {
-       // Debug.Log("Collect Spell Called");
-
-        if (spells.Count < 2)
-        {
-            var clone = Instantiate(spellObject);
-            equippedProjectile = clone;
-
-            //store collected spell
-            spells.Add(spellObject);
-          //  Debug.Log("Spell collected: " + spellObject.name);
-
-            //equip if first spell
-            if (spells.Count == 1)
-            {
-                EquipSpell(currentSpellIndex);
-            }
-        }
-        else
-        {
-            //replace equipped spell with new pickup
-            spells[currentSpellIndex] = spellObject;
-            Debug.Log("Replaced equipped spell with: " + spellObject.name);
-            EquipSpell(currentSpellIndex);
-        }
-    }
-
-    private void EquipSpell(int index)
-    {
-        if (index >= 0 && index < spells.Count)
-        {
-            equippedProjectile = spells[index];
-            Debug.Log("Equipped spell: " + equippedProjectile.name);
-            readyToShoot = true;
-        }
-    }
+    }*/
 
     private void playSound()
     {

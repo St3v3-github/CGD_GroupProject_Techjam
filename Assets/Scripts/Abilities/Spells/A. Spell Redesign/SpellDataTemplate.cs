@@ -11,7 +11,7 @@ public class SpellDataTemplate : ScriptableObject
     [Header("General Spell Variables")]
 
     //
-    public GameObject prefab;
+    public GameObject Spellprefab;
     public StatusEffect_Data statusEffect_Data;
 
     //Sprite for UI
@@ -22,6 +22,9 @@ public class SpellDataTemplate : ScriptableObject
     public bool isReadyState;
     public float activeTime;
     public float cooldownTime;
+
+    //SoundEffects
+
 
     #endregion
 
@@ -93,11 +96,17 @@ public class SpellDataTemplate : ScriptableObject
 
     #region Projetile Settings
     [Header("Projectile Settings")]
+    //Projectile force
+    public float shootForce, upwardForce;
+    public float timeBetweenShots, spread, range, lifetime, rechargeTime, burstDelay;
+    public int projectilesPerTap;
+    public bool shootWithRay, shooting, readyToShoot, recharging;
+    public bool allowButtonHold;
+    public bool fireRateLimited = true;
+    public bool usesAdvProjSystem = false;
 
-    //element specific projectile goes here: (drag & drop in inspector)
-    private ProjectileData projectile;
-
-
+    public Transform firePoint;
+    public 
     #endregion
 
 

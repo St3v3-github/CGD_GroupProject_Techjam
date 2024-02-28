@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.ProBuilder;
 using UnityEngine.UIElements;
+using static Unity.VisualScripting.Member;
 
 public class SpellManagerTemplate : MonoBehaviour
 {
@@ -14,10 +16,18 @@ public class SpellManagerTemplate : MonoBehaviour
     {
         spellDataTemplate = FindObjectOfType<SpellDataTemplate>();
 
-
         for (int i = 0; i < spellSlotArray.Length; i++)
         {
             spellSlotArray[i] = Instantiate(spellSlotArray[i]);
+
+            if (spellSlotArray[i].usesAdvProjSystem)
+            {
+                spellSlotArray[i].shooting = false;
+                spellSlotArray[i].fireRateLimited = true;
+                // NEATEN THIS LATER MAYBE IDK, IT ONLY RUNS ONCE PER PLAYER
+                GetComponent<AdvancedProjectileSystem>().SetSpellDataTemplate(spellSlotArray[i]);
+                spellSlotArray[i].firePoint = GameObject.FindWithTag("AdvProjSys_Firepoint").transform;
+            }
         }
 
     }
@@ -28,10 +38,81 @@ public class SpellManagerTemplate : MonoBehaviour
     }
 
 
-    private void HandleProjectileSpells()
+    private void HandleProjectileSpells(int slot)
     {
+        playSound();
+
+        //SET SHOOTING ON SPELLDATA TEMPLATE
+        //SHOOTING LOGIC
+        //-> READY TO SHOOT CHECK -- INVOKE RESETSHOT ETC
+        //-> RAY OR PROJECTILE SHOOTING
+        // 
+
+        //Find exact Ray hit position using raycat
+        /// COME BACK TO THIS WHEN COMPONENTREGISTRY IS MERGED
+        ///Ray ray = GetComponentInParent<ComponentRegistry>().playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        Ray ray = new Ray();
+        RaycastHit hit;
+
+        //Check if ray hits anything
+        Vector3 targetPoint;
+        if (Physics.Raycast(ray, out hit)) {
+            //ray hit Something
+            targetPoint = hit.point;
+            targetPoint = ray.GetPoint(100);
+        }
+
+        else {
+            targetPoint = ray.GetPoint(100); // Point far away from player
+        }
+
+        //Calculate direcion to target
+        Vector3 directionWithoutSpread = targetPoint - spellSlotArray[slot].firePoint.position;
+
+        //Spread
+        float x = Random.Range(-spellDataTemplate.spread, spellDataTemplate.spread);
+        float y = Random.Range(-spellDataTemplate.spread, spellDataTemplate.spread);
+        float z = Random.Range(-spellDataTemplate.spread, spellDataTemplate.spread);
+
+        Vector3 directionWithSpread = directionWithoutSpread + (new Vector3(x, y, z) * Vector3.Magnitude(directionWithoutSpread)) / 15;
+        //Instantiate Projectile
+        GameObject currentProjectile = Instantiate(spellDataTemplate.Spellprefab, spellSlotArray[slot].firePoint.position, Quaternion.identity);
+        currentProjectile.transform.forward = directionWithSpread.normalized;
+        Projectile currentProjectileScript = currentProjectile.GetComponent<Projectile>();
+        currentProjectileScript.source = this.gameObject;
+        currentProjectileScript.damage = spellDataTemplate.damageValue;
+        currentProjectileScript.setLifetime(spellDataTemplate.lifetime);
+
+        //Add Forces to projctile
+        Rigidbody rb = currentProjectile.GetComponent<Rigidbody>();
+        rb.AddForce(directionWithSpread.normalized * spellDataTemplate.shootForce, ForceMode.Impulse);
+        // For bouncing projectiles only    
+        ///rb.AddForce(GetComponentInParent<ComponentRegistry>().playerCamera.transform.up * spellDataTemplate.upwardForce, ForceMode.Impulse);
+
+        //ShakeCamera
+        //camShake.shake(camShakeDuration, camShakeMagnitude);
+
+        //Graphics
+        //Instantiate(spellImpact, rayHit.point, Quaternion.LookRotation(rayHit.normal));
+        //Instantiate(spellFlash, firePoint.position, Quaternion.identity);
+
+        //Invoke resetShot ( if not already invoked)
+        /*        if (fireRateLimited)
+                {
+                    Invoke("ResetShot", spellDataTemplate.timeBetweenShots);
+                    fireRateLimited = false;
+                }*/
+
+
+        // if multishot projectile, repeat function (for burst or shotgun)
+        /*        if (chargesShot < equippedProjectile.projectilesPerTap && chargesLeft > 0)
+                {
+                    Invoke("ProjectileShoot", equippedProjectile.burstDelay);
+                }*/
 
     }
+
+   
 
     private void HandleThrowableSpells()
     {
@@ -210,6 +291,11 @@ public class SpellManagerTemplate : MonoBehaviour
     }
 
     private void DealDamage()
+    {
+
+    }
+
+    private void HandleSFX()
     {
 
     }

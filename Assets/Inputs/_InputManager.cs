@@ -150,7 +150,7 @@ public class InputManager : MonoBehaviour
     {
         if (advancedProjectileSystem != null)
         {
-            if (advancedProjectileSystem.equippedProjectile.allowButtonHold)
+            if (advancedProjectileSystem.spellDataTemplate.allowButtonHold)
             {
                 if (ctx.action.triggered)
                 {

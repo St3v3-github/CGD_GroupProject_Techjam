@@ -26322,14 +26322,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 4822170820165355300}
-  equippedProjectile: {fileID: 11400000, guid: e9a801d15eee89743af235b7bbbc5caa, type: 2}
-  chargesLeft: 0
-  chargesShot: 0
+  spellDataTemplate: {fileID: 0}
   shooting: 0
   readyToShoot: 0
   recharging: 0
   shootWithRay: 0
-  allowInvoke: 1
+  fireRateLimited: 1
   playerCam: {fileID: 1946129503111233968}
   firePoint: {fileID: 5400324781677892195}
   hittable:
@@ -28340,7 +28338,7 @@ GameObject:
   - component: {fileID: 963609938994066087}
   m_Layer: 6
   m_Name: Firepoint
-  m_TagString: Untagged
+  m_TagString: AdvProjSys_Firepoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
