@@ -242,10 +242,25 @@ public class GameModeHandler : MonoBehaviour
                 teams.Add(new Team());
             }
         }
-        for(int i = 0; i < players.Count; i++)
+        int i = 1;
+        for(i = 1; (players.Count - 1) / i >= i; i++)
         {
-            //TODO: Calculations
-            //playerRegistries[i].playerCamera.rect.Set(0.0f, 0.0f, 1.0f, 1.0f);
+            Debug.Log(i.ToString());
+        }
+        int camColumns = i;
+        int camRows = i;
+        if(i*(i-1) >= players.Count)
+        {
+            camRows = i - 1;
+        }
+        float camXSize = 1.0f / camColumns;
+        float camYSize = 1.0f / camRows;
+        for(int j = 0; j < players.Count;j++)
+        {
+            Debug.Log(camXSize.ToString());
+            Debug.Log(camYSize.ToString());
+            playerRegistries[j].playerCamera.rect.Set((float)(j%camRows)*camYSize,(float)(j/camRows)*camYSize,camXSize,camYSize);
+            playerRegistries[j].playerCamera.rect.Set(0.5f, 1.0f, 0.5f, 1.0f);
         }
         StartCoroutine(StartCountdownTimer());
     }
