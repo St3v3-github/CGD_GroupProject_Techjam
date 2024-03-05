@@ -235,6 +235,7 @@ public class GameModeHandler : MonoBehaviour
             newPlayer.transform.position = spawnPoint.transform.position;
             newPlayer.transform.rotation = spawnPoint.transform.rotation;
             var compRegistry = newPlayer.GetComponent<ComponentRegistry>();
+            compRegistry.rigidBody.position = newPlayer.transform.position;
             compRegistry.playerCamera.enabled = true;
             playerRegistries.Add(compRegistry);
             while(teams.Count <= newPlayer.GetComponent<PlayerScoreInfo>().team) //FORBIDDEN WHILE LOOP, DONT USE WHILE
@@ -259,8 +260,7 @@ public class GameModeHandler : MonoBehaviour
         {
             Debug.Log(camXSize.ToString());
             Debug.Log(camYSize.ToString());
-            playerRegistries[j].playerCamera.rect.Set((float)(j%camRows)*camYSize,(float)(j/camRows)*camYSize,camXSize,camYSize);
-            playerRegistries[j].playerCamera.rect.Set(0.5f, 1.0f, 0.5f, 1.0f);
+            playerRegistries[j].playerCamera.rect = new Rect((float)(j%camColumns)*camXSize,(float)(j/camColumns)*camYSize,camXSize,camYSize);
         }
         StartCoroutine(StartCountdownTimer());
     }
