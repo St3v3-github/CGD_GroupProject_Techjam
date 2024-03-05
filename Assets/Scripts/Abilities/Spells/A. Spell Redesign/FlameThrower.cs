@@ -7,6 +7,7 @@ public class FlameThrower : MonoBehaviour
     public GameObject source;
     private float damage; // Default 0.2f
     public float activeTime;
+    public GameObject deleteTarget;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +40,7 @@ public class FlameThrower : MonoBehaviour
     private IEnumerator DeleteOnTimer()
     {
         yield return new WaitForSeconds(activeTime);
-        Destroy(this.gameObject);
+        Destroy(deleteTarget);
     }
 
 }
