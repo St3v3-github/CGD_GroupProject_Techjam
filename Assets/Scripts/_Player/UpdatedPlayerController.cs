@@ -276,7 +276,18 @@ public class UpdatedPlayerController : MonoBehaviour
 
         else if (isGrounded)
         {
-            components.rigidBody.AddForce(movementDirection.normalized * moveSpeed * speedMultiplier * 10f, ForceMode.Force);
+            if (movementInput.y > 0)
+            {
+                components.rigidBody.AddForce(movementDirection.normalized * moveSpeed * speedMultiplier * 20f, ForceMode.Force);
+            }
+            else if (movementInput.x != 0)
+            {
+                components.rigidBody.AddForce(movementDirection.normalized * moveSpeed * speedMultiplier * 15f, ForceMode.Force);
+            }
+            else
+            {
+                components.rigidBody.AddForce(movementDirection.normalized * moveSpeed * speedMultiplier * 10f, ForceMode.Force);
+            }
         }
         else if (!isGrounded)
         {
