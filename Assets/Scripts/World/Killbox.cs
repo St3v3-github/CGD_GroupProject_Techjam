@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Killbox : MonoBehaviour
 {
-    LayerMask playerLayer;
+     [SerializeField] private LayerMask layer_Player;
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == playerLayer)
+        if (other.gameObject.layer == layer_Player)
         {
             //AttributeManager playerAttribute = other.GetComponent<ComponentRegistry>().attributeMananger;
             //playerAttribute.currentHealth = -1;

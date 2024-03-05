@@ -182,7 +182,7 @@ public class SpellManagerTemplate : MonoBehaviour
     {
         //spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.READY;
 
-        Debug.Log("SLOT IS  " + slot);
+        //Debug.Log("SLOT IS  " + slot);
         switch (spellSlotArray[slot].currentState)
         {
             case SpellDataTemplate.SpellState.READY:
