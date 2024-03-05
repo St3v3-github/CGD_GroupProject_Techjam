@@ -37902,7 +37902,7 @@ GameObject:
   - component: {fileID: 1068764245}
   m_Layer: 0
   m_Name: GameController
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37914,7 +37914,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1068764244}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f359f0a6d1fd7dd4790bf050f1bb5c26, type: 3}
   m_Name: 
@@ -37923,6 +37923,8 @@ MonoBehaviour:
   playerRegistries: []
   spawnPoints: []
   spawnFlag: []
+  podiumSpots: []
+  podiumCamera: {fileID: 0}
   spawnPointDistances: []
   currentGameTime: 0
   countdownStartTimer: 0
@@ -37935,7 +37937,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1068764244}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80cdec12a1baf754e9c36fac86ecfe9f, type: 3}
   m_Name: 

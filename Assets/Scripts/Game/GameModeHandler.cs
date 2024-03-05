@@ -93,13 +93,14 @@ public class GameModeHandler : MonoBehaviour
         }
 
         currentGameTime -= Time.deltaTime;
-        if(currentGameTime < 0)
+        if(currentGameTime > 0)
         {
-            currentGameTime = 0;
+            //currentGameTime = 0;
             //TODO: Update UI Visual
         }
         else
         {
+            currentGameTime = 0;
             List<int> ranking = new List<int>();
             Vector2Int currentHighest = new Vector2Int(0, int.MinValue);
             for(int i = 0; i< teams.Count; i++) 
