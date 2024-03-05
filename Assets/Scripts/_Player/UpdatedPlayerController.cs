@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -7,10 +8,11 @@ using static InputManager;
 
 public class UpdatedPlayerController : MonoBehaviour
 {
-    [Header("Sensitivity")]
-    public float sensX;
-    public float sensY;
+    [Header("Camera Settings")] //Cinemachine stuff
+    [SerializeField] private Transform cameraTransform;
+    [SerializeField] private float rotationSpeed = 1f;
 
+    [Header("Movement Settings")]
     [Header("Movement Speed Values")]
     private float moveSpeed;
     public float walkSpeed;
@@ -73,10 +75,6 @@ public class UpdatedPlayerController : MonoBehaviour
     Vector3 movementDirection;
     Vector3 velocityToSet;
 
-    [Header("Rotation values")]
-    float xRotation;
-    float yRotation;
-
     public MovementState state;
 
     public enum MovementState
@@ -103,11 +101,13 @@ public class UpdatedPlayerController : MonoBehaviour
             moveSpeed = 0;
             components.rigidBody.velocity = Vector3.zero;
         }
+
         else if(dashing)
         {
             state = MovementState.dashing;
             desiredMoveSpeed = dashSpeed;
         }
+
         else if(sliding)
         {
             state = MovementState.sliding;
@@ -116,16 +116,19 @@ public class UpdatedPlayerController : MonoBehaviour
             {
                 desiredMoveSpeed = slideSpeed;
             }
+
             else
             {
                 desiredMoveSpeed = sprintSpeed;
             }
         }
+
         else if(swinging)
         {
             state = MovementState.swinging;
             moveSpeed = swingSpeed;
         }
+
         else if(crouchPressed)
         {
             state = MovementState.crouching;
@@ -136,14 +139,17 @@ public class UpdatedPlayerController : MonoBehaviour
         {
             state = MovementState.sprinting;
             components.animationManager.toggleGroundedBool(true);
+
             if (movementDirection.x != 0 || movementDirection.z != 0)
             {
                 components.animationManager.toggleWalkingBool(true);
             }
+
             else
             {
                 components.animationManager.toggleWalkingBool(false);
             }
+
             desiredMoveSpeed = sprintSpeed;
         }
         else if (isGrounded)
@@ -151,15 +157,18 @@ public class UpdatedPlayerController : MonoBehaviour
             state = MovementState.walking;
             desiredMoveSpeed = walkSpeed;
             components.animationManager.toggleGroundedBool(true);
+
             if (movementDirection.x != 0 || movementDirection.z != 0)
             {
                 components.animationManager.toggleWalkingBool(true);                
             }
+
             else 
             {
                 components.animationManager.toggleWalkingBool(false);
             }
         }
+
         /*
         else if(isGrounded && (movementDirection.x == 0 && movementDirection.z == 0) && readyToJump)
         {
@@ -169,6 +178,7 @@ public class UpdatedPlayerController : MonoBehaviour
             animControl.toggleGroundedBool(true);
         }
         */
+
         else
         {
             state = MovementState.air;
@@ -181,6 +191,7 @@ public class UpdatedPlayerController : MonoBehaviour
             StopAllCoroutines();
             StartCoroutine(SmoothlyLerpMoveSpeed());
         }
+
         else
         {
             moveSpeed = desiredMoveSpeed;
@@ -188,9 +199,11 @@ public class UpdatedPlayerController : MonoBehaviour
 
         lastDesiredMoveSpeed = desiredMoveSpeed;
     }
-    // Start is called before the first frame update
+
     void Start()
     {
+        cameraTransform = components.playerCamera.transform;
+
         readyToJump = true;
 
         startYScale = transform.localScale.y;
@@ -202,7 +215,8 @@ public class UpdatedPlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        HandleRotation();
+
         SpeedControl();
 
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
@@ -211,13 +225,13 @@ public class UpdatedPlayerController : MonoBehaviour
         {
             jumpCount = maxJumpCount;
             components.animationManager.toggleJumpingBool(false);
-            
         }
 
         if (state == MovementState.walking || state == MovementState.sprinting || state == MovementState.crouching && !activeGrapple)
         {
             components.rigidBody.drag = groundDrag;
         }
+
         else
         {
             components.rigidBody.drag = 0;
@@ -228,6 +242,7 @@ public class UpdatedPlayerController : MonoBehaviour
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             components.rigidBody.AddForce(Vector3.down * 5f, ForceMode.Impulse);
         }
+
         else if (!crouchPressed) 
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
@@ -240,15 +255,18 @@ public class UpdatedPlayerController : MonoBehaviour
             Debug.Log(moveSpeed);
         }
 
-
-
         if(chargingJump && jumpForce < maxJumpForce)
         {
             jumpForce += (jumpForceMultiplier * Time.deltaTime);
         }
     }
 
-    
+    public void HandleRotation()
+    {
+        float targetAngle = cameraTransform.rotation.eulerAngles.y;
+        Quaternion targetRotation = Quaternion.Euler(0, targetAngle, 0);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+    }
 
     public void HandleMovement(Vector2 movementInput)
     {
@@ -256,12 +274,14 @@ public class UpdatedPlayerController : MonoBehaviour
         {
             return;
         }
+
         if(swinging)
         {
             return;
         }
 
-        movementDirection = transform.forward * movementInput.y + transform.right * movementInput.x;
+        //Sets player directionto camera direction
+        movementDirection = cameraTransform.forward.normalized * movementInput.y + cameraTransform.right.normalized * movementInput.x;
 
         components.animationManager.updateMovementFloats(new Vector2(movementInput.x * desiredMoveSpeed, movementInput.y * desiredMoveSpeed));
 
@@ -280,36 +300,24 @@ public class UpdatedPlayerController : MonoBehaviour
             {
                 components.rigidBody.AddForce(movementDirection.normalized * moveSpeed * speedMultiplier * 20f, ForceMode.Force);
             }
+
             else if (movementInput.x != 0)
             {
                 components.rigidBody.AddForce(movementDirection.normalized * moveSpeed * speedMultiplier * 15f, ForceMode.Force);
             }
+
             else
             {
                 components.rigidBody.AddForce(movementDirection.normalized * moveSpeed * speedMultiplier * 10f, ForceMode.Force);
             }
         }
+
         else if (!isGrounded)
         {
             components.rigidBody.AddForce(movementDirection.normalized * moveSpeed * 10f * speedMultiplier * airMultiplier, ForceMode.Force);
         }
 
         components.rigidBody.useGravity = !OnSlope();
-        
-    }
-
-    public void HandleCamera(Vector2 cameraInput)
-    {
-        float camX = cameraInput.x * Time.deltaTime * sensX;
-        float camY = cameraInput.y * Time.deltaTime * sensY;
-
-        yRotation += camX;
-
-        xRotation -= camY;
-        xRotation = Mathf.Clamp(xRotation, -70, 70);
-
-        components.playerCamera.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
-        transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
         
     }
 
@@ -324,8 +332,7 @@ public class UpdatedPlayerController : MonoBehaviour
             crouchPressed = false;
             Jump();
         }
-       
-
+      
         Invoke(nameof(ResetJump), jumpCooldown);
     }
 
@@ -338,37 +345,32 @@ public class UpdatedPlayerController : MonoBehaviour
         
     }
 
-    
-
     private void SpeedControl()
     {
         if(activeGrapple)
         {
             return;
         }
+
         if(OnSlope())
         {
             if(components.rigidBody.velocity.magnitude > moveSpeed)
             {
                 components.rigidBody.velocity = components.rigidBody.velocity.normalized * moveSpeed;
             }
-            
         }
+
         else
         {
             Vector3 flatVelocity = new Vector3(components.rigidBody.velocity.x, 0f, components.rigidBody.velocity.z);
 
-                if(flatVelocity.magnitude > moveSpeed)
-                {
-                    Vector3 limitedVelocity = flatVelocity.normalized * moveSpeed;
+            if (flatVelocity.magnitude > moveSpeed)
+            {
+                Vector3 limitedVelocity = flatVelocity.normalized * moveSpeed;
                 components.rigidBody.velocity = new Vector3(limitedVelocity.x, components.rigidBody.velocity.y, limitedVelocity.z);
-                }
+            }
         }        
     }
-
-    
-
-    
 
     private void Jump()
     {
