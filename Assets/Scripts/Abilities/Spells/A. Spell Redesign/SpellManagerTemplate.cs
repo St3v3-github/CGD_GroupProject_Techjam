@@ -21,7 +21,7 @@ public class SpellManagerTemplate : MonoBehaviour
         for (int i = 0; i < spellSlotArray.Length; i++)
         {
             spellSlotArray[i] = Instantiate(spellSlotArray[i]);
-            spellSlotArray[i].firePoint = GameObject.FindWithTag("AdvProjSys_Firepoint").transform;
+            spellSlotArray[i].targetPoint = GameObject.FindWithTag("AdvProjSys_Firepoint").transform;
             if (spellSlotArray[i].usesAdvProjSystem)
             {
                 spellSlotArray[i].shooting = false;
@@ -74,7 +74,7 @@ public class SpellManagerTemplate : MonoBehaviour
             }
 
             //Calculate direcion to target
-            Vector3 directionWithoutSpread = targetPoint - spellSlotArray[slot].firePoint.position;
+            Vector3 directionWithoutSpread = targetPoint - spellSlotArray[slot].targetPoint.position;
 
             //Spread
             float x = Random.Range(-spellSlotArray[slot].spread, spellSlotArray[slot].spread);
@@ -84,7 +84,7 @@ public class SpellManagerTemplate : MonoBehaviour
             Vector3 directionWithSpread = directionWithoutSpread + (new Vector3(x, y, z) * Vector3.Magnitude(directionWithoutSpread)) / 15;
 
             //Instantiate Projectile
-            GameObject currentProjectile = Instantiate(spellSlotArray[slot].Spellprefab, spellSlotArray[slot].firePoint.position, Quaternion.identity);
+            GameObject currentProjectile = Instantiate(spellSlotArray[slot].Spellprefab, spellSlotArray[slot].targetPoint.position, Quaternion.identity);
             currentProjectile.transform.forward = directionWithSpread.normalized;
             Projectile currentProjectileScript = currentProjectile.GetComponent<Projectile>();
             currentProjectileScript.source = this.gameObject;   //Change when player prefab fixed
@@ -133,7 +133,7 @@ public class SpellManagerTemplate : MonoBehaviour
         {
             spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.COOLDOWN;
             Debug.Log("Throw");
-            GameObject projectile = Instantiate(spellSlotArray[slot].Spellprefab, spellSlotArray[slot].firePoint.position, componentRegistry.playerCamera.transform.rotation);
+            GameObject projectile = Instantiate(spellSlotArray[slot].Spellprefab, spellSlotArray[slot].targetPoint.position, componentRegistry.playerCamera.transform.rotation);
             projectile.GetComponent<Grenade>().source = this.gameObject;
             projectile.tag = this.transform.parent.tag + "Spell";
             //AudioManager.instance.PlayOneShot(FMODEvents.instance.iceSound, this.transform.position);

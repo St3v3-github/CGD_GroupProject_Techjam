@@ -19,9 +19,14 @@ public class SpellDataTemplate : ScriptableObject
 
     public float damageValue;
 
-    public bool isReadyState;
     public float activeTime;
     public float cooldownTime;
+
+    public bool isReadyState;
+
+    //Adv Proj System
+    public Transform targetPoint;
+    public bool usesAdvProjSystem = false;
 
     //SoundEffects
 
@@ -69,7 +74,7 @@ public class SpellDataTemplate : ScriptableObject
         #region Wind
         WindProjectile = 7,
         WhirlwindBouncePad = 8,
-        WindRushKnockback = 9,        
+        WindRushKnockback = 9,
         #endregion
 
 
@@ -104,20 +109,20 @@ public class SpellDataTemplate : ScriptableObject
     public bool shootWithRay, shooting, readyToShoot, recharging;
     public bool allowButtonHold;
     public bool fireRateLimited = true;
-    public bool usesAdvProjSystem = false;
 
-    public Transform firePoint;
     #endregion
 
 
     #region Grenade Data
     [Header("Grenade Settings")]
+    public float throwForce;
 
     #endregion
 
 
     #region AOE Settings
     [Header("AOE Settings")]
+    public float radius;
 
     #endregion
 
