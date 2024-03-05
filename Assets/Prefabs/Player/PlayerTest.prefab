@@ -233,33 +233,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c519f9f62c2494d807c1ce5da6a209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputManager: {fileID: 7487155259430018739}
+  playerInput: {fileID: 8875838033666652937}
   moveCamera: {fileID: 2961062769757661229}
   playerCamera: {fileID: 1946129503111233968}
-  emoteCamera: {fileID: 2328850415395273635}
   cameraPosition: {fileID: 1686648005270585182}
-  cameraController: {fileID: 4279713890985531431}
-  ray: {fileID: 6956940518980718314}
+  ray: {fileID: 0}
   hitboxCollider: {fileID: 5715036530534662521}
   secondCollider: {fileID: 0}
-  playerInput: {fileID: 8875838033666652937}
-  inputManager: {fileID: 7487155259430018739}
+  rigidBody: {fileID: 7974168791406735429}
   playerController: {fileID: 5209444804341010539}
   sliding: {fileID: 7014747242483737085}
-  rigidBody: {fileID: 7974168791406735429}
   dashing: {fileID: 1613804660254577670}
   jetPack: {fileID: 1446453331940890188}
   grappling: {fileID: 9055387862627763096}
   grappleSwing: {fileID: 3261859820062135994}
-  inventory: {fileID: 3890158570028712837}
-  abilityManager: {fileID: 1770899243380345267}
-  advancedProjectileSystem: {fileID: 8197120091361470339}
-  castableAOEStrike: {fileID: 285614519697731975}
-  summonAnimal: {fileID: 6524303441396799638}
-  spellCastOnStaff: {fileID: 9198259862436971180}
-  healSpell: {fileID: 775196412946322661}
-  spellCastOnRay: {fileID: 4530562303021372081}
-  beamSpell: {fileID: 692544893140267904}
-  throwSpell: {fileID: 2631326112995482606}
   firePoint: {fileID: 5703947444518334864}
   attributeManager: {fileID: 8640007719564735296}
   playerAnimator: {fileID: 3058641290690927777}
@@ -10352,7 +10340,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae72b51b08646dc46a5e2f98ebb26946, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraPosition: {fileID: 1592251245567519170}
+  FirstPersonPosition: {fileID: 0}
+  ThirdPersonPosition: {fileID: 0}
+  isThirdPerson: 0
 --- !u!1 &2498756427548121891
 GameObject:
   m_ObjectHideFlags: 0
@@ -25268,7 +25258,6 @@ GameObject:
   m_Component:
   - component: {fileID: 108579657671345003}
   - component: {fileID: 8197120091361470339}
-  - component: {fileID: 285614519697731975}
   - component: {fileID: 6524303441396799638}
   - component: {fileID: 9198259862436971180}
   - component: {fileID: 775196412946322661}
@@ -25310,43 +25299,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 4822170820165355300}
-  equippedProjectile: {fileID: 11400000, guid: e9a801d15eee89743af235b7bbbc5caa, type: 2}
-  chargesLeft: 0
-  chargesShot: 0
-  shooting: 0
-  readyToShoot: 0
-  recharging: 0
-  shootWithRay: 0
-  allowInvoke: 1
   playerCam: {fileID: 1946129503111233968}
   firePoint: {fileID: 5400324781677892195}
   hittable:
     serializedVersion: 2
     m_Bits: 4294967295
   animControl: {fileID: 6246835744260912567}
---- !u!114 &285614519697731975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4257967271512095513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2af02873e76f94f40a32486331f04495, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 4822170820165355300}
-  testing: 1
-  spellType: 1
-  fireSpell: {fileID: 11400000, guid: e8dc3605504d4fa47a4f53f54c47dc08, type: 2}
-  iceSpell: {fileID: 11400000, guid: 13c19894772117e449f1388b19bb708b, type: 2}
-  lightningSpell: {fileID: 11400000, guid: 86e631664ce22eb40ad2256047ff504c, type: 2}
-  windSpell: {fileID: 11400000, guid: 936255c6b740bbc448989eacd7a0bc25, type: 2}
-  projectionPrefab: {fileID: 8198984963544093090, guid: ab0b8ce3ffd22ec4c94394e0087bf382, type: 3}
-  playerCamera: {fileID: 1946129503111233968}
-  projectionOn: 0
-  doesDamage: 0
 --- !u!114 &6524303441396799638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25360,12 +25318,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 4822170820165355300}
-  testing: 1
-  spellType: 1
-  fireSpell: {fileID: 11400000, guid: c642ba047fd141840a9b64ed0f181345, type: 2}
-  iceSpell: {fileID: 11400000, guid: 7e40e2c01d3eeb542a373612c41d0409, type: 2}
-  lightningSpell: {fileID: 11400000, guid: 48af22166e400984980b12f91b478dda, type: 2}
-  windSpell: {fileID: 11400000, guid: c50469bdf2356854b8df93982b6419a6, type: 2}
   summonPoint: {fileID: 108579657671345003}
 --- !u!114 &9198259862436971180
 MonoBehaviour:
@@ -25929,22 +25881,6 @@ MonoBehaviour:
     m_ActionId: 0079d2e0-899c-4675-af4e-a931c0e39610
     m_ActionName: Player/Interact[/XInputControllerWindows/buttonWest,/Keyboard/e]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7487155259430018739}
-        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: OnPrimaryCast
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 35f20932-47d3-4ed1-9952-867131b1971a
-    m_ActionName: Player/AbilityCast[/Mouse/leftButton,/XInputControllerWindows/rightTrigger]
-  - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 6f6345cc-491b-4952-8d3f-1ea653f8b341
     m_ActionName: Player/Ability1[/Keyboard/1,/XInputControllerWindows/dpad/up]
@@ -25962,22 +25898,6 @@ MonoBehaviour:
     m_ActionName: Player/Ability4[/Keyboard/4,/XInputControllerWindows/dpad/left]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: OnElement
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 1b2dcaeb-60eb-4a73-86d7-c62d00078c38
-    m_ActionName: Player/Elements[/Keyboard/1,/Keyboard/2,/Keyboard/3,/Keyboard/4]
-  - m_PersistentCalls:
-      m_Calls:
       - m_Target: {fileID: 7487155259430018739}
         m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: OnSpellCast
@@ -25992,10 +25912,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 989449cd-f2f9-443a-9e03-4454d2327598
     m_ActionName: Player/SpellTypes[/Keyboard/5,/Keyboard/6,/Keyboard/7,/Keyboard/8]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 03861f45-172b-4b5c-a41d-a0860f14af4b
-    m_ActionName: Player/Melee[/Keyboard/f]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7487155259430018739}
@@ -26045,21 +25961,9 @@ MonoBehaviour:
     m_ActionId: 553b58a1-2ff5-427c-a4bc-f58376c54122
     m_ActionName: Player/Crouch[/Keyboard/leftCtrl]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7487155259430018739}
-        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: OnAction
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: ed0f19c0-fdb6-4077-881d-803bac56bc4e
-    m_ActionName: Player/Action[/DualShock4GamepadHID/buttonEast,/XInputControllerWindows/buttonEast]
+      m_Calls: []
+    m_ActionId: 781a40ba-3ddf-4af6-88f3-03a3ae3e22c1
+    m_ActionName: Player/Action[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -26078,6 +25982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentRegistry: {fileID: 8394094979631121661}
+  spellManagerTemplate: {fileID: 0}
   cameraInput: {x: 0, y: 0}
   movementInput: {x: 0, y: 0}
   shootInput: 0
@@ -26143,8 +26048,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35cb360870a465b4fb6e3fcd6008cca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensX: 150
-  sensY: 150
   walkSpeed: 7
   sprintSpeed: 10
   slideSpeed: 30
@@ -26157,7 +26060,7 @@ MonoBehaviour:
   playerHeight: 2
   groundMask:
     serializedVersion: 2
-    m_Bits: 1025
+    m_Bits: 1
   isGrounded: 0
   groundDrag: 5
   crouchSpeed: 32
@@ -26277,7 +26180,7 @@ MonoBehaviour:
   grappleTip: {fileID: 5400324781677892195}
   Grappleable:
     serializedVersion: 2
-    m_Bits: 3903
+    m_Bits: 311
   maxGrappleDistance: 1000
   grappleDelayTime: 0.25
   grapplingCooldown: 1
@@ -26301,7 +26204,7 @@ MonoBehaviour:
   player: {fileID: 6552784344966881952}
   grappleable:
     serializedVersion: 2
-    m_Bits: 3903
+    m_Bits: 311
   pm: {fileID: 5209444804341010539}
 --- !u!136 &8789623202957632645
 CapsuleCollider:

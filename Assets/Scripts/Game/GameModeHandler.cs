@@ -266,7 +266,8 @@ public class GameModeHandler : MonoBehaviour
         {
             var componentRegistry = player.GetComponent<ComponentRegistry>();
             componentRegistry.inputManager.enabled = true;
-            componentRegistry.advancedProjectileSystem.enabled = true;
+            //REMEMBER TO ENABLE SPELL SYSTEM
+            //componentRegistry.advancedProjectileSystem.enabled = true;
             componentRegistry.playerController.enabled = true;
         }
     }
