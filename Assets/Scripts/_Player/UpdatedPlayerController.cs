@@ -202,8 +202,8 @@ public class UpdatedPlayerController : MonoBehaviour
 
     void Start()
     {
-        cameraTransform = components.playerCamera.transform;
-
+        cameraTransform = GetComponentInParent<Camera>().transform;
+       
         readyToJump = true;
 
         startYScale = transform.localScale.y;
