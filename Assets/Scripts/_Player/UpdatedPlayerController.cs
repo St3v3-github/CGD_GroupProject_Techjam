@@ -26,7 +26,7 @@ public class UpdatedPlayerController : MonoBehaviour
     public float speedIncreaseMultiplier;
     public float sloperIncreaseMultiplier;
 
-    //References
+    [Header("Component Registry")]
     public ComponentRegistry components;
 
     [Header("Player Height & Ground Settings")]
