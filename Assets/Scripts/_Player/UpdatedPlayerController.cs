@@ -12,6 +12,8 @@ public class UpdatedPlayerController : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private float rotationSpeed = 1f;
 
+    [SerializeField] private GameObject playerObject;
+
     [Header("Movement Settings")]
     [Header("Movement Speed Values")]
     private float moveSpeed;
@@ -265,7 +267,9 @@ public class UpdatedPlayerController : MonoBehaviour
     {
         float targetAngle = cameraTransform.rotation.eulerAngles.y;
         Quaternion targetRotation = Quaternion.Euler(0, targetAngle, 0);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        playerObject.transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation.normalized, rotationSpeed * Time.deltaTime);
+
+        Debug.Log(targetRotation);
     }
 
     public void HandleMovement(Vector2 movementInput)

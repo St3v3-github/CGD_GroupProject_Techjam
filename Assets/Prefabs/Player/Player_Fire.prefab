@@ -24835,7 +24835,7 @@ Transform:
   m_GameObject: {fileID: 3320626496373310838}
   serializedVersion: 2
   m_LocalRotation: {x: 0.08715574, y: -0, z: -0, w: 0.9961947}
-  m_LocalPosition: {x: 1.271222, y: 1.2593286, z: -2.5703695}
+  m_LocalPosition: {x: 1.271222, y: 3.2093287, z: -0.6503695}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25871,8 +25871,8 @@ MonoBehaviour:
   m_RecenterTarget: 0
   m_VerticalAxis:
     Value: 10
-    m_SpeedMode: 0
-    m_MaxSpeed: 300
+    m_SpeedMode: 1
+    m_MaxSpeed: 0.1
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
@@ -25895,8 +25895,8 @@ MonoBehaviour:
     m_LegacyVelocityFilterStrength: -1
   m_HorizontalAxis:
     Value: 0
-    m_SpeedMode: 0
-    m_MaxSpeed: 300
+    m_SpeedMode: 1
+    m_MaxSpeed: 0.1
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
@@ -26646,10 +26646,10 @@ MonoBehaviour:
     m_ActionId: 781a40ba-3ddf-4af6-88f3-03a3ae3e22c1
     m_ActionName: Player/Action[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: KBM
+  m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 4741725791676050502}
 --- !u!114 &1487246884852817950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28750,7 +28750,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 76656085703757331}
-  rotationSpeed: 200
+  rotationSpeed: 10
+  playerObject: {fileID: 141443802332303738}
   walkSpeed: 10
   sprintSpeed: 13
   slideSpeed: 30
