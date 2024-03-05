@@ -143,6 +143,15 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Action"",
+                    ""type"": ""Button"",
+                    ""id"": ""781a40ba-3ddf-4af6-88f3-03a3ae3e22c1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -673,6 +682,28 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7170020f-4089-4bfc-8913-178ce4d87f1f"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d5de6c56-afd7-4088-9ead-19d5cf63952f"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBM"",
+                    ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -722,6 +753,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         m_Player_Dance = m_Player.FindAction("Dance", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
+        m_Player_Action = m_Player.FindAction("Action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -796,6 +828,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Dance;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Crouch;
+    private readonly InputAction m_Player_Action;
     public struct PlayerActions
     {
         private @PlayerControlsAsset m_Wrapper;
@@ -813,6 +846,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         public InputAction @Dance => m_Wrapper.m_Player_Dance;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
+        public InputAction @Action => m_Wrapper.m_Player_Action;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -861,6 +895,9 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @Crouch.started += instance.OnCrouch;
             @Crouch.performed += instance.OnCrouch;
             @Crouch.canceled += instance.OnCrouch;
+            @Action.started += instance.OnAction;
+            @Action.performed += instance.OnAction;
+            @Action.canceled += instance.OnAction;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -904,6 +941,9 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @Crouch.started -= instance.OnCrouch;
             @Crouch.performed -= instance.OnCrouch;
             @Crouch.canceled -= instance.OnCrouch;
+            @Action.started -= instance.OnAction;
+            @Action.performed -= instance.OnAction;
+            @Action.canceled -= instance.OnAction;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -954,5 +994,6 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         void OnDance(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
+        void OnAction(InputAction.CallbackContext context);
     }
 }
