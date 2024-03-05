@@ -172,7 +172,7 @@ public class InputManager : MonoBehaviour
 
     public void OnCrouch(InputAction.CallbackContext ctx)
     {
-        if (ctx.action.triggered)
+        if (ctx.action.triggered && updatedPlayerController.isGrounded)
         {
             updatedPlayerController.crouchPressed = !updatedPlayerController.crouchPressed;
         }
