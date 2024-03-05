@@ -309,7 +309,17 @@ public class SpellManagerTemplate : MonoBehaviour
             spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.ACTIVE;
             GameObject activeSpell = Instantiate(spellSlotArray[slot].Spellprefab, spellSlotArray[slot].targetPoint.position, componentRegistry.playerCamera.transform.rotation);
             activeSpell.transform.parent = transform.parent.transform;
-            activeSpell.GetComponent<FlameThrower>().setValues(transform.parent.gameObject, spellSlotArray[slot].activeTime, spellSlotArray[slot].damageValue);
+            
+            // THIS IS TEMPORARY FIX, I AM TIRED. Sorry.
+            if (spellSlotArray[slot].ID != SpellDataTemplate.SpellID.Beam)
+            {
+                activeSpell.GetComponent<FlameThrower>().setValues(transform.parent.gameObject, spellSlotArray[slot].activeTime, spellSlotArray[slot].damageValue);
+            }
+            else
+            {
+                activeSpell.GetComponentInChildren<FlameThrower>().setValues(transform.parent.gameObject, spellSlotArray[slot].activeTime, spellSlotArray[slot].damageValue);
+            }
+           
         }
         
        
@@ -442,6 +452,10 @@ public class SpellManagerTemplate : MonoBehaviour
             case SpellDataTemplate.SpellID.WindRushKnockback:
                 HandleOneStageSpells();
                 break;
+            
+            case SpellDataTemplate.SpellID.WindWall:
+                HandleTwoStageSpells(slotNumber);
+                break;
 
             #endregion
 
@@ -472,13 +486,15 @@ public class SpellManagerTemplate : MonoBehaviour
                 break;
 
             case SpellDataTemplate.SpellID.PoisonCloud:
-                HandleRaycastSpells();
+                HandleThrowableSpells(slotNumber);
                 break;
 
             case SpellDataTemplate.SpellID.Heal:
                 HandleOneStageSpells();
                 break;
-
+            case SpellDataTemplate.SpellID.FireStrike:
+                HandleTwoStageSpells(slotNumber);
+                break;
                 #endregion
 
         }

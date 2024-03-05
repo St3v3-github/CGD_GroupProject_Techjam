@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 260291823740050281}
   - component: {fileID: 3341783972037316594}
   - component: {fileID: 8080007990360098359}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Fireball
   m_TagString: Player1Spell
   m_Icon: {fileID: 0}
@@ -161,9 +161,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8920573724755311817}
     m_Modifications:
+    - target: {fileID: 1226637380801028, guid: d92c8c3d3853f514fa854ad280aa6739, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 1677232327238848, guid: d92c8c3d3853f514fa854ad280aa6739, type: 3}
       propertyPath: m_Name
       value: FX_Trail_Fire_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677232327238848, guid: d92c8c3d3853f514fa854ad280aa6739, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4293721835894692, guid: d92c8c3d3853f514fa854ad280aa6739, type: 3}
       propertyPath: m_LocalScale.x

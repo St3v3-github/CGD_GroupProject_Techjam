@@ -76,6 +76,7 @@ public class SpellDataTemplate : ScriptableObject
         WindProjectile = 7,
         WhirlwindBouncePad = 8,
         WindRushKnockback = 9,
+        WindWall = 18,
         #endregion
 
 
@@ -91,6 +92,7 @@ public class SpellDataTemplate : ScriptableObject
         Heal = 14,
         PoisonCloud = 15,
         Beam = 16,
+        FireStrike = 17,
         #endregion
 
     }
