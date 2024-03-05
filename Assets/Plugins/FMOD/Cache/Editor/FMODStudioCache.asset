@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Pickup
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
   m_EditorClassIdentifier: 
   Path: event:/Pickup
   Guid:
@@ -48,7 +48,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 3055064408405623940}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -197,6 +197,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Desktop/SFX.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Plugins/FMOD/Build/Desktop/SFX.bank
+  Name: Desktop/SFX
+  StudioPath: bank:/SFX
+  lastModified: 638452328992120956
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-4644732941239470296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
   m_Name: event:/FireProjectile
   m_EditorClassIdentifier: 
@@ -270,10 +288,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
+  m_Name: bank:/Desktop/Master.bank
   m_EditorClassIdentifier: 
-  Path: Assets/Plugins/FMOD/Desktop/Master.bank
-  Name: Master
+  Path: Assets/Plugins/FMOD/Build/Desktop/Master.bank
+  Name: Desktop/Master
   StudioPath: bank:/Master
   lastModified: 638427476113540696
   FileSizes: []
@@ -379,3 +397,49 @@ MonoBehaviour:
   - Name: 
     Value: 1258
   Exists: 1
+--- !u!114 &5346907814860846418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Music.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Plugins/FMOD/Build/Music.bank
+  Name: Music
+  StudioPath: bank:/Music
+  lastModified: 638452328992131002
+  FileSizes: []
+  Exists: 1
+--- !u!114 &7218466382959077412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BackgroundMusic
+  m_EditorClassIdentifier: 
+  Path: event:/BackgroundMusic
+  Guid:
+    Data1: -2059798418
+    Data2: 1155817732
+    Data3: 890142595
+    Data4: 1357195468
+  Banks:
+  - {fileID: 5346907814860846418}
+  - {fileID: 5234067527226743981}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8045
