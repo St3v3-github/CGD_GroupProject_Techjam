@@ -43,6 +43,7 @@ public class SpellDataTemplate : ScriptableObject
         COOLDOWN
     }
     public bool changingState = false;
+    public bool activeForCooldown = false;
 
     public SpellState currentState = SpellState.READY;
 
@@ -123,6 +124,10 @@ public class SpellDataTemplate : ScriptableObject
     #region AOE Settings
     [Header("AOE Settings")]
     public float radius;
+
+    public GameObject projectionPrefab;
+   
+    public bool doesDamage;
 
     #endregion
 

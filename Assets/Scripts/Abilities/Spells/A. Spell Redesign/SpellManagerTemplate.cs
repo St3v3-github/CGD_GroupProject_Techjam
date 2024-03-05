@@ -13,6 +13,11 @@ public class SpellManagerTemplate : MonoBehaviour
 
     //private SpellDataTemplate spellDataTemplate;
 
+    //For the AOE projection in the scene
+    private GameObject projection;
+    public bool projectionOn = false;
+
+
     private void Start()
     {
         componentRegistry = GetComponentInParent<ComponentRegistry>();
@@ -38,7 +43,124 @@ public class SpellManagerTemplate : MonoBehaviour
     {
         for(int i = 0; i < spellSlotArray.Length; i++)
         SpellStateManagement(i);
+
+        //Updating AoE Projection Position
+        if (projectionOn)
+        {
+            UpdateProjection();
+        }
     }
+
+    #region Two Stage Spell Logic
+    void UpdateProjection()
+    {
+        // Get the camera's position and forward direction
+        Vector3 cameraPosition = componentRegistry.playerCamera.transform.position;
+        Vector3 cameraForward = componentRegistry.playerCamera.transform.forward;
+
+        // Create a ray from the camera's position in the forward direction
+        Ray ray = new Ray(cameraPosition, cameraForward);
+        RaycastHit hit;
+
+        // Check if the ray hits something on the specified layer
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+            Vector3 targetPosition = hit.point;
+            // Ensure the object stays on the ground by setting its y-coordinate to the hit point's y-coordinate
+            targetPosition.y += 0.2f;
+
+            // Set the object's position to the hit point
+            projection.transform.position = targetPosition;
+        }
+    }
+
+    public void switchProjectionOn(int slot)
+    {
+        spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.ACTIVE;
+        spellSlotArray[slot].isReadyState = false;
+        projection = Instantiate(spellSlotArray[slot].projectionPrefab, Vector3.zero, Quaternion.identity);
+        projectionOn = true;
+    }
+
+    public void switchProjectionOff()
+    {
+        projectionOn = false;
+        Destroy(projection);
+    }
+
+    public void Strike(int slot)
+    {
+        projectionOn = false;
+        Destroy(projection);
+
+        // Creates Visual Prefab
+        if (spellSlotArray[slot].currentState == SpellDataTemplate.SpellState.READY)
+        {
+            InstantiateStrike(projection.transform.position, slot);
+        }
+
+
+        if (spellSlotArray[slot].doesDamage)
+        {
+            DetectCharacters(projection.transform.position, slot);
+        }
+    }
+
+    public void InstantiateStrike(Vector3 centre, int slot)
+    {
+        GameObject strike = Instantiate(spellSlotArray[slot].Spellprefab, centre + Vector3.up * 0.5f, componentRegistry.playerCamera.transform.rotation);
+        // NEED TO ADD:
+        // ENSURE THE INSTANTIATED OBJECT DESTROYS ITSELF
+
+        //AudioManager.instance.PlayOneShot(FMODEvents.instance.thunderSound, this.transform.position);
+    }
+
+    public bool PlayerCheck(GameObject hitbox)
+    {
+        GameObject player = hitbox;
+
+        if (player.layer == LayerMask.NameToLayer("layer_Player"))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public void DetectCharacters(Vector3 centre, int slot)
+    {
+        Collider[] colliders = Physics.OverlapSphere(centre, spellSlotArray[slot].radius);
+        List<GameObject> players = new List<GameObject>();
+
+        foreach (Collider collider in colliders)
+        {
+            Debug.Log(collider.name);
+            if (PlayerCheck(collider.gameObject))
+            {
+                players.Add(collider.gameObject);
+            }
+        }
+
+
+        foreach (var player in players)
+        {
+            float distance = Vector3.Distance(centre, player.transform.position);
+
+            float damageMultiplier = spellSlotArray[slot].damageValue / spellSlotArray[slot].radius;
+
+            // Adjust the damage based on distance (you can use any formula here)
+            float adjustedDamage = spellSlotArray[slot].damageValue - distance * damageMultiplier;
+
+            // Make sure the adjusted damage is not negative
+            adjustedDamage = Mathf.Max(0, adjustedDamage);
+            DealDamage(player, adjustedDamage);
+        }
+    }
+    #endregion
+
+    #region Active Spell Logic
+
+    #endregion
 
 
     private void HandleProjectileSpells(int slot)
@@ -159,14 +281,46 @@ public class SpellManagerTemplate : MonoBehaviour
 
     }
 
-    private void HandleTwoStageSpells()
+    private void HandleTwoStageSpells(int slot)
     {
+        if (spellSlotArray[slot].currentState == SpellDataTemplate.SpellState.READY)
+        {
+            if (projectionOn && spellSlotArray[slot].isReadyState)
+            {
+                spellSlotArray[slot].isReadyState = false;
+                switchProjectionOff();
+                Strike(slot);
+                spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.COOLDOWN;
+            }
+            else if (projection == null)
+            {
+                switchProjectionOn(slot);
+            }
+        }
+      
 
 
     }
 
-    private void HandleContinuousSpells()
+    private void HandleActiveSpells(int slot)
     {
+        if (spellSlotArray[slot].currentState == SpellDataTemplate.SpellState.READY)
+        {
+            spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.ACTIVE;
+            GameObject activeSpell = Instantiate(spellSlotArray[slot].Spellprefab, spellSlotArray[slot].targetPoint.position, componentRegistry.playerCamera.transform.rotation);
+            activeSpell.transform.parent = transform.parent.transform;
+            activeSpell.GetComponent<FlameThrower>().setValues(transform.parent.gameObject, spellSlotArray[slot].activeTime, spellSlotArray[slot].damageValue);
+        }
+        
+       
+        
+
+
+        //INSTANTIATE PREFAB UNDER PLAYER 
+        //SET ACTIVE STATE
+        //PASS SOURCE TO PREFAB SCRIPT
+        //PASS OBJ ACTIVETIME INTO PREFAB
+        //PREFAB DEL SELF AFTER ACTIVETIME
 
     }
 
@@ -189,14 +343,18 @@ public class SpellManagerTemplate : MonoBehaviour
                 break;
 
             case SpellDataTemplate.SpellState.ACTIVE:
-
-                StartCoroutine(SpellActiveTimer(slot, spellSlotArray[slot].activeTime));
+                if (!spellSlotArray[slot].changingState)
+                {
+                    spellSlotArray[slot].changingState = true;
+                    StartCoroutine(SpellActiveTimer(slot, spellSlotArray[slot].activeTime, spellSlotArray[slot].activeForCooldown));
+                }
                 break;
 
             case SpellDataTemplate.SpellState.COOLDOWN:
                 if (!spellSlotArray[slot].changingState)
                 {
                     spellSlotArray[slot].changingState = true;
+
                     StartCoroutine(SpellCooldownTimer(slot, spellSlotArray[slot].cooldownTime));
                 }
                 
@@ -205,10 +363,20 @@ public class SpellManagerTemplate : MonoBehaviour
         }
     }
 
-    private IEnumerator SpellActiveTimer(int slot, float activeTime)
+    private IEnumerator SpellActiveTimer(int slot, float activeTime, bool setCooldown)
     {
         yield return new WaitForSeconds(spellSlotArray[slot].activeTime);
-        spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.COOLDOWN;
+        if(setCooldown)
+        {
+            Debug.Log("WE ARE IN SETCOOLDOWN OF ACTIVE");
+            spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.COOLDOWN;
+        }
+        else
+        {
+            spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.READY;
+            spellSlotArray[slot].isReadyState = true;
+        }
+        spellSlotArray[slot].changingState = false;
     }
 
     private IEnumerator SpellCooldownTimer(int slot, float cooldown)
@@ -216,6 +384,7 @@ public class SpellManagerTemplate : MonoBehaviour
         yield return new WaitForSeconds(spellSlotArray[slot].cooldownTime);
         spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.READY;
         spellSlotArray[slot].changingState = false;
+        spellSlotArray[slot].isReadyState = true;
 
     }
 
@@ -224,9 +393,10 @@ public class SpellManagerTemplate : MonoBehaviour
 
     public void Cast(int slotNumber)
     {
-
+        Debug.Log("TRYING TO CAST SPELL");
         switch (spellSlotArray[slotNumber].ID)
         {
+        
             #region Fire
             case SpellDataTemplate.SpellID.FireProjectile:
                 HandleProjectileSpells(slotNumber);
@@ -237,7 +407,7 @@ public class SpellManagerTemplate : MonoBehaviour
                 break;
 
             case SpellDataTemplate.SpellID.FlameThrower:
-                HandleContinuousSpells();
+                HandleActiveSpells(slotNumber);
                 break;
 
             #endregion
@@ -253,7 +423,8 @@ public class SpellManagerTemplate : MonoBehaviour
                 break;
 
             case SpellDataTemplate.SpellID.IceWall:
-                HandleTwoStageSpells();
+                Debug.Log("ATTEMPTING TO ICE WALL");
+                HandleTwoStageSpells(slotNumber);
                 break;
 
             #endregion
@@ -265,7 +436,7 @@ public class SpellManagerTemplate : MonoBehaviour
                 break;
 
             case SpellDataTemplate.SpellID.WhirlwindBouncePad:
-                HandleTwoStageSpells();
+                HandleTwoStageSpells(slotNumber);
                 break;
 
             case SpellDataTemplate.SpellID.WindRushKnockback:
@@ -281,7 +452,7 @@ public class SpellManagerTemplate : MonoBehaviour
                 break;
 
             case SpellDataTemplate.SpellID.LightningStrikeAOE:
-                HandleTwoStageSpells();
+                HandleTwoStageSpells(slotNumber);
                 break;
 
             case SpellDataTemplate.SpellID.LightningChainRaycast:
@@ -293,7 +464,7 @@ public class SpellManagerTemplate : MonoBehaviour
 
             #region Ultimates
             case SpellDataTemplate.SpellID.Beam:
-                HandleContinuousSpells();
+                HandleActiveSpells(slotNumber);
                 break;
 
             case SpellDataTemplate.SpellID.BlackHole:
@@ -318,7 +489,7 @@ public class SpellManagerTemplate : MonoBehaviour
         spellSlotArray[3] = newSlotData;
     }
 
-    private void DealDamage()
+    private void DealDamage(GameObject player, float damgage)
     {
 
     }

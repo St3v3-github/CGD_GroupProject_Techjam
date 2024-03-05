@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36df669d75346e041849a655e5e45fc7, type: 3}
-  m_Name: FlameThrower
+  m_Name: IceWall
   m_EditorClassIdentifier: 
-  Spellprefab: {fileID: 1259762591101698, guid: bb15adcadb81c714fb3ee2329aa22f97, type: 3}
+  Spellprefab: {fileID: 4053034766384314058, guid: 2f0d4e6cf0148dd42b0aab740b4ad702, type: 3}
   statusEffect_Data: {fileID: 0}
   Icon: {fileID: 0}
-  damageValue: 0.2
-  activeTime: 3
-  cooldownTime: 6
+  damageValue: 0
+  activeTime: 1
+  cooldownTime: 3
   isReadyState: 1
   targetPoint: {fileID: 0}
   usesAdvProjSystem: 0
   changingState: 0
-  activeForCooldown: 1
+  activeForCooldown: 0
   currentState: 0
-  ID: 3
-  shootForce: 100
+  ID: 6
+  shootForce: 0
   upwardForce: 0
   timeBetweenShots: 0
   spread: 0
-  range: 100
-  lifetime: 5
+  range: 0
+  lifetime: 3
   rechargeTime: 0
   burstDelay: 0
-  projectilesPerTap: 1
+  projectilesPerTap: 0
   shootWithRay: 0
   shooting: 0
   readyToShoot: 0
@@ -42,6 +42,6 @@ MonoBehaviour:
   fireRateLimited: 1
   throwForce: 0
   radius: 0
-  projectionPrefab: {fileID: 0}
+  projectionPrefab: {fileID: 8198984963544093090, guid: ab0b8ce3ffd22ec4c94394e0087bf382, type: 3}
   doesDamage: 0
   isUltimate: 0
