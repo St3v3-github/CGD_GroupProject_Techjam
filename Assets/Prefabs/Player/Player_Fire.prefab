@@ -256,7 +256,8 @@ MonoBehaviour:
   grappling: {fileID: 5180059503198854390}
   grappleSwing: {fileID: 1606029006535543935}
   firePoint: {fileID: 5703947444518334864}
-  attributeManager: {fileID: 0}
+  attributeManager: {fileID: 8332422817817589327}
+  spellManager: {fileID: 2947081459611145061}
   playerAnimator: {fileID: 3058641290690927777}
   animationManager: {fileID: 6246835744260912567}
   uiController: {fileID: 6923252535860149858}
@@ -10929,6 +10930,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2160328677442498090}
   - component: {fileID: 6205018679487320020}
+  - component: {fileID: 8332422817817589327}
   m_Layer: 0
   m_Name: Score
   m_TagString: Untagged
@@ -10967,6 +10969,33 @@ MonoBehaviour:
   kill_count: 0
   death_count: 0
   lastDamagedBy: {fileID: 0}
+--- !u!114 &8332422817817589327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2777444818952937924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05a9cdd70fd2214eb99223ab80fc12a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 100
+  maxHealth: 100
+  mp: 0
+  speed: 0
+  score: 0
+  dead: 0
+  hit_by_strike: 0
+  playerStatus: {fileID: 0}
+  lastDamagePlayer: {fileID: 0}
+  healthbar: {fileID: 1021565893962094571}
+  ScoreText: {fileID: 6202294847290458137}
+  scorefloat: 0
+  damageFlyTextPrefab: {fileID: 0}
+  damageFlash: {fileID: 0}
+  cameraShake: {fileID: 0}
 --- !u!1 &2786034041006526559
 GameObject:
   m_ObjectHideFlags: 0
@@ -24050,7 +24079,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -40.9205, y: 5.329518, z: 19.098904}
+  m_ConnectedAnchor: {x: -40.920486, y: 5.329515, z: 19.098902}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -24213,7 +24242,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 4.1157885, y: -2.6920764, z: 9.89671}
+  m_ConnectedAnchor: {x: 4.1157885, y: -2.692077, z: 9.89671}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -24344,7 +24373,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 4.1157737, y: -2.6920705, z: -9.896705}
+  m_ConnectedAnchor: {x: 4.1157737, y: -2.69207, z: -9.896705}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -24835,7 +24864,7 @@ Transform:
   m_GameObject: {fileID: 3320626496373310838}
   serializedVersion: 2
   m_LocalRotation: {x: 0.08715574, y: -0, z: -0, w: 0.9961947}
-  m_LocalPosition: {x: 1.271222, y: 3.2093287, z: -0.6503695}
+  m_LocalPosition: {x: 1.7427083, y: 3.2093287, z: -0.6503695}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25766,6 +25795,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3cc269e69436958409e6d7b2a0391ec4, type: 2}
   - {fileID: 0}
   componentRegistry: {fileID: 2757066348271210347}
+  blankSpell: {fileID: 0}
   projectionOn: 0
 --- !u!1 &4336775135516927553
 GameObject:
@@ -26095,7 +26125,7 @@ Transform:
   m_GameObject: {fileID: 4667919229061093562}
   serializedVersion: 2
   m_LocalRotation: {x: 0.08715574, y: -0, z: -0, w: 0.9961947}
-  m_LocalPosition: {x: 1.271222, y: 1.2593286, z: -2.5703695}
+  m_LocalPosition: {x: 1.7427083, y: 1.2593286, z: -2.5703695}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -39346,4 +39376,4 @@ MonoBehaviour:
   scoreboard: {fileID: 6287871108448919042}
   player: {fileID: 0}
   healthText: {fileID: 8223781978326598895}
-  attributeController: {fileID: 0}
+  compRegistry: {fileID: 2757066348271210347}

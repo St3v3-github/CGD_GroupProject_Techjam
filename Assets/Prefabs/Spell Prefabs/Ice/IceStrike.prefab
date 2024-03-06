@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 695540769548766081}
   - component: {fileID: 8820923492586851470}
-  m_Layer: 0
+  - component: {fileID: 3005194391245989536}
+  m_Layer: 8
   m_Name: IceStrike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,6 +55,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 0}
+--- !u!114 &3005194391245989536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2411946523980864128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d779c1167a63290418d5718f1553ab89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3513289342063380373
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,7 +78,7 @@ GameObject:
   - component: {fileID: 785853331461310068}
   - component: {fileID: 5045033176694218635}
   - component: {fileID: 9075460853570819811}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FX_Snow_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,8 +187,8 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
-  prewarm: 1
+  looping: 0
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -4817,7 +4830,7 @@ GameObject:
   - component: {fileID: 6686129050107788071}
   - component: {fileID: 9085310454915095551}
   - component: {fileID: 1168353219483271986}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4854,7 +4867,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -9851,7 +9864,7 @@ GameObject:
   - component: {fileID: 3970097865853819935}
   - component: {fileID: 6113545147225075012}
   - component: {fileID: 5851654478551998115}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Snowflakes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9888,7 +9901,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -14746,7 +14759,7 @@ GameObject:
   - component: {fileID: 5897072645298802572}
   - component: {fileID: 8224159836266641391}
   - component: {fileID: 6153044841265298849}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14783,7 +14796,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -19632,7 +19645,7 @@ GameObject:
   - component: {fileID: 4484323676171831254}
   - component: {fileID: 8874887988103371458}
   - component: {fileID: 4806797828833096863}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19669,7 +19682,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -24527,7 +24540,7 @@ GameObject:
   - component: {fileID: 3474935063105221286}
   - component: {fileID: 9175605389737189746}
   - component: {fileID: 3867205529944849505}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Snowflakes (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24564,7 +24577,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -29422,7 +29435,7 @@ GameObject:
   - component: {fileID: 6565451583303315294}
   - component: {fileID: 7237315499193743190}
   - component: {fileID: 3651058620911294572}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29459,7 +29472,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -34308,7 +34321,7 @@ GameObject:
   - component: {fileID: 5760170972852098449}
   - component: {fileID: 692842796265295646}
   - component: {fileID: 8848793249058052422}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34345,7 +34358,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -39203,7 +39216,7 @@ GameObject:
   - component: {fileID: 6897060468543559085}
   - component: {fileID: 8215930069595501737}
   - component: {fileID: 3809431263040010823}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39240,7 +39253,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0

@@ -37,7 +37,7 @@ public class Projectile : Spell
             //GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
-        else if(collision.gameObject.tag != source.tag)
+        else if(collision.gameObject.tag != source.tag )
         {
             Debug.Log(collision.name);
             GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);

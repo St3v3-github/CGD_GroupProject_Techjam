@@ -7,6 +7,8 @@ public class Grenade : Spell
 {
     public float DirectHitDamage;
     public GameObject Prefab;
+    public float activeTime;
+    private bool spawned = false;
     //public StatusEffect_Data effect;
 
     //private float timer = 0;
@@ -23,15 +25,21 @@ public class Grenade : Spell
 
     void OnTriggerEnter(Collider collision)
     {
+        if(!spawned)
+        {
+            spawned = true;
+            GameObject effect = Instantiate(Prefab, transform.position, Quaternion.identity);
+            effect.GetComponent<Spell>().source = source;
+            effect.GetComponent<DeleteOnTimer>().setupDelete(activeTime);
+            Destroy(gameObject);
+        }
        /* if (dealDamage(collision.gameObject, DirectHitDamage))
         {
             Debug.Log("hit player: " + collision.name);
             
         }*/
 
-        GameObject effect = Instantiate(Prefab, transform.position, Quaternion.identity);
-        effect.GetComponent<Spell>().source = source;
-        Destroy(gameObject);
+        
 
 
     }

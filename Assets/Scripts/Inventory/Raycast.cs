@@ -30,12 +30,12 @@ public class Raycast : MonoBehaviour
             Ray ray = new Ray(transform.position, transform.TransformDirection(direction * range));
             if (Physics.Raycast(ray, out RaycastHit hit, range))
             {
-                if (hit.collider.gameObject.TryGetComponent(out ItemScript itemScript))
+               /* if (hit.collider.gameObject.TryGetComponent(out ItemScript itemScript))
                 {
                     ItemData new_item_data = hit.collider.gameObject.GetComponent<ItemInfo>().GetItemData();
                     //display spell rune pickup text
                     target = hit.collider.gameObject;
-                }
+                }*/
             }
         //}
     }

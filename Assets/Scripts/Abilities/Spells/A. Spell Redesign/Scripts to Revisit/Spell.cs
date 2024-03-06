@@ -36,25 +36,30 @@ public class Spell : MonoBehaviour
         GameObject player = hitbox;
 
 
-        if (player.layer == LayerMask.NameToLayer("layer_Player") && player.tag != source.tag)
+        if (player.CompareTag("Player"))
         {
             // AttributeManager attributes = hitbox.GetComponent<AttributeManager>();
-            if (hitbox.tag == "Player1" || hitbox.tag == "Player2")
-            {
-                AttributeManager attributes = player.GetComponent<UIController>().attributeController.GetComponent<AttributeManager>();
-                Debug.Log("2");
+           
+                AttributeManager attributes = player.GetComponent<ComponentRegistry>().attributeManager;
+               
                 if (attributes != null)
                 {
                     Debug.Log("3");
                     attributes.TakeDamage(damage, source);
                     return true;
                 }
+            else
+            {
+
+                return false;
             }
+        }
+        return false;
 
 
             //Hitmarker
-            source.GetComponent<UIController>().Hit(damage);
+            //source.GetComponent<UIController>().Hit(damage);
         }
-        return false;
-    }
+    
+    
 }

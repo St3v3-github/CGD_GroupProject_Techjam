@@ -11,8 +11,8 @@ public class GameController : MonoBehaviour
 {
     public GameRules game;
     private bool lobby = true;
-    private float lobbyTimer = 5;
-    public TextMeshProUGUI lobbyText;
+    private float lobbyTimer = 20;
+    //public TextMeshProUGUI lobbyText;
     public LayerMask playerLayer;
 
     public float timer;
@@ -29,7 +29,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         timer = game.timer;
-        lobbyText.fontSize = 100; 
+        //lobbyText.fontSize = 100; 
     }
 
 
@@ -41,12 +41,12 @@ public class GameController : MonoBehaviour
             lobbyTimer -= Time.deltaTime;
 
             // Update the UI text with the current countdown value
-            lobbyText.text = Mathf.Round(lobbyTimer).ToString();
+            //lobbyText.text = Mathf.Round(lobbyTimer).ToString();
 
             // Check if the countdown has reached zero
             if (lobbyTimer <= 0)
             {
-                lobbyText.text = "Game Starting";
+                //lobbyText.text = "Game Starting";
                 StartGame();
                 Invoke("ClearText", 1f);
 
@@ -55,7 +55,7 @@ public class GameController : MonoBehaviour
         else if (!lobby)
         {
             timer -= Time.deltaTime;
-            lobbyText.text = "Game time " + Mathf.Round(timer).ToString();
+            //lobbyText.text = "Game time " + Mathf.Round(timer).ToString();
 
             if (timer <= 0)
             {
@@ -125,22 +125,22 @@ public class GameController : MonoBehaviour
                 foreach (GameObject player in players)
                 {
 
-                    string tagString = "Player" + i.ToString();
+                    string tagString = "Player";
                     player.tag = tagString;
-                    player.GetComponent<AbilityManager2>().spell_controller.gameObject.tag = tagString;
-                    player.GetComponent<UIController>().attributeController.gameObject.tag = tagString;
+                    //player.GetComponent<ComponentRegistry>().spell_controller.gameObject.tag = tagString;
+                    player.GetComponent<ComponentRegistry>().attributeManager.gameObject.tag = tagString;
                     i++;
                 }
                 break;
             case GameMode.TeamDeathMatch:
                 foreach (GameObject player in team1)
                 {
-                    player.tag = "Player1";
+                    player.tag = "Player";
                     
                 }
                 foreach (GameObject player in team2)
                 {
-                    player.tag = "Player2";
+                    player.tag = "Player";
                    
                 }
                 break;
@@ -232,7 +232,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void ClearText() {lobbyText.text = "";}
+    public void ClearText() {/*lobbyText.text = "";*/}
 
     //Respawning Code Below
 
@@ -249,12 +249,13 @@ public class GameController : MonoBehaviour
                 break;
         }
 
-        prayer.deaded.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(true);
-        prayer.deaded.transform.Find("AttributeController").GetComponent<AttributeManager>().currentHealth = 0;
-        prayer.deaded.transform.Find("AttributeController").GetComponent<AttributeManager>().healthbar.value = 0;
-        prayer.deaded.transform.GetComponent<InputManager>().enabled = false;
-        prayer.deaded.transform.Find("AttributeController").gameObject.SetActive(false);
-        prayer.deaded.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(false);
+        var compManager = prayer.deaded.GetComponent<ComponentRegistry>();
+        compManager.animationManager.toggleDeadBool(true);
+        compManager.attributeManager.currentHealth = 0;
+        compManager.attributeManager.healthbar.value = 0;
+        compManager.inputManager.enabled = false;
+        compManager.spellManager.enabled = false;
+        
 
         GameObject playerMesh = prayer.deaded.transform.Find("Mesh").gameObject;
         GameObject RagdollMesh = Instantiate(playerMesh, playerMesh.transform.position, playerMesh.transform.rotation);
@@ -297,22 +298,19 @@ public class GameController : MonoBehaviour
     private IEnumerator ReincarnatePlayer(GameObject player, GameObject respawnPoint)
     {
         yield return new WaitForSeconds(game.respawnTimer);
-        player.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(false);
-        player.transform.Find("AttributeController").gameObject.SetActive(true);
-        player.transform.Find("Mesh").gameObject.SetActive(true);
-        //player.GetComponent<CharacterController>().enabled = false;
-        player.transform.SetPositionAndRotation(respawnPoint.transform.position, respawnPoint.transform.rotation);
-        //player.GetComponent<CharacterController>().enabled = true;
-        player.transform.GetComponent<UpdatedPlayerController>().enabled = true;
-        player.transform.GetComponent<InputManager>().enabled = true;
-        player.transform.Find("AttributeController").GetComponent<AttributeManager>().currentHealth = player.transform.GetChild(5).GetComponent<AttributeManager>().maxHealth;
+        var compManager = player.GetComponent<ComponentRegistry>();
+        compManager.animationManager.toggleDeadBool(false);
+        compManager.attributeManager.currentHealth = 100;
+        compManager.attributeManager.healthbar.value = 100;
+        compManager.inputManager.enabled = true;
+        compManager.spellManager.enabled = true;
     }
 
     // FFA Score below
     public void UpdateFFAScore(GameObject killer)
     {
         if (killer.GetComponent<AttributeManager>() != null) { killer.GetComponent<AttributeManager>().score += 1; }
-        else { killer.transform.Find("AttributeController").GetComponent<AttributeManager>().score += 1; }
+        else { killer.GetComponent<ComponentRegistry>().attributeManager.score += 1; }
         
     }
 

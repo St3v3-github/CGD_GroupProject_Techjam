@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 353938981405279265}
   - component: {fileID: 9126717629582182510}
   - component: {fileID: 7696959435540319101}
-  m_Layer: 0
+  - component: {fileID: -2314540690633113257}
+  m_Layer: 8
   m_Name: Wirlwind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,6 +71,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounceStrength: 10
+--- !u!114 &-2314540690633113257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3137814709021285244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d779c1167a63290418d5718f1553ab89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3396782502306597715
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,7 +94,7 @@ GameObject:
   - component: {fileID: 1302759811005737226}
   - component: {fileID: 7163492687619521608}
   - component: {fileID: 8405604240292969890}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wind_Effect_Aura_Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4969,6 +4982,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wind_Effect_Orbit
       objectReference: {fileID: 0}
+    - target: {fileID: 1497030318103322, guid: 3313c584bfb0ca54584fe5b29871dfc2, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4378575522618406, guid: 3313c584bfb0ca54584fe5b29871dfc2, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -5139,9 +5156,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 353938981405279265}
     m_Modifications:
+    - target: {fileID: 1072705914389480, guid: 9efac3ef75f3a054f93c32ffa91c05e7, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1560195616043144, guid: 9efac3ef75f3a054f93c32ffa91c05e7, type: 3}
       propertyPath: m_Name
       value: Wind_Effect_Swirl
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560195616043144, guid: 9efac3ef75f3a054f93c32ffa91c05e7, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4851578701543438, guid: 9efac3ef75f3a054f93c32ffa91c05e7, type: 3}
       propertyPath: m_LocalScale.x

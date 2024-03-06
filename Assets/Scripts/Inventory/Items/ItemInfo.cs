@@ -17,8 +17,8 @@ public class ItemInfo : MonoBehaviour
     void Start()
     {
         //fill up the lists for method 1
-        var clone = Instantiate(private_item_data);
-        item_data = clone;
+        /*var clone = Instantiate(private_item_data);
+        item_data = clone;*/
      
 
     }
@@ -31,7 +31,7 @@ public class ItemInfo : MonoBehaviour
 
     public int GetWeight()
     {
-        return item_data.spawn_weight;
+        return 1;
 
     }
 

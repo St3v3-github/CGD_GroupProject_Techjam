@@ -34,7 +34,7 @@ public class FireCircle : Spell
         Collider[] colliders = Physics.OverlapSphere(transform.position, currentRadius);
         foreach (Collider collider in colliders)
         {
-            if (collider.gameObject.CompareTag("Player1") || collider.CompareTag("Player2"))
+            if (collider.gameObject.CompareTag("Player"))
             {
                 // Apply damage over time
                 ApplyDamageOverTime(collider.gameObject);

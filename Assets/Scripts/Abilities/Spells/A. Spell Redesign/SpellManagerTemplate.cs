@@ -10,6 +10,7 @@ public class SpellManagerTemplate : MonoBehaviour
 {
     public SpellDataTemplate[] spellSlotArray = new SpellDataTemplate[4];
     public ComponentRegistry componentRegistry;
+    public SpellDataTemplate blankSpell;
 
     //private SpellDataTemplate spellDataTemplate;
 
@@ -21,22 +22,28 @@ public class SpellManagerTemplate : MonoBehaviour
     private void Start()
     {
         componentRegistry = GetComponentInParent<ComponentRegistry>();
-       
 
         for (int i = 0; i < spellSlotArray.Length; i++)
         {
             spellSlotArray[i] = Instantiate(spellSlotArray[i]);
-            spellSlotArray[i].targetPoint = GameObject.FindWithTag("AdvProjSys_Firepoint").transform;
-            if (spellSlotArray[i].usesAdvProjSystem)
+                     if (spellSlotArray[i].usesAdvProjSystem)
             {
                 spellSlotArray[i].shooting = false;
                 spellSlotArray[i].fireRateLimited = true;
                 // NEATEN THIS LATER MAYBE IDK, IT ONLY RUNS ONCE PER PLAYER
-               // GetComponent<AdvancedProjectileSystem>().SetSpellDataTemplate(spellSlotArray[i]);
-               
+                // GetComponent<AdvancedProjectileSystem>().SetSpellDataTemplate(spellSlotArray[i]);
+
             }
         }
+        SetTargetPoints();
 
+    }
+    public void SetTargetPoints()
+    {
+        for (int i = 0; i < spellSlotArray.Length; i++)
+        {
+                    spellSlotArray[i].targetPoint = GameObject.FindWithTag("AdvProjSys_Firepoint").transform;
+                   }
     }
 
     private void Update()
@@ -97,6 +104,7 @@ public class SpellManagerTemplate : MonoBehaviour
         if (spellSlotArray[slot].currentState == SpellDataTemplate.SpellState.READY)
         {
             InstantiateStrike(projection.transform.position, slot);
+
         }
 
 
@@ -108,7 +116,9 @@ public class SpellManagerTemplate : MonoBehaviour
 
     public void InstantiateStrike(Vector3 centre, int slot)
     {
+        //Quaternion rotationForStrike = new Quaternion(componentRegistry.playerCamera.transform.rotation.x, componentRegistry.playerCamera.transform.rotation.y, componentRegistry.playerCamera.transform.rotation.z, 0f);
         GameObject strike = Instantiate(spellSlotArray[slot].Spellprefab, centre + Vector3.up * 0.5f, componentRegistry.playerCamera.transform.rotation);
+        strike.GetComponent<DeleteOnTimer>().setupDelete(spellSlotArray[slot].activeTime);
         // NEED TO ADD:
         // ENSURE THE INSTANTIATED OBJECT DESTROYS ITSELF
 
@@ -256,9 +266,9 @@ public class SpellManagerTemplate : MonoBehaviour
             spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.COOLDOWN;
             Debug.Log("Throw");
             GameObject projectile = Instantiate(spellSlotArray[slot].Spellprefab, spellSlotArray[slot].targetPoint.position, componentRegistry.playerCamera.transform.rotation);
-            projectile.GetComponent<Grenade>().source = this.gameObject;
-            projectile.tag = this.transform.parent.tag + "Spell";
-            //AudioManager.instance.PlayOneShot(FMODEvents.instance.iceSound, this.transform.position);
+            projectile.GetComponent<Grenade>().source = this.transform.parent.gameObject;
+            projectile.GetComponent<Grenade>().activeTime = spellSlotArray[slot].activeTime;
+                      //AudioManager.instance.PlayOneShot(FMODEvents.instance.iceSound, this.transform.position);
 
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
 
@@ -291,6 +301,10 @@ public class SpellManagerTemplate : MonoBehaviour
                 switchProjectionOff();
                 Strike(slot);
                 spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.COOLDOWN;
+                if (spellSlotArray[slot].isUltimate)
+                {
+                    DecreaseUltimates();
+                }
             }
             else if (projection == null)
             {
@@ -375,7 +389,7 @@ public class SpellManagerTemplate : MonoBehaviour
 
     private IEnumerator SpellActiveTimer(int slot, float activeTime, bool setCooldown)
     {
-        yield return new WaitForSeconds(spellSlotArray[slot].activeTime);
+        yield return new WaitForSeconds(spellSlotArray[slot].waitTime);
         if(setCooldown)
         {
             Debug.Log("WE ARE IN SETCOOLDOWN OF ACTIVE");
@@ -498,6 +512,11 @@ public class SpellManagerTemplate : MonoBehaviour
                 #endregion
 
         }
+        if (spellSlotArray[slotNumber].isUltimate && spellSlotArray[slotNumber].ID != SpellDataTemplate.SpellID.FireStrike )
+        {
+            DecreaseUltimates();
+           
+        }
     }
 
     public void EquipUltimate(SpellDataTemplate newSlotData)
@@ -513,6 +532,11 @@ public class SpellManagerTemplate : MonoBehaviour
     private void HandleSFX()
     {
 
+    }
+    private void DecreaseUltimates()
+    {
+     
+        spellSlotArray[3] = blankSpell;
     }
 
 

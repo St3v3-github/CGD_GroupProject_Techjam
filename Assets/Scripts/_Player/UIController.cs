@@ -10,22 +10,17 @@ public class UIController : MonoBehaviour
     public GameObject scoreboard;
     public GameObject player;
     public TextMeshProUGUI healthText;
-    public GameObject attributeController;
-    private float health = 0;
+    public ComponentRegistry compRegistry;
 
 
     private void Update()
     {
-        if (attributeController.GetComponent<AttributeManager>().currentHealth >= 0)
+        if (compRegistry.attributeManager.currentHealth < 0)
         {
-             health = attributeController.GetComponent<AttributeManager>().currentHealth;
-        }
-        else
-        {
-             health = 0f;
+             compRegistry.attributeManager.currentHealth = 0;
         }
        
-        healthText.text = health.ToString();
+        //healthText.text = compRegistry.attributeManager.currentHealth.ToString();
     }
     public void OpenScoreboard()
     {

@@ -44,6 +44,7 @@ public class SpellDataTemplate : ScriptableObject
     }
     public bool changingState = false;
     public bool activeForCooldown = false;
+    public float waitTime = 0;
 
     public SpellState currentState = SpellState.READY;
 

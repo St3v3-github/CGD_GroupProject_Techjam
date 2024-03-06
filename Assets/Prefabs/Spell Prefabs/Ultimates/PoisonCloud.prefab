@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 974566168759426221}
   - component: {fileID: 8521900389906227251}
-  m_Layer: 0
+  - component: {fileID: 7215885264527448052}
+  - component: {fileID: 8845131021957421349}
+  m_Layer: 8
   m_Name: PoisonCloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,12 +48,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagePerSecond: 5
-  delayBeforeDamage: 2
-  maxColliderRadius: 5
+  maxRadius: 5
   sizeIncreaseDuration: 5
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 192
+  duration: 10
+--- !u!114 &7215885264527448052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127068259652599947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be1921e74658ba64ba9d672601439aa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 0}
+--- !u!114 &8845131021957421349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127068259652599947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d779c1167a63290418d5718f1553ab89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6976388255048713966
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63,6 +87,10 @@ PrefabInstance:
     - target: {fileID: 1095787749935704, guid: cc606b05b54463b41bd3f1744812102d, type: 3}
       propertyPath: m_Name
       value: FX_Grenade_Smoke_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095787749935704, guid: cc606b05b54463b41bd3f1744812102d, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4090296723481812, guid: cc606b05b54463b41bd3f1744812102d, type: 3}
       propertyPath: m_LocalPosition.x

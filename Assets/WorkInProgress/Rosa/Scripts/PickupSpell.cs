@@ -5,26 +5,19 @@ using UnityEngine;
 
 public class PickupSpell : MonoBehaviour
 {
-    public static event System.Action<ProjectileData> OnSpellPickedUp; 
+  
 
-    [SerializeField] ProjectileData spell;
+    [SerializeField] SpellDataTemplate spell;
 
     private void OnTriggerEnter(Collider other)
     {
-       /* if (other.gameObject.tag == "Player")
+       if(other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("collided");
+            other.gameObject.GetComponentInChildren<SpellManagerTemplate>().spellSlotArray[3] = Instantiate(spell);
+            other.gameObject.GetComponentInChildren<SpellManagerTemplate>().SetTargetPoints();
+            Destroy(this.gameObject);
+        }
 
-            // Trigger event passing spell gameobject
-            OnSpellPickedUp?.Invoke(spell);
-
-            Destroy(gameObject);
-        }*/
     }
-    public void ApplyToPlayer()
-    {
-        OnSpellPickedUp?.Invoke(spell);
-
-        Destroy(gameObject);
-    }
+   
 }

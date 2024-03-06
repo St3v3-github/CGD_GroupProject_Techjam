@@ -204,7 +204,7 @@ public class UpdatedPlayerController : MonoBehaviour
 
     void Start()
     {
-        cameraTransform = GetComponentInParent<Camera>().transform;
+        cameraTransform = components.playerCamera.transform;
        
         readyToJump = true;
 
