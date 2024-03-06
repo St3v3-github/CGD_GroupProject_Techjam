@@ -5,6 +5,8 @@ using UnityEngine;
 public class Dashing : MonoBehaviour
 {
     public Transform playerCam;
+    private Rigidbody rb;
+    private UpdatedPlayerController pm;
 
     public float dashForce;
     public float dashUpwardForce;
@@ -15,14 +17,12 @@ public class Dashing : MonoBehaviour
 
     private Vector3 delayedForceToApply;
 
-    [Header("Component Registry")]
-    public ComponentRegistry components;
-
 
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = GetComponent<Rigidbody>();
+        pm = GetComponent<UpdatedPlayerController>();
     }
 
     // Update is called once per frame
@@ -45,7 +45,7 @@ public class Dashing : MonoBehaviour
             dashCooldownTimer = dashCooldown;
         }
 
-        components.playerController.dashing = true;
+        pm.dashing = true;
         Vector3 forceToApply = transform.forward * dashForce + transform.up * dashUpwardForce;
 
         Invoke(nameof(DelayDashForce), 0.025f);
@@ -55,11 +55,11 @@ public class Dashing : MonoBehaviour
 
     private void DelayDashForce()
     {
-        components.rigidBody.AddForce(delayedForceToApply, ForceMode.Impulse);
+        rb.AddForce(delayedForceToApply, ForceMode.Impulse);
     }
 
     public void ResetDash()
     {
-        components.playerController.dashing = false;
+        pm.dashing = false;
     }
 }

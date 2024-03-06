@@ -6,6 +6,7 @@ using UnityEngine;
 public class Grappling : MonoBehaviour
 {
 
+    private UpdatedPlayerController pm;
     public Transform cam;
     public Transform grappleTip;
     public LayerMask Grappleable;
@@ -23,13 +24,10 @@ public class Grappling : MonoBehaviour
 
     public LineRenderer lr;
 
-    [Header("Component Registry")]
-    public ComponentRegistry components;
-
     // Start is called before the first frame update
     void Start()
     {
-
+        pm = GetComponent<UpdatedPlayerController>();
     }
 
     // Update is called once per frame
@@ -57,7 +55,7 @@ public class Grappling : MonoBehaviour
         }
         grappling = true;
 
-        components.playerController.freeze = true;
+        pm.freeze = true;
 
         RaycastHit hit;
         if (Physics.Raycast(cam.position,cam.forward, out hit, maxGrappleDistance, Grappleable))
@@ -79,7 +77,7 @@ public class Grappling : MonoBehaviour
 
     private void ExecuteGrapple()
     {
-        components.playerController.freeze = false;
+        pm.freeze = false;
 
         Vector3 lowestPoint = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
 
@@ -91,14 +89,14 @@ public class Grappling : MonoBehaviour
             highestPointOnArc = overshootYAxis;
         }
 
-        components.playerController.JumpToPosition(grapplePoint, highestPointOnArc);
+        pm.JumpToPosition(grapplePoint, highestPointOnArc);
         Invoke(nameof(stopGrapple), 1f);
     }
 
     public void stopGrapple()
     {
         grappling = false;
-        components.playerController.freeze = false;
+        pm.freeze = false;
 
         grapplingCooldownTimer = grapplingCooldown;
 
