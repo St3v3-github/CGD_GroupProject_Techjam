@@ -79,6 +79,8 @@ public class UpdatedPlayerController : MonoBehaviour
 
     public MovementState state;
 
+    [SerializeField] private GameObject player;
+
     public enum MovementState
     {
         freeze,
@@ -306,10 +308,10 @@ public class UpdatedPlayerController : MonoBehaviour
         yRotation += camX;
 
         xRotation -= camY;
-        xRotation = Mathf.Clamp(xRotation, -70, 70);
+        xRotation = Mathf.Clamp(xRotation, -10, 30);
 
         components.playerCamera.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
-        transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
+        player.transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
         
     }
 
