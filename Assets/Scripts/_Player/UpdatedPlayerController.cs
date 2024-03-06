@@ -30,7 +30,7 @@ public class UpdatedPlayerController : MonoBehaviour
     public float speedIncreaseMultiplier;
     public float sloperIncreaseMultiplier;
 
-    //References
+    [Header("Component Registry")]
     public ComponentRegistry components;
 
     [Header("Player Height & Ground Settings")]
@@ -78,6 +78,8 @@ public class UpdatedPlayerController : MonoBehaviour
     Vector3 velocityToSet;
 
     public MovementState state;
+
+    [SerializeField] private GameObject player;
 
     public enum MovementState
     {
@@ -322,6 +324,21 @@ public class UpdatedPlayerController : MonoBehaviour
         }
 
         components.rigidBody.useGravity = !OnSlope();
+        
+    }
+
+    public void HandleCamera(Vector2 cameraInput)
+    {
+        float camX = cameraInput.x * Time.deltaTime * sensX;
+        float camY = cameraInput.y * Time.deltaTime * sensY;
+
+        yRotation += camX;
+
+        xRotation -= camY;
+        xRotation = Mathf.Clamp(xRotation, -10, 30);
+
+        components.playerCamera.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
+        player.transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
         
     }
 

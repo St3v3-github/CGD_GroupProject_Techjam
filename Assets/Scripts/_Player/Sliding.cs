@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Sliding : MonoBehaviour
 {
+    
+
     public Transform playerObj;
-    private Rigidbody rb;
-    private UpdatedPlayerController pm;
 
     public float maxSlideTime;
     public float slideForce;
@@ -21,12 +21,12 @@ public class Sliding : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
 
+    [Header("Component Registry")]
+    public ComponentRegistry components;
+
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        pm = GetComponent<UpdatedPlayerController>();
-
         startYScale = playerObj.localScale.y;
     }
 
@@ -47,7 +47,7 @@ public class Sliding : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(pm.sliding)
+        if(components.playerController.sliding)
         {
             SlidingMovement();
         }
@@ -61,10 +61,10 @@ public class Sliding : MonoBehaviour
 
     public void StartSlide()
     {
-        pm.sliding = true;
+        components.playerController.sliding = true;
 
         playerObj.localScale = new Vector3(playerObj.localScale.x, slideYScale, playerObj.localScale.z);
-        rb.AddForce(Vector3.down * 1f, ForceMode.Impulse);
+        components.rigidBody.AddForce(Vector3.down * 1f, ForceMode.Impulse);
 
         slideTimer = maxSlideTime;
     }
@@ -72,17 +72,17 @@ public class Sliding : MonoBehaviour
     private void SlidingMovement()
     {
         Vector3 inputDirection = transform.forward * verticalInput + transform.right * horizontalInput;
-        if (!pm.OnSlope() || rb.velocity.y > -0.1f)
+        if (!components.playerController.OnSlope() || components.rigidBody.velocity.y > -0.1f)
         {
-            
 
-            rb.AddForce(inputDirection.normalized * slideForce, ForceMode.Force);
+
+            components.rigidBody.AddForce(inputDirection.normalized * slideForce, ForceMode.Force);
 
             slideTimer -= Time.deltaTime;
         }
         else
         {
-            rb.AddForce(pm.GetSlopeMoveDirection(inputDirection) * slideForce, ForceMode.Force);
+            components.rigidBody.AddForce(components.playerController.GetSlopeMoveDirection(inputDirection) * slideForce, ForceMode.Force);
         }
 
 
@@ -91,8 +91,8 @@ public class Sliding : MonoBehaviour
     }
 
     public void EndSlide()
-    {   
-        pm.sliding = false;
+    {
+        components.playerController.sliding = false;
 
         playerObj.localScale = new Vector3(playerObj.localScale.x, startYScale, playerObj.localScale.z);
     }

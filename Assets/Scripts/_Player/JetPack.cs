@@ -20,24 +20,21 @@ public class JetPack : MonoBehaviour
     public float currentFill;
     public float maxFill;
     public float lastTimeOfUse;
-    
-    UpdatedPlayerController pm;
-    Rigidbody rb;
+
+    [Header("Component Registry")]
+    public ComponentRegistry components;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        pm = GetComponent<UpdatedPlayerController>();
-        rb = GetComponent<Rigidbody>();
-
         currentFill = maxFill;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(pm.isGrounded)
+        if(components.playerController.isGrounded)
         {
             canUseJetPack = false;
             if(currentFill < maxFill)
@@ -46,7 +43,7 @@ public class JetPack : MonoBehaviour
             }
 
         }
-        else if (!pm.hasJumpedThisFrame && usingJetpack)
+        else if (!components.playerController.hasJumpedThisFrame && usingJetpack)
         {
             canUseJetPack = true;
         }
@@ -57,7 +54,7 @@ public class JetPack : MonoBehaviour
         {
             lastTimeOfUse = Time.deltaTime;
             currentFill -= Time.deltaTime;
-            rb.AddForce(rb.transform.up * jetPackThrust, ForceMode.Impulse);
+            components.rigidBody.AddForce(components.rigidBody.transform.up * jetPackThrust, ForceMode.Impulse);
         }
     }
 
