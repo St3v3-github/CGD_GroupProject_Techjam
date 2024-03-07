@@ -26631,7 +26631,6 @@ GameObject:
   - component: {fileID: 8875838033666652937}
   - component: {fileID: 1347140803780868532}
   - component: {fileID: 7487155259430018739}
-  - component: {fileID: 1770899243380345267}
   - component: {fileID: 3604944405339622446}
   - component: {fileID: 5209444804341010539}
   - component: {fileID: 7014747242483737085}
@@ -26966,25 +26965,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentRegistry: {fileID: 2757066348271210347}
-  spellManagerTemplate: {fileID: 0}
+  spellManagerTemplate: {fileID: 1347140803780868532}
   cameraInput: {x: 0, y: 0}
   movementInput: {x: 0, y: 0}
   shootInput: 0
   Element: 1
---- !u!114 &1770899243380345267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4822170820165355300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74ad960a4d4e9b34c8771f2ef8c065be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
-  spell_controller: {fileID: 0}
 --- !u!114 &3604944405339622446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27039,7 +27024,7 @@ MonoBehaviour:
   airMultiplier: 0.3
   jumpForceMultiplier: 2
   maxJumpForce: 15
-  readyToJump: 0
+  readyToJump: 1
   chargingJump: 0
   sprintPressed: 0
   maxSlopeAngle: 40
