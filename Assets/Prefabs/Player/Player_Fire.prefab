@@ -258,6 +258,7 @@ MonoBehaviour:
   firePoint: {fileID: 5703947444518334864}
   attributeManager: {fileID: 8332422817817589327}
   spellManager: {fileID: 2947081459611145061}
+  statusEffectHandler: {fileID: 0}
   playerAnimator: {fileID: 3058641290690927777}
   animationManager: {fileID: 6246835744260912567}
   uiController: {fileID: 6923252535860149858}
@@ -24864,7 +24865,7 @@ Transform:
   m_GameObject: {fileID: 3320626496373310838}
   serializedVersion: 2
   m_LocalRotation: {x: 0.08715574, y: -0, z: -0, w: 0.9961947}
-  m_LocalPosition: {x: 1.7427083, y: 3.2093287, z: -0.6503695}
+  m_LocalPosition: {x: 1.2701706, y: 1.2593286, z: -2.5703695}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25755,6 +25756,7 @@ GameObject:
   m_Component:
   - component: {fileID: 108579657671345003}
   - component: {fileID: 2947081459611145061}
+  - component: {fileID: 5165700179569185429}
   m_Layer: 6
   m_Name: Spells
   m_TagString: Untagged
@@ -25797,6 +25799,21 @@ MonoBehaviour:
   componentRegistry: {fileID: 2757066348271210347}
   blankSpell: {fileID: 0}
   projectionOn: 0
+--- !u!114 &5165700179569185429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4257967271512095513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db49572538c196f48b5f53edfbb785eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _testDummy: {fileID: 0}
+  selfMovement: {fileID: 0}
+  selfAttributes: {fileID: 0}
 --- !u!1 &4336775135516927553
 GameObject:
   m_ObjectHideFlags: 0
@@ -26125,7 +26142,7 @@ Transform:
   m_GameObject: {fileID: 4667919229061093562}
   serializedVersion: 2
   m_LocalRotation: {x: 0.08715574, y: -0, z: -0, w: 0.9961947}
-  m_LocalPosition: {x: 1.7427083, y: 1.2593286, z: -2.5703695}
+  m_LocalPosition: {x: 1.2701706, y: 1.2593286, z: -2.5703695}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
