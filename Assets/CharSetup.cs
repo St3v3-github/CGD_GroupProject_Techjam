@@ -58,7 +58,6 @@ public class CharSetup : MonoBehaviour
                 componentRegistries[componentRegistry.playerInput.playerIndex] = componentRegistry;
 
                 componentRegistry.inputManager.enabled = false;
-                componentRegistry.advancedProjectileSystem.enabled = false;
                 componentRegistry.playerCamera.enabled = false;
                 componentRegistry.playerController.enabled = false;
                 componentRegistry.rigidBody.MovePosition(characterPositions[componentRegistry.playerInput.playerIndex].transform.position);

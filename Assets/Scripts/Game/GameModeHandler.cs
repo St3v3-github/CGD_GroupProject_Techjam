@@ -138,7 +138,6 @@ public class GameModeHandler : MonoBehaviour
             foreach(var playerReg in playerRegistries)
             {
                 playerReg.inputManager.enabled = false;
-                playerReg.advancedProjectileSystem.enabled = false;
                 playerReg.playerCamera.enabled = false;
                 playerReg.playerController.enabled = false;
             }
@@ -161,13 +160,13 @@ public class GameModeHandler : MonoBehaviour
     private IEnumerator reincarnatePlayer(GameObject player, GameObject respawnPoint)
     {
         yield return new WaitForSeconds(respawnTimer);
-        player.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(false);
+        var componentReg = player.GetComponent<ComponentRegistry>();
+        componentReg.animationManager.toggleDeadBool(false);
         player.transform.SetPositionAndRotation(respawnPoint.transform.position, respawnPoint.transform.rotation);
-        player.GetComponent<UpdatedPlayerController>().enabled = true;
-      
-        AttributeManager attributeComp = player.transform.GetComponent<AttributeManager>();
-        attributeComp.currentHealth = attributeComp.maxHealth;
-        attributeComp.dead = false;
+        componentReg.playerController.enabled = true;
+
+        componentReg.attributeManager.currentHealth = componentReg.attributeManager.maxHealth;
+        componentReg.attributeManager.dead = false;
     }
 
     private GameObject FindSpawnPoint()
@@ -275,7 +274,6 @@ public class GameModeHandler : MonoBehaviour
         {
             var componentRegistry = player.GetComponent<ComponentRegistry>();
             componentRegistry.inputManager.enabled = true;
-            componentRegistry.advancedProjectileSystem.enabled = true;
             componentRegistry.playerController.enabled = true;
         }
     }

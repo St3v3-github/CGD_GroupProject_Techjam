@@ -27,18 +27,9 @@ public class ComponentRegistry : MonoBehaviour
     public GrappleSwing grappleSwing;
 
     [Header("Spells")]
-    public InventoryEdit inventory;
-    public AbilityManager2 abilityManager;
-    public AdvancedProjectileSystem advancedProjectileSystem;
-    public CastableAOEStrike castableAOEStrike;
-    public Summon summonAnimal;
-    public SpellCastOnStaff spellCastOnStaff;
-    public Heal healSpell;
-    public SpellCastOnRay spellCastOnRay;
-    public Beam beamSpell;
-    public ThrowSpell throwSpell;
     public GameObject firePoint;
     public AttributeManager attributeManager;
+    public FlameThrower flameThrower; 
 
     [Header("Animations")]
     public Animator playerAnimator;

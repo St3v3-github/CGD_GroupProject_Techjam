@@ -250,18 +250,9 @@ MonoBehaviour:
   jetPack: {fileID: 1446453331940890188}
   grappling: {fileID: 9055387862627763096}
   grappleSwing: {fileID: 3261859820062135994}
-  inventory: {fileID: 3890158570028712837}
-  abilityManager: {fileID: 1770899243380345267}
-  advancedProjectileSystem: {fileID: 8197120091361470339}
-  castableAOEStrike: {fileID: 285614519697731975}
-  summonAnimal: {fileID: 6524303441396799638}
-  spellCastOnStaff: {fileID: 9198259862436971180}
-  healSpell: {fileID: 775196412946322661}
-  spellCastOnRay: {fileID: 4530562303021372081}
-  beamSpell: {fileID: 692544893140267904}
-  throwSpell: {fileID: 2631326112995482606}
   firePoint: {fileID: 5703947444518334864}
   attributeManager: {fileID: 8640007719564735296}
+  flameThrower: {fileID: 0}
   playerAnimator: {fileID: 3058641290690927777}
   animationManager: {fileID: 6246835744260912567}
   uiController: {fileID: 3604944405339622446}
@@ -10839,7 +10830,7 @@ MonoBehaviour:
   spelltext: {fileID: 4506147793389172212}
   chargetext: {fileID: 7514008746363951324}
   slot: 1
-  playerInventory: {fileID: 3890158570028712837}
+  playerInventory: {fileID: 0}
 --- !u!1 &2745203256831368222
 GameObject:
   m_ObjectHideFlags: 0
@@ -21055,7 +21046,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: 33.947483, y: 0.14476192, z: 0.14362466}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -21757,7 +21748,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: -58.987267, y: 1.8647861, z: -1.5168807e-13}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -22054,7 +22045,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: -33.947426, y: -0.14490902, z: -0.14362407}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -22282,7 +22273,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: -39.930923, y: -0.0000014305115, z: -0.00000333786}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -22445,7 +22436,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: 39.930927, y: -0.0000371933, z: 0.00000333786}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -23133,7 +23124,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: -40.92079, y: 5.329531, z: -19.098925}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -23408,7 +23399,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: -10.393261, y: -0.0000009536743, z: 0}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -24454,7 +24445,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: -40.9205, y: 5.329518, z: 19.098904}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -24617,7 +24608,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: 4.1157885, y: -2.6920764, z: 9.89671}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -24748,7 +24739,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: 4.1157737, y: -2.6920705, z: -9.896705}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -26056,7 +26047,7 @@ MonoBehaviour:
   spelltext: {fileID: 999833785787100111}
   chargetext: {fileID: 781962258997782101}
   slot: 3
-  playerInventory: {fileID: 3890158570028712837}
+  playerInventory: {fileID: 0}
 --- !u!1 &3783603303268658183
 GameObject:
   m_ObjectHideFlags: 0
@@ -26185,7 +26176,7 @@ MonoBehaviour:
   spelltext: {fileID: 1888372291892997954}
   chargetext: {fileID: 579339130212198112}
   slot: 0
-  playerInventory: {fileID: 3890158570028712837}
+  playerInventory: {fileID: 0}
 --- !u!1 &3987389153708351516
 GameObject:
   m_ObjectHideFlags: 0
@@ -26334,188 +26325,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &4257967271512095513
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 108579657671345003}
-  - component: {fileID: 8197120091361470339}
-  - component: {fileID: 2631326112995482606}
-  - component: {fileID: 285614519697731975}
-  - component: {fileID: 6524303441396799638}
-  - component: {fileID: 9198259862436971180}
-  - component: {fileID: 775196412946322661}
-  - component: {fileID: 4530562303021372081}
-  - component: {fileID: 692544893140267904}
-  m_Layer: 6
-  m_Name: SpellController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &108579657671345003
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4257967271512095513}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6552784344966881952}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8197120091361470339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4257967271512095513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 406c8511d3235cb4eba857bfdc5e24d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 4822170820165355300}
-  spellDataTemplate: {fileID: 0}
-  shooting: 0
-  readyToShoot: 0
-  recharging: 0
-  shootWithRay: 0
-  fireRateLimited: 1
-  playerCam: {fileID: 1946129503111233968}
-  firePoint: {fileID: 5400324781677892195}
-  hittable:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  animControl: {fileID: 6246835744260912567}
---- !u!114 &2631326112995482606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4257967271512095513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb4d0ce1d9b3574080d15a28510ec3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 141443802332303738}
-  firePoint: {fileID: 5400324781677892195}
-  prefab: {fileID: 1702362178713909210, guid: 9df84c82f8e0d1e4d9db0c574c091af9, type: 3}
-  playerCam: {fileID: 7241906957195377663}
-  projectileForce: 10
---- !u!114 &285614519697731975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4257967271512095513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2af02873e76f94f40a32486331f04495, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 4822170820165355300}
-  projectionPrefab: {fileID: 8198984963544093090, guid: ab0b8ce3ffd22ec4c94394e0087bf382, type: 3}
-  playerCamera: {fileID: 1946129503111233968}
-  projectionOn: 0
-  doesDamage: 0
---- !u!114 &6524303441396799638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4257967271512095513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6177b688cc92211418fc772399bf5eef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 4822170820165355300}
-  summonPoint: {fileID: 108579657671345003}
---- !u!114 &9198259862436971180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4257967271512095513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 741951572994bf94ba0402ee9bb538d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spell: {fileID: 1300558069441213901, guid: f6e7ad3968a386b439f1801d52b31938, type: 3}
-  playerCam: {fileID: 7241906957195377663}
-  FirePoint: {fileID: 5400324781677892195}
-  range: 0
---- !u!114 &775196412946322661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4257967271512095513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9c18f6f3f30b9045a132f5f9b7c0754, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 4822170820165355300}
-  healEffectPrefab: {fileID: 1881552412633134, guid: d173857842eb4594e9962121624114d2, type: 3}
-  healAuraEffectPrefab: {fileID: 8218495360110280356, guid: 34e19774adc3ff74d897595a24d081a1, type: 3}
---- !u!114 &4530562303021372081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4257967271512095513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8e99d9d0b34a649b1ea46ea74bdefd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spell: {fileID: 2127068259652599947, guid: d95385e4946d75444a65088e9d3b8d01, type: 3}
-  playerCam: {fileID: 1946129503111233968}
-  range: 100
---- !u!114 &692544893140267904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4257967271512095513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74b6429f0f756ed45b96f74f38b72b52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 4822170820165355300}
-  damagePerTick: 5
-  tickInterval: 0.2
-  beamRange: 50
-  abilityDuration: 5
-  playerCam: {fileID: 7241906957195377663}
-  firePoint: {fileID: 5400324781677892195}
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  particlePrefab: {fileID: 1821233908984145251, guid: b6f891a1cd9e041449891c2a4fb5627f, type: 3}
-  active: 0
 --- !u!1 &4401237591145431266
 GameObject:
   m_ObjectHideFlags: 0
@@ -26820,8 +26629,8 @@ GameObject:
   - component: {fileID: 6552784344966881952}
   - component: {fileID: 5715036530534662521}
   - component: {fileID: 8875838033666652937}
+  - component: {fileID: 1347140803780868532}
   - component: {fileID: 7487155259430018739}
-  - component: {fileID: 3890158570028712837}
   - component: {fileID: 1770899243380345267}
   - component: {fileID: 3604944405339622446}
   - component: {fileID: 5209444804341010539}
@@ -26854,7 +26663,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2968851080067515137}
-  - {fileID: 108579657671345003}
   - {fileID: 3058641290681722959}
   - {fileID: 2467376246505399676}
   - {fileID: 5747376667003118266}
@@ -27125,6 +26933,26 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 1946129503111233968}
+--- !u!114 &1347140803780868532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4822170820165355300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71b7a29eff19da44584b1f7d73f5d660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellSlotArray:
+  - {fileID: 11400000, guid: 838ab0e37e72a7f448294dbd849330cb, type: 2}
+  - {fileID: 11400000, guid: 70cb24ffe98945a46afa40190c519fb1, type: 2}
+  - {fileID: 11400000, guid: dabb0576d8c63b1488ff01368bf8a019, type: 2}
+  - {fileID: 11400000, guid: 3fcff46462767de4dbef9112482b1aaa, type: 2}
+  componentRegistry: {fileID: 2757066348271210347}
+  blankSpell: {fileID: 11400000, guid: 3fcff46462767de4dbef9112482b1aaa, type: 2}
+  projectionOn: 0
 --- !u!114 &7487155259430018739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27138,29 +26966,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentRegistry: {fileID: 2757066348271210347}
+  spellManagerTemplate: {fileID: 0}
   cameraInput: {x: 0, y: 0}
   movementInput: {x: 0, y: 0}
   shootInput: 0
   Element: 1
---- !u!114 &3890158570028712837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4822170820165355300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3163220782114504ab90d8eb16337a17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spell_slots: 4
-  fireballforalpha: {fileID: 11400000, guid: 4a95dc6ed230c8a4789dc33b11fbce2d, type: 2}
-  dd_spell_inventory:
-  - {fileID: 11400000, guid: 883a7d5b699c81c47b21a7fac9f970c8, type: 2}
-  - {fileID: 11400000, guid: 4492ab946a1ddd0429b210319763fada, type: 2}
-  - {fileID: 11400000, guid: 4492ab946a1ddd0429b210319763fada, type: 2}
-  - {fileID: 11400000, guid: 4492ab946a1ddd0429b210319763fada, type: 2}
 --- !u!114 &1770899243380345267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27173,8 +26983,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ad960a4d4e9b34c8771f2ef8c065be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 3890158570028712837}
-  spell_controller: {fileID: 4257967271512095513}
+  inventory: {fileID: 0}
+  spell_controller: {fileID: 0}
 --- !u!114 &3604944405339622446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27737,7 +27547,7 @@ MonoBehaviour:
   spelltext: {fileID: 7416224138004130438}
   chargetext: {fileID: 8017507994510392108}
   slot: 2
-  playerInventory: {fileID: 3890158570028712837}
+  playerInventory: {fileID: 0}
 --- !u!1 &5286647816170075458
 GameObject:
   m_ObjectHideFlags: 0
