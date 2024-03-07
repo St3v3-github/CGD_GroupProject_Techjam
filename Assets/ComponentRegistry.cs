@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class ComponentRegistry : MonoBehaviour
 {
@@ -28,8 +29,10 @@ public class ComponentRegistry : MonoBehaviour
 
     [Header("Spells")]
     public GameObject firePoint;
+    public FlameThrower flameThrower;
+
     public AttributeManager attributeManager;
-    public FlameThrower flameThrower; 
+    public Score score;
 
     [Header("Animations")]
     public Animator playerAnimator;
