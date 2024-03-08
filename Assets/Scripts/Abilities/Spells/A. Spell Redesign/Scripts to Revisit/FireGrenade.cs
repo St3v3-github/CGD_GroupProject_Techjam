@@ -9,6 +9,8 @@ public class Grenade : Spell
     public GameObject Prefab;
     public float activeTime;
     private bool spawned = false;
+    public float damage;
+    public bool effectNeedsDamage = false;
     //public StatusEffect_Data effect;
 
     //private float timer = 0;
@@ -29,8 +31,13 @@ public class Grenade : Spell
         {
             spawned = true;
             GameObject effect = Instantiate(Prefab, transform.position, Quaternion.identity);
-            effect.GetComponent<Spell>().source = source;
-            effect.GetComponent<DeleteOnTimer>().setupDelete(activeTime);
+            //effect.GetComponent<Spell>().source = source;
+            //effect.GetComponent<DeleteOnTimer>().setupDelete(activeTime);
+            if(effectNeedsDamage)
+            {
+                effect.GetComponent<ExplodeAfterDuration>().damage = damage;
+            }
+
             Destroy(gameObject);
         }
        /* if (dealDamage(collision.gameObject, DirectHitDamage))

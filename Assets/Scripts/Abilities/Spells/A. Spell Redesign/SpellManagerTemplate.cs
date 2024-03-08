@@ -266,8 +266,10 @@ public class SpellManagerTemplate : MonoBehaviour
             spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.COOLDOWN;
             Debug.Log("Throw");
             GameObject projectile = Instantiate(spellSlotArray[slot].Spellprefab, spellSlotArray[slot].targetPoint.position, componentRegistry.playerCamera.transform.rotation);
-            projectile.GetComponent<Grenade>().source = this.transform.parent.gameObject;
-            projectile.GetComponent<Grenade>().activeTime = spellSlotArray[slot].activeTime;
+            var grenadeData = projectile.GetComponent<Grenade>();
+           grenadeData.source = this.transform.parent.gameObject;
+            grenadeData.activeTime = spellSlotArray[slot].activeTime;
+            grenadeData.damage = spellSlotArray[slot].damageValue;
                       //AudioManager.instance.PlayOneShot(FMODEvents.instance.iceSound, this.transform.position);
 
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
@@ -485,6 +487,10 @@ public class SpellManagerTemplate : MonoBehaviour
 
             case SpellDataTemplate.SpellID.LightningChainRaycast:
                 HandleRaycastSpells();
+                break;
+
+            case SpellDataTemplate.SpellID.LightningGrenade:
+                HandleThrowableSpells(slotNumber);
                 break;
 
             #endregion

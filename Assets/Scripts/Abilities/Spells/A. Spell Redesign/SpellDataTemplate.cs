@@ -58,42 +58,43 @@ public class SpellDataTemplate : ScriptableObject
         #region Null
         EMPTY = 0,
         #endregion
-
+        //FIRE = 1 - 10
         #region Fire
         FireProjectile = 1,
         FireGrenade = 2,
         FlameThrower = 3,
         #endregion
 
-
+        // 11 - 20
         #region Ice
         IceProjectile = 4,
         IceGrenade = 5,
         IceWall = 6,
         #endregion
 
-
+        // 21-30
         #region Wind
-        WindProjectile = 7,
-        WhirlwindBouncePad = 8,
-        WindRushKnockback = 9,
-        WindWall = 18,
+        WindProjectile = 21,
+        WhirlwindBouncePad = 22,
+        WindRushKnockback = 23,
+        WindWall = 24,
         #endregion
 
-
+        //31-40
         #region Lightning
-        LightningProjectile = 10,
-        LightningStrikeAOE = 11,
-        LightningChainRaycast = 12,
+        LightningProjectile = 31,
+        LightningStrikeAOE = 32,
+        LightningChainRaycast = 33,
+        LightningGrenade = 34,
         #endregion
 
-
+        //41+
         #region Ultimates
-        BlackHole = 13,
-        Heal = 14,
-        PoisonCloud = 15,
-        Beam = 16,
-        FireStrike = 17,
+        BlackHole = 41,
+        Heal = 42,
+        PoisonCloud = 43,
+        Beam = 44,
+        FireStrike = 45,
         #endregion
 
     }

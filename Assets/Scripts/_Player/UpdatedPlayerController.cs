@@ -269,7 +269,7 @@ public class UpdatedPlayerController : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(0, targetAngle, 0);
         playerObject.transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation.normalized, rotationSpeed * Time.deltaTime);
 
-        Debug.Log(targetRotation);
+       // Debug.Log(targetRotation);
     }
 
     public void HandleMovement(Vector2 movementInput)
