@@ -32,10 +32,14 @@ public class Grenade : Spell
             spawned = true;
             GameObject effect = Instantiate(Prefab, transform.position, Quaternion.identity);
             //effect.GetComponent<Spell>().source = source;
-            //effect.GetComponent<DeleteOnTimer>().setupDelete(activeTime);
+            
             if(effectNeedsDamage)
             {
                 effect.GetComponent<ExplodeAfterDuration>().damage = damage;
+            }
+            else
+            {
+                effect.GetComponent<DeleteOnTimer>().setupDelete(activeTime);
             }
 
             Destroy(gameObject);

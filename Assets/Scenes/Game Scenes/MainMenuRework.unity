@@ -27753,42 +27753,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 658441330}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34f1b2384627a9a409739a2c6c588581, type: 3}
+  m_Script: {fileID: 11500000, guid: c9a98b8a441ba75468cf29d6eb38cfc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxPlayers: 4
-  characterPositions:
-  - {fileID: 1660663257}
-  - {fileID: 1535565319}
-  - {fileID: 958828605}
-  - {fileID: 2039014701}
-  toJoinDisplays:
-  - {fileID: 1660663257}
-  - {fileID: 1535565319}
-  - {fileID: 958828605}
-  - {fileID: 2039014701}
-  playerSetupMenus:
-  - {fileID: 1049124691}
-  - {fileID: 1856920844}
-  - {fileID: 640707649}
-  - {fileID: 528855484}
-  playerClassRotation:
-  - {fileID: 141443802332303738, guid: 154968efb73f3d54f819703b5f5bfd6a, type: 3}
-  - {fileID: 141443802332303738, guid: 2c4bfb5c64f6695499e63a876273bf1a, type: 3}
-  - {fileID: 141443802332303738, guid: 3b58dd72cc160e249b52f2e9dd0c52b6, type: 3}
-  - {fileID: 141443802332303738, guid: dee3c94f73b19f44da11bb5113a6aed5, type: 3}
-  - {fileID: 141443802332303738, guid: ee80253bb81594c4b8093e4fb5b7d22f, type: 3}
-  componentRegistries:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  players:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  inputManager: {fileID: 658441333}
+  characterPositions: []
+  toJoinDisplays: []
+  playerSetupMenus: []
+  playerClassRotation: []
+  componentRegistries: []
+  players: []
+  inputManager: {fileID: 0}
   updateAfterDestroy: 0
 --- !u!114 &658441333
 MonoBehaviour:
@@ -34010,8 +33985,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 806802782}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12417426, y: -0.018385699, z: -0.01587495, w: 0.9919631}
-  m_LocalPosition: {x: -9.046589, y: 3.7670193, z: 17.315502}
+  m_LocalRotation: {x: 0.08715574, y: 0, z: 0, w: 0.9961947}
+  m_LocalPosition: {x: 1.0797864, y: 1.2593286, z: -2.5703695}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44206,11 +44181,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0.1
+  far clip plane: 5000
   field of view: 60.000004
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -44234,8 +44209,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1077949441}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.702, y: 4.229, z: 37.757}
+  m_LocalRotation: {x: 0.08715574, y: 0, z: 0, w: 0.9961947}
+  m_LocalPosition: {x: -9.17, y: 1.8999999, z: 17.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47111,7 +47086,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 56.46
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 10
   m_Depth: 0
@@ -47137,8 +47112,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1151625513}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.0056722527, z: 0, w: 0.99998397}
-  m_LocalPosition: {x: -9.24, y: 1.1, z: 17.315502}
+  m_LocalRotation: {x: 0.08715574, y: 0, z: 0, w: 0.9961947}
+  m_LocalPosition: {x: -9.17, y: 1.9, z: 17.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -50615,6 +50590,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 75d4e658-3277-4ebc-9334-556326ccd989
     m_ActionName: Player/Ability4[/Keyboard/4]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 781a40ba-3ddf-4af6-88f3-03a3ae3e22c1
+    m_ActionName: Player/Action[/XInputControllerWindows1/buttonEast,/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

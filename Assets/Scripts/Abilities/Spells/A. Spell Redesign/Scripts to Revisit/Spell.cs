@@ -29,14 +29,14 @@ public class Spell : MonoBehaviour
 
     }
 
-    public bool DealDamage(GameObject hitbox, float damage)
+    public bool DealDamage(GameObject hitbox, float damage, GameObject spellSource)
     {
         bool valid_target = false;
 
         GameObject player = hitbox;
 
 
-        if (player.CompareTag("Player"))
+        if (player.CompareTag("Player") && player != spellSource)
         {
             // AttributeManager attributes = hitbox.GetComponent<AttributeManager>();
            
@@ -48,11 +48,7 @@ public class Spell : MonoBehaviour
                     attributes.TakeDamage(damage, source);
                     return true;
                 }
-            else
-            {
-
-                return false;
-            }
+           
         }
         return false;
 

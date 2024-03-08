@@ -138,7 +138,7 @@ public class GameModeHandler : MonoBehaviour
             foreach(var playerReg in playerRegistries)
             {
                 playerReg.inputManager.enabled = false;
-                playerReg.advancedProjectileSystem.enabled = false;
+                //playerReg.advancedProjectileSystem.enabled = false;
                 playerReg.playerCamera.enabled = false;
                 playerReg.playerController.enabled = false;
             }

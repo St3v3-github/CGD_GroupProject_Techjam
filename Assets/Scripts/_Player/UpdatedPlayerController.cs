@@ -4,13 +4,14 @@ using Unity.Mathematics;
 using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.InputSystem;
 using static InputManager;
 
 public class UpdatedPlayerController : MonoBehaviour
 {
-    [Header("Camera Settings")] //Cinemachine stuff
-    [SerializeField] private Transform cameraTransform;
-    [SerializeField] private float rotationSpeed = 1f;
+    [Header("Sensitivity Settings")]
+    public float sensX;
+    public float sensY;
 
     [SerializeField] private GameObject playerObject;
 
@@ -76,6 +77,9 @@ public class UpdatedPlayerController : MonoBehaviour
 
     Vector3 movementDirection;
     Vector3 velocityToSet;
+
+    float xRotation;
+    float yRotation;
 
     public MovementState state;
 
@@ -204,7 +208,6 @@ public class UpdatedPlayerController : MonoBehaviour
 
     void Start()
     {
-        cameraTransform = components.playerCamera.transform;
        
         readyToJump = true;
 
@@ -217,7 +220,6 @@ public class UpdatedPlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleRotation();
 
         SpeedControl();
 
@@ -263,13 +265,19 @@ public class UpdatedPlayerController : MonoBehaviour
         }
     }
 
-    public void HandleRotation()
+    public void HandleCamera(Vector2 cameraInput)
     {
-        float targetAngle = cameraTransform.rotation.eulerAngles.y;
-        Quaternion targetRotation = Quaternion.Euler(0, targetAngle, 0);
-        playerObject.transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation.normalized, rotationSpeed * Time.deltaTime);
+        float camX = cameraInput.x * Time.deltaTime * sensX;
+        float camY = cameraInput.y * Time.deltaTime * sensY;
 
-       // Debug.Log(targetRotation);
+        yRotation += camX;
+
+        xRotation -= camY;
+        xRotation = Mathf.Clamp(xRotation, -30, 30);
+
+        components.playerCamera.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
+        playerObject.transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
+
     }
 
     public void HandleMovement(Vector2 movementInput)
@@ -285,7 +293,7 @@ public class UpdatedPlayerController : MonoBehaviour
         }
 
         //Sets player directionto camera direction
-        movementDirection = cameraTransform.forward.normalized * movementInput.y + cameraTransform.right.normalized * movementInput.x;
+        movementDirection = transform.forward * movementInput.y + transform.right * movementInput.x;
 
         components.animationManager.updateMovementFloats(new Vector2(movementInput.x * desiredMoveSpeed, movementInput.y * desiredMoveSpeed));
 

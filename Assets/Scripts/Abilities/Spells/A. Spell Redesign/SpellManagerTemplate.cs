@@ -11,6 +11,8 @@ public class SpellManagerTemplate : MonoBehaviour
     public SpellDataTemplate[] spellSlotArray = new SpellDataTemplate[4];
     public ComponentRegistry componentRegistry;
     public SpellDataTemplate blankSpell;
+    public GameObject firepoint;
+    public LayerMask projectionLayermask;
 
     //private SpellDataTemplate spellDataTemplate;
 
@@ -42,7 +44,7 @@ public class SpellManagerTemplate : MonoBehaviour
     {
         for (int i = 0; i < spellSlotArray.Length; i++)
         {
-                    spellSlotArray[i].targetPoint = GameObject.FindWithTag("AdvProjSys_Firepoint").transform;
+                    spellSlotArray[i].targetPoint = firepoint.transform;
                    }
     }
 
@@ -70,7 +72,7 @@ public class SpellManagerTemplate : MonoBehaviour
         RaycastHit hit;
 
         // Check if the ray hits something on the specified layer
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, projectionLayermask))
         {
             Vector3 targetPosition = hit.point;
             // Ensure the object stays on the ground by setting its y-coordinate to the hit point's y-coordinate
@@ -118,7 +120,7 @@ public class SpellManagerTemplate : MonoBehaviour
     {
         //Quaternion rotationForStrike = new Quaternion(componentRegistry.playerCamera.transform.rotation.x, componentRegistry.playerCamera.transform.rotation.y, componentRegistry.playerCamera.transform.rotation.z, 0f);
         GameObject strike = Instantiate(spellSlotArray[slot].Spellprefab, centre + Vector3.up * 0.5f, componentRegistry.playerCamera.transform.rotation);
-        strike.GetComponent<DeleteOnTimer>().setupDelete(spellSlotArray[slot].activeTime);
+        strike.GetComponent<DeleteOnTimer>().setupDelete(4f);
         // NEED TO ADD:
         // ENSURE THE INSTANTIATED OBJECT DESTROYS ITSELF
 
@@ -144,9 +146,10 @@ public class SpellManagerTemplate : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            Debug.Log(collider.name);
+           
             if (PlayerCheck(collider.gameObject))
             {
+                
                 players.Add(collider.gameObject);
             }
         }
@@ -163,7 +166,9 @@ public class SpellManagerTemplate : MonoBehaviour
 
             // Make sure the adjusted damage is not negative
             adjustedDamage = Mathf.Max(0, adjustedDamage);
-            DealDamage(player, adjustedDamage);
+            Debug.Log("THE ADJUSTED DAMAGE IS: " + adjustedDamage);
+            player.GetComponent<ComponentRegistry>().attributeManager.TakeDamage(adjustedDamage);
+           // DealDamage(player, adjustedDamage);
         }
     }
     #endregion
@@ -219,7 +224,7 @@ public class SpellManagerTemplate : MonoBehaviour
             GameObject currentProjectile = Instantiate(spellSlotArray[slot].Spellprefab, spellSlotArray[slot].targetPoint.position, Quaternion.identity);
             currentProjectile.transform.forward = directionWithSpread.normalized;
             Projectile currentProjectileScript = currentProjectile.GetComponent<Projectile>();
-            currentProjectileScript.source = this.gameObject;   //Change when player prefab fixed
+            currentProjectileScript.source = this.transform.parent.gameObject;   //Change when player prefab fixed
             currentProjectileScript.damage = spellSlotArray[slot].damageValue;
             currentProjectileScript.setLifetime(spellSlotArray[slot].lifetime);
 
@@ -361,8 +366,6 @@ public class SpellManagerTemplate : MonoBehaviour
     private void SpellStateManagement(int slot)
     {
         //spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.READY;
-
-        Debug.Log("SLOT IS  " + slot);
         switch (spellSlotArray[slot].currentState)
         {
             case SpellDataTemplate.SpellState.READY:
@@ -419,7 +422,6 @@ public class SpellManagerTemplate : MonoBehaviour
 
     public void Cast(int slotNumber)
     {
-        Debug.Log("TRYING TO CAST SPELL");
         switch (spellSlotArray[slotNumber].ID)
         {
         

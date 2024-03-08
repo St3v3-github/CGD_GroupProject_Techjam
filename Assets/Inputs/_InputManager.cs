@@ -64,7 +64,7 @@ public class InputManager : MonoBehaviour
         }
 
         componentRegistry.playerController.HandleMovement(movementInput);
-        //componentRegistry.cameraController.HandleCamera(cameraInput);
+        componentRegistry.playerController.HandleCamera(cameraInput);
 
         componentRegistry.sliding.AssignValues(movementInput);
     }

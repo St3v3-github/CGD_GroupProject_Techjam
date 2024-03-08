@@ -10,7 +10,6 @@ public class ComponentRegistry : MonoBehaviour
     public PlayerInput playerInput;
 
     [Header("Camera")]
-    public MoveCamera moveCamera;
     public Camera playerCamera;
     //public Camera emoteCamera;
     public GameObject cameraPosition;

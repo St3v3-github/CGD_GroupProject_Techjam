@@ -31,7 +31,7 @@ public class Projectile : Spell
 
         }
         else*/
-        if (DealDamage(collision.gameObject, damage))
+        if (DealDamage(collision.gameObject, damage,source))
         {
             Debug.Log("hit player: " + collision.name);
             //GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
@@ -39,8 +39,8 @@ public class Projectile : Spell
         }
         else if(collision.gameObject.tag != source.tag )
         {
-            Debug.Log(collision.name);
-            GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
+
+            //GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
 

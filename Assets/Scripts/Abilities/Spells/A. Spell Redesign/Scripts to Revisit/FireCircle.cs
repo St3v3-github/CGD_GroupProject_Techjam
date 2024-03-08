@@ -47,8 +47,6 @@ public class FireCircle : Spell
         // Calculate damage based on time
         float damage = damagePerSecond * Time.deltaTime;
 
-        Debug.Log("Applying damage to player: " + damage);
-
         AttributeManager attributes = player.gameObject.GetComponentInChildren<AttributeManager>();
 
         if (attributes != null)
