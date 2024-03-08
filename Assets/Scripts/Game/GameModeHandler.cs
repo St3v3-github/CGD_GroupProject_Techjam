@@ -30,6 +30,8 @@ public class GameModeHandler : MonoBehaviour
     [SerializeField] List<ComponentRegistry> playerRegistries;
     [SerializeField] List<GameObject> spawnPoints;
     [SerializeField] List<GameObject> spawnFlag;
+    public List<GameObject> podiumSpots;
+    public Camera podiumCamera;
     [SerializeField] List<float> spawnPointDistances;
     [SerializeField] float currentGameTime;
     [SerializeField] int countdownStartTimer;
@@ -51,7 +53,7 @@ public class GameModeHandler : MonoBehaviour
             spawnPointDistances.Add(float.MaxValue);
         }
 
-        foreach (var newFlagSpawn in GameObject.FindGameObjectsWithTag("FlagSpawnPoint"))
+        foreach (var newFlagSpawn in GameObject.FindGameObjectsWithTag("FlagPoint"))
         {
             spawnPoints.Add(newFlagSpawn);
             spawnPointDistances.Add(float.MaxValue);
@@ -89,42 +91,16 @@ public class GameModeHandler : MonoBehaviour
                 StartCoroutine(reincarnatePlayer(players[i], FindSpawnPoint()));
             }
         }
-        /*
-        foreach(var prayer in players)
-        {
-            var keepHoldOfComp = prayer.GetComponent<ComponentRegistry>().attributeManager;
-            if (!keepHoldOfComp.dead && keepHoldOfComp.currentHealth <= 0)
-            {
-                keepHoldOfComp.dead = true;
-                keepHoldOfComp.currentHealth = 0;
-                keepHoldOfComp.healthbar.value = 0;
-                prayer.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(true);
-                //prayer.GetComponent<CharacterController>().enabled = false;
-                prayer.GetComponent<UpdatedPlayerController>().enabled = false;
-                var deadScoreInfo = prayer.GetComponent<PlayerScoreInfo>();
-                var killerScoreInfo = deadScoreInfo.lastDamagedBy.GetComponent<PlayerScoreInfo>();
-                killerScoreInfo.kill_count++;
-                teams[killerScoreInfo.team].team_kills++;
-                deadScoreInfo.death_count++;
-                teams[deadScoreInfo.team].team_deaths++;
-                if(gameMode == 0)
-                {
-                    teams[killerScoreInfo.team].score++;
-                }
-
-                StartCoroutine(reincarnatePlayer(prayer, FindSpawnPoint()));
-            }
-        }
-        */
 
         currentGameTime -= Time.deltaTime;
-        if(currentGameTime < 0)
+        if(currentGameTime > 0)
         {
-            currentGameTime = 0;
+            //currentGameTime = 0;
             //TODO: Update UI Visual
         }
         else
         {
+            currentGameTime = 0;
             List<int> ranking = new List<int>();
             Vector2Int currentHighest = new Vector2Int(0, int.MinValue);
             for(int i = 0; i< teams.Count; i++) 
@@ -158,9 +134,27 @@ public class GameModeHandler : MonoBehaviour
                 }
             }
 
-            //TODO: Transition to end scene (move playersSortedByRanking
+            //Disable players and push them to the podium spots
+            foreach(var playerReg in playerRegistries)
+            {
+                playerReg.inputManager.enabled = false;
+                playerReg.advancedProjectileSystem.enabled = false;
+                playerReg.playerCamera.enabled = false;
+                playerReg.playerController.enabled = false;
+            }
+            for(int i = 0; i<playersSortedByRanking.Count;i++)
+            {
+                for(int j = 0; j < playersSortedByRanking[i].Count;j++)
+                {
+                    var targetCompRegistry = playersSortedByRanking[i][j].GetComponent<ComponentRegistry>();
+                    targetCompRegistry.rigidBody.MovePosition(podiumSpots[i].transform.position);
+                    targetCompRegistry.rigidBody.MoveRotation(podiumSpots[i].transform.rotation);
+                }
+            }
+            //Enable Podium Camera
+            podiumCamera.enabled = true;
 
-            //TODO: Alternatively include podium on map
+            //TODO: Add buttons to restart or go back to menu
         }
     }
 
@@ -235,6 +229,7 @@ public class GameModeHandler : MonoBehaviour
             newPlayer.transform.position = spawnPoint.transform.position;
             newPlayer.transform.rotation = spawnPoint.transform.rotation;
             var compRegistry = newPlayer.GetComponent<ComponentRegistry>();
+            compRegistry.rigidBody.position = newPlayer.transform.position;
             compRegistry.playerCamera.enabled = true;
             playerRegistries.Add(compRegistry);
             while(teams.Count <= newPlayer.GetComponent<PlayerScoreInfo>().team) //FORBIDDEN WHILE LOOP, DONT USE WHILE
@@ -242,10 +237,24 @@ public class GameModeHandler : MonoBehaviour
                 teams.Add(new Team());
             }
         }
-        for(int i = 0; i < players.Count; i++)
+        int i = 1;
+        for(i = 1; (players.Count - 1) / i >= i; i++)
         {
-            //TODO: Calculations
-            //playerRegistries[i].playerCamera.rect.Set(0.0f, 0.0f, 1.0f, 1.0f);
+            Debug.Log(i.ToString());
+        }
+        int camColumns = i;
+        int camRows = i;
+        if(i*(i-1) >= players.Count)
+        {
+            camRows = i - 1;
+        }
+        float camXSize = 1.0f / camColumns;
+        float camYSize = 1.0f / camRows;
+        for(int j = 0; j < players.Count;j++)
+        {
+            Debug.Log(camXSize.ToString());
+            Debug.Log(camYSize.ToString());
+            playerRegistries[j].playerCamera.rect = new Rect((float)(j%camColumns)*camXSize,(float)(j/camColumns)*camYSize,camXSize,camYSize);
         }
         StartCoroutine(StartCountdownTimer());
     }

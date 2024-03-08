@@ -14,6 +14,7 @@ public class LevelSelectController : MonoBehaviour
     public GameObject charSelectObj;
     public GameObject mapMenu;
     public GameObject characterMenu;
+    public bool onlyLoadOnce = true;
 
     // Start is called before the first frame update
     void Start()
@@ -59,12 +60,15 @@ public class LevelSelectController : MonoBehaviour
 
     public void StartGameplayScene()
     {
-        StartCoroutine(LoadScene());
+        if (onlyLoadOnce)
+        {
+            onlyLoadOnce = false;
+            StartCoroutine(LoadScene());
+        }
     }
 
     public IEnumerator LoadScene()
     {
-        
         AsyncOperation sceneLoader = SceneManager.LoadSceneAsync(sceneNames[mapNumber], LoadSceneMode.Additive);
         sceneLoader.allowSceneActivation = false;
         while (sceneLoader.progress < 0.9f)
@@ -107,7 +111,7 @@ public class LevelSelectController : MonoBehaviour
                 }
             }
             SceneManager.SetActiveScene(scene);
-
+            onlyLoadOnce = true;
         }
         
     }
