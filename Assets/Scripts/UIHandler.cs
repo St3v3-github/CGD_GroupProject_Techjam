@@ -14,11 +14,17 @@ public class UIHandler : MonoBehaviour
     public Color Char; 
     public Color Title;
     public Color Spell;
-
     [Header("Char Title")]
     public TextMeshProUGUI TitleText;
     public string TitleName;
-
+    [Header("Sliders")]
+    public Slider health;
+    public Slider movement;
+    [Header("Ultimates")]
+    public GameObject Poision;
+    public bool PoisionBool; 
+    public GameObject Beam;
+    public bool BeamBool; 
     
 
 
@@ -36,6 +42,11 @@ public class UIHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+     if (PoisionBool) { Poision.SetActive(true); }
+     if (!PoisionBool) { Poision.SetActive(false); }
+     if (BeamBool) { Beam.SetActive(true); }; 
+     if (!BeamBool) { Beam.SetActive(false); }; 
     }
+
+
 }
