@@ -133,6 +133,8 @@ public class InputManager : MonoBehaviour
                 componentRegistry.playerController.HandleJump();
             }
         }
+
+        componentRegistry.gamepadRumbleController.StartRumble(componentRegistry.playerInput.playerIndex, 0.1f, 5.0f, 1.0f);
     }
 
     public void OnSprint(InputAction.CallbackContext ctx)
