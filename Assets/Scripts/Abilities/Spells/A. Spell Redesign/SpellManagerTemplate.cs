@@ -356,9 +356,9 @@ public class SpellManagerTemplate : MonoBehaviour
 
     }
 
-    #region Spell State Machine
+        #region Spell State Machine
 
-    private void SpellStateManagement(int slot)
+        private void SpellStateManagement(int slot)
     {
         //spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.READY;
 
@@ -426,6 +426,7 @@ public class SpellManagerTemplate : MonoBehaviour
             #region Fire
             case SpellDataTemplate.SpellID.FireProjectile:
                 HandleProjectileSpells(slotNumber);
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.stagSound, this.transform.position);
                 break;
 
             case SpellDataTemplate.SpellID.FireGrenade:
@@ -459,6 +460,7 @@ public class SpellManagerTemplate : MonoBehaviour
             #region Wind
             case SpellDataTemplate.SpellID.WindProjectile:
                 HandleProjectileSpells(slotNumber);
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.windSound, this.transform.position);
                 break;
 
             case SpellDataTemplate.SpellID.WhirlwindBouncePad:
@@ -479,6 +481,7 @@ public class SpellManagerTemplate : MonoBehaviour
             #region Lightning
             case SpellDataTemplate.SpellID.LightningProjectile:
                 HandleProjectileSpells(slotNumber);
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.zapSound, this.transform.position);
                 break;
 
             case SpellDataTemplate.SpellID.LightningStrikeAOE:
@@ -523,6 +526,9 @@ public class SpellManagerTemplate : MonoBehaviour
             DecreaseUltimates();
            
         }
+
+
+        //play sfx
     }
 
     public void EquipUltimate(SpellDataTemplate newSlotData)
