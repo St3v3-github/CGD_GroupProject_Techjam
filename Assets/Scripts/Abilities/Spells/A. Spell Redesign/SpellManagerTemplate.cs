@@ -29,7 +29,7 @@ public class SpellManagerTemplate : MonoBehaviour
         for (int i = 0; i < spellSlotArray.Length; i++)
         {
             spellSlotArray[i] = Instantiate(spellSlotArray[i]);
-                     if (spellSlotArray[i].usesAdvProjSystem)
+            if (spellSlotArray[i].usesAdvProjSystem)
             {
                 spellSlotArray[i].shooting = false;
                 spellSlotArray[i].fireRateLimited = true;
@@ -38,9 +38,10 @@ public class SpellManagerTemplate : MonoBehaviour
 
             }
         }
-        SetTargetPoints();
 
+        SetTargetPoints();
     }
+
     public void SetTargetPoints()
     {
         for (int i = 0; i < spellSlotArray.Length; i++)

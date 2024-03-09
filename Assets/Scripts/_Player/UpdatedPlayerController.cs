@@ -81,6 +81,14 @@ public class UpdatedPlayerController : MonoBehaviour
     float xRotation;
     float yRotation;
 
+    public LayerMask collisionLayer;
+    public float minDistance = 2f;
+    public float maxDistance = 5f;
+    public float smooth = 5f;
+
+    private Vector3 offset;
+
+
     public MovementState state;
 
     public enum MovementState
@@ -215,6 +223,8 @@ public class UpdatedPlayerController : MonoBehaviour
 
         jumpCount = maxJumpCount;
         existingJumpForce = jumpForce;
+
+        offset = components.playerCamera.transform.position - playerObject.transform.position;
     }
 
     // Update is called once per frame
@@ -279,6 +289,32 @@ public class UpdatedPlayerController : MonoBehaviour
         playerObject.transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
 
     }
+
+/*    void HandleCameraCollision()
+    {
+        float currentDistance = Mathf.Clamp(Vector3.Distance(components.playerCamera.transform.position, playerObject.transform.position), minDistance, maxDistance);
+        Vector3 desiredPosition = playerObject.transform.position + offset.normalized * currentDistance;
+
+        RaycastHit hit;
+        if (Physics.Linecast(playerObject.transform.position, desiredPosition, out hit, collisionLayer))
+        {
+            StartCoroutine(SmoothMove(hit.point + hit.normal * 0.5f));
+        }
+        else
+        {
+            StartCoroutine(SmoothMove(desiredPosition));
+        }
+    }
+
+    IEnumerator SmoothMove(Vector3 targetPosition)
+    {
+        while (transform.position != targetPosition)
+        {
+            transform.position = Vector3.Lerp(components.playerCamera.transform.position, targetPosition, smooth * Time.deltaTime);
+            yield return null;
+        }
+    }*/
+
 
     public void HandleMovement(Vector2 movementInput)
     {
