@@ -77,7 +77,7 @@ public class ItemSpawn : MonoBehaviour
         }
 
         randomSpawnCount = UnityEngine.Random.Range(minSpawnPoints, maxSpawnPoints+1);
-        Debug.Log("Number of spawn points is: " + randomSpawnCount);
+        
 
 
 

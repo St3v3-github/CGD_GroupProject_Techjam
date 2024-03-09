@@ -17,11 +17,13 @@ MonoBehaviour:
   Icon: {fileID: 0}
   damageValue: 10
   activeTime: 0
-  cooldownTime: 0.2
+  cooldownTime: 0.5
   isReadyState: 1
   targetPoint: {fileID: 0}
   usesAdvProjSystem: 1
   changingState: 0
+  activeForCooldown: 0
+  waitTime: 0
   currentState: 0
   ID: 1
   shootForce: 100
@@ -41,4 +43,6 @@ MonoBehaviour:
   fireRateLimited: 1
   throwForce: 0
   radius: 0
+  projectionPrefab: {fileID: 0}
+  doesDamage: 0
   isUltimate: 0
