@@ -287,9 +287,6 @@ public class SpellManagerTemplate : MonoBehaviour
             }
 
         }
-
-
-
     }
 
     private void HandleOneStageSpells()
@@ -319,9 +316,6 @@ public class SpellManagerTemplate : MonoBehaviour
                 switchProjectionOn(slot);
             }
         }
-      
-
-
     }
 
     private void HandleActiveSpells(int slot)
@@ -546,6 +540,7 @@ public class SpellManagerTemplate : MonoBehaviour
     {
 
     }
+
     private void DecreaseUltimates()
     {
      
