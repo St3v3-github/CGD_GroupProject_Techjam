@@ -124,11 +124,12 @@ public class AnimationManager : MonoBehaviour
         playerCam.enabled = true;
     }
 
-    public void updateMovementFloats(Vector2 movement)
+    public void updateMovementFloats(Vector3 movement)
     {
         //Vector2 animMovement = movement.normalized;
         playerAnim.SetFloat("XSpeed", movement.x);
-        playerAnim.SetFloat("ZSpeed", movement.y);
+        playerAnim.SetFloat("YSpeed", movement.y);
+        playerAnim.SetFloat("ZSpeed", movement.z);
     }
 
     public void FootL() { }
