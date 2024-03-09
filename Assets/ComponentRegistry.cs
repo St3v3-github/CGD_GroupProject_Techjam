@@ -8,6 +8,7 @@ public class ComponentRegistry : MonoBehaviour
     [Header("Inputs")]
     public InputManager inputManager;
     public PlayerInput playerInput;
+    public GamepadRumbleController gamepadRumbleController;
 
     [Header("Camera")]
     public Camera playerCamera;

@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -44,8 +45,8 @@ public class SpellManagerTemplate : MonoBehaviour
     {
         for (int i = 0; i < spellSlotArray.Length; i++)
         {
-                    spellSlotArray[i].targetPoint = firepoint.transform;
-                   }
+            spellSlotArray[i].targetPoint = firepoint.transform;
+        }
     }
 
     private void Update()
@@ -424,7 +425,7 @@ public class SpellManagerTemplate : MonoBehaviour
     {
         switch (spellSlotArray[slotNumber].ID)
         {
-        
+
             #region Fire
             case SpellDataTemplate.SpellID.FireProjectile:
                 HandleProjectileSpells(slotNumber);
@@ -470,7 +471,7 @@ public class SpellManagerTemplate : MonoBehaviour
             case SpellDataTemplate.SpellID.WindRushKnockback:
                 HandleOneStageSpells();
                 break;
-            
+
             case SpellDataTemplate.SpellID.WindWall:
                 HandleTwoStageSpells(slotNumber);
                 break;
@@ -520,11 +521,15 @@ public class SpellManagerTemplate : MonoBehaviour
                 #endregion
 
         }
-        if (spellSlotArray[slotNumber].isUltimate && spellSlotArray[slotNumber].ID != SpellDataTemplate.SpellID.FireStrike )
+
+        if (spellSlotArray[slotNumber].isUltimate && spellSlotArray[slotNumber].ID != SpellDataTemplate.SpellID.FireStrike)
         {
             DecreaseUltimates();
-           
         }
+
+        componentRegistry.gamepadRumbleController.StartRumble(componentRegistry.playerInput.playerIndex, 0.5f, 5.0f, 1.0f);
+
+
     }
 
     public void EquipUltimate(SpellDataTemplate newSlotData)

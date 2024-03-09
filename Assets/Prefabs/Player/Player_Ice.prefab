@@ -244,6 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputManager: {fileID: 1487246884852817950}
   playerInput: {fileID: 5772969246208573229}
+  gamepadRumbleController: {fileID: 4900865896245354983}
   playerCamera: {fileID: 7456320130202045671}
   cameraPosition: {fileID: 3160007165142588602}
   hitboxCollider: {fileID: 3057495630023827026}
@@ -20485,6 +20486,7 @@ GameObject:
   - component: {fileID: 4993472979091168495}
   - component: {fileID: 5772969246208573229}
   - component: {fileID: 1487246884852817950}
+  - component: {fileID: 4900865896245354983}
   m_Layer: 0
   m_Name: Input
   m_TagString: Untagged
@@ -20767,6 +20769,18 @@ MonoBehaviour:
   movementInput: {x: 0, y: 0}
   shootInput: 0
   Element: 3
+--- !u!114 &4900865896245354983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4859087123911698757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 158a97b9e56299944884606728cefecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4866326630494999679
 GameObject:
   m_ObjectHideFlags: 0
