@@ -5,14 +5,14 @@ using UnityEngine;
 public class StatusEffectHandler : MonoBehaviour, IEffectable
 {
     private StatusEffect_Data _data;
-    public PlayerController selfMovement;
+    public UpdatedPlayerController selfMovement;
     public AttributeManager selfAttributes;
 
     private GameObject effectParticles;
 
     private void Start()
     {
-        selfMovement = GetComponent<PlayerController>();
+        selfMovement = GetComponent<UpdatedPlayerController>();
         selfAttributes = GetComponent<AttributeManager>();
     }
 
@@ -25,6 +25,7 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
     {
         RemoveEffect();
         this._data = _data;
+        Debug.Log("status effect? > " + _data);
         Debug.Log(_data); 
         effectParticles = Instantiate(_data.EffectParticles, transform);
     }

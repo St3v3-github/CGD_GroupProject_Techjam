@@ -25785,7 +25785,7 @@ GameObject:
   m_Component:
   - component: {fileID: 108579657671345003}
   - component: {fileID: 2947081459611145061}
-  - component: {fileID: 5165700179569185429}
+  - component: {fileID: 8364760776321946618}
   m_Layer: 6
   m_Name: Spells
   m_TagString: Untagged
@@ -25832,6 +25832,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 439
   projectionOn: 0
+--- !u!114 &8364760776321946618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4257967271512095513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db49572538c196f48b5f53edfbb785eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selfMovement: {fileID: 1957331713770170513}
+  selfAttributes: {fileID: 8332422817817589327}
 --- !u!1 &4401237591145431266
 GameObject:
   m_ObjectHideFlags: 0
@@ -28656,6 +28670,12 @@ MonoBehaviour:
   hasDoubleJumped: 0
   hasJumpedThisFrame: 0
   maxJumpCount: 2
+  collisionLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  minDistance: 2
+  maxDistance: 5
+  smooth: 5
   state: 0
 --- !u!114 &574903438271789155
 MonoBehaviour:
