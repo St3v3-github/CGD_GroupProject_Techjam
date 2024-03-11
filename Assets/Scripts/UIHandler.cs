@@ -38,7 +38,7 @@ public class UIHandler : MonoBehaviour
     public bool Disconect;
 
     [Header("Hit Chain")]
-    public bool Hit;
+    public bool HitConfirmed;
     public bool ChainInEffect;
     public bool restart;
     public int hitchain = 0;
@@ -72,8 +72,13 @@ public class UIHandler : MonoBehaviour
         if (!HealingBool) { Healing.SetActive(false); }
         if (Disconect) { PD.SetActive(true); }
         if (!Disconect) { PD.SetActive(false); }
-        if (Hit) { Hitchain(); Hit = false; }
+        if (HitConfirmed) { Hitchain(); HitConfirmed = false; }
         
+    }
+
+     public void Hit()
+    {
+        HitConfirmed = true; 
     }
 
     void Hitchain()
@@ -101,57 +106,33 @@ public class UIHandler : MonoBehaviour
 
         if (hitchain == 1)
         {
-            Retical[0].color = new Color (250,0,0,255);
+            for (int i = 0; i < Retical.Length; i++)
+            {
+                Retical[i].color = Color.red;
+
+            }
         }
 
         if (hitchain == 2)
         {
-            Retical[1].color = new Color(250, 0, 0, 255);
+            Anim.Play("Testing Something");
         }
 
         if (hitchain == 3)
         {
-            Retical[2].color = new Color(250, 0, 0, 255);
+            for (int i = 0; i < Retical.Length; i++)
+            {
+                Retical[i].color = Color.blue;
+
+            }
         }
 
         if (hitchain == 4)
         {
-            Retical[3].color = new Color(250, 0, 0, 255);
-        }
-
-        if (hitchain == 5)
-        {
-            ReticalParent.transform.Rotate (0,0,45,Space.Self);
-        }
-
-        if (hitchain == 6)
-        {
-            Anim.Play("Testing Something"); 
-        }
-        if (hitchain == 7)
-        {
-            Retical[0].color = Color.blue;
-        }
-
-        if (hitchain == 8)
-        {
-            Retical[1].color = Color.blue;
-        }
-
-        if (hitchain == 9)
-        {
-            Retical[2].color = Color.blue;
-        }
-
-        if (hitchain == 10)
-        {
-            Retical[3].color = Color.blue;
-        }
-
-        if (hitchain == 11)
-        {
             Anim.Play("Testing Something");
         }
+
+        
 
     }
 
@@ -163,8 +144,6 @@ public class UIHandler : MonoBehaviour
             Retical[i].color = Color.gray;
             
         }
-        ReticalParent.transform.Rotate(0, 0, -45, Space.Self);
-
     }
 
     
