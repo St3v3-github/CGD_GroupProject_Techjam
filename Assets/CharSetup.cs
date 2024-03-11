@@ -71,7 +71,7 @@ public class CharSetup : MonoBehaviour
                 players[componentRegistry.playerInput.playerIndex] = player;
                 menuSelections[componentRegistry.playerInput.playerIndex] = 0;
                 componentRegistries[componentRegistry.playerInput.playerIndex] = componentRegistry;
-
+                componentRegistry.playerScoreInfo.team = componentRegistry.playerInput.playerIndex;
                 componentRegistry.inputManager.enabled = false;
                 componentRegistry.playerInput.actions.FindAction("MenuRight").performed += NextClass;
                 componentRegistry.playerInput.actions.FindAction("MenuLeft").performed += previousClass;

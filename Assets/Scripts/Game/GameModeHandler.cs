@@ -24,6 +24,7 @@ public class GameModeHandler : MonoBehaviour
 
     public GameRuleSetting ruleSetting = new GameRuleSetting(); //Edit This on Menu
     int gameMode = 0;
+    public bool postGame = false;
     List<Team> teams;
 
     [SerializeField] List<GameObject> players;
@@ -94,70 +95,76 @@ public class GameModeHandler : MonoBehaviour
                 StartCoroutine(reincarnatePlayer(players[i], FindSpawnPoint()));
             }
         }
-
-        currentGameTime -= Time.deltaTime;
-        if(currentGameTime > 0)
+        if (!postGame)
         {
-            //currentGameTime = 0;
-            //TODO: Update UI Visual
+            currentGameTime -= Time.deltaTime;
+            if (currentGameTime > 0)
+            {
+                //currentGameTime = 0;
+                //TODO: Update UI Visual
+            }
+            else
+            {
+                currentGameTime = 0;
+                List<int> ranking = new List<int>();
+                Vector2Int currentHighest = new Vector2Int(0, int.MinValue);
+                for (int i = 0; i < teams.Count; i++)
+                {
+                    for (int j = 0; j < teams.Count; j++)
+                    {
+                        if (!ranking.Contains(j) && teams[j].score > currentHighest.y)
+                        {
+                            currentHighest.x = j;
+                            currentHighest.y = teams[j].score;
+                        }
+                    }
+                    ranking.Add(currentHighest.x);
+                    currentHighest.x = 0;
+                    currentHighest.y = int.MinValue;
+                }
+
+                //Sort players according to team rankings
+                //Example: playersSortedByRanking[0][0] is first player of first team
+                //playersSortedByRanking[1][2] is third player of second team
+                List<List<GameObject>> playersSortedByRanking = new List<List<GameObject>>();
+                for (int i = 0; i < ranking.Count; i++)
+                {
+                    playersSortedByRanking.Add(new List<GameObject>());
+                    foreach (var player in players)
+                    {
+                        if (player.GetComponent<ComponentRegistry>().playerScoreInfo.team == ranking[i])
+                        {
+                            playersSortedByRanking[i].Add(player);
+                        }
+                    }
+                }
+
+                //Disable players and push them to the podium spots
+                foreach (var playerReg in playerRegistries)
+                {
+                    playerReg.inputManager.enabled = false;
+                    //playerReg.advancedProjectileSystem.enabled = false;
+                    playerReg.playerCamera.enabled = false;
+                    playerReg.playerController.enabled = false;
+                }
+                for (int i = 0; i < playersSortedByRanking.Count; i++)
+                {
+                    for (int j = 0; j < playersSortedByRanking[i].Count; j++)
+                    {
+                        var targetCompRegistry = playersSortedByRanking[i][j].GetComponent<ComponentRegistry>();
+                        targetCompRegistry.rigidBody.MovePosition(podiumSpots[i].transform.position);
+                        targetCompRegistry.rigidBody.MoveRotation(podiumSpots[i].transform.rotation);
+                    }
+                }
+                //Enable Podium Camera
+                podiumCamera.enabled = true;
+                postGame = true;
+                //TODO: Add buttons to restart or go back to menu
+            }
         }
         else
         {
-            currentGameTime = 0;
-            List<int> ranking = new List<int>();
-            Vector2Int currentHighest = new Vector2Int(0, int.MinValue);
-            for(int i = 0; i< teams.Count; i++) 
-            {
-                for(int j = 0; j < teams.Count; j++) 
-                {
-                    if (!ranking.Contains(j) && teams[j].score > currentHighest.y)
-                    {
-                        currentHighest.x = j;
-                        currentHighest.y = teams[j].score;
-                    }
-                }
-                ranking.Add(currentHighest.x);
-                currentHighest.x = 0;
-                currentHighest.y = int.MinValue;
-            }
-
-            //Sort players according to team rankings
-            //Example: playersSortedByRanking[0][0] is first player of first team
-            //playersSortedByRanking[1][2] is third player of second team
-            List<List<GameObject>> playersSortedByRanking = new List<List<GameObject>>();
-            for(int i = 0; i < ranking.Count; i++)
-            {
-                playersSortedByRanking.Add(new List<GameObject>());
-                foreach(var player in players) 
-                {
-                    if(player.GetComponent<ComponentRegistry>().playerScoreInfo.team == ranking[i])
-                    {
-                        playersSortedByRanking[i].Add(player);
-                    }
-                }
-            }
-
-            //Disable players and push them to the podium spots
-            foreach(var playerReg in playerRegistries)
-            {
-                playerReg.inputManager.enabled = false;
-                //playerReg.advancedProjectileSystem.enabled = false;
-                playerReg.playerCamera.enabled = false;
-                playerReg.playerController.enabled = false;
-            }
-            for(int i = 0; i<playersSortedByRanking.Count;i++)
-            {
-                for(int j = 0; j < playersSortedByRanking[i].Count;j++)
-                {
-                    var targetCompRegistry = playersSortedByRanking[i][j].GetComponent<ComponentRegistry>();
-                    targetCompRegistry.rigidBody.MovePosition(podiumSpots[i].transform.position);
-                    targetCompRegistry.rigidBody.MoveRotation(podiumSpots[i].transform.rotation);
-                }
-            }
-            //Enable Podium Camera
-            //podiumCamera.enabled = true;
-
-            //TODO: Add buttons to restart or go back to menu
+            //TODO wat do in post game
         }
     }
 
@@ -261,6 +268,7 @@ public class GameModeHandler : MonoBehaviour
             Debug.Log(camYSize.ToString());
             playerRegistries[j].playerCamera.rect = new Rect((float)(j%camColumns)*camXSize,(float)(j/camColumns)*camYSize,camXSize,camYSize);
         }
+        postGame = false;
         StartCoroutine(StartCountdownTimer());
     }
 
