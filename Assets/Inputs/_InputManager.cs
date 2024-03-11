@@ -276,7 +276,7 @@ public class InputManager : MonoBehaviour
 
     public void OnSelect(InputAction.CallbackContext ctx)
     {
-        //componentRegistry.uiController.;
+        componentRegistry.uiController.SwitchTabInstructions();
 
     }
 

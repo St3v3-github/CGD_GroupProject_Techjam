@@ -12,6 +12,9 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI healthText;
     public ComponentRegistry compRegistry;
 
+    [Header("Tab Instuctions")]
+    public GameObject TabInstructions;
+
 
     private void Update()
     {
@@ -42,5 +45,10 @@ public class UIController : MonoBehaviour
     {
         hitMarker.transform.localScale = Vector3.one;
         hitMarker.SetActive(false);
+    }
+
+    public void SwitchTabInstructions()
+    {
+        TabInstructions.SetActive(!TabInstructions.activeSelf);
     }
 }

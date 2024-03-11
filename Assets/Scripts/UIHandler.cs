@@ -46,8 +46,6 @@ public class UIHandler : MonoBehaviour
     public GameObject ReticalParent;
     public Animator Anim;
 
-    [Header("Tab Instuctions")]
-    public GameObject TabInstructions;
 
 
 
@@ -166,17 +164,5 @@ public class UIHandler : MonoBehaviour
         Poision.SetActive(false);
         Healing.SetActive(false);
     }
-
-    public void SwitchTabInstructions()
-    {
-        TabInstructions.SetActive(!TabInstructions.activeSelf);
-    }
-
-    
-
-   
-
-    
-
 
 }
