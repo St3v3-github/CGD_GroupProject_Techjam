@@ -73,7 +73,7 @@ public class AreaDamageEffect : MonoBehaviour
         foreach (var player in players)
         {
             player.GetComponent<ComponentRegistry>().attributeManager.TakeDamage(damage);
-            source.GetComponent<ComponentRegistry>().uiController.hitMarker.SetActive(true);
+            source.GetComponent<ComponentRegistry>().uiHandler.Hit();
         }
     }
 

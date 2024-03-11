@@ -25,7 +25,7 @@ public class FlameThrower : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && other != source)
         {
             other.GetComponentInParent<ComponentRegistry>().attributeManager.TakeDamage(damage);
-            source.GetComponent<ComponentRegistry>().uiController.hitMarker.SetActive(true);
+            source.GetComponent<ComponentRegistry>().uiHandler.Hit();
         }
     }
 

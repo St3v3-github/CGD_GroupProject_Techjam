@@ -165,6 +165,7 @@ public class SpellManagerTemplate : MonoBehaviour
 
             // Adjust the damage based on distance (you can use any formula here)
             float adjustedDamage = spellSlotArray[slot].damageValue - distance * damageMultiplier;
+            GetComponentInParent<ComponentRegistry>().uiHandler.Hit();
 
             // Make sure the adjusted damage is not negative
             adjustedDamage = Mathf.Max(0, adjustedDamage);

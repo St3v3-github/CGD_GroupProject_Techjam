@@ -38,6 +38,7 @@ public class ComponentRegistry : MonoBehaviour
 
     [Header("UI References")]
     public UIController uiController;
+    public UIHandler uiHandler;
     public FullScreenController fullScreenController;
     public PlayerSelector spellIconThing;
 
