@@ -54,6 +54,11 @@ public class AnimationManager : MonoBehaviour
         playerAnim.SetBool("Casting", Casting);
     }
 
+    public void ToggleActiveCastBool(bool ActiveCast)
+    {
+        playerAnim.SetBool("CastingActiveSpell", ActiveCast);
+    }
+
     public void toggleEmotingBool(bool Emoting)
     {
         /*
