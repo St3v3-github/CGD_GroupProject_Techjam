@@ -7,7 +7,7 @@ public class DamageFlash : MonoBehaviour
 
     [SerializeField] SkinnedMeshRenderer meshRendererToUse;
     public Material originalMat;
-    float flashTime = .15f;
+    float flashTime = .35f;
 
     public Material materialToUse;
 
