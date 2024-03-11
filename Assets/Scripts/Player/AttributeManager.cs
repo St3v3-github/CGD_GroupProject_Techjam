@@ -76,7 +76,9 @@ public class AttributeManager : MonoBehaviour
         scorefloat = score.ToString(); 
         ScoreText.GetComponent<TextMeshProUGUI>().text = scorefloat;
 
-       
+        
+
+
     }
 
     public float GetPlayerHealth()
@@ -116,6 +118,11 @@ public class AttributeManager : MonoBehaviour
             
         }
 
+        Debug.Log("DAMAGE2");
+
+        damageFlash.DamageFlashing();
+        StartCoroutine(cameraShake.Shake(.15f, .05f * damage));
+
         //Particles and Shaders called here
 
 
@@ -131,12 +138,14 @@ public class AttributeManager : MonoBehaviour
             Die(attacker);
         }
 
+        Debug.Log("DAMAGE1");
+
         //Particles and Shaders called here
 
 
         //DAMAGE FLASH REMOVED FOR DEMO
-        //damageFlash.DamageFlashing();
-        //StartCoroutine(cameraShake.Shake(.15f, .05f));
+        damageFlash.DamageFlashing();
+        StartCoroutine(cameraShake.Shake(.15f, .05f * damage));
 
         if (damageFlyTextPrefab)
         {

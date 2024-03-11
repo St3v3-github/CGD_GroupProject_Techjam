@@ -434,6 +434,18 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7324369016872540357, guid: 154968efb73f3d54f819703b5f5bfd6a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.6333332
+      objectReference: {fileID: 0}
+    - target: {fileID: 7675968747830278994, guid: 154968efb73f3d54f819703b5f5bfd6a, type: 3}
+      propertyPath: Damaging
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984502665107611781, guid: 154968efb73f3d54f819703b5f5bfd6a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.6333332
+      objectReference: {fileID: 0}
     - target: {fileID: 8023604808890194771, guid: 154968efb73f3d54f819703b5f5bfd6a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.777
@@ -558,9 +570,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 978167621854321552, guid: 154968efb73f3d54f819703b5f5bfd6a, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 2401656835031435835, guid: 154968efb73f3d54f819703b5f5bfd6a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 883320542}
+      addedObject: {fileID: 1250846377}
   m_SourcePrefab: {fileID: 100100000, guid: 154968efb73f3d54f819703b5f5bfd6a, type: 3}
 --- !u!137 &201446874 stripped
 SkinnedMeshRenderer:
@@ -649,7 +661,7 @@ VisualEffect:
       m_Array: []
     m_Vector3f:
       m_Array:
-      - m_Value: {x: 0, y: 1.6995313, z: -1.3019999}
+      - m_Value: {x: -2.777, y: 1.6896485, z: -0.0375}
         m_Name: Transform_position
         m_Overridden: 1
       - m_Value: {x: -0, y: 270, z: 278.59283}
@@ -973,7 +985,7 @@ VisualEffect:
       m_Array: []
     m_Vector3f:
       m_Array:
-      - m_Value: {x: 0, y: 1.6995313, z: -1.3019999}
+      - m_Value: {x: -2.777, y: 1.6896485, z: -0.0375}
         m_Name: Transform_position
         m_Overridden: 1
       - m_Value: {x: -0, y: 270, z: 278.59283}
@@ -1194,27 +1206,6 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: e0a6cc6fbaed1244d911f70269b8bed5, type: 2}
---- !u!1 &883320540 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 978167621854321552, guid: 154968efb73f3d54f819703b5f5bfd6a, type: 3}
-  m_PrefabInstance: {fileID: 166510337}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &883320542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 883320540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8bebd5822220e44b8cbabe678c772ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRendererToUse: {fileID: 0}
-  originalMat: {fileID: 0}
-  materialToUse: {fileID: 0}
-  Damaging: 0
 --- !u!1 &974977649
 GameObject:
   m_ObjectHideFlags: 0
@@ -1531,6 +1522,23 @@ MonoBehaviour:
   m_Bindings:
   - {fileID: 1218406547}
   m_VisualEffect: {fileID: 1218406545}
+--- !u!1 &1250846374 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2401656835031435835, guid: 154968efb73f3d54f819703b5f5bfd6a, type: 3}
+  m_PrefabInstance: {fileID: 166510337}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1250846377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250846374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 282995712c23a804b84a455640d1478a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1357788401
 GameObject:
   m_ObjectHideFlags: 0
@@ -1784,7 +1792,7 @@ VisualEffect:
       - m_Value: {x: -0, y: 270, z: 278.59283}
         m_Name: Transform_angles
         m_Overridden: 1
-      - m_Value: {x: 0, y: 1.6995313, z: -1.3019999}
+      - m_Value: {x: -2.777, y: 1.6896485, z: -0.0375}
         m_Name: Transform_position
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
@@ -1907,7 +1915,7 @@ VisualEffect:
       m_Array: []
     m_Vector3f:
       m_Array:
-      - m_Value: {x: 0, y: 1.6995313, z: -1.3019999}
+      - m_Value: {x: -2.777, y: 1.6896485, z: -0.0375}
         m_Name: Transform_position
         m_Overridden: 1
       - m_Value: {x: -0, y: 270, z: 278.59283}
@@ -1969,7 +1977,7 @@ MonoBehaviour:
   m_VisualEffect: {fileID: 2033960095}
 --- !u!114 &2033960099
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
