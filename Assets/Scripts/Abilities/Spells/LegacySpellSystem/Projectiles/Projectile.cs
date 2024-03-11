@@ -16,9 +16,7 @@ public class Projectile : Spell
     void Start()
     {
         StartCoroutine(timerCoroutine());
-        effect = GetComponent<StatusEffect_Data>();
-        Debug.Log("Current Effect: " + effect);
-        //setTargetTag();
+              //setTargetTag();
     }
 
 
@@ -36,18 +34,24 @@ public class Projectile : Spell
             source.GetComponent<ComponentRegistry>().uiHandler.Hit();
             Debug.Log("hit player: " + collision.name);
 
-            StatusEffectHandler enemyEffects = collision.gameObject.GetComponentInChildren<StatusEffectHandler>();
-            if(enemyEffects != null)
+            StatusEffectHandler enemyEffects = collision.gameObject.GetComponent<ComponentRegistry>().statusEffectHandler;
+            if(enemyEffects == null)
             {
-                enemyEffects.ApplyEffect(effect);
+                Debug.Log("enemy effects null");
             }
-           
+
+            if(enemyEffects != null)           
+            {
+                Debug.Log("Applied effects");
+                enemyEffects.ApplyEffect(effect);             
+            }
 
             //GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
         else if(collision.gameObject.tag != source.tag )
         {
+            Debug.Log("hit: " + collision.name);
             Debug.Log("Current Effect: " + effect);
             //GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
             Destroy(this.gameObject);

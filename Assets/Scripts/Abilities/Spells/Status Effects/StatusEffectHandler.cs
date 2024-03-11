@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StatusEffectHandler : MonoBehaviour, IEffectable
 {
-    private StatusEffect_Data _data;
+    public StatusEffect_Data _data;
     public UpdatedPlayerController selfMovement;
     public AttributeManager selfAttributes;
 
@@ -12,8 +12,8 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
 
     private void Start()
     {
-        selfMovement = GetComponent<UpdatedPlayerController>();
-        selfAttributes = GetComponent<AttributeManager>();
+      //  selfMovement = GetComponent<UpdatedPlayerController>();
+       // selfAttributes = GetComponent<AttributeManager>();
     }
 
     private void Update()
@@ -23,11 +23,13 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
 
     public void ApplyEffect(StatusEffect_Data _data)
     {
+        Debug.Log("Applying Status");
         RemoveEffect();
         this._data = _data;
         Debug.Log("status effect? > " + _data);
         Debug.Log(_data); 
         effectParticles = Instantiate(_data.EffectParticles, transform);
+        nextTickTime = _data.TickSpeed;
     }
 
     private float currentEffectTime = 0f;
@@ -63,7 +65,20 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
         if(_data == null) { return; }
         if (_data.DOT_Amount != 0 && currentEffectTime > nextTickTime)
         {
-            nextTickTime += _data.TickSpeed;
+            if(nextTickTime < _data.TickSpeed)
+            {
+                nextTickTime += Time.deltaTime;
+            }
+            else if(nextTickTime >= _data.TickSpeed)
+            {
+                selfAttributes.TakeDamage(_data.DOT_Amount);
+                nextTickTime = 0;
+            }
+            
+
+            //Increase Next tick by delta
+            // when next tick > tick speed
+            //DO DAMAGE -> next tick to 0
 
             /*dummy test
             float _currentHealth = _testDummy.getCurrentHealth();
@@ -79,16 +94,17 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
 
 
             //PvP test
-            float currentHealth = selfAttributes.GetPlayerHealth();
-            float newHealth = currentHealth - _data.DOT_Amount;
+            //float currentHealth = selfAttributes.GetPlayerHealth();
+           
+          //  float newHealth = currentHealth - _data.DOT_Amount;
 
-            currentHealth = Mathf.Clamp(currentHealth, 0, selfAttributes.GetMaxHealth());
-            selfAttributes.SetPlayerHealth(newHealth);
+        //currentHealth = Mathf.Clamp(currentHealth, 0, selfAttributes.GetMaxHealth());
+            //selfAttributes.SetPlayerHealth(newHealth);
         }
         if(_data.MovementPen > 0)
         {
             //edit for PvP - same as above
-            nextTickTime += _data.TickSpeed;
+           // nextTickTime += _data.TickSpeed;
             /*float newMoveSpeed = (_testDummy.getBaseMoveSpeed() / _data.MovementPen);
             _testDummy.setNewMoveSpeed(newMoveSpeed);
             Debug.Log(_testDummy.getCurrentMoveSpeed());*/

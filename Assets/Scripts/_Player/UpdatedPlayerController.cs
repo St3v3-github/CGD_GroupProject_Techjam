@@ -266,7 +266,7 @@ public class UpdatedPlayerController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space)) 
         {
-            Debug.Log(moveSpeed);
+            //Debug.Log(moveSpeed);
         }
 
         if(chargingJump && jumpForce < maxJumpForce)

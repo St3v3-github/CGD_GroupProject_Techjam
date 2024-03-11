@@ -12,12 +12,12 @@ public class Spell : MonoBehaviour
     {
         source = this.gameObject;
     }
-    
+
 
     public bool PlayerCheck(GameObject hitbox)
     {
         GameObject player = hitbox;
-        
+
         if (player.layer == LayerMask.NameToLayer("layer_Player"))
         {
             return true;
@@ -39,23 +39,25 @@ public class Spell : MonoBehaviour
         if (player.CompareTag("Player") && player != spellSource)
         {
             // AttributeManager attributes = hitbox.GetComponent<AttributeManager>();
-           
-                AttributeManager attributes = player.GetComponent<ComponentRegistry>().attributeManager;
-               
-                if (attributes != null)
-                {
-                    Debug.Log("3");
-                    attributes.TakeDamage(damage, source);
-                    return true;
-                }
-           
+
+
+            AttributeManager attributes = player.GetComponent<ComponentRegistry>().attributeManager;
+
+            if (attributes != null)
+            {
+
+                Debug.Log("Attributes found.");
+                attributes.TakeDamage(damage, source);
+                return true;
+            }
+
         }
         return false;
 
 
-            //Hitmarker
-            //source.GetComponent<UIController>().Hit(damage);
-        }
-    
-    
+        //Hitmarker
+        //source.GetComponent<UIController>().Hit(damage);
+    }
+
+
 }
