@@ -7,7 +7,6 @@ using FMOD.Studio;
 public class AudioManager : MonoBehaviour
 {
     private List<EventInstance> eventInstances;
-
     private EventInstance musicEventInstance;
 
     public static AudioManager instance { get; private set; }
@@ -46,7 +45,7 @@ public class AudioManager : MonoBehaviour
         return eventInstance;
     }
 
-    /*private void Cleanup()
+    private void Cleanup()
     {
         foreach (EventInstance eventInstance in eventInstances)
         {
@@ -58,5 +57,5 @@ public class AudioManager : MonoBehaviour
     private void OnDestroy()
     {
         Cleanup();
-    }*/
+    }
 }

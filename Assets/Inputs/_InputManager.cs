@@ -6,7 +6,15 @@ using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 using static UnityEngine.EventSystems.EventTrigger;
 using static UpdatedPlayerController;
-
+public enum WizardType
+{
+    wind,
+    fire,
+    earth,
+    ice,
+    electric,
+    plant
+}
 public class InputManager : MonoBehaviour
 {
 
@@ -30,15 +38,7 @@ public class InputManager : MonoBehaviour
     [Header("Wizard Element")]
     public WizardType Element;
 
-    public enum WizardType
-    {
-        wind,
-        fire,
-        earth,
-        ice,
-        electric,
-        plant
-    }
+    
 
     private void Update()
     {
@@ -217,6 +217,7 @@ public class InputManager : MonoBehaviour
         if (ctx.action.triggered)
         {
             firingSlot1 = true;
+            //AudioManager.instance.PlayOneShot(FMODEvents.instance.fireSound, this.transform.position);
         }
 
         else if (ctx.action.WasReleasedThisFrame())
