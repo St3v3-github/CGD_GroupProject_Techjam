@@ -9,6 +9,7 @@ public class AreaDamageEffect : MonoBehaviour
     public float duration;
     public float radius;
     private List<GameObject> hitObjects = new List<GameObject>();
+    public GameObject source;
     // Start is called before the first frame update
     void Start()
     {
@@ -71,7 +72,8 @@ public class AreaDamageEffect : MonoBehaviour
 
         foreach (var player in players)
         {
-            player.GetComponent<ComponentRegistry>().attributeManager.TakeDamage(damage); ;
+            player.GetComponent<ComponentRegistry>().attributeManager.TakeDamage(damage);
+            source.GetComponent<ComponentRegistry>().uiController.hitMarker.SetActive(true);
         }
     }
 

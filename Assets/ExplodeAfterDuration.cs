@@ -7,6 +7,7 @@ public class ExplodeAfterDuration : MonoBehaviour
     public GameObject effectToSpawn;
     public float duration;
     public float damage = 0;
+    public GameObject source;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class ExplodeAfterDuration : MonoBehaviour
       Instantiate(effectToSpawn,transform.position,Quaternion.identity);
         effectToSpawn.GetComponent<AreaDamageEffect>().damage = damage;
         effectToSpawn.GetComponent<AreaDamageEffect>().duration = duration;
+        effectToSpawn.GetComponent<AreaDamageEffect>().source = source;
         Destroy(this.gameObject);
 
 

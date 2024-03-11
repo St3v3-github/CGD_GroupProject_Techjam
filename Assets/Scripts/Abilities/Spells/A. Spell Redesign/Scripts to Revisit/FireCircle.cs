@@ -52,6 +52,7 @@ public class FireCircle : Spell
         if (attributes != null)
         {
             attributes.TakeDamage(damage);
+            source.GetComponent<ComponentRegistry>().uiController.hitMarker.SetActive(true);
         }
     }
 

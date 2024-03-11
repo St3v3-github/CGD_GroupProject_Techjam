@@ -36,10 +36,17 @@ public class Grenade : Spell
             if(effectNeedsDamage)
             {
                 effect.GetComponent<ExplodeAfterDuration>().damage = damage;
+                effect.GetComponent<ExplodeAfterDuration>().source = source;
+                
             }
             else
             {
                 effect.GetComponent<DeleteOnTimer>().setupDelete(activeTime);
+            }
+
+            if(effect.GetComponent<PoisonCloud>() != null)
+            {
+                effect.GetComponent<PoisonCloud>().source = source;
             }
 
             Destroy(gameObject);

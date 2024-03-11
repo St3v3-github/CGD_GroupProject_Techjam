@@ -9,6 +9,7 @@ public class PoisonCloud : MonoBehaviour
     public float maxRadius = 5f; // Adjust the maximum collider radius
     public float sizeIncreaseDuration = 5f; // Adjust the duration over which the collider size increases
     public float duration = 10f;
+    public GameObject source;
 
     private GameObject playerInPoisonCloud; // Store the reference to the player
     private float timeSinceStart = 0f;
@@ -49,6 +50,7 @@ public class PoisonCloud : MonoBehaviour
         if (attributes != null)
         {
             attributes.TakeDamage(damage);
+            source.GetComponent<ComponentRegistry>().uiController.hitMarker.SetActive(true);
         }
     }
 

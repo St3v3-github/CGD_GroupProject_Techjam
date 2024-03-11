@@ -33,41 +33,16 @@ public class Projectile : Spell
         else*/
         if (DealDamage(collision.gameObject, damage,source))
         {
+            source.GetComponent<ComponentRegistry>().uiController.hitMarker.SetActive(true);
             Debug.Log("hit player: " + collision.name);
-            //GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+                       Destroy(this.gameObject);
         }
         else if(collision.gameObject.tag != source.tag )
         {
-
-            //GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+                                    Destroy(this.gameObject);
         }
 
-        /*if ((impactLayers | (1 << collision.gameObject.layer)) != 0)
-        {
-            GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
-        }
-        
-
-
-
-        //AttributeManager attributes = collision.gameObject.GetComponent<AttributeManager>();
-        //enemystatuseffects effects = collision.gameObject.GetComponent<enemystatuseffects>();
-
-        /*if (effects != null)
-        {
-            attributes.TakeDamage(spell.damage, statusEffect);
-            attributes.ChangeStatus(statusEffect);
-
-            effects.ApplyEffect(effect);
-            Debug.Log("Effect applied");
-        }
-        else
-        {
-            Debug.LogError("enemy status effects script not found");
-        }*/
+       
     }
 
     public void setLifetime(float lifetime)
