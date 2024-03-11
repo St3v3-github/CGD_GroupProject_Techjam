@@ -31,6 +31,7 @@ public class ComponentRegistry : MonoBehaviour
     public GameObject firePoint;
     public AttributeManager attributeManager;
     public SpellManagerTemplate spellManager;
+    public StatusEffectHandler statusEffectHandler;
 
     [Header("Animations")]
     public Animator playerAnimator;

@@ -8,7 +8,7 @@ public class Projectile : Spell
     public float damage;
     public GameObject hitImpact;
     public LayerMask impactLayers;
-    //public StatusEffect_Data effect;
+    public StatusEffect_Data effect;
 
     //private float timer = 0;
 
@@ -16,8 +16,8 @@ public class Projectile : Spell
     void Start()
     {
         StartCoroutine(timerCoroutine());
-        //effect = GetComponentInParent<StatusEffect_Data>();
-        //Debug.Log("Current Effect: " + effect);
+        effect = GetComponent<StatusEffect_Data>();
+        Debug.Log("Current Effect: " + effect);
         //setTargetTag();
     }
 
@@ -35,11 +35,22 @@ public class Projectile : Spell
         {
             source.GetComponent<ComponentRegistry>().uiHandler.Hit();
             Debug.Log("hit player: " + collision.name);
-                       Destroy(this.gameObject);
+
+            StatusEffectHandler enemyEffects = collision.gameObject.GetComponentInChildren<StatusEffectHandler>();
+            if(enemyEffects != null)
+            {
+                enemyEffects.ApplyEffect(effect);
+            }
+           
+
+            //GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
         }
         else if(collision.gameObject.tag != source.tag )
         {
-                                    Destroy(this.gameObject);
+            Debug.Log("Current Effect: " + effect);
+            //GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
         }
 
        

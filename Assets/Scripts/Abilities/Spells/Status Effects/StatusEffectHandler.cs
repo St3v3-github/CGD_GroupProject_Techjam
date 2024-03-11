@@ -2,30 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemystatuseffects : MonoBehaviour, IEffectable
+public class StatusEffectHandler : MonoBehaviour, IEffectable
 {
     private StatusEffect_Data _data;
-    public _testDummy _testDummy;
-    public PlayerController selfMovement;
+    public UpdatedPlayerController selfMovement;
     public AttributeManager selfAttributes;
 
     private GameObject effectParticles;
 
     private void Start()
     {
-        selfMovement = GetComponent<PlayerController>();
+        selfMovement = GetComponent<UpdatedPlayerController>();
         selfAttributes = GetComponent<AttributeManager>();
     }
 
     private void Update()
     {
-        if (_data != null & _testDummy != null) HandleEffect();
+        if (_data != null & selfAttributes != null) HandleEffect();
     }
 
     public void ApplyEffect(StatusEffect_Data _data)
     {
         RemoveEffect();
         this._data = _data;
+        Debug.Log("status effect? > " + _data);
         Debug.Log(_data); 
         effectParticles = Instantiate(_data.EffectParticles, transform);
     }
@@ -65,11 +65,9 @@ public class enemystatuseffects : MonoBehaviour, IEffectable
         {
             nextTickTime += _data.TickSpeed;
 
-            //dummy test
+            /*dummy test
             float _currentHealth = _testDummy.getCurrentHealth();
             float _newHealth = _currentHealth - _data.DOT_Amount;
-
-
 
 
             Debug.Log($"currentEffectTime: {currentEffectTime}, lastTickTime: {nextTickTime}, TickSpeed: {_data.TickSpeed}");
@@ -77,7 +75,7 @@ public class enemystatuseffects : MonoBehaviour, IEffectable
             Debug.Log($"New Health: {_newHealth}");
 
             _currentHealth = Mathf.Clamp(_currentHealth, 0, _testDummy.getMaxHealth());
-            _testDummy.setCurrentHealth(_newHealth);
+            _testDummy.setCurrentHealth(_newHealth);*/
 
 
             //PvP test
@@ -91,9 +89,9 @@ public class enemystatuseffects : MonoBehaviour, IEffectable
         {
             //edit for PvP - same as above
             nextTickTime += _data.TickSpeed;
-            float newMoveSpeed = (_testDummy.getBaseMoveSpeed() / _data.MovementPen);
+            /*float newMoveSpeed = (_testDummy.getBaseMoveSpeed() / _data.MovementPen);
             _testDummy.setNewMoveSpeed(newMoveSpeed);
-            Debug.Log(_testDummy.getCurrentMoveSpeed());
+            Debug.Log(_testDummy.getCurrentMoveSpeed());*/
         }
     }
 }
