@@ -115,7 +115,7 @@ public class AttributeManager : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color = originalColor;
+            //transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color = originalColor;
             Die(attacker);
         }
 
