@@ -64,12 +64,8 @@ public class UIHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PoisionBool) { Poision.SetActive(true); }
-        if (!PoisionBool) { Poision.SetActive(false); }
-        if (BeamBool) { Beam.SetActive(true); }
-        if (!BeamBool) { Beam.SetActive(false); }
-        if (HealingBool) { Healing.SetActive(true); }
-        if (!HealingBool) { Healing.SetActive(false); }
+        
+       
         if (Disconect) { PD.SetActive(true); }
         if (!Disconect) { PD.SetActive(false); }
         if (HitConfirmed) { Hitchain(); HitConfirmed = false; }
@@ -144,6 +140,28 @@ public class UIHandler : MonoBehaviour
             Retical[i].color = Color.gray;
             
         }
+    }
+
+    public void PoisonUlt()
+    {
+        Poision.SetActive(true);
+    }
+
+    public void HealingUlt()
+    {
+        Healing.SetActive(true);
+    }
+
+    public void BeamUlt () 
+    { 
+      Beam.SetActive(true);
+    }
+
+    public void UsedUlt()
+    {
+        Beam.SetActive(false); 
+        Poision.SetActive(false);
+        Healing.SetActive(false);
     }
 
     
