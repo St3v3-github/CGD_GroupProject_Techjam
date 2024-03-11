@@ -258,7 +258,7 @@ public class FullScreenController : MonoBehaviour
                     Debug.Log("Electricity");
                     break;
                 case FullScreenRenderer.Earth:
-                    Debug.Log("Eartj");
+                    Debug.Log("Earth");
                     break;
                 case FullScreenRenderer.Plant:
                     Debug.Log("Plant");

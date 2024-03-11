@@ -44,8 +44,9 @@ public class Spell : MonoBehaviour
                
                 if (attributes != null)
                 {
-                    Debug.Log("3");
-                    attributes.TakeDamage(damage, source);
+
+                Debug.Log("Attributes found.");
+                attributes.TakeDamage(damage, source);
                     return true;
                 }
            

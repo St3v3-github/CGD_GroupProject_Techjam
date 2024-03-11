@@ -40,6 +40,8 @@ public class AttributeManager : MonoBehaviour
 
     public DamageFlash damageFlash;
     public CameraShake cameraShake;
+
+    public ComponentRegistry componentRegistry;
     void Start()
     {
         //set all values to whatever default value we want
@@ -64,7 +66,9 @@ public class AttributeManager : MonoBehaviour
         scorefloat = score.ToString(); 
         ScoreText.GetComponent<TextMeshProUGUI>().text = scorefloat;
 
-       
+        
+
+
     }
 
     public float GetPlayerHealth()
@@ -99,10 +103,16 @@ public class AttributeManager : MonoBehaviour
     {
 
         currentHealth -= damage;
+        //AudioManager.instance.PlayOneShot(FMODEvents.instance.hitSound, this.transform.position);
         if (currentHealth <= 0)
         {
             
         }
+
+        Debug.Log("DAMAGE2");
+
+        damageFlash.DamageFlashing();
+        StartCoroutine(cameraShake.Shake(.15f, .1f));
 
         //Particles and Shaders called here
 
@@ -113,18 +123,22 @@ public class AttributeManager : MonoBehaviour
     public float TakeDamage(float damage, GameObject attacker)
     {
         currentHealth -= damage;
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.hitSound, this.transform.position);
         if (currentHealth <= 0)
         {
             //transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color = originalColor;
             Die(attacker);
         }
 
+        Debug.Log("DAMAGE1");
+
+        componentRegistry.animationManager.toggleDamagedTrigger();
         //Particles and Shaders called here
 
 
         //DAMAGE FLASH REMOVED FOR DEMO
-        //damageFlash.DamageFlashing();
-        //StartCoroutine(cameraShake.Shake(.15f, .05f));
+        damageFlash.DamageFlashing();
+        StartCoroutine(cameraShake.Shake(.15f, .1f));
 
         if (damageFlyTextPrefab)
         {
@@ -148,6 +162,7 @@ public class AttributeManager : MonoBehaviour
         //GameObject god = GameObject.Find("GameController");
         //god.SendMessage("PrayToGod", data);
         //Invoke("unDie", 0.1f);
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.deathSound, this.transform.position);
     }
 
     public void unDie()

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-
-
+    public bool Shaking = false;
+    //public Transform ThirdPersonPosition;
     void Update()
     {
         
@@ -15,6 +15,12 @@ public class CameraShake : MonoBehaviour
             
             
             StartCoroutine(Shake(.15f, .05f));
+        }
+
+        if (Shaking == true)
+        {
+            StartCoroutine(Shake(.15f, .05f));
+            Debug.Log("SHAKE");
         }
 
     }
@@ -30,7 +36,7 @@ public class CameraShake : MonoBehaviour
             float x = Random.Range(-1f, 1f) * magnitude;
             float y = Random.Range(-1f, 1f) * magnitude;
 
-            transform.localPosition = new Vector3(x, originalPos.y, originalPos.z);
+            transform.localPosition = new Vector3(x, y, originalPos.z);
 
             elapsed += Time.deltaTime;
 

@@ -27,33 +27,33 @@ public class Grenade : Spell
 
     void OnTriggerEnter(Collider collision)
     {
-        if(!spawned)
-        {
-            spawned = true;
-            GameObject effect = Instantiate(Prefab, transform.position, Quaternion.identity);
-            //effect.GetComponent<Spell>().source = source;
-            
-            if(effectNeedsDamage)
-            {
-                effect.GetComponent<ExplodeAfterDuration>().damage = damage;
-                effect.GetComponent<ExplodeAfterDuration>().source = source;
-                
-            }
-            else
-            {
-                effect.GetComponent<DeleteOnTimer>().setupDelete(activeTime);
-            }
-
-            if(effect.GetComponent<PoisonCloud>() != null)
-            {
-                effect.GetComponent<PoisonCloud>().source = source;
-            }
-            if (effect.GetComponent<FireCircle>() != null)
-            {
-                effect.GetComponent<FireCircle>().source = source;
-            }
-
-            Destroy(gameObject);
+        if(!spawned)
+        {
+            spawned = true;
+            GameObject effect = Instantiate(Prefab, transform.position, Quaternion.identity);
+            //effect.GetComponent<Spell>().source = source;
+            
+            if(effectNeedsDamage)
+            {
+                effect.GetComponent<ExplodeAfterDuration>().damage = damage;
+                effect.GetComponent<ExplodeAfterDuration>().source = source;
+                
+            }
+            else
+            {
+                effect.GetComponent<DeleteOnTimer>().setupDelete(activeTime);
+            }
+
+            if(effect.GetComponent<PoisonCloud>() != null)
+            {
+                effect.GetComponent<PoisonCloud>().source = source;
+            }
+            if (effect.GetComponent<FireCircle>() != null)
+            {
+                effect.GetComponent<FireCircle>().source = source;
+            }
+
+            Destroy(gameObject);
         }
        /* if (dealDamage(collision.gameObject, DirectHitDamage))
         {

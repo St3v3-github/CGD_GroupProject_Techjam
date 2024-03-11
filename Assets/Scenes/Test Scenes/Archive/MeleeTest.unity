@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -874,8 +874,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 232266452}
-  DirectHitDamagage: 0
   BoopPrefab: {fileID: 5284997892635039367, guid: b63c1bf0c6d0cde46b179897510f876b, type: 3}
+  playerCam: {fileID: 0}
+  DirectHitDamage: 0
+  knockbackForce: 10
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &134452364
 GameObject:
   m_ObjectHideFlags: 0
@@ -8502,27 +8507,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e5a4122169bb4e4d87adabb8c114e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <stagSound>k__BackingField:
-    Guid:
-      Data1: -390726173
-      Data2: 1137819060
-      Data3: -1082087508
-      Data4: 1086797803
-    Path: event:/SummonStag
   <music>k__BackingField:
     Guid:
       Data1: -2059798418
       Data2: 1155817732
       Data3: 890142595
       Data4: 1357195468
-    Path: event:/BackgroundMusic
+    Path: event:/Music/BackgroundMusic
+  <fireSound>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <iceSound>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <zapSound>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <windSound>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <pickupSound>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   <thunderSound>k__BackingField:
     Guid:
       Data1: 1089165849
       Data2: 1312599242
       Data3: 1328511361
       Data4: 1650737932
-    Path: event:/thunderSpell
+    Path: event:/Spells/thunderSpell
+  <stagSound>k__BackingField:
+    Guid:
+      Data1: -390726173
+      Data2: 1137819060
+      Data3: -1082087508
+      Data4: 1086797803
+    Path: event:/Player/SummonStag
 --- !u!1 &1681280479
 GameObject:
   m_ObjectHideFlags: 0
