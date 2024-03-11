@@ -35,6 +35,12 @@ public class FMODEvents : MonoBehaviour
     [field: Header("Stag SFX")]
     [field: SerializeField] public EventReference stagSound { get; private set; }
 
+    [field: Header("Hit SFX")]
+    [field: SerializeField] public EventReference hitSound { get; private set; }
+
+    [field: Header("Death SFX")]
+    [field: SerializeField] public EventReference deathSound { get; private set; }
+
     public static FMODEvents instance { get; private set; }
 
     private void Awake()

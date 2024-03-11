@@ -37523,7 +37523,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   game: {fileID: 11400000, guid: 8c953298b2e251142bc4b21b01d099f8, type: 2}
-  lobbyText: {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 192
@@ -37566,6 +37565,8 @@ MonoBehaviour:
   playerRegistries: []
   spawnPoints: []
   spawnFlag: []
+  podiumSpots: []
+  podiumCamera: {fileID: 0}
   spawnPointDistances: []
   currentGameTime: 0
   countdownStartTimer: 0
@@ -73069,7 +73070,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3567911654710782485, guid: 361fe9160d86dca42b47315e72e73afc, type: 3}
       propertyPath: <fireSound>k__BackingField.Path
-      value: event:/FireSpell
+      value: event:/Spells/FireSpell
       objectReference: {fileID: 0}
     - target: {fileID: 3567911654710782485, guid: 361fe9160d86dca42b47315e72e73afc, type: 3}
       propertyPath: <fireSound>k__BackingField.Guid.Data1

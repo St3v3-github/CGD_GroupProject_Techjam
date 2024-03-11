@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43975514, g: 0.48817998, b: 0.5683994, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -16182,27 +16182,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e5a4122169bb4e4d87adabb8c114e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <stagSound>k__BackingField:
-    Guid:
-      Data1: -390726173
-      Data2: 1137819060
-      Data3: -1082087508
-      Data4: 1086797803
-    Path: event:/SummonStag
   <music>k__BackingField:
     Guid:
       Data1: -2059798418
       Data2: 1155817732
       Data3: 890142595
       Data4: 1357195468
-    Path: event:/BackgroundMusic
+    Path: event:/Music/BackgroundMusic
+  <fireSound>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <iceSound>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <zapSound>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <windSound>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <pickupSound>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   <thunderSound>k__BackingField:
     Guid:
       Data1: 1089165849
       Data2: 1312599242
       Data3: 1328511361
       Data4: 1650737932
-    Path: event:/thunderSpell
+    Path: event:/Spells/thunderSpell
+  <stagSound>k__BackingField:
+    Guid:
+      Data1: -390726173
+      Data2: 1137819060
+      Data3: -1082087508
+      Data4: 1086797803
+    Path: event:/Player/SummonStag
 --- !u!1 &759833855
 GameObject:
   m_ObjectHideFlags: 0
@@ -17879,17 +17914,14 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1100939263}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &831636328 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6368105042049077167, guid: f8c50f51bbc892648b53a8d15f26f835, type: 3}
-  m_PrefabInstance: {fileID: 1686941568}
+--- !u!222 &831636329
+CanvasRenderer:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_CullTransparentMesh: 1
 --- !u!1 &925249129
 GameObject:
   m_ObjectHideFlags: 0
@@ -19879,7 +19911,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   game: {fileID: 11400000, guid: 8c953298b2e251142bc4b21b01d099f8, type: 2}
-  lobbyText: {fileID: 831636328}
   playerLayer:
     serializedVersion: 2
     m_Bits: 192
