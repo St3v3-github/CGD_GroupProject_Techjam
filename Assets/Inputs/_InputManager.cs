@@ -64,11 +64,15 @@ public class InputManager : MonoBehaviour
         }
 
         componentRegistry.playerController.HandleMovement(movementInput);
-        componentRegistry.playerController.HandleCamera(cameraInput);
+        
 
         componentRegistry.sliding.AssignValues(movementInput);
     }
 
+    private void LateUpdate()
+    {
+        componentRegistry.playerController.HandleCamera(cameraInput);
+    }
 
 
     public void OnLook(InputAction.CallbackContext ctx)

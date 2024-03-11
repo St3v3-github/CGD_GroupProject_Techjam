@@ -331,7 +331,14 @@ public class UpdatedPlayerController : MonoBehaviour
         //Sets player directionto camera direction
         movementDirection = transform.forward * movementInput.y + transform.right * movementInput.x;
 
-        components.animationManager.updateMovementFloats(new Vector2(movementInput.x * desiredMoveSpeed, movementInput.y * desiredMoveSpeed));
+        if (isGrounded)
+        {
+            components.animationManager.updateMovementFloats(new Vector3(movementInput.x * desiredMoveSpeed, 0f, movementInput.y * desiredMoveSpeed));
+        }
+        else
+        {
+            components.animationManager.updateMovementFloats(new Vector3(50f, components.rigidBody.velocity.y, 50f));
+        }
 
         if (OnSlope() && !exitingSlope)
         {
