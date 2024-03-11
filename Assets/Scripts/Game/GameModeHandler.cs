@@ -77,6 +77,9 @@ public class GameModeHandler : MonoBehaviour
                 attributeComp.healthbar.value = 0;
                 playerRegistries[i].animationManager.toggleDeadBool(true);
                 playerRegistries[i].playerController.enabled = false;
+                playerRegistries[i].inputManager.enabled = false;
+                playerRegistries[i].spellManager.enabled = false;
+                playerRegistries[i].mainMesh.SetActive(false);
                 var deadScoreInfo = playerRegistries[i].playerScoreInfo;
                 var killerScoreInfo = deadScoreInfo.lastDamagedBy.GetComponent<ComponentRegistry>().playerScoreInfo;
                 killerScoreInfo.kill_count++;
