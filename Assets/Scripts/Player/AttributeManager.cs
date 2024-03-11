@@ -40,6 +40,8 @@ public class AttributeManager : MonoBehaviour
 
     public DamageFlash damageFlash;
     public CameraShake cameraShake;
+
+    public ComponentRegistry componentRegistry;
     void Start()
     {
         //set all values to whatever default value we want
@@ -131,6 +133,7 @@ public class AttributeManager : MonoBehaviour
             Die(attacker);
         }
 
+        componentRegistry.animationManager.toggleDamagedTrigger();
         //Particles and Shaders called here
 
 

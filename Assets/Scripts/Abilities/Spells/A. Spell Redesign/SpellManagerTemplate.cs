@@ -195,6 +195,8 @@ public class SpellManagerTemplate : MonoBehaviour
         if(spellSlotArray[slot].currentState == SpellDataTemplate.SpellState.READY)
         {
             spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.COOLDOWN;
+            componentRegistry.animationManager.toggleCastingTrigger();
+            //componentRegistry.animationManager.toggleCastingBool(false);
             //Find exact Ray hit position using raycat
             Ray ray = componentRegistry.playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             RaycastHit hit;
@@ -272,6 +274,7 @@ public class SpellManagerTemplate : MonoBehaviour
         if (spellSlotArray[slot].currentState == SpellDataTemplate.SpellState.READY)
         {
             spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.COOLDOWN;
+            componentRegistry.animationManager.toggleCastingTrigger();
             Debug.Log("Throw");
             GameObject projectile = Instantiate(spellSlotArray[slot].Spellprefab, spellSlotArray[slot].targetPoint.position, componentRegistry.playerCamera.transform.rotation);
             var grenadeData = projectile.GetComponent<Grenade>();
@@ -306,6 +309,7 @@ public class SpellManagerTemplate : MonoBehaviour
             {
                 spellSlotArray[slot].isReadyState = false;
                 switchProjectionOff();
+                componentRegistry.animationManager.toggleCastingTrigger();
                 Strike(slot);
                 spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.COOLDOWN;
                 if (spellSlotArray[slot].isUltimate)
@@ -325,6 +329,7 @@ public class SpellManagerTemplate : MonoBehaviour
         if (spellSlotArray[slot].currentState == SpellDataTemplate.SpellState.READY)
         {
             spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.ACTIVE;
+            componentRegistry.animationManager.ToggleActiveCastBool(true);
             GameObject activeSpell = Instantiate(spellSlotArray[slot].Spellprefab, spellSlotArray[slot].targetPoint.position, componentRegistry.playerCamera.transform.rotation);
             activeSpell.transform.parent = transform.parent.transform;
             
@@ -391,17 +396,21 @@ public class SpellManagerTemplate : MonoBehaviour
 
     private IEnumerator SpellActiveTimer(int slot, float activeTime, bool setCooldown)
     {
-        yield return new WaitForSeconds(spellSlotArray[slot].waitTime);
-        if(setCooldown)
+        yield return new WaitForSeconds(spellSlotArray[slot].activeTime);
+
+        if (setCooldown)
         {
             Debug.Log("WE ARE IN SETCOOLDOWN OF ACTIVE");
             spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.COOLDOWN;
+            componentRegistry.animationManager.ToggleActiveCastBool(false);
         }
+
         else
         {
             spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.READY;
             spellSlotArray[slot].isReadyState = true;
         }
+
         spellSlotArray[slot].changingState = false;
     }
 

@@ -34,9 +34,9 @@ public class AnimationManager : MonoBehaviour
         playerAnim.SetBool("attacking", attacking);
     }
 
-    public void toggleDamagedBool(bool damaged)
+    public void toggleDamagedTrigger()
     {
-        playerAnim.SetBool("damaged", damaged);
+        playerAnim.SetTrigger("damageTaken");
     }
 
     public void toggleDeadBool(bool dead)
@@ -49,9 +49,9 @@ public class AnimationManager : MonoBehaviour
         playerAnim.SetBool("Running", Running);
     }
 
-    public void toggleCastingBool(bool Casting)
+    public void toggleCastingTrigger()
     {
-        playerAnim.SetBool("Casting", Casting);
+        playerAnim.SetTrigger("Casting 0");
     }
 
     public void ToggleActiveCastBool(bool ActiveCast)
