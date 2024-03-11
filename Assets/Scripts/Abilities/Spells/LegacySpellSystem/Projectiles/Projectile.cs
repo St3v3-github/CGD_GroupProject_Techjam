@@ -38,7 +38,7 @@ public class Projectile : Spell
             Debug.Log("hit player: " + collision.name);
                        Destroy(this.gameObject);
         }
-        else if(collision.gameObject.tag != source.tag )
+        else if(collision.transform.parent.tag != source.tag )
         {
                                     Destroy(this.gameObject);
         }
