@@ -283,7 +283,7 @@ public class UpdatedPlayerController : MonoBehaviour
         yRotation += camX;
 
         xRotation -= camY;
-        xRotation = Mathf.Clamp(xRotation, -15, 15);
+        xRotation = Mathf.Clamp(xRotation, -45, 45);
 
         components.playerCamera.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
         playerObject.transform.rotation = Quaternion.Euler(0f, yRotation, 0f);

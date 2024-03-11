@@ -40,7 +40,7 @@ public class InputManager : MonoBehaviour
         plant
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (firingSlot1)
         {
