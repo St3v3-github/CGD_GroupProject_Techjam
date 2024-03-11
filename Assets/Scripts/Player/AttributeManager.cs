@@ -115,6 +115,7 @@ public class AttributeManager : MonoBehaviour
     {
 
         currentHealth -= damage;
+        //AudioManager.instance.PlayOneShot(FMODEvents.instance.hitSound, this.transform.position);
         if (currentHealth <= 0)
         {
             
@@ -134,6 +135,7 @@ public class AttributeManager : MonoBehaviour
     public float TakeDamage(float damage, GameObject attacker)
     {
         currentHealth -= damage;
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.hitSound, this.transform.position);
         if (currentHealth <= 0)
         {
             transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color = originalColor;
@@ -172,6 +174,7 @@ public class AttributeManager : MonoBehaviour
         GameObject god = GameObject.Find("GameController");
         god.SendMessage("PrayToGod", data);
         Invoke("unDie", 0.1f);
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.deathSound, this.transform.position);
     }
 
     public void unDie()

@@ -233,6 +233,21 @@ public class SpellManagerTemplate : MonoBehaviour
             currentProjectileScript.damage = spellSlotArray[slot].damageValue;
             currentProjectileScript.setLifetime(spellSlotArray[slot].lifetime);
 
+            switch (componentRegistry.inputManager.Element)
+            {
+                case WizardType.fire:
+                    AudioManager.instance.PlayOneShot(FMODEvents.instance.fireSound, this.transform.position);
+                    break;
+                case WizardType.ice:
+                    AudioManager.instance.PlayOneShot(FMODEvents.instance.iceSound, this.transform.position);
+                    break;
+                case WizardType.wind:
+                    AudioManager.instance.PlayOneShot(FMODEvents.instance.windSound, this.transform.position);
+                    break;
+                case WizardType.electric:
+                    AudioManager.instance.PlayOneShot(FMODEvents.instance.zapSound, this.transform.position);
+                    break;
+            }
             //Add Forces to projctile
             Rigidbody rb = currentProjectile.GetComponent<Rigidbody>();
             rb.AddForce(directionWithSpread.normalized * spellSlotArray[slot].shootForce, ForceMode.Impulse);
@@ -276,12 +291,26 @@ public class SpellManagerTemplate : MonoBehaviour
             spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.COOLDOWN;
             componentRegistry.animationManager.toggleCastingTrigger();
             Debug.Log("Throw");
+            switch (componentRegistry.inputManager.Element)
+            {
+                case WizardType.fire:
+                    AudioManager.instance.PlayOneShot(FMODEvents.instance.fireSound, this.transform.position);
+                    break;
+                case WizardType.ice:
+                    AudioManager.instance.PlayOneShot(FMODEvents.instance.iceSound, this.transform.position);
+                    break;
+                case WizardType.wind:
+                    AudioManager.instance.PlayOneShot(FMODEvents.instance.windSound, this.transform.position);
+                    break;
+                case WizardType.electric:
+                    AudioManager.instance.PlayOneShot(FMODEvents.instance.zapSound, this.transform.position);
+                    break;
+            }
             GameObject projectile = Instantiate(spellSlotArray[slot].Spellprefab, spellSlotArray[slot].targetPoint.position, componentRegistry.playerCamera.transform.rotation);
             var grenadeData = projectile.GetComponent<Grenade>();
            grenadeData.source = this.transform.parent.gameObject;
             grenadeData.activeTime = spellSlotArray[slot].activeTime;
             grenadeData.damage = spellSlotArray[slot].damageValue;
-                      //AudioManager.instance.PlayOneShot(FMODEvents.instance.iceSound, this.transform.position);
 
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
 
@@ -311,6 +340,22 @@ public class SpellManagerTemplate : MonoBehaviour
                 switchProjectionOff();
                 componentRegistry.animationManager.toggleCastingTrigger();
                 Strike(slot);
+                switch (componentRegistry.inputManager.Element)
+                {
+                    case WizardType.fire:
+                        AudioManager.instance.PlayOneShot(FMODEvents.instance.fireSound, this.transform.position);
+                        break;
+                    case WizardType.ice:
+                        AudioManager.instance.PlayOneShot(FMODEvents.instance.iceSound, this.transform.position);
+                        break;
+                    case WizardType.wind:
+                        AudioManager.instance.PlayOneShot(FMODEvents.instance.windSound, this.transform.position);
+                        break;
+                    case WizardType.electric:
+                        AudioManager.instance.PlayOneShot(FMODEvents.instance.thunderSound, this.transform.position);
+                        break;
+                }
+                //AudioManager.instance.PlayOneShot(FMODEvents.instance.iceSound, this.transform.position);
                 spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.COOLDOWN;
                 if (spellSlotArray[slot].isUltimate)
                 {
@@ -434,7 +479,6 @@ public class SpellManagerTemplate : MonoBehaviour
             #region Fire
             case SpellDataTemplate.SpellID.FireProjectile:
                 HandleProjectileSpells(slotNumber);
-                AudioManager.instance.PlayOneShot(FMODEvents.instance.stagSound, this.transform.position);
                 break;
 
             case SpellDataTemplate.SpellID.FireGrenade:
@@ -536,6 +580,7 @@ public class SpellManagerTemplate : MonoBehaviour
         }
 
         componentRegistry.gamepadRumbleController.StartRumble(componentRegistry.playerInput.playerIndex, 0.5f, 5.0f, 1.0f);
+        //AudioManager.instance.PlayOneShot(FMODEvents.instance.fireSound, this.transform.position);
 
 
     }
