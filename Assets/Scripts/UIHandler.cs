@@ -11,11 +11,17 @@ public class UIHandler : MonoBehaviour
     public RawImage CharUI;
     public RawImage TitleUI;
     public RawImage SpellUI;
+    public RawImage Slot1;
+    public RawImage Slot2;
+    public RawImage Slot3;
+    
 
     [Header("Colors")]
     public Color Char;
     public Color Title;
     public Color Spell;
+    public Color SpellCD;
+    public Color SpellReady;
 
     [Header("Char Title")]
     public TextMeshProUGUI TitleText;
@@ -45,6 +51,7 @@ public class UIHandler : MonoBehaviour
     public RawImage[] Retical;
     public GameObject ReticalParent;
     public Animator Anim;
+    public ComponentRegistry componentRegistry;
 
 
 
@@ -70,7 +77,8 @@ public class UIHandler : MonoBehaviour
         if (Disconect) { PD.SetActive(true); }
         if (!Disconect) { PD.SetActive(false); }
         if (HitConfirmed) { Hitchain(); HitConfirmed = false; }
-        
+        health.value = componentRegistry.attributeManager.currentHealth;
+
     }
 
      public void Hit()
@@ -141,6 +149,44 @@ public class UIHandler : MonoBehaviour
             Retical[i].color = Color.gray;
             
         }
+    }
+
+    public void ToggleSlot1(bool onCD)
+    {
+        if (onCD)
+        {
+            Slot1.color = SpellCD;
+        }
+        else
+        {
+            Slot1.color = SpellReady;
+            
+        }
+
+    }
+    public void ToggleSlot2(bool onCD)
+    {
+        if (onCD)
+        {
+            Slot2.color = SpellCD;
+        }
+        else
+        {
+            Slot2.color = SpellReady;
+        }
+        
+    }
+    public void ToggleSlot3(bool onCD)
+    {
+        if (onCD)
+        {
+            Slot3.color = SpellCD;
+        }
+        else
+        {
+            Slot3.color = SpellReady;
+        }
+        
     }
 
     public void PoisonUlt()

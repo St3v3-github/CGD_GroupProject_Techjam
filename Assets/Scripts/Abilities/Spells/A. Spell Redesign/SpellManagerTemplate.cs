@@ -197,6 +197,7 @@ public class SpellManagerTemplate : MonoBehaviour
         if(spellSlotArray[slot].currentState == SpellDataTemplate.SpellState.READY)
         {
             spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.COOLDOWN;
+            SetUISlot(slot,true);
             componentRegistry.animationManager.toggleCastingTrigger();
             //componentRegistry.animationManager.toggleCastingBool(false);
             //Find exact Ray hit position using raycat
@@ -291,6 +292,7 @@ public class SpellManagerTemplate : MonoBehaviour
         if (spellSlotArray[slot].currentState == SpellDataTemplate.SpellState.READY)
         {
             spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.COOLDOWN;
+            SetUISlot(slot,true);
             componentRegistry.animationManager.toggleCastingTrigger();
             Debug.Log("Throw");
             switch (componentRegistry.inputManager.Element)
@@ -359,6 +361,7 @@ public class SpellManagerTemplate : MonoBehaviour
                 }
                 //AudioManager.instance.PlayOneShot(FMODEvents.instance.iceSound, this.transform.position);
                 spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.COOLDOWN;
+                SetUISlot(slot,true);
                 if (spellSlotArray[slot].isUltimate)
                 {
                     DecreaseUltimates();
@@ -409,10 +412,13 @@ public class SpellManagerTemplate : MonoBehaviour
     private void HandleRaycastSpells()
     {
 
-    }
-
+    }
+
+
+
         #region Spell State Machine
-
+
+
         private void SpellStateManagement(int slot)
     {
         //spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.READY;
@@ -450,6 +456,7 @@ public class SpellManagerTemplate : MonoBehaviour
         {
             Debug.Log("WE ARE IN SETCOOLDOWN OF ACTIVE");
             spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.COOLDOWN;
+            SetUISlot(slot,true);
             componentRegistry.animationManager.ToggleActiveCastBool(false);
         }
 
@@ -465,6 +472,7 @@ public class SpellManagerTemplate : MonoBehaviour
     private IEnumerator SpellCooldownTimer(int slot, float cooldown)
     {
         yield return new WaitForSeconds(spellSlotArray[slot].cooldownTime);
+        SetUISlot(slot,false);
         spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.READY;
         spellSlotArray[slot].changingState = false;
         spellSlotArray[slot].isReadyState = true;
@@ -473,6 +481,23 @@ public class SpellManagerTemplate : MonoBehaviour
 
     #endregion
 
+    public void SetUISlot(int slot, bool onCD)
+    {
+        switch (slot)
+        {
+            case 0:
+                componentRegistry.uiHandler.ToggleSlot1(onCD);
+                break;
+            case 1:
+                componentRegistry.uiHandler.ToggleSlot2(onCD);
+                break;
+            case 2:
+                componentRegistry.uiHandler.ToggleSlot3(onCD);
+                break;
+            
+        }
+        
+    }
 
     public void Cast(int slotNumber)
     {
@@ -580,6 +605,7 @@ public class SpellManagerTemplate : MonoBehaviour
         if (spellSlotArray[slotNumber].isUltimate && spellSlotArray[slotNumber].ID != SpellDataTemplate.SpellID.FireStrike)
         {
             DecreaseUltimates();
+            componentRegistry.uiHandler.UsedUlt();
         }
 
         componentRegistry.gamepadRumbleController.StartRumble(componentRegistry.playerInput.playerIndex, 0.5f, 5.0f, 1.0f);

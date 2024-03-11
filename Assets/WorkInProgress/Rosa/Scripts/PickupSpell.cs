@@ -15,6 +15,21 @@ public class PickupSpell : MonoBehaviour
         {
             other.gameObject.GetComponentInChildren<SpellManagerTemplate>().spellSlotArray[3] = Instantiate(spell);
             other.gameObject.GetComponentInChildren<SpellManagerTemplate>().SetTargetPoints();
+            var uiHandler = other.gameObject.GetComponentInParent<ComponentRegistry>().uiHandler;
+            uiHandler.UsedUlt();
+            switch (spell.ID)
+            {
+                case SpellDataTemplate.SpellID.Beam:
+                    uiHandler.BeamUlt();
+                    break;
+                case SpellDataTemplate.SpellID.Heal:
+                    uiHandler.HealingUlt();
+                    break;
+                case SpellDataTemplate.SpellID.PoisonCloud:
+                    uiHandler.PoisonUlt();
+                    break;
+                
+            }
             Destroy(this.gameObject);
         }
 
