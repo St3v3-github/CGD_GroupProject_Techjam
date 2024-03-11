@@ -274,6 +274,12 @@ public class InputManager : MonoBehaviour
 
     }
 
+    public void OnSelect(InputAction.CallbackContext ctx)
+    {
+        //componentRegistry.uiController.;
+
+    }
+
 
     //Event Action added for emoting - Harry
     public void OnDance(InputAction.CallbackContext ctx)

@@ -152,6 +152,15 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TabMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""f4d921f5-11a6-49b2-b157-23539ce6b644"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -704,6 +713,28 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""action"": ""Action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""63bd46c3-913f-473e-9ed3-e61d4fbffb88"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TabMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""61e19d59-8558-4214-b7da-6fb48662d94f"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TabMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -754,6 +785,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         m_Player_Action = m_Player.FindAction("Action", throwIfNotFound: true);
+        m_Player_TabMenu = m_Player.FindAction("TabMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -829,6 +861,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_Action;
+    private readonly InputAction m_Player_TabMenu;
     public struct PlayerActions
     {
         private @PlayerControlsAsset m_Wrapper;
@@ -847,6 +880,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputAction @Action => m_Wrapper.m_Player_Action;
+        public InputAction @TabMenu => m_Wrapper.m_Player_TabMenu;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -898,6 +932,9 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @Action.started += instance.OnAction;
             @Action.performed += instance.OnAction;
             @Action.canceled += instance.OnAction;
+            @TabMenu.started += instance.OnTabMenu;
+            @TabMenu.performed += instance.OnTabMenu;
+            @TabMenu.canceled += instance.OnTabMenu;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -944,6 +981,9 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @Action.started -= instance.OnAction;
             @Action.performed -= instance.OnAction;
             @Action.canceled -= instance.OnAction;
+            @TabMenu.started -= instance.OnTabMenu;
+            @TabMenu.performed -= instance.OnTabMenu;
+            @TabMenu.canceled -= instance.OnTabMenu;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -995,5 +1035,6 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnAction(InputAction.CallbackContext context);
+        void OnTabMenu(InputAction.CallbackContext context);
     }
 }
