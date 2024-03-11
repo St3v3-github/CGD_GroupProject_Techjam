@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class UIHandler : MonoBehaviour
     public RawImage Slot1;
     public RawImage Slot2;
     public RawImage Slot3;
+    public TextMeshProUGUI scoreText;
     
 
     [Header("Colors")]
@@ -78,6 +80,8 @@ public class UIHandler : MonoBehaviour
         if (!Disconect) { PD.SetActive(false); }
         if (HitConfirmed) { Hitchain(); HitConfirmed = false; }
         health.value = componentRegistry.attributeManager.currentHealth;
+        scoreText.SetText(componentRegistry.playerScoreInfo.kill_count.ToString());;
+
 
     }
 

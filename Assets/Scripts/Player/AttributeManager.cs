@@ -64,7 +64,7 @@ public class AttributeManager : MonoBehaviour
         //healthbar.value = currentHealth;
         //TODO: Fix this for new GameController
         scorefloat = score.ToString(); 
-        ScoreText.GetComponent<TextMeshProUGUI>().text = scorefloat;
+       // ScoreText.GetComponent<TextMeshProUGUI>().text = scorefloat;
 
         
 

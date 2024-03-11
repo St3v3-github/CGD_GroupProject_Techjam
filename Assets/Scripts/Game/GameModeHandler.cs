@@ -83,14 +83,31 @@ public class GameModeHandler : MonoBehaviour
                 playerRegistries[i].mainMesh.SetActive(false);
                 var deadScoreInfo = playerRegistries[i].playerScoreInfo;
                 var killerScoreInfo = deadScoreInfo.lastDamagedBy.GetComponent<ComponentRegistry>().playerScoreInfo;
-                killerScoreInfo.kill_count++;
-                teams[killerScoreInfo.team].team_kills++;
-                deadScoreInfo.death_count++;
-                teams[deadScoreInfo.team].team_deaths++;
-                if (gameMode == 0)
+                if (killerScoreInfo != deadScoreInfo)
                 {
-                    teams[killerScoreInfo.team].score++;
+                    killerScoreInfo.kill_count++;
+                    teams[killerScoreInfo.team].team_kills++;
+                    deadScoreInfo.death_count++;
+                    teams[deadScoreInfo.team].team_deaths++; 
+                    if (gameMode == 0)
+                    {
+                        teams[killerScoreInfo.team].score++;
+                    }
                 }
+                else
+                {
+                    killerScoreInfo.kill_count--;
+                    teams[killerScoreInfo.team].team_kills--;
+                    deadScoreInfo.death_count++;
+                    teams[deadScoreInfo.team].team_deaths++; 
+                    if (gameMode == 0)
+                    {
+                        teams[killerScoreInfo.team].score--;
+                    }
+                    
+                }
+                
+               
 
                 StartCoroutine(reincarnatePlayer(players[i], FindSpawnPoint()));
             }
