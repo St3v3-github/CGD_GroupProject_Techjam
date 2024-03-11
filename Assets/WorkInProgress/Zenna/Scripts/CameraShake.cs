@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-
+    public bool Shaking = false;
 
     void Update()
     {
@@ -15,6 +15,12 @@ public class CameraShake : MonoBehaviour
             
             
             StartCoroutine(Shake(.15f, .05f));
+        }
+
+        if (Shaking == true)
+        {
+            StartCoroutine(Shake(.15f, .05f));
+            Debug.Log("SHAKE");
         }
 
     }
