@@ -10552,6 +10552,7 @@ GameObject:
   - component: {fileID: 7456320130202045671}
   - component: {fileID: 7134092055774382935}
   - component: {fileID: 959117773128721266}
+  - component: {fileID: 3235760398340809688}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -10677,6 +10678,19 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &3235760398340809688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2527478427829664756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 282995712c23a804b84a455640d1478a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Shaking: 0
 --- !u!1 &2546888379342295820
 GameObject:
   m_ObjectHideFlags: 0
@@ -11199,9 +11213,9 @@ MonoBehaviour:
   ScoreText: {fileID: 6202294847290458137}
   scorefloat: 0
   damageFlyTextPrefab: {fileID: 0}
-  damageFlash: {fileID: 7675968747830278994}
-  cameraShake: {fileID: 0}
   componentRegistry: {fileID: 2757066348271210347}
+  damageFlash: {fileID: 7675968747830278994}
+  cameraShake: {fileID: 3235760398340809688}
 --- !u!1 &2786034041006526559
 GameObject:
   m_ObjectHideFlags: 0
