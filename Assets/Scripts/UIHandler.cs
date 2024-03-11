@@ -44,7 +44,8 @@ public class UIHandler : MonoBehaviour
     public int hitchain = 0;
     public RawImage[] Retical;
     public GameObject ReticalParent;
-    public Animator Anim; 
+    public Animator Anim;
+
 
 
 
@@ -163,12 +164,5 @@ public class UIHandler : MonoBehaviour
         Poision.SetActive(false);
         Healing.SetActive(false);
     }
-
-    
-
-   
-
-    
-
 
 }

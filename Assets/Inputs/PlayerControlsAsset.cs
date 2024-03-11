@@ -154,6 +154,15 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""TabMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""f4d921f5-11a6-49b2-b157-23539ce6b644"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""MenuUp"",
                     ""type"": ""Button"",
                     ""id"": ""ea31f959-973a-4883-a0c7-aa92fbca8176"",
@@ -743,6 +752,28 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""63bd46c3-913f-473e-9ed3-e61d4fbffb88"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TabMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""61e19d59-8558-4214-b7da-6fb48662d94f"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TabMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""38d2d427-8397-4faa-b779-681be8260ab1"",
                     ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
@@ -834,6 +865,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         m_Player_Action = m_Player.FindAction("Action", throwIfNotFound: true);
+        m_Player_TabMenu = m_Player.FindAction("TabMenu", throwIfNotFound: true);
         m_Player_MenuUp = m_Player.FindAction("MenuUp", throwIfNotFound: true);
         m_Player_MenuDown = m_Player.FindAction("MenuDown", throwIfNotFound: true);
         m_Player_MenuLeft = m_Player.FindAction("MenuLeft", throwIfNotFound: true);
@@ -913,6 +945,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_Action;
+    private readonly InputAction m_Player_TabMenu;
     private readonly InputAction m_Player_MenuUp;
     private readonly InputAction m_Player_MenuDown;
     private readonly InputAction m_Player_MenuLeft;
@@ -935,6 +968,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputAction @Action => m_Wrapper.m_Player_Action;
+        public InputAction @TabMenu => m_Wrapper.m_Player_TabMenu;
         public InputAction @MenuUp => m_Wrapper.m_Player_MenuUp;
         public InputAction @MenuDown => m_Wrapper.m_Player_MenuDown;
         public InputAction @MenuLeft => m_Wrapper.m_Player_MenuLeft;
@@ -990,6 +1024,9 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @Action.started += instance.OnAction;
             @Action.performed += instance.OnAction;
             @Action.canceled += instance.OnAction;
+            @TabMenu.started += instance.OnTabMenu;
+            @TabMenu.performed += instance.OnTabMenu;
+            @TabMenu.canceled += instance.OnTabMenu;
             @MenuUp.started += instance.OnMenuUp;
             @MenuUp.performed += instance.OnMenuUp;
             @MenuUp.canceled += instance.OnMenuUp;
@@ -1048,6 +1085,9 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @Action.started -= instance.OnAction;
             @Action.performed -= instance.OnAction;
             @Action.canceled -= instance.OnAction;
+            @TabMenu.started -= instance.OnTabMenu;
+            @TabMenu.performed -= instance.OnTabMenu;
+            @TabMenu.canceled -= instance.OnTabMenu;
             @MenuUp.started -= instance.OnMenuUp;
             @MenuUp.performed -= instance.OnMenuUp;
             @MenuUp.canceled -= instance.OnMenuUp;
@@ -1111,6 +1151,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnAction(InputAction.CallbackContext context);
+        void OnTabMenu(InputAction.CallbackContext context);
         void OnMenuUp(InputAction.CallbackContext context);
         void OnMenuDown(InputAction.CallbackContext context);
         void OnMenuLeft(InputAction.CallbackContext context);
