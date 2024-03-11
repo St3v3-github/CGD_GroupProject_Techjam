@@ -109,7 +109,7 @@ public class AttributeManager : MonoBehaviour
             
         }
 
-        Debug.Log("DAMAGE2");
+//        Debug.Log("DAMAGE2");
 
         damageFlash.DamageFlashing();
         StartCoroutine(cameraShake.Shake(.15f, .1f));
@@ -130,7 +130,7 @@ public class AttributeManager : MonoBehaviour
             Die(attacker);
         }
 
-        Debug.Log("DAMAGE1");
+      //  Debug.Log("DAMAGE1");
 
         componentRegistry.animationManager.toggleDamagedTrigger();
         //Particles and Shaders called here

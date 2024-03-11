@@ -63,7 +63,7 @@ public class FullScreenController : MonoBehaviour
     {
         //Active shaders by keys for testing purposes
 
-        if (Input.GetKeyDown("1"))
+        /*if (Input.GetKeyDown("1"))
         {
             StartCoroutine(DamageFire());
         }
@@ -96,7 +96,7 @@ public class FullScreenController : MonoBehaviour
         if (Input.GetKeyDown("7"))
         {
             StartCoroutine(DamageHealing());
-        }
+        }*/
 
 
 
@@ -110,7 +110,7 @@ public class FullScreenController : MonoBehaviour
         FullScreenDamageFire.SetActive(true);
         //_materialFire.SetFloat(_voronoiIntensity, _voronoiIntensityStat);
         //_materialFire.SetFloat(_vignetteIntensity, _vignetteIntensityStat);
-        Debug.Log("FIRE");
+      //  Debug.Log("FIRE");
         float elapsedTime = 0f;
         while(elapsedTime < _hurtFadeOutTime)
         {
@@ -131,7 +131,7 @@ public class FullScreenController : MonoBehaviour
     private IEnumerator DamageIce()
     {
         FullScreenRendererIce.SetActive(true);
-        Debug.Log("ICE");
+       // Debug.Log("ICE");
         float elapsedTime = 0f;
         while (elapsedTime < _hurtFadeOutTime)
         {
@@ -146,7 +146,7 @@ public class FullScreenController : MonoBehaviour
     private IEnumerator DamageWind()
     {
         FullScreenRendererWind.SetActive(true);
-        Debug.Log("WIND");
+       // Debug.Log("WIND");
         float elapsedTime = 0f;
         while (elapsedTime < _hurtFadeOutTime)
         {
@@ -161,7 +161,7 @@ public class FullScreenController : MonoBehaviour
     private IEnumerator DamageElectricity()
     {
         FullScreenRendererElectricity.SetActive(true);
-        Debug.Log("WIND");
+      //  Debug.Log("WIND");
         float elapsedTime = 0f;
         while (elapsedTime < _hurtFadeOutTime)
         {
@@ -176,7 +176,7 @@ public class FullScreenController : MonoBehaviour
     private IEnumerator DamageEarth()
     {
         FullScreenRendererEarth.SetActive(true);
-        Debug.Log("WIND");
+      //  Debug.Log("WIND");
         float elapsedTime = 0f;
         while (elapsedTime < _hurtFadeOutTime)
         {
@@ -191,7 +191,7 @@ public class FullScreenController : MonoBehaviour
     private IEnumerator DamagePlant()
     {
         FullScreenRendererPlant.SetActive(true);
-        Debug.Log("WIND");
+       // Debug.Log("WIND");
         float elapsedTime = 0f;
         while (elapsedTime < _hurtFadeOutTime)
         {
@@ -206,7 +206,7 @@ public class FullScreenController : MonoBehaviour
     private IEnumerator DamageHealing()
     {
         FullScreenRendererHealing.SetActive(true);
-        Debug.Log("WIND");
+       // Debug.Log("WIND");
         float elapsedTime = 0f;
         while (elapsedTime < _hurtFadeOutTime)
         {

@@ -22,7 +22,7 @@ public class FlameThrower : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        if (other.transform.parent.CompareTag("Player") && other != source)
+        if (other.transform.parent.CompareTag("Player") && other.transform.parent.gameObject != source)
         {
             other.GetComponentInParent<ComponentRegistry>().attributeManager.TakeDamage(damage);
             other.GetComponentInParent<ComponentRegistry>().playerScoreInfo.lastDamagedBy = source;

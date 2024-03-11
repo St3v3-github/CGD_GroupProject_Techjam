@@ -30,7 +30,7 @@ public class PoisonCloud : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(transform.position, currentColliderRadius);
         foreach (Collider collider in colliders)
         {
-            if (collider.gameObject.CompareTag("Player"))
+            if (collider.transform.parent != null && collider.transform.parent.gameObject.CompareTag("Player"))
             {
                 // Apply damage over time
                 ApplyDamageOverTime(collider.gameObject);
@@ -43,15 +43,15 @@ public class PoisonCloud : MonoBehaviour
         // Calculate damage based on time
         float damage = damagePerSecond * Time.deltaTime;
 
-        Debug.Log("Applying damage to player: " + damage);
+//        Debug.Log("Applying damage to player: " + damage);
 
-        AttributeManager attributes = player.gameObject.GetComponentInChildren<AttributeManager>();
+        AttributeManager attributes = player.transform.parent.gameObject.GetComponent<ComponentRegistry>().attributeManager;
 
         if (attributes != null)
         {
             attributes.TakeDamage(damage);
             player.GetComponentInParent<ComponentRegistry>().playerScoreInfo.lastDamagedBy = source;
-            source.GetComponent<ComponentRegistry>().uiController.hitMarker.SetActive(true);
+            source.GetComponent<ComponentRegistry>().uiHandler.Hit();
         }
     }
 

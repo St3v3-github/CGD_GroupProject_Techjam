@@ -174,6 +174,7 @@ public class GameModeHandler : MonoBehaviour
         var compReg = player.GetComponent<ComponentRegistry>();
         compReg.animationManager.toggleDeadBool(false);
         player.transform.SetPositionAndRotation(respawnPoint.transform.position, respawnPoint.transform.rotation);
+        compReg.rigidBody.transform.position = player.transform.position;
         compReg.playerController.enabled = true;
         compReg.attributeManager.currentHealth = compReg.attributeManager.maxHealth;
         compReg.attributeManager.dead = false;
@@ -264,8 +265,8 @@ public class GameModeHandler : MonoBehaviour
         float camYSize = 1.0f / camRows;
         for(int j = 0; j < players.Count;j++)
         {
-            Debug.Log(camXSize.ToString());
-            Debug.Log(camYSize.ToString());
+//            Debug.Log(camXSize.ToString());
+         //   Debug.Log(camYSize.ToString());
             playerRegistries[j].playerCamera.rect = new Rect((float)(j%camColumns)*camXSize,(float)(j/camColumns)*camYSize,camXSize,camYSize);
         }
         postGame = false;

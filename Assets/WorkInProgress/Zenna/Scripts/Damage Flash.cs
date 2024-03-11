@@ -57,7 +57,7 @@ public class DamageFlash : MonoBehaviour
     public void DamageFlashing()
     {
         meshRendererToUse.material = materialToUse;
-        Debug.Log("DAMAGE FLASH");
+       // Debug.Log("DAMAGE FLASH");
 
         Invoke("FlashingStop", flashTime);
     }

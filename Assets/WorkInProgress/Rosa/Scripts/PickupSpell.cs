@@ -11,7 +11,7 @@ public class PickupSpell : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-       if(other.gameObject.CompareTag("Player"))
+       if(other.transform.parent.gameObject.CompareTag("Player"))
         {
             other.gameObject.GetComponentInChildren<SpellManagerTemplate>().spellSlotArray[3] = Instantiate(spell);
             other.gameObject.GetComponentInChildren<SpellManagerTemplate>().SetTargetPoints();
