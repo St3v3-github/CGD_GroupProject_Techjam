@@ -33,7 +33,8 @@ public class Projectile : Spell
         else*/
         if (DealDamage(collision.gameObject, damage,source))
         {
-            source.GetComponent<ComponentRegistry>().uiController.hitMarker.SetActive(true);
+            collision.GetComponentInParent<ComponentRegistry>().playerScoreInfo.lastDamagedBy = source;
+            source.GetComponent<ComponentRegistry>().uiHandler.Hit();
             Debug.Log("hit player: " + collision.name);
                        Destroy(this.gameObject);
         }

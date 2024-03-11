@@ -37523,7 +37523,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   game: {fileID: 11400000, guid: 8c953298b2e251142bc4b21b01d099f8, type: 2}
-  lobbyText: {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 192
@@ -37566,6 +37565,8 @@ MonoBehaviour:
   playerRegistries: []
   spawnPoints: []
   spawnFlag: []
+  podiumSpots: []
+  podiumCamera: {fileID: 0}
   spawnPointDistances: []
   currentGameTime: 0
   countdownStartTimer: 0
@@ -68276,7 +68277,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1813525193085780977, guid: 1b111b69dc6175a47929a4c4510f0cec, type: 3}
       propertyPath: rareList.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1813525193085780977, guid: 1b111b69dc6175a47929a4c4510f0cec, type: 3}
       propertyPath: commonList.Array.size
@@ -68304,7 +68305,7 @@ PrefabInstance:
       objectReference: {fileID: 1236032156942314204, guid: 200eb8b64bae3ef4f851c4de2458e879, type: 3}
     - target: {fileID: 1813525193085780977, guid: 1b111b69dc6175a47929a4c4510f0cec, type: 3}
       propertyPath: ultimateList.Array.size
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1813525193085780977, guid: 1b111b69dc6175a47929a4c4510f0cec, type: 3}
       propertyPath: uncommonList.Array.size

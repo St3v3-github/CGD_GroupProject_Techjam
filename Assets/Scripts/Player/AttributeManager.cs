@@ -47,18 +47,6 @@ public class AttributeManager : MonoBehaviour
         maxHealth = 100;
         mp = 100;
 
-        // Set tags
-        string parentTag = transform.parent.tag;
-        Debug.Log("parent tag: " + parentTag);
-        if(parentTag == "Player1")
-        {
-            this.tag = "Player1";
-        }
-        else if(parentTag == "Player2")
-        {
-            this.tag = "Player2";
-        }
-
         //need to load from resources as attribute controller seems to be created at runtime, cannot reference in inspector
         damageFlyTextPrefab = (GameObject)Resources.Load("prefabs/DamageText", typeof(GameObject));
 
@@ -71,7 +59,7 @@ public class AttributeManager : MonoBehaviour
         //attribute manager would check players current status and call status functions here!!
         //example: player is on fire via fire status, HP reduced by 5 every 1 second?
 
-        healthbar.value = currentHealth;
+        //healthbar.value = currentHealth;
         //TODO: Fix this for new GameController
         scorefloat = score.ToString(); 
         ScoreText.GetComponent<TextMeshProUGUI>().text = scorefloat;
@@ -157,9 +145,9 @@ public class AttributeManager : MonoBehaviour
         killing_data data;
         data.killer = killer;
         data.deaded = gameObject.transform.parent.gameObject;
-        GameObject god = GameObject.Find("GameController");
-        god.SendMessage("PrayToGod", data);
-        Invoke("unDie", 0.1f);
+        //GameObject god = GameObject.Find("GameController");
+        //god.SendMessage("PrayToGod", data);
+        //Invoke("unDie", 0.1f);
     }
 
     public void unDie()

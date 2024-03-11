@@ -50,10 +50,10 @@ public class CharSetup : MonoBehaviour
         foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
         {
             var componentRegistry = player.GetComponent<ComponentRegistry>();
-            UnityEngine.Debug.Log("Player Devices: " + componentRegistry.playerInput.devices.ToString());
+            //UnityEngine.Debug.Log("Player Devices: " + componentRegistry.playerInput.devices.ToString());
             if (componentRegistry.playerInput.playerIndex != -1)
             {
-                UnityEngine.Debug.Log("Player Index: " + componentRegistry.playerInput.playerIndex.ToString());
+                //UnityEngine.Debug.Log("Player Index: " + componentRegistry.playerInput.playerIndex.ToString());
                 players[componentRegistry.playerInput.playerIndex] = player;
                 componentRegistries[componentRegistry.playerInput.playerIndex] = componentRegistry;
 

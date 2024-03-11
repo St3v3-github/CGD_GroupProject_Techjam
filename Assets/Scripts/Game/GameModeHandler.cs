@@ -33,7 +33,7 @@ public class GameModeHandler : MonoBehaviour
     public List<GameObject> podiumSpots;
     public Camera podiumCamera;
     [SerializeField] List<float> spawnPointDistances;
-    [SerializeField] float currentGameTime;
+    [SerializeField] float currentGameTime = 300f;
     [SerializeField] int countdownStartTimer;
     [SerializeField] float respawnThreshold;
     [SerializeField] float respawnTimer;
@@ -77,8 +77,8 @@ public class GameModeHandler : MonoBehaviour
                 attributeComp.healthbar.value = 0;
                 playerRegistries[i].animationManager.toggleDeadBool(true);
                 playerRegistries[i].playerController.enabled = false;
-                var deadScoreInfo = players[i].GetComponent<PlayerScoreInfo>();
-                var killerScoreInfo = deadScoreInfo.lastDamagedBy.GetComponent<PlayerScoreInfo>();
+                var deadScoreInfo = playerRegistries[i].playerScoreInfo;
+                var killerScoreInfo = deadScoreInfo.lastDamagedBy.GetComponent<ComponentRegistry>().playerScoreInfo;
                 killerScoreInfo.kill_count++;
                 teams[killerScoreInfo.team].team_kills++;
                 deadScoreInfo.death_count++;
@@ -127,7 +127,7 @@ public class GameModeHandler : MonoBehaviour
                 playersSortedByRanking.Add(new List<GameObject>());
                 foreach(var player in players) 
                 {
-                    if(player.GetComponent<PlayerScoreInfo>().team == ranking[i])
+                    if(player.GetComponent<ComponentRegistry>().playerScoreInfo.team == ranking[i])
                     {
                         playersSortedByRanking[i].Add(player);
                     }
@@ -152,7 +152,7 @@ public class GameModeHandler : MonoBehaviour
                 }
             }
             //Enable Podium Camera
-            podiumCamera.enabled = true;
+            //podiumCamera.enabled = true;
 
             //TODO: Add buttons to restart or go back to menu
         }
@@ -161,13 +161,15 @@ public class GameModeHandler : MonoBehaviour
     private IEnumerator reincarnatePlayer(GameObject player, GameObject respawnPoint)
     {
         yield return new WaitForSeconds(respawnTimer);
-        player.transform.Find("AnimationController").GetComponent<AnimationManager>().toggleDeadBool(false);
+        var compReg = player.GetComponent<ComponentRegistry>();
+        compReg.animationManager.toggleDeadBool(false);
         player.transform.SetPositionAndRotation(respawnPoint.transform.position, respawnPoint.transform.rotation);
-        player.GetComponent<UpdatedPlayerController>().enabled = true;
-      
-        AttributeManager attributeComp = player.transform.GetComponent<AttributeManager>();
-        attributeComp.currentHealth = attributeComp.maxHealth;
-        attributeComp.dead = false;
+        compReg.playerController.enabled = true;
+        compReg.attributeManager.currentHealth = compReg.attributeManager.maxHealth;
+        compReg.attributeManager.dead = false;
+        compReg.mainMesh.SetActive(true);
+        compReg.inputManager.enabled = true;
+        compReg.spellManager.enabled = true;
     }
 
     private GameObject FindSpawnPoint()
@@ -232,7 +234,7 @@ public class GameModeHandler : MonoBehaviour
             compRegistry.rigidBody.position = newPlayer.transform.position;
             compRegistry.playerCamera.enabled = true;
             playerRegistries.Add(compRegistry);
-            while(teams.Count <= newPlayer.GetComponent<PlayerScoreInfo>().team) //FORBIDDEN WHILE LOOP, DONT USE WHILE
+            while(teams.Count <= compRegistry.playerScoreInfo.team) //FORBIDDEN WHILE LOOP, DONT USE WHILE
             {
                 teams.Add(new Team());
             }

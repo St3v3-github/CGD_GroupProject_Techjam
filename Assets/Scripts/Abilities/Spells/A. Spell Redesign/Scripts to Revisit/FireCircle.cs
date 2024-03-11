@@ -34,7 +34,7 @@ public class FireCircle : Spell
         Collider[] colliders = Physics.OverlapSphere(transform.position, currentRadius);
         foreach (Collider collider in colliders)
         {
-            if (collider.gameObject.CompareTag("Player"))
+            if (collider.transform.parent != null && collider.transform.parent.CompareTag("Player"))
             {
                 // Apply damage over time
                 ApplyDamageOverTime(collider.gameObject);
@@ -52,7 +52,8 @@ public class FireCircle : Spell
         if (attributes != null)
         {
             attributes.TakeDamage(damage);
-            source.GetComponent<ComponentRegistry>().uiController.hitMarker.SetActive(true);
+            player.GetComponentInParent<ComponentRegistry>().playerScoreInfo.lastDamagedBy = source;
+            source.GetComponent<ComponentRegistry>().uiHandler.Hit();
         }
     }
 

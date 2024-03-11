@@ -36,11 +36,11 @@ public class Spell : MonoBehaviour
         GameObject player = hitbox;
 
 
-        if (player.CompareTag("Player") && player != spellSource)
+        if (player.transform.parent.CompareTag("Player") && player != spellSource)
         {
             // AttributeManager attributes = hitbox.GetComponent<AttributeManager>();
            
-                AttributeManager attributes = player.GetComponent<ComponentRegistry>().attributeManager;
+                AttributeManager attributes = player.GetComponentInParent<ComponentRegistry>().attributeManager;
                
                 if (attributes != null)
                 {

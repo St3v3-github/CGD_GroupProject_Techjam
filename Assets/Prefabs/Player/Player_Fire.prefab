@@ -23193,6 +23193,7 @@ MonoBehaviour:
   projectionLayermask:
     serializedVersion: 2
     m_Bits: 439
+  rootParent: {fileID: 5470035443760255758}
   projectionOn: 0
 --- !u!1 &3730982746895280485
 GameObject:
@@ -24422,9 +24423,12 @@ MonoBehaviour:
   spellManager: {fileID: 1556007230958114658}
   playerAnimator: {fileID: 4526222209544041046}
   animationManager: {fileID: 6383704486527117664}
+  mainMesh: {fileID: 2395747553202604419}
   uiController: {fileID: 8808911013486118114}
+  uiHandler: {fileID: 2152270637453156128}
   fullScreenController: {fileID: 6010797393321007586}
   spellIconThing: {fileID: 0}
+  playerScoreInfo: {fileID: 5020426125279084324}
 --- !u!1 &5519564085960951433
 GameObject:
   m_ObjectHideFlags: 0
@@ -24990,7 +24994,7 @@ GameObject:
   - component: {fileID: 6925689779858789514}
   m_Layer: 6
   m_Name: Player_Fire
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25031,7 +25035,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 2304
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -25051,10 +25055,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 2304
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 63487
+    m_Bits: 63231
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -30469,8 +30473,8 @@ MonoBehaviour:
   hit_by_strike: 0
   playerStatus: {fileID: 0}
   lastDamagePlayer: {fileID: 0}
-  healthbar: {fileID: 0}
-  ScoreText: {fileID: 0}
+  healthbar: {fileID: 1963902423965080667}
+  ScoreText: {fileID: 730525378771723578}
   scorefloat: 0
   damageFlyTextPrefab: {fileID: 0}
   damageFlash: {fileID: 0}

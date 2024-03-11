@@ -14,6 +14,7 @@ public class SpellManagerTemplate : MonoBehaviour
     public SpellDataTemplate blankSpell;
     public GameObject firepoint;
     public LayerMask projectionLayermask;
+    public GameObject rootParent;
 
     //private SpellDataTemplate spellDataTemplate;
 
@@ -169,8 +170,9 @@ public class SpellManagerTemplate : MonoBehaviour
             // Make sure the adjusted damage is not negative
             adjustedDamage = Mathf.Max(0, adjustedDamage);
             Debug.Log("THE ADJUSTED DAMAGE IS: " + adjustedDamage);
-            player.GetComponent<ComponentRegistry>().attributeManager.TakeDamage(adjustedDamage);
-           // DealDamage(player, adjustedDamage);
+            player.GetComponentInParent<ComponentRegistry>().attributeManager.TakeDamage(adjustedDamage);
+            player.GetComponentInParent<ComponentRegistry>().playerScoreInfo.lastDamagedBy = rootParent;
+            // DealDamage(player, adjustedDamage);
         }
     }
     #endregion
@@ -226,7 +228,7 @@ public class SpellManagerTemplate : MonoBehaviour
             GameObject currentProjectile = Instantiate(spellSlotArray[slot].Spellprefab, spellSlotArray[slot].targetPoint.position, Quaternion.identity);
             currentProjectile.transform.forward = directionWithSpread.normalized;
             Projectile currentProjectileScript = currentProjectile.GetComponent<Projectile>();
-            currentProjectileScript.source = this.transform.parent.gameObject;   //Change when player prefab fixed
+            currentProjectileScript.source = rootParent;   //Change when player prefab fixed
             currentProjectileScript.damage = spellSlotArray[slot].damageValue;
             currentProjectileScript.setLifetime(spellSlotArray[slot].lifetime);
 
@@ -274,7 +276,7 @@ public class SpellManagerTemplate : MonoBehaviour
             Debug.Log("Throw");
             GameObject projectile = Instantiate(spellSlotArray[slot].Spellprefab, spellSlotArray[slot].targetPoint.position, componentRegistry.playerCamera.transform.rotation);
             var grenadeData = projectile.GetComponent<Grenade>();
-           grenadeData.source = this.transform.parent.gameObject;
+           grenadeData.source = rootParent;
             grenadeData.activeTime = spellSlotArray[slot].activeTime;
             grenadeData.damage = spellSlotArray[slot].damageValue;
                       //AudioManager.instance.PlayOneShot(FMODEvents.instance.iceSound, this.transform.position);
@@ -327,14 +329,15 @@ public class SpellManagerTemplate : MonoBehaviour
             GameObject activeSpell = Instantiate(spellSlotArray[slot].Spellprefab, spellSlotArray[slot].targetPoint.position, componentRegistry.playerCamera.transform.rotation);
             activeSpell.transform.parent = transform.parent.transform;
             
+            
             // THIS IS TEMPORARY FIX, I AM TIRED. Sorry.
             if (spellSlotArray[slot].ID != SpellDataTemplate.SpellID.Beam)
             {
-                activeSpell.GetComponent<FlameThrower>().setValues(transform.parent.gameObject, spellSlotArray[slot].activeTime, spellSlotArray[slot].damageValue);
+                activeSpell.GetComponent<FlameThrower>().setValues(rootParent, spellSlotArray[slot].activeTime, spellSlotArray[slot].damageValue);
             }
             else
             {
-                activeSpell.GetComponentInChildren<FlameThrower>().setValues(transform.parent.gameObject, spellSlotArray[slot].activeTime, spellSlotArray[slot].damageValue);
+                activeSpell.GetComponentInChildren<FlameThrower>().setValues(rootParent, spellSlotArray[slot].activeTime, spellSlotArray[slot].damageValue);
             }
            
         }

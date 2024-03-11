@@ -50,6 +50,7 @@ public class PoisonCloud : MonoBehaviour
         if (attributes != null)
         {
             attributes.TakeDamage(damage);
+            player.GetComponentInParent<ComponentRegistry>().playerScoreInfo.lastDamagedBy = source;
             source.GetComponent<ComponentRegistry>().uiController.hitMarker.SetActive(true);
         }
     }

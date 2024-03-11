@@ -48,6 +48,7 @@ public class FullScreenController : MonoBehaviour
 
         // Set all shaders to false
 
+        /*
         FullScreenDamageFire.SetActive(false);
         FullScreenRendererPlant.SetActive(false);
         FullScreenRendererIce.SetActive(false);
@@ -55,6 +56,7 @@ public class FullScreenController : MonoBehaviour
         FullScreenRendererElectricity.SetActive(false);
         FullScreenRendererEarth.SetActive(false);
         FullScreenRendererHealing.SetActive(false);
+        */
     }
 
     private void Update()

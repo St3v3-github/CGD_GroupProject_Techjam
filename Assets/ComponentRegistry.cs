@@ -35,10 +35,13 @@ public class ComponentRegistry : MonoBehaviour
     [Header("Animations")]
     public Animator playerAnimator;
     public AnimationManager animationManager;
+    public GameObject mainMesh;
 
     [Header("UI References")]
     public UIController uiController;
+    public UIHandler uiHandler;
     public FullScreenController fullScreenController;
     public PlayerSelector spellIconThing;
+    public PlayerScoreInfo playerScoreInfo;
 
 }

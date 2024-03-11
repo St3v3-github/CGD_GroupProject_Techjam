@@ -27732,8 +27732,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 658441330}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.748388, y: 2.244846, z: 42.98706}
+  m_LocalRotation: {x: -0, y: 0.48617366, z: -0, w: 0.87386227}
+  m_LocalPosition: {x: -11.979979, y: 2.244846, z: 44.87558}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -27743,7 +27743,7 @@ Transform:
   - {fileID: 1641953073}
   - {fileID: 257964392}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 58.179, z: 0}
 --- !u!114 &658441332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27757,13 +27757,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxPlayers: 4
-  characterPositions: []
-  toJoinDisplays: []
-  playerSetupMenus: []
-  playerClassRotation: []
-  componentRegistries: []
-  players: []
-  inputManager: {fileID: 0}
+  characterPositions:
+  - {fileID: 1660663257}
+  - {fileID: 1535565319}
+  - {fileID: 958828605}
+  - {fileID: 2039014701}
+  toJoinDisplays:
+  - {fileID: 1660663257}
+  - {fileID: 1535565319}
+  - {fileID: 958828605}
+  - {fileID: 2039014701}
+  playerSetupMenus:
+  - {fileID: 1049124691}
+  - {fileID: 1856920844}
+  - {fileID: 640707649}
+  - {fileID: 528855484}
+  playerClassRotation:
+  - {fileID: 5470035443760255758, guid: 171e04882003317408721ae3a6c2b679, type: 3}
+  - {fileID: 141443802332303738, guid: 77f74b8e55c870f48a2c9d80cef12d74, type: 3}
+  componentRegistries:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  inputManager: {fileID: 658441333}
   updateAfterDestroy: 0
 --- !u!114 &658441333
 MonoBehaviour:
@@ -27811,7 +27833,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -635841745786339640, guid: 83e99c0039411e34fa28b22e8e700d83, type: 3}
-  m_PlayerPrefab: {fileID: 141443802332303738, guid: 154968efb73f3d54f819703b5f5bfd6a, type: 3}
+  m_PlayerPrefab: {fileID: 5470035443760255758, guid: 171e04882003317408721ae3a6c2b679, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1

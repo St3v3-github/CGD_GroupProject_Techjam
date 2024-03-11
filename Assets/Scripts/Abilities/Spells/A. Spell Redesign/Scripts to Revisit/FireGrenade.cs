@@ -48,6 +48,10 @@ public class Grenade : Spell
             {
                 effect.GetComponent<PoisonCloud>().source = source;
             }
+            if (effect.GetComponent<FireCircle>() != null)
+            {
+                effect.GetComponent<FireCircle>().source = source;
+            }
 
             Destroy(gameObject);
         }
