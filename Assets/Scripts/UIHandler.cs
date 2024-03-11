@@ -44,7 +44,10 @@ public class UIHandler : MonoBehaviour
     public int hitchain = 0;
     public RawImage[] Retical;
     public GameObject ReticalParent;
-    public Animator Anim; 
+    public Animator Anim;
+
+    [Header("Tab Instuctions")]
+    public GameObject TabInstructions;
 
 
 
@@ -162,6 +165,11 @@ public class UIHandler : MonoBehaviour
         Beam.SetActive(false); 
         Poision.SetActive(false);
         Healing.SetActive(false);
+    }
+
+    public void SwitchTabInstructions()
+    {
+        TabInstructions.SetActive(!TabInstructions.activeSelf);
     }
 
     

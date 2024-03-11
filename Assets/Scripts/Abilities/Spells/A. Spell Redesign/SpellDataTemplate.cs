@@ -16,6 +16,8 @@ public class SpellDataTemplate : ScriptableObject
 
     //Sprite for UI
     public Sprite Icon;
+    public string Name;
+    public string Description;
 
     public float damageValue;
 
