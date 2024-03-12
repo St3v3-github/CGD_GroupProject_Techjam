@@ -309,9 +309,12 @@ public class InputManager : MonoBehaviour
             }
         }*/
 
-    public void OnDash(InputAction.CallbackContext ctx)
+    public void OnChangePOV(InputAction.CallbackContext ctx)
     {
-
+        if (ctx.action.triggered)
+        {
+            componentRegistry.moveCamera.isThirdPerson = !componentRegistry.moveCamera.isThirdPerson;
+        }
     }
 
 }

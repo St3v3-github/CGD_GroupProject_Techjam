@@ -197,6 +197,15 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangePOV"",
+                    ""type"": ""Button"",
+                    ""id"": ""6d94181f-4b9e-438f-9a44-c5251c772534"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -815,6 +824,17 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""action"": ""MenuRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""08cc5ad4-20a5-4323-8093-466c42df46a5"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ChangePOV"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -870,6 +890,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         m_Player_MenuDown = m_Player.FindAction("MenuDown", throwIfNotFound: true);
         m_Player_MenuLeft = m_Player.FindAction("MenuLeft", throwIfNotFound: true);
         m_Player_MenuRight = m_Player.FindAction("MenuRight", throwIfNotFound: true);
+        m_Player_ChangePOV = m_Player.FindAction("ChangePOV", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -950,6 +971,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MenuDown;
     private readonly InputAction m_Player_MenuLeft;
     private readonly InputAction m_Player_MenuRight;
+    private readonly InputAction m_Player_ChangePOV;
     public struct PlayerActions
     {
         private @PlayerControlsAsset m_Wrapper;
@@ -973,6 +995,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         public InputAction @MenuDown => m_Wrapper.m_Player_MenuDown;
         public InputAction @MenuLeft => m_Wrapper.m_Player_MenuLeft;
         public InputAction @MenuRight => m_Wrapper.m_Player_MenuRight;
+        public InputAction @ChangePOV => m_Wrapper.m_Player_ChangePOV;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1039,6 +1062,9 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @MenuRight.started += instance.OnMenuRight;
             @MenuRight.performed += instance.OnMenuRight;
             @MenuRight.canceled += instance.OnMenuRight;
+            @ChangePOV.started += instance.OnChangePOV;
+            @ChangePOV.performed += instance.OnChangePOV;
+            @ChangePOV.canceled += instance.OnChangePOV;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1100,6 +1126,9 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @MenuRight.started -= instance.OnMenuRight;
             @MenuRight.performed -= instance.OnMenuRight;
             @MenuRight.canceled -= instance.OnMenuRight;
+            @ChangePOV.started -= instance.OnChangePOV;
+            @ChangePOV.performed -= instance.OnChangePOV;
+            @ChangePOV.canceled -= instance.OnChangePOV;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1156,5 +1185,6 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         void OnMenuDown(InputAction.CallbackContext context);
         void OnMenuLeft(InputAction.CallbackContext context);
         void OnMenuRight(InputAction.CallbackContext context);
+        void OnChangePOV(InputAction.CallbackContext context);
     }
 }

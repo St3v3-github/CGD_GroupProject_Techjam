@@ -5013,19 +5013,7 @@ MonoBehaviour:
     m_ActionId: 989449cd-f2f9-443a-9e03-4454d2327598
     m_ActionName: Player/SpellTypes[/Keyboard/5,/Keyboard/6,/Keyboard/7,/Keyboard/8]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6544786790697347395}
-        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: OnDash
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: a20a3ab1-c6d8-4171-ac04-e022e11ba65f
     m_ActionName: Player/Dash[/Keyboard/q,/XInputControllerWindows/rightShoulder]
   - m_PersistentCalls:
@@ -5108,6 +5096,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f4d921f5-11a6-49b2-b157-23539ce6b644
     m_ActionName: Player/TabMenu[/Keyboard/tab,/XInputControllerWindows/select]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6544786790697347395}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnChangePOV
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6d94181f-4b9e-438f-9a44-c5251c772534
+    m_ActionName: Player/ChangePOV[/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -21524,7 +21528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FirstPersonPosition: {fileID: 3092695236346576185}
   ThirdPersonPosition: {fileID: 5156716050017188627}
-  isThirdPerson: 1
+  isThirdPerson: 0
 --- !u!1 &3734796776539683615
 GameObject:
   m_ObjectHideFlags: 0
@@ -22335,6 +22339,7 @@ MonoBehaviour:
   gamepadRumbleController: {fileID: 2769973026385157590}
   playerCamera: {fileID: 8196750706791471873}
   cameraPosition: {fileID: 7054799503347749586}
+  moveCamera: {fileID: 7524611172015702871}
   hitboxCollider: {fileID: 5341010554282526691}
   secondCollider: {fileID: 44943903162823234}
   rigidBody: {fileID: 6925689779858789514}

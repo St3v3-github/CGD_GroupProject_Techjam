@@ -246,6 +246,7 @@ MonoBehaviour:
   gamepadRumbleController: {fileID: 483270895903943795}
   playerCamera: {fileID: 9209587692150456616}
   cameraPosition: {fileID: 7993765048706273042}
+  moveCamera: {fileID: 420748549437326314}
   hitboxCollider: {fileID: 8530442957580438382}
   secondCollider: {fileID: 200565544763646447}
   rigidBody: {fileID: 3581709865523120997}
@@ -24620,19 +24621,7 @@ MonoBehaviour:
     m_ActionId: 989449cd-f2f9-443a-9e03-4454d2327598
     m_ActionName: Player/SpellTypes[/Keyboard/5,/Keyboard/6,/Keyboard/7,/Keyboard/8]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4309435959828065727}
-        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: OnDash
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: a20a3ab1-c6d8-4171-ac04-e022e11ba65f
     m_ActionName: Player/Dash[/Keyboard/q,/XInputControllerWindows/rightShoulder]
   - m_PersistentCalls:
@@ -24715,6 +24704,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 2773bc03-d2be-486b-a3cb-d70d411148bd
     m_ActionName: Player/MenuRight[/XInputControllerWindows1/dpad/right]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4309435959828065727}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnChangePOV
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6d94181f-4b9e-438f-9a44-c5251c772534
+    m_ActionName: Player/ChangePOV[/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
