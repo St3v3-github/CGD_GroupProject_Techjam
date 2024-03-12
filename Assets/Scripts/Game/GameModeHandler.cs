@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -19,7 +20,7 @@ public class GameModeHandler : MonoBehaviour
         public int gameMode = 0;
         public float gameTime = 300.0f;
         public float respawnTimer = 3.0f;
-        public float respawnThreshold = 100.0f;
+        public float respawnThreshold = 15.0f;
         public int countdownStartTimer = 5;
     }
 
@@ -74,6 +75,7 @@ public class GameModeHandler : MonoBehaviour
             var attributeComp = playerRegistries[i].attributeManager;
             if (!attributeComp.dead && attributeComp.currentHealth <= 0)
             {
+                //Trigger player death
                 attributeComp.dead = true;
                 attributeComp.currentHealth = 0;
                 attributeComp.healthbar.value = 0;
@@ -82,6 +84,7 @@ public class GameModeHandler : MonoBehaviour
                 playerRegistries[i].inputManager.enabled = false;
                 playerRegistries[i].spellManager.enabled = false;
                 playerRegistries[i].mainMesh.SetActive(false);
+                //Handle kill, death and score counters
                 var deadScoreInfo = playerRegistries[i].playerScoreInfo;
                 var killerScoreInfo = deadScoreInfo.lastDamagedBy.GetComponent<ComponentRegistry>().playerScoreInfo;
                 if (killerScoreInfo != deadScoreInfo)
@@ -105,16 +108,16 @@ public class GameModeHandler : MonoBehaviour
                     {
                         teams[killerScoreInfo.team].score--;
                     }
-                    
                 }
-                
-               
-
+                //Start player respawn
                 StartCoroutine(reincarnatePlayer(players[i], FindSpawnPoint()));
             }
         }
+
+        //Check if we are in the post-game view or not
         if (!postGame)
         {
+            //Update Gametime
             currentGameTime -= Time.deltaTime;
             if (currentGameTime > 0)
             {
@@ -123,7 +126,9 @@ public class GameModeHandler : MonoBehaviour
             }
             else
             {
+                //Update visals to game end
                 currentGameTime = 0;
+                //Determine highest scoring team
                 List<int> ranking = new List<int>();
                 Vector2Int currentHighest = new Vector2Int(0, int.MinValue);
                 for (int i = 0; i < teams.Count; i++)
@@ -161,7 +166,6 @@ public class GameModeHandler : MonoBehaviour
                 foreach (var playerReg in playerRegistries)
                 {
                     playerReg.inputManager.enabled = false;
-                    //playerReg.advancedProjectileSystem.enabled = false;
                     playerReg.playerCamera.enabled = false;
                     playerReg.playerController.enabled = false;
                 }
@@ -195,7 +199,12 @@ public class GameModeHandler : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Handles the respawning of the player
+    /// </summary>
+    /// <param name="player">The player object to move, has to have a comp registry script</param>
+    /// <param name="respawnPoint">The Game object with positional and rotational data</param>
+    /// <returns></returns>
     private IEnumerator reincarnatePlayer(GameObject player, GameObject respawnPoint)
     {
         yield return new WaitForSeconds(respawnTimer);
@@ -211,6 +220,10 @@ public class GameModeHandler : MonoBehaviour
         compReg.spellManager.enabled = true;
     }
 
+    /// <summary>
+    /// Chooses a respawn point for the player to respawn at, falls back to a randomized one if all of them have players too close
+    /// </summary>
+    /// <returns>The object with positional and rotational data of the chosen respawn point</returns>
     private GameObject FindSpawnPoint()
     {
         int possibleSpawns = 0;
@@ -225,7 +238,8 @@ public class GameModeHandler : MonoBehaviour
                     spawnPointDistances[i] = newDistance;
                 }
             }
-            if (spawnPointDistances[i]>respawnThreshold)
+            Debug.Log("Spawn point " + i.ToString() + ": Distance to players is " + spawnPointDistances[i]);
+            if (spawnPointDistances[i] > respawnThreshold)
             {
                 possibleSpawns++;
             }
@@ -293,9 +307,7 @@ public class GameModeHandler : MonoBehaviour
         float camYSize = 1.0f / camRows;
         for(int j = 0; j < players.Count;j++)
         {
-//            Debug.Log(camXSize.ToString());
-         //   Debug.Log(camYSize.ToString());
-            playerRegistries[j].playerCamera.rect = new Rect((float)(j%camColumns)*camXSize,(float)(j/camColumns)*camYSize,camXSize,camYSize);
+            playerRegistries[j].playerCamera.rect = new Rect((float)(j%camColumns)*camXSize,1.0f-(float)((j / camColumns)+1)*camYSize,camXSize,camYSize);
         }
         postGame = false;
         StartCoroutine(StartCountdownTimer());
