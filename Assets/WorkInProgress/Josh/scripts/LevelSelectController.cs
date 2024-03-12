@@ -37,6 +37,7 @@ public class LevelSelectController : MonoBehaviour
             mapNumber = 0;
         }
         levels[mapNumber].SetActive(true);
+
     }
 
     public void PrevMap()
@@ -69,15 +70,16 @@ public class LevelSelectController : MonoBehaviour
 
     public IEnumerator LoadScene()
     {
-        AsyncOperation sceneLoader = SceneManager.LoadSceneAsync(sceneNames[mapNumber], LoadSceneMode.Additive);
+        AsyncOperation sceneLoader = SceneManager.LoadSceneAsync(sceneNames[2], LoadSceneMode.Additive);
         sceneLoader.allowSceneActivation = false;
+        charSelectObj.GetComponent<CharSetup>().kwikfix = false;
         while (sceneLoader.progress < 0.9f)
         {
-            Debug.Log("Loading scene " + sceneNames[mapNumber] + " <<||>> Progress: " + sceneLoader.progress);
+            Debug.Log("Loading scene " + sceneNames[2] + " <<||>> Progress: " + sceneLoader.progress);
             yield return null;
         }
         sceneLoader.allowSceneActivation = true;
-        while (!SceneManager.GetSceneByName(sceneNames[mapNumber]).isLoaded)
+        while (!SceneManager.GetSceneByName(sceneNames[2]).isLoaded)
         {
             Debug.Log("Scene not fully loaded yet...");
             yield return null;
@@ -87,7 +89,7 @@ public class LevelSelectController : MonoBehaviour
 
     public void FinishLoading()
     {
-        var scene = SceneManager.GetSceneByName(sceneNames[mapNumber]);
+        var scene = SceneManager.GetSceneByName(sceneNames[2]);
         if (scene.IsValid())
         {
             foreach (var player in GameObject.FindGameObjectsWithTag("Player"))

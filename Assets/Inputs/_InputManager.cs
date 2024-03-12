@@ -63,7 +63,7 @@ public class InputManager : MonoBehaviour
             spellManagerTemplate.Cast(3);
         }
 
-        componentRegistry.playerController.HandleMovement(movementInput);
+        
         
 
         componentRegistry.sliding.AssignValues(movementInput);
@@ -71,6 +71,7 @@ public class InputManager : MonoBehaviour
 
     private void LateUpdate()
     {
+        componentRegistry.playerController.HandleMovement(movementInput);
         componentRegistry.playerController.HandleCamera(cameraInput);
     }
 

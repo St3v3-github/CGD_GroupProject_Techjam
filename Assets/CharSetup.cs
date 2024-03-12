@@ -21,6 +21,7 @@ public class CharSetup : MonoBehaviour
     public float[] inputClocks;
     public int maxSelection = 1;
     public PlayerInputManager inputManager;
+    public bool kwikfix = true;
 
     public bool updateAfterDestroy = false;
     // Start is called before the first frame update
@@ -130,7 +131,7 @@ public class CharSetup : MonoBehaviour
 
     public void NextClass(int index)
     {
-        if (componentRegistries[index] != null && players[index] != null)
+        if (kwikfix && componentRegistries[index] != null && players[index] != null)
         {
             var playerDevice = componentRegistries[index].playerInput.devices.FirstOrDefault<InputDevice>();
             var playerControlScheme = componentRegistries[index].playerInput.currentControlScheme;
@@ -148,7 +149,7 @@ public class CharSetup : MonoBehaviour
 
     public void previousClass(int index)
     {
-        if (componentRegistries[index] != null && players[index] != null)
+        if (kwikfix && componentRegistries[index] != null && players[index] != null)
         {
             var playerDevice = componentRegistries[index].playerInput.devices.FirstOrDefault<InputDevice>();
             var playerControlScheme = componentRegistries[index].playerInput.currentControlScheme;

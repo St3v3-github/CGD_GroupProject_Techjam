@@ -27,7 +27,7 @@ public class Grenade : Spell
 
     void OnTriggerEnter(Collider collision)
     {
-        if(!spawned)
+        if(!spawned && collision.transform.parent != null && !collision.transform.parent.CompareTag("Player"))
         {
             spawned = true;
             GameObject effect = Instantiate(Prefab, transform.position, Quaternion.identity);
