@@ -70,9 +70,10 @@ public class InputManager : MonoBehaviour
         componentRegistry.sliding.AssignValues(movementInput);
     }
 
-    private void LateUpdate()
+    private void Update()
     {
-        
+        //componentRegistry.playerController.HandleMovement(movementInput);
+        //componentRegistry.playerController.HandleCamera(cameraInput);
     }
 
 
