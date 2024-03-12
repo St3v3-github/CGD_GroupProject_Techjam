@@ -383,6 +383,11 @@ public class UpdatedPlayerController : MonoBehaviour
             }
         }
 
+        else if(!isGrounded && components.jetPack.usingJetpack)
+        {
+            components.rigidBody.AddForce(movementDirection.normalized * moveSpeed * 200f * speedMultiplier * airMultiplier, ForceMode.Force);
+        }
+
         else if (!isGrounded)
         {
             components.rigidBody.AddForce(movementDirection.normalized * moveSpeed * 10f * speedMultiplier * airMultiplier, ForceMode.Force);

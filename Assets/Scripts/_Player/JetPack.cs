@@ -31,7 +31,7 @@ public class JetPack : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(component.playerController.isGrounded)
         {
