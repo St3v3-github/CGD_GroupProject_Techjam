@@ -119,9 +119,15 @@ MonoBehaviour:
   CharUI: {fileID: 2124369200395534463}
   TitleUI: {fileID: 8159151002447912010}
   SpellUI: {fileID: 2881132127361972746}
+  Slot1: {fileID: 0}
+  Slot2: {fileID: 0}
+  Slot3: {fileID: 0}
+  scoreText: {fileID: 0}
   Char: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
   Title: {r: 0.32188204, g: 0.43055883, b: 0.6603774, a: 1}
-  Spell: {r: 0.7075472, g: 0.69045275, b: 0.68529725, a: 1}
+  Spell: {r: 0.91372555, g: 0.1137255, b: 0.21176472, a: 1}
+  SpellCD: {r: 0, g: 0, b: 0, a: 0}
+  SpellReady: {r: 0, g: 0, b: 0, a: 0}
   TitleText: {fileID: 7169994518879691540}
   TitleName: Fire Wizard
   health: {fileID: 3409565445975089310}
@@ -145,6 +151,7 @@ MonoBehaviour:
   - {fileID: 2105952294258163433}
   ReticalParent: {fileID: 7919021003166673914}
   Anim: {fileID: 4158979049807828418}
+  componentRegistry: {fileID: 0}
 --- !u!1 &284450477489630041
 GameObject:
   m_ObjectHideFlags: 0
@@ -4357,8 +4364,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.6, y: 140}
-  m_SizeDelta: {x: 200, y: 261.215}
+  m_AnchoredPosition: {x: -22, y: 106}
+  m_SizeDelta: {x: 200, y: 170.4173}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7908486964249093060
 CanvasRenderer:
@@ -4415,14 +4422,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 277.3
-  m_fontSizeBase: 277.3
+  m_fontSize: 167.24
+  m_fontSizeBase: 167.24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
