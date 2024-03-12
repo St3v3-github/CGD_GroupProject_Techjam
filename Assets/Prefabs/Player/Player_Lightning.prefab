@@ -5945,8 +5945,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellSlotArray:
   - {fileID: 11400000, guid: a0e4eee81e2a2e8428210255fd284da9, type: 2}
-  - {fileID: 11400000, guid: 4da819721d936664ebdc2eecf88b59dc, type: 2}
   - {fileID: 11400000, guid: 3d116a5b4b9706844b584c284196ca36, type: 2}
+  - {fileID: 11400000, guid: 4da819721d936664ebdc2eecf88b59dc, type: 2}
   - {fileID: 11400000, guid: 6c76a45440f36ce47b0f0c0cceb800a5, type: 2}
   componentRegistry: {fileID: 271269839581703104}
   blankSpell: {fileID: 11400000, guid: 6c76a45440f36ce47b0f0c0cceb800a5, type: 2}
@@ -8457,7 +8457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRendererToUse: {fileID: 6097069370084188001}
-  originalMat: {fileID: 2100000, guid: 15462656d6ff7074ba33213741cb3a6d, type: 2}
+  originalMat: {fileID: 2100000, guid: a88a35ab52ddd074aab55f748926adf9, type: 2}
   materialToUse: {fileID: 2100000, guid: 83348a5b3711af543a9c8484b595b612, type: 2}
   Damaging: 0
 --- !u!114 &7975539953784143756
@@ -9381,7 +9381,7 @@ Transform:
   m_GameObject: {fileID: 2847223856572996219}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 1.25, z: -2.5}
+  m_LocalPosition: {x: 1, y: 1.5, z: -2.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10592,7 +10592,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6284618119317280428}
@@ -12936,7 +12936,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5189431134482466359
 Transform:
   m_ObjectHideFlags: 0
@@ -28400,11 +28400,13 @@ MonoBehaviour:
   sensX: 150
   sensY: 150
   playerObject: {fileID: 2622219359557856719}
-  walkSpeed: 10
-  sprintSpeed: 13
+  walkSpeed: 25
+  sprintSpeed: 30
   slideSpeed: 30
   dashSpeed: 100
   swingSpeed: 15
+  inZone: 0
+  movespeedtimer: 0
   speedMultiplier: 1
   speedIncreaseMultiplier: 1.5
   sloperIncreaseMultiplier: 2.5
@@ -35512,7 +35514,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &754877930937898006
 RectTransform:
   m_ObjectHideFlags: 0
@@ -36687,7 +36689,7 @@ RectTransform:
   m_Father: {fileID: 787475771514742525}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

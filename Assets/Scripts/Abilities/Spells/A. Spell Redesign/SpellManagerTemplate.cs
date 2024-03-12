@@ -21,6 +21,7 @@ public class SpellManagerTemplate : MonoBehaviour
     //For the AOE projection in the scene
     private GameObject projection;
     public bool projectionOn = false;
+    private bool activeCast = false;
 
 
     private void Start()
@@ -61,7 +62,20 @@ public class SpellManagerTemplate : MonoBehaviour
         {
             UpdateProjection();
         }
+        if (spellSlotArray[3].ID == SpellDataTemplate.SpellID.EMPTY && activeCast)
+        {
+            activeCast = false;
+            StartCoroutine(DisableAnims(2.5F));
+        }
     }
+    private IEnumerator DisableAnims( float activeTime)
+    {
+        yield return new WaitForSeconds(activeTime);
+        componentRegistry.animationManager.ToggleActiveCastBool(false);
+
+    }
+
+
 
     #region Two Stage Spell Logic
     void UpdateProjection()
@@ -405,7 +419,7 @@ public class SpellManagerTemplate : MonoBehaviour
             {
                 activeSpell.GetComponentInChildren<FlameThrower>().setValues(rootParent, spellSlotArray[slot].activeTime, spellSlotArray[slot].damageValue);
             }
-           
+            activeCast = true;
         }
         
        

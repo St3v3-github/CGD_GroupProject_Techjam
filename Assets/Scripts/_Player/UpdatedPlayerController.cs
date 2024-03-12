@@ -25,6 +25,9 @@ public class UpdatedPlayerController : MonoBehaviour
     public float swingSpeed;
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
+    public bool inZone = false;
+    public float movespeedtimer = 0;
+    private float speedreset = 2.5F;
 
     [Header("Movement Speed Scalers")]
     public float speedMultiplier;
@@ -230,6 +233,19 @@ public class UpdatedPlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(speedMultiplier != 1 && inZone == false)
+        {
+          if(movespeedtimer < speedreset)
+            {
+                movespeedtimer += Time.deltaTime;
+            }
+          else
+            {
+                speedMultiplier = 1;
+                movespeedtimer = 0;
+            }
+
+        }
 
         SpeedControl();
 

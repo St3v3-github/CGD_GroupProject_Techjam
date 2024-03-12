@@ -540,7 +540,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5456505365756770638}
@@ -11265,7 +11265,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4115988086394075963
 Transform:
   m_ObjectHideFlags: 0
@@ -17330,7 +17330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRendererToUse: {fileID: 7126622126821359570}
-  originalMat: {fileID: 2100000, guid: 15462656d6ff7074ba33213741cb3a6d, type: 2}
+  originalMat: {fileID: 2100000, guid: f41973792ba10204ea9f52b2e6721689, type: 2}
   materialToUse: {fileID: 2100000, guid: 83348a5b3711af543a9c8484b595b612, type: 2}
   Damaging: 0
 --- !u!114 &3043998348316735720
@@ -18605,7 +18605,7 @@ Transform:
   m_GameObject: {fileID: 5490592292617661998}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 1.25, z: -2.5}
+  m_LocalPosition: {x: 1, y: 1.5, z: -2.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -28673,11 +28673,13 @@ MonoBehaviour:
   sensX: 150
   sensY: 150
   playerObject: {fileID: 8914088835629414053}
-  walkSpeed: 10
-  sprintSpeed: 13
+  walkSpeed: 25
+  sprintSpeed: 30
   slideSpeed: 30
   dashSpeed: 100
   swingSpeed: 15
+  inZone: 0
+  movespeedtimer: 0
   speedMultiplier: 1
   speedIncreaseMultiplier: 1.5
   sloperIncreaseMultiplier: 2.5
@@ -35062,10 +35064,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 170286470638744574, guid: 06181689fcba0fa449e86377499b85cd, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 170286470638744574, guid: 06181689fcba0fa449e86377499b85cd, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400862834458187661, guid: 06181689fcba0fa449e86377499b85cd, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 477329502079699833, guid: 06181689fcba0fa449e86377499b85cd, type: 3}

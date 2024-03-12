@@ -73,11 +73,15 @@ MonoBehaviour:
   firePoint: {fileID: 7600500208882648916}
   attributeManager: {fileID: 8332422817817589327}
   spellManager: {fileID: 2947081459611145061}
+  statusEffectHandler: {fileID: 0}
   playerAnimator: {fileID: 1316259166637994008}
   animationManager: {fileID: 6246835744260912567}
+  mainMesh: {fileID: 0}
   uiController: {fileID: 6923252535860149858}
+  uiHandler: {fileID: 0}
   fullScreenController: {fileID: 12497540656409884}
   spellIconThing: {fileID: 0}
+  playerScoreInfo: {fileID: 0}
 --- !u!54 &8079316446074934807
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6700,6 +6704,7 @@ MonoBehaviour:
   damageFlyTextPrefab: {fileID: 0}
   damageFlash: {fileID: 0}
   cameraShake: {fileID: 0}
+  componentRegistry: {fileID: 0}
 --- !u!1 &2872626567673200566
 GameObject:
   m_ObjectHideFlags: 0
@@ -17272,6 +17277,7 @@ MonoBehaviour:
   projectionLayermask:
     serializedVersion: 2
     m_Bits: 439
+  rootParent: {fileID: 0}
   projectionOn: 0
 --- !u!1 &4291965123045746610
 GameObject:
@@ -33633,6 +33639,8 @@ MonoBehaviour:
   slideSpeed: 30
   dashSpeed: 100
   swingSpeed: 15
+  inZone: 0
+  movespeedtimer: 0
   speedMultiplier: 1
   speedIncreaseMultiplier: 1.5
   sloperIncreaseMultiplier: 2.5
@@ -34950,6 +34958,7 @@ MonoBehaviour:
   player: {fileID: 0}
   healthText: {fileID: 0}
   compRegistry: {fileID: 2757066348271210347}
+  TabInstructions: {fileID: 0}
 --- !u!1001 &121783248898580113
 PrefabInstance:
   m_ObjectHideFlags: 0
