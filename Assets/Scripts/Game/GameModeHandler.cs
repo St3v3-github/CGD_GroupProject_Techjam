@@ -168,6 +168,7 @@ public class GameModeHandler : MonoBehaviour
                     playerReg.inputManager.enabled = false;
                     playerReg.playerCamera.enabled = false;
                     playerReg.playerController.enabled = false;
+                    playerReg.rigidBody.velocity = new Vector3(0, 0, 0);
                 }
                 for (int i = 0; i < playersSortedByRanking.Count; i++)
                 {
@@ -268,23 +269,27 @@ public class GameModeHandler : MonoBehaviour
 
     public void LoadGameSettings()
     {
+        //Reset to rule base
         respawnThreshold = ruleSetting.respawnThreshold;
         respawnTimer = ruleSetting.respawnTimer;
         countdownStartTimer = ruleSetting.countdownStartTimer;
         gameMode = ruleSetting.gameMode;
         currentGameTime = ruleSetting.gameTime + countdownStartTimer;
+        //Recreate lists
         teams = new List<Team>();
         players = new List<GameObject>();
         playerRegistries = new List<ComponentRegistry>();
+        //Find all players and create lists based off of them
+        //Then move them to a spawn point
         foreach (var newPlayer in GameObject.FindGameObjectsWithTag("Player"))
         {
             players.Add(newPlayer);
-            //TODO: Change the index to work
             var spawnPoint = FindSpawnPoint();
             newPlayer.transform.position = spawnPoint.transform.position;
             newPlayer.transform.rotation = spawnPoint.transform.rotation;
             var compRegistry = newPlayer.GetComponent<ComponentRegistry>();
             compRegistry.rigidBody.position = newPlayer.transform.position;
+            compRegistry.rigidBody.rotation = newPlayer.transform.rotation;
             compRegistry.playerCamera.enabled = true;
             playerRegistries.Add(compRegistry);
             while(teams.Count <= compRegistry.playerScoreInfo.team) //FORBIDDEN WHILE LOOP, DONT USE WHILE
@@ -292,6 +297,8 @@ public class GameModeHandler : MonoBehaviour
                 teams.Add(new Team());
             }
         }
+        //Create split screen view
+        //Start with a 1x1 box, determine minimum box size
         int i = 1;
         for(i = 1; (players.Count - 1) / i >= i; i++)
         {
@@ -299,12 +306,15 @@ public class GameModeHandler : MonoBehaviour
         }
         int camColumns = i;
         int camRows = i;
+        //Try reducing rows
         if(i*(i-1) >= players.Count)
         {
             camRows = i - 1;
         }
+        //Determine camera dimensions
         float camXSize = 1.0f / camColumns;
         float camYSize = 1.0f / camRows;
+        //Update camera render targets
         for(int j = 0; j < players.Count;j++)
         {
             playerRegistries[j].playerCamera.rect = new Rect((float)(j%camColumns)*camXSize,1.0f-(float)((j / camColumns)+1)*camYSize,camXSize,camYSize);
