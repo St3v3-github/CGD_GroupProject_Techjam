@@ -431,7 +431,15 @@ public class SpellManagerTemplate : MonoBehaviour
                 if (!spellSlotArray[slot].changingState)
                 {
                     spellSlotArray[slot].changingState = true;
-                    StartCoroutine(SpellActiveTimer(slot, spellSlotArray[slot].activeTime, spellSlotArray[slot].activeForCooldown));
+                    if (spellSlotArray[slot].activeForCooldown)
+                    {
+                        StartCoroutine(SpellActiveTimer(slot, spellSlotArray[slot].activeTime, spellSlotArray[slot].activeForCooldown));
+                    }
+                    else
+                    {
+                        StartCoroutine(SpellActiveTimer(slot, spellSlotArray[slot].waitTime, spellSlotArray[slot].activeForCooldown));
+                    }
+                    
                 }
                 break;
 
@@ -450,7 +458,7 @@ public class SpellManagerTemplate : MonoBehaviour
 
     private IEnumerator SpellActiveTimer(int slot, float activeTime, bool setCooldown)
     {
-        yield return new WaitForSeconds(spellSlotArray[slot].activeTime);
+        yield return new WaitForSeconds(activeTime);
 
         if (setCooldown)
         {
@@ -608,7 +616,7 @@ public class SpellManagerTemplate : MonoBehaviour
             componentRegistry.uiHandler.UsedUlt();
         }
 
-        componentRegistry.gamepadRumbleController.StartRumble(componentRegistry.playerInput.playerIndex, 0.5f, 5.0f, 1.0f);
+        //componentRegistry.gamepadRumbleController.StartRumble(componentRegistry.playerInput.playerIndex, 0.5f, 5.0f, 1.0f);
         //AudioManager.instance.PlayOneShot(FMODEvents.instance.fireSound, this.transform.position);
 
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameModeHandler : MonoBehaviour
 {
@@ -176,14 +177,24 @@ public class GameModeHandler : MonoBehaviour
                 //Enable Podium Camera
                 podiumCamera.enabled = true;
                 postGame = true;
+                
                 //TODO: Add buttons to restart or go back to menu
             }
         }
         else
         {
+            StartCoroutine(ReturnToMenu());
             //TODO wat do in post game
         }
     }
+
+    private IEnumerator ReturnToMenu()
+    {
+        yield return new WaitForSeconds(10);
+        SceneManager.LoadScene("MainMenuRework");
+
+    }
+
 
     private IEnumerator reincarnatePlayer(GameObject player, GameObject respawnPoint)
     {
