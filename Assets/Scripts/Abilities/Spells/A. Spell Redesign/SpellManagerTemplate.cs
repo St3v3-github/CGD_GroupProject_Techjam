@@ -329,9 +329,21 @@ public class SpellManagerTemplate : MonoBehaviour
 
     private void HandleOneStageSpells()
     {
+        
+        
+        
+    }
 
-
-
+    private void HandleHeal(int slot)
+    {
+        GameObject heal = Instantiate(spellSlotArray[slot].Spellprefab,componentRegistry.rigidBody.transform);
+        heal.GetComponent<DeleteOnTimer>().setupDelete(2);
+        
+        componentRegistry.attributeManager.currentHealth += 50;
+        if (componentRegistry.attributeManager.currentHealth > 100)
+        {
+            componentRegistry.attributeManager.currentHealth = 100;
+        }
     }
 
     private void HandleTwoStageSpells(int slot)
@@ -601,7 +613,7 @@ public class SpellManagerTemplate : MonoBehaviour
                 break;
 
             case SpellDataTemplate.SpellID.Heal:
-                HandleOneStageSpells();
+                HandleHeal(slotNumber);
                 break;
             case SpellDataTemplate.SpellID.FireStrike:
                 HandleTwoStageSpells(slotNumber);

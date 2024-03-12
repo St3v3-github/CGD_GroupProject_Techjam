@@ -7,13 +7,11 @@ public class KillBox : MonoBehaviour
     LayerMask playerLayer;
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == playerLayer)
+        if (other.transform.parent != null && other.transform.parent.gameObject.CompareTag("Player"))
         {
-            //AttributeManager playerAttribute = other.GetComponent<ComponentRegistry>().attributeMananger;
-            //playerAttribute.currentHealth = -1;
-            other.GetComponent<PlayerScoreInfo>().lastDamagedBy = null;
-            Debug.Log("Dead");
-
+            var compReg = other.transform.parent.GetComponent<ComponentRegistry>();
+            compReg.attributeManager.SetPlayerHealth(0);
+            compReg.playerScoreInfo.lastDamagedBy = other.transform.parent.gameObject;
         }
     }
 }
