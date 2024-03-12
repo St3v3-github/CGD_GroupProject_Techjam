@@ -8,7 +8,7 @@ public class CameraMove : MonoBehaviour
     public Transform ThirdPersonPosition;
     public bool isThirdPerson;
 
-    void Update()
+    void FixedUpdate()
     {
         if (isThirdPerson)
         {
