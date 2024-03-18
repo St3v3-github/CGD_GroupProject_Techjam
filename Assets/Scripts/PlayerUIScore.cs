@@ -4,11 +4,15 @@ using System.Linq;
 using UnityEngine;
 using Text = TMPro.TextMeshProUGUI;
 
+
 public class PlayerUIScore : MonoBehaviour
 {
     public List<GameObject> players;
     public List<ComponentRegistry> registers;
     public List<Text> scores;
+
+    public List<Color> colours;
+    public List<Material> materials;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +27,10 @@ public class PlayerUIScore : MonoBehaviour
         {
             if (registers[i] == null) { return; }
             scores[i].text = registers[i].playerScoreInfo.kill_count.ToString();
+            registers[i].uiHandler.playerText.color = colours[i];
+            registers[i].GetComponentInChildren<SkinnedMeshRenderer>().material = materials[i];
         }
     }
+
+
 }

@@ -16,7 +16,8 @@ public class UIHandler : MonoBehaviour
     public RawImage Slot2;
     public RawImage Slot3;
     public TextMeshProUGUI scoreText;
-    
+    public TextMeshProUGUI playerText;
+
 
     [Header("Colors")]
     public Color Char;
