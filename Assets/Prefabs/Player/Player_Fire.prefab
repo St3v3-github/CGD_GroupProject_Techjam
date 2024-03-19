@@ -21434,6 +21434,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5243842725416209652}
   - component: {fileID: 1556007230958114658}
+  - component: {fileID: 5808828549227259271}
   m_Layer: 6
   m_Name: Spells
   m_TagString: Untagged
@@ -21481,6 +21482,21 @@ MonoBehaviour:
     m_Bits: 439
   rootParent: {fileID: 5470035443760255758}
   projectionOn: 0
+--- !u!114 &5808828549227259271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3664729382582207423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db49572538c196f48b5f53edfbb785eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data: {fileID: 0}
+  selfMovement: {fileID: 2530445733420198040}
+  selfAttributes: {fileID: 5814485201741651218}
 --- !u!1 &3730982746895280485
 GameObject:
   m_ObjectHideFlags: 0
@@ -22455,7 +22471,7 @@ MonoBehaviour:
   firePoint: {fileID: 1025666822489133533}
   attributeManager: {fileID: 5814485201741651218}
   spellManager: {fileID: 1556007230958114658}
-  statusEffectHandler: {fileID: 0}
+  statusEffectHandler: {fileID: 5808828549227259271}
   playerAnimator: {fileID: 4526222209544041046}
   animationManager: {fileID: 6383704486527117664}
   mainMesh: {fileID: 2395747553202604419}

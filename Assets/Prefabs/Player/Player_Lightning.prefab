@@ -5909,6 +5909,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2462558926076344913}
   - component: {fileID: 1678089693268158610}
+  - component: {fileID: 4361810122221195467}
   m_Layer: 6
   m_Name: Spells
   m_TagString: Untagged
@@ -5956,6 +5957,21 @@ MonoBehaviour:
     m_Bits: 439
   rootParent: {fileID: 3646846304848833687}
   projectionOn: 0
+--- !u!114 &4361810122221195467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939603145575318511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db49572538c196f48b5f53edfbb785eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data: {fileID: 0}
+  selfMovement: {fileID: 3339377281986224037}
+  selfAttributes: {fileID: 3078330461499563483}
 --- !u!1 &987207304041786886
 GameObject:
   m_ObjectHideFlags: 0
@@ -10537,6 +10553,7 @@ MonoBehaviour:
   Slot2: {fileID: 4204022249727908703}
   Slot3: {fileID: 5546966138648939014}
   scoreText: {fileID: 8017911475355987844}
+  playerText: {fileID: 0}
   Char: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
   Title: {r: 0.32188204, g: 0.43055883, b: 0.6603774, a: 1}
   Spell: {r: 0.03137255, g: 0.2784314, b: 0.41960788, a: 1}
@@ -10630,7 +10647,7 @@ MonoBehaviour:
   firePoint: {fileID: 1307132776314478773}
   attributeManager: {fileID: 3078330461499563483}
   spellManager: {fileID: 1678089693268158610}
-  statusEffectHandler: {fileID: 0}
+  statusEffectHandler: {fileID: 4361810122221195467}
   playerAnimator: {fileID: 3828699642137685343}
   animationManager: {fileID: 2973918010589958840}
   mainMesh: {fileID: 1627085476920589146}
