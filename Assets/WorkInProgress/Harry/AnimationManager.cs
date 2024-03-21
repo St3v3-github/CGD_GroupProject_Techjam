@@ -59,6 +59,16 @@ public class AnimationManager : MonoBehaviour
         playerAnim.SetBool("CastingActiveSpell", ActiveCast);
     }
 
+    public void ToggleGameEndBool(bool gameEnd)
+    {
+        playerAnim.SetBool("GameEnd", gameEnd);
+    }
+
+    public void ToggleFirstTrigger()
+    {
+        playerAnim.SetTrigger("isFirst");
+    }
+
     public void toggleEmotingBool(bool Emoting)
     {
         /*

@@ -83,7 +83,11 @@ public class GameModeHandler : MonoBehaviour
                 playerRegistries[i].playerController.enabled = false;
                 playerRegistries[i].inputManager.enabled = false;
                 playerRegistries[i].spellManager.enabled = false;
+                GameObject ragDollMesh = Instantiate(playerRegistries[i].mainMesh, playerRegistries[i].mainMesh.transform.position, playerRegistries[i].mainMesh.transform.rotation);
                 playerRegistries[i].mainMesh.SetActive(false);
+                
+                ragDollMesh.GetComponent<RagDollPlayer>().RagdollMesh();
+                Destroy(ragDollMesh, 20f);
                 //Handle kill, death and score counters
                 var deadScoreInfo = playerRegistries[i].playerScoreInfo;
                 var killerScoreInfo = deadScoreInfo.lastDamagedBy.GetComponent<ComponentRegistry>().playerScoreInfo;
@@ -169,12 +173,19 @@ public class GameModeHandler : MonoBehaviour
                     playerReg.playerCamera.enabled = false;
                     playerReg.playerController.enabled = false;
                     playerReg.rigidBody.velocity = new Vector3(0, 0, 0);
+                    playerReg.animationManager.ToggleGameEndBool(true);
                 }
                 for (int i = 0; i < playersSortedByRanking.Count; i++)
                 {
                     for (int j = 0; j < playersSortedByRanking[i].Count; j++)
                     {
                         var targetCompRegistry = playersSortedByRanking[i][j].GetComponent<ComponentRegistry>();
+
+                        if(i == 0)
+                        {
+                            targetCompRegistry.animationManager.ToggleFirstTrigger();
+                        }
+
                         targetCompRegistry.rigidBody.MovePosition(podiumSpots[i].transform.position);
                         targetCompRegistry.rigidBody.MoveRotation(podiumSpots[i].transform.rotation);
                     }
