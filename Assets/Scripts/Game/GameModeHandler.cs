@@ -173,7 +173,7 @@ public class GameModeHandler : MonoBehaviour
                     playerReg.playerCamera.enabled = false;
                     playerReg.playerController.enabled = false;
                     playerReg.rigidBody.velocity = new Vector3(0, 0, 0);
-                    playerReg.animationManager.ToggleGameEndBool(true);
+                    playerReg.animationManager.ToggleGameEnd();
                 }
                 for (int i = 0; i < playersSortedByRanking.Count; i++)
                 {
@@ -184,6 +184,10 @@ public class GameModeHandler : MonoBehaviour
                         if(i == 0)
                         {
                             targetCompRegistry.animationManager.ToggleFirstTrigger();
+                        }
+                        else if(i == teams.Count - 1)
+                        {
+                            targetCompRegistry.animationManager.ToggleLastTrigger();
                         }
 
                         targetCompRegistry.rigidBody.MovePosition(podiumSpots[i].transform.position);
