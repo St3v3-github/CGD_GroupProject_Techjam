@@ -14,6 +14,8 @@ public class PlayerUIScore : MonoBehaviour
     public List<Color> colours;
     public List<Material> materials;
     public GameModeHandler gameModeHandler;
+    public GameObject UI_1;
+    public GameObject UI_2;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,16 @@ public class PlayerUIScore : MonoBehaviour
             {
                 registers.Add(player.GetComponent<ComponentRegistry>());
             }
+        }
+
+        if (registers.Count > 2)
+        {
+            UI_1.SetActive(true);
+            UI_2.SetActive(false);
+        }
+        if (registers.Count == 2)
+        {
+            UI_1.SetActive(false); UI_2.SetActive(true);
         }
 
         for (int i = 0; i < scores.Count; i++)
