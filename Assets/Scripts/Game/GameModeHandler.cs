@@ -84,9 +84,11 @@ public class GameModeHandler : MonoBehaviour
                 playerRegistries[i].inputManager.enabled = false;
                 playerRegistries[i].spellManager.enabled = false;
                 GameObject ragDollMesh = Instantiate(playerRegistries[i].mainMesh, playerRegistries[i].mainMesh.transform.position, playerRegistries[i].mainMesh.transform.rotation);
+                
                 playerRegistries[i].mainMesh.SetActive(false);
                 
                 ragDollMesh.GetComponent<RagDollPlayer>().RagdollMesh();
+                ragDollMesh.GetComponent<CameraCulling>().SetRagdollLayerRecursive(ragDollMesh,0);
                 Destroy(ragDollMesh, 20f);
                 //Handle kill, death and score counters
                 var deadScoreInfo = playerRegistries[i].playerScoreInfo;

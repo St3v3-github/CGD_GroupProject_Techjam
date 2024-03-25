@@ -23270,11 +23270,11 @@ Transform:
   m_GameObject: {fileID: 548603495}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.13092, y: -1.9161756, z: -40.150578}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1078324363}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &548603499
 MonoBehaviour:
@@ -44394,7 +44394,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 548603498}
   - {fileID: 1660050199}
   - {fileID: 1229912190}
   m_Father: {fileID: 0}
@@ -50683,6 +50682,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 2773bc03-d2be-486b-a3cb-d70d411148bd
     m_ActionName: Player/MenuRight
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6d94181f-4b9e-438f-9a44-c5251c772534
+    m_ActionName: Player/ChangePOV
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -85758,6 +85761,7 @@ SceneRoots:
   - {fileID: 980635221}
   - {fileID: 1114858033}
   - {fileID: 806802784}
+  - {fileID: 548603498}
   - {fileID: 1078324363}
   - {fileID: 1386451586}
   - {fileID: 543275364}

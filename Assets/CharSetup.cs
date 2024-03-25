@@ -65,11 +65,29 @@ public class CharSetup : MonoBehaviour
 
     public void HandleNewPlayer()
     {
+        int playernumber = 0;
         foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
         {
             var componentRegistry = player.GetComponent<ComponentRegistry>();
             if (componentRegistry.playerInput.playerIndex != -1)
             {
+                playernumber++;
+                switch (playernumber)
+                {
+                    case 1:
+                        componentRegistry.mainMesh.GetComponent<CameraCulling>().SetGameLayerRecursive(componentRegistry.mainMesh,12);
+                        break;
+                    case 2:
+                        componentRegistry.mainMesh.GetComponent<CameraCulling>().SetGameLayerRecursive(componentRegistry.mainMesh,13);
+                        break;
+                    case 3:
+                        componentRegistry.mainMesh.GetComponent<CameraCulling>().SetGameLayerRecursive(componentRegistry.mainMesh,14);
+                        break;
+                    case 4:
+                        componentRegistry.mainMesh.GetComponent<CameraCulling>().SetGameLayerRecursive(componentRegistry.mainMesh,15);
+                        break;
+
+                }
                 players[componentRegistry.playerInput.playerIndex] = player;
                 menuSelections[componentRegistry.playerInput.playerIndex] = 0;
                 componentRegistries[componentRegistry.playerInput.playerIndex] = componentRegistry;
