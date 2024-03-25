@@ -13,16 +13,27 @@ public class PlayerUIScore : MonoBehaviour
 
     public List<Color> colours;
     public List<Material> materials;
+    public GameModeHandler gameModeHandler;
     // Start is called before the first frame update
     void Start()
     {
-        var ats = FindObjectsOfType<ComponentRegistry>();
-        registers = ats.ToList();
+        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (registers.Count < gameModeHandler.players.Count)
+        {
+            players = gameModeHandler.players;
+            registers.Clear();
+            foreach (var player in players)
+            {
+                registers.Add(player.GetComponent<ComponentRegistry>());
+            }
+        }
+
         for (int i = 0; i < scores.Count; i++)
         {
             if (registers[i] == null) { return; }

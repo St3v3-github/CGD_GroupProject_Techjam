@@ -29,8 +29,8 @@ public class GameModeHandler : MonoBehaviour
     public bool postGame = false;
     List<Team> teams;
 
-    [SerializeField] List<GameObject> players;
-    [SerializeField] List<ComponentRegistry> playerRegistries;
+    [SerializeField] public List<GameObject> players;
+    [SerializeField] public List<ComponentRegistry> playerRegistries;
     [SerializeField] List<GameObject> spawnPoints;
     [SerializeField] List<GameObject> spawnFlag;
     public List<GameObject> podiumSpots;
