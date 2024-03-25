@@ -10,25 +10,23 @@ public class UIHandler : MonoBehaviour
 {
     [Header("UI Elements")]
     public RawImage CharUI;
-    public RawImage TitleUI;
+  
     public RawImage SpellUI;
     public RawImage Slot1;
     public RawImage Slot2;
     public RawImage Slot3;
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI playerText;
+   
 
 
     [Header("Colors")]
     public Color Char;
-    public Color Title;
+    
     public Color Spell;
     public Color SpellCD;
     public Color SpellReady;
 
-    [Header("Char Title")]
-    public TextMeshProUGUI TitleText;
-    public string TitleName;
+   
 
     [Header("Sliders")]
     public Slider health;
@@ -63,9 +61,9 @@ public class UIHandler : MonoBehaviour
     void Start()
     {
         CharUI.color = Char;
-        TitleUI.color = Title;
+      
         SpellUI.color = Spell;
-        TitleText.text = TitleName;
+        
         
      
         
@@ -81,7 +79,7 @@ public class UIHandler : MonoBehaviour
         if (!Disconect) { PD.SetActive(false); }
         if (HitConfirmed) { Hitchain(); HitConfirmed = false; }
         health.value = componentRegistry.attributeManager.currentHealth;
-        scoreText.SetText(componentRegistry.playerScoreInfo.kill_count.ToString());;
+        
 
 
     }

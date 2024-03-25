@@ -27,7 +27,6 @@ public class PlayerUIScore : MonoBehaviour
         {
             if (registers[i] == null) { return; }
             scores[i].text = registers[i].playerScoreInfo.kill_count.ToString();
-            registers[i].uiHandler.playerText.color = colours[i];
             registers[i].GetComponentInChildren<SkinnedMeshRenderer>().material = materials[i];
         }
     }
