@@ -23,6 +23,7 @@ public class FullScreenController : MonoBehaviour
     [SerializeField] public ScriptableRendererFeature FullScreenRendererElectricity;
     [SerializeField] public ScriptableRendererFeature FullScreenRendererEarth;
     [SerializeField] public ScriptableRendererFeature FullScreenRendererHealing;
+    [SerializeField] public ScriptableRendererFeature FullScreenRendererLowHealth;
 
     //Below is work in progress for fading in and out the shader (Currently ignore)
 
@@ -97,6 +98,9 @@ public class FullScreenController : MonoBehaviour
         {
             StartCoroutine(DamageHealing());
         }*/
+    
+
+        
 
 
 
@@ -215,6 +219,24 @@ public class FullScreenController : MonoBehaviour
             yield return null;
         }
         FullScreenRendererHealing.SetActive(false);
+
+    }
+
+    public void DamageLowHealth()
+    {
+        FullScreenRendererLowHealth.SetActive(true);
+        // Debug.Log("LowHealth");
+        
+        //FullScreenRendererLowHealth.SetActive(false);
+
+    }
+
+    public void DamageLowHealthStop()
+    {
+        //FullScreenRendererLowHealth.SetActive(true);
+        // Debug.Log("LowHealth");
+
+        FullScreenRendererLowHealth.SetActive(false);
 
     }
 

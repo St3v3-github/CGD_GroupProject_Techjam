@@ -40,6 +40,7 @@ public class AttributeManager : MonoBehaviour
 
     public DamageFlash damageFlash;
     public CameraShake cameraShake;
+    public FullScreenController fullScreenController;
 
     public ComponentRegistry componentRegistry;
     void Start()
@@ -65,6 +66,18 @@ public class AttributeManager : MonoBehaviour
         //TODO: Fix this for new GameController
         scorefloat = score.ToString(); 
        // ScoreText.GetComponent<TextMeshProUGUI>().text = scorefloat;
+
+        if(currentHealth <= 10)
+        {
+            fullScreenController.DamageLowHealth();
+        }
+        else
+        {
+            fullScreenController.DamageLowHealthStop();
+        }
+                
+
+        
 
         
 
@@ -163,6 +176,7 @@ public class AttributeManager : MonoBehaviour
         //god.SendMessage("PrayToGod", data);
         //Invoke("unDie", 0.1f);
         AudioManager.instance.PlayOneShot(FMODEvents.instance.deathSound, this.transform.position);
+        fullScreenController.DamageLowHealthStop();
     }
 
     public void unDie()
