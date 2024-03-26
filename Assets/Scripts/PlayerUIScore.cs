@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using Text = TMPro.TextMeshProUGUI;
+using UnityEngine.UI;
 
 
 public class PlayerUIScore : MonoBehaviour
@@ -10,17 +12,23 @@ public class PlayerUIScore : MonoBehaviour
     public List<GameObject> players;
     public List<ComponentRegistry> registers;
     public List<Text> scores;
+    public GameObject SegmentParent2P;
+    public GameObject SegmentParent4P;
+    public List<Image> segments;
+
+
 
     public List<Color> colours;
     public List<Material> materials;
     public GameModeHandler gameModeHandler;
-    public GameObject UI_1;
-    public GameObject UI_2;
     // Start is called before the first frame update
     void Start()
     {
+        //for (int i = 0; i < 4; i++)
+       // {
+        //    UI_Colour[i].GetComponent<Image>().color = colours[i];
+       // }
         
-
     }
 
     // Update is called once per frame
@@ -34,17 +42,32 @@ public class PlayerUIScore : MonoBehaviour
             {
                 registers.Add(player.GetComponent<ComponentRegistry>());
             }
+            segments = SegmentParent2P.GetComponentsInChildren<Image>().ToList();
+            int countCycle = 0;
+            foreach (Image segment in segments)
+            {
+                segment.color = colours[countCycle];
+                countCycle++;
+            }
+            segments = SegmentParent4P.GetComponentsInChildren<Image>().ToList();
+            countCycle = 0;
+            foreach (Image segment in segments)
+            {
+                segment.color = colours[countCycle];
+                countCycle++;
+            }
         }
 
         if (registers.Count > 2)
         {
-            UI_1.SetActive(true);
-            UI_2.SetActive(false);
+            SegmentParent4P.SetActive(true);
+            SegmentParent2P.SetActive(false);
         }
         if (registers.Count == 2)
         {
-            UI_1.SetActive(false); UI_2.SetActive(true);
+            SegmentParent4P.SetActive(false); SegmentParent2P.SetActive(true);
         }
+
 
         for (int i = 0; i < scores.Count; i++)
         {
