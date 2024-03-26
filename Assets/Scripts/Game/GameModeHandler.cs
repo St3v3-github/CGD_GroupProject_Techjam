@@ -301,7 +301,8 @@ public class GameModeHandler : MonoBehaviour
             newPlayer.transform.position = spawnPoint.transform.position;
             newPlayer.transform.rotation = spawnPoint.transform.rotation;
             var compRegistry = newPlayer.GetComponent<ComponentRegistry>();
-            compRegistry.rigidBody.position = newPlayer.transform.position;
+           // compRegistry.rigidBody.position = newPlayer.transform.position;
+            compRegistry.rigidBody.transform.position = new Vector3(0,0,0);
             compRegistry.rigidBody.rotation = newPlayer.transform.rotation;
             compRegistry.playerCamera.enabled = true;
             playerRegistries.Add(compRegistry);
