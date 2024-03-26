@@ -29,8 +29,8 @@ public class GameModeHandler : MonoBehaviour
     public bool postGame = false;
     List<Team> teams;
 
-    [SerializeField] List<GameObject> players;
-    [SerializeField] List<ComponentRegistry> playerRegistries;
+    [SerializeField] public List<GameObject> players;
+    [SerializeField] public List<ComponentRegistry> playerRegistries;
     [SerializeField] List<GameObject> spawnPoints;
     [SerializeField] List<GameObject> spawnFlag;
     public List<GameObject> podiumSpots;
@@ -84,9 +84,11 @@ public class GameModeHandler : MonoBehaviour
                 playerRegistries[i].inputManager.enabled = false;
                 playerRegistries[i].spellManager.enabled = false;
                 GameObject ragDollMesh = Instantiate(playerRegistries[i].mainMesh, playerRegistries[i].mainMesh.transform.position, playerRegistries[i].mainMesh.transform.rotation);
+                
                 playerRegistries[i].mainMesh.SetActive(false);
                 
                 ragDollMesh.GetComponent<RagDollPlayer>().RagdollMesh();
+                ragDollMesh.GetComponent<CameraCulling>().SetRagdollLayerRecursive(ragDollMesh,0);
                 Destroy(ragDollMesh, 20f);
                 //Handle kill, death and score counters
                 var deadScoreInfo = playerRegistries[i].playerScoreInfo;
@@ -303,7 +305,8 @@ public class GameModeHandler : MonoBehaviour
             newPlayer.transform.position = spawnPoint.transform.position;
             newPlayer.transform.rotation = spawnPoint.transform.rotation;
             var compRegistry = newPlayer.GetComponent<ComponentRegistry>();
-            compRegistry.rigidBody.position = newPlayer.transform.position;
+           // compRegistry.rigidBody.position = newPlayer.transform.position;
+            compRegistry.rigidBody.transform.position = new Vector3(0,0,0);
             compRegistry.rigidBody.rotation = newPlayer.transform.rotation;
             compRegistry.playerCamera.enabled = true;
             playerRegistries.Add(compRegistry);

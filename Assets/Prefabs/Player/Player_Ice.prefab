@@ -32163,20 +32163,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharUI: {fileID: 4074307704065040674}
-  TitleUI: {fileID: 4599510243924363658}
   SpellUI: {fileID: 963512025534091143}
   Slot1: {fileID: 7489520754695535001}
   Slot2: {fileID: 3337924186082719046}
   Slot3: {fileID: 6443746831852850795}
   scoreText: {fileID: 229783158041802658}
-  playerText: {fileID: 0}
   Char: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
-  Title: {r: 0.32188204, g: 0.43055883, b: 0.6603774, a: 1}
   Spell: {r: 0.0627451, g: 0.54901963, b: 0.67058825, a: 1}
   SpellCD: {r: 0.18039216, g: 0.18039216, b: 0.18039216, a: 0.62352943}
   SpellReady: {r: 1, g: 1, b: 1, a: 1}
-  TitleText: {fileID: 8734904811902673561}
-  TitleName: Ice Wizard
   health: {fileID: 334019913937269341}
   movement: {fileID: 8789115084994674987}
   Poision: {fileID: 8079326925074310627}
@@ -33046,6 +33041,7 @@ GameObject:
   - component: {fileID: 7109095995700058701}
   - component: {fileID: 2063148049424557004}
   - component: {fileID: 7663471535704766774}
+  - component: {fileID: 2161292200565819513}
   m_Layer: 6
   m_Name: Mesh
   m_TagString: Untagged
@@ -33110,6 +33106,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 2063148049424557004}
+--- !u!114 &2161292200565819513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6320332601418332682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb28072a7f322c441acb900ae9d9c244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p1layerMask:
+    serializedVersion: 2
+    m_Bits: 57847
+  p2layerMask:
+    serializedVersion: 2
+    m_Bits: 53751
+  p3layerMask:
+    serializedVersion: 2
+    m_Bits: 45559
+  p4layerMask:
+    serializedVersion: 2
+    m_Bits: 29175
 --- !u!1 &6323688408543612350
 GameObject:
   m_ObjectHideFlags: 0
