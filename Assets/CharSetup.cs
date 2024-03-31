@@ -11,6 +11,7 @@ public class CharSetup : MonoBehaviour
     public int maxPlayers;
     public float inputTime;
     public GameObject[] characterPositions;
+    public GameObject[] tutorialPositions;
     public GameObject[] toJoinDisplays;
     public GameObject[] playerSetupMenus;
     public GameObject[] playerClassRotation;
@@ -105,6 +106,45 @@ public class CharSetup : MonoBehaviour
             }
         }
         UnityEngine.Debug.Log("New player is being added...");
+    }
+
+    public void LeaveCharSetup()
+    {
+         int playernumber = 0;
+        foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            var componentRegistry = player.GetComponent<ComponentRegistry>();
+            if (componentRegistry.playerInput.playerIndex != -1)
+            {
+                playernumber++;
+               componentRegistry.inputManager.enabled = true;
+                componentRegistry.playerCamera.enabled = true;
+                componentRegistry.playerController.enabled = true;
+                componentRegistry.rigidBody.MovePosition(tutorialPositions[componentRegistry.playerInput.playerIndex].transform.position);
+                toJoinDisplays[componentRegistry.playerInput.playerIndex].SetActive(false);
+                playerSetupMenus[componentRegistry.playerInput.playerIndex].SetActive(true);
+            }
+        }
+
+    }
+    public void EnterCharSetup()
+    {
+         int playernumber = 0;
+        foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            var componentRegistry = player.GetComponent<ComponentRegistry>();
+            if (componentRegistry.playerInput.playerIndex != -1)
+            {
+                playernumber++;
+               componentRegistry.inputManager.enabled = false;
+                componentRegistry.playerCamera.enabled = false;
+                componentRegistry.playerController.enabled = false;
+                componentRegistry.rigidBody.MovePosition(characterPositions[componentRegistry.playerInput.playerIndex].transform.position);
+                toJoinDisplays[componentRegistry.playerInput.playerIndex].SetActive(false);
+                playerSetupMenus[componentRegistry.playerInput.playerIndex].SetActive(true);
+            }
+        }
+
     }
 
     /// <summary>
