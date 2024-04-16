@@ -34,14 +34,13 @@ public class Projectile : Spell
             collision.GetComponentInParent<ComponentRegistry>().playerScoreInfo.lastDamagedBy = source;
             source.GetComponent<ComponentRegistry>().uiHandler.Hit();
             Debug.Log("hit player: " + collision.name);
-
-            StatusEffectHandler enemyEffects = collision.gameObject.GetComponent<ComponentRegistry>().statusEffectHandler;
+            StatusEffectHandler enemyEffects = collision.gameObject.GetComponentInParent<ComponentRegistry>().statusEffectHandler;
             if(enemyEffects == null)
             {
                 Debug.Log("enemy effects null");
             }
 
-            if(enemyEffects != null)           
+            else if(enemyEffects != null)           
             {
                 Debug.Log("Applied effects");
                 enemyEffects.ApplyEffect(effect);             
@@ -50,13 +49,29 @@ public class Projectile : Spell
             //GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
-        else if(collision.transform.parent.tag != source.tag )
+        /*else if(collision.transform.parent.tag != source.tag )
         {
             Debug.Log("hit: " + collision.name);
             Debug.Log("Current Effect: " + effect);
+
+            Debug.Log("gameobject: " + collision.gameObject);
+
+
+            StatusEffectHandler enemyEffects = collision.gameObject.GetComponent<ComponentRegistry>().statusEffectHandler;
+            if (enemyEffects == null)
+            {
+                Debug.Log("enemy effects null");
+            }
+
+            if (enemyEffects != null)
+            {
+                Debug.Log("Applied effects");
+                enemyEffects.ApplyEffect(effect);
+            }
+
             //GameObject impact = Instantiate(hitImpact, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
-        }
+        }*/
 
        
     }

@@ -109,7 +109,7 @@ public class FullScreenController : MonoBehaviour
 
     //Functions for activating Full Screen renderer shaders for a few seconds
 
-    private IEnumerator DamageFire()
+    public IEnumerator DamageFire()
     {
         FullScreenDamageFire.SetActive(true);
         //_materialFire.SetFloat(_voronoiIntensity, _voronoiIntensityStat);
@@ -132,7 +132,7 @@ public class FullScreenController : MonoBehaviour
 
     }
 
-    private IEnumerator DamageIce()
+    public IEnumerator DamageIce()
     {
         FullScreenRendererIce.SetActive(true);
        // Debug.Log("ICE");
@@ -147,7 +147,7 @@ public class FullScreenController : MonoBehaviour
 
     }
 
-    private IEnumerator DamageWind()
+    public IEnumerator DamageWind()
     {
         FullScreenRendererWind.SetActive(true);
        // Debug.Log("WIND");
@@ -162,7 +162,7 @@ public class FullScreenController : MonoBehaviour
 
     }
 
-    private IEnumerator DamageElectricity()
+    public IEnumerator DamageElectricity()
     {
         FullScreenRendererElectricity.SetActive(true);
       //  Debug.Log("WIND");
