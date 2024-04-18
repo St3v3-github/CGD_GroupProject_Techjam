@@ -73,7 +73,7 @@ public class AttributeManager : MonoBehaviour
         }
         else
         {
-            fullScreenController.DamageLowHealthStop();
+            //fullScreenController.DamageLowHealthStop();
         }
                 
 

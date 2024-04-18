@@ -32,6 +32,7 @@ public class CharSetup : MonoBehaviour
     public List<int>[] customisationIDs;
     public const int CUSTOMISATION_PARTS = 4;
     public CharacterComponentLister charCompLister;
+    public GameObject[] customisationMenus;
 
     public enum CharMenuLevels
     {
@@ -177,6 +178,13 @@ public class CharSetup : MonoBehaviour
     /// Currently left and right movement is hard coded to change class. In the future a switch handler can be implemented.
     /// </summary>
     /// <param name="ctx"></param>
+    /// 
+    public void onMenuChange(int index)
+    {
+        customisationMenus[index].GetComponent<CustomisationUIHandler>().UpdateUISeclections(menuLevels[index], menuSelections[index]);
+        //Create an array to feed in first, toArray does not work
+        customisationMenus[index].GetComponent<CustomisationUIHandler>().UpdateSelectionNames(customisationIDs[index].ToArray(), playerClassID[index]);
+    }
     
     public void MenuLeft(InputAction.CallbackContext ctx)
     {
@@ -200,6 +208,7 @@ public class CharSetup : MonoBehaviour
                         {
                             menuSelections[i] = maxSelection - 1;
                         }
+                        onMenuChange(i);
                         break;
                     }
                 }
@@ -221,8 +230,11 @@ public class CharSetup : MonoBehaviour
                         menuSelections[i]++;
                         if (menuSelections[i] == maxSelection)
                         {
+                            UnityEngine.Debug.Log("Menu Selection RESET");
                             menuSelections[i] = 0;
                         }
+                        UnityEngine.Debug.Log("Menu Selection is: " + menuSelections[i]);
+                        onMenuChange(i);
                         break;
                     }
                 }
@@ -246,6 +258,7 @@ public class CharSetup : MonoBehaviour
                         {
                             menuLevels[i] = CharMenuLevels.MAIN_CONTROLS;
                         }
+                        onMenuChange(i);
                         break;
                     }
                 }
@@ -269,6 +282,7 @@ public class CharSetup : MonoBehaviour
                         {
                             menuLevels[i] = CharMenuLevels.CHAR_CLASS;
                         }
+                        onMenuChange(i);
                         break;
                     }
                 }
