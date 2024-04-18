@@ -199,6 +199,15 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""MenuExecute"",
+                    ""type"": ""Button"",
+                    ""id"": ""136ccff9-fd88-46b8-b2d2-91f91f22a5ee"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""ChangePOV"",
                     ""type"": ""Button"",
                     ""id"": ""6d94181f-4b9e-438f-9a44-c5251c772534"",
@@ -794,8 +803,30 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""3e7563b1-995f-4f37-a34e-88638afd729e"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""64d152cf-12b7-46ce-9943-d1ccec518698"",
                     ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d15587d2-2c0c-42f7-8633-602b0fb240a8"",
+                    ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -816,8 +847,30 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""f664946b-c8e3-4bb7-9344-daffc3551028"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""41b3c920-017f-454f-b947-8e1cb1d537ae"",
                     ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c80dacf6-6bfb-45cc-9bfe-cded68db930a"",
+                    ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -833,6 +886,28 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""ChangePOV"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""473cb187-8e50-4729-bc97-461496990cf2"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuExecute"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3990b526-0b29-452b-ad73-f355254c9ca0"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuExecute"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -890,6 +965,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         m_Player_MenuDown = m_Player.FindAction("MenuDown", throwIfNotFound: true);
         m_Player_MenuLeft = m_Player.FindAction("MenuLeft", throwIfNotFound: true);
         m_Player_MenuRight = m_Player.FindAction("MenuRight", throwIfNotFound: true);
+        m_Player_MenuExecute = m_Player.FindAction("MenuExecute", throwIfNotFound: true);
         m_Player_ChangePOV = m_Player.FindAction("ChangePOV", throwIfNotFound: true);
     }
 
@@ -971,6 +1047,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MenuDown;
     private readonly InputAction m_Player_MenuLeft;
     private readonly InputAction m_Player_MenuRight;
+    private readonly InputAction m_Player_MenuExecute;
     private readonly InputAction m_Player_ChangePOV;
     public struct PlayerActions
     {
@@ -995,6 +1072,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         public InputAction @MenuDown => m_Wrapper.m_Player_MenuDown;
         public InputAction @MenuLeft => m_Wrapper.m_Player_MenuLeft;
         public InputAction @MenuRight => m_Wrapper.m_Player_MenuRight;
+        public InputAction @MenuExecute => m_Wrapper.m_Player_MenuExecute;
         public InputAction @ChangePOV => m_Wrapper.m_Player_ChangePOV;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -1062,6 +1140,9 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @MenuRight.started += instance.OnMenuRight;
             @MenuRight.performed += instance.OnMenuRight;
             @MenuRight.canceled += instance.OnMenuRight;
+            @MenuExecute.started += instance.OnMenuExecute;
+            @MenuExecute.performed += instance.OnMenuExecute;
+            @MenuExecute.canceled += instance.OnMenuExecute;
             @ChangePOV.started += instance.OnChangePOV;
             @ChangePOV.performed += instance.OnChangePOV;
             @ChangePOV.canceled += instance.OnChangePOV;
@@ -1126,6 +1207,9 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
             @MenuRight.started -= instance.OnMenuRight;
             @MenuRight.performed -= instance.OnMenuRight;
             @MenuRight.canceled -= instance.OnMenuRight;
+            @MenuExecute.started -= instance.OnMenuExecute;
+            @MenuExecute.performed -= instance.OnMenuExecute;
+            @MenuExecute.canceled -= instance.OnMenuExecute;
             @ChangePOV.started -= instance.OnChangePOV;
             @ChangePOV.performed -= instance.OnChangePOV;
             @ChangePOV.canceled -= instance.OnChangePOV;
@@ -1185,6 +1269,7 @@ public partial class @PlayerControlsAsset: IInputActionCollection2, IDisposable
         void OnMenuDown(InputAction.CallbackContext context);
         void OnMenuLeft(InputAction.CallbackContext context);
         void OnMenuRight(InputAction.CallbackContext context);
+        void OnMenuExecute(InputAction.CallbackContext context);
         void OnChangePOV(InputAction.CallbackContext context);
     }
 }

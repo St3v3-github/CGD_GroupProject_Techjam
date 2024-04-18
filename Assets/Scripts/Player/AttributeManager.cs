@@ -54,7 +54,7 @@ public class AttributeManager : MonoBehaviour
         damageFlyTextPrefab = (GameObject)Resources.Load("prefabs/DamageText", typeof(GameObject));
 
         //original_color = GetComponentInParent<Renderer>().material.color;
-        originalColor = transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color;
+        //originalColor = transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color;
     }
 
     void Update()

@@ -38,6 +38,7 @@ public class ComponentRegistry : MonoBehaviour
     public Animator playerAnimator;
     public AnimationManager animationManager;
     public GameObject mainMesh;
+    public MeshComponentList meshComponentList;
 
     [Header("UI References")]
     public UIController uiController;
