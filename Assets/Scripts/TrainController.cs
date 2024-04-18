@@ -5,11 +5,12 @@ using UnityEngine;
 public class TrainController : MonoBehaviour
 {
     public GameObject trainObj; 
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(train());
-        IEnumerator train() { yield return new WaitForSecondsRealtime(120); trainObj.SetActive(true);}
+        IEnumerator train() { yield return new WaitForSecondsRealtime(60); animator.Play("Train go BRRRRR"); StartCoroutine(train()); }
 
     }
 
