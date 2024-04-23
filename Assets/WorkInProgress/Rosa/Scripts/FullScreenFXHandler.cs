@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class FullScreenFXHandler : MonoBehaviour
 {
-    [SerializeField] private Image fire;
+    [SerializeField] private RawImage fire;
     [SerializeField] private Image ice;
     [SerializeField] private Image lightning;
     [SerializeField] private Image wind;
