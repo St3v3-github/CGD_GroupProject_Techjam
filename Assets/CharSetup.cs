@@ -123,6 +123,7 @@ public class CharSetup : MonoBehaviour
                 componentRegistry.playerInput.actions.FindAction("MenuUp").performed += MenuUp;
                 componentRegistry.playerInput.actions.FindAction("MenuDown").performed += MenuDown;
                 componentRegistry.playerInput.actions.FindAction("MenuExecute").performed += MenuExecute;
+                
                 //REMEMBER TO DISABLE SPELL SYSTEM
                 //componentRegistry.advancedProjectileSystem.enabled = false;
                 componentRegistry.playerCamera.enabled = false;
@@ -152,8 +153,34 @@ public class CharSetup : MonoBehaviour
                 playerSetupMenus[componentRegistry.playerInput.playerIndex].SetActive(true);
             }
         }
-
     }
+
+    public void LeaveCharSetup(int playerID)
+    {
+        int playernumber = 0;
+        var player = players[playerID];
+        
+            var componentRegistry = player.GetComponent<ComponentRegistry>();
+            if (componentRegistry.playerInput.playerIndex != -1)
+            {
+                playernumber++;
+                componentRegistry.inputManager.enabled = true;
+                componentRegistry.playerCamera.enabled = true;
+                componentRegistry.playerController.enabled = true;
+            componentRegistry.playerInput.actions.FindAction("MenuRight").Disable();
+            componentRegistry.playerInput.actions.FindAction("MenuLeft").Disable();
+            componentRegistry.playerInput.actions.FindAction("MenuUp").Disable();
+            componentRegistry.playerInput.actions.FindAction("MenuDown").Disable();
+            componentRegistry.playerInput.actions.FindAction("MenuExecute").Disable();
+            componentRegistry.rigidBody.MovePosition(tutorialPositions[componentRegistry.playerInput.playerIndex].transform.position);
+                toJoinDisplays[componentRegistry.playerInput.playerIndex].SetActive(false);
+                playerSetupMenus[componentRegistry.playerInput.playerIndex].SetActive(true);
+            }
+        
+    }
+
+
+
     public void EnterCharSetup()
     {
          int playernumber = 0;
@@ -171,8 +198,30 @@ public class CharSetup : MonoBehaviour
                 playerSetupMenus[componentRegistry.playerInput.playerIndex].SetActive(true);
             }
         }
-
+    } 
+    public void EnterCharSetup(int playerID)
+    {
+         int playernumber = 0;
+        var player = players[playerID];
+            var componentRegistry = player.GetComponent<ComponentRegistry>();
+            if (componentRegistry.playerInput.playerIndex != -1)
+            {
+                playernumber++;
+               componentRegistry.inputManager.enabled = false;
+                componentRegistry.playerCamera.enabled = false;
+                componentRegistry.playerController.enabled = false;
+            componentRegistry.playerInput.actions.FindAction("MenuRight").Enable();
+            componentRegistry.playerInput.actions.FindAction("MenuLeft").Enable();
+            componentRegistry.playerInput.actions.FindAction("MenuUp").Enable();
+            componentRegistry.playerInput.actions.FindAction("MenuDown").Enable();
+            componentRegistry.playerInput.actions.FindAction("MenuExecute").Enable();
+            componentRegistry.rigidBody.MovePosition(characterPositions[componentRegistry.playerInput.playerIndex].transform.position);
+                toJoinDisplays[componentRegistry.playerInput.playerIndex].SetActive(false);
+                playerSetupMenus[componentRegistry.playerInput.playerIndex].SetActive(true);
+            }
+        
     }
+
 
     public void onMenuChange(int index)
     {
@@ -371,13 +420,17 @@ public class CharSetup : MonoBehaviour
                                 }
                                 break;
                             case CharMenuLevels.MAIN_CONTROLS:
+ 
                                 switch (menuSelections[i])
                                 {
                                     case 0:
+                                        LeaveCharSetup(i);
                                         break;
                                     case 1:
+                                        LeaveCharSetup(i);
                                         break;
                                     case 2:
+                                        LeaveCharSetup(i);
                                         break;
                                 }
                                 break;
