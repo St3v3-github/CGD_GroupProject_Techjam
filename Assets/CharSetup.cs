@@ -877,7 +877,6 @@ public class CharSetup : MonoBehaviour
     const int HAIR_ID = 0;
     public void NextHair(int index)
     {
-        var new_hair = new GameObject();
         customisationIDs[index][HAIR_ID]++;
         switch (componentRegistries[index].meshComponentList.meshList)
         {
@@ -886,30 +885,34 @@ public class CharSetup : MonoBehaviour
                 {
                     customisationIDs[index][HAIR_ID] = 0;
                 }
-                new_hair = charCompLister.lightComponents.hair[customisationIDs[index][HAIR_ID]];
+                onHairChange(index, charCompLister.lightComponents.hair[customisationIDs[index][HAIR_ID]]);
                 break;
             case 1:
                 if (customisationIDs[index][HAIR_ID] >= charCompLister.mediumComponents.hair.Count)
                 {
                     customisationIDs[index][HAIR_ID] = 0;
                 }
-                new_hair = charCompLister.mediumComponents.hair[customisationIDs[index][HAIR_ID]];
+                onHairChange(index, charCompLister.mediumComponents.hair[customisationIDs[index][HAIR_ID]]);
                 break;
             case 2:
                 if (customisationIDs[index][HAIR_ID] >= charCompLister.heavyComponents.hair.Count)
                 {
                     customisationIDs[index][HAIR_ID] = 0;
                 }
-                new_hair = charCompLister.heavyComponents.hair[customisationIDs[index][HAIR_ID]];
+                onHairChange(index, charCompLister.heavyComponents.hair[customisationIDs[index][HAIR_ID]]);
+                break;
+            default:
+                if (customisationIDs[index][HAIR_ID] >= charCompLister.lightComponents.hair.Count)
+                {
+                    customisationIDs[index][HAIR_ID] = 0;
+                }
+                onHairChange(index, charCompLister.lightComponents.hair[customisationIDs[index][HAIR_ID]]);
                 break;
         }
-        onHairChange(index, new_hair);
-        Destroy(new_hair);
     }
 
     public void PrevHair(int index)
     {
-        var new_hair = new GameObject();
         customisationIDs[index][HAIR_ID]--;
         switch (componentRegistries[index].meshComponentList.meshList)
         {
@@ -918,26 +921,31 @@ public class CharSetup : MonoBehaviour
                 {
                     customisationIDs[index][HAIR_ID] = charCompLister.lightComponents.hair.Count - 1;
                 }
-                new_hair = charCompLister.lightComponents.hair[customisationIDs[index][HAIR_ID]];
+                onHairChange(index, charCompLister.lightComponents.hair[customisationIDs[index][HAIR_ID]]);
                 break;
             case 1:
                 if (customisationIDs[index][HAIR_ID] < 0)
                 {
                     customisationIDs[index][HAIR_ID] = charCompLister.mediumComponents.hair.Count - 1;
                 }
-                new_hair = charCompLister.mediumComponents.hair[customisationIDs[index][HAIR_ID]];
+                onHairChange(index, charCompLister.mediumComponents.hair[customisationIDs[index][HAIR_ID]]);
                 break;
             case 2:
                 if (customisationIDs[index][HAIR_ID] < 0)
                 {
                     customisationIDs[index][HAIR_ID] = charCompLister.heavyComponents.hair.Count - 1;
                 }
-                new_hair = charCompLister.heavyComponents.hair[customisationIDs[index][HAIR_ID]];
+                onHairChange(index, charCompLister.heavyComponents.hair[customisationIDs[index][HAIR_ID]]);
+                break;
+            default:
+                if (customisationIDs[index][HAIR_ID] >= charCompLister.lightComponents.hair.Count)
+                {
+                    customisationIDs[index][HAIR_ID] = 0;
+                }
+                onHairChange(index, charCompLister.lightComponents.hair[customisationIDs[index][HAIR_ID]]);
                 break;
         }
         UnityEngine.Debug.Log(customisationIDs[index][HAIR_ID]);
-        onHairChange(index, new_hair);
-        Destroy(new_hair);
     }
 
     public void onHairChange(int index, GameObject new_hair)
@@ -1005,16 +1013,6 @@ public class CharSetup : MonoBehaviour
             meshPart.material.SetColor("_Color_Metal_Dark", charCompLister.metalDarkColours[colourIDs[index][LEGS_ID]]);
             meshPart.material.SetColor("_Color_Leather_Primary", charCompLister.leatherColours[colourIDs[index][LEGS_ID]]);
             meshPart.material.SetColor("_Color_Leather_Secondary", charCompLister.leatherSecondaryColours[colourIDs[index][LEGS_ID]]);
-        }
-    }
-
-    public void copyMesh(SkinnedMeshRenderer original, SkinnedMeshRenderer new_mesh)
-    {
-        System.Type type = original.GetType();
-        System.Reflection.FieldInfo[] fields = type.GetFields();
-        foreach (System.Reflection.FieldInfo field in fields)
-        {
-            field.SetValue(original, field.GetValue(new_mesh));
         }
     }
 
