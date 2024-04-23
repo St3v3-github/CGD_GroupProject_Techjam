@@ -30,6 +30,7 @@ public class CharSetup : MonoBehaviour
     public bool kwikfix = true;
     public bool updateAfterDestroy = false;
     public List<int>[] customisationIDs;
+    public List<int>[] colourIDs;
     public const int CUSTOMISATION_PARTS = 4;
     public CharacterComponentLister charCompLister;
     public GameObject[] customisationMenus;
@@ -48,14 +49,18 @@ public class CharSetup : MonoBehaviour
     void Start()
     {
         customisationIDs = new List<int>[maxPlayers];
+        colourIDs = new List<int>[maxPlayers];
         for (int i = 0; i < maxPlayers; i++)
         {
             playerClassID.Add(0);
             customisationIDs[i] = new List<int>();
+            colourIDs[i] = new List<int>();
             for(int j = 0; j < CUSTOMISATION_PARTS; j++)
             {
                 customisationIDs[i].Add(0);
+                colourIDs[i].Add(0);
             }
+            colourIDs[i].Add(0);
         }
         menuSelections = new int[maxPlayers];
         menuLevels = new CharMenuLevels[maxPlayers];
@@ -130,6 +135,15 @@ public class CharSetup : MonoBehaviour
                 componentRegistry.rigidBody.MovePosition(characterPositions[componentRegistry.playerInput.playerIndex].transform.position);
                 toJoinDisplays[componentRegistry.playerInput.playerIndex].SetActive(false);
                 playerSetupMenus[componentRegistry.playerInput.playerIndex].SetActive(true);
+                customisationIDs[componentRegistry.playerInput.playerIndex][HAIR_ID] = 1;
+                customisationIDs[componentRegistry.playerInput.playerIndex][HEAD_ID] = 1;
+                customisationIDs[componentRegistry.playerInput.playerIndex][BODY_ID] = 1;
+                customisationIDs[componentRegistry.playerInput.playerIndex][LEGS_ID] = 1;
+                PrevHead(componentRegistry.playerInput.playerIndex);
+                PrevHair(componentRegistry.playerInput.playerIndex);
+                PrevBody(componentRegistry.playerInput.playerIndex);
+                PrevLegs(componentRegistry.playerInput.playerIndex);
+                updatePlayerColours(componentRegistry.playerInput.playerIndex);
             }
         }
         UnityEngine.Debug.Log("New player is being added...");
@@ -324,6 +338,7 @@ public class CharSetup : MonoBehaviour
                                         PrevHair(i);
                                         break;
                                     case 1:
+                                        ChangeColour(i, HAIR_ID);
                                         break;
                                     case 2:
                                         NextHair(i);
@@ -337,7 +352,7 @@ public class CharSetup : MonoBehaviour
                                         PrevHead(i);
                                         break;
                                     case 1:
-                                        //TODO: Colour picker
+                                        ChangeColour(i, HEAD_ID);
                                         break;
                                     case 2:
                                         NextHead(i);
@@ -351,6 +366,7 @@ public class CharSetup : MonoBehaviour
                                         PrevBody(i);
                                         break;
                                     case 1:
+                                        ChangeColour(i, BODY_ID);
                                         break;
                                     case 2:
                                         NextBody(i);
@@ -364,6 +380,7 @@ public class CharSetup : MonoBehaviour
                                         PrevLegs(i);
                                         break;
                                     case 1:
+                                        ChangeColour(i, LEGS_ID);
                                         break;
                                     case 2:
                                         NextLegs(i);
@@ -383,9 +400,10 @@ public class CharSetup : MonoBehaviour
                                 break;
                         }
                     }
+                    updatePlayerColours(i);
+                    onMenuChange(i);
                 }
             }
-            onMenuChange(i);
         }
     }
 
@@ -938,6 +956,57 @@ public class CharSetup : MonoBehaviour
     }
 
     #endregion
+
+    const int BODY_ART_COLOUR = 4;
+    public void ChangeColour(int index, int partID)
+    {
+        colourIDs[index][partID]++;
+        int target_max = 0;
+        switch (partID)
+        {
+            case HAIR_ID:
+                target_max = charCompLister.hairColours.Length;
+                break;
+            case HEAD_ID:
+                target_max = charCompLister.skinColours.Length;
+                break;
+            case BODY_ID:
+                target_max = charCompLister.primaryColours.Length / 4;
+                break;
+            case LEGS_ID:
+                target_max = charCompLister.metalDarkColours.Length;
+                break;
+        }
+
+        if (colourIDs[index][partID] >= target_max)
+        {
+            colourIDs[index][partID] = 0;
+            if (partID == HEAD_ID)
+            {
+                colourIDs[index][BODY_ART_COLOUR]++;
+                if (colourIDs[index][BODY_ART_COLOUR] >= charCompLister.bodyArtColours.Length)
+                {
+                    colourIDs[index][BODY_ART_COLOUR] = 0;
+                }
+            }
+        }
+    }
+
+    private void updatePlayerColours(int index)
+    {
+        foreach (var meshPart in componentRegistries[index].meshComponentList.listOfMeshes)
+        {
+            meshPart.material.SetColor("_Color_BodyArt", charCompLister.bodyArtColours[colourIDs[index][BODY_ART_COLOUR]]);
+            meshPart.material.SetColor("_Color_Hair", charCompLister.hairColours[colourIDs[index][HAIR_ID]]);
+            meshPart.material.SetColor("_Color_Stubble", charCompLister.hairColours[colourIDs[index][HAIR_ID]]);
+            meshPart.material.SetColor("_Color_Skin", charCompLister.skinColours[colourIDs[index][HEAD_ID]]);
+            meshPart.material.SetColor("_Color_Primary", charCompLister.primaryColours[colourIDs[index][BODY_ID] * playerClassRotation.Length + playerClassID[index]]);
+            meshPart.material.SetColor("_Color_Secondary", charCompLister.secondaryColours[colourIDs[index][BODY_ID] * playerClassRotation.Length + playerClassID[index]]);
+            meshPart.material.SetColor("_Color_Metal_Dark", charCompLister.metalDarkColours[colourIDs[index][LEGS_ID]]);
+            meshPart.material.SetColor("_Color_Leather_Primary", charCompLister.leatherColours[colourIDs[index][LEGS_ID]]);
+            meshPart.material.SetColor("_Color_Leather_Secondary", charCompLister.leatherSecondaryColours[colourIDs[index][LEGS_ID]]);
+        }
+    }
 
     public void copyMesh(SkinnedMeshRenderer original, SkinnedMeshRenderer new_mesh)
     {

@@ -28,4 +28,5 @@ public class MeshComponentList : MonoBehaviour
     public SkinnedMeshRenderer kneeAttachmentLeft;
     public SkinnedMeshRenderer KneeAttachmentRight;
     public SkinnedMeshRenderer hipsAttachment;
+    public List<SkinnedMeshRenderer> listOfMeshes;
 }

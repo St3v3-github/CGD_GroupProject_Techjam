@@ -51,6 +51,15 @@ public class CharacterComponentLister : MonoBehaviour
         public List<PreBuiltChest> chest;
         public List<PreBuiltLegs> legs;
     }
+
+    public Color[] skinColours;
+    public Color[] bodyArtColours;
+    public Color[] hairColours;
+    public Color[] primaryColours;
+    public Color[] secondaryColours;
+    public Color[] metalDarkColours;
+    public Color[] leatherColours;
+    public Color[] leatherSecondaryColours;
     // Start is called before the first frame update
     void Start()
     {
