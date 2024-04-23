@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class FullScreenFXHandler : MonoBehaviour
 {
     [SerializeField] private RawImage fire;
-    [SerializeField] private Image ice;
-    [SerializeField] private Image lightning;
-    [SerializeField] private Image wind;
+    [SerializeField] private RawImage ice;
+    [SerializeField] private RawImage lightning;
+    [SerializeField] private RawImage wind;
 
 
     public void ToggleFireOn()
@@ -17,7 +17,6 @@ public class FullScreenFXHandler : MonoBehaviour
         ice.enabled = false;
         lightning.enabled = false;
         wind.enabled = false;
-        Debug.Log(".");
     }
 
     public void ToggleIceOn()
