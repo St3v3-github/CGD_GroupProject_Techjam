@@ -7,7 +7,8 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
     public StatusEffect_Data _data;
     public UpdatedPlayerController selfMovement;
     public AttributeManager selfAttributes;
-    public FullScreenController fullScreenController;
+    //public FullScreenController fullScreenController;
+    public FullScreenFXHandler fxHandler;
 
     private GameObject effectParticles;
 
@@ -34,22 +35,22 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
 
         if(_data.isFire)
         {
-            StartCoroutine(fullScreenController.DamageFire());
+            fxHandler.ToggleFireOn();
         }
         else if(_data.isIce)
         {
-            StartCoroutine(fullScreenController.DamageIce());
+            fxHandler.ToggleIceOn();
         }
         else if(_data.isLightning)
         {
-            StartCoroutine(fullScreenController.DamageElectricity());
+            fxHandler.ToggleLightningOn();
         }
         else if(_data.isWind)
         {
-            StartCoroutine(fullScreenController.DamageWind());
+            fxHandler.ToggleWindOn();
         }
     }
-
+    
     private float currentEffectTime = 0f;
     private float nextTickTime = 0f;
 
@@ -62,6 +63,7 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
         if(effectParticles != null)
         {
             Destroy(effectParticles);
+            fxHandler.ToggleEffectsOff();
         }
         /*if (_testDummy.getCurrentMoveSpeed() != _testDummy.getBaseMoveSpeed())
         {
