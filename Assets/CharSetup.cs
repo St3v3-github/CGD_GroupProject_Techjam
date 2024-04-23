@@ -137,7 +137,7 @@ public class CharSetup : MonoBehaviour
 
     public void LeaveCharSetup()
     {
-         int playernumber = 0;
+        int playernumber = 0;
         foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
         {
             var componentRegistry = player.GetComponent<ComponentRegistry>();
@@ -174,16 +174,16 @@ public class CharSetup : MonoBehaviour
 
     }
 
-    /// <summary>
-    /// Currently left and right movement is hard coded to change class. In the future a switch handler can be implemented.
-    /// </summary>
-    /// <param name="ctx"></param>
-    /// 
     public void onMenuChange(int index)
     {
         customisationMenus[index].GetComponent<CustomisationUIHandler>().UpdateUISeclections(menuLevels[index], menuSelections[index]);
         //Create an array to feed in first, toArray does not work
-        customisationMenus[index].GetComponent<CustomisationUIHandler>().UpdateSelectionNames(customisationIDs[index].ToArray(), playerClassID[index]);
+        int[] index_array = new int[CUSTOMISATION_PARTS];
+        for(int i = 0; i<CUSTOMISATION_PARTS;i++)
+        {
+            index_array[i] = customisationIDs[index][i];
+        }
+        customisationMenus[index].GetComponent<CustomisationUIHandler>().UpdateSelectionNames(index_array, playerClassID[index]);
     }
     
     public void MenuLeft(InputAction.CallbackContext ctx)
@@ -385,12 +385,13 @@ public class CharSetup : MonoBehaviour
                     }
                 }
             }
+            onMenuChange(i);
         }
     }
 
     #region CustomizationFunctions
 
-    const int HEAD_ID = 0;
+    const int HEAD_ID = 1;
     public void NextHead(int index)
     {
         CharacterComponentLister.PreBuiltHead new_head = new CharacterComponentLister.PreBuiltHead();
@@ -505,7 +506,7 @@ public class CharSetup : MonoBehaviour
         }
     }
 
-    const int BODY_ID = 1;
+    const int BODY_ID = 2;
     public void NextBody(int index)
     {
         CharacterComponentLister.PreBuiltChest new_body = new CharacterComponentLister.PreBuiltChest();
@@ -716,7 +717,7 @@ public class CharSetup : MonoBehaviour
         }
 }
 
-    const int LEGS_ID = 2;
+    const int LEGS_ID = 3;
     public void NextLegs(int index)
     {
         var new_legs = new CharacterComponentLister.PreBuiltLegs();
@@ -855,7 +856,7 @@ public class CharSetup : MonoBehaviour
         }
     }
 
-    const int HAIR_ID = 3;
+    const int HAIR_ID = 0;
     public void NextHair(int index)
     {
         var new_hair = new GameObject();

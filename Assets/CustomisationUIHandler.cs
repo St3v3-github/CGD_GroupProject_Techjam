@@ -42,7 +42,6 @@ public class CustomisationUIHandler : MonoBehaviour
         classText.text = classNames[classSelection];
     }
 
-
     public void UpdateUISeclections(CharMenuLevels charMenuLevel, int selectedUI)
     {
         foreach (var button in ClassButtons)
@@ -69,12 +68,6 @@ public class CustomisationUIHandler : MonoBehaviour
         {
             button.GetComponent<Renderer>().material = notSelectedMat;
         }
-
-
-
-
-
-
 
         // SWITCH FOR CURRENT ACTIVE MENU OPTIONS ENUM
         // DISABLE ALL HIGHLIGHTS AND ENABLE THE SELECTEDUI OPTION'S HIGHLIGHT
@@ -104,9 +97,5 @@ public class CustomisationUIHandler : MonoBehaviour
             default:
                 break;
         }
-
-
-
-
     }
 }
