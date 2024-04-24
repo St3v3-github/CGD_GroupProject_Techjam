@@ -59,6 +59,7 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
         _data = null;
         currentEffectTime = 0f;
         nextTickTime = 0f;
+        selfMovement.speedMultiplier = 1f;
 
         if(effectParticles != null)
         {
@@ -121,8 +122,20 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
         //currentHealth = Mathf.Clamp(currentHealth, 0, selfAttributes.GetMaxHealth());
             //selfAttributes.SetPlayerHealth(newHealth);
         }
-        if(_data.MovementPen > 0)
+        if(_data.MovementPen > 0 && currentEffectTime > nextTickTime)
         {
+            if(nextTickTime < _data.TickSpeed)
+            {
+                nextTickTime += Time.deltaTime;
+            }
+            else if(nextTickTime >= _data.TickSpeed)
+            {
+                selfMovement.speedMultiplier = _data.MovementPen;
+                nextTickTime = 0;
+            }
+        }
+        {
+
             //edit for PvP - same as above
            // nextTickTime += _data.TickSpeed;
             /*float newMoveSpeed = (_testDummy.getBaseMoveSpeed() / _data.MovementPen);
