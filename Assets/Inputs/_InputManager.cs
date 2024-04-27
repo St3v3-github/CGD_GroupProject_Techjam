@@ -318,6 +318,13 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    public void CastSpell()
+    {
+        Debug.Log("Cast Spell2");
+        spellManagerTemplate.Cast(0);
+        Debug.Log("Cast Spell1");
+    }
+
 }
 
 

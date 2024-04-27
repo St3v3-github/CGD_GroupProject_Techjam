@@ -8,8 +8,7 @@ public class TrainController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(train());
-        IEnumerator train() { yield return new WaitForSecondsRealtime(120); trainObj.SetActive(true);}
+        startTrain();
 
     }
 
@@ -18,4 +17,11 @@ public class TrainController : MonoBehaviour
     {
         
     }
+
+    public void startTrain() 
+    {
+        StartCoroutine(train());
+        IEnumerator train() { yield return new WaitForSecondsRealtime(1); trainObj.SetActive(true); }
+    }
+
 }
