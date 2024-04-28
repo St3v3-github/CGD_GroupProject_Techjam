@@ -8,6 +8,9 @@ public class FMODEvents : MonoBehaviour
     #region Music
     [field: Header("Music")]
     [field: SerializeField] public EventReference music { get; private set; }
+
+    [field: Header("ambience")]
+    [field: SerializeField] public EventReference ambience { get; private set; }
     #endregion
 
     #region SpellSounds

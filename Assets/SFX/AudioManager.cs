@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
 {
     private List<EventInstance> eventInstances;
     private EventInstance musicEventInstance;
+    private EventInstance ambienceEventInstance;
 
     public static AudioManager instance { get; private set; }
 
@@ -24,6 +25,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
+        Cleanup();
         InitializeMusic(FMODEvents.instance.music);
     }
 
@@ -31,6 +33,22 @@ public class AudioManager : MonoBehaviour
     {
         musicEventInstance = CreateEventInstance(musicEventReference);
         musicEventInstance.start();
+    }
+    public void EndMusic(EventReference musicEventReference)
+    {
+        musicEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        musicEventInstance.release();
+    }
+
+    public void InitializeAmbience(EventReference ambienceEventReference)
+    {
+        ambienceEventInstance = CreateEventInstance(ambienceEventReference);
+        ambienceEventInstance.start();
+    }
+    public void EndAmbience(EventReference ambienceEventReference)
+    {
+        ambienceEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        ambienceEventInstance.release();
     }
 
     public void PlayOneShot(EventReference sound, Vector3 worldPos)

@@ -22,10 +22,12 @@ public class Volacano : MonoBehaviour
     {
         StartCoroutine(FireOFF());
         IEnumerator FireOFF() {
+            AudioManager.instance.InitializeAmbience(FMODEvents.instance.ambience);
+            //AudioManager.instance.PlayOneShot(FMODEvents.instance.build_upSound, this.transform.position);
             yield return new WaitForSeconds(200); 
             FireFX.SetActive(false);  
             EruptionStageTwo();
-            AudioManager.instance.PlayOneShot(FMODEvents.instance.build_upSound, this.transform.position);
+            
         }
     }
 
@@ -34,6 +36,7 @@ public class Volacano : MonoBehaviour
         StartCoroutine(Erupt());
         IEnumerator Erupt()
         {
+            AudioManager.instance.EndAmbience(FMODEvents.instance.ambience);
             yield return new WaitForSeconds(6);
             EruptionFX.SetActive(true);
             EruptionStageThree();
@@ -50,7 +53,8 @@ public class Volacano : MonoBehaviour
         {
             yield return new WaitForSeconds(6);
             FireFX.SetActive(true);
-            
+            AudioManager.instance.InitializeAmbience(FMODEvents.instance.ambience);
+
         }
     }
 }
