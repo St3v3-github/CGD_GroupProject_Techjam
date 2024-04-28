@@ -37,6 +37,7 @@ public class Volacano : MonoBehaviour
             yield return new WaitForSeconds(6);
             EruptionFX.SetActive(true);
             EruptionStageThree();
+            //Sound for erruption
 
         }
     }

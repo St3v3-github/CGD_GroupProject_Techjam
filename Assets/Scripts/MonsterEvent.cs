@@ -14,7 +14,8 @@ public class MonsterEvent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(Delay());
+        IEnumerator Delay() { yield return new WaitForSecondsRealtime(120); lightphaseone(); }
     }
 
     // Update is called once per frame
@@ -28,11 +29,21 @@ public class MonsterEvent : MonoBehaviour
         }    
     }
 
+    void lightphaseone()
+    {
+        //AUDIO FOR LIGHT CREAKING
+        StartCoroutine(Delay2());
+        IEnumerator Delay2() { yield return new WaitForSecondsRealtime(3); lightfall(); }
+
+    }
     void lightfall()
     {
         float v = 0.34f; 
         Light.Play("Fall");
         StartCoroutine(Delay());
-        IEnumerator Delay() { yield return new WaitForSeconds(v); LightObj.SetActive(false); Before.SetActive(false); After.SetActive(true); Effect.SetActive(true); }
+        IEnumerator Delay() { yield return new WaitForSeconds(v); 
+            //AUDIO FOR LIGHT CRRASHING INTO FLOOR
+            LightObj.SetActive(false); Before.SetActive(false); After.SetActive(true); Effect.SetActive(true); }
+
     }
 }
