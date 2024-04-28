@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -36,6 +37,8 @@ public class CharSetup : MonoBehaviour
     public GameObject[] customisationMenus;
     public List<GameObject> customisationCameras;
     public MapSelector mapSelector;
+    int playerCount = 0;
+    public TextMeshProUGUI joinText;
 
     public enum CharMenuLevels
     {
@@ -151,6 +154,8 @@ public class CharSetup : MonoBehaviour
             }
         }
         mapSelector.playerCount = playernumber;
+        playerCount = playernumber;
+        joinText.text = playerCount + " / 4"; 
         UnityEngine.Debug.Log("New player is being added...");
         
     }

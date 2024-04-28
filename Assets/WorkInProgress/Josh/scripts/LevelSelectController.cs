@@ -20,6 +20,7 @@ public class LevelSelectController : MonoBehaviour
     void Start()
     {
         levels[startingMap].SetActive(true);
+        CharSelect();
     }
 
     // Update is called once per frame
