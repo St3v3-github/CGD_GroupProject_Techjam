@@ -124,7 +124,7 @@ public class AttributeManager : MonoBehaviour
 
 //        Debug.Log("DAMAGE2");
 
-        damageFlash.DamageFlashing();
+        //damageFlash.DamageFlashing();
         StartCoroutine(cameraShake.Shake(.15f, .1f));
 
         //Particles and Shaders called here
@@ -150,7 +150,7 @@ public class AttributeManager : MonoBehaviour
 
 
         //DAMAGE FLASH REMOVED FOR DEMO
-        damageFlash.DamageFlashing();
+       // damageFlash.DamageFlashing();
         StartCoroutine(cameraShake.Shake(.15f, .1f));
 
         if (damageFlyTextPrefab)
@@ -176,7 +176,7 @@ public class AttributeManager : MonoBehaviour
         //god.SendMessage("PrayToGod", data);
         //Invoke("unDie", 0.1f);
         AudioManager.instance.PlayOneShot(FMODEvents.instance.deathSound, this.transform.position);
-        fullScreenController.DamageLowHealthStop();
+       // fullScreenController.DamageLowHealthStop();
     }
 
     public void unDie()
@@ -194,7 +194,7 @@ public class AttributeManager : MonoBehaviour
         //Particles and Shaders called here
         Debug.Log("Health: " + currentHealth);
 
-        damageFlash.DamageFlashing();
+        //damageFlash.DamageFlashing();
         StartCoroutine(cameraShake.Shake(.15f, .05f));
 
 
