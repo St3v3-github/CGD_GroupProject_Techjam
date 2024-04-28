@@ -14,6 +14,8 @@ public class Dashing : MonoBehaviour
 
     private Vector3 delayedForceToApply;
 
+    private GameObject dashEffect;
+
     //References
     public ComponentRegistry components;
 
@@ -45,7 +47,9 @@ public class Dashing : MonoBehaviour
         }
 
         components.playerController.dashing = true;
-        Vector3 forceToApply = transform.forward * dashForce + transform.up * dashUpwardForce;
+        //Vector3 forceToApply = transform.forward * dashForce + transform.up * dashUpwardForce;
+        Vector3 forceToApply = components.playerCamera.transform.forward * dashForce + components.playerCamera.transform.up * dashUpwardForce;
+        delayedForceToApply = forceToApply;
 
         Invoke(nameof(DelayDashForce), 0.025f);
 
@@ -54,11 +58,20 @@ public class Dashing : MonoBehaviour
 
     private void DelayDashForce()
     {
+        if (dashEffect == null)
+        {
+            dashEffect = Instantiate(components.moveAbilityPrefab, transform.position, Quaternion.Euler(0f, 0f, 0f), transform.parent);
+        }
+        components.rigidBody.velocity = Vector3.zero;
         components.rigidBody.AddForce(delayedForceToApply, ForceMode.Impulse);
     }
 
     public void ResetDash()
     {
+        if (dashEffect != null)
+        {
+            Destroy(dashEffect);
+        }
         components.playerController.dashing = false;
     }
 }
