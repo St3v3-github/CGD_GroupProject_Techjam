@@ -34,7 +34,7 @@ public class HandprintScript : MonoBehaviour
     
     public void CoffinAnimaton()
     {
-        //AUDIO FOR COFFIN DOOR OPENING
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.coffinSound, this.transform.position);
         coffin.Play("Open");
         StartCoroutine(Delay());
         IEnumerator Delay() { yield return new WaitForSecondsRealtime(1); Handprintsappear();}
@@ -70,7 +70,7 @@ public class HandprintScript : MonoBehaviour
     public void wallchange()
     {
 
-        //AUDIO FOR WALL EXPLODING
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.smashSound, this.transform.position);
         WallBefore.SetActive(false);
         Fx1.SetActive(true); 
         WallAfter.SetActive(true);

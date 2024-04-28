@@ -31,7 +31,7 @@ public class MonsterEvent : MonoBehaviour
 
     void lightphaseone()
     {
-        //AUDIO FOR LIGHT CREAKING
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.floor_creakSound, this.transform.position);
         StartCoroutine(Delay2());
         IEnumerator Delay2() { yield return new WaitForSecondsRealtime(3); lightfall(); }
 
@@ -41,8 +41,8 @@ public class MonsterEvent : MonoBehaviour
         float v = 0.34f; 
         Light.Play("Fall");
         StartCoroutine(Delay());
-        IEnumerator Delay() { yield return new WaitForSeconds(v); 
-            //AUDIO FOR LIGHT CRRASHING INTO FLOOR
+        IEnumerator Delay() { yield return new WaitForSeconds(v);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.floor_crackSound, this.transform.position);
             LightObj.SetActive(false); Before.SetActive(false); After.SetActive(true); Effect.SetActive(true); }
 
     }

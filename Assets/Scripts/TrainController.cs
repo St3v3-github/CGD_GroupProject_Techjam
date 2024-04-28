@@ -10,9 +10,9 @@ public class TrainController : MonoBehaviour
     void Start()
     {
         StartCoroutine(train());
-        IEnumerator train() { yield return new WaitForSecondsRealtime(60); 
-            
-            //AUDIO FOR TRAIN WHISTLE AND TRAIN GOING PAST
+        IEnumerator train() { yield return new WaitForSecondsRealtime(60);
+
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.trainSound, this.transform.position);
             animator.Play("Train go BRRRRR"); StartCoroutine(train()); }
 
     }

@@ -32,6 +32,6 @@ public class BookcaseDoor : MonoBehaviour
         wall.SetActive(false);
         bookcase.Play("Open");
         Dust.Play("Dust Move");
-        //AUDIO FOR BOOKCASE DOOR OPEN, LIKE SCOOBY DOO HIDDEN DOOR NOISE 
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.bookcaseSound, this.transform.position);
     }
 }
