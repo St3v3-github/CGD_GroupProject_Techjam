@@ -34,6 +34,8 @@ public class CharSetup : MonoBehaviour
     public const int CUSTOMISATION_PARTS = 4;
     public CharacterComponentLister charCompLister;
     public GameObject[] customisationMenus;
+    public List<GameObject> customisationCameras;
+    public MapSelector mapSelector;
 
     public enum CharMenuLevels
     {
@@ -65,6 +67,7 @@ public class CharSetup : MonoBehaviour
         menuSelections = new int[maxPlayers];
         menuLevels = new CharMenuLevels[maxPlayers];
         inputClocks = new float[maxPlayers];
+        mapSelector = GameObject.FindGameObjectWithTag("VoteHandler").GetComponent<MapSelector>();
     }
 
     private void Update()
@@ -144,9 +147,12 @@ public class CharSetup : MonoBehaviour
                 PrevBody(componentRegistry.playerInput.playerIndex);
                 PrevLegs(componentRegistry.playerInput.playerIndex);
                 updatePlayerColours(componentRegistry.playerInput.playerIndex);
+                customisationCameras[componentRegistry.playerInput.playerIndex].SetActive(true);
             }
         }
+        mapSelector.playerCount = playernumber;
         UnityEngine.Debug.Log("New player is being added...");
+        
     }
 
     public void LeaveCharSetup()
@@ -164,10 +170,59 @@ public class CharSetup : MonoBehaviour
                 componentRegistry.rigidBody.MovePosition(tutorialPositions[componentRegistry.playerInput.playerIndex].transform.position);
                 toJoinDisplays[componentRegistry.playerInput.playerIndex].SetActive(false);
                 playerSetupMenus[componentRegistry.playerInput.playerIndex].SetActive(true);
+                customisationCameras[componentRegistry.playerInput.playerIndex].SetActive(false);
             }
         }
 
     }
+    public void LeaveCharSetup(int playerID)
+    {
+        int playernumber = 0;
+        var player = players[playerID];
+
+        var componentRegistry = player.GetComponent<ComponentRegistry>();
+        if (componentRegistry.playerInput.playerIndex != -1)
+        {
+            playernumber++;
+            componentRegistry.inputManager.enabled = true;
+            componentRegistry.playerCamera.enabled = true;
+            componentRegistry.playerController.enabled = true;
+            componentRegistry.playerInput.actions.FindAction("MenuRight").Disable();
+            componentRegistry.playerInput.actions.FindAction("MenuLeft").Disable();
+            componentRegistry.playerInput.actions.FindAction("MenuUp").Disable();
+            componentRegistry.playerInput.actions.FindAction("MenuDown").Disable();
+            componentRegistry.playerInput.actions.FindAction("MenuExecute").Disable();
+            componentRegistry.rigidBody.MovePosition(tutorialPositions[componentRegistry.playerInput.playerIndex].transform.position);
+            toJoinDisplays[componentRegistry.playerInput.playerIndex].SetActive(false);
+            playerSetupMenus[componentRegistry.playerInput.playerIndex].SetActive(true);
+            customisationCameras[componentRegistry.playerInput.playerIndex].SetActive(false);
+        }
+
+    }
+
+    public void EnterCharSetup(int playerID)
+    {
+        int playernumber = 0;
+        var player = players[playerID];
+        var componentRegistry = player.GetComponent<ComponentRegistry>();
+        if (componentRegistry.playerInput.playerIndex != -1)
+        {
+            playernumber++;
+            componentRegistry.inputManager.enabled = false;
+            componentRegistry.playerCamera.enabled = false;
+            componentRegistry.playerController.enabled = false;
+            componentRegistry.playerInput.actions.FindAction("MenuRight").Enable();
+            componentRegistry.playerInput.actions.FindAction("MenuLeft").Enable();
+            componentRegistry.playerInput.actions.FindAction("MenuUp").Enable();
+            componentRegistry.playerInput.actions.FindAction("MenuDown").Enable();
+            componentRegistry.playerInput.actions.FindAction("MenuExecute").Enable();
+            componentRegistry.rigidBody.MovePosition(characterPositions[componentRegistry.playerInput.playerIndex].transform.position);
+            toJoinDisplays[componentRegistry.playerInput.playerIndex].SetActive(false);
+            playerSetupMenus[componentRegistry.playerInput.playerIndex].SetActive(true);
+            customisationCameras[componentRegistry.playerInput.playerIndex].SetActive(true);
+        }
+    }
+
     public void EnterCharSetup()
     {
          int playernumber = 0;
@@ -183,6 +238,7 @@ public class CharSetup : MonoBehaviour
                 componentRegistry.rigidBody.MovePosition(characterPositions[componentRegistry.playerInput.playerIndex].transform.position);
                 toJoinDisplays[componentRegistry.playerInput.playerIndex].SetActive(false);
                 playerSetupMenus[componentRegistry.playerInput.playerIndex].SetActive(true);
+                customisationCameras[componentRegistry.playerInput.playerIndex].SetActive(true);
             }
         }
 
@@ -391,10 +447,13 @@ public class CharSetup : MonoBehaviour
                                 switch (menuSelections[i])
                                 {
                                     case 0:
+                                        LeaveCharSetup(i);
                                         break;
                                     case 1:
+                                        LeaveCharSetup(i);
                                         break;
                                     case 2:
+                                        LeaveCharSetup(i);
                                         break;
                                 }
                                 break;

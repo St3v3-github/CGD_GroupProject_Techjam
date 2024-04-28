@@ -21,6 +21,9 @@ public class CustomisationUIHandler : MonoBehaviour
     public GameObject[] ExitButtons;
     public Material notSelectedMat;
     public Material selectedMat;
+    public Color selectedColor;
+    public Color notSelectedColor;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,27 +49,32 @@ public class CustomisationUIHandler : MonoBehaviour
     {
         foreach (var button in ClassButtons)
             {
-            button.GetComponent<Renderer>().material = notSelectedMat;
+            button.GetComponent<SpriteRenderer>().color = notSelectedColor;
         }
         foreach (var button in HairButtons)
             {
-            button.GetComponent<Renderer>().material = notSelectedMat;
+
+            button.GetComponent<SpriteRenderer>().color = notSelectedColor;
         }
         foreach (var button in HeadButtons)
             {
-            button.GetComponent<Renderer>().material = notSelectedMat;
+
+            button.GetComponent<SpriteRenderer>().color = notSelectedColor;
         }
         foreach (var button in TorsoButtons)
         {
-            button.GetComponent<Renderer>().material = notSelectedMat;
+
+            button.GetComponent<SpriteRenderer>().color = notSelectedColor;
         }
         foreach (var button in LegButtons)
         {
-            button.GetComponent<Renderer>().material = notSelectedMat;
+
+            button.GetComponent<SpriteRenderer>().color = notSelectedColor;
         }
         foreach (var button in ExitButtons)
         {
-            button.GetComponent<Renderer>().material = notSelectedMat;
+
+            button.GetComponent<SpriteRenderer>().color = notSelectedColor;
         }
 
         // SWITCH FOR CURRENT ACTIVE MENU OPTIONS ENUM
@@ -75,22 +83,22 @@ public class CustomisationUIHandler : MonoBehaviour
         switch (charMenuLevel)
         {
             case CharMenuLevels.CHAR_CLASS:
-                ClassButtons[selectedUI].GetComponent<Renderer>().material = selectedMat;
+                ClassButtons[selectedUI].GetComponent<SpriteRenderer>().color = selectedColor;
                 break;
             case CharMenuLevels.HAIR_CUSTOM:
-                HairButtons[selectedUI].GetComponent<Renderer>().material = selectedMat;
+                HairButtons[selectedUI].GetComponent<SpriteRenderer>().color = selectedColor;
                 break;
             case CharMenuLevels.HEAD_CUSTOM:
-                HeadButtons[selectedUI].GetComponent<Renderer>().material = selectedMat;
+                HeadButtons[selectedUI].GetComponent<SpriteRenderer>().color = selectedColor;
                 break;
             case CharMenuLevels.BODY_CUSTOM:
-                TorsoButtons[selectedUI].GetComponent<Renderer>().material = selectedMat;
+                TorsoButtons[selectedUI].GetComponent<SpriteRenderer>().color = selectedColor;
                 break;
             case CharMenuLevels.LEGS_CUSTOM:
-                LegButtons[selectedUI].GetComponent<Renderer>().material = selectedMat;
+                LegButtons[selectedUI].GetComponent<SpriteRenderer>().color = selectedColor;
                 break;
             case CharMenuLevels.MAIN_CONTROLS:
-                ExitButtons[selectedUI].GetComponent<Renderer>().material = selectedMat;
+                ExitButtons[selectedUI].GetComponent<SpriteRenderer>().color = selectedColor;
                 break;
             case CharMenuLevels.LEVEL_MAX:
                 break;

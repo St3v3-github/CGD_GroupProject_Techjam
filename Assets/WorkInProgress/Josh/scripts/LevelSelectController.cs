@@ -59,37 +59,37 @@ public class LevelSelectController : MonoBehaviour
         characterMenu.SetActive(true);
     }
 
-    public void StartGameplayScene()
+    public void StartGameplayScene(string sceneToLoad)
     {
         if (onlyLoadOnce)
         {
             onlyLoadOnce = false;
-            StartCoroutine(LoadScene());
+            StartCoroutine(LoadScene(sceneToLoad));
         }
     }
 
-    public IEnumerator LoadScene()
+    public IEnumerator LoadScene(string sceneToLoad)
     {
-        AsyncOperation sceneLoader = SceneManager.LoadSceneAsync(sceneNames[2], LoadSceneMode.Additive);
+        AsyncOperation sceneLoader = SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive);
         sceneLoader.allowSceneActivation = false;
         charSelectObj.GetComponent<CharSetup>().kwikfix = false;
         while (sceneLoader.progress < 0.9f)
         {
-            Debug.Log("Loading scene " + sceneNames[2] + " <<||>> Progress: " + sceneLoader.progress);
+            Debug.Log("Loading scene " + sceneToLoad + " <<||>> Progress: " + sceneLoader.progress);
             yield return null;
         }
         sceneLoader.allowSceneActivation = true;
-        while (!SceneManager.GetSceneByName(sceneNames[2]).isLoaded)
+        while (!SceneManager.GetSceneByName(sceneToLoad).isLoaded)
         {
             Debug.Log("Scene not fully loaded yet...");
             yield return null;
         }
-        FinishLoading();
+        FinishLoading(sceneToLoad);
     }
 
-    public void FinishLoading()
+    public void FinishLoading(string sceneToLoad)
     {
-        var scene = SceneManager.GetSceneByName(sceneNames[2]);
+        var scene = SceneManager.GetSceneByName(sceneToLoad);
         if (scene.IsValid())
         {
             foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
