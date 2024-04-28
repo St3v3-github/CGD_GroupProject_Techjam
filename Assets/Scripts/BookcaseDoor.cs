@@ -11,7 +11,8 @@ public class BookcaseDoor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(Delay());
+        IEnumerator Delay() { yield return new WaitForSecondsRealtime(90); Trigger(); }
     }
 
     // Update is called once per frame
@@ -24,5 +25,13 @@ public class BookcaseDoor : MonoBehaviour
             Dust.Play("Dust Move");
         }
         
+    }
+
+    public void Trigger()
+    {
+        wall.SetActive(false);
+        bookcase.Play("Open");
+        Dust.Play("Dust Move");
+        //AUDIO FOR BOOKCASE DOOR OPEN, LIKE SCOOBY DOO HIDDEN DOOR NOISE 
     }
 }

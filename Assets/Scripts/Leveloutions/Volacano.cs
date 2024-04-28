@@ -22,7 +22,7 @@ public class Volacano : MonoBehaviour
     {
         StartCoroutine(FireOFF());
         IEnumerator FireOFF() {
-            yield return new WaitForSeconds(1); 
+            yield return new WaitForSeconds(200); 
             FireFX.SetActive(false);  
             EruptionStageTwo();
             //Sound For Build Up
@@ -37,6 +37,7 @@ public class Volacano : MonoBehaviour
             yield return new WaitForSeconds(6);
             EruptionFX.SetActive(true);
             EruptionStageThree();
+            //Sound for erruption
 
         }
     }

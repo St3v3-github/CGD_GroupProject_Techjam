@@ -10,7 +10,9 @@ public class GlassBreak : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(Delay());
+        IEnumerator Delay() { yield return new WaitForSecondsRealtime(60); Trigger(); }
+
     }
 
     // Update is called once per frame
@@ -22,5 +24,13 @@ public class GlassBreak : MonoBehaviour
             before.SetActive(false);
         }
         
+    }
+
+    void Trigger()
+    {
+        //AU
+        after.SetActive(true);
+        before.SetActive(false);
+
     }
 }

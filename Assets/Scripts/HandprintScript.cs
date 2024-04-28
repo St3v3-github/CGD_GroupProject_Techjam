@@ -17,7 +17,8 @@ public class HandprintScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(Delay());
+        IEnumerator Delay() { yield return new WaitForSecondsRealtime(30); CoffinAnimaton(); }
     }
 
     // Update is called once per frame
@@ -26,14 +27,14 @@ public class HandprintScript : MonoBehaviour
          if (Trigger)
         {
             CoffinAnimaton();
-            
-            
             Trigger = false;
         }
     }
 
+    
     public void CoffinAnimaton()
     {
+        //AUDIO FOR COFFIN DOOR OPENING
         coffin.Play("Open");
         StartCoroutine(Delay());
         IEnumerator Delay() { yield return new WaitForSecondsRealtime(1); Handprintsappear();}
@@ -68,6 +69,8 @@ public class HandprintScript : MonoBehaviour
 
     public void wallchange()
     {
+
+        //AUDIO FOR WALL EXPLODING
         WallBefore.SetActive(false);
         Fx1.SetActive(true); 
         WallAfter.SetActive(true);
