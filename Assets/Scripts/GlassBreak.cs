@@ -28,7 +28,7 @@ public class GlassBreak : MonoBehaviour
 
     void Trigger()
     {
-        //AU
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.glassSound, this.transform.position);
         after.SetActive(true);
         before.SetActive(false);
 

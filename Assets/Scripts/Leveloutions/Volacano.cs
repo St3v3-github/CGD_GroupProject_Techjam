@@ -25,7 +25,7 @@ public class Volacano : MonoBehaviour
             yield return new WaitForSeconds(200); 
             FireFX.SetActive(false);  
             EruptionStageTwo();
-            //Sound For Build Up
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.build_upSound, this.transform.position);
         }
     }
 
@@ -37,7 +37,7 @@ public class Volacano : MonoBehaviour
             yield return new WaitForSeconds(6);
             EruptionFX.SetActive(true);
             EruptionStageThree();
-            //Sound for erruption
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.eruptSound, this.transform.position);
 
         }
     }

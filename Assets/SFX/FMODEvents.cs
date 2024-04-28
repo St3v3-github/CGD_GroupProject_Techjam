@@ -27,6 +27,33 @@ public class FMODEvents : MonoBehaviour
     #region WorldSounds
     [field: Header("Pickup SFX")]
     [field: SerializeField] public EventReference pickupSound { get; private set; }
+
+    [field: Header("bookcase SFX")]
+    [field: SerializeField] public EventReference bookcaseSound { get; private set; }
+
+    [field: Header("Coffin SFX")]
+    [field: SerializeField] public EventReference coffinSound { get; private set; }
+
+    [field: Header("floor crack SFX")]
+    [field: SerializeField] public EventReference floor_crackSound { get; private set; }
+
+    [field: Header("floor creak SFX")]
+    [field: SerializeField] public EventReference floor_creakSound { get; private set; }
+
+    [field: Header("Glass SFX")]
+    [field: SerializeField] public EventReference glassSound { get; private set; }
+
+    [field: Header("train SFX")]
+    [field: SerializeField] public EventReference trainSound { get; private set; }
+
+    [field: Header("Wall break SFX")]
+    [field: SerializeField] public EventReference smashSound { get; private set; }
+
+    [field: Header("Volcano build up SFX")]
+    [field: SerializeField] public EventReference build_upSound { get; private set; }
+
+    [field: Header("Volcano erupt SFX")]
+    [field: SerializeField] public EventReference eruptSound { get; private set; }
     #endregion
 
     [field: Header("Thunder SFX")]
