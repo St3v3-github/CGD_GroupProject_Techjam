@@ -21,6 +21,9 @@ public class JetPack : MonoBehaviour
     public float maxFill;
     public float lastTimeOfUse;
 
+    [SerializeField] private GameObject jetPackEffectPrefab;
+    private GameObject jetPackEffect;
+
     public ComponentRegistry component;
 
 
@@ -51,10 +54,23 @@ public class JetPack : MonoBehaviour
 
         if(JetPackInUse)
         {
+            if (jetPackEffect == null)
+            {
+                jetPackEffect = Instantiate(component.moveAbilityPrefab, new Vector3(transform.position.x, transform.position.y - 0.25f, transform.position.z), Quaternion.Euler(180f, 0f, 0f), transform.parent);
+                jetPackEffect.transform.localScale = new Vector3(6f, 6f, 6f);
+            }
             lastTimeOfUse = Time.deltaTime;
             currentFill -= Time.deltaTime;
             component.rigidBody.AddForce(component.rigidBody.transform.up * jetPackThrust, ForceMode.Impulse);
         }
+        else
+        {
+            if(jetPackEffect != null)
+            {
+                Destroy(jetPackEffect);
+            }
+        }
+            
     }
 
     public void HandleJetPack()

@@ -27,6 +27,7 @@ public class ComponentRegistry : MonoBehaviour
     public JetPack jetPack;
     public Grappling grappling;
     public GrappleSwing grappleSwing;
+    public GameObject moveAbilityPrefab;
 
     [Header("Spells")]
     public GameObject firePoint;

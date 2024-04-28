@@ -454,6 +454,12 @@ public class UpdatedPlayerController : MonoBehaviour
 
         components.rigidBody.velocity = new Vector3(components.rigidBody.velocity.x, 0f, components.rigidBody.velocity.z);
 
+        if(!isGrounded)
+        {
+            GameObject doubleJumpEffect = Instantiate(components.moveAbilityPrefab, new Vector3(transform.position.x, transform.position.y - 0.4f, transform.position.z), Quaternion.Euler(-90f, 0f, 0f));
+            Destroy(doubleJumpEffect, 2f);
+        }
+
         components.animationManager.toggleJumpingBool(true);
 
         components.rigidBody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
