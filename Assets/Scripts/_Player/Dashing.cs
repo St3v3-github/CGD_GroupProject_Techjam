@@ -60,7 +60,7 @@ public class Dashing : MonoBehaviour
     {
         if (dashEffect == null)
         {
-            dashEffect = Instantiate(components.moveAbilityPrefab, transform.position, Quaternion.Euler(0f, 0f, 0f), transform.parent);
+            dashEffect = Instantiate(components.moveAbilityPrefab, transform.position, components.playerCamera.transform.rotation, transform.parent);
         }
         components.rigidBody.velocity = Vector3.zero;
         components.rigidBody.AddForce(delayedForceToApply, ForceMode.Impulse);
