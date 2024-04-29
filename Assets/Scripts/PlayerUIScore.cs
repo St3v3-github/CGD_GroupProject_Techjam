@@ -12,6 +12,7 @@ public class PlayerUIScore : MonoBehaviour
     public List<GameObject> players;
     public List<ComponentRegistry> registers;
     public List<Text> scores;
+    public List<Text> scoresInUse;
     public GameObject SegmentParent2P;
     public GameObject SegmentParent4P;
     public List<Image> segments;
@@ -38,9 +39,12 @@ public class PlayerUIScore : MonoBehaviour
         {
             players = gameModeHandler.players;
             registers.Clear();
+            int num = 0;
             foreach (var player in players)
             {
                 registers.Add(player.GetComponent<ComponentRegistry>());
+                scoresInUse.Add(scores[num]);
+                num++;
             }
             segments = SegmentParent2P.GetComponentsInChildren<Image>().ToList();
             int countCycle = 0;
@@ -68,13 +72,28 @@ public class PlayerUIScore : MonoBehaviour
             SegmentParent4P.SetActive(false); SegmentParent2P.SetActive(true);
         }
 
+        if (scores.Count > 0)
+        {
+            for (int i = 0; i < scoresInUse.Count; i++)
+            {
+                if (registers[i] == null || scoresInUse[i] == null) { return; }
+                scoresInUse[i].text = registers[i].playerScoreInfo.kill_count.ToString();
+                registers[i].GetComponentInChildren<SkinnedMeshRenderer>().material = materials[i];
+            }
+        }
 
         for (int i = 0; i < scores.Count; i++)
         {
-            if (registers[i] == null) { return; }
-            scores[i].text = registers[i].playerScoreInfo.kill_count.ToString();
-            registers[i].GetComponentInChildren<SkinnedMeshRenderer>().material = materials[i];
+            if (i < scoresInUse.Count)
+            {
+                scores[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                scores[i].gameObject.SetActive(false);
+            }
         }
+
     }
 
 
