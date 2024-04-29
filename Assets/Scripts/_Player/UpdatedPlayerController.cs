@@ -94,6 +94,8 @@ public class UpdatedPlayerController : MonoBehaviour
 
     public MovementState state;
 
+    private GameObject chargeJumpEffect;
+
     public enum MovementState
     {
         freeze,
@@ -288,7 +290,18 @@ public class UpdatedPlayerController : MonoBehaviour
 
         if(chargingJump && jumpForce < maxJumpForce)
         {
+            if (chargeJumpEffect == null)
+            {
+                chargeJumpEffect = Instantiate(components.moveAbilityPrefab, transform.position, Quaternion.Euler(0f, 0f, 0f), transform.parent);
+            }
             jumpForce += (jumpForceMultiplier * Time.deltaTime);
+        }
+        else
+        {
+            if(chargeJumpEffect != null)
+            {
+                Destroy(chargeJumpEffect);
+            }
         }
     }
 

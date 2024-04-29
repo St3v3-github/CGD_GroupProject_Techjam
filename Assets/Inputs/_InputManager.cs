@@ -92,7 +92,7 @@ public class InputManager : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext ctx)
     {
-        if (Element == WizardType.fire || Element == WizardType.ice || Element == WizardType.plant || Element == WizardType.electric)
+        if (Element == WizardType.fire || Element == WizardType.earth || Element == WizardType.plant || Element == WizardType.electric)
         {
             if (ctx.action.triggered && componentRegistry.playerController.isGrounded && componentRegistry.playerController.readyToJump)
             {
@@ -125,7 +125,7 @@ public class InputManager : MonoBehaviour
 
 
 
-        if (Element == WizardType.earth)
+        if (Element == WizardType.ice)
         {
             if (ctx.performed && componentRegistry.playerController.isGrounded && componentRegistry.playerController.readyToJump)
             {
@@ -161,7 +161,7 @@ public class InputManager : MonoBehaviour
 
     public void OnAction(InputAction.CallbackContext ctx)
     {
-        if (Element == WizardType.earth)
+        if (Element == WizardType.ice)
         {
             if (ctx.action.triggered)
             {
@@ -181,7 +181,7 @@ public class InputManager : MonoBehaviour
             }
         }
 
-        if (Element == WizardType.ice)
+        if (Element == WizardType.earth)
         {
             if (ctx.performed && (movementInput.x != 0 || movementInput.y != 0))
             {
