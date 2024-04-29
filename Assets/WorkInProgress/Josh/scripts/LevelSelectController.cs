@@ -15,6 +15,11 @@ public class LevelSelectController : MonoBehaviour
     public GameObject mapMenu;
     public GameObject characterMenu;
     public bool onlyLoadOnce = true;
+    public bool loading = false;
+    public bool unloading = false;
+
+    [SerializeField] private GameObject canvas;
+    [SerializeField] private CanvasGroup canvasGroup;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +30,15 @@ public class LevelSelectController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-
+        if(canvasGroup.alpha > 0 && !loading) {
+            canvasGroup.alpha -= Time.deltaTime;
+                }
+       
+        else if(canvasGroup.alpha < 1 && loading )
+        {
+            canvasGroup.alpha += Time.deltaTime;
+        }
+        
     }
 
     public void NextMap()
@@ -64,12 +77,37 @@ public class LevelSelectController : MonoBehaviour
         if (onlyLoadOnce)
         {
             onlyLoadOnce = false;
+            loading = true;
+            StartCoroutine(Loadingscreen());
             StartCoroutine(LoadScene(sceneToLoad));
         }
     }
 
+    public void FadeLoadingScreen()
+    {
+        float loadingPercent = 0;
+        while (loadingPercent < 9000)
+        {
+            loadingPercent += Time.deltaTime;
+            Debug.Log("Increased progress to: " + loadingPercent);
+           // canvasGroup.alpha += 5;
+            
+        }
+    }
+    public IEnumerator Loadingscreen()
+    {
+      
+        yield return new WaitForSeconds(5f);
+        loading = false;
+     
+
+        
+    }
+
     public IEnumerator LoadScene(string sceneToLoad)
     {
+        yield return new WaitForSeconds(2f);
+
         AsyncOperation sceneLoader = SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive);
         sceneLoader.allowSceneActivation = false;
         charSelectObj.GetComponent<CharSetup>().kwikfix = false;
@@ -86,12 +124,18 @@ public class LevelSelectController : MonoBehaviour
         }
         FinishLoading(sceneToLoad);
     }
-
+    public IEnumerator waitforX(float x)
+    {
+        yield return new WaitForSeconds(x);
+    }
     public void FinishLoading(string sceneToLoad)
     {
         var scene = SceneManager.GetSceneByName(sceneToLoad);
         if (scene.IsValid())
         {
+            SceneManager.MoveGameObjectToScene(canvas, scene);
+            SceneManager.MoveGameObjectToScene(this.gameObject, scene);
+           
             foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
             {
                 SceneManager.MoveGameObjectToScene(player, scene);
@@ -114,7 +158,14 @@ public class LevelSelectController : MonoBehaviour
             }
             SceneManager.SetActiveScene(scene);
             onlyLoadOnce = true;
+
+            
+            StartCoroutine(waitforX(5f));
+            
+
+
         }
         
     }
+   
 }
