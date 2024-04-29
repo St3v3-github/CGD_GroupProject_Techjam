@@ -61,6 +61,7 @@ public class LevelSelectController : MonoBehaviour
             foreach(var player in GameObject.FindGameObjectsWithTag("Player"))
             {
                 var compReg = player.GetComponent<ComponentRegistry>();
+                compReg.animationManager.ToggleRestartTrigger();
                 compReg.rigidBody.MovePosition(resetPosition[playercount].transform.position);
                 compReg.attributeManager.currentHealth = compReg.attributeManager.maxHealth;
                 compReg.playerCamera.enabled = true;

@@ -74,6 +74,11 @@ public class AnimationManager : MonoBehaviour
         playerAnim.SetTrigger("isLast");
     }
 
+    public void ToggleRestartTrigger()
+    {
+        playerAnim.SetTrigger("GameRestart");
+    }
+
     public void toggleEmotingBool(bool Emoting)
     {
         /*
