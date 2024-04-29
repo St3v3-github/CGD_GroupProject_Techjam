@@ -11,7 +11,7 @@ public class Grenade : Spell
     private bool spawned = false;
     public float damage;
     public bool effectNeedsDamage = false;
-    //public StatusEffect_Data effect;
+    public StatusEffect_Data effect;
 
     //private float timer = 0;
 
@@ -19,7 +19,7 @@ public class Grenade : Spell
     void Start()
     {
         StartCoroutine(timerCoroutine());
-        //effect = GetComponentInParent<StatusEffect_Data>();
+        effect = GetComponentInParent<StatusEffect_Data>();
         //Debug.Log("Current Effect: " + effect);
         //setTargetTag();
     }

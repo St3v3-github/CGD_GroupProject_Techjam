@@ -33,7 +33,7 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
         effectParticles = Instantiate(_data.EffectParticles, transform);
         nextTickTime = _data.TickSpeed;
 
-        /*if (_data.isFire)
+        if (_data.isFire)
         {
             fxHandler.ToggleFireOn();
         }
@@ -48,7 +48,7 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
         else if (_data.isWind)
         {
             fxHandler.ToggleWindOn();
-        }*/
+        }
     }
 
     private float currentEffectTime = 0f;
