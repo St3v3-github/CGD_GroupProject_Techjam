@@ -249,9 +249,10 @@ public class UpdatedPlayerController : MonoBehaviour
 
         SpeedControl();
 
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
-
-        if(isGrounded)
+        //isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
+        isGrounded = Physics.SphereCast(transform.position, 0.25f, Vector3.down, out RaycastHit Hit, groundMask);
+        //Gizmos.DrawWireSphere(transform.position, 0.25f);
+        if (isGrounded)
         {
             jumpCount = maxJumpCount;
             components.animationManager.toggleJumpingBool(false);
@@ -383,10 +384,10 @@ public class UpdatedPlayerController : MonoBehaviour
             }
         }
 
-        else if(!isGrounded && components.jetPack.usingJetpack)
+        /*else if(!isGrounded && components.jetPack.usingJetpack)
         {
             components.rigidBody.AddForce(movementDirection.normalized * moveSpeed * 200f * speedMultiplier * airMultiplier, ForceMode.Force);
-        }
+        }*/
 
         else if (!isGrounded)
         {
