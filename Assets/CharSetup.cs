@@ -37,6 +37,7 @@ public class CharSetup : MonoBehaviour
     public List<GameObject> customisationCameras;
     public MapSelector mapSelector;
     public Camera[] targetCameras;
+    public GameObject blankCamera;
 
     public enum CharMenuLevels
     {
@@ -184,6 +185,7 @@ public class CharSetup : MonoBehaviour
             targetCameras[j].rect = new Rect((float)(j % camColumns) * camXSize, 1.0f - (float)((j / camColumns) + 1) * camYSize, camXSize, camYSize);
             targetCameras[j].depth = 3;
         }
+        blankCamera.SetActive(nrOfPlayers==3);
     }
 
     public void LeaveCharSetup(int playerID)
