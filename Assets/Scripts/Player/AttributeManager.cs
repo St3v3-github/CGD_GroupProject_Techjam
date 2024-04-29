@@ -70,7 +70,7 @@ public class AttributeManager : MonoBehaviour
 
         if(currentHealth <= 10)
         {
-            fullScreenController.DamageLowHealth();
+            //fullScreenController.DamageLowHealth();
         }
         else
         {
