@@ -7,12 +7,16 @@ public class CastleDoorOpenMainMenu : MonoBehaviour
 {
     
     public float moveSpeed = 5;
-    
+    public GameObject gate; 
 
-   
-    void start()
+
+    void Start()
     {
-                    
+        StartCoroutine(Gate());
+        IEnumerator Gate()
+        {
+            yield return new WaitForSecondsRealtime(5); gate.SetActive(false) ;
+        }
     }
 
     private void Update()
