@@ -157,6 +157,7 @@ public class LevelSelectController : MonoBehaviour
                 }
             }
             SceneManager.SetActiveScene(scene);
+            AudioManager.instance.InitializeMusic(FMODEvents.instance.music);
             onlyLoadOnce = true;
 
             

@@ -65,7 +65,10 @@ public class MapSelector : MonoBehaviour
             }
             
             Debug.Log("LOAD MAP HERE");
+            AudioManager.instance.EndMusic(FMODEvents.instance.music);
             levelSelectController.StartGameplayScene(selectedScene);
+            //AudioManager.instance.Cleanup();
+            //AudioManager.instance.InitializeMusic(FMODEvents.instance.music);
             
         }
       //  playerCount = charsetup.players.Length;

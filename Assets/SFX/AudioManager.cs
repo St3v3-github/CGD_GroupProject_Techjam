@@ -25,11 +25,12 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        Cleanup();
+        //Cleanup();
+        //EndMusic(FMODEvents.instance.music);
         InitializeMusic(FMODEvents.instance.music);
     }
 
-    private void InitializeMusic(EventReference musicEventReference)
+    public void InitializeMusic(EventReference musicEventReference)
     {
         musicEventInstance = CreateEventInstance(musicEventReference);
         musicEventInstance.start();
@@ -63,7 +64,7 @@ public class AudioManager : MonoBehaviour
         return eventInstance;
     }
 
-    private void Cleanup()
+    public void Cleanup()
     {
         foreach (EventInstance eventInstance in eventInstances)
         {
@@ -72,7 +73,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    public void OnDestroy()
     {
         Cleanup();
     }
