@@ -29,6 +29,11 @@ public class PortalVotes : MonoBehaviour
 
     }
 
+    public void ResetVotes()
+    {
+        mapVotes = 0;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("PORTAL ENTERED");

@@ -65,8 +65,15 @@ public class MapSelector : MonoBehaviour
             }
             
             Debug.Log("LOAD MAP HERE");
+            for (int i = 0; i < votes.Count; i++)
+            {
+                votes[i] = 0;
+            }
+            foreach(var portalObj in portals)
+            {
+                portalObj.GetComponent<PortalVotes>().ResetVotes();
+            }
             levelSelectController.StartGameplayScene(selectedScene);
-            
         }
       //  playerCount = charsetup.players.Length;
     }

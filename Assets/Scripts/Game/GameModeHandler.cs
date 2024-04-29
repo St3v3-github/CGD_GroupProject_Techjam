@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -40,6 +41,7 @@ public class GameModeHandler : MonoBehaviour
     [SerializeField] int countdownStartTimer;
     [SerializeField] float respawnThreshold;
     [SerializeField] float respawnTimer;
+    bool onlyOneEnd = true;
     //[SerializeField] GameObject playerManager;
     // Start is called before the first frame update
     void Start()
@@ -199,22 +201,37 @@ public class GameModeHandler : MonoBehaviour
                 //Enable Podium Camera
                 podiumCamera.enabled = true;
                 postGame = true;
-                
                 //TODO: Add buttons to restart or go back to menu
             }
         }
         else
         {
-            StartCoroutine(ReturnToMenu());
+            if(onlyOneEnd)
+            {
+                onlyOneEnd = false;
+                StartCoroutine(ReturnToMenu());
+            }    
             //TODO wat do in post game
         }
     }
-
     private IEnumerator ReturnToMenu()
     {
         yield return new WaitForSeconds(10);
-        SceneManager.LoadScene("MainMenuRework");
+        //SceneManager.LoadScene("MainMenuRework");
+        var scene = SceneManager.GetSceneAt(0);
+        SceneManager.SetActiveScene(scene);
+        foreach(var rootObject in scene.GetRootGameObjects())
+        {
+            if(rootObject.tag == "LevelHandler")
+            {
+                rootObject.GetComponent<LevelSelectController>().timeToReset = true;
+            }
+        }
 
+        foreach(var player in players)
+        {
+            SceneManager.MoveGameObjectToScene(player, scene);
+        }
     }
 
     /// <summary>
