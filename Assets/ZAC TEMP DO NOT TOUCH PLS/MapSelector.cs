@@ -66,6 +66,14 @@ public class MapSelector : MonoBehaviour
             
             Debug.Log("LOAD MAP HERE");
             AudioManager.instance.EndMusic(FMODEvents.instance.music);
+            for (int i = 0; i < votes.Count; i++)
+            {
+                votes[i] = 0;
+            }
+            foreach(var portalObj in portals)
+            {
+                portalObj.GetComponent<PortalVotes>().ResetVotes();
+            }
             levelSelectController.StartGameplayScene(selectedScene);
             //AudioManager.instance.Cleanup();
             //AudioManager.instance.InitializeMusic(FMODEvents.instance.music);

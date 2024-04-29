@@ -20,6 +20,7 @@ public class AttributeManager : MonoBehaviour
     [SerializeField] public int score;
     public bool dead = false;
     public bool hit_by_strike = false;
+    public bool initialSpawnSetup = true;
 
 
     //examples of other values we might eventually have. all values relating to the player would probably be held in this one manager

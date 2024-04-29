@@ -36,6 +36,7 @@ public class CharSetup : MonoBehaviour
     public GameObject[] customisationMenus;
     public List<GameObject> customisationCameras;
     public MapSelector mapSelector;
+    public Camera[] targetCameras;
 
     public enum CharMenuLevels
     {
@@ -98,29 +99,15 @@ public class CharSetup : MonoBehaviour
 
     public void HandleNewPlayer()
     {
-        int playernumber = 0;
+        int nrOfPlayers = 0;
+        ComponentRegistry componentRegistry = null;
         foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
         {
-            var componentRegistry = player.GetComponent<ComponentRegistry>();
-            if (componentRegistry.playerInput.playerIndex != -1)
+            componentRegistry = player.GetComponent<ComponentRegistry>();
+            if (componentRegistry.playerInput.playerIndex != -1 && componentRegistry.attributeManager.initialSpawnSetup)
             {
-                playernumber++;
-                switch (playernumber)
-                {
-                    case 1:
-                        componentRegistry.mainMesh.GetComponent<CameraCulling>().SetGameLayerRecursive(componentRegistry.mainMesh,12);
-                        break;
-                    case 2:
-                        componentRegistry.mainMesh.GetComponent<CameraCulling>().SetGameLayerRecursive(componentRegistry.mainMesh,13);
-                        break;
-                    case 3:
-                        componentRegistry.mainMesh.GetComponent<CameraCulling>().SetGameLayerRecursive(componentRegistry.mainMesh,14);
-                        break;
-                    case 4:
-                        componentRegistry.mainMesh.GetComponent<CameraCulling>().SetGameLayerRecursive(componentRegistry.mainMesh,15);
-                        break;
-
-                }
+                componentRegistry.attributeManager.initialSpawnSetup = false;
+                componentRegistry.mainMesh.GetComponent<CameraCulling>().SetGameLayerRecursive(componentRegistry.mainMesh, 12 + componentRegistry.playerInput.playerIndex);
                 players[componentRegistry.playerInput.playerIndex] = player;
                 menuSelections[componentRegistry.playerInput.playerIndex] = 0;
                 componentRegistries[componentRegistry.playerInput.playerIndex] = componentRegistry;
@@ -148,42 +135,62 @@ public class CharSetup : MonoBehaviour
                 PrevLegs(componentRegistry.playerInput.playerIndex);
                 updatePlayerColours(componentRegistry.playerInput.playerIndex);
                 customisationCameras[componentRegistry.playerInput.playerIndex].SetActive(true);
+                targetCameras[componentRegistry.playerInput.playerIndex] = customisationCameras[componentRegistry.playerInput.playerIndex].GetComponent<Camera>();
             }
+            nrOfPlayers++;
         }
-        mapSelector.playerCount = playernumber;
+        RefreshCameras();
+        mapSelector.playerCount = nrOfPlayers;
         UnityEngine.Debug.Log("New player is being added...");
-        
     }
-
-    public void LeaveCharSetup()
+    private int getNrOfPlayers()
     {
-        int playernumber = 0;
-        foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
+        int answer = 0;
+        foreach(var player in players)
         {
-            var componentRegistry = player.GetComponent<ComponentRegistry>();
-            if (componentRegistry.playerInput.playerIndex != -1)
+            if(player != null)
             {
-                playernumber++;
-               componentRegistry.inputManager.enabled = true;
-                componentRegistry.playerCamera.enabled = true;
-                componentRegistry.playerController.enabled = true;
-                componentRegistry.rigidBody.MovePosition(tutorialPositions[componentRegistry.playerInput.playerIndex].transform.position);
-                toJoinDisplays[componentRegistry.playerInput.playerIndex].SetActive(false);
-                playerSetupMenus[componentRegistry.playerInput.playerIndex].SetActive(true);
-                customisationCameras[componentRegistry.playerInput.playerIndex].SetActive(false);
+                answer++;
             }
         }
-
+        return answer;
     }
+
+    public void RefreshCameras()
+    {
+        int nrOfPlayers = getNrOfPlayers();
+        int i = 1;
+        for (i = 1; (nrOfPlayers - 1) / i >= i; i++)
+        {
+            UnityEngine.Debug.Log(i.ToString());
+        }
+        int camColumns = i;
+        int camRows = i;
+        //Try reducing rows
+        if (i * (i - 1) >= nrOfPlayers)
+        {
+            camRows = i - 1;
+        }
+        //Determine camera dimensions
+        float camXSize = 1.0f / camColumns;
+        float camYSize = 1.0f / camRows;
+        UnityEngine.Debug.Log(camColumns.ToString());
+        UnityEngine.Debug.Log(camRows.ToString());
+        UnityEngine.Debug.Log(camXSize.ToString());
+        UnityEngine.Debug.Log(camYSize.ToString());
+        //Update camera render targets
+        for (int j = 0; j < nrOfPlayers; j++)
+        {
+            targetCameras[j].rect = new Rect((float)(j % camColumns) * camXSize, 1.0f - (float)((j / camColumns) + 1) * camYSize, camXSize, camYSize);
+            targetCameras[j].depth = 3;
+        }
+    }
+
     public void LeaveCharSetup(int playerID)
     {
-        int playernumber = 0;
-        var player = players[playerID];
-
-        var componentRegistry = player.GetComponent<ComponentRegistry>();
+        var componentRegistry = componentRegistries[playerID];
         if (componentRegistry.playerInput.playerIndex != -1)
         {
-            playernumber++;
             componentRegistry.inputManager.enabled = true;
             componentRegistry.playerCamera.enabled = true;
             componentRegistry.playerController.enabled = true;
@@ -196,18 +203,17 @@ public class CharSetup : MonoBehaviour
             toJoinDisplays[componentRegistry.playerInput.playerIndex].SetActive(false);
             playerSetupMenus[componentRegistry.playerInput.playerIndex].SetActive(true);
             customisationCameras[componentRegistry.playerInput.playerIndex].SetActive(false);
+            targetCameras[playerID] = componentRegistry.playerCamera;
+            RefreshCameras();
         }
 
     }
 
     public void EnterCharSetup(int playerID)
     {
-        int playernumber = 0;
-        var player = players[playerID];
-        var componentRegistry = player.GetComponent<ComponentRegistry>();
+        var componentRegistry = componentRegistries[playerID];
         if (componentRegistry.playerInput.playerIndex != -1)
         {
-            playernumber++;
             componentRegistry.inputManager.enabled = false;
             componentRegistry.playerCamera.enabled = false;
             componentRegistry.playerController.enabled = false;
@@ -220,6 +226,8 @@ public class CharSetup : MonoBehaviour
             toJoinDisplays[componentRegistry.playerInput.playerIndex].SetActive(false);
             playerSetupMenus[componentRegistry.playerInput.playerIndex].SetActive(true);
             customisationCameras[componentRegistry.playerInput.playerIndex].SetActive(true);
+            targetCameras[playerID] = customisationCameras[componentRegistry.playerInput.playerIndex].GetComponent<Camera>();
+            RefreshCameras();
         }
     }
 

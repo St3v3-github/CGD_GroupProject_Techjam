@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,14 +10,21 @@ public class LevelSelectController : MonoBehaviour
 {
     public int mapNumber = 0;
     public GameObject[] levels;
+    public GameObject[] resetPosition;
     public string[] sceneNames;
     public int startingMap;
     public GameObject charSelectObj;
     public GameObject mapMenu;
     public GameObject characterMenu;
     public bool onlyLoadOnce = true;
+
     public bool loading = false;
     public bool unloading = false;
+
+    public List<GameObject> rememberActive = new List<GameObject>();
+    public bool timeToReset = false;
+    public string nameOfPlayedMap;
+    public GameObject charSetupObj;
 
     [SerializeField] private GameObject canvas;
     [SerializeField] private CanvasGroup canvasGroup;
@@ -38,7 +46,29 @@ public class LevelSelectController : MonoBehaviour
         {
             canvasGroup.alpha += Time.deltaTime;
         }
-        
+        if(timeToReset)
+        {
+            Debug.Log("Resetting to menu");
+            timeToReset = false;
+            //ResetThings
+            SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(nameOfPlayedMap));
+            foreach (var rootObject in rememberActive)
+            {
+                rootObject.SetActive(true);
+            }
+            int playercount = 0;
+            foreach(var player in GameObject.FindGameObjectsWithTag("Player"))
+            {
+                var compReg = player.GetComponent<ComponentRegistry>();
+                compReg.rigidBody.MovePosition(resetPosition[playercount].transform.position);
+                compReg.playerCamera.enabled = true;
+                compReg.inputManager.enabled = true;
+                compReg.playerController.enabled = false;
+                //TODO: Harry add reset to animations here
+                playercount++;
+            }
+            charSetupObj.GetComponent<CharSetup>().RefreshCameras();
+        }
     }
 
     public void NextMap()
@@ -83,25 +113,11 @@ public class LevelSelectController : MonoBehaviour
         }
     }
 
-    public void FadeLoadingScreen()
-    {
-        float loadingPercent = 0;
-        while (loadingPercent < 9000)
-        {
-            loadingPercent += Time.deltaTime;
-            Debug.Log("Increased progress to: " + loadingPercent);
-           // canvasGroup.alpha += 5;
-            
-        }
-    }
     public IEnumerator Loadingscreen()
     {
       
         yield return new WaitForSeconds(5f);
         loading = false;
-     
-
-        
     }
 
     public IEnumerator LoadScene(string sceneToLoad)
@@ -124,26 +140,33 @@ public class LevelSelectController : MonoBehaviour
         }
         FinishLoading(sceneToLoad);
     }
+
     public IEnumerator waitforX(float x)
     {
         yield return new WaitForSeconds(x);
     }
+
     public void FinishLoading(string sceneToLoad)
     {
+        nameOfPlayedMap = sceneToLoad;
         var scene = SceneManager.GetSceneByName(sceneToLoad);
         if (scene.IsValid())
         {
-            SceneManager.MoveGameObjectToScene(canvas, scene);
-            SceneManager.MoveGameObjectToScene(this.gameObject, scene);
+            //SceneManager.MoveGameObjectToScene(canvas, scene);
            
             foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
             {
                 SceneManager.MoveGameObjectToScene(player, scene);
             }
 
+            rememberActive.Clear();
             foreach (var rootGameObject in SceneManager.GetActiveScene().GetRootGameObjects())
             {
-                rootGameObject.SetActive(false);
+                if(rootGameObject.activeSelf && this.gameObject != rootGameObject)
+                {
+                    rememberActive.Add(rootGameObject);
+                    rootGameObject.SetActive(false);
+                }
             }
 
             foreach (var rootGameObject in scene.GetRootGameObjects())
@@ -160,13 +183,7 @@ public class LevelSelectController : MonoBehaviour
             AudioManager.instance.InitializeMusic(FMODEvents.instance.music);
             onlyLoadOnce = true;
 
-            
             StartCoroutine(waitforX(5f));
-            
-
-
         }
-        
     }
-   
 }
