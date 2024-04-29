@@ -201,7 +201,7 @@ public class GameModeHandler : MonoBehaviour
                 }
                 //Enable Podium Camera
                 podiumCamera.enabled = true;
-                blankCamera.enabled = false;
+                blankCamera.SetActive(false);
                 postGame = true;
                 //TODO: Add buttons to restart or go back to menu
             }
