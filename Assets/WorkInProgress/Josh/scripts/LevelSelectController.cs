@@ -61,6 +61,7 @@ public class LevelSelectController : MonoBehaviour
             {
                 var compReg = player.GetComponent<ComponentRegistry>();
                 compReg.rigidBody.MovePosition(resetPosition[playercount].transform.position);
+                compReg.attributeManager.currentHealth = compReg.attributeManager.maxHealth;
                 compReg.playerCamera.enabled = true;
                 compReg.inputManager.enabled = true;
                 compReg.playerController.enabled = false;
@@ -157,6 +158,7 @@ public class LevelSelectController : MonoBehaviour
             foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
             {
                 SceneManager.MoveGameObjectToScene(player, scene);
+                player.GetComponent<ComponentRegistry>().attributeManager.currentHealth = player.GetComponent<ComponentRegistry>().attributeManager.maxHealth;
             }
 
             rememberActive.Clear();
