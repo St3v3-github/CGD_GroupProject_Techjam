@@ -59,7 +59,16 @@ public class JetPack : MonoBehaviour
             }
             lastTimeOfUse = Time.deltaTime;
             currentFill -= Time.deltaTime;
-            component.rigidBody.AddForce(component.rigidBody.transform.up * jetPackThrust, ForceMode.Impulse);
+            if (component.rigidBody.velocity.y < 1f)
+            {
+                Debug.Log("StrongThrustTest");
+                component.rigidBody.AddForce((component.rigidBody.transform.up * jetPackThrust) * 1.5f, ForceMode.Impulse);
+            }
+            else
+            {
+                Debug.Log("WeakThrustTest");
+                component.rigidBody.AddForce(component.rigidBody.transform.up * jetPackThrust, ForceMode.Impulse);
+            }
         }
         else
         {
