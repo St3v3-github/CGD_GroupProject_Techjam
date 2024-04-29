@@ -40,7 +40,9 @@ public class AttributeManager : MonoBehaviour
 
     public DamageFlash damageFlash;
     public CameraShake cameraShake;
-    public FullScreenController fullScreenController;
+    //public FullScreenController fullScreenController;
+    public FullScreenFXHandler fullScreenFXHandler;
+
 
     public ComponentRegistry componentRegistry;
     void Start()
@@ -69,11 +71,13 @@ public class AttributeManager : MonoBehaviour
 
         if(currentHealth <= 10)
         {
-            fullScreenController.DamageLowHealth();
+            //fullScreenController.DamageLowHealth();
+            fullScreenFXHandler.ToggleLowHealth();
         }
         else
         {
-            fullScreenController.DamageLowHealthStop();
+            //fullScreenController.DamageLowHealthStop();
+            fullScreenFXHandler.StopLowHealth();
         }
                 
 
@@ -121,8 +125,8 @@ public class AttributeManager : MonoBehaviour
         {
             
         }
-
-//        Debug.Log("DAMAGE2");
+        StartCoroutine(DamageEffect());
+        //        Debug.Log("DAMAGE2");
 
         damageFlash.DamageFlashing();
         StartCoroutine(cameraShake.Shake(.15f, .1f));
@@ -139,7 +143,7 @@ public class AttributeManager : MonoBehaviour
         AudioManager.instance.PlayOneShot(FMODEvents.instance.hitSound, this.transform.position);
         if (currentHealth <= 0)
         {
-            //transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color = originalColor;
+            transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color = originalColor;
             Die(attacker);
         }
 
@@ -148,7 +152,7 @@ public class AttributeManager : MonoBehaviour
         componentRegistry.animationManager.toggleDamagedTrigger();
         //Particles and Shaders called here
 
-
+        StartCoroutine(DamageEffect());
         //DAMAGE FLASH REMOVED FOR DEMO
         damageFlash.DamageFlashing();
         StartCoroutine(cameraShake.Shake(.15f, .1f));
@@ -158,10 +162,10 @@ public class AttributeManager : MonoBehaviour
             DamageFlyText(damage, attacker);
         }
 
-        if (this.isActiveAndEnabled)
-        {
-            //StartCoroutine(DamageEffect());
-        }
+        //if (this.isActiveAndEnabled)
+        //{
+        //    StartCoroutine(DamageEffect());
+        //}
 
         return currentHealth;
     }
@@ -176,7 +180,8 @@ public class AttributeManager : MonoBehaviour
         //god.SendMessage("PrayToGod", data);
         //Invoke("unDie", 0.1f);
         AudioManager.instance.PlayOneShot(FMODEvents.instance.deathSound, this.transform.position);
-        fullScreenController.DamageLowHealthStop();
+        fullScreenFXHandler.StopLowHealth();
+        //fullScreenController.DamageLowHealthStop();
     }
 
     public void unDie()
@@ -197,17 +202,17 @@ public class AttributeManager : MonoBehaviour
         damageFlash.DamageFlashing();
         StartCoroutine(cameraShake.Shake(.15f, .05f));
 
-
+        StartCoroutine(DamageEffect());
 
         if (damageFlyTextPrefab)
         {
             DamageFlyText(damage);
         }
 
-        if(this.isActiveAndEnabled)
-        {
-            //StartCoroutine(DamageEffect());
-        }
+        //if(this.isActiveAndEnabled)
+        //{
+        //    StartCoroutine(DamageEffect());
+        //}
 
         return currentHealth;
     }
@@ -282,10 +287,10 @@ public class AttributeManager : MonoBehaviour
         damageText.GetComponent<TextMesh>().text = damageDealt.ToString();
     }
 
-    //public IEnumerator DamageEffect()
-    //{
-     //   transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
-    //    yield return new WaitForSeconds(0.5f);
-    //    transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color = originalColor;
-   // }
+    public IEnumerator DamageEffect()
+    {
+        transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
+        yield return new WaitForSeconds(2.5f);
+        transform.parent.gameObject.GetComponentInChildren<Renderer>().material.color = originalColor;
+    }
 }

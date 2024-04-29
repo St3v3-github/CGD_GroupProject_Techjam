@@ -9,6 +9,7 @@ public class FullScreenFXHandler : MonoBehaviour
     [SerializeField] private RawImage ice;
     [SerializeField] private RawImage lightning;
     [SerializeField] private RawImage wind;
+    [SerializeField] private RawImage lowhealth;
 
 
     public void ToggleFireOn()
@@ -41,6 +42,20 @@ public class FullScreenFXHandler : MonoBehaviour
         ice.enabled = false;
         lightning.enabled = false;
         wind.enabled = true;
+    }
+
+    public void ToggleLowHealth()
+    {
+        lowhealth.enabled = true;
+        fire.enabled = false;
+        ice.enabled = false;
+        lightning.enabled = false;
+        wind.enabled = false;
+    }
+
+    public void StopLowHealth()
+    {
+        lowhealth.enabled = false;
     }
 
     public void ToggleEffectsOff()
