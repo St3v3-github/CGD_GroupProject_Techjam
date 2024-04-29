@@ -89,7 +89,7 @@ public class GameModeHandler : MonoBehaviour
                 
                 ragDollMesh.GetComponent<RagDollPlayer>().RagdollMesh();
                 ragDollMesh.GetComponent<CameraCulling>().SetRagdollLayerRecursive(ragDollMesh,0);
-                Destroy(ragDollMesh, 20f);
+                Destroy(ragDollMesh, 3f);
                 //Handle kill, death and score counters
                 var deadScoreInfo = playerRegistries[i].playerScoreInfo;
                 var killerScoreInfo = deadScoreInfo.lastDamagedBy.GetComponent<ComponentRegistry>().playerScoreInfo;
