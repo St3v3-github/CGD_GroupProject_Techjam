@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class Sliding : MonoBehaviour
@@ -18,6 +19,8 @@ public class Sliding : MonoBehaviour
 
     private float horizontalInput;
     private float verticalInput;
+
+    private GameObject slideEffect;
 
     //References
     public ComponentRegistry components;
@@ -62,6 +65,8 @@ public class Sliding : MonoBehaviour
     {
         components.playerController.sliding = true;
 
+        slideEffect = Instantiate(components.moveAbilityPrefab, transform.position, Quaternion.Euler(0f, 0f, 0f), transform.parent);
+
         playerObj.localScale = new Vector3(playerObj.localScale.x, slideYScale, playerObj.localScale.z);
         components.rigidBody.AddForce(Vector3.down * 1f, ForceMode.Impulse);
 
@@ -92,6 +97,8 @@ public class Sliding : MonoBehaviour
     public void EndSlide()
     {
         components.playerController.sliding = false;
+
+        Destroy(slideEffect);
 
         playerObj.localScale = new Vector3(playerObj.localScale.x, startYScale, playerObj.localScale.z);
     }
