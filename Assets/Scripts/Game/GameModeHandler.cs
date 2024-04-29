@@ -36,6 +36,7 @@ public class GameModeHandler : MonoBehaviour
     [SerializeField] List<GameObject> spawnFlag;
     public List<GameObject> podiumSpots;
     public Camera podiumCamera;
+    public GameObject blankCamera;
     [SerializeField] List<float> spawnPointDistances;
     [SerializeField] float currentGameTime = 300f;
     [SerializeField] int countdownStartTimer;
@@ -200,6 +201,7 @@ public class GameModeHandler : MonoBehaviour
                 }
                 //Enable Podium Camera
                 podiumCamera.enabled = true;
+                blankCamera.enabled = false;
                 postGame = true;
                 //TODO: Add buttons to restart or go back to menu
             }
@@ -354,6 +356,7 @@ public class GameModeHandler : MonoBehaviour
         {
             playerRegistries[j].playerCamera.rect = new Rect((float)(j%camColumns)*camXSize,1.0f-(float)((j / camColumns)+1)*camYSize,camXSize,camYSize);
         }
+        blankCamera.SetActive(players.Count == 3);
         postGame = false;
         StartCoroutine(StartCountdownTimer());
     }
