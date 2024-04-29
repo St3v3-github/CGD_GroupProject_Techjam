@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class StatusEffectHandler : MonoBehaviour, IEffectable
@@ -7,6 +8,7 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
     public StatusEffect_Data _data;
     public UpdatedPlayerController selfMovement;
     public AttributeManager selfAttributes;
+    public FullScreenFXHandler fxHandler;
 
     private GameObject effectParticles;
 
@@ -30,6 +32,23 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
         Debug.Log(_data); 
         effectParticles = Instantiate(_data.EffectParticles, transform);
         nextTickTime = _data.TickSpeed;
+
+        /*if (_data.isFire)
+        {
+            fxHandler.ToggleFireOn();
+        }
+        else if (_data.isIce)
+        {
+            fxHandler.ToggleIceOn();
+        }
+        else if (_data.isLightning)
+        {
+            fxHandler.ToggleLightningOn();
+        }
+        else if (_data.isWind)
+        {
+            fxHandler.ToggleWindOn();
+        }*/
     }
 
     private float currentEffectTime = 0f;
@@ -44,6 +63,7 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
         if(effectParticles != null)
         {
             Destroy(effectParticles);
+            fxHandler.ToggleEffectsOff();
         }
         /*if (_testDummy.getCurrentMoveSpeed() != _testDummy.getBaseMoveSpeed())
         {
@@ -101,8 +121,17 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
         //currentHealth = Mathf.Clamp(currentHealth, 0, selfAttributes.GetMaxHealth());
             //selfAttributes.SetPlayerHealth(newHealth);
         }
-        if(_data.MovementPen > 0)
+        if(_data.MovementPen > 0 && currentEffectTime > nextTickTime)
         {
+            if(nextTickTime < _data.TickSpeed)
+            {
+                nextTickTime += Time.deltaTime;
+            }
+            else if(nextTickTime >= _data.TickSpeed)
+            {
+                selfMovement.speedMultiplier = _data.MovementPen;
+                nextTickTime = 0;
+            }
             //edit for PvP - same as above
            // nextTickTime += _data.TickSpeed;
             /*float newMoveSpeed = (_testDummy.getBaseMoveSpeed() / _data.MovementPen);

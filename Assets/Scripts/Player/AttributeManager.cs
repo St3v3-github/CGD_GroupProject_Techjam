@@ -41,7 +41,8 @@ public class AttributeManager : MonoBehaviour
 
     public DamageFlash damageFlash;
     public CameraShake cameraShake;
-    public FullScreenController fullScreenController;
+    //public FullScreenController fullScreenController;
+    public FullScreenFXHandler fullScreenFXHandler;
 
     public ComponentRegistry componentRegistry;
     void Start()
@@ -70,11 +71,13 @@ public class AttributeManager : MonoBehaviour
 
         if(currentHealth <= 10)
         {
-            fullScreenController.DamageLowHealth();
+            //fullScreenController.DamageLowHealth();
+            fullScreenFXHandler.ToggleLowHealth();
         }
         else
         {
             //fullScreenController.DamageLowHealthStop();
+            fullScreenFXHandler.StopLowHealth();
         }
                 
 
