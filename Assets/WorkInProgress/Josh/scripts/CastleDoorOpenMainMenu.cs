@@ -15,6 +15,7 @@ public class CastleDoorOpenMainMenu : MonoBehaviour
         StartCoroutine(Gate());
         IEnumerator Gate()
         {
+            AudioManager.instance.InitializeMusic(FMODEvents.instance.music);
             yield return new WaitForSecondsRealtime(5); gate.SetActive(false) ;
         }
     }
