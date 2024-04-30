@@ -37,7 +37,7 @@ public class PortalVotes : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("PORTAL ENTERED");
-        if (other.transform.parent.CompareTag("Player"))
+        if (other.transform.parent != null &&other.transform.parent.CompareTag("Player"))
         {
             mapVotes++;
             GameObject.FindGameObjectWithTag("VoteHandler").GetComponent<MapSelector>().IncrementVote(gameObject);

@@ -72,6 +72,10 @@ public class LevelSelectController : MonoBehaviour
             }
             charSetupObj.GetComponent<CharSetup>().RefreshCameras();
         }
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit(0);
+        }
     }
 
     public void NextMap()
