@@ -42,6 +42,7 @@ public class AttributeManager : MonoBehaviour
     public DamageFlash damageFlash;
     public CameraShake cameraShake;
     public FullScreenController fullScreenController;
+    public FullScreenFXHandler fullscreenFX;
 
     public ComponentRegistry componentRegistry;
     void Start()
@@ -71,10 +72,12 @@ public class AttributeManager : MonoBehaviour
         if(currentHealth <= 10)
         {
             //fullScreenController.DamageLowHealth();
+            fullscreenFX.ToggleLowHealth();
         }
         else
         {
             //fullScreenController.DamageLowHealthStop();
+            fullscreenFX.StopLowHealth();
         }
                 
 
@@ -177,7 +180,8 @@ public class AttributeManager : MonoBehaviour
         //god.SendMessage("PrayToGod", data);
         //Invoke("unDie", 0.1f);
         AudioManager.instance.PlayOneShot(FMODEvents.instance.deathSound, this.transform.position);
-       // fullScreenController.DamageLowHealthStop();
+        // fullScreenController.DamageLowHealthStop();
+        fullscreenFX.StopLowHealth();
     }
 
     public void unDie()
