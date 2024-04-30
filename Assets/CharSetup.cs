@@ -128,7 +128,9 @@ public class CharSetup : MonoBehaviour
                 customisationIDs[componentRegistry.playerInput.playerIndex][HAIR_ID] = 1;
                 customisationIDs[componentRegistry.playerInput.playerIndex][HEAD_ID] = 1;
                 customisationIDs[componentRegistry.playerInput.playerIndex][BODY_ID] = 1;
+                colourIDs[componentRegistry.playerInput.playerIndex][BODY_ID] = 0;
                 customisationIDs[componentRegistry.playerInput.playerIndex][LEGS_ID] = 1;
+                colourIDs[componentRegistry.playerInput.playerIndex][LEGS_ID] = 0;
                 PrevHead(componentRegistry.playerInput.playerIndex);
                 PrevHair(componentRegistry.playerInput.playerIndex);
                 PrevBody(componentRegistry.playerInput.playerIndex);
