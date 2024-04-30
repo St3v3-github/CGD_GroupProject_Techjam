@@ -13,6 +13,7 @@ public class PickupSpell : MonoBehaviour
     {
        if(other.transform.parent != null && other.transform.parent.gameObject.CompareTag("Player"))
         {
+            this.transform.parent.transform.parent.GetComponent<SpawnItem>().hasItem = false;
             other.gameObject.GetComponentInChildren<SpellManagerTemplate>().spellSlotArray[3] = Instantiate(spell);
             other.gameObject.GetComponentInChildren<SpellManagerTemplate>().SetTargetPoints();
             var uiHandler = other.gameObject.GetComponentInParent<ComponentRegistry>().uiHandler;
@@ -30,7 +31,7 @@ public class PickupSpell : MonoBehaviour
                     break;
                 
             }
-            Destroy(this.gameObject);
+            Destroy(this.transform.parent.gameObject);
         }
 
     }

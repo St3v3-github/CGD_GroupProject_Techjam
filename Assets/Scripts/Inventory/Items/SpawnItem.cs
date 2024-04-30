@@ -18,11 +18,12 @@ public class SpawnItem : MonoBehaviour
     public SpawnerType spawnerType;
     public bool hasItem;
     public float spawnTimer = 10f;
-    private float timer = 0f;
+    public float timer = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
+        spawnTimer = 10f;
         
     }
 
@@ -35,6 +36,7 @@ public class SpawnItem : MonoBehaviour
             if(timer > spawnTimer)
             {
                 SpawnObject(SpawnItem.Type.Spell);
+                timer = 0;
             }
         }
 
@@ -60,7 +62,7 @@ public class SpawnItem : MonoBehaviour
 
     public void SetSpells(List<GameObject> spellslist)
     {
-        spawnList.Clear();
+        //spawnList.Clear();
         spawnList = spellslist;
     }
     

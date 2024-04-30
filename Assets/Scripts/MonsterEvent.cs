@@ -9,7 +9,8 @@ public class MonsterEvent : MonoBehaviour
     public GameObject Before; 
     public GameObject After;
     public GameObject Effect;
-    public GameObject LightObj; 
+    public GameObject LightObj;
+    public GameObject Killbox; 
     public bool trigger; 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +44,8 @@ public class MonsterEvent : MonoBehaviour
         StartCoroutine(Delay());
         IEnumerator Delay() { yield return new WaitForSeconds(v);
             AudioManager.instance.PlayOneShot(FMODEvents.instance.floor_crackSound, this.transform.position);
-            LightObj.SetActive(false); Before.SetActive(false); After.SetActive(true); Effect.SetActive(true); }
+            LightObj.SetActive(false); Before.SetActive(false); After.SetActive(true); Effect.SetActive(true); 
+        }
 
     }
 }

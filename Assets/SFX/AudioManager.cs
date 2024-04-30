@@ -27,7 +27,7 @@ public class AudioManager : MonoBehaviour
     {
         //Cleanup();
         //EndMusic(FMODEvents.instance.music);
-        InitializeMusic(FMODEvents.instance.music);
+        //InitializeMusic(FMODEvents.instance.music);
     }
 
     public void InitializeMusic(EventReference musicEventReference)

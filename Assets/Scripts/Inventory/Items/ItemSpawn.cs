@@ -10,7 +10,8 @@ public class ItemSpawn : MonoBehaviour
     // Start is called before the first frame update
 
 
-
+    private float timerMax = 10;
+    private float timerCurrent = 10;
     [SerializeField] List<GameObject> SpawnPoints = new List<GameObject>();
    [SerializeField] int minSpawnPoints = 0;
     [SerializeField] int maxSpawnPoints = 0;
@@ -31,6 +32,12 @@ public class ItemSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*timerCurrent -= Time.deltaTime;
+        if(timerCurrent <= 0)
+        {
+            GenerateSpawnpoints();
+            timerCurrent = timerMax;
+        }*/
         
     }
 
@@ -73,7 +80,7 @@ public class ItemSpawn : MonoBehaviour
         {
             SpawnerType currentSpawnerType = SpawnPoints[i].GetComponent<SpawnItem>().spawnerType;
        List<GameObject> currentSpellList = GetSpellList(currentSpawnerType);
-                SpawnPoints[i].GetComponent<SpawnItem>().SetSpells(currentSpellList);
+                SpawnPoints[i].GetComponent<SpawnItem>().SetSpells(ultimateList);
         }
 
         randomSpawnCount = UnityEngine.Random.Range(minSpawnPoints, maxSpawnPoints+1);
