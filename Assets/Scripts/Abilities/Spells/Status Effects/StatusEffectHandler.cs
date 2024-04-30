@@ -29,7 +29,11 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
         this._data = _data;
         Debug.Log("status effect? > " + _data);
         Debug.Log(_data); 
-        effectParticles = Instantiate(_data.EffectParticles, transform);
+        if(effectParticles != null)
+        {
+            effectParticles = Instantiate(_data.EffectParticles, transform);
+        }
+        
         nextTickTime = _data.TickSpeed;
 
         if(_data.isFire)
@@ -64,11 +68,12 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
         currentEffectTime = 0f;
         nextTickTime = 0f;
         selfMovement.speedMultiplier = 1f;
+        fxHandler.ToggleEffectsOff();
 
-        if(effectParticles != null)
+        if (effectParticles != null)
         {
             Destroy(effectParticles);
-            fxHandler.ToggleEffectsOff();
+            
         }
         /*if (_testDummy.getCurrentMoveSpeed() != _testDummy.getBaseMoveSpeed())
         {
