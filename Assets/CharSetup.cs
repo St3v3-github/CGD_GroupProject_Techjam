@@ -204,6 +204,7 @@ public class CharSetup : MonoBehaviour
             toJoinDisplays[componentRegistry.playerInput.playerIndex].SetActive(false);
             playerSetupMenus[componentRegistry.playerInput.playerIndex].SetActive(true);
             customisationCameras[componentRegistry.playerInput.playerIndex].SetActive(false);
+            componentRegistry.playerController.readyToJump = true;
             targetCameras[playerID] = componentRegistry.playerCamera;
             RefreshCameras();
         }
@@ -226,6 +227,7 @@ public class CharSetup : MonoBehaviour
             componentRegistry.rigidBody.MovePosition(characterPositions[componentRegistry.playerInput.playerIndex].transform.position);
             componentRegistry.rigidBody.rotation = characterPositions[componentRegistry.playerInput.playerIndex].transform.rotation;
             componentRegistry.rigidBody.velocity = new Vector3(0, 0, 0);
+            componentRegistry.playerController.readyToJump = false;
             componentRegistry.animationManager.updateMovementFloats(new Vector3(0, 0, 0));
             toJoinDisplays[componentRegistry.playerInput.playerIndex].SetActive(false);
             playerSetupMenus[componentRegistry.playerInput.playerIndex].SetActive(true);

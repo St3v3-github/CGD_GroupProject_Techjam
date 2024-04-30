@@ -178,6 +178,7 @@ public class GameModeHandler : MonoBehaviour
                     playerReg.playerCamera.enabled = false;
                     playerReg.playerController.enabled = false;
                     playerReg.rigidBody.velocity = new Vector3(0, 0, 0);
+                    playerReg.playerController.readyToJump = false;
                     playerReg.animationManager.ToggleGameEnd();
                 }
                 for (int i = 0; i < playersSortedByRanking.Count; i++)

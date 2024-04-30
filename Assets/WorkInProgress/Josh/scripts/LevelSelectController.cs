@@ -67,6 +67,7 @@ public class LevelSelectController : MonoBehaviour
                 compReg.playerCamera.enabled = true;
                 compReg.inputManager.enabled = true;
                 compReg.playerController.enabled = true;
+                compReg.playerController.readyToJump = true;
                 playercount++;
             }
             charSetupObj.GetComponent<CharSetup>().RefreshCameras();
