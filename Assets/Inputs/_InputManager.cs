@@ -283,7 +283,8 @@ public class InputManager : MonoBehaviour
 
     public void OnSelect(InputAction.CallbackContext ctx)
     {
-        componentRegistry.uiController.SwitchTabInstructions();
+        //componentRegistry.uiController.SwitchTabInstructions();
+        Application.Quit(0);
 
     }
 
