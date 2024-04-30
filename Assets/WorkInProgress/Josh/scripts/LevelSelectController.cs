@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -71,6 +72,10 @@ public class LevelSelectController : MonoBehaviour
                 playercount++;
             }
             charSetupObj.GetComponent<CharSetup>().RefreshCameras();
+        }
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit(0);
         }
     }
 
