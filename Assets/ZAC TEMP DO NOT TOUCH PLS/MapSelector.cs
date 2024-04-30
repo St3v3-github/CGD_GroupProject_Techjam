@@ -21,6 +21,17 @@ public class MapSelector : MonoBehaviour
             votes.Add(0);
         }
     }
+    private void Awake()
+    {
+        for (int i = 0; i < votes.Count; i++)
+        {
+            votes[i] = 0;
+        }
+        foreach (var portalObj in portals)
+        {
+            portalObj.GetComponent<PortalVotes>().ResetVotes();
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -86,7 +97,7 @@ public class MapSelector : MonoBehaviour
     {
         for (int i = 0; portals.Count > i; i++)
         {
-            if (targetPortal == portals[i])
+            if (targetPortal == portals[i] && votes[i] < playerCount)
             {
                 votes[i]++;
             }
@@ -97,7 +108,7 @@ public class MapSelector : MonoBehaviour
     {
         for (int i = 0; portals.Count > i; i++)
         {
-            if (targetPortal == portals[i])
+            if (targetPortal == portals[i] && votes[i] > 0)
             {
                 votes[i]--;
             }

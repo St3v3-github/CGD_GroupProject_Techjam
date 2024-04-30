@@ -78,7 +78,7 @@ public class PlayerUIScore : MonoBehaviour
             {
                 if (registers[i] == null || scoresInUse[i] == null) { return; }
                 scoresInUse[i].text = registers[i].playerScoreInfo.kill_count.ToString();
-                registers[i].GetComponentInChildren<SkinnedMeshRenderer>().material = materials[i];
+               // registers[i].mainMesh.GetComponent<SkinnedMeshRenderer>().material = materials[i];
             }
         }
 
