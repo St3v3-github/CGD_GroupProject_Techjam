@@ -321,15 +321,20 @@ public class GameModeHandler : MonoBehaviour
         {
             players.Add(newPlayer);
             var spawnPoint = FindSpawnPoint();
-            newPlayer.transform.position = spawnPoint.transform.position;
+            Debug.Log(spawnPoint.name);
+            Debug.Log(spawnPoint.transform.position);
+
+            //newPlayer.transform.position = spawnPoint.transform.position;
             newPlayer.transform.rotation = spawnPoint.transform.rotation;
             var compRegistry = newPlayer.GetComponent<ComponentRegistry>();
-           // compRegistry.rigidBody.position = newPlayer.transform.position;
-            compRegistry.rigidBody.transform.position = new Vector3(0,0,0);
+            Debug.Log("MOVED PLAYER TO SPAWN");
+            // compRegistry.rigidBody.position = newPlayer.transform.position;
+           //compRegistry.rigidBody.transform.position = new Vector3(0, 0, 0);
+            compRegistry.rigidBody.MovePosition(spawnPoint.transform.position);
             compRegistry.rigidBody.rotation = newPlayer.transform.rotation;
             compRegistry.playerCamera.enabled = true;
             playerRegistries.Add(compRegistry);
-            while(teams.Count <= compRegistry.playerScoreInfo.team) //FORBIDDEN WHILE LOOP, DONT USE WHILE
+            while (teams.Count <= compRegistry.playerScoreInfo.team) //FORBIDDEN WHILE LOOP, DONT USE WHILE
             {
                 teams.Add(new Team());
             }
