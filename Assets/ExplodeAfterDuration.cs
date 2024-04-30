@@ -25,10 +25,11 @@ public class ExplodeAfterDuration : MonoBehaviour
     private IEnumerator SpawnAfterTime()
     {
         yield return new WaitForSeconds(duration);
-      Instantiate(effectToSpawn,transform.position,Quaternion.identity);
         effectToSpawn.GetComponent<AreaDamageEffect>().damage = damage;
         effectToSpawn.GetComponent<AreaDamageEffect>().duration = duration;
         effectToSpawn.GetComponent<AreaDamageEffect>().source = source;
+        Instantiate(effectToSpawn,transform.position,Quaternion.identity);
+        yield return new WaitForSeconds(duration);
         Destroy(this.gameObject);
 
 

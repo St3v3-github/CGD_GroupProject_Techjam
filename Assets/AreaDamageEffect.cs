@@ -14,7 +14,7 @@ public class AreaDamageEffect : MonoBehaviour
     void Start()
     {
         DetectCharacters(transform.position);
-        DestroyAfterTime();
+       StartCoroutine( DestroyAfterTime());
         
     }
 
@@ -46,6 +46,7 @@ public class AreaDamageEffect : MonoBehaviour
 
     public void DetectCharacters(Vector3 centre)
     {
+        Debug.Log("Detect 1");
         Collider[] colliders = Physics.OverlapSphere(centre, radius);
         List<GameObject> players = new List<GameObject>();
 
@@ -68,7 +69,7 @@ public class AreaDamageEffect : MonoBehaviour
                
             }
         }
-
+        Debug.Log("Detect 2");
 
         foreach (var player in players)
         {
@@ -76,12 +77,15 @@ public class AreaDamageEffect : MonoBehaviour
             player.GetComponentInParent<ComponentRegistry>().playerScoreInfo.lastDamagedBy = source;
             source.GetComponent<ComponentRegistry>().uiController.hitMarker.SetActive(true);
         }
+        Debug.Log("Detect 3");
     }
 
     private IEnumerator DestroyAfterTime()
     {
+        Debug.Log("Destroying after time");
         yield return new WaitForSeconds(duration);
          Destroy(this.gameObject);
+
 
 
     }

@@ -55,13 +55,13 @@ public class MapSelector : MonoBehaviour
                     currentHighest = votes[i];
                     tied_votes = false;
                     tiedVoteIndex.Clear();
-                    tiedVoteIndex.Add(votes[i]);
+                    tiedVoteIndex.Add(i);
               
                 }
                 else if (votes[i] > 0 && votes[i] == currentHighest)
                 {
                     tied_votes = true;
-                    tiedVoteIndex.Add(votes[i]);
+                    tiedVoteIndex.Add(i);
                 }
             }
             string selectedScene = "";
@@ -71,11 +71,14 @@ public class MapSelector : MonoBehaviour
             }
             else
             {
-               int randomIndex = Random.Range(1, tiedVoteIndex.Count);
-                selectedScene = portals[randomIndex].name;
+               int randomIndex = Random.Range(0, tiedVoteIndex.Count-1);
+
+                selectedScene = portals[tiedVoteIndex[randomIndex]].name;
+                Debug.Log(selectedScene);
             }
             
             Debug.Log("LOAD MAP HERE");
+        
             AudioManager.instance.EndMusic(FMODEvents.instance.music);
             for (int i = 0; i < votes.Count; i++)
             {
