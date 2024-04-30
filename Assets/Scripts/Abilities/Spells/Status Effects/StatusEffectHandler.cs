@@ -7,6 +7,7 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
     public StatusEffect_Data _data;
     public UpdatedPlayerController selfMovement;
     public AttributeManager selfAttributes;
+    public FullScreenFXHandler fxHandler;
 
     private GameObject effectParticles;
 
