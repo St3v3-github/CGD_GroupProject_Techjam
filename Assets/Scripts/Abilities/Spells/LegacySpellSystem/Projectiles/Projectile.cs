@@ -35,7 +35,9 @@ public class Projectile : Spell
             source.GetComponent<ComponentRegistry>().uiHandler.Hit();
             Debug.Log("hit player: " + collision.name);
 
-            StatusEffectHandler enemyEffects = collision.gameObject.GetComponent<ComponentRegistry>().statusEffectHandler;
+            //StatusEffectHandler enemyEffects = collision.gameObject.GetComponent<ComponentRegistry>().statusEffectHandler;
+
+            StatusEffectHandler enemyEffects = collision.gameObject.GetComponentInParent<ComponentRegistry>().statusEffectHandler;
             if(enemyEffects == null)
             {
                 Debug.Log("enemy effects null");

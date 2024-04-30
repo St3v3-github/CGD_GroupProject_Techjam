@@ -14,4 +14,9 @@ public class StatusEffect_Data : ScriptableObject
 
     public GameObject EffectParticles;
 
+    public bool isFire;
+    public bool isIce;
+    public bool isLightning;
+    public bool isWind;
+
 }

@@ -7,6 +7,7 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
     public StatusEffect_Data _data;
     public UpdatedPlayerController selfMovement;
     public AttributeManager selfAttributes;
+    public FullScreenFXHandler fxHandler;
 
     private GameObject effectParticles;
 
@@ -28,8 +29,34 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
         this._data = _data;
         Debug.Log("status effect? > " + _data);
         Debug.Log(_data); 
-        effectParticles = Instantiate(_data.EffectParticles, transform);
+        if(effectParticles != null)
+        {
+            effectParticles = Instantiate(_data.EffectParticles, transform);
+        }
+        
         nextTickTime = _data.TickSpeed;
+
+        if(_data.isFire)
+        {
+            Debug.Log("fire");
+            fxHandler.ToggleFireOn();
+        }
+        else if(_data.isIce)
+        {
+            fxHandler.ToggleIceOn();
+        }
+        else if(_data.isLightning)
+        {
+            fxHandler.ToggleLightningOn();
+        }
+        else if(_data.isWind)
+        {
+            fxHandler.ToggleWindOn();
+        }
+        else
+        {
+            fxHandler.ToggleEffectsOff();
+        }
     }
 
     private float currentEffectTime = 0f;
@@ -40,10 +67,13 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
         _data = null;
         currentEffectTime = 0f;
         nextTickTime = 0f;
+        selfMovement.speedMultiplier = 1f;
+        fxHandler.ToggleEffectsOff();
 
-        if(effectParticles != null)
+        if (effectParticles != null)
         {
             Destroy(effectParticles);
+            
         }
         /*if (_testDummy.getCurrentMoveSpeed() != _testDummy.getBaseMoveSpeed())
         {
@@ -101,8 +131,17 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
         //currentHealth = Mathf.Clamp(currentHealth, 0, selfAttributes.GetMaxHealth());
             //selfAttributes.SetPlayerHealth(newHealth);
         }
-        if(_data.MovementPen > 0)
+        if(_data.MovementPen > 0 && currentEffectTime > nextTickTime)
         {
+            if(nextTickTime < _data.TickSpeed)
+            {
+                nextTickTime += Time.deltaTime;
+            }
+            else if(nextTickTime >= _data.TickSpeed)
+            {
+                selfMovement.speedMultiplier = _data.MovementPen;
+                nextTickTime = 0;
+            }
             //edit for PvP - same as above
            // nextTickTime += _data.TickSpeed;
             /*float newMoveSpeed = (_testDummy.getBaseMoveSpeed() / _data.MovementPen);

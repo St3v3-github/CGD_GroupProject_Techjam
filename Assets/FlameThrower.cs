@@ -8,6 +8,7 @@ public class FlameThrower : MonoBehaviour
     private float damage; // Default 0.2f
     public float activeTime;
     public GameObject deleteTarget;
+    public StatusEffect_Data effectData;
     // Start is called before the first frame update
     void Start()
     {
