@@ -66,8 +66,7 @@ public class LevelSelectController : MonoBehaviour
                 compReg.attributeManager.currentHealth = compReg.attributeManager.maxHealth;
                 compReg.playerCamera.enabled = true;
                 compReg.inputManager.enabled = true;
-                compReg.playerController.enabled = false;
-                //TODO: Harry add reset to animations here
+                compReg.playerController.enabled = true;
                 playercount++;
             }
             charSetupObj.GetComponent<CharSetup>().RefreshCameras();
@@ -129,7 +128,6 @@ public class LevelSelectController : MonoBehaviour
 
         AsyncOperation sceneLoader = SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive);
         sceneLoader.allowSceneActivation = false;
-        charSelectObj.GetComponent<CharSetup>().kwikfix = false;
         while (sceneLoader.progress < 0.9f)
         {
             Debug.Log("Loading scene " + sceneToLoad + " <<||>> Progress: " + sceneLoader.progress);

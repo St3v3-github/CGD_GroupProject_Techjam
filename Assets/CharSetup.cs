@@ -20,14 +20,13 @@ public class CharSetup : MonoBehaviour
     public GameObject[] playerSetupMenus;
     public GameObject[] playerClassRotation;
     public ComponentRegistry[] componentRegistries;
-    List<int> playerClassID = new List<int>();
+    public List<int> playerClassID = new List<int>();
     public GameObject[] players;
     public int[] menuSelections;
     public CharMenuLevels[] menuLevels;
     public float[] inputClocks;
     public int maxSelection = 3;
     public PlayerInputManager inputManager;
-    public bool kwikfix = true;
     public bool updateAfterDestroy = false;
     public List<int>[] customisationIDs;
     public List<int>[] colourIDs;
@@ -225,6 +224,9 @@ public class CharSetup : MonoBehaviour
             componentRegistry.playerInput.actions.FindAction("MenuDown").Enable();
             componentRegistry.playerInput.actions.FindAction("MenuExecute").Enable();
             componentRegistry.rigidBody.MovePosition(characterPositions[componentRegistry.playerInput.playerIndex].transform.position);
+            componentRegistry.rigidBody.rotation = characterPositions[componentRegistry.playerInput.playerIndex].transform.rotation;
+            componentRegistry.rigidBody.velocity = new Vector3(0, 0, 0);
+            componentRegistry.animationManager.updateMovementFloats(new Vector3(0, 0, 0));
             toJoinDisplays[componentRegistry.playerInput.playerIndex].SetActive(false);
             playerSetupMenus[componentRegistry.playerInput.playerIndex].SetActive(true);
             customisationCameras[componentRegistry.playerInput.playerIndex].SetActive(true);
@@ -381,6 +383,7 @@ public class CharSetup : MonoBehaviour
                     if (playerInputDevice == ctx.control.device && inputClocks[i] <= 0.0f)
                     {
                         inputClocks[i] = inputTime;
+                        UnityEngine.Debug.Log(i.ToString() + " executed " + menuLevels[i] + " button " + menuSelections[i]);
                         switch(menuLevels[i]) 
                         {
                             case CharMenuLevels.CHAR_CLASS:
@@ -1087,7 +1090,7 @@ public class CharSetup : MonoBehaviour
 
     public void NextClass(int index)
     {
-        if (kwikfix && componentRegistries[index] != null && players[index] != null)
+        if (componentRegistries[index] != null && players[index] != null)
         {
             playerClassID[index]++;
             if (playerClassID[index] == playerClassRotation.Count())
@@ -1100,7 +1103,7 @@ public class CharSetup : MonoBehaviour
 
     public void previousClass(int index)
     {
-        if (kwikfix && componentRegistries[index] != null && players[index] != null)
+        if (componentRegistries[index] != null && players[index] != null)
         {
             playerClassID[index]--;
             if (playerClassID[index] == -1)
