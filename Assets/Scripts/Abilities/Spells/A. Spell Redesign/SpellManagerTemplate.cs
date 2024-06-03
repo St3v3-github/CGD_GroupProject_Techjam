@@ -105,6 +105,7 @@ public class SpellManagerTemplate : MonoBehaviour
         spellSlotArray[slot].currentState = SpellDataTemplate.SpellState.ACTIVE;
         spellSlotArray[slot].isReadyState = false;
         projection = Instantiate(spellSlotArray[slot].projectionPrefab, Vector3.zero, Quaternion.identity);
+        projection.GetComponent<ProjectionLayers>().SetProjLayer(componentRegistry.projectionLayer);
         projectionOn = true;
     }
 

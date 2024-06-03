@@ -27,7 +27,14 @@ public bool confirmActionPressed { get; private set; }
 // Start is called before the first frame update
     void Start()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+        }
+
+        playerInput = GetComponent<PlayerInput>();
+        confirmAction = playerInput.actions["Confirm"];
+        EventSystem.current.SetSelectedGameObject(gateFirstButton);
     }
 
     private void Awake()
@@ -53,6 +60,7 @@ public bool confirmActionPressed { get; private set; }
 
     public void EndFirstMenu()
     {
+        Debug.Log("ENDFIRSTMENU");
         firstMenu = false;
         secondMenu = true;
         EventSystem.current.SetSelectedGameObject(menuFirstButton);

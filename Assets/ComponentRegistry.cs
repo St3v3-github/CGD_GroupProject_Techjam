@@ -16,6 +16,7 @@ public class ComponentRegistry : MonoBehaviour
     public GameObject cameraPosition;
     //public Raycast ray;
     public CameraMove moveCamera;
+    public int projectionLayer;
 
     [Header("Movement")]
     public CapsuleCollider hitboxCollider;

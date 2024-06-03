@@ -464,6 +464,7 @@ MonoBehaviour:
   playerCamera: {fileID: 9209587692150456616}
   cameraPosition: {fileID: 7993765048706273042}
   moveCamera: {fileID: 420748549437326314}
+  projectionLayer: 0
   hitboxCollider: {fileID: 8530442957580438382}
   secondCollider: {fileID: 200565544763646447}
   rigidBody: {fileID: 3581709865523120997}
@@ -1719,6 +1720,7 @@ Transform:
   - {fileID: 4350210307999444437}
   - {fileID: 2376026806201154373}
   - {fileID: 8072273754234096053}
+  - {fileID: 2294276994615519885}
   m_Father: {fileID: 9126598849417916112}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &200565544763646447
@@ -17961,16 +17963,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   p1layerMask:
     serializedVersion: 2
-    m_Bits: 57847
+    m_Bits: 123383
   p2layerMask:
     serializedVersion: 2
-    m_Bits: 53751
+    m_Bits: 184823
   p3layerMask:
     serializedVersion: 2
-    m_Bits: 45559
+    m_Bits: 307703
   p4layerMask:
     serializedVersion: 2
-    m_Bits: 29175
+    m_Bits: 553463
 --- !u!114 &156639748207719878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23630,12 +23632,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3855797289784548124}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalRotation: {x: 0.4571305, y: -0.479079, z: -0.5173013, w: 0.54213876}
+  m_LocalPosition: {x: 0.5619322, y: 1.3084428, z: 0.35622185}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4869562119157815153}
+  m_Father: {fileID: 6208249024077074048}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &4724934202819377354
 LineRenderer:
@@ -40343,7 +40345,6 @@ Transform:
   m_LocalScale: {x: 100.00002, y: 100, z: 100.000015}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 2294276994615519885}
   - {fileID: 2434201205208781208}
   m_Father: {fileID: 2859380886891206585}
   m_LocalEulerAnglesHint: {x: 0, y: -97.067, z: 92.686}

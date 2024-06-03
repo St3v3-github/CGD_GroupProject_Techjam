@@ -159,7 +159,7 @@ public class LevelSelectController : MonoBehaviour
         if (scene.IsValid())
         {
             //SceneManager.MoveGameObjectToScene(canvas, scene);
-           
+
             foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
             {
                 SceneManager.MoveGameObjectToScene(player, scene);
@@ -169,7 +169,7 @@ public class LevelSelectController : MonoBehaviour
             rememberActive.Clear();
             foreach (var rootGameObject in SceneManager.GetActiveScene().GetRootGameObjects())
             {
-                if(rootGameObject.activeSelf && this.gameObject != rootGameObject)
+                if (rootGameObject.activeSelf && this.gameObject != rootGameObject)
                 {
                     rememberActive.Add(rootGameObject);
                     rootGameObject.SetActive(false);
@@ -187,6 +187,7 @@ public class LevelSelectController : MonoBehaviour
                 }
             }
             SceneManager.SetActiveScene(scene);
+            onlyLoadOnce = true;
             AudioManager.instance.InitializeMusic(FMODEvents.instance.music);
             onlyLoadOnce = true;
 

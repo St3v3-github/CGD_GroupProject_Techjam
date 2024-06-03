@@ -110,6 +110,7 @@ public class CharSetup : MonoBehaviour
             {
                 componentRegistry.attributeManager.initialSpawnSetup = false;
                 componentRegistry.mainMesh.GetComponent<CameraCulling>().SetGameLayerRecursive(componentRegistry.mainMesh, 12 + componentRegistry.playerInput.playerIndex);
+                componentRegistry.projectionLayer = 16 + componentRegistry.playerInput.playerIndex;
                 players[componentRegistry.playerInput.playerIndex] = player;
                 menuSelections[componentRegistry.playerInput.playerIndex] = 0;
                 componentRegistries[componentRegistry.playerInput.playerIndex] = componentRegistry;
