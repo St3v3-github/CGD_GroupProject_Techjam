@@ -135,13 +135,11 @@ public class LevelSelectController : MonoBehaviour
         sceneLoader.allowSceneActivation = false;
         while (sceneLoader.progress < 0.9f)
         {
-            Debug.Log("Loading scene " + sceneToLoad + " <<||>> Progress: " + sceneLoader.progress);
             yield return null;
         }
         sceneLoader.allowSceneActivation = true;
         while (!SceneManager.GetSceneByName(sceneToLoad).isLoaded)
         {
-            Debug.Log("Scene not fully loaded yet...");
             yield return null;
         }
         FinishLoading(sceneToLoad);
@@ -159,11 +157,13 @@ public class LevelSelectController : MonoBehaviour
         if (scene.IsValid())
         {
             //SceneManager.MoveGameObjectToScene(canvas, scene);
-
-            foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
+            var playerList = charSetupObj.GetComponent<CharSetup>().players;
+            var regList = charSetupObj.GetComponent<CharSetup>().componentRegistries;
+            for (int i = 0; i < playerList.Length; i++)
             {
-                SceneManager.MoveGameObjectToScene(player, scene);
-                player.GetComponent<ComponentRegistry>().attributeManager.currentHealth = player.GetComponent<ComponentRegistry>().attributeManager.maxHealth;
+                if (playerList[i] == null) { continue; }
+                SceneManager.MoveGameObjectToScene(playerList[i], scene);
+                regList[i].attributeManager.currentHealth = regList[i].attributeManager.maxHealth;
             }
 
             rememberActive.Clear();
