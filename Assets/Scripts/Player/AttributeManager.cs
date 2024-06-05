@@ -15,6 +15,7 @@ public class AttributeManager : MonoBehaviour
     //should be private for final (as we use getters and setters) but keep public for dev so we can eyeball inspector
     [SerializeField] public float currentHealth;
     [SerializeField] public float maxHealth;
+    [SerializeField] public float lowHealth;
     [SerializeField] public int mp;
     [SerializeField] public float speed;
     [SerializeField] public int score;
@@ -49,7 +50,8 @@ public class AttributeManager : MonoBehaviour
     {
         //set all values to whatever default value we want
         currentHealth = maxHealth;
-
+        lowHealth = maxHealth / 6.0f;
+        healthbar.maxValue = maxHealth;
         //need to load from resources as attribute controller seems to be created at runtime, cannot reference in inspector
         damageFlyTextPrefab = (GameObject)Resources.Load("prefabs/DamageText", typeof(GameObject));
 
@@ -67,7 +69,7 @@ public class AttributeManager : MonoBehaviour
         scorefloat = score.ToString(); 
        // ScoreText.GetComponent<TextMeshProUGUI>().text = scorefloat;
 
-        if(currentHealth <= 10)
+        if(currentHealth <= lowHealth)
         {
             //fullScreenController.DamageLowHealth();
             fullscreenFX.ToggleLowHealth();
