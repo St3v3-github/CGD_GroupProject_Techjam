@@ -25,8 +25,10 @@ public class FlameThrower : MonoBehaviour
     {
         if (other.transform.parent.CompareTag("Player") && other.transform.parent.gameObject != source)
         {
-            other.GetComponentInParent<ComponentRegistry>().attributeManager.TakeDamage(damage);
-            other.GetComponentInParent<ComponentRegistry>().playerScoreInfo.lastDamagedBy = source;
+            var compReg = other.GetComponentInParent<ComponentRegistry>();
+            compReg.attributeManager.TakeDamage(damage);
+            compReg.playerScoreInfo.lastDamagedBy = source;
+            compReg.statusEffectHandler.ApplyEffect(effectData);
 
             source.GetComponent<ComponentRegistry>().uiHandler.Hit();
         }

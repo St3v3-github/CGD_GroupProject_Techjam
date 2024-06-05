@@ -49,8 +49,6 @@ public class AttributeManager : MonoBehaviour
     {
         //set all values to whatever default value we want
         currentHealth = maxHealth;
-        maxHealth = 100;
-        mp = 100;
 
         //need to load from resources as attribute controller seems to be created at runtime, cannot reference in inspector
         damageFlyTextPrefab = (GameObject)Resources.Load("prefabs/DamageText", typeof(GameObject));

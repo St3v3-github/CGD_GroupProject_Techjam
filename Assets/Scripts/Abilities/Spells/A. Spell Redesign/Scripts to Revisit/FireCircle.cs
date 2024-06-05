@@ -9,6 +9,7 @@ public class FireCircle : Spell
     public float maxRadius = 5f; // Adjust the maximum collider radius
     public float sizeIncreaseDuration = 5f; // Adjust the duration over which the collider size increases
     public float duration = 10f;
+    public StatusEffect_Data statusEffect;
     private ParticleSystem particle;
 
     private GameObject playerInPoisonCloud; // Store the reference to the player
@@ -46,13 +47,14 @@ public class FireCircle : Spell
     {
         // Calculate damage based on time
         float damage = damagePerSecond * Time.deltaTime;
-
-        AttributeManager attributes = player.gameObject.GetComponentInChildren<AttributeManager>();
+        var compReg = player.GetComponentInParent<ComponentRegistry>();
+        AttributeManager attributes = compReg.attributeManager;
 
         if (attributes != null)
         {
             attributes.TakeDamage(damage);
-            player.GetComponentInParent<ComponentRegistry>().playerScoreInfo.lastDamagedBy = source;
+            compReg.playerScoreInfo.lastDamagedBy = source;
+            compReg.statusEffectHandler.ApplyEffect(statusEffect);
             source.GetComponent<ComponentRegistry>().uiHandler.Hit();
         }
     }
