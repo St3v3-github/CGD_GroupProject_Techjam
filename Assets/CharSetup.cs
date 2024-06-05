@@ -29,6 +29,11 @@ public class CharSetup : MonoBehaviour
     public int maxSelection = 3;
     public PlayerInputManager inputManager;
     public bool updateAfterDestroy = false;
+    public float[] recordedHealth;
+    public float[] lastHeal;
+    public float[] recordTimers;
+    public float healDelay = 2.0f;
+    public float healPerSec = 20.0f;
     public List<int>[] customisationIDs;
     public List<int>[] colourIDs;
     public const int CUSTOMISATION_PARTS = 4;
@@ -53,6 +58,9 @@ public class CharSetup : MonoBehaviour
 
     void Start()
     {
+        recordedHealth = new float[maxPlayers];
+        lastHeal = new float[maxPlayers];
+        recordTimers = new float[maxPlayers];
         customisationIDs = new List<int>[maxPlayers];
         colourIDs = new List<int>[maxPlayers];
         for (int i = 0; i < maxPlayers; i++)
@@ -84,6 +92,7 @@ public class CharSetup : MonoBehaviour
         }
     }
 
+    const float TOLERANCE = 0.001f;
     private void LateUpdate()
     {
         if (updateAfterDestroy)
@@ -96,6 +105,28 @@ public class CharSetup : MonoBehaviour
                     Destroy(player.gameObject);
                 }
             }
+        }
+        for (int i = 0; i < maxPlayers; i++)
+        {
+            if (players[i] == null) { continue; }
+            if (componentRegistries[i].attributeManager.currentHealth - lastHeal[i] >= recordedHealth[i] - TOLERANCE)
+            {
+                recordTimers[i] += Time.deltaTime;
+            }
+            else
+            {
+                recordTimers[i] = 0f;
+                lastHeal[i] = 0f;
+            }
+            recordedHealth[i] = componentRegistries[i].attributeManager.currentHealth;
+            if (recordTimers[i] < healDelay) { continue; }
+            if (componentRegistries[i].attributeManager.currentHealth >= componentRegistries[i].attributeManager.maxHealth)
+            {
+                componentRegistries[i].attributeManager.currentHealth = componentRegistries[i].attributeManager.maxHealth;
+                continue;
+            }
+            lastHeal[i] = healPerSec * Time.deltaTime;
+            componentRegistries[i].attributeManager.currentHealth += lastHeal[i];
         }
     }
 

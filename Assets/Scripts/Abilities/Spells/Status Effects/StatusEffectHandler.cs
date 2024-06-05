@@ -31,14 +31,15 @@ public class StatusEffectHandler : MonoBehaviour, IEffectable
         else
         {
             RemoveEffect();
+            _data = statusData;
         }
-        _data = statusData;
+
         if (effectParticles != null)
         {
             effectParticles = Instantiate(_data.EffectParticles, transform);
         }
 
-        nextTickTime = _data.TickSpeed;
+        //nextTickTime = _data.TickSpeed; Why start at tick time?
 
         if (_data.isFire)
         {
